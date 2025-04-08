@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <meta charset='UTF-8'>
+    <script src='wanakana.min.js'></script>
+    <title>Japanese reading game prototype</title>
+    <script>
+        const ctx = {
+            question: null,
+            dict: null,
+            questionDiv: null,
+            answerInput: null
+        };
+
+        function loadData() {
+            fetch('dict.json')
+                .then(data => data.json())
+                .then(json => startGame(json))
+                .catch(err => {
+                    const body = document.body;
+                    body.innerHTML = err;
+                    console.error(err);
+                });
+        }
+
+        function startGame(dict) {
+            ctx.dict = dict;
+            const body = document.body;
+            body.innerHTML = '';
+
+            ctx.questionDiv = document.createElement('div');
+            ctx.answerInput = document.createElement('input');
+            ctx.answerInput.addEventListener('change', answerSubmitted);
+
+            body.append(ctx.questionDiv, document.createElement('br'), ctx.answerInput);
+            askRandomQuestion(ctx.dict, ctx.questionDiv, ctx.answerInput);
+        }
+
+        function askRandomQuestion() {
+            ctx.question = ctx.dict[Math.floor(Math.random() * ctx.dict.length)];
+            const q = ctx.question;
+            ctx.questionDiv.innerHTML = `
+                ${formatQuestion(q)}
+                <br>
+                ${formatSense(q.sense)}
+            `;
+
+            console.log(q);
+            ctx.answerInput.focus();
+        }
+
+        function formatQuestion(question) {
+            const dataToFormat = question.kanji || question.kana; 
+            return dataToFormat.flatMap(data => data).map(data => data.keb || data.reb).join('<br>');
+        }
+
+        function formatSense(sense) {
+            return sense.flatMap(s => s).map(s => JSON.stringify(s, null, 1).replaceAll('\n', '<br>')).join('<br><br>');
+            return JSON.stringify(sense, null, 1).replaceAll('\n', '<br>');
+        }
+
+        function answerSubmitted(event) {
+            const input = event.target;
+            const answer = input.value;
+
+            if (ctx.question.kana.flatMap(entry => entry).map(entry => wanakana.toKatakana(entry.reb)).includes(wanakana.toKatakana(answer))) {
+                console.log('Correct!');
+                input.value = '';
+                askRandomQuestion();
+            } else {
+                console.log('Incorrect...');
+            }
+        }
+    </script>
+</head>
+<body onload="loadData();">
+    Loading...
+</body>
