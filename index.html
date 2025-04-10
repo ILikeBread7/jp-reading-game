@@ -4,12 +4,9 @@
     <script src='wanakana.min.js'></script>
     <title>Japanese reading game prototype</title>
     <script>
-        const ctx = {
-            question: null,
-            dict: null,
-            questionDiv: null,
-            answerInput: null
-        };
+        const ctx = {};
+        const KANA_MODE = 0;
+        const KANJI_MODE = 1;
 
         function loadData() {
             fetch('dict.json')
@@ -23,7 +20,7 @@
         }
 
         function startGame(dict) {
-            ctx.dict = dict;
+            createDicts(dict);
             const body = document.body;
             body.innerHTML = '';
 
@@ -32,11 +29,56 @@
             ctx.answerInput.addEventListener('change', answerSubmitted);
 
             body.append(ctx.questionDiv, document.createElement('br'), ctx.answerInput);
-            askRandomQuestion(ctx.dict, ctx.questionDiv, ctx.answerInput);
+            askRandomQuestion(ctx.currentDict, ctx.questionDiv, ctx.answerInput);
+        }
+
+        function createDicts(dict) {
+            ctx.dict = dict;
+            ctx.kanaDict = dict.filter(
+                entry => !entry.kanji ||
+                    (entry.sense.map(s => [s.misc].flatMap(m => m).includes('word usually written using kana alone')))
+            );
+            ctx.hiraganaDict = ctx.kanaDict
+                .filter(
+                    entry => entry.kana
+                        .flatMap(k => k)
+                        .map(kana => kana.reb === wanakana.toHiragana(kana.reb))
+                        .includes(true)
+                );
+            ctx.katakanaDict = ctx.kanaDict
+                .filter(
+                    entry => entry.kana
+                        .flatMap(k => k)
+                        .map(kana => kana.reb === wanakana.toKatakana(kana.reb))
+                        .includes(true)
+                );
+            ctx.hiraganaAGyou = ctx.hiraganaDict
+                .filter(
+                    entry => entry.kana
+                        .flatMap(k => k)
+                        .map(kana => !!kana.reb.match(/^[あ|い|う|え|お]+$/))
+                        .includes(true)
+                )
+            ctx.katakanaAGyou = ctx.katakanaDict
+                .filter(
+                    entry => entry.kana
+                        .flatMap(k => k)
+                        .map(kana => !!kana.reb.match(/^[ア|イ|ウ|エ|オ]+$/))
+                        .includes(true)
+                )
+
+            console.log(`Total: ${ctx.dict.length}, Kana: ${ctx.kanaDict.length}, Hiragana: ${ctx.hiraganaDict.length}, Hiragana あ行: ${ctx.hiraganaAGyou.length}, Katakana: ${ctx.katakanaDict.length}, Katakana ア行: ${ctx.katakanaAGyou.length}`);
+
+            ctx.mode = KANA_MODE;
+            ctx.currentDict = ctx.katakanaAGyou;
         }
 
         function askRandomQuestion() {
-            ctx.question = ctx.dict[Math.floor(Math.random() * ctx.dict.length)];
+            const previousQuestion = ctx.question;
+            do {
+                ctx.question = ctx.currentDict[Math.floor(Math.random() * ctx.currentDict.length)];
+            } while(previousQuestion && (previousQuestion === ctx.question || (ctx.mode === KANA_MODE && ctx.question.kana.map(kana => kana.reb).find(reb => previousQuestion.kana.map(kana => kana.reb).includes(reb)))));
+
             const q = ctx.question;
             ctx.questionDiv.innerHTML = `
                 ${formatQuestion(q)}
@@ -49,18 +91,21 @@
         }
 
         function formatQuestion(question) {
-            const dataToFormat = question.kanji || question.kana; 
-            return dataToFormat.flatMap(data => data).map(data => data.keb || data.reb).join('<br>');
+            const dataToFormat = ctx.mode === KANA_MODE ? question.kana : (question.kanji || question.kana); 
+            return dataToFormat.flatMap(data => data).map((data, index) => data.keb || data.reb).join('<br>');
         }
 
         function formatSense(sense) {
             return sense.flatMap(s => s).map(s => JSON.stringify(s, null, 1).replaceAll('\n', '<br>')).join('<br><br>');
-            return JSON.stringify(sense, null, 1).replaceAll('\n', '<br>');
         }
 
         function answerSubmitted(event) {
             const input = event.target;
             const answer = input.value;
+
+            if (!answer) {
+                return;
+            }
 
             if (ctx.question.kana.flatMap(entry => entry).map(entry => wanakana.toKatakana(entry.reb)).includes(wanakana.toKatakana(answer))) {
                 console.log('Correct!');
