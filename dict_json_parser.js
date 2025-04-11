@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import * as wanakana from 'wanakana';
 
 const TERMS_TEXT_BY_CODE = {
     // <dial> (dialect) entities
@@ -286,6 +287,18 @@ Object.entries(TERMS_TEXT_BY_CODE).forEach(([key, value]) => TERMS_TEXT_BY_TEXT[
 
 const TERMS_MAPPER = TERMS_TEXT_BY_CODE;
 
+const aGyou = 'あいうえお';
+const kaGyou = 'かきくけこがぎぐげご' + aGyou;
+const saGyou = 'さしすせそざじずぜぞ' + kaGyou;
+
+const hiragana = [
+    { tag: 'a', chars: aGyou },
+    { tag: 'k', chars: kaGyou },
+    { tag: 's', chars: saGyou }
+];
+const katakana = hiragana.map(entry => ({ tag: entry.tag.toUpperCase(), chars: wanakana.toKatakana(entry.chars) }));
+[...hiragana, ...katakana].forEach(gyou => gyou.regExp = new RegExp(regExpString(gyou.chars)));
+
 fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     if (err) {
         console.error(err);
@@ -306,6 +319,8 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
             entry.kanji = elementToArray(kEle);
         }
 
+        entry.tags = createTags(entry);
+
         result.push(entry);
     });
 
@@ -320,4 +335,34 @@ function elementToArray(element) {
     }
 
     return [ element ];
+}
+
+function createTags(entry) {
+    const tags = [];
+
+    tags.push(...createKanaTags(entry));
+
+    return tags;
+}
+
+function createKanaTags(entry) {
+    return [
+        ...createTagsForKana(entry, hiragana),
+        ...createTagsForKana(entry, katakana)
+    ];
+}
+
+function regExpString(str) {
+    return `^[${[...str].join('|')}]+$`;
+}
+
+function createTagsForKana(entry, kana) {
+    for (let i = 0; i < kana.length; i++) {
+        const kanaGyou = kana[i];
+        if (entry.kana.find(k => k.reb.match(kanaGyou.regExp))) {
+            return [kanaGyou.tag];
+        }
+    }
+
+    return [];
 }

@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
-    "fast-xml-parser": "^5.2.0"
+    "fast-xml-parser": "^5.2.0",
+    "wanakana": "^5.3.1"
   }
 }
