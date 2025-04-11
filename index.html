@@ -41,30 +41,22 @@
             ctx.hiraganaDict = ctx.kanaDict
                 .filter(
                     entry => entry.kana
-                        .flatMap(k => k)
-                        .map(kana => kana.reb === wanakana.toHiragana(kana.reb))
-                        .includes(true)
+                        .find(kana => kana.reb === wanakana.toHiragana(kana.reb))
                 );
             ctx.katakanaDict = ctx.kanaDict
                 .filter(
                     entry => entry.kana
-                        .flatMap(k => k)
-                        .map(kana => kana.reb === wanakana.toKatakana(kana.reb))
-                        .includes(true)
+                        .find(kana => kana.reb === wanakana.toKatakana(kana.reb))
                 );
             ctx.hiraganaAGyou = ctx.hiraganaDict
                 .filter(
                     entry => entry.kana
-                        .flatMap(k => k)
-                        .map(kana => !!kana.reb.match(/^[あ|い|う|え|お]+$/))
-                        .includes(true)
+                        .find(kana => !!kana.reb.match(/^[あ|い|う|え|お]+$/))
                 )
             ctx.katakanaAGyou = ctx.katakanaDict
                 .filter(
                     entry => entry.kana
-                        .flatMap(k => k)
-                        .map(kana => !!kana.reb.match(/^[ア|イ|ウ|エ|オ]+$/))
-                        .includes(true)
+                        .find(kana => !!kana.reb.match(/^[ア|イ|ウ|エ|オ]+$/))
                 )
 
             console.log(`Total: ${ctx.dict.length}, Kana: ${ctx.kanaDict.length}, Hiragana: ${ctx.hiraganaDict.length}, Hiragana あ行: ${ctx.hiraganaAGyou.length}, Katakana: ${ctx.katakanaDict.length}, Katakana ア行: ${ctx.katakanaAGyou.length}`);
@@ -92,7 +84,7 @@
 
         function formatQuestion(question) {
             const dataToFormat = ctx.mode === KANA_MODE ? question.kana : (question.kanji || question.kana); 
-            return dataToFormat.flatMap(data => data).map((data, index) => data.keb || data.reb).join('<br>');
+            return dataToFormat.map((data, index) => data.keb || data.reb).join('<br>');
         }
 
         function formatSense(sense) {
@@ -107,7 +99,7 @@
                 return;
             }
 
-            if (ctx.question.kana.flatMap(entry => entry).map(entry => wanakana.toKatakana(entry.reb)).includes(wanakana.toKatakana(answer))) {
+            if (ctx.question.kana.map(entry => wanakana.toKatakana(entry.reb)).includes(wanakana.toKatakana(answer))) {
                 console.log('Correct!');
                 input.value = '';
                 askRandomQuestion();

@@ -2,3 +2,4 @@ node_modules
 dict.json
 JMdict*
 wanakana.min.js
+jlpt_data/*.doc

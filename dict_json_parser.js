@@ -29,7 +29,7 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
 });
 
 function elementToArray(element) {
-    if (typeof element === 'array') {
+    if (Array.isArray(element)) {
         return element;
     }
 
