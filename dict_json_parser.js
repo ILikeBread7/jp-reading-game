@@ -310,7 +310,7 @@ const hiragana = [
     { tag: 'y', chars: yaGyou },
     { tag: 'r', chars: raGyou },
     { tag: 'w', chars: waGyou },
-    { tag: 'n', chars: nGyou }
+    { tag: 'nn', chars: nGyou }
 ];
 const katakana = hiragana.map(entry => ({ tag: entry.tag.toUpperCase(), chars: 'ー' + wanakana.toKatakana(entry.chars) }));
 [...hiragana, ...katakana].forEach(gyou => gyou.regExp = new RegExp(regExpString(gyou.chars)));

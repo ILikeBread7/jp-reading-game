@@ -69,7 +69,7 @@
             // ctx.katakanaKaGyou = ctx.dict.filter(entry => entry.tags.includes('K'));
             // ctx.katakanaSaGyou = ctx.dict.filter(entry => entry.tags.includes('S'));
 
-            const hiraganaGyous = ['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w', 'n'];
+            const hiraganaGyous = ['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w', 'nn'];
             const katakanaGyous = hiraganaGyous.map(g => g.toUpperCase());
             ctx.gyouDicts = new Map([...hiraganaGyous, ...katakanaGyous]
                 .map(gyou => [gyou, dict.filter(entry => entry.tags.includes(gyou))])
