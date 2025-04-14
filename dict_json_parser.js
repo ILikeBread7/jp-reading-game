@@ -315,6 +315,26 @@ const hiragana = [
 const katakana = hiragana.map(entry => ({ tag: entry.tag.toUpperCase(), chars: 'ー' + wanakana.toKatakana(entry.chars) }));
 [...hiragana, ...katakana].forEach(gyou => gyou.regExp = new RegExp(regExpString(gyou.chars)));
 
+const wholeHiraganaForRegExp = [...hiragana[hiragana.length - 1].chars].join('|');
+const wholeKatakanaForRegExp = [...katakana[katakana.length - 1].chars].join('|');
+
+const jlptData = JSON.parse(fs.readFileSync('jlpt.json', 'utf-8'));
+
+const jlptN5Kanji = jlptData['n5'];
+const jlptN4Kanji = [...jlptData['n4'], ...jlptData['n5']];
+const jlptN3Kanji = [...jlptData['n3'], ...jlptData['n4']];
+const jlptN2Kanji = [...jlptData['n2'], ...jlptData['n3']];
+const jlptN1Kanji = [...jlptData['n1'], ...jlptData['n2']];
+
+const jlptLevels = [
+    { tag: 'n5', kanji: jlptN5Kanji },
+    { tag: 'n4', kanji: jlptN4Kanji },
+    { tag: 'n3', kanji: jlptN3Kanji },
+    { tag: 'n2', kanji: jlptN2Kanji },
+    { tag: 'n1', kanji: jlptN1Kanji }
+];
+jlptLevels.forEach(level => level.regExp = new RegExp(`^[${wholeHiraganaForRegExp}|${wholeKatakanaForRegExp}|${level.kanji.join('|')}]+$`));
+
 fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     if (err) {
         console.error(err);
@@ -357,6 +377,7 @@ function createTags(entry) {
     const tags = [];
 
     tags.push(...createKanaTags(entry));
+    tags.push(...createJLPTKanjiTags(entry));
 
     return tags;
 }
@@ -377,6 +398,22 @@ function createTagsForKana(entry, kana) {
         const kanaGyou = kana[i];
         if (entry.kana.find(k => k.reb.match(kanaGyou.regExp))) {
             return [kanaGyou.tag];
+        }
+    }
+
+    return [];
+}
+
+function createJLPTKanjiTags(entry) {
+    if (!entry.kanji) {
+        return [];
+    }
+
+    for (let i = 0; i < jlptLevels.length; i++) {
+        const level = jlptLevels[i];
+
+        if (entry.kanji.find(k => k.keb.match(level.regExp))) {
+            return [level.tag];
         }
     }
 
