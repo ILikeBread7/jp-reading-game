@@ -287,16 +287,32 @@ Object.entries(TERMS_TEXT_BY_CODE).forEach(([key, value]) => TERMS_TEXT_BY_TEXT[
 
 const TERMS_MAPPER = TERMS_TEXT_BY_CODE;
 
-const aGyou = 'あいうえお';
+const aGyou = 'あいうえおぁぃぅぇぉ';
 const kaGyou = 'かきくけこがぎぐげご' + aGyou;
 const saGyou = 'さしすせそざじずぜぞ' + kaGyou;
+const taGyou = 'たちっつてとだぢづでど' + saGyou;
+const naGyou = 'なにぬねの' + taGyou;
+const haGyou = 'はひふへほばびぶべぼぱぴぷぺぽ' + naGyou;
+const maGyou = 'まみむめも' + haGyou;
+const yaGyou = 'やゆよゃゅょ' + maGyou;
+const raGyou = 'らりるれろ' + yaGyou;
+const waGyou = 'わを' + raGyou;
+const nGyou = 'ん' + waGyou;
 
 const hiragana = [
     { tag: 'a', chars: aGyou },
     { tag: 'k', chars: kaGyou },
-    { tag: 's', chars: saGyou }
+    { tag: 's', chars: saGyou },
+    { tag: 't', chars: taGyou },
+    { tag: 'n', chars: naGyou },
+    { tag: 'h', chars: haGyou },
+    { tag: 'm', chars: maGyou },
+    { tag: 'y', chars: yaGyou },
+    { tag: 'r', chars: raGyou },
+    { tag: 'w', chars: waGyou },
+    { tag: 'n', chars: nGyou }
 ];
-const katakana = hiragana.map(entry => ({ tag: entry.tag.toUpperCase(), chars: wanakana.toKatakana(entry.chars) }));
+const katakana = hiragana.map(entry => ({ tag: entry.tag.toUpperCase(), chars: 'ー' + wanakana.toKatakana(entry.chars) }));
 [...hiragana, ...katakana].forEach(gyou => gyou.regExp = new RegExp(regExpString(gyou.chars)));
 
 fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
