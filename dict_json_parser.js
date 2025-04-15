@@ -319,25 +319,32 @@ const wholeHiraganaForRegExp = [...hiragana[hiragana.length - 1].chars].join('|'
 const wholeKatakanaForRegExp = [...katakana[katakana.length - 1].chars].join('|');
 
 const jlptKanjiData = JSON.parse(fs.readFileSync('jlpt_kanji.json', 'utf-8'));
+const jlptVocabData = JSON.parse(fs.readFileSync('jlpt_vocab.json', 'utf-8'));
 
-const KANJI_N5_TAG = 'n5';
-const KANJI_N4_TAG = 'n4';
-const KANJI_N3_TAG = 'n3';
-const KANJI_N2_TAG = 'n2';
-const KANJI_N1_TAG = 'n1';
+const KANJI_N5_TAG = 'k5';
+const KANJI_N4_TAG = 'k4';
+const KANJI_N3_TAG = 'k3';
+const KANJI_N2_TAG = 'k2';
+const KANJI_N1_TAG = 'k1';
 
-const jlptN5Kanji = jlptKanjiData[KANJI_N5_TAG];
-const jlptN4Kanji = [...jlptKanjiData[KANJI_N4_TAG], ...jlptKanjiData[KANJI_N5_TAG]];
-const jlptN3Kanji = [...jlptKanjiData[KANJI_N3_TAG], ...jlptKanjiData[KANJI_N4_TAG]];
-const jlptN2Kanji = [...jlptKanjiData[KANJI_N2_TAG], ...jlptKanjiData[KANJI_N3_TAG]];
-const jlptN1Kanji = [...jlptKanjiData[KANJI_N1_TAG], ...jlptKanjiData[KANJI_N2_TAG]];
+const VOCAB_N5_TAG = 'v5';
+const VOCAB_N4_TAG = 'v4';
+const VOCAB_N3_TAG = 'v3';
+const VOCAB_N2_TAG = 'v2';
+const VOCAB_N1_TAG = 'v1';
+
+const jlptN5Kanji = jlptKanjiData['n5'];
+const jlptN4Kanji = [...jlptKanjiData['n4'], ...jlptKanjiData['n5']];
+const jlptN3Kanji = [...jlptKanjiData['n3'], ...jlptKanjiData['n4']];
+const jlptN2Kanji = [...jlptKanjiData['n2'], ...jlptKanjiData['n3']];
+const jlptN1Kanji = [...jlptKanjiData['n1'], ...jlptKanjiData['n2']];
 
 const jlptLevels = [
-    { kanjiTag: KANJI_N5_TAG, kanji: jlptN5Kanji },
-    { kanjiTag: KANJI_N4_TAG, kanji: jlptN4Kanji },
-    { kanjiTag: KANJI_N3_TAG, kanji: jlptN3Kanji },
-    { kanjiTag: KANJI_N2_TAG, kanji: jlptN2Kanji },
-    { kanjiTag: KANJI_N1_TAG, kanji: jlptN1Kanji }
+    { kanjiTag: KANJI_N5_TAG, kanji: jlptN5Kanji, vocabTag: VOCAB_N5_TAG, vocab: jlptVocabData['n5'] },
+    { kanjiTag: KANJI_N4_TAG, kanji: jlptN4Kanji, vocabTag: VOCAB_N4_TAG, vocab: jlptVocabData['n4'] },
+    { kanjiTag: KANJI_N3_TAG, kanji: jlptN3Kanji, vocabTag: VOCAB_N3_TAG, vocab: jlptVocabData['n3'] },
+    { kanjiTag: KANJI_N2_TAG, kanji: jlptN2Kanji, vocabTag: VOCAB_N2_TAG, vocab: jlptVocabData['n2'] },
+    { kanjiTag: KANJI_N1_TAG, kanji: jlptN1Kanji, vocabTag: VOCAB_N1_TAG, vocab: jlptVocabData['n1'] }
 ];
 jlptLevels.forEach(level => level.regExp = new RegExp(`^[${wholeHiraganaForRegExp}|${wholeKatakanaForRegExp}|${level.kanji.join('|')}]+$`));
 
@@ -348,8 +355,9 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     }
 
     const data = JSON.parse(jsonData);
+    const dictEntries = data['JMdict']['entry'];
     const result = [];
-    data['JMdict']['entry'].forEach(e => {
+    dictEntries.forEach((e, index) => {
         const entry = {
             id: e['ent_seq'],
             kana: elementToArray(e['r_ele']),
@@ -364,11 +372,14 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
         entry.tags = createTags(entry);
 
         result.push(entry);
+
+        // Show progress
+        if (index % 10000 === 0) {
+            console.log(`${Math.floor(100 * index / dictEntries.length)}%, ${index} / ${dictEntries.length}`);
+        }
     });
 
-    fs.writeFile('dict.json', JSON.stringify(result, null, 2), () => {
-        'Dict file written!'
-    });
+    fs.writeFile('dict.json', JSON.stringify(result, null, 2), () => console.log('Dict file written!'));
 });
 
 function elementToArray(element) {
@@ -380,12 +391,11 @@ function elementToArray(element) {
 }
 
 function createTags(entry) {
-    const tags = [];
-
-    tags.push(...createKanaTags(entry));
-    tags.push(...createJLPTKanjiTags(entry));
-
-    return tags;
+    return [
+        ...createKanaTags(entry),
+        ...createJLPTKanjiTags(entry),
+        ...createJLPTVocabTags(entry)
+    ];
 }
 
 function createKanaTags(entry) {
@@ -424,4 +434,29 @@ function createJLPTKanjiTags(entry) {
     }
 
     return [];
+}
+
+function createJLPTVocabTags(entry) {
+    for (let i = 0; i < jlptLevels.length; i++) {
+        const level = jlptLevels[i];
+        const vocab = level.vocab;
+
+        for (let j = 0; j < vocab.length; j++) {
+            const vocabEntry = vocab[j];
+
+            if (entry.kanji && vocabEntry.kanji && arrayIntersection(entry.kanji.map(k => k.keb), vocabEntry.kanji).length === 0) {
+                break;
+            }
+
+            if (arrayIntersection(entry.kana.map(k => k.reb), vocabEntry.kana).length > 0) {
+                return [level.vocabTag];
+            }
+        }
+    }
+
+    return [];
+}
+
+function arrayIntersection(array1, array2) {
+    return array1.filter(value => array2.includes(value));
 }
