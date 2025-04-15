@@ -445,7 +445,7 @@ function createJLPTVocabTags(entry) {
             const vocabEntry = vocab[j];
 
             if (entry.kanji && vocabEntry.kanji && arrayIntersection(entry.kanji.map(k => k.keb), vocabEntry.kanji).length === 0) {
-                break;
+                continue;
             }
 
             if (arrayIntersection(entry.kana.map(k => k.reb), vocabEntry.kana).length > 0) {

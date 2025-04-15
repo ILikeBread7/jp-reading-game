@@ -89,8 +89,13 @@
             console.log(`Total: ${ctx.dict.length}`);
             console.log(ctx.gyouDicts);
 
+            [5, 4, 3, 2, 1].forEach(level => {
+                ctx[`jlptN${level}Kanji`] = dict.filter(entry => entry.tags.includes(`k${level}`));
+                ctx[`jlptN${level}Vocab`] = dict.filter(entry => entry.tags.includes(`v${level}`));
+            });
+
             ctx.mode = KANJI_MODE;
-            ctx.currentDict = ctx.gyouDicts.get('a');
+            ctx.currentDict = ctx['jlptN5Vocab'];
         }
 
         function askRandomQuestion() {
