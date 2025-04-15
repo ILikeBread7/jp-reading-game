@@ -318,20 +318,26 @@ const katakana = hiragana.map(entry => ({ tag: entry.tag.toUpperCase(), chars: '
 const wholeHiraganaForRegExp = [...hiragana[hiragana.length - 1].chars].join('|');
 const wholeKatakanaForRegExp = [...katakana[katakana.length - 1].chars].join('|');
 
-const jlptData = JSON.parse(fs.readFileSync('jlpt.json', 'utf-8'));
+const jlptKanjiData = JSON.parse(fs.readFileSync('jlpt_kanji.json', 'utf-8'));
 
-const jlptN5Kanji = jlptData['n5'];
-const jlptN4Kanji = [...jlptData['n4'], ...jlptData['n5']];
-const jlptN3Kanji = [...jlptData['n3'], ...jlptData['n4']];
-const jlptN2Kanji = [...jlptData['n2'], ...jlptData['n3']];
-const jlptN1Kanji = [...jlptData['n1'], ...jlptData['n2']];
+const KANJI_N5_TAG = 'n5';
+const KANJI_N4_TAG = 'n4';
+const KANJI_N3_TAG = 'n3';
+const KANJI_N2_TAG = 'n2';
+const KANJI_N1_TAG = 'n1';
+
+const jlptN5Kanji = jlptKanjiData[KANJI_N5_TAG];
+const jlptN4Kanji = [...jlptKanjiData[KANJI_N4_TAG], ...jlptKanjiData[KANJI_N5_TAG]];
+const jlptN3Kanji = [...jlptKanjiData[KANJI_N3_TAG], ...jlptKanjiData[KANJI_N4_TAG]];
+const jlptN2Kanji = [...jlptKanjiData[KANJI_N2_TAG], ...jlptKanjiData[KANJI_N3_TAG]];
+const jlptN1Kanji = [...jlptKanjiData[KANJI_N1_TAG], ...jlptKanjiData[KANJI_N2_TAG]];
 
 const jlptLevels = [
-    { tag: 'n5', kanji: jlptN5Kanji },
-    { tag: 'n4', kanji: jlptN4Kanji },
-    { tag: 'n3', kanji: jlptN3Kanji },
-    { tag: 'n2', kanji: jlptN2Kanji },
-    { tag: 'n1', kanji: jlptN1Kanji }
+    { kanjiTag: KANJI_N5_TAG, kanji: jlptN5Kanji },
+    { kanjiTag: KANJI_N4_TAG, kanji: jlptN4Kanji },
+    { kanjiTag: KANJI_N3_TAG, kanji: jlptN3Kanji },
+    { kanjiTag: KANJI_N2_TAG, kanji: jlptN2Kanji },
+    { kanjiTag: KANJI_N1_TAG, kanji: jlptN1Kanji }
 ];
 jlptLevels.forEach(level => level.regExp = new RegExp(`^[${wholeHiraganaForRegExp}|${wholeKatakanaForRegExp}|${level.kanji.join('|')}]+$`));
 
@@ -413,7 +419,7 @@ function createJLPTKanjiTags(entry) {
         const level = jlptLevels[i];
 
         if (entry.kanji.find(k => k.keb.match(level.regExp))) {
-            return [level.tag];
+            return [level.kanjiTag];
         }
     }
 
