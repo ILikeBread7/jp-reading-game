@@ -27,6 +27,7 @@
             ctx.score = 0;
             ctx.level = 1;
             ctx.expToLevelUp = 3;
+            ctx.giveUp = false;
 
             ctx.levelDiv = document.createElement('div');
             ctx.levelDiv.style.float = 'right';
@@ -47,11 +48,31 @@
             ctx.answerInput = document.createElement('input');
             ctx.answerInput.addEventListener('change', answerSubmitted);
 
-            body.append(ctx.levelDiv, ctx.questionDiv, document.createElement('br'), ctx.answerInput);
+            ctx.giveUpButton = document.createElement('button');
+            ctx.giveUpButton.innerHTML = 'Give up';
+            ctx.giveUpButton.addEventListener('click', () => {
+                ctx.giveUp = true;
+                ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => k.reb).join('<br>');
+            })
+            ctx.giveUpDiv = document.createElement('div');
+
+            body.append(
+                ctx.levelDiv,
+                ctx.questionDiv,
+                document.createElement('br'),
+                ctx.answerInput,
+                document.createElement('br'),
+                ctx.giveUpButton,
+                ctx.giveUpDiv
+            );
             askRandomQuestion(ctx.currentDict, ctx.questionDiv, ctx.answerInput);
         }
 
         function updateScore() {
+            if (ctx.giveUp) {
+                return;
+            }
+
             ctx.score++;
             const exp = ctx.score % ctx.expToLevelUp;
             ctx.levelBarContent.style.width = `${exp * ctx.levelBarContainer.clientWidth / ctx.expToLevelUp}px`;
@@ -161,6 +182,10 @@
             `;
 
             console.log(q);
+
+            ctx.giveUp = false;
+            ctx.giveUpDiv.innerHTML = '';
+
             ctx.answerInput.focus();
         }
 
@@ -225,6 +250,7 @@
         }
 
         function setLevel(level) {
+            ctx.giveUp = false;
             ctx.level = level - 1;
             ctx.score = (ctx.level - 1) * ctx.expToLevelUp - 1;
             updateScore();
