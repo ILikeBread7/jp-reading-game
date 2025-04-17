@@ -94,6 +94,11 @@
                 ctx[`jlptN${level}Vocab`] = dict.filter(entry => entry.tags.includes(`v${level}`));
             });
 
+            const isJlptWord = (entry) => [1, 2, 3, 4, 5].find(level => entry.tags.includes(`v${level}`));
+            ctx.gyouDicts.entries().forEach(([gyouDictKey, gyouDictValue]) => {
+                ctx[`jlptGyou${gyouDictKey}`] = gyouDictValue.filter(entry => isJlptWord(entry));
+            });
+
             ctx.mode = KANJI_MODE;
             ctx.currentDict = ctx['jlptN5Vocab'];
         }
