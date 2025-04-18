@@ -379,6 +379,18 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
         }
     });
 
+    // DEBUG
+    const jlptMismatches = {};
+    for (const [key, value] of Object.entries(jlptVocabData)) {
+        jlptMismatches[key] = value.filter(entry => entry.matches !== 1);
+    }
+    fs.writeFile('jlpt_mismatches.json', JSON.stringify(
+        jlptMismatches,
+        null,
+        2
+    ), () => console.log('JLPT mismatches file written'));
+    // END OF DEBUG
+
     fs.writeFile('dict.json', JSON.stringify(result, null, 2), () => console.log('Dict file written!'));
 });
 
@@ -449,6 +461,11 @@ function createJLPTVocabTags(entry) {
             }
 
             if (arrayIntersection(entry.kana.map(k => k.reb), vocabEntry.kana).length > 0) {
+                
+                // DEBUG
+                vocabEntry.matches = (vocabEntry.matches || 0) + 1;
+                // END OF DEBUG
+                
                 return [level.vocabTag];
             }
         }

@@ -3,3 +3,4 @@ dict.json
 JMdict*
 wanakana.min.js
 jlpt_data/*.doc
+jlpt_mismatches.json
