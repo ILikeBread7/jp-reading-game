@@ -51,8 +51,14 @@
             ctx.giveUpButton = document.createElement('button');
             ctx.giveUpButton.innerHTML = 'Give up';
             ctx.giveUpButton.addEventListener('click', () => {
+                if (ctx.mode === KANA_MODE) {
+                    ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => wanakana.toRomaji(k.reb)).join('<br>');
+                } else if (ctx.giveUp) {
+                    ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => `${k.reb} (${wanakana.toRomaji(k.reb, { customRomajiMapping: { 'ぁ': 'xa', 'ぃ': 'xi',  'ぅ': 'xu', 'ぇ': 'xe', 'ぉ': 'xo', 'ァ': 'xa', 'ィ': 'xi', 'ゥ': 'xu', 'ェ': 'xe', 'ォ': 'xo' } })})`).join('<br>');
+                } else {
+                    ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => k.reb).join('<br>');
+                }
                 ctx.giveUp = true;
-                ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => k.reb).join('<br>');
             })
             ctx.giveUpDiv = document.createElement('div');
 
