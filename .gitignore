@@ -4,3 +4,4 @@ JMdict*
 wanakana.min.js
 jlpt_data/*.doc
 jlpt_mismatches.json
+dict_separator_test.json

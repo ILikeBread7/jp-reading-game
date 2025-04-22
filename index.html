@@ -52,11 +52,11 @@
             ctx.giveUpButton.innerHTML = 'Give up';
             ctx.giveUpButton.addEventListener('click', () => {
                 if (ctx.mode === KANA_MODE) {
-                    ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => wanakana.toRomaji(k.reb)).join('<br>');
+                    ctx.giveUpDiv.innerHTML = wanakana.toRomaji(ctx.question.kana);
                 } else if (ctx.giveUp) {
-                    ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => `${k.reb} (${wanakana.toRomaji(k.reb, { customRomajiMapping: { 'ぁ': 'xa', 'ぃ': 'xi',  'ぅ': 'xu', 'ぇ': 'xe', 'ぉ': 'xo', 'ァ': 'xa', 'ィ': 'xi', 'ゥ': 'xu', 'ェ': 'xe', 'ォ': 'xo' } })})`).join('<br>');
+                    ctx.giveUpDiv.innerHTML = `${ctx.question.kana} (${wanakana.toRomaji(ctx.question.kana, { customRomajiMapping: { 'ぁ': 'xa', 'ぃ': 'xi',  'ぅ': 'xu', 'ぇ': 'xe', 'ぉ': 'xo', 'ァ': 'xa', 'ィ': 'xi', 'ゥ': 'xu', 'ェ': 'xe', 'ォ': 'xo' } })})`;
                 } else {
-                    ctx.giveUpDiv.innerHTML = ctx.question.kana.map(k => k.reb).join('<br>');
+                    ctx.giveUpDiv.innerHTML = ctx.question.kana;
                 }
                 ctx.giveUp = true;
             })
@@ -79,9 +79,9 @@
                 return;
             }
 
-            const addedScore = ctx.mode === KANJI_MODE
+            const addedScore = ctx.mode === KANJI_MODE || ctx.level >= ctx.levelDicts.length
                 ? 1
-                : new Set([...ctx.levelChars[ctx.level - 1]]).intersection(new Set([...ctx.question.kana[0].reb])).size;
+                : new Set([...ctx.levelChars[ctx.level - 1]]).intersection(new Set([...ctx.question.kana])).size;
             
             console.log(addedScore);
             if ((ctx.score + addedScore) % ctx.expToLevelUp < ctx.score) {
@@ -206,7 +206,7 @@
             const previousQuestion = ctx.question;
             do {
                 ctx.question = ctx.currentDict[Math.floor(Math.random() * ctx.currentDict.length)];
-            } while(previousQuestion && (previousQuestion === ctx.question || (ctx.mode === KANA_MODE && ctx.question.kana.map(kana => kana.reb).find(reb => previousQuestion.kana.map(kana => kana.reb).includes(reb)))));
+            } while(previousQuestion && (previousQuestion === ctx.question || (ctx.mode === KANA_MODE && ctx.question.kana === previousQuestion.kana)));
 
             const q = ctx.question;
             ctx.questionDiv.innerHTML = `
@@ -224,12 +224,11 @@
         }
 
         function formatQuestion(question) {
-            const dataToFormat = ctx.mode === KANA_MODE ? question.kana : (question.kanji || question.kana); 
-            return dataToFormat.map((data, index) => data.keb || data.reb).join('<br>');
+            return ctx.mode === KANA_MODE ? question.kana : (question.kanji || question.kana); 
         }
 
         function formatSense(sense) {
-            return sense.flatMap(s => s).map(s => JSON.stringify(s, null, 1).replaceAll('\n', '<br>')).join('<br><br>');
+            return sense.map(s => JSON.stringify(s, null, 1).replaceAll('\n', '<br>')).join('<br><br>');
         }
 
         function answerSubmitted(event) {
@@ -240,7 +239,7 @@
                 return;
             }
 
-            if (ctx.question.kana.map(entry => wanakana.toKatakana(entry.reb)).includes(wanakana.toKatakana(answer))) {
+            if (wanakana.toKatakana(ctx.question.kana) === wanakana.toKatakana(answer)) {
                 console.log('Correct!');
                 input.value = '';
                 updateScore();

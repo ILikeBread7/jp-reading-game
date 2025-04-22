@@ -356,28 +356,63 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
 
     const data = JSON.parse(jsonData);
     const dictEntries = data['JMdict']['entry'];
-    const result = [];
-    dictEntries.forEach((e, index) => {
-        const entry = {
-            id: e['ent_seq'],
-            kana: elementToArray(e['r_ele']),
-            sense: elementToArray(e['sense'])
-        };
 
-        const kEle = e['k_ele'];
-        if (kEle) {
-            entry.kanji = elementToArray(kEle);
-        }
+    const result = dictEntries.flatMap((entry, index) => {
+        const separatedEntry = [];
+    
+        elementToArray(entry['k_ele']).forEach(kanji => {
+            elementToArray(entry['r_ele']).forEach(kana => {
+                if (kanji && kana.re_restr && !elementToArray(kana.re_restr).includes(kanji.keb)) {
+                    return;
+                }
+    
+                const filteredSense = elementToArray(entry['sense'])
+                    .filter(sense => !sense.stagr || elementToArray(sense.stagr).includes(kana.reb))
+                    .filter(sense => !sense.stagk || elementToArray(sense.stagk).includes(kanji.keb));
+    
+                const newEntry = {};
+                newEntry.id = entry['ent_seq'];
+                if (kanji) {
+                    newEntry.kanji = kanji.keb;
+                }
+                newEntry.kana = kana.reb;
+                newEntry.sense = filteredSense;
 
-        entry.tags = createTags(entry);
+                newEntry.tags = createTags(newEntry);
 
-        result.push(entry);
-
+                separatedEntry.push(newEntry);
+            });
+        });
+    
         // Show progress
         if (index % 10000 === 0) {
             console.log(`${Math.floor(100 * index / dictEntries.length)}%, ${index} / ${dictEntries.length}`);
         }
+
+        return separatedEntry;
     });
+
+    // dictEntries.forEach((e, index) => {
+    //     const entry = {
+    //         id: e['ent_seq'],
+    //         kana: elementToArray(e['r_ele']),
+    //         sense: elementToArray(e['sense'])
+    //     };
+
+    //     const kEle = e['k_ele'];
+    //     if (kEle) {
+    //         entry.kanji = elementToArray(kEle);
+    //     }
+
+    //     entry.tags = createTags(entry);
+
+    //     result.push(entry);
+
+    //     // Show progress
+    //     if (index % 10000 === 0) {
+    //         console.log(`${Math.floor(100 * index / dictEntries.length)}%, ${index} / ${dictEntries.length}`);
+    //     }
+    // });
 
     // DEBUG
     const jlptMismatches = {};
@@ -424,7 +459,7 @@ function regExpString(str) {
 function createTagsForKana(entry, kana) {
     for (let i = 0; i < kana.length; i++) {
         const kanaGyou = kana[i];
-        if (entry.kana.find(k => k.reb.match(kanaGyou.regExp))) {
+        if (entry.kana.match(kanaGyou.regExp)) {
             return [kanaGyou.tag];
         }
     }
@@ -440,7 +475,7 @@ function createJLPTKanjiTags(entry) {
     for (let i = 0; i < jlptLevels.length; i++) {
         const level = jlptLevels[i];
 
-        if (entry.kanji.find(k => k.keb.match(level.regExp))) {
+        if (entry.kanji.match(level.regExp)) {
             return [level.kanjiTag];
         }
     }
@@ -456,11 +491,11 @@ function createJLPTVocabTags(entry) {
         for (let j = 0; j < vocab.length; j++) {
             const vocabEntry = vocab[j];
 
-            if (entry.kanji && vocabEntry.kanji && arrayIntersection(entry.kanji.map(k => k.keb), vocabEntry.kanji).length === 0) {
+            if (entry.kanji && vocabEntry.kanji && !vocabEntry.kanji.includes(entry.kanji)) {
                 continue;
             }
 
-            if (arrayIntersection(entry.kana.map(k => k.reb), vocabEntry.kana).length > 0) {
+            if (vocabEntry.kana.includes(entry.kana)) {
                 
                 // DEBUG
                 vocabEntry.matches = (vocabEntry.matches || 0) + 1;
@@ -472,8 +507,4 @@ function createJLPTVocabTags(entry) {
     }
 
     return [];
-}
-
-function arrayIntersection(array1, array2) {
-    return array1.filter(value => array2.includes(value));
 }
