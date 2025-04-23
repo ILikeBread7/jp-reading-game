@@ -70,6 +70,7 @@
                 ctx.hintDiv
             );
 
+            ctx.charRepsToLevelUp = 2;
             setLevel(1);
             askRandomQuestion(ctx.currentDict, ctx.questionDiv, ctx.answerInput);
         }
@@ -79,9 +80,36 @@
                 return;
             }
 
+            let charMaxedOut = false;
+            const charsForExp = ctx.currentLevelProgress.remainingChars.intersection(new Set([...ctx.question.kana.reb]));
+            charsForExp.forEach(char => {
+                const newExp = ctx.currentLevelProgress.charsExpMap.get(char) + ctx.expPerChar;
+                ctx.currentLevelProgress.charsExpMap.set(char, newExp);
+                if (newExp >= ctx.charRepsToLevelUp * ctx.expPerChar) {
+                    charMaxedOut = true;
+                }
+            });
+
+            if (charMaxedOut) {
+                ctx.currentLevelProgress.remainingChars = new Set(
+                    [...ctx.currentLevelProgress.remainingChars]
+                        .filter(char => ctx.currentLevelProgress.charsExpMap.get(char) < ctx.expPerChar * ctx.charRepsToLevelUp)
+                );
+
+                if (ctx.currentLevelProgress.remainingChars.size > 0) {
+                    if (ctx.mode === KANA_MODE) {
+                        ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kana.reb])).size > 0);
+                    } else {
+                        ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kanji.keb])).size > 0);
+                    }
+                }
+
+                charMaxedOut = false;
+            }
+
             const addedScore = ctx.mode === KANJI_MODE || ctx.level >= ctx.levelDicts.length
-                ? 1
-                : new Set([...ctx.levelChars[ctx.level - 1]]).intersection(new Set([...ctx.question.kana.reb])).size;
+                ? ctx.expPerChar
+                : charsForExp.size * ctx.expPerChar;
             
             console.log(addedScore);
             if (ctx.score + addedScore >= ctx.expToLevelUp) {
@@ -167,7 +195,7 @@
             ];
 
             const hiraganaChars = [
-                'あいうえおぁぃぅぇぉ',
+                'あいうえお',
                 'かきくけこがぎぐげご',
                 'さしすせそざじずぜぞ',
                 'たちっつてとだぢづでど',
@@ -195,7 +223,7 @@
             const previousQuestion = ctx.question;
             do {
                 ctx.question = ctx.currentDict[Math.floor(Math.random() * ctx.currentDict.length)];
-            } while(previousQuestion && (previousQuestion === ctx.question || (ctx.mode === KANA_MODE && ctx.question.kana.reb === previousQuestion.kana.reb)));
+            } while(ctx.currentDict.length > 1 && previousQuestion && (previousQuestion === ctx.question || (ctx.mode === KANA_MODE && ctx.question.kana.reb === previousQuestion.kana.reb)));
 
             const q = ctx.question;
             ctx.questionDiv.innerHTML = formatQuestion(q);
@@ -283,12 +311,26 @@
 
             const levelDictIndex = Math.min(ctx.level - 1, ctx.levelDicts.length - 1);
             ctx.currentDict = ctx.levelDicts[levelDictIndex];
+            ctx.expPerChar = Math.max(Math.floor(ctx.level * ctx.level / 2), 1);
             if (ctx.level >= 23) {
                 ctx.mode = KANJI_MODE;
-                ctx.expToLevelUp = 5;
+                ctx.expToLevelUp = 5 * ctx.expPerChar * ctx.charRepsToLevelUp;
+
+                ctx.currentLevelProgress = {
+                    remainingChars: new Set(),
+                    charsExpMap: new Map()
+                }
             } else {
-                ctx.expToLevelUp = ctx.levelChars[levelDictIndex].length;
+                ctx.expToLevelUp = ctx.levelChars[levelDictIndex].length * ctx.expPerChar * ctx.charRepsToLevelUp;
+                
+                const levelCharsArray = [...ctx.levelChars[levelDictIndex]];
+                ctx.currentLevelProgress = {
+                    remainingChars: new Set(levelCharsArray),
+                    charsExpMap: new Map(levelCharsArray.map(char => [char, 0]))
+                };
             }
+
+            console.log(ctx.currentLevelProgress);
         }
     </script>
 </head>
