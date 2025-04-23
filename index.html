@@ -40,6 +40,7 @@
             ctx.levelDiv.append(ctx.levelText, ctx.levelBarContainer);
 
             ctx.questionDiv = document.createElement('div');
+            ctx.hintDiv = document.createElement('div');
             ctx.answerInput = document.createElement('input');
             ctx.answerInput.addEventListener('change', answerSubmitted);
 
@@ -64,7 +65,9 @@
                 ctx.answerInput,
                 document.createElement('br'),
                 ctx.giveUpButton,
-                ctx.giveUpDiv
+                ctx.giveUpDiv,
+                document.createElement('br'),
+                ctx.hintDiv
             );
 
             setLevel(1);
@@ -195,11 +198,8 @@
             } while(previousQuestion && (previousQuestion === ctx.question || (ctx.mode === KANA_MODE && ctx.question.kana.reb === previousQuestion.kana.reb)));
 
             const q = ctx.question;
-            ctx.questionDiv.innerHTML = `
-                ${formatQuestion(q)}
-                <br>
-                ${formatSense(q.sense)}
-            `;
+            ctx.questionDiv.innerHTML = formatQuestion(q);
+            ctx.hintDiv.innerHTML = formatSense(q.sense);
 
             console.log(q);
 
