@@ -24,11 +24,6 @@
             const body = document.body;
             body.innerHTML = '';
 
-            ctx.score = 0;
-            ctx.level = 1;
-            ctx.expToLevelUp = 10;
-            ctx.giveUp = false;
-
             ctx.levelDiv = document.createElement('div');
             ctx.levelDiv.style.float = 'right';
             ctx.levelText = document.createElement('span');
@@ -71,6 +66,8 @@
                 ctx.giveUpButton,
                 ctx.giveUpDiv
             );
+
+            setLevel(1);
             askRandomQuestion(ctx.currentDict, ctx.questionDiv, ctx.answerInput);
         }
 
@@ -84,22 +81,11 @@
                 : new Set([...ctx.levelChars[ctx.level - 1]]).intersection(new Set([...ctx.question.kana.reb])).size;
             
             console.log(addedScore);
-            if ((ctx.score + addedScore) % ctx.expToLevelUp < ctx.score) {
-                ctx.score = 0;
+            if (ctx.score + addedScore >= ctx.expToLevelUp) {
+                setLevel(ctx.level + 1);
             } else {
                 ctx.score += addedScore;
-            }
-            const exp = ctx.score % ctx.expToLevelUp;
-            ctx.levelBarContent.style.width = `${exp * ctx.levelBarContainer.clientWidth / ctx.expToLevelUp}px`;
-
-            if (exp === 0) {
-                ctx.level++;
-                ctx.levelText.innerHTML = `Level: ${ctx.level} ${textForLevel(ctx.level)}`;
-
-                ctx.currentDict = ctx.levelDicts[Math.min(ctx.level - 1, ctx.levelDicts.length - 1)];
-                if (ctx.level >= 23) {
-                    ctx.mode = KANJI_MODE;
-                }
+                ctx.levelBarContent.style.width = `${ctx.score * ctx.levelBarContainer.clientWidth / ctx.expToLevelUp}px`;
             }
         }
 
@@ -282,12 +268,27 @@
             }
         }
 
-        function setLevel(level) {
+        function debugLevel(level) {
             ctx.giveUp = false;
-            ctx.level = level - 1;
-            ctx.score = (ctx.level - 1) * ctx.expToLevelUp - 1;
-            updateScore();
+            setLevel(level);
             askRandomQuestion();
+        }
+
+        function setLevel(level) {
+            ctx.score = 0;
+            ctx.level = level;
+            ctx.levelBarContent.style.width = '0px';
+
+            ctx.levelText.innerHTML = `Level: ${ctx.level} ${textForLevel(ctx.level)}`;
+
+            const levelDictIndex = Math.min(ctx.level - 1, ctx.levelDicts.length - 1);
+            ctx.currentDict = ctx.levelDicts[levelDictIndex];
+            if (ctx.level >= 23) {
+                ctx.mode = KANJI_MODE;
+                ctx.expToLevelUp = 5;
+            } else {
+                ctx.expToLevelUp = ctx.levelChars[levelDictIndex].length;
+            }
         }
     </script>
 </head>
