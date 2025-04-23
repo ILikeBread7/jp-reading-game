@@ -373,9 +373,9 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                 const newEntry = {};
                 newEntry.id = entry['ent_seq'];
                 if (kanji) {
-                    newEntry.kanji = kanji.keb;
+                    newEntry.kanji = kanji;
                 }
-                newEntry.kana = kana.reb;
+                newEntry.kana = kana;
                 newEntry.sense = filteredSense;
 
                 newEntry.tags = createTags(newEntry);
@@ -459,7 +459,7 @@ function regExpString(str) {
 function createTagsForKana(entry, kana) {
     for (let i = 0; i < kana.length; i++) {
         const kanaGyou = kana[i];
-        if (entry.kana.match(kanaGyou.regExp)) {
+        if (entry.kana.reb.match(kanaGyou.regExp)) {
             return [kanaGyou.tag];
         }
     }
@@ -475,7 +475,7 @@ function createJLPTKanjiTags(entry) {
     for (let i = 0; i < jlptLevels.length; i++) {
         const level = jlptLevels[i];
 
-        if (entry.kanji.match(level.regExp)) {
+        if (entry.kanji.keb.match(level.regExp)) {
             return [level.kanjiTag];
         }
     }
@@ -491,11 +491,11 @@ function createJLPTVocabTags(entry) {
         for (let j = 0; j < vocab.length; j++) {
             const vocabEntry = vocab[j];
 
-            if (entry.kanji && vocabEntry.kanji && !vocabEntry.kanji.includes(entry.kanji)) {
+            if (entry.kanji && vocabEntry.kanji && !vocabEntry.kanji.includes(entry.kanji.keb)) {
                 continue;
             }
 
-            if (vocabEntry.kana.includes(entry.kana)) {
+            if (vocabEntry.kana.includes(entry.kana.reb)) {
                 
                 // DEBUG
                 vocabEntry.matches = (vocabEntry.matches || 0) + 1;

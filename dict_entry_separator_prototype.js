@@ -188,9 +188,9 @@ const dictOutput = dictInput.flatMap(entry => {
             const newEntry = {};
             newEntry.id = entry.id;
             if (kanji) {
-                newEntry.kanji = kanji.keb;
+                newEntry.kanji = kanji;
             }
-            newEntry.kana = kana.reb;
+            newEntry.kana = kana;
             newEntry.sense = filteredSense;
             result.push(newEntry);
         });
