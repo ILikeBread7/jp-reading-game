@@ -82,7 +82,6 @@
             );
 
             ctx.totalExp = 0;
-            ctx.charRepsToLevelUp = 2;
             setLevel(1);
             askRandomQuestion(ctx.currentDict, ctx.questionDiv, ctx.answerInput);
         }
@@ -104,9 +103,9 @@
 
             showGainedExp('Total', addedScore);
             charsForExp.forEach(char => {
-                const newExp = ctx.currentLevelProgress.charsExpMap.get(char) + ctx.expPerChar;
-                ctx.currentLevelProgress.charsExpMap.set(char, newExp);
-                if (newExp >= ctx.charRepsToLevelUp * ctx.expPerChar) {
+                const newReps = ctx.currentLevelProgress.charsRepsMap.get(char) + 1;
+                ctx.currentLevelProgress.charsRepsMap.set(char, newReps);
+                if (newReps >= ctx.charRepsToLevelUp) {
                     charMaxedOut = true;
                 }
                 showGainedExp(char, ctx.expPerChar, SHOW_EXP_BAR);
@@ -116,14 +115,14 @@
             if (charMaxedOut) {
                 ctx.currentLevelProgress.remainingChars = new Set(
                     [...ctx.currentLevelProgress.remainingChars]
-                        .filter(char => ctx.currentLevelProgress.charsExpMap.get(char) < ctx.expPerChar * ctx.charRepsToLevelUp)
+                        .filter(char => ctx.currentLevelProgress.charsRepsMap.get(char) < ctx.charRepsToLevelUp)
                 );
 
                 if (ctx.currentLevelProgress.remainingChars.size > 0) {
-                    if (ctx.mode === KANA_MODE) {
-                        ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kana.reb])).size > 0);
-                    } else {
+                    if (ctx.mode === KANJI_MODE && ctx.question.kanji) {
                         ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kanji.keb])).size > 0);
+                    } else {
+                        ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kana.reb])).size > 0);
                     }
                 }
 
@@ -236,9 +235,6 @@
             ];
 
             console.log(ctx);
-
-            ctx.mode = KANA_MODE;
-            ctx.currentDict = ctx.levelDicts[0];
         }
 
         function askRandomQuestion() {
@@ -328,27 +324,33 @@
             ctx.currentLevelExp = 0;
             ctx.level = level;
             ctx.levelBarContent.style.width = '0px';
-
+            
             ctx.levelText.innerHTML = `Level: ${ctx.level} ${textForLevel(ctx.level)}`;
-
+            
+            const baseRepsToLevelUp = 2;
+            const baseDictLength = 5;
             const levelDictIndex = Math.min(ctx.level - 1, ctx.levelDicts.length - 1);
             ctx.currentDict = ctx.levelDicts[levelDictIndex];
             ctx.expPerChar = Math.max(Math.floor(ctx.level * ctx.level / 2), 1);
             if (ctx.level >= 23) {
                 ctx.mode = KANJI_MODE;
-                ctx.expToLevelUp = 5 * ctx.expPerChar * ctx.charRepsToLevelUp;
-
+                ctx.charRepsToLevelUp = baseRepsToLevelUp;
+                const kanjiLevelCharsLength = baseDictLength;
+                ctx.expToLevelUp = kanjiLevelCharsLength * ctx.expPerChar * ctx.charRepsToLevelUp;
+                
                 ctx.currentLevelProgress = {
                     remainingChars: new Set(),
-                    charsExpMap: new Map()
+                    charsRepsMap: new Map()
                 }
             } else {
+                ctx.mode = KANA_MODE;
+                ctx.charRepsToLevelUp = Math.max(Math.floor(baseRepsToLevelUp * baseDictLength / ctx.levelChars[levelDictIndex].length), 1);
                 ctx.expToLevelUp = ctx.levelChars[levelDictIndex].length * ctx.expPerChar * ctx.charRepsToLevelUp;
                 
                 const levelCharsArray = [...ctx.levelChars[levelDictIndex]];
                 ctx.currentLevelProgress = {
                     remainingChars: new Set(levelCharsArray),
-                    charsExpMap: new Map(levelCharsArray.map(char => [char, 0]))
+                    charsRepsMap: new Map(levelCharsArray.map(char => [char, 0]))
                 };
             }
 
@@ -371,7 +373,7 @@
                 expBarDivContainer.style.background = '#000';
     
                 const expBarContent = document.createElement('div');
-                expBarContent.style.width = `${barWidth * ctx.currentLevelProgress.charsExpMap.get(char) / ctx.charRepsToLevelUp / ctx.expPerChar}px`;
+                expBarContent.style.width = `${barWidth * ctx.currentLevelProgress.charsRepsMap.get(char) / ctx.charRepsToLevelUp}px`;
                 expBarContent.style.height = '10px';
                 expBarContent.style.background = '#00f';
     
