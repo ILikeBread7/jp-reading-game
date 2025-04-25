@@ -285,7 +285,9 @@ const TERMS_TEXT_BY_CODE = {
 const TERMS_TEXT_BY_TEXT = {};
 Object.entries(TERMS_TEXT_BY_CODE).forEach(([key, value]) => TERMS_TEXT_BY_TEXT[value.text] = { code: value.code, text: value.text });
 
-const TERMS_MAPPER = TERMS_TEXT_BY_CODE;
+const TERMS_MAPPER = TERMS_TEXT_BY_TEXT;
+
+const UNUSED_KANJI_TERMS_SET = new Set(['uk', 'ik', 'iK', 'io', 'oK', 'rK', 'sK']);
 
 const aGyou = 'あいうえおぁぃぅぇぉ';
 const kaGyou = 'かきくけこがぎぐげご' + aGyou;
@@ -347,6 +349,30 @@ const jlptLevels = [
     { kanjiTag: KANJI_N1_TAG, kanji: jlptN1Kanji, vocabTag: VOCAB_N1_TAG, vocab: jlptVocabData['n1'] }
 ];
 jlptLevels.forEach(level => level.regExp = new RegExp(`^[${wholeHiraganaForRegExp}|${wholeKatakanaForRegExp}|${level.kanji.join('|')}]+$`));
+
+const jlptKanjiMap = new Map();
+const jlptVocabMap = new Map();
+jlptLevels.forEach(level => {
+    level.kanji.forEach(kanji => {
+        jlptKanjiMap.set(kanji, level.kanjiTag);
+    });
+
+    level.vocab.forEach(word => {
+        (word.kanji || [undefined]).forEach(kanji => {
+            word.kana.forEach(kana => {
+                const key = JSON.stringify(kanji ? [kanji, kana] : [kana]);
+                if (!jlptVocabMap.has(key)) {
+                    jlptVocabMap.set(key, level.vocabTag);
+                }
+            });
+        });
+    });
+});
+
+const jlptMismatchesMap = new Map();
+jlptVocabMap.forEach((value, key) => {
+    jlptMismatchesMap.set(key, 0);
+});
 
 fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     if (err) {
@@ -416,9 +442,12 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
 
     // DEBUG
     const jlptMismatches = {};
-    for (const [key, value] of Object.entries(jlptVocabData)) {
-        jlptMismatches[key] = value.filter(entry => entry.matches !== 1);
-    }
+    jlptMismatchesMap.forEach((value, key) => {
+        if (value !== 1) {
+            jlptMismatches[key] = value;
+        }
+    });
+
     fs.writeFile('jlpt_mismatches.json', JSON.stringify(
         jlptMismatches,
         null,
@@ -472,38 +501,55 @@ function createJLPTKanjiTags(entry) {
         return [];
     }
 
-    for (let i = 0; i < jlptLevels.length; i++) {
-        const level = jlptLevels[i];
+    const topLevel = [...entry.kanji.keb]
+        .map(char => jlptKanjiMap.get(char))
+        .reduce((acc, curr) => curr < acc ? curr : acc);
 
-        if (entry.kanji.keb.match(level.regExp)) {
-            return [level.kanjiTag];
-        }
+    if (topLevel) {
+        return [ topLevel ];
     }
 
     return [];
 }
 
 function createJLPTVocabTags(entry) {
-    for (let i = 0; i < jlptLevels.length; i++) {
-        const level = jlptLevels[i];
-        const vocab = level.vocab;
-
-        for (let j = 0; j < vocab.length; j++) {
-            const vocabEntry = vocab[j];
-
-            if (entry.kanji && vocabEntry.kanji && !vocabEntry.kanji.includes(entry.kanji.keb)) {
-                continue;
-            }
-
-            if (vocabEntry.kana.includes(entry.kana.reb)) {
-                
-                // DEBUG
-                vocabEntry.matches = (vocabEntry.matches || 0) + 1;
-                // END OF DEBUG
-                
-                return [level.vocabTag];
-            }
+    const matches = [];
+    
+    if (entry.kanji) {
+        const key = JSON.stringify([entry.kanji.keb, entry.kana.reb]);
+        const match = jlptVocabMap.get(key);
+        if (match) {
+            matches.push({ key, match });
         }
+    }
+
+    // No kanji or kanji isn't used
+    if (
+        !entry.kanji
+        || UNUSED_KANJI_TERMS_SET.has(entry.kanji['ke_inf'])
+        || UNUSED_KANJI_TERMS_SET
+            .intersection(
+                new Set(
+                    entry.sense
+                        .flatMap(sense => elementToArray(sense.misc))
+                        .map(term => TERMS_MAPPER[term] ? TERMS_MAPPER[term].code : undefined)
+                )
+            )
+            .size > 0
+    ) {
+        const key = JSON.stringify([entry.kana.reb]);
+        const match = jlptVocabMap.get(key);
+        if (match) {
+            matches.push({ key, match });
+        }
+    }
+
+    // Pick the match with the lowest level
+    const result = matches.length ? matches.reduce((acc, curr) => curr.match > acc.match ? curr : acc) : undefined;
+
+    if (result) {
+        jlptMismatchesMap.set(result.key, jlptMismatchesMap.get(result.key) + 1);
+        return [ result.match ];
     }
 
     return [];
