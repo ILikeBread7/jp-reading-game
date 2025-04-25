@@ -110,7 +110,6 @@
                 }
                 showGainedExp(char, ctx.expPerChar, SHOW_EXP_BAR);
             });
-            setTimeout(fadeOutExpDiv, 0);
 
             if (charMaxedOut) {
                 ctx.currentLevelProgress.remainingChars = new Set(
@@ -314,7 +313,7 @@
             }
         }
 
-        function debugLevel(level) {
+        function levelCheat(level) {
             ctx.giveUp = false;
             setLevel(level);
             askRandomQuestion();
@@ -331,7 +330,7 @@
             const baseDictLength = 5;
             const levelDictIndex = Math.min(ctx.level - 1, ctx.levelDicts.length - 1);
             ctx.currentDict = ctx.levelDicts[levelDictIndex];
-            ctx.expPerChar = Math.max(Math.floor(ctx.level * ctx.level / 2), 1);
+            ctx.expPerChar = Math.max(Math.round(ctx.level * ctx.level / 2), 1);
             if (ctx.level >= 23) {
                 ctx.mode = KANJI_MODE;
                 ctx.charRepsToLevelUp = baseRepsToLevelUp;
@@ -360,6 +359,10 @@
         }
 
         function showGainedExp(char, exp, showBar) {
+            if (!exp) {
+                return;
+            }
+
             const charExpTextDiv = document.createElement('div');
             charExpTextDiv.innerHTML = `${char}: +${exp}XP!`;
 
@@ -398,6 +401,7 @@
             ctx.expDiv.style.removeProperty('transition-duration');
             ctx.expDiv.style.removeProperty('transition-delay');
             ctx.expDiv.style.removeProperty('opacity');
+            setTimeout(fadeOutExpDiv, 0);
         }
     </script>
 </head>
