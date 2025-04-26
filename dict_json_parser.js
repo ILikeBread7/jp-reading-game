@@ -335,20 +335,20 @@ const VOCAB_N3_TAG = 'v3';
 const VOCAB_N2_TAG = 'v2';
 const VOCAB_N1_TAG = 'v1';
 
-const jlptN5Kanji = jlptKanjiData['n5'];
-const jlptN4Kanji = [...jlptKanjiData['n4'], ...jlptKanjiData['n5']];
-const jlptN3Kanji = [...jlptKanjiData['n3'], ...jlptKanjiData['n4']];
-const jlptN2Kanji = [...jlptKanjiData['n2'], ...jlptKanjiData['n3']];
-const jlptN1Kanji = [...jlptKanjiData['n1'], ...jlptKanjiData['n2']];
+// const jlptN5Kanji = jlptKanjiData['n5'];
+// const jlptN4Kanji = [...jlptKanjiData['n4'], ...jlptKanjiData['n5']];
+// const jlptN3Kanji = [...jlptKanjiData['n3'], ...jlptKanjiData['n4']];
+// const jlptN2Kanji = [...jlptKanjiData['n2'], ...jlptKanjiData['n3']];
+// const jlptN1Kanji = [...jlptKanjiData['n1'], ...jlptKanjiData['n2']];
 
 const jlptLevels = [
-    { kanjiTag: KANJI_N5_TAG, kanji: jlptN5Kanji, vocabTag: VOCAB_N5_TAG, vocab: jlptVocabData['n5'] },
-    { kanjiTag: KANJI_N4_TAG, kanji: jlptN4Kanji, vocabTag: VOCAB_N4_TAG, vocab: jlptVocabData['n4'] },
-    { kanjiTag: KANJI_N3_TAG, kanji: jlptN3Kanji, vocabTag: VOCAB_N3_TAG, vocab: jlptVocabData['n3'] },
-    { kanjiTag: KANJI_N2_TAG, kanji: jlptN2Kanji, vocabTag: VOCAB_N2_TAG, vocab: jlptVocabData['n2'] },
-    { kanjiTag: KANJI_N1_TAG, kanji: jlptN1Kanji, vocabTag: VOCAB_N1_TAG, vocab: jlptVocabData['n1'] }
+    { kanjiTag: KANJI_N5_TAG, kanji: jlptKanjiData['n5'], vocabTag: VOCAB_N5_TAG, vocab: jlptVocabData['n5'] },
+    { kanjiTag: KANJI_N4_TAG, kanji: jlptKanjiData['n4'], vocabTag: VOCAB_N4_TAG, vocab: jlptVocabData['n4'] },
+    { kanjiTag: KANJI_N3_TAG, kanji: jlptKanjiData['n3'], vocabTag: VOCAB_N3_TAG, vocab: jlptVocabData['n3'] },
+    { kanjiTag: KANJI_N2_TAG, kanji: jlptKanjiData['n2'], vocabTag: VOCAB_N2_TAG, vocab: jlptVocabData['n2'] },
+    { kanjiTag: KANJI_N1_TAG, kanji: jlptKanjiData['n1'], vocabTag: VOCAB_N1_TAG, vocab: jlptVocabData['n1'] }
 ];
-jlptLevels.forEach(level => level.regExp = new RegExp(`^[${wholeHiraganaForRegExp}|${wholeKatakanaForRegExp}|${level.kanji.join('|')}]+$`));
+// jlptLevels.forEach(level => level.regExp = new RegExp(`^[${wholeHiraganaForRegExp}|${wholeKatakanaForRegExp}|${level.kanji.join('|')}]+$`));
 
 const jlptKanjiMap = new Map();
 const jlptVocabMap = new Map();
@@ -501,12 +501,17 @@ function createJLPTKanjiTags(entry) {
         return [];
     }
 
-    const topLevel = [...entry.kanji.keb]
-        .map(char => jlptKanjiMap.get(char))
-        .reduce((acc, curr) => curr < acc ? curr : acc);
+    const kanjiList = [...entry.kanji.keb]
+        .filter(char => wanakana.isKanji(char));
 
-    if (topLevel) {
-        return [ topLevel ];
+    if (kanjiList.length > 0) {
+        const topLevel = kanjiList
+            .map(char => jlptKanjiMap.get(char))
+            .reduce((acc, curr) => curr < acc ? curr : acc);
+
+        if (topLevel) {
+            return [ topLevel ];
+        }
     }
 
     return [];
