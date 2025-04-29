@@ -50,7 +50,10 @@
                 ctx.expDiv
             );
 
+            ctx.uniqueHintDiv = document.createElement('div');
             ctx.questionDiv = document.createElement('div');
+            ctx.wrongAnswerDiv = document.createElement('div');
+            ctx.wrongAnswerDiv.style.color = '#f00';
             ctx.hintDiv = document.createElement('div');
             ctx.answerInput = document.createElement('input');
             ctx.answerInput.addEventListener('change', answerSubmitted);
@@ -71,8 +74,10 @@
 
             body.append(
                 ctx.levelDiv,
+                ctx.uniqueHintDiv,
                 ctx.questionDiv,
                 document.createElement('br'),
+                ctx.wrongAnswerDiv,
                 ctx.answerInput,
                 document.createElement('br'),
                 ctx.giveUpButton,
@@ -119,7 +124,7 @@
 
                 if (ctx.currentLevelProgress.remainingChars.size > 0) {
                     if (ctx.mode === KANJI_MODE && ctx.question.kanji) {
-                        ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kanji.keb])).size > 0);
+                        ctx.currentDict = ctx.currentDict.filter(entry => entry.kanji && ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kanji.keb])).size > 0);
                     } else {
                         ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kana.reb])).size > 0);
                     }
@@ -243,6 +248,7 @@
             } while(ctx.currentDict.length > 1 && previousQuestion && (previousQuestion === ctx.question || (ctx.mode === KANA_MODE && ctx.question.kana.reb === previousQuestion.kana.reb)));
 
             const q = ctx.question;
+            ctx.uniqueHintDiv.innerHTML = formatUniqueHintDiv(q);
             ctx.questionDiv.innerHTML = formatQuestion(q);
             ctx.hintDiv.innerHTML = formatSense(q.sense);
 
@@ -252,6 +258,10 @@
             ctx.giveUpDiv.innerHTML = '';
 
             ctx.answerInput.focus();
+        }
+
+        function formatUniqueHintDiv(question) {
+            return ctx.mode === KANJI_MODE && question.hint ? question.hint : '';
         }
 
         function formatQuestion(question) {
@@ -273,10 +283,12 @@
             if (wanakana.toKatakana(ctx.question.kana.reb) === wanakana.toKatakana(answer)) {
                 console.log('Correct!');
                 input.value = '';
+                ctx.wrongAnswerDiv.innerHTML = '';
                 updateScore();
                 askRandomQuestion();
             } else {
                 console.log('Incorrect...');
+                ctx.wrongAnswerDiv.innerHTML = wanakana.toHiragana(answer);
             }
         }
 

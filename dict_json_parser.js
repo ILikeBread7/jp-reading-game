@@ -289,6 +289,8 @@ const TERMS_MAPPER = TERMS_TEXT_BY_TEXT;
 
 const UNUSED_KANJI_TERMS_SET = new Set(['uk', 'ik', 'iK', 'io', 'oK', 'rK', 'sK']);
 
+const MASK_CHAR = '・';
+
 const aGyou = 'あいうえおぁぃぅぇぉ';
 const kaGyou = 'かきくけこがぎぐげご' + aGyou;
 const saGyou = 'さしすせそざじずぜぞ' + kaGyou;
@@ -382,6 +384,7 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
 
     const data = JSON.parse(jsonData);
     const dictEntries = data['JMdict']['entry'];
+    const entriesMap = new Map();
 
     const result = dictEntries.flatMap((entry, index) => {
         const separatedEntry = [];
@@ -401,6 +404,7 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                 newEntry.id = entry['ent_seq'];
                 if (kanji) {
                     newEntry.kanji = kanji;
+                    entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
                 }
                 newEntry.kana = kana;
                 newEntry.sense = filteredSense;
@@ -418,6 +422,8 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
 
         return separatedEntry;
     });
+
+    result.forEach(entry => createUniqueHint(entry, entriesMap));
 
     // dictEntries.forEach((e, index) => {
     //     const entry = {
@@ -476,6 +482,36 @@ function sInfFilter(kanji, sInf) {
     }
 
     return true;
+}
+
+function createUniqueHint(entry, entriesMap) {
+    if (!entry.kanji) {
+        return;
+    }
+
+    const otherEntries = entriesMap.get(entry.kanji.keb)
+        .filter(other => other !== entry);
+
+    if (otherEntries.length > 0) {
+        const sameLengthReadingOthers = otherEntries.filter(other => other.kana.reb.length === entry.kana.reb.length && other.kana.reb !== entry.kana.reb);
+        if (sameLengthReadingOthers.length > 0) {
+            const charMatches = [...entry.kana.reb].map(char => false);
+            sameLengthReadingOthers.forEach(other => {
+                [...other.kana.reb].forEach((char, index) => {
+                    charMatches[index] ||= char === entry.kana.reb.charAt(index);
+                });
+            });
+
+            const firstUniqueCharIndex = charMatches.indexOf(false);
+            if (firstUniqueCharIndex === -1) {
+                console.warn(`No unique first character found for id: ${entry.id}, kanji: ${entry.kanji.keb}, kana: ${entry.kana.reb}`);
+            } else {
+                entry.hint = charMatches.map((value, index) => index === firstUniqueCharIndex ? entry.kana.reb.charAt(index) : MASK_CHAR).join('');
+            }
+        } else {
+            entry.hint = [...entry.kana.reb].map(_ => MASK_CHAR).join('');
+        }
+    }
 }
 
 function createTags(entry) {
