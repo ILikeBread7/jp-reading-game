@@ -624,6 +624,7 @@ function handleJLPTVocabExceptions(entry) {
         case 1059720: // シーン - scene, sight (not JLPT word); not to be confused with シーン - silently, quietly (JLPT N2)
         case 5741603: // 坊っちゃん - the novel title instead of the word
         case 5740764: // ワンピース - the manga title instead of the dress
+        case 5744958: // 同盟 - organization name instead of the word
             return [];
     }
 
