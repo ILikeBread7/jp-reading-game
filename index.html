@@ -69,7 +69,7 @@
                     ctx.giveUpDiv.innerHTML = ctx.question.kana.reb;
                 }
                 ctx.giveUp = true;
-            })
+            });
             ctx.giveUpDiv = document.createElement('div');
 
             body.append(
@@ -288,7 +288,7 @@
                 askRandomQuestion();
             } else {
                 console.log('Incorrect...');
-                ctx.wrongAnswerDiv.innerHTML = wanakana.toHiragana(answer);
+                ctx.wrongAnswerDiv.innerHTML = wanakana.isKatakana(ctx.question.kana.reb) ? wanakana.toKatakana(answer) : wanakana.toHiragana(answer);
             }
         }
 
