@@ -287,7 +287,8 @@ TERMS_TEXT_BY_CODE.forEach((value, key) => TERMS_TEXT_BY_TEXT.set(value.text, { 
 
 const TERMS_MAPPER = TERMS_TEXT_BY_TEXT;
 
-const UNUSED_KANJI_TERMS_SET = new Set(['uk', 'ik', 'iK', 'io', 'oK', 'rK', 'sK']);
+const UNUSED_KANJI_TERMS_SET = new Set(['uk', 'rK', 'sK']);
+const UNUSED_KANA_TERMS_SET = new Set(['sk']);
 
 const MASK_CHAR = '・';
 
@@ -392,6 +393,10 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
         elementToArray(entry['k_ele']).forEach(kanji => {
             elementToArray(entry['r_ele']).forEach(kana => {
                 if (kanji && kana.re_restr && !elementToArray(kana.re_restr).includes(kanji.keb)) {
+                    return;
+                }
+
+                if (kana.re_inf && UNUSED_KANA_TERMS_SET.intersection(new Set(elementToArray(kana.re_inf).map(term => TERMS_MAPPER.get(term).code))).size > 0) {
                     return;
                 }
     
@@ -625,6 +630,19 @@ function handleJLPTVocabExceptions(entry) {
         case 5741603: // 坊っちゃん - the novel title instead of the word
         case 5740764: // ワンピース - the manga title instead of the dress
         case 5744958: // 同盟 - organization name instead of the word
+        case 1136480: // 夜行 - や行 instead of "やこう" / "やぎょう"
+        case 2714230: // 藁 - internet slang instead of the word
+        case 2841466: // アクセル - jump in figure skating instead of accelerator (gas pedal)
+        case 2851543: // キャリア - carrier (in chemistry / physics) instead of career
+        case 2857525: // シック - clothing instead of the word
+        case 2860832: // タイム - thyme instead of time
+        case 5048739: // ダース - Darth Vader instead of dozen
+        case 2863580: // デザート - desert instead of dessert
+        case 2843630: // バット - shallow tray (usu. steel or plastic) instead of bat (in baseball, cricket, etc.)
+        case 2855195: // ホース - horse instead of hose
+        case 2841291: // ホール - whole instead of hole or hall
+        case 2842181: // ランプ - rump (food) instead of lamp or ramp
+        case 2848480: // レース - lathe instead of race or lace
             return [];
     }
 
