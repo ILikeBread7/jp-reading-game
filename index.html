@@ -8,6 +8,8 @@
         const KANA_MODE = 0;
         const KANJI_MODE = 1;
         const SHOW_EXP_BAR = true;
+        const MAIN_DICT = 'MAIN_DICT';
+        const SUB_DICT = 'SUB_DICT';
 
         function loadData() {
             fetch('dict.json')
@@ -98,9 +100,12 @@
 
             showExpDiv();
             let charMaxedOut = false;
-            const charsForExp = ctx.currentLevelProgress.remainingChars.intersection(new Set([...ctx.question.kana.reb]));
+            const questionChars = ctx.mode === KANJI_MODE && ctx.question.kanji
+                ? ctx.question.kanji.keb
+                : ctx.question.kana.reb;
+            const charsForExp = ctx.currentLevelProgress.remainingChars.intersection(new Set([...questionChars]));
             
-            const addedScore = ctx.mode === KANJI_MODE || ctx.level >= ctx.levelDicts.length
+            const addedScore = ctx.level >= ctx.levelChars.length
                 ? ctx.expPerChar
                 : charsForExp.size * ctx.expPerChar;
 
@@ -124,9 +129,14 @@
 
                 if (ctx.currentLevelProgress.remainingChars.size > 0) {
                     if (ctx.mode === KANJI_MODE && ctx.question.kanji) {
-                        ctx.currentDict = ctx.currentDict.filter(entry => entry.kanji && ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kanji.keb])).size > 0);
+                        ctx.currentDict = ctx.currentDict.filter(filterMaxedKanji);
                     } else {
-                        ctx.currentDict = ctx.currentDict.filter(entry => ctx.currentLevelProgress.remainingChars.intersection(new Set([...entry.kana.reb])).size > 0);
+                        ctx.currentDict = ctx.currentDict.filter(filterMaxedKana);
+                    }
+
+                    if (ctx.currentDict.length === 0) {
+                        ctx.currentDict = getDictForLevel(ctx.levelDicts[ctx.level - 1], SUB_DICT)
+                            .filter(ctx.mode === KANJI_MODE ? filterMaxedKanji : filterMaxedKana);
                     }
                 }
 
@@ -143,6 +153,20 @@
 
             ctx.totalExpDiv.innerHTML = `Total EXP: ${ctx.totalExp}`;
             ctx.toNextLevelExpDiv.innerHTML = `Next level: ${ctx.currentLevelExp} / ${ctx.expToLevelUp}`;
+        }
+
+        function filterMaxedKana(entry) {
+            return ctx.currentLevelProgress.remainingChars
+                .intersection(
+                    new Set([...entry.kana.reb])
+                ).size > 0;
+        }
+
+        function filterMaxedKanji(entry) {
+            return entry.kanji && ctx.currentLevelProgress.remainingChars
+                .intersection(
+                    new Set([...entry.kanji.keb])
+                ).size > 0;
         }
 
         function createDicts(dict) {
@@ -213,8 +237,37 @@
                 ctx[`jlptGyou${gyouDictKey}`] = gyouDictValue.filter(entry => isJlptWord(entry));
             });
 
+            ctx.kanjiLevelDicts = [];
+            ctx.dict.forEach(entry => {
+                const levelTag = entry.tags.find(tag => tag.startsWith('L'));
+
+                if (!levelTag) {
+                    return;
+                }
+
+                const level = Number(levelTag.substring(1));
+                const index = level - 1;
+
+                if (!ctx.kanjiLevelDicts[index]) {
+                    ctx.kanjiLevelDicts[index] = [ entry ];
+                } else {
+                    ctx.kanjiLevelDicts[index].push(entry);
+                }
+            });
+
+            // For testing only, adding a fake item
+            // because there are no ヂ words with the T tag.
+            // To be removed later, probably will need
+            // to change the order a little bit?
+            ctx.gyouDicts.get('T').push({
+                id: -1,
+                kana: { reb: 'ヂ' },
+                sense: [ 'FAKE ITEM!!!', 'TO BE REMOVED!!!' ]
+            });
+
             ctx.levelDicts = [
-                ...[...hiraganaGyous, ...katakanaGyous].map(gyou => ctx.gyouDicts.get(gyou)),
+                ...[...hiraganaGyous, ...katakanaGyous].map(gyou => ({ MAIN_DICT: ctx[`jlptGyou${gyou}`], SUB_DICT: ctx.gyouDicts.get(gyou) })),
+                ...ctx.kanjiLevelDicts,
                 ...[5, 4, 3, 2, 1].map(level => ctx[`jlptN${level}`]),
                 ctx.dict
             ];
@@ -232,12 +285,21 @@
                 'わを',
                 'ん'
             ];
+
+            const kanjiLevelChars = [
+                '日一国人年',
+                '大十二本中',
+
+                '会同事社'
+            ];
             const katakanaChars = hiraganaChars.map(chars => wanakana.toKatakana(chars));
             ctx.levelChars = [
                 ...hiraganaChars,
-                ...katakanaChars
+                ...katakanaChars,
+                ...kanjiLevelChars
             ];
 
+            ctx.kanjiLevelChars = kanjiLevelChars;
             console.log(ctx);
         }
 
@@ -316,11 +378,16 @@
                 case 20: return 'ラ行';
                 case 21: return 'ワ行';
                 case 22: return 'ン行';
-                case 23: return 'JLPT N5';
-                case 24: return 'JLPT N4';
-                case 25: return 'JLPT N3';
-                case 26: return 'JLPT N2';
-                case 27: return 'JLPT N1';
+                case 23:
+                case 24:
+                    return `JLPT N5 (${ctx.kanjiLevelChars[level - 23]})`;
+                case 25:
+                    return `JLPT N4 (${ctx.kanjiLevelChars[level - 23]})`;
+                case 26: return 'JLPT N5';
+                case 27: return 'JLPT N4';
+                case 28: return 'JLPT N3';
+                case 29: return 'JLPT N2';
+                case 30: return 'JLPT N1';
                 default: return '全部';
             }
         }
@@ -341,10 +408,11 @@
             const baseRepsToLevelUp = 2;
             const baseDictLength = 5;
             const levelDictIndex = Math.min(ctx.level - 1, ctx.levelDicts.length - 1);
-            ctx.currentDict = ctx.levelDicts[levelDictIndex];
+            ctx.currentDict = getDictForLevel(ctx.levelDicts[levelDictIndex], MAIN_DICT);
             ctx.expPerChar = Math.max(Math.round(ctx.level * ctx.level / 2), 1);
-            if (ctx.level >= 23) {
-                ctx.mode = KANJI_MODE;
+            ctx.mode = ctx.level >= 23 ? KANJI_MODE : KANA_MODE;
+            
+            if (ctx.level > ctx.levelChars.length) {
                 ctx.charRepsToLevelUp = baseRepsToLevelUp;
                 const kanjiLevelCharsLength = baseDictLength;
                 ctx.expToLevelUp = kanjiLevelCharsLength * ctx.expPerChar * ctx.charRepsToLevelUp;
@@ -354,7 +422,6 @@
                     charsRepsMap: new Map()
                 }
             } else {
-                ctx.mode = KANA_MODE;
                 ctx.charRepsToLevelUp = Math.max(Math.floor(baseRepsToLevelUp * baseDictLength / ctx.levelChars[levelDictIndex].length), 1);
                 ctx.expToLevelUp = ctx.levelChars[levelDictIndex].length * ctx.expPerChar * ctx.charRepsToLevelUp;
                 
@@ -369,6 +436,16 @@
 
             console.log(ctx.currentLevelProgress);
         }
+
+        function getDictForLevel(levelDict, type) {
+            console.log(levelDict)
+            if (!Array.isArray(levelDict)) {
+                const dict = levelDict[type];
+                return dict.length > 0 ? dict : levelDict[SUB_DICT];
+            }
+
+            return levelDict;
+        };
 
         function showGainedExp(char, exp, showBar) {
             if (!exp) {

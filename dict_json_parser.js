@@ -292,6 +292,20 @@ const UNUSED_KANA_TERMS_SET = new Set(['sk']);
 
 const MASK_CHAR = '・';
 
+const LEVEL_KANJI = [
+    { vocabTag: 'v5', kanjiChars: [...'日一国人年'] },
+    { vocabTag: 'v5', kanjiChars: [...'大十二本中'] },
+
+    { vocabTag: 'v4', kanjiChars: [...'会同事社'] }
+];
+
+const LEVEL_KANJI_MAP = new Map();
+LEVEL_KANJI.forEach((level, index) => {
+    level.kanjiChars.forEach(char => {
+        LEVEL_KANJI_MAP.set(char, { levelTag: `L${(index + 1).toString().padStart(3, '0')}`, vocabTag: level.vocabTag });
+    });
+});
+
 const aGyou = 'あいうえおぁぃぅぇぉ';
 const kaGyou = 'かきくけこがぎぐげご' + aGyou;
 const saGyou = 'さしすせそざじずぜぞ' + kaGyou;
@@ -520,11 +534,15 @@ function createUniqueHint(entry, entriesMap) {
 }
 
 function createTags(entry) {
-    return [
+    const tags = [
         ...createKanaTags(entry),
         ...createJLPTKanjiTags(entry),
         ...createJLPTVocabTags(entry)
     ];
+
+    tags.push(...createKanjiLevelTagsFromExistingTags(entry, tags));
+
+    return tags;
 }
 
 function createKanaTags(entry) {
@@ -618,6 +636,42 @@ function createJLPTVocabTags(entry) {
     return [];
 }
 
+function createKanjiLevelTagsFromExistingTags(entry, tags) {
+    if (!entry.kanji) {
+        return [];
+    }
+
+    const entryVocabTag = tags.find(tag => tag.startsWith('v'));
+    if (!entryVocabTag) {
+        return [];
+    }
+
+    const chars = [...entry.kanji.keb]
+        .filter(char => !wanakana.isKana(char));
+
+    if (chars.find(char => !wanakana.isKanji(char))) {
+        return [];
+    }
+
+    const charLevelKanjiEntries = chars
+        .map(char => LEVEL_KANJI_MAP.get(char));
+
+    if (charLevelKanjiEntries.includes(undefined)) {
+        return [];
+    }
+
+    const maxTags = charLevelKanjiEntries
+        .reduce((acc, curr) => curr.levelTag > acc.levelTag ? curr : acc);
+
+    // Smaller tag means higher vocab level so if the entry vocab level
+    // is higher (smaller tag) we don't match the word to the level
+    if (entryVocabTag < maxTags.vocabTag) {
+        return [];
+    }
+
+    return [ maxTags.levelTag ];
+}
+
 function getTermCodeOrUndefined(term) {
     return term ? term.code : undefined;
 }
@@ -643,6 +697,8 @@ function handleJLPTVocabExceptions(entry) {
         case 2841291: // ホール - whole instead of hole or hall
         case 2842181: // ランプ - rump (food) instead of lamp or ramp
         case 2848480: // レース - lathe instead of race or lace
+        case 2849827: // ミス - myth instead of miss or Ms. or Miss
+        case 1021010: // イエス - Jesus insetad of the word "yes"
             return [];
     }
 
