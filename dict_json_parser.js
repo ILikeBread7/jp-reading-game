@@ -306,36 +306,28 @@ LEVEL_KANJI.forEach((level, index) => {
     });
 });
 
-const aGyou = 'あいうえおぁぃぅぇぉ';
-const kaGyou = 'かきくけこがぎぐげご' + aGyou;
-const saGyou = 'さしすせそざじずぜぞ' + kaGyou;
-const taGyou = 'たちっつてとだぢづでど' + saGyou;
-const naGyou = 'なにぬねの' + taGyou;
-const haGyou = 'はひふへほばびぶべぼぱぴぷぺぽ' + naGyou;
-const maGyou = 'まみむめも' + haGyou;
-const yaGyou = 'やゆよゃゅょ' + maGyou;
-const raGyou = 'らりるれろ' + yaGyou;
-const waGyou = 'わを' + raGyou;
-const nGyou = 'ん' + waGyou;
-
-const hiragana = [
-    { tag: 'a', chars: aGyou },
-    { tag: 'k', chars: kaGyou },
-    { tag: 's', chars: saGyou },
-    { tag: 't', chars: taGyou },
-    { tag: 'n', chars: naGyou },
-    { tag: 'h', chars: haGyou },
-    { tag: 'm', chars: maGyou },
-    { tag: 'y', chars: yaGyou },
-    { tag: 'r', chars: raGyou },
-    { tag: 'w', chars: waGyou },
-    { tag: 'nn', chars: nGyou }
+const HIRAGANA = [
+    { tag: 'a', chars: 'あいうえおぁぃぅぇぉ' },
+    { tag: 'k', chars: 'かきくけこがぎぐげご' },
+    { tag: 's', chars: 'さしすせそざじずぜぞ' },
+    { tag: 't', chars: 'たちっつてとだぢづでど' },
+    { tag: 'n', chars: 'なにぬねの' },
+    { tag: 'h', chars: 'はひふへほばびぶべぼぱぴぷぺぽ' },
+    { tag: 'm', chars: 'まみむめも' },
+    { tag: 'y', chars: 'やゆよゃゅょ' },
+    { tag: 'r', chars: 'らりるれろ' },
+    { tag: 'w', chars: 'わを' },
+    { tag: 'nn', chars: 'ん' }
 ];
-const katakana = hiragana.map(entry => ({ tag: entry.tag.toUpperCase(), chars: 'ー' + wanakana.toKatakana(entry.chars) }));
-[...hiragana, ...katakana].forEach(gyou => gyou.regExp = new RegExp(regExpString(gyou.chars)));
 
-const wholeHiraganaForRegExp = [...hiragana[hiragana.length - 1].chars].join('|');
-const wholeKatakanaForRegExp = [...katakana[katakana.length - 1].chars].join('|');
+const KANA_MAP = new Map();
+HIRAGANA.forEach((entry, index) => {
+    [...entry.chars].forEach(hiraganaChar => {
+        KANA_MAP.set(hiraganaChar, { tag: entry.tag, level: index });
+        KANA_MAP.set(wanakana.toKatakana(hiraganaChar), { tag: entry.tag.toUpperCase(), level: index + HIRAGANA.length });
+    });
+});
+KANA_MAP.set('ー', { tag: 'A', level: HIRAGANA.length });
 
 const jlptKanjiData = JSON.parse(fs.readFileSync('jlpt_kanji.json', 'utf-8'));
 const jlptVocabData = JSON.parse(fs.readFileSync('jlpt_vocab.json', 'utf-8'));
@@ -352,12 +344,6 @@ const VOCAB_N3_TAG = 'v3';
 const VOCAB_N2_TAG = 'v2';
 const VOCAB_N1_TAG = 'v1';
 
-// const jlptN5Kanji = jlptKanjiData['n5'];
-// const jlptN4Kanji = [...jlptKanjiData['n4'], ...jlptKanjiData['n5']];
-// const jlptN3Kanji = [...jlptKanjiData['n3'], ...jlptKanjiData['n4']];
-// const jlptN2Kanji = [...jlptKanjiData['n2'], ...jlptKanjiData['n3']];
-// const jlptN1Kanji = [...jlptKanjiData['n1'], ...jlptKanjiData['n2']];
-
 const jlptLevels = [
     { kanjiTag: KANJI_N5_TAG, kanji: jlptKanjiData['n5'], vocabTag: VOCAB_N5_TAG, vocab: jlptVocabData['n5'] },
     { kanjiTag: KANJI_N4_TAG, kanji: jlptKanjiData['n4'], vocabTag: VOCAB_N4_TAG, vocab: jlptVocabData['n4'] },
@@ -365,7 +351,6 @@ const jlptLevels = [
     { kanjiTag: KANJI_N2_TAG, kanji: jlptKanjiData['n2'], vocabTag: VOCAB_N2_TAG, vocab: jlptVocabData['n2'] },
     { kanjiTag: KANJI_N1_TAG, kanji: jlptKanjiData['n1'], vocabTag: VOCAB_N1_TAG, vocab: jlptVocabData['n1'] }
 ];
-// jlptLevels.forEach(level => level.regExp = new RegExp(`^[${wholeHiraganaForRegExp}|${wholeKatakanaForRegExp}|${level.kanji.join('|')}]+$`));
 
 const jlptKanjiMap = new Map();
 const jlptVocabMap = new Map();
@@ -546,22 +531,12 @@ function createTags(entry) {
 }
 
 function createKanaTags(entry) {
-    return [
-        ...createTagsForKana(entry, hiragana),
-        ...createTagsForKana(entry, katakana)
-    ];
-}
+    const maxKana = [...entry.kana.reb]
+        .map(char => KANA_MAP.get(char))
+        .reduce((acc, curr) => (acc && curr) && (curr.level > acc.level ? curr : acc));
 
-function regExpString(str) {
-    return `^[${[...str].join('|')}]+$`;
-}
-
-function createTagsForKana(entry, kana) {
-    for (let i = 0; i < kana.length; i++) {
-        const kanaGyou = kana[i];
-        if (entry.kana.reb.match(kanaGyou.regExp)) {
-            return [kanaGyou.tag];
-        }
+    if (maxKana) {
+        return [ maxKana.tag ];
     }
 
     return [];
