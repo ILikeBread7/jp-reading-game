@@ -429,28 +429,6 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
 
     result.forEach(entry => createUniqueHint(entry, entriesMap));
 
-    // dictEntries.forEach((e, index) => {
-    //     const entry = {
-    //         id: e['ent_seq'],
-    //         kana: elementToArray(e['r_ele']),
-    //         sense: elementToArray(e['sense'])
-    //     };
-
-    //     const kEle = e['k_ele'];
-    //     if (kEle) {
-    //         entry.kanji = elementToArray(kEle);
-    //     }
-
-    //     entry.tags = createTags(entry);
-
-    //     result.push(entry);
-
-    //     // Show progress
-    //     if (index % 10000 === 0) {
-    //         console.log(`${Math.floor(100 * index / dictEntries.length)}%, ${index} / ${dictEntries.length}`);
-    //     }
-    // });
-
     // DEBUG
     const jlptMismatches = {};
     jlptMismatchesMap.forEach((value, key) => {

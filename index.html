@@ -172,56 +172,11 @@
         function createDicts(dict) {
             ctx.dict = dict;
 
-            // Kana dict isn't working anyway
-            // ctx.kanaDict = dict.filter(
-            //     entry => !entry.kanji ||
-            //         (entry.sense.map(s => [s.misc].flatMap(m => m).includes('word usually written using kana alone')))
-            // );
-            // ctx.hiraganaDict = ctx.kanaDict
-            //     .filter(
-            //         entry => entry.kana
-            //             .find(kana => kana.reb === wanakana.toHiragana(kana.reb))
-            //     );
-            // ctx.katakanaDict = ctx.kanaDict
-            //     .filter(
-            //         entry => entry.kana
-            //             .find(kana => kana.reb === wanakana.toKatakana(kana.reb))
-            //     );
-            
-            // ctx.hiraganaAGyou = ctx.hiraganaDict
-            //     .filter(
-            //         entry => entry.kana
-            //             .find(kana => kana.reb.match(/^[あ|い|う|え|お]+$/))
-            //     )
-            // ctx.katakanaAGyou = ctx.katakanaDict
-            //     .filter(
-            //         entry => entry.kana
-            //             .find(kana => kana.reb.match(/^[ア|イ|ウ|エ|オ]+$/))
-            //     )
-
-            // ctx.hiraganaAGyou = ctx.dict.filter(entry => entry.tags.includes('a'));
-            // ctx.hiraganaKaGyou = ctx.dict.filter(entry => entry.tags.includes('k'));
-            // ctx.hiraganaSaGyou = ctx.dict.filter(entry => entry.tags.includes('s'));
-            // ctx.katakanaAGyou = ctx.dict.filter(entry => entry.tags.includes('A'));
-            // ctx.katakanaKaGyou = ctx.dict.filter(entry => entry.tags.includes('K'));
-            // ctx.katakanaSaGyou = ctx.dict.filter(entry => entry.tags.includes('S'));
-
             const hiraganaGyous = ['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w', 'nn'];
             const katakanaGyous = hiraganaGyous.map(g => g.toUpperCase());
             ctx.gyouDicts = new Map([...hiraganaGyous, ...katakanaGyous]
                 .map(gyou => [gyou, dict.filter(entry => entry.tags.includes(gyou))])
             );
-
-            // console.log(`Total: ${ctx.dict.length},
-            // Kana: Not working!,
-            // Hiragana: Not used right now,
-            // Hiragana あ行: ${ctx.hiraganaAGyou.length},
-            // Hiragana か行: ${ctx.hiraganaKaGyou.length},
-            // Hiragana さ行: ${ctx.hiraganaSaGyou.length},
-            // Katakana: Not used right now,
-            // Katakana ア行: ${ctx.katakanaAGyou.length},
-            // Katakana カ行: ${ctx.katakanaKaGyou.length},
-            // Katakana サ行: ${ctx.katakanaSaGyou.length}`);
 
             console.log(`Total: ${ctx.dict.length}`);
 
