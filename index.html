@@ -248,6 +248,7 @@
                 '会同事社'
             ];
             const katakanaChars = hiraganaChars.map(chars => wanakana.toKatakana(chars));
+            katakanaChars[0] += 'ー';
             ctx.levelChars = [
                 ...hiraganaChars,
                 ...katakanaChars,

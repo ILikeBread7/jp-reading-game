@@ -320,14 +320,15 @@ const HIRAGANA = [
     { tag: 'nn', chars: 'ん' }
 ];
 
-const KANA_MAP = new Map();
+const HIRAGANA_MAP = new Map();
+const KATAKANA_MAP = new Map();
 HIRAGANA.forEach((entry, index) => {
     [...entry.chars].forEach(hiraganaChar => {
-        KANA_MAP.set(hiraganaChar, { tag: entry.tag, level: index });
-        KANA_MAP.set(wanakana.toKatakana(hiraganaChar), { tag: entry.tag.toUpperCase(), level: index + HIRAGANA.length });
+        HIRAGANA_MAP.set(hiraganaChar, { tag: entry.tag, level: index });
+        KATAKANA_MAP.set(wanakana.toKatakana(hiraganaChar), { tag: entry.tag.toUpperCase(), level: index });
     });
 });
-KANA_MAP.set('ー', { tag: 'A', level: HIRAGANA.length });
+KATAKANA_MAP.set('ー', { tag: 'A', level: 0 });
 
 const jlptKanjiData = JSON.parse(fs.readFileSync('jlpt_kanji.json', 'utf-8'));
 const jlptVocabData = JSON.parse(fs.readFileSync('jlpt_vocab.json', 'utf-8'));
@@ -509,8 +510,15 @@ function createTags(entry) {
 }
 
 function createKanaTags(entry) {
+    return [
+        ...createTagsForKana(entry, HIRAGANA_MAP),
+        ...createTagsForKana(entry, KATAKANA_MAP)
+    ]
+}
+
+function createTagsForKana(entry, kanaMap) {
     const maxKana = [...entry.kana.reb]
-        .map(char => KANA_MAP.get(char))
+        .map(char => kanaMap.get(char))
         .reduce((acc, curr) => (acc && curr) && (curr.level > acc.level ? curr : acc));
 
     if (maxKana) {
