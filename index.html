@@ -173,7 +173,7 @@
             ctx.dict = dict;
 
             const hiraganaGyous = ['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w', 'nn'];
-            const katakanaGyous = hiraganaGyous.map(g => g.toUpperCase());
+            const katakanaGyous = ['A', 'K', 'S', 'N', 'H', 'M', 'T', 'Y', 'R', 'W', 'NN'];
             ctx.gyouDicts = new Map([...hiraganaGyous, ...katakanaGyous]
                 .map(gyou => [gyou, dict.filter(entry => entry.tags.includes(gyou))])
             );
@@ -210,16 +210,6 @@
                 }
             });
 
-            // For testing only, adding a fake item
-            // because there are no ヂ words with the T tag.
-            // To be removed later, probably will need
-            // to change the order a little bit?
-            ctx.gyouDicts.get('T').push({
-                id: -1,
-                kana: { reb: 'ヂ' },
-                sense: [ 'FAKE ITEM!!!', 'TO BE REMOVED!!!' ]
-            });
-
             ctx.levelDicts = [
                 ...[...hiraganaGyous, ...katakanaGyous].map(gyou => ({ MAIN_DICT: ctx[`jlptGyou${gyou}`], SUB_DICT: ctx.gyouDicts.get(gyou) })),
                 ...ctx.kanjiLevelDicts,
@@ -245,10 +235,10 @@
                 'アイウエオ',
                 'カキクケコガギグゲゴー',
                 'サシスセソザジズゼゾ',
-                'タチッツテトダヂヅデドィゥ',
                 'ナニヌネノ',
-                'ハヒフヘホバビブベボパピプペポァェォ',
+                'ハヒフヘホバビブベボパピプペポァィェォ',
                 'マミムメモ',
+                'タチッツテトダヂヅデドゥ',
                 'ヤユヨャュョ',
                 'ラリルレロ',
                 'ワヲ',
@@ -339,10 +329,10 @@
                 case 12: return 'ア行';
                 case 13: return 'カ行';
                 case 14: return 'サ行';
-                case 15: return 'タ行';
-                case 16: return 'ナ行';
-                case 17: return 'ハ行';
-                case 18: return 'マ行';
+                case 15: return 'ナ行';
+                case 16: return 'ハ行';
+                case 17: return 'マ行';
+                case 18: return 'タ行';
                 case 19: return 'ヤ行';
                 case 20: return 'ラ行';
                 case 21: return 'ワ行';
