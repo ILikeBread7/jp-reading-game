@@ -307,7 +307,7 @@ LEVEL_KANJI.forEach((level, index) => {
 });
 
 const HIRAGANA = [
-    { tag: 'a', chars: 'あいうえおぁぃぅぇぉ' },
+    { tag: 'a', chars: 'あいうえお' },
     { tag: 'k', chars: 'かきくけこがぎぐげご' },
     { tag: 's', chars: 'さしすせそざじずぜぞ' },
     { tag: 't', chars: 'たちっつてとだぢづでど' },
@@ -320,15 +320,32 @@ const HIRAGANA = [
     { tag: 'nn', chars: 'ん' }
 ];
 
+const KATAKANA = [
+    { tag: 'A' ,chars: 'アイウエオ' },
+    { tag: 'K' ,chars: 'カキクケコガギグゲゴー' },
+    { tag: 'S' ,chars: 'サシスセソザジズゼゾ' },
+    { tag: 'T' ,chars: 'タチッツテトダヂヅデドィゥ' },
+    { tag: 'N' ,chars: 'ナニヌネノ' },
+    { tag: 'H' ,chars: 'ハヒフヘホバビブベボパピプペポァェォ' },
+    { tag: 'M' ,chars: 'マミムメモ' },
+    { tag: 'Y' ,chars: 'ヤユヨャュョ' },
+    { tag: 'R' ,chars: 'ラリルレロ' },
+    { tag: 'W' ,chars: 'ワヲ' },
+    { tag: 'NN' ,chars: 'ン' }
+];
+
 const HIRAGANA_MAP = new Map();
 const KATAKANA_MAP = new Map();
-HIRAGANA.forEach((entry, index) => {
-    [...entry.chars].forEach(hiraganaChar => {
-        HIRAGANA_MAP.set(hiraganaChar, { tag: entry.tag, level: index });
-        KATAKANA_MAP.set(wanakana.toKatakana(hiraganaChar), { tag: entry.tag.toUpperCase(), level: index });
+[
+    { kana: HIRAGANA, map: HIRAGANA_MAP },
+    { kana: KATAKANA, map: KATAKANA_MAP }
+].forEach(kanaMap => {
+    kanaMap.kana.forEach((entry, index) => {
+        [...entry.chars].forEach(char => {
+            kanaMap.map.set(char, { tag: entry.tag, level: index });
+        });
     });
 });
-KATAKANA_MAP.set('ー', { tag: 'A', level: 0 });
 
 const jlptKanjiData = JSON.parse(fs.readFileSync('jlpt_kanji.json', 'utf-8'));
 const jlptVocabData = JSON.parse(fs.readFileSync('jlpt_vocab.json', 'utf-8'));

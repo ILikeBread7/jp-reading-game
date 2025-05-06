@@ -241,14 +241,27 @@
                 'ん'
             ];
 
+            const katakanaChars = [
+                'アイウエオ',
+                'カキクケコガギグゲゴー',
+                'サシスセソザジズゼゾ',
+                'タチッツテトダヂヅデドィゥ',
+                'ナニヌネノ',
+                'ハヒフヘホバビブベボパピプペポァェォ',
+                'マミムメモ',
+                'ヤユヨャュョ',
+                'ラリルレロ',
+                'ワヲ',
+                'ン'
+            ];
+
             const kanjiLevelChars = [
                 '日一国人年',
                 '大十二本中',
 
                 '会同事社'
             ];
-            const katakanaChars = hiraganaChars.map(chars => wanakana.toKatakana(chars));
-            katakanaChars[0] += 'ー';
+
             ctx.levelChars = [
                 ...hiraganaChars,
                 ...katakanaChars,
