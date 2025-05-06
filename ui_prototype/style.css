@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+}
+
+#level {
+    float: right;
+    background-color: antiquewhite;
+}
+
+#level-current-level-exp-container {
+    width: 100px;
+    height: 10px;
+    background: #000000;
+}
+
+#level-current-level-exp-content {
+    width: 20px;
+    height: 10px;
+    background: #00ff00;
+}
+
+/*
+#level-tmp-exp-bars {
+    transition-property: opacity;
+    transition-duration: 2s;
+    transition-delay: 1s;
+    opacity: 0;
+}
+*/
+
+#question {
+    text-align: center;
+    background-color: #7fffd4;
+}
+
+#question-hint {
+    font-size: 14px;
+}
+
+#question-kanji {
+    font-size: 24px;
+}
+
+#answer {
+    text-align: center;
+    background-color: #b5fff9;
+}
+
+#wrong-answer {
+    font-size: 18px;
+    color: #ff0000;
+}
+
+#answer-input {
+    text-align: center;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 22px;
+}

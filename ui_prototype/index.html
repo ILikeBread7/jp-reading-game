@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>漢字トレ「かなと漢字トレーニング」</title>
+        <link rel="stylesheet" href="style.css"/>
+        <script defer type="text/javascript" src="script.js"></script>
+    </head>
+    <body>
+        <div id="level">
+            <div id="level-total-exp">
+                Total EXP: 2
+            </div>
+            <div id="level-nex-level">
+                Next level: 2 / 10
+            </div>
+            <div id="level-name">
+                Level 1: あ行
+            </div>
+            <div id="level-exp-bars">
+                <div id="level-current-level-exp-container">
+                    <div id="level-current-level-exp-content"></div>
+                </div>
+            </div>
+            <div id="level-tmp-exp-bars">
+                <!-- The following divs will be created dynamically -->
+                <div>Total: +2XP!</div>
+                <div>
+                    あ: +1XP!
+                    <div style="width: 100px; height: 10px; background: rgb(0, 0, 0);">
+                        <div style="width: 50px; height: 10px; background: rgb(0, 0, 255);"></div>
+                    </div>
+                </div>
+                <div>
+                    い: +1XP!
+                    <div style="width: 100px; height: 10px; background: rgb(0, 0, 0);">
+                        <div style="width: 50px; height: 10px; background: rgb(0, 0, 255);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="question">
+            <div id="question-hint">
+                ・ぶ・
+            </div>
+            <div id="question-kanji">
+                出船
+            </div>
+        </div>
+        <div id="answer">
+            <div id="wrong-answer">
+                てすと
+            </div>
+            <input id="answer-input"></input>
+        </div>
+    </body>
+</html>
