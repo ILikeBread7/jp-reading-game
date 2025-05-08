@@ -52,5 +52,56 @@
             </div>
             <input id="answer-input"></input>
         </div>
+        <div id="info">
+            <div class="content-group" id="meaning">
+                <div class="control-panel" id="meaning-panel">
+                    Meaning
+                    <button class="control-button" id="meaning-toggle-button">Toggle</button>
+                </div>
+                <div id="meaning-content">
+                    <!-- These entry divs will be dynamically created -->
+                    <div class="meaning-entry">
+                        1.
+                        <div class="meaning-pos-container">
+                            <div class="meaning-pos-entry">pos 1</div>
+                            <div class="meaning-pos-entry">pos 2</div>
+                        </div>
+                        <div class="meaning-gloss-container">
+                            <div class="meaning-gloss-entry">gloss 1</div>
+                            <div class="meaning-gloss-entry">gloss 2</div>
+                        </div>
+                        <div class="meaning-s-inf">s_inf</div>
+                        <div class="meaning-misc-container">
+                            <div class="meaning-misc-entry">misc 1</div>
+                            <div class="meaning-misc-entry">misc 2</div>
+                        </div>
+                        <div class="meaning-lsource-container">
+                            <div class="meaning-lsource-entry">lsource 1</div>
+                            <div class="meaning-lsource-entry">lsource 2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-group" id="hint">
+                <div class="control-panel" id="hint-panel">
+                    Hint
+                    <button class="control-button" id="hint-toggle-button">Toggle</button>
+                </div>
+                <div id="hint-collapsable-part">
+                    <div class="control-panel" id="hint-controls-panel">
+                        <button class="control-button" id="hint-previous-button">Previous</button>
+                        <button class="control-button" id="hint-next-button">Next</button>
+                    </div>
+                    <!-- The content of the below div will be vreated dynamically -->
+                    <div id="hint-content">
+                        <div>あ - a</div>
+                        <div>い - i</div>
+                        <div>う - u</div>
+                        <div>え - e</div>
+                        <div>お - o</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

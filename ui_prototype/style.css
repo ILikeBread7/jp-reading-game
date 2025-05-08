@@ -58,3 +58,55 @@ body {
     outline: none;
     font-size: 22px;
 }
+
+#info {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#info > * {
+    margin-top: 10px;
+}
+
+#meaning-panel {
+    background-color: #deb887;
+}
+
+.control-panel {
+    text-align: center;
+    overflow: hidden;
+}
+
+.control-button {
+    float: right;
+}
+
+#meaning-content {
+    background-color: #afa1a1;
+}
+
+.meaning-entry {
+    padding: 10px;
+}
+
+#hint-panel {
+    background-color: #78c990;
+}
+
+#hint-controls-panel {
+    background-color: #c77ec7;
+}
+
+#hint-content {
+    background-color: #9787de;
+}
+
+#hint-content {
+    padding: 10px;
+}
+
+.content-group {
+    border-radius: 5px;
+    overflow: hidden;
+}
