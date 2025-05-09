@@ -74,8 +74,7 @@ body {
 }
 
 .control-panel {
-    text-align: center;
-    overflow: hidden;
+    padding: 3px 10px;
 }
 
 .control-button {
@@ -109,4 +108,8 @@ body {
 .content-group {
     border-radius: 5px;
     overflow: hidden;
+}
+
+summary {
+    cursor: pointer;
 }

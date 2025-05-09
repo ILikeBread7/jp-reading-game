@@ -53,11 +53,10 @@
             <input id="answer-input"></input>
         </div>
         <div id="info">
-            <div class="content-group" id="meaning">
-                <div class="control-panel" id="meaning-panel">
+            <details open class="content-group" id="meaning">
+                <summary class="control-panel" id="meaning-panel">
                     Meaning
-                    <button class="control-button" id="meaning-toggle-button">Toggle</button>
-                </div>
+                </summary>
                 <div id="meaning-content">
                     <!-- These entry divs will be dynamically created -->
                     <div class="meaning-entry">
@@ -81,14 +80,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="content-group" id="hint">
-                <div class="control-panel" id="hint-panel">
+            </details>
+            <details open class="content-group" id="hint">
+                <summary class="control-panel" id="hint-panel">
                     Hint
-                    <button class="control-button" id="hint-toggle-button">Toggle</button>
-                </div>
+                </summary>
                 <div id="hint-collapsable-part">
-                    <div class="control-panel" id="hint-controls-panel">
+                    <div id="hint-controls-panel">
                         <button class="control-button" id="hint-previous-button">Previous</button>
                         <button class="control-button" id="hint-next-button">Next</button>
                     </div>
@@ -101,7 +99,7 @@
                         <div>お - o</div>
                     </div>
                 </div>
-            </div>
+            </details>
         </div>
     </body>
 </html>
