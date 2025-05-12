@@ -35,11 +35,11 @@ body {
 }
 
 #question-hint {
-    font-size: 14px;
+    font-size: 32px;
 }
 
 #question-kanji {
-    font-size: 24px;
+    font-size: 64px;
 }
 
 #answer {
@@ -48,7 +48,7 @@ body {
 }
 
 #wrong-answer {
-    font-size: 18px;
+    font-size: 24px;
     color: #ff0000;
 }
 
@@ -57,7 +57,8 @@ body {
     background: transparent;
     border: none;
     outline: none;
-    font-size: 22px;
+    font-size: 32px;
+    width: 99%;
 }
 
 #info {
@@ -113,6 +114,10 @@ body {
 
 summary {
     cursor: pointer;
+}
+
+#level-up-container {
+    display: none;
 }
 
 .level-up {
