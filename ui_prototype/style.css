@@ -8,16 +8,22 @@ body {
     background-color: antiquewhite;
 }
 
-#level-current-level-exp-container {
+.level-exp-container {
     width: 100px;
     height: 10px;
     background: #000000;
+    border: 5px ridge #d9e8e9;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 #level-current-level-exp-content {
-    width: 20px;
+    background: linear-gradient(90deg, #00ff00, #00cc00);
+}
+
+.level-exp-content {
     height: 10px;
-    background: #00ff00;
+    background: linear-gradient(90deg, #00ffea, #00ccbb);
 }
 
 /*
