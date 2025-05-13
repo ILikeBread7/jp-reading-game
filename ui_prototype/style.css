@@ -122,10 +122,6 @@ summary {
     cursor: pointer;
 }
 
-#level-up-container {
-    display: none;
-}
-
 .level-up {
     position: absolute;
     top: 50%;
@@ -154,4 +150,9 @@ summary {
     height: 100%;
     background-color: #000000;
     opacity: 0.5;
+}
+
+.fade-hidden {
+    display: none;
+    opacity: 0;
 }

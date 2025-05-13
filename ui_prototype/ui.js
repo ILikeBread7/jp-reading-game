@@ -14,7 +14,7 @@ var $kt = $kt || {};
         }
 
         showLevelUp() {
-            this._levelUpContainer.style.display = 'block';
+            this._fadeIn(this._levelUpContainer, '1s');
             this._answerInput.blur();
         }
 
@@ -58,8 +58,31 @@ var $kt = $kt || {};
         }
 
         _closeLevelUpContainer() {
-            this._levelUpContainer.style.display = 'none';
+            this._fadeOut(this._levelUpContainer, '0.2s', '0s');
             this.focusAnswerInput();
+        }
+
+        _fadeIn(element, duration) {
+            element.style.display = 'block';
+            setTimeout(this._fade, 0, element, 1, duration, '0s');
+        }
+
+        _fadeOut(element, duration, delay) {
+            const eventName = 'transitionend';
+            const fadeOutEventListener = () => {
+                element.style.display = 'none';
+                element.removeEventListener(eventName, fadeOutEventListener);
+            }
+            
+            element.addEventListener(eventName, fadeOutEventListener);
+            this._fade(element, 0, duration, delay);
+        }
+
+        _fade(element, opacity, duration, delay) {
+            element.style['transition-property'] =  'opacity';
+            element.style['transition-duration'] =  duration;
+            element.style['transition-delay'] =  delay;
+            element.style.opacity = opacity;
         }
     }
 
