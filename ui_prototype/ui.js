@@ -25,29 +25,20 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            document.addEventListener('keydown', this._keyPressEventListener.bind(this));
+            document.addEventListener('keypress', this._enterEventListener.bind(this));
+            document.addEventListener('keydown', this._charEventListener.bind(this));
             this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainer.bind(this));
         }
 
-        _keyPressEventListener(event) {
-            const key = event.key;
-            
-            switch (key) {
-                case 'Enter':
-                    this._enterEventListener();
-                break;
-                default:
-                    this._charEventListener(key);
-            }
-        }
-
-        _enterEventListener() {
-            if (this._isLevelUpVisible()) {
+        _enterEventListener(event) {
+            if (event.key === 'Enter' && this._isLevelUpVisible()) {
                 this._closeLevelUpContainer();
             }
         }
 
-        _charEventListener(key) {
+        _charEventListener(event) {
+            const key = event.key;
+
             if (
                 !this._isLevelUpVisible()
                 && !this._isFocused(this._answerInput)
