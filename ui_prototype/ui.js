@@ -19,17 +19,11 @@ var $kt = $kt || {};
         }
 
         showLevelExp() {
-            this._fadeIn(this._levelExpDiv, '2s');
-            const listener = event => {
-                if (event.target !== this._levelExpDiv) {
-                    return;
-                }
-                
-                this._levelExpDiv.removeEventListener('transitionend', listener);
-                this._fadeOut(this._levelExpDiv, '2s', '1s');
-            };
-            this._levelExpDiv.addEventListener('transitionend', listener);
-            this._growExpBars();
+            this._fadeIn(this._levelExpDiv, '1.5s');
+            this._addTransitionListener(this._levelExpDiv, () => {
+                this._growExpBars();
+                this._fadeOut(this._levelExpDiv, '1.5s', '2s');
+            });
         }
 
         _growExpBars() {
@@ -37,7 +31,7 @@ var $kt = $kt || {};
                 .forEach(expBar => {
                     const startingWidth = expBar.clientWidth;
                     const targetWidth = startingWidth + 20;
-                    this._growWidth(expBar, `${targetWidth}px`, '1s', '1s');
+                    this._growWidth(expBar, `${targetWidth}px`, '1s', '0s');
                 });
         }
 
@@ -92,13 +86,7 @@ var $kt = $kt || {};
         }
 
         _fadeOut(element, duration, delay) {
-            const eventName = 'transitionend';
-            const fadeOutEventListener = () => {
-                element.style.display = 'none';
-                element.removeEventListener(eventName, fadeOutEventListener);
-            }
-            
-            element.addEventListener(eventName, fadeOutEventListener);
+            this._addTransitionListener(element, () => element.style.display = 'none');
             this._fade(element, 0, duration, delay);
         }
 
@@ -116,6 +104,19 @@ var $kt = $kt || {};
             element.style['transition-duration'] =  duration;
             element.style['transition-delay'] =  delay;
             element.style[property] = value;
+        }
+
+        _addTransitionListener(element, funcToCall) {
+            const eventName = 'transitionend';
+            const listener = event => {
+                if (event.target !== element) {
+                    return;
+                }
+
+                element.removeEventListener(eventName, listener);
+                funcToCall();
+            }
+            element.addEventListener(eventName, listener);
         }
     }
 
