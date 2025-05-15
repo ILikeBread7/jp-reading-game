@@ -18,10 +18,34 @@ var $kt = $kt || {};
             this._answerInput.blur();
         }
 
+        showLevelExp() {
+            this._fadeIn(this._levelExpDiv, '2s');
+            const listener = event => {
+                if (event.target !== this._levelExpDiv) {
+                    return;
+                }
+                
+                this._levelExpDiv.removeEventListener('transitionend', listener);
+                this._fadeOut(this._levelExpDiv, '2s', '1s');
+            };
+            this._levelExpDiv.addEventListener('transitionend', listener);
+            this._growExpBars();
+        }
+
+        _growExpBars() {
+            [...document.getElementsByClassName('level-exp-content')]
+                .forEach(expBar => {
+                    const startingWidth = expBar.clientWidth;
+                    const targetWidth = startingWidth + 20;
+                    this._growWidth(expBar, `${targetWidth}px`, '1s', '1s');
+                });
+        }
+
         _getAllElements() {
             this._answerInput = document.getElementById('answer-input');
             this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
             this._levelUpContainer = document.getElementById('level-up-container');
+            this._levelExpDiv = document.getElementById('level-exp');
         }
 
         _addEventListeners() {
@@ -64,7 +88,7 @@ var $kt = $kt || {};
 
         _fadeIn(element, duration) {
             element.style.display = 'block';
-            setTimeout(this._fade, 0, element, 1, duration, '0s');
+            setTimeout(this._fade.bind(this), 0, element, 1, duration, '0s');
         }
 
         _fadeOut(element, duration, delay) {
@@ -79,10 +103,19 @@ var $kt = $kt || {};
         }
 
         _fade(element, opacity, duration, delay) {
-            element.style['transition-property'] =  'opacity';
+            this._transition(element, 'opacity', opacity, duration, delay);
+
+        }
+
+        _growWidth(element, width, duration, delay) {
+            this._transition(element, 'width', width, duration, delay);
+        }
+
+        _transition(element, property, value, duration, delay) {
+            element.style['transition-property'] =  property;
             element.style['transition-duration'] =  duration;
             element.style['transition-delay'] =  delay;
-            element.style.opacity = opacity;
+            element.style[property] = value;
         }
     }
 
