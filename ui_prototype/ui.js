@@ -7,6 +7,7 @@ var $kt = $kt || {};
         constructor() {
             this._getAllElements();
             this._addEventListeners();
+            this._transitionListeners = new Map();
         }
 
         focusAnswerInput() {
@@ -81,18 +82,33 @@ var $kt = $kt || {};
         }
 
         _fadeIn(element, duration, delay, transitionEndListener) {
-            element.style.display = 'block';
-            setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, transitionEndListener);
+            const fadeInFunction = (element, duration, delay, transitionEndListener) => {
+                element.style.display = 'block';
+                setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, transitionEndListener);
+            }
+            
+            if (element.checkVisibility()) {
+                const oldListener = this._transitionListeners.get(element);
+                if (oldListener) {
+                    element.removeEventListener('transitionend', oldListener);
+                    this._transitionListeners.delete(element);
+                }
+                fadeInFunction(element, '0s', '0s');
+                setTimeout(transitionEndListener, 0);
+                return;
+            }
+            
+            fadeInFunction(element, duration, delay, transitionEndListener);
         }
 
         _fadeOut(element, duration, delay, transitionEndListener) {
-            this._addTransitionListener(element, () => element.style.display = 'none');
-            this._fade(element, 0, duration, delay, transitionEndListener);
+            const fadeOutListener = () => element.style.display = 'none';
+            const listeners = transitionEndListener ? [ fadeOutListener, transitionEndListener ] : fadeOutListener;
+            this._fade(element, 0, duration, delay, listeners);
         }
 
         _fade(element, opacity, duration, delay, transitionEndListener) {
             this._transition(element, 'opacity', opacity, duration, delay, transitionEndListener);
-
         }
 
         _growWidth(element, width, duration, delay, transitionEndListener) {
@@ -110,8 +126,13 @@ var $kt = $kt || {};
             }
         }
 
-        _addTransitionListener(element, funcToCall) {
+        _addTransitionListener(element, listeners) {
             const eventName = 'transitionend';
+
+            const funcToCall = Array.isArray(listeners)
+                ? () => listeners.forEach(f => f())
+                : listeners;
+
             const listener = event => {
                 if (event.target !== element) {
                     return;
@@ -120,7 +141,13 @@ var $kt = $kt || {};
                 element.removeEventListener(eventName, listener);
                 funcToCall();
             }
+
+            const oldListener = this._transitionListeners.get(element);
+            if (oldListener) {
+                element.removeEventListener(eventName, oldListener);
+            }
             element.addEventListener(eventName, listener);
+            this._transitionListeners.set(element, listener);
         }
     }
 
