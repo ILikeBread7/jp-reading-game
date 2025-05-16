@@ -14,13 +14,12 @@ var $kt = $kt || {};
         }
 
         showLevelUp() {
-            this._fadeIn(this._levelUpContainer, '1s');
+            this._fadeIn(this._levelUpContainer, '1s', '0s');
             this._answerInput.blur();
         }
 
         showLevelExp() {
-            this._fadeIn(this._levelExpTmpBarsDiv, '1.5s');
-            this._addTransitionListener(this._levelExpTmpBarsDiv, () => {
+            this._fadeIn(this._levelExpTmpBarsDiv, '1.5s', '0s', () => {
                 this._growExpBars();
                 this._fadeOut(this._levelExpTmpBarsDiv, '1.5s', '2s');
             });
@@ -81,30 +80,34 @@ var $kt = $kt || {};
             this.focusAnswerInput();
         }
 
-        _fadeIn(element, duration) {
+        _fadeIn(element, duration, delay, transitionEndListener) {
             element.style.display = 'block';
-            setTimeout(this._fade.bind(this), 0, element, 1, duration, '0s');
+            setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, transitionEndListener);
         }
 
-        _fadeOut(element, duration, delay) {
+        _fadeOut(element, duration, delay, transitionEndListener) {
             this._addTransitionListener(element, () => element.style.display = 'none');
-            this._fade(element, 0, duration, delay);
+            this._fade(element, 0, duration, delay, transitionEndListener);
         }
 
-        _fade(element, opacity, duration, delay) {
-            this._transition(element, 'opacity', opacity, duration, delay);
+        _fade(element, opacity, duration, delay, transitionEndListener) {
+            this._transition(element, 'opacity', opacity, duration, delay, transitionEndListener);
 
         }
 
-        _growWidth(element, width, duration, delay) {
-            this._transition(element, 'width', width, duration, delay);
+        _growWidth(element, width, duration, delay, transitionEndListener) {
+            this._transition(element, 'width', width, duration, delay, transitionEndListener);
         }
 
-        _transition(element, property, value, duration, delay) {
+        _transition(element, property, value, duration, delay, transitionEndListener) {
             element.style['transition-property'] =  property;
             element.style['transition-duration'] =  duration;
             element.style['transition-delay'] =  delay;
             element.style[property] = value;
+
+            if (transitionEndListener) {
+                this._addTransitionListener(element, transitionEndListener);
+            }
         }
 
         _addTransitionListener(element, funcToCall) {
