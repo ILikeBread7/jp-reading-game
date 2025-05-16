@@ -27,7 +27,7 @@ var $kt = $kt || {};
         }
 
         _growExpBars() {
-            [...document.getElementsByClassName('level-exp-content')]
+            [...this._levelExpDiv.getElementsByClassName('level-exp-content')]
                 .forEach(expBar => {
                     const startingWidth = expBar.clientWidth;
                     const targetWidth = startingWidth + 20;
