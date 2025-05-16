@@ -29,8 +29,11 @@ var $kt = $kt || {};
         _growExpBars() {
             [...this._levelExpDiv.getElementsByClassName('level-exp-content')]
                 .forEach(expBar => {
+                    const growPercentage = 20;
+                    const totalWidth = expBar.parentElement.clientWidth;
+                    const growWidth = growPercentage * totalWidth / 100;
                     const startingWidth = expBar.clientWidth;
-                    const targetWidth = startingWidth + 20;
+                    const targetWidth = Math.min(startingWidth + growWidth, totalWidth);
                     this._growWidth(expBar, `${targetWidth}px`, '1s', '0s');
                 });
         }

@@ -12,9 +12,11 @@ body {
     width: 100px;
     height: 10px;
     background: #000000;
-    border: 5px ridge #d9e8e9;
+    border: 5px ridge #000000;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    box-shadow: 3px 3px 3px #000000;
+    margin-bottom: 5px;
 }
 
 #level-current-level-exp-content {
