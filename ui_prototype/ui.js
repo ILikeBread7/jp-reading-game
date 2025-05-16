@@ -19,10 +19,10 @@ var $kt = $kt || {};
         }
 
         showLevelExp() {
-            this._fadeIn(this._levelExpDiv, '1.5s');
-            this._addTransitionListener(this._levelExpDiv, () => {
+            this._fadeIn(this._levelExpTmpBarsDiv, '1.5s');
+            this._addTransitionListener(this._levelExpTmpBarsDiv, () => {
                 this._growExpBars();
-                this._fadeOut(this._levelExpDiv, '1.5s', '2s');
+                this._fadeOut(this._levelExpTmpBarsDiv, '1.5s', '2s');
             });
         }
 
@@ -40,6 +40,7 @@ var $kt = $kt || {};
             this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
             this._levelUpContainer = document.getElementById('level-up-container');
             this._levelExpDiv = document.getElementById('level-exp');
+            this._levelExpTmpBarsDiv = document.getElementById('level-exp-tmp-bars');
         }
 
         _addEventListeners() {

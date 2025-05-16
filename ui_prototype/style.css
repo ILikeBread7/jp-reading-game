@@ -26,15 +26,6 @@ body {
     background: linear-gradient(90deg, #00ffea, #00ccbb);
 }
 
-/*
-#level-tmp-exp-bars {
-    transition-property: opacity;
-    transition-duration: 2s;
-    transition-delay: 1s;
-    opacity: 0;
-}
-*/
-
 #question {
     text-align: center;
     background-color: #7fffd4;
