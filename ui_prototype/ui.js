@@ -81,10 +81,10 @@ var $kt = $kt || {};
             this.focusAnswerInput();
         }
 
-        _fadeIn(element, duration, delay, transitionEndListener) {
-            const fadeInFunction = (element, duration, delay, transitionEndListener) => {
+        _fadeIn(element, duration, delay, endListeners) {
+            const fadeInFunction = (element, duration, delay, endListeners) => {
                 element.style.display = 'block';
-                setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, transitionEndListener);
+                setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, endListeners);
             }
             
             if (element.checkVisibility()) {
@@ -94,44 +94,44 @@ var $kt = $kt || {};
                     this._transitionListeners.delete(element);
                 }
                 fadeInFunction(element, '0s', '0s');
-                setTimeout(transitionEndListener, 0);
+                setTimeout(endListeners, 0);
                 return;
             }
             
-            fadeInFunction(element, duration, delay, transitionEndListener);
+            fadeInFunction(element, duration, delay, endListeners);
         }
 
-        _fadeOut(element, duration, delay, transitionEndListener) {
+        _fadeOut(element, duration, delay, endListeners) {
             const fadeOutListener = () => element.style.display = 'none';
-            const listeners = transitionEndListener ? [ fadeOutListener, transitionEndListener ] : fadeOutListener;
+            const listeners = endListeners ? [ fadeOutListener, endListeners ] : fadeOutListener;
             this._fade(element, 0, duration, delay, listeners);
         }
 
-        _fade(element, opacity, duration, delay, transitionEndListener) {
-            this._transition(element, 'opacity', opacity, duration, delay, transitionEndListener);
+        _fade(element, opacity, duration, delay, endListeners) {
+            this._transition(element, 'opacity', opacity, duration, delay, endListeners);
         }
 
-        _growWidth(element, width, duration, delay, transitionEndListener) {
-            this._transition(element, 'width', width, duration, delay, transitionEndListener);
+        _growWidth(element, width, duration, delay, endListeners) {
+            this._transition(element, 'width', width, duration, delay, endListeners);
         }
 
-        _transition(element, property, value, duration, delay, transitionEndListener) {
+        _transition(element, property, value, duration, delay, endListeners) {
             element.style['transition-property'] =  property;
             element.style['transition-duration'] =  duration;
             element.style['transition-delay'] =  delay;
             element.style[property] = value;
 
-            if (transitionEndListener) {
-                this._addTransitionListener(element, transitionEndListener);
+            if (endListeners) {
+                this._addTransitionListener(element, endListeners);
             }
         }
 
-        _addTransitionListener(element, listeners) {
+        _addTransitionListener(element, endListeners) {
             const eventName = 'transitionend';
 
-            const funcToCall = Array.isArray(listeners)
-                ? () => listeners.forEach(f => f())
-                : listeners;
+            const funcToCall = Array.isArray(endListeners)
+                ? () => endListeners.forEach(f => f())
+                : endListeners;
 
             const listener = event => {
                 if (event.target !== element) {
