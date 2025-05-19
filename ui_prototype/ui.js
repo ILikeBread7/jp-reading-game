@@ -7,7 +7,6 @@ var $kt = $kt || {};
         constructor() {
             this._getAllElements();
             this._addEventListeners();
-            this._transitionListeners = new Map();
         }
 
         focusAnswerInput() {
@@ -85,23 +84,14 @@ var $kt = $kt || {};
         }
 
         _fadeIn(element, duration, delay, endListeners) {
-            const fadeInFunction = (element, duration, delay, endListeners) => {
-                element.style.display = 'block';
-                setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, endListeners);
-            }
-            
             if (element.checkVisibility()) {
-                const oldListener = this._transitionListeners.get(element);
-                if (oldListener) {
-                    element.removeEventListener('transitionend', oldListener);
-                    this._transitionListeners.delete(element);
-                }
-                fadeInFunction(element, '0s', '0s');
+                this._fade(element, 1, '0s', '0s');
                 setTimeout(endListeners, 0);
                 return;
             }
             
-            fadeInFunction(element, duration, delay, endListeners);
+            element.style.display = 'block';
+            setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, endListeners);
         }
 
         _fadeOut(element, duration, delay, endListeners) {
@@ -124,33 +114,29 @@ var $kt = $kt || {};
             element.style['transition-delay'] =  delay;
             element.style[property] = value;
 
-            if (endListeners) {
-                this._addTransitionListener(element, endListeners);
-            }
+            this._addOnTransitionEnd(element, endListeners);
         }
 
-        _addTransitionListener(element, endListeners) {
-            const eventName = 'transitionend';
+        _addOnTransitionEnd(element, endCallbacks) {
+            if (!endCallbacks) {
+                element.ontransitionend = null;
+                return;
+            }
 
-            const funcToCall = Array.isArray(endListeners)
-                ? () => endListeners.forEach(f => f())
-                : endListeners;
+            const funcToCall = Array.isArray(endCallbacks)
+                ? () => endCallbacks.forEach(f => f())
+                : endCallbacks;
 
-            const listener = event => {
+            const callback = event => {
                 if (event.target !== element) {
                     return;
                 }
 
-                element.removeEventListener(eventName, listener);
+                element.ontransitionend = null;
                 funcToCall();
             }
 
-            const oldListener = this._transitionListeners.get(element);
-            if (oldListener) {
-                element.removeEventListener(eventName, oldListener);
-            }
-            element.addEventListener(eventName, listener);
-            this._transitionListeners.set(element, listener);
+            element.ontransitionend = callback;
         }
     }
 
