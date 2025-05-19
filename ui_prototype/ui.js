@@ -18,12 +18,20 @@ var $kt = $kt || {};
             this._answerInput.blur();
         }
 
-        showLevelExp() {
+        /**
+         * 
+         * @param { [ { char: string, oldExpPercentage: number, newExpPercentage: number } ] } expData 
+         */
+        showLevelExp(expData) {
             this._fadeIn(this._levelExpTmpBarsDiv, '1s', '0s', this._fadeOut.bind(this, this._levelExpTmpBarsDiv, '1s', '2s'));
-            this._growExpBars();
+            this._growExpBars(expData);
         }
 
-        _growExpBars() {
+        /**
+         * 
+         * @param { [ { char: string, oldExpPercentage: number, newExpPercentage: number } ] } expData 
+         */
+        _growExpBars(expData) {
             [...this._levelExpDiv.getElementsByClassName('level-exp-content')]
                 .forEach(expBar => {
                     const growPercentage = 20;
