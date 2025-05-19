@@ -19,10 +19,8 @@ var $kt = $kt || {};
         }
 
         showLevelExp() {
-            this._fadeIn(this._levelExpTmpBarsDiv, '1.5s', '0s', () => {
-                this._growExpBars();
-                this._fadeOut(this._levelExpTmpBarsDiv, '1.5s', '2s');
-            });
+            this._fadeIn(this._levelExpTmpBarsDiv, '1s', '0s', this._fadeOut.bind(this, this._levelExpTmpBarsDiv, '1s', '2s'));
+            this._growExpBars();
         }
 
         _growExpBars() {
