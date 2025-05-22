@@ -19,27 +19,60 @@ var $kt = $kt || {};
         }
 
         /**
-         * 
-         * @param { [ { char: string, oldExpPercentage: number, newExpPercentage: number } ] } expData 
+         * @param {string} levelName
+         * @param {number} totalExp
+         * @param {number} currentLevelExp
+         * @param {number} toNextLevelExp
+         * @param { [ { char?: string, oldExpWidth: number, newExpWidth: number, addedExp: number } ] } expData 
          */
-        showLevelExp(expData) {
-            this._fadeIn(this._levelExpTmpBarsDiv, '1s', '0s', this._fadeOut.bind(this, this._levelExpTmpBarsDiv, '1s', '2s'));
+        showLevelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
+            this._levelExpDiv.innerHTML = `
+                <div id="level-total-exp">
+                    Total EXP: ${totalExp}
+                </div>
+                <div id="level-next-level">
+                    To next level: ${currentLevelExp} / ${toNextLevelExp}
+                </div>
+                <div id="level-name">
+                    ${levelName}
+                </div>
+                <div id="level-exp-bars">
+                    <div class="level-exp-container" id="level-current-level-exp-container">
+                        <div class="level-exp-content" id="level-current-level-exp-content" style="width:${expData[0].oldExpPercentage}%;"></div>
+                    </div>
+                </div>
+                <div class="fade-hidden" id="level-exp-tmp-bars">
+                    <div>Total: +${expData[0].addedExp}XP!</div>
+                    ${expData.slice(1).map(exp => `
+                        <div>
+                            ${exp.char}: +${exp.addedExp}XP!
+                            <div class="level-exp-container">
+                                <div class="level-exp-content" style="width:${exp.oldExpPercentage}%;"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            const levelExpTmpBarsDiv = document.getElementById('level-exp-tmp-bars');
+            this._fadeIn(levelExpTmpBarsDiv, '1s', '0s', this._fadeOut.bind(this, levelExpTmpBarsDiv, '1s', '2s'));
+            
+            // Force reflow
+            // Without it the transition might not work if
+            // there is another transition already in-progress
+            void levelExpTmpBarsDiv.offsetWidth;
+            
             this._growExpBars(expData);
         }
 
         /**
          * 
-         * @param { [ { char: string, oldExpPercentage: number, newExpPercentage: number } ] } expData 
+         * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
          */
         _growExpBars(expData) {
             [...this._levelExpDiv.getElementsByClassName('level-exp-content')]
-                .forEach(expBar => {
-                    const growPercentage = 20;
-                    const totalWidth = expBar.parentElement.clientWidth;
-                    const growWidth = growPercentage * totalWidth / 100;
-                    const startingWidth = expBar.clientWidth;
-                    const targetWidth = Math.min(startingWidth + growWidth, totalWidth);
-                    this._growWidth(expBar, `${targetWidth}px`, '1s', '0s');
+                .forEach((expBar, index) => {
+                    const exp = expData[index];
+                    this._growWidth(expBar, `${exp.newExpPercentage}%`, '1s', '0s');
                 });
         }
 
@@ -48,7 +81,6 @@ var $kt = $kt || {};
             this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
             this._levelUpContainer = document.getElementById('level-up-container');
             this._levelExpDiv = document.getElementById('level-exp');
-            this._levelExpTmpBarsDiv = document.getElementById('level-exp-tmp-bars');
         }
 
         _addEventListeners() {
@@ -92,12 +124,22 @@ var $kt = $kt || {};
         _fadeIn(element, duration, delay, endListeners) {
             if (element.checkVisibility()) {
                 this._fade(element, 1, '0s', '0s');
-                setTimeout(endListeners, 0);
+                if (endListeners) {
+                    // Force reflow before running transition listeners
+                    void element.offsetWidth;
+                    endListeners();
+                }
                 return;
             }
             
             element.style.display = 'block';
-            setTimeout(this._fade.bind(this), 0, element, 1, duration, delay, endListeners);
+
+            // Force reflow
+            // Without it the element doesn't fade in
+            // right after it gets set to display block
+            void element.offsetWidth;
+
+            this._fade(element, 1, duration, delay, endListeners);
         }
 
         _fadeOut(element, duration, delay, endListeners) {
