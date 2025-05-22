@@ -23,7 +23,7 @@ var $kt = $kt || {};
          * @param {number} totalExp
          * @param {number} currentLevelExp
          * @param {number} toNextLevelExp
-         * @param { [ { char?: string, oldExpWidth: number, newExpWidth: number, addedExp: number } ] } expData 
+         * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
          */
         showLevelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
             this._levelExpDiv.innerHTML = $kt.templates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
@@ -47,6 +47,14 @@ var $kt = $kt || {};
                 .forEach((expBar, index) => {
                     const exp = expData[index];
                     this._growWidth(expBar, `${exp.newExpPercentage}%`, '1s', '0s');
+                });
+            [...this._levelExpDiv.getElementsByClassName('exp-max')]
+                .forEach(expMax => {
+                    this._fadeIn(expMax, '0.5s', '0.5s', () => {
+                        this._transition(expMax, 'top', '-10px', '0.2s', '0s', () => {
+                            this._transition(expMax, 'top', '0px', '0.2s', '0s');
+                        });
+                    });
                 });
         }
 
@@ -106,11 +114,11 @@ var $kt = $kt || {};
                 return;
             }
             
-            element.style.display = 'block';
+            element.style.display = 'unset';
 
             // Force reflow
             // Without it the element doesn't fade in
-            // right after it gets set to display block
+            // right after its display is changed
             void element.offsetWidth;
 
             this._fade(element, 1, duration, delay, endListeners);

@@ -9,9 +9,11 @@ var $kt = $kt || {};
          * @param {number} totalExp
          * @param {number} currentLevelExp
          * @param {number} toNextLevelExp
-         * @param { [ { char?: string, oldExpWidth: number, newExpWidth: number, addedExp: number } ] } expData 
+         * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
          */
         levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
+            const expMaxSpan = '<span class="fade-hidden exp-max">Max!</span>';
+            
             return `
                 <div id="level-total-exp">
                     Total EXP: ${totalExp}
@@ -21,6 +23,7 @@ var $kt = $kt || {};
                 </div>
                 <div id="level-name">
                     ${levelName}
+                    ${this.tif(expData[0].newExpPercentage >= 100, expMaxSpan)}
                 </div>
                 <div id="level-exp-bars">
                     <div class="level-exp-container" id="level-current-level-exp-container">
@@ -32,6 +35,7 @@ var $kt = $kt || {};
                     ${expData.slice(1).map(exp => `
                         <div>
                             ${exp.char}: +${exp.addedExp}XP!
+                            ${this.tif(exp.newExpPercentage >= 100, expMaxSpan)}
                             <div class="level-exp-container">
                                 <div class="level-exp-content" style="width:${exp.oldExpPercentage}%;"></div>
                             </div>
@@ -39,6 +43,18 @@ var $kt = $kt || {};
                     `).join('')}
                 </div>
             `;
+        }
+
+        /**
+         * Function for html templates
+         * @returns value if condition is met, elseValue otherwise
+         * @param {boolean} condition 
+         * @param {any} value 
+         * @param {any} elseValue default '' (empty string)
+         * @returns 
+         */
+        tif(condition, value, elseValue = '') {
+            return condition ? value : elseValue;
         }
 
     }

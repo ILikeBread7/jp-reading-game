@@ -149,3 +149,10 @@ summary {
     display: none;
     opacity: 0;
 }
+
+.exp-max {
+    color: #d10404;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
