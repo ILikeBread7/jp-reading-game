@@ -23,7 +23,7 @@ var $kt = $kt || {};
                 </div>
                 <div id="level-name">
                     ${levelName}
-                    ${this.tif(expData[0].newExpPercentage >= 100, expMaxSpan)}
+                    ${this._tif(expData[0].newExpPercentage >= 100, expMaxSpan)}
                 </div>
                 <div id="level-exp-bars">
                     <div class="level-exp-container" id="level-current-level-exp-container">
@@ -35,7 +35,7 @@ var $kt = $kt || {};
                     ${expData.slice(1).map(exp => `
                         <div>
                             ${exp.char}: +${exp.addedExp}XP!
-                            ${this.tif(exp.newExpPercentage >= 100, expMaxSpan)}
+                            ${this._tif(exp.newExpPercentage >= 100, expMaxSpan)}
                             <div class="level-exp-container">
                                 <div class="level-exp-content" style="width:${exp.oldExpPercentage}%;"></div>
                             </div>
@@ -53,7 +53,7 @@ var $kt = $kt || {};
          * @param {any} elseValue default '' (empty string)
          * @returns 
          */
-        tif(condition, value, elseValue = '') {
+        _tif(condition, value, elseValue = '') {
             return condition ? value : elseValue;
         }
 
