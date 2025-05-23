@@ -1,7 +1,6 @@
 var $kt = $kt || {};
 
 (() => {
-    console.log('script working!')
     $kt.ui.showLevelUp();
     $kt.ui.showLevelExp('Level 2: か行', 123, 5, 12, [
         { oldExpPercentage: 20, newExpPercentage: 100, addedExp: 3 },
