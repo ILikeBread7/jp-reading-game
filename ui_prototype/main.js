@@ -1,7 +1,7 @@
 var $kt = $kt || {};
 
 (() => {
-    $kt.ui.showLevelUp();
+    // $kt.ui.showLevelUp();
     $kt.ui.showLevelData('Level 1: あ行', 75, 10, 15);
     setTimeout(() => {
         $kt.ui.showLevelExp('Level 2: か行', 123, 5, 12, [
