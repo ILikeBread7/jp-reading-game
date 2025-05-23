@@ -23,10 +23,24 @@ var $kt = $kt || {};
          * @param {number} totalExp
          * @param {number} currentLevelExp
          * @param {number} toNextLevelExp
-         * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
+         */
+        showLevelData(levelName, totalExp, currentLevelExp, toNextLevelExp) {
+            const currentExpPercentage = currentLevelExp * 100 / toNextLevelExp;
+            const expData = [{
+                oldExpPercentage: currentExpPercentage
+            }];
+            this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
+        }
+
+        /**
+         * @param {string} levelName
+         * @param {number} totalExp
+         * @param {number} currentLevelExp
+         * @param {number} toNextLevelExp
+         * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage?: number, addedExp?: number } ] } expData 
          */
         showLevelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
-            this._levelExpDiv.innerHTML = $kt.templates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
+            this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
             const levelExpTmpBarsDiv = document.getElementById('level-exp-tmp-bars');
             this._fadeIn(levelExpTmpBarsDiv, '1s', '0s', this._fadeOut.bind(this, levelExpTmpBarsDiv, '1s', '2s'));
             
@@ -36,6 +50,17 @@ var $kt = $kt || {};
             void levelExpTmpBarsDiv.offsetWidth;
             
             this._growExpBars(expData);
+        }
+
+        /**
+         * @param {string} levelName
+         * @param {number} totalExp
+         * @param {number} currentLevelExp
+         * @param {number} toNextLevelExp
+         * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage?: number, addedExp?: number } ] } expData 
+         */
+        _updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
+            this._levelExpDiv.innerHTML = $kt.templates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
         }
 
         /**
