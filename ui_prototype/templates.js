@@ -12,7 +12,7 @@ var $kt = $kt || {};
          * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
          */
         levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
-            const expMaxSpan = '<span class="fade-hidden exp-max">Max!</span>';
+            const expMaxSpan = '<span class="fade-hidden jumpable exp-max">Max!</span>';
             
             return `
                 <div id="level-total-exp">

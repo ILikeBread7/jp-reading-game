@@ -75,11 +75,7 @@ var $kt = $kt || {};
                 });
             [...this._levelExpDiv.getElementsByClassName('exp-max')]
                 .forEach(expMax => {
-                    this._fadeIn(expMax, '0.5s', '0.5s', () => {
-                        this._transition(expMax, 'top', '-10px', '0.2s', '0s', () => {
-                            this._transition(expMax, 'top', '0px', '0.2s', '0s');
-                        });
-                    });
+                    this._fadeIn(expMax, '0.5s', '0.5s', this._jump.bind(this, expMax, '-10px', '0.2s', '0s'));
                 });
         }
 
@@ -128,6 +124,29 @@ var $kt = $kt || {};
             this.focusAnswerInput();
         }
 
+        /**
+         * Requires the "jumpable" css class on the element
+         * @param {HTMLElement} element 
+         * @param {string} height css string
+         * @param {string} duration css string
+         * @param {string} delay css string
+         * @param {[function]} endListeners 
+         */
+        _jump(element, height, duration, delay, endListeners) {
+            this._transition(element, 'top', height, duration, delay, () => {
+                this._transition(element, 'top', '0px', duration, '0s', endListeners);
+            });
+        }
+
+        /**
+         * If the element is supposed to be hidden at the beginning
+         * requires the "fade-hidden" css class on the element
+         * @param {HTMLElement} element 
+         * @param {string} duration css string
+         * @param {string} delay css string
+         * @param {[function]} endListeners 
+         * @returns 
+         */
         _fadeIn(element, duration, delay, endListeners) {
             if (element.checkVisibility()) {
                 this._fade(element, 1, '0s', '0s');

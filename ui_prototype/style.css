@@ -152,6 +152,9 @@ summary {
 
 .exp-max {
     color: #d10404;
+}
+
+.jumpable {
     position: relative;
     top: 0px;
     left: 0px;
