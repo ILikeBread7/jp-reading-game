@@ -4,9 +4,12 @@ var $kt = $kt || {};
 
     const details = document.getElementsByTagName("details");
     [...details].forEach(d => {
+
+
             d.addEventListener("click", (e) => {
                 if (d.hasAttribute("open")) { // since it's not closed yet, it's open!
                     e.preventDefault(); // stop the default behavior, meaning - the hiding
+                    updateDetailsElementsDataHeights(d);
                     d.classList.add("closing"); // add a class which applies the animation in CSS
                 }
             })
@@ -20,6 +23,12 @@ var $kt = $kt || {};
             });
         }
     );
+
+    function updateDetailsElementsDataHeights(d) {
+        const div = d.firstChild.nextElementSibling.nextElementSibling;
+        div.dataset.height = `${div.offsetHeight}px`;
+        console.log(div.dataset.height)
+    }
 
 
 
