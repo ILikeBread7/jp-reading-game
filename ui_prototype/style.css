@@ -160,13 +160,36 @@ summary {
     left: 0px;
 }
 
-details[open] summary~* {
+details[open] > summary ~ * {
     transform-origin: top;
   animation: open 0.2s;
 }
 
-details.closing summary~* {
+details.closing > summary ~ * {
   animation: close 0.2s;
+}
+
+details > summary {
+    list-style-type: '';
+}
+
+details > summary::before {
+    content: url('icons/expand_circle_down_20dp_E8EAED_FILL0_wght400_GRAD0_opsz20.svg');
+    display: inline-block;
+    transition-property: transform;
+    transition-duration: 0.2s;
+    transform: rotate(-90deg);
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+details[open] > summary::before {
+    transform: unset;
+}
+
+details.closing > summary::before {
+    transform: rotate(-90deg);
 }
 
 @keyframes open {
