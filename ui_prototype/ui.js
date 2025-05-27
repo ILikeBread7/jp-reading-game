@@ -2,32 +2,32 @@ var $kt = $kt || {};
 
 (() => {
 
-    const details = document.getElementsByTagName("details");
-    [...details].forEach(d => {
+    const summaries = document.getElementsByTagName("summary");
+    [...summaries].forEach(summary => {
+            const details = summary.parentElement;
 
-
-            d.addEventListener("click", (e) => {
-                if (d.hasAttribute("open")) { // since it's not closed yet, it's open!
+            summary.addEventListener("click", (e) => {
+                if (details.hasAttribute("open")) { // since it's not closed yet, it's open!
                     e.preventDefault(); // stop the default behavior, meaning - the hiding
-                    updateDetailsElementsDataHeights(d);
-                    d.classList.add("closing"); // add a class which applies the animation in CSS
+                    updateDetailsElementsDataHeights(summary);
+                    details.classList.add("closing"); // add a class which applies the animation in CSS
                 }
             })
 
             // when the "close" animation is over
-            d.addEventListener("animationend", (e) => {
+            details.addEventListener("animationend", (e) => {
                 if (e.animationName === "close") {
-                    d.removeAttribute("open"); // close the element
-                    d.classList.remove("closing"); // remove the animation
+                    details.removeAttribute("open"); // close the element
+                    details.classList.remove("closing"); // remove the animation
                 }
             });
         }
     );
 
-    function updateDetailsElementsDataHeights(d) {
-        const div = d.firstChild.nextElementSibling.nextElementSibling;
-        div.dataset.height = `${div.offsetHeight}px`;
-        console.log(div.dataset.height)
+    function updateDetailsElementsDataHeights(summary) {
+        for (let element = summary; element = element.nextElementSibling; /* empty */) {
+            element.dataset.height = `${element.offsetHeight}px`;
+        }
     }
 
 
