@@ -2,41 +2,12 @@ var $kt = $kt || {};
 
 (() => {
 
-    const summaries = document.getElementsByTagName("summary");
-    [...summaries].forEach(summary => {
-            const details = summary.parentElement;
-
-            summary.addEventListener("click", (e) => {
-                if (details.hasAttribute("open")) { // since it's not closed yet, it's open!
-                    e.preventDefault(); // stop the default behavior, meaning - the hiding
-                    updateDetailsElementsDataHeights(summary);
-                    details.classList.add("closing"); // add a class which applies the animation in CSS
-                }
-            })
-
-            // when the "close" animation is over
-            details.addEventListener("animationend", (e) => {
-                if (e.animationName === "close") {
-                    details.removeAttribute("open"); // close the element
-                    details.classList.remove("closing"); // remove the animation
-                }
-            });
-        }
-    );
-
-    function updateDetailsElementsDataHeights(summary) {
-        for (let element = summary; element = element.nextElementSibling; /* empty */) {
-            element.dataset.height = `${element.offsetHeight}px`;
-        }
-    }
-
-
-
     class KantoreUi {
 
         constructor() {
             this._getAllElements();
             this._addEventListeners();
+            this._animateDetails();
         }
 
         focusAnswerInput() {
@@ -138,6 +109,35 @@ var $kt = $kt || {};
                 && key.charCodeAt(0) < 127
             ) {
                 this.focusAnswerInput();
+            }
+        }
+
+        _animateDetails() {
+            const detailsElements = document.getElementsByTagName('details');
+            [...detailsElements].forEach(details => {
+                    const summary = details.firstElementChild;
+
+                    summary.addEventListener('click', e => {
+                        if (details.hasAttribute('open')) {
+                            e.preventDefault();
+                            this._updateDetailsChildrenDataHeights(details);
+                            details.classList.add('closing');
+                        }
+                    })
+
+                    details.addEventListener('animationend', e => {
+                        if (e.animationName === 'close') {
+                            details.removeAttribute('open');
+                            details.classList.remove('closing');
+                        }
+                    });
+                }
+            );
+        }
+
+         _updateDetailsChildrenDataHeights(details) {
+            for (let element = details.firstElementChild; element = element.nextElementSibling; /* empty */) {
+                element.dataset.height = `${element.offsetHeight}px`;
             }
         }
 

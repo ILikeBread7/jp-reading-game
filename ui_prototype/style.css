@@ -165,11 +165,11 @@ details > summary ~ * {
 }
 
 details[open] > summary ~ * {
-  animation: open 0.2s;
+    animation: open 0.2s;
 }
 
 details.closing > summary ~ * {
-  animation: close 0.2s;
+    animation: close 0.2s;
 }
 
 details > summary {
@@ -196,26 +196,27 @@ details.closing > summary::before {
 }
 
 @keyframes open {
-  0% {
-    transform: scaleY(0);
-    height: 0px;
-  }
-  100% {
-    transform: scaleY(1);
-    height: attr(height);
-  }
+    0% {
+        transform: scaleY(0);
+        height: 0px;
+    }
+
+    100% {
+        transform: scaleY(1);
+        height: attr(height);
+    }
 }
 
 @keyframes close {
     0% {
-      transform: scaleY(1);
-    height: attr(height);
+        transform: scaleY(1);
+        height: attr(height);
 
     }
-  100% {
-    transform: scaleY(0);
-    height: 0px;
 
-  }
+    100% {
+        transform: scaleY(0);
+        height: 0px;
+
+    }
 }
-
