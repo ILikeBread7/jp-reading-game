@@ -195,23 +195,23 @@ details.closing > summary::before {
 @keyframes open {
   0% {
     transform: scaleY(0);
-    max-height: 0px;
+    height: 0px;
   }
   100% {
     transform: scaleY(1);
-    max-height: attr(height);
+    height: attr(height);
   }
 }
 
 @keyframes close {
     0% {
       transform: scaleY(1);
-    max-height: attr(height);
+    height: attr(height);
 
     }
   100% {
     transform: scaleY(0);
-    max-height: 0px;
+    height: 0px;
 
   }
 }
