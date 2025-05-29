@@ -136,7 +136,11 @@ var $kt = $kt || {};
         }
 
          _updateDetailsChildrenDataHeights(details) {
-            for (let element = details.firstElementChild; element = element.nextElementSibling; /* empty */) {
+            const summary = details.firstElementChild;
+
+            // Skip the summary element because it will always be shown
+            // only update the heights of the elements that might be hidden
+            for (let element = summary; element = element.nextElementSibling; /* empty */) {
                 element.dataset.height = `${element.offsetHeight}px`;
             }
         }
