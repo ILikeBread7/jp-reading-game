@@ -179,9 +179,9 @@ details > summary::before {
     transition-property: transform;
     transition-duration: 0.2s;
     transform: rotate(-90deg);
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
+    width: 1.25rem;
+    height: 1.25rem;
+    vertical-align: -0.25rem;
 }
 
 details[open] > summary::before {
