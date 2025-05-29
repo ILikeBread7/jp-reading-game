@@ -160,16 +160,20 @@ summary {
     left: 0px;
 }
 
+details {
+    --animation-duration: 0.2s;
+}
+
 details > summary ~ * {
     transform-origin: top;
 }
 
 details[open] > summary ~ * {
-    animation: open 0.2s;
+    animation: open var(--animation-duration);
 }
 
 details.closing > summary ~ * {
-    animation: close 0.2s;
+    animation: close var(--animation-duration);
 }
 
 details > summary {
@@ -180,7 +184,7 @@ details > summary::before {
     content: url('icons/expand_circle_down_20dp_E8EAED_FILL0_wght400_GRAD0_opsz20.svg');
     display: inline-block;
     transition-property: transform;
-    transition-duration: 0.2s;
+    transition-duration: var(--animation-duration);
     transform: rotate(-90deg);
     width: 1.25rem;
     height: 1.25rem;
