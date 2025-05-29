@@ -160,8 +160,11 @@ summary {
     left: 0px;
 }
 
-details[open] > summary ~ * {
+details > summary ~ * {
     transform-origin: top;
+}
+
+details[open] > summary ~ * {
   animation: open 0.2s;
 }
 
