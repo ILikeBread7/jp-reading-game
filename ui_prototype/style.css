@@ -78,7 +78,7 @@ body {
     padding: 3px 10px;
 }
 
-#hint-buttons-panel {
+.buttons-panel {
     float: right;
     display: flex;
 }
