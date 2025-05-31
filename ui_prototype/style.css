@@ -78,8 +78,9 @@ body {
     padding: 3px 10px;
 }
 
-.control-button {
+#hint-buttons-panel {
     float: right;
+    display: flex;
 }
 
 #meaning-content {
@@ -181,7 +182,7 @@ details > summary {
 }
 
 details > summary::before {
-    content: url('icons/expand_circle_down_20dp_E8EAED_FILL0_wght400_GRAD0_opsz20.svg');
+    content: url('icons/expand_circle_down.svg');
     display: inline-block;
     transition-property: transform;
     transition-duration: var(--animation-duration);
@@ -217,4 +218,24 @@ details.closing > summary::before {
         transform: scaleY(0);
         height: 0px;
     }
+}
+
+.svg-button {
+    width: 24px;
+    height: auto;
+    padding: 0px;
+    background: none;
+    border: 0px;
+}
+
+.svg-button:enabled {
+    cursor: pointer;
+}
+
+.svg-button:enabled:hover {
+    filter: invert(90%);
+}
+
+.svg-button:disabled {
+    filter: invert(75%);
 }
