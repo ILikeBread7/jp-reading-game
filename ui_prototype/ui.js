@@ -120,7 +120,6 @@ var $kt = $kt || {};
                     summary.addEventListener('click', e => {
                         if (details.hasAttribute('open')) {
                             e.preventDefault();
-                            this._updateDetailsChildrenDataHeights(details);
                             details.classList.add('closing');
                         }
                     })
@@ -133,16 +132,6 @@ var $kt = $kt || {};
                     });
                 }
             );
-        }
-
-         _updateDetailsChildrenDataHeights(details) {
-            const summary = details.firstElementChild;
-
-            // Skip the summary element because it will always be shown
-            // only update the heights of the elements that might be hidden
-            for (let element = summary; element = element.nextElementSibling; /* empty */) {
-                element.dataset.height = `${element.offsetHeight}px`;
-            }
         }
 
         _isLevelUpVisible() {

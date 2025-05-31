@@ -204,23 +204,17 @@ details.closing > summary::before {
         transform: scaleY(0);
         height: 0px;
     }
-
     100% {
         transform: scaleY(1);
-        height: attr(height);
     }
 }
 
 @keyframes close {
     0% {
         transform: scaleY(1);
-        height: attr(height);
-
     }
-
     100% {
         transform: scaleY(0);
         height: 0px;
-
     }
 }
