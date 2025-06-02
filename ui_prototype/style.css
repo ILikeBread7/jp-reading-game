@@ -206,13 +206,13 @@ details.closing > summary::before {
         height: 0px;
     }
     100% {
-        transform: scaleY(1);
+        /* empty */
     }
 }
 
 @keyframes close {
     0% {
-        transform: scaleY(1);
+        /* empty */
     }
     100% {
         transform: scaleY(0);
