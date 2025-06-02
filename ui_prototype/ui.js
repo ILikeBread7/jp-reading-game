@@ -15,7 +15,12 @@ var $kt = $kt || {};
         }
 
         showLevelUp() {
-            this._fadeIn(this._levelUpContainer, '1s', '0s');
+            this._fadeIn(this._levelUpContainer, '1s', '0s', () => {
+                this._levelUpTextChars.forEach((char, index, chars) => this._jump.call(this, char, '-10px', '0.375s', `${index * 0.125}s`, index !== chars.length - 1 ? undefined : 
+                this._fadeOut.bind(this, this._levelUpText, '1s', '0s',
+                this._fadeIn.bind(this, this._levelUpHint, '1s', '0s',
+                ))))
+            });
             this._answerInput.blur();
         }
 
@@ -85,6 +90,9 @@ var $kt = $kt || {};
             this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
             this._levelUpContainer = document.getElementById('level-up-container');
             this._levelExpDiv = document.getElementById('level-exp');
+            this._levelUpText = document.getElementById('level-up-text');
+            this._levelUpHint = document.getElementById('level-up-hint');
+            this._levelUpTextChars = [...document.getElementsByClassName('level-up-text-char')];
         }
 
         _addEventListeners() {
@@ -143,7 +151,10 @@ var $kt = $kt || {};
         }
 
         _closeLevelUpContainer() {
-            this._fadeOut(this._levelUpContainer, '0.2s', '0s');
+            this._fadeOut(this._levelUpContainer, '0.2s', '0s', () => {
+                this._removeTransition(this._levelUpText);
+                this._removeTransition(this._levelUpHint);
+            });
             this.focusAnswerInput();
         }
 
@@ -235,7 +246,18 @@ var $kt = $kt || {};
 
             element.ontransitionend = callback;
         }
+
+        _removeTransition(element) {
+            element.style.removeProperty('transition-property');
+            element.style.removeProperty('transition-duration');
+            element.style.removeProperty('transition-delay');
+            element.style.removeProperty('display');
+            element.style.removeProperty('opacity');
+            element.style.removeProperty('top');
+            element.ontransitionend = null;
+        }
     }
+
 
     $kt.ui = new KantoreUi();
 

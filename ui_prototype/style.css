@@ -132,6 +132,7 @@ summary {
 }
 
 #level-up-text {
+    display: flex;
     text-align: center;
     background-color: #78c6c9;
 }
