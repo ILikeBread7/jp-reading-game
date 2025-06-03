@@ -15,12 +15,16 @@ var $kt = $kt || {};
         }
 
         showLevelUp() {
-            this._fadeIn(this._levelUpContainer, '1s', '0s', () => {
-                this._levelUpTextChars.forEach((char, index, chars) => this._jump.call(this, char, '-10px', '0.375s', `${index * 0.125}s`, index !== chars.length - 1 ? undefined : 
-                this._fadeOut.bind(this, this._levelUpText, '1s', '0s',
-                this._fadeIn.bind(this, this._levelUpHint, '1s', '0s',
-                ))))
-            });
+            const fadeInTime = 1;
+            const charTransitionDelayTime = 0.125;
+            const charTransitionTime = 0.375;
+            const totalTextTransitionTime = fadeInTime + charTransitionDelayTime * (this._levelUpTextChars.length - 1) + charTransitionTime * 2;
+
+            this._fadeIn(this._levelUpContainer, `${fadeInTime}s`, '0s', () => 
+                this._levelUpTextChars.forEach((char, index) => this._jump(char, '-10px', `${charTransitionTime}s`, `${index * charTransitionDelayTime}s`))
+            );
+
+            this._fadeLevelUpTextToLevelUpHint('0.5s', `${totalTextTransitionTime}s`);
             this._answerInput.blur();
         }
 
@@ -56,6 +60,15 @@ var $kt = $kt || {};
             void levelExpTmpBarsDiv.offsetWidth;
             
             this._growExpBars(expData);
+        }
+
+        /**
+         * @param {string} duration Duration in CSS format
+         * @param {string} [delay='0s'] Delay in CSS format, default is '0s'
+         */
+        _fadeLevelUpTextToLevelUpHint(duration, delay = '0s') {
+            this._fadeOut(this._levelUpText, duration, delay,
+                this._fadeIn.bind(this, this._levelUpHint, '1s', '0s'));
         }
 
         /**
@@ -102,8 +115,24 @@ var $kt = $kt || {};
         }
 
         _enterEventListener(event) {
-            if (event.key === 'Enter' && this._isLevelUpVisible()) {
+            if (event.key !== 'Enter') {
+                return;
+            }
+
+            if (this._isLevelUpHintVisible()) {
                 this._closeLevelUpContainer();
+            } else if (this._isLevelUpTextVisible()) {
+                // If fade out transition is already in progress
+                if (getComputedStyle(this._levelUpText).opacity < 1) {
+                    return;
+                }
+
+                this._removeTransition(this._levelUpText)
+                
+                // Force reflow to apply previous remove transition
+                void this._levelUpText.offsetWidth;
+                
+                this._fadeLevelUpTextToLevelUpHint('0.2s');
             }
         }
 
@@ -146,6 +175,14 @@ var $kt = $kt || {};
             return this._levelUpContainer.checkVisibility();
         }
 
+        _isLevelUpHintVisible() {
+            return this._levelUpHint.checkVisibility();
+        }
+
+        _isLevelUpTextVisible() {
+            return this._levelUpText.checkVisibility();
+        }
+
         _isFocused(element) {
             return document.activeElement === element;
         }
@@ -154,6 +191,7 @@ var $kt = $kt || {};
             this._fadeOut(this._levelUpContainer, '0.2s', '0s', () => {
                 this._removeTransition(this._levelUpText);
                 this._removeTransition(this._levelUpHint);
+                this._levelUpTextChars.forEach(this._removeTransition.bind(this));
             });
             this.focusAnswerInput();
         }
