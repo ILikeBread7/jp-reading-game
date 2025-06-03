@@ -109,12 +109,22 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            document.addEventListener('keypress', this._enterEventListener.bind(this));
+            document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
             this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainer.bind(this));
+            this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
         }
 
-        _enterEventListener(event) {
+        _answerInputEnterEventListener(event) {
+            if (event.key !== 'Enter') {
+                return;
+            }
+
+            event.stopPropagation();
+            this.showLevelUp();
+        }
+
+        _documentEnterEventListener(event) {
             if (event.key !== 'Enter') {
                 return;
             }
@@ -141,7 +151,7 @@ var $kt = $kt || {};
 
             if (
                 !this._isLevelUpVisible()
-                && !this._isFocused(this._answerInput)
+                && !this._answerInputFocused()
                 && key.length === 1
                 && key.charCodeAt(0) < 127
             ) {
@@ -185,6 +195,10 @@ var $kt = $kt || {};
 
         _isFocused(element) {
             return document.activeElement === element;
+        }
+
+        _answerInputFocused() {
+            return this._isFocused(this._answerInput);
         }
 
         _closeLevelUpContainer() {
