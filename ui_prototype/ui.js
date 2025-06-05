@@ -20,8 +20,8 @@ var $kt = $kt || {};
             const charTransitionTime = 0.375;
             const totalTextTransitionTime = fadeInTime + charTransitionDelayTime * (this._levelUpTextChars.length - 1) + charTransitionTime * 2;
 
-            this._fadeIn(this._levelUpContainer, `${fadeInTime}s`, '0s', () => 
-                this._levelUpTextChars.forEach((char, index) => this._jump(char, '-10px', `${charTransitionTime}s`, `${index * charTransitionDelayTime}s`))
+            this._fadeIn(this._levelUpContainer, `${fadeInTime}s`, '0s',
+                this._textJumpByChar.bind(this, this._levelUpTextChars, '-10px', `${charTransitionTime}s`, charTransitionDelayTime)
             );
 
             this._fadeLevelUpTextToLevelUpHint('0.5s', `${totalTextTransitionTime}s`);
@@ -72,6 +72,18 @@ var $kt = $kt || {};
         }
 
         /**
+         * 
+         * @param {[HTMLElement]} charElements 
+         * @param {string} height Height in CSS format (e.g. "-10px")
+         * @param {string} duration Duration in CSS format
+         * @param {number} delayByChar Delay for te next char's animation in number of seconds as a number (e.g. 1)
+         * @param {number} [delayToStart=0] Delay in number of seconds before starting the whole animation, default 0
+         */
+        _textJumpByChar(charElements, height, duration, delayByChar, delayToStart = 0) {
+            charElements.forEach((char, index) => this._jump(char, height, duration, `${index * delayByChar + delayToStart}s`))
+        }
+
+        /**
          * @param {string} levelName
          * @param {number} totalExp
          * @param {number} currentLevelExp
@@ -94,7 +106,9 @@ var $kt = $kt || {};
                 });
             [...this._levelExpDiv.getElementsByClassName('exp-max')]
                 .forEach(expMax => {
-                    this._fadeIn(expMax, '0.5s', '0.5s', this._jump.bind(this, expMax, '-10px', '0.2s', '0s'));
+                    this._fadeIn(expMax, '0.5s', '0.5s',
+                        this._textJumpByChar.bind(this, [...expMax.getElementsByClassName('exp-max-char')], '-10px', '0.2s', 0.1)
+                    );
                 });
         }
 
