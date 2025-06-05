@@ -153,8 +153,11 @@ summary {
 }
 
 .exp-max {
-    display: inline-flex;
     color: #d10404;
+}
+
+.exp-max-chars-container {
+    display: inline-flex;
 }
 
 .jumpable {

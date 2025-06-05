@@ -13,12 +13,14 @@ var $kt = $kt || {};
          */
         levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
             const expMaxSpan = `
-                <div class="fade-hidden exp-max">
-                    <span class="jumpable exp-max-char">M</span>
-                    <span class="jumpable exp-max-char">a</span>
-                    <span class="jumpable exp-max-char">x</span>
-                    <span class="jumpable exp-max-char">!</span>
-                </div>
+                <span class="fade-hidden exp-max">
+                    <span class="exp-max-chars-container">
+                        <span class="jumpable exp-max-char">M</span>
+                        <span class="jumpable exp-max-char">a</span>
+                        <span class="jumpable exp-max-char">x</span>
+                        <span class="jumpable exp-max-char">!</span>
+                    </span>
+                </span>
             `;
             
             return `

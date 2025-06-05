@@ -106,9 +106,9 @@ var $kt = $kt || {};
                 });
             [...this._levelExpDiv.getElementsByClassName('exp-max')]
                 .forEach(expMax => {
-                    this._fadeIn(expMax, '0.5s', '0.5s',
-                        this._textJumpByChar.bind(this, [...expMax.getElementsByClassName('exp-max-char')], '-10px', '0.2s', 0.1)
-                    );
+                    const expMaxChars = [...expMax.getElementsByClassName('exp-max-char')];
+                    this._fadeIn(expMax, '0.25s', '0.1s');
+                    this._textJumpByChar(expMaxChars, '-10px', '0.2s', 0.1);
                 });
         }
 
