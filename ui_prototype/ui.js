@@ -8,8 +8,7 @@ var $kt = $kt || {};
             this._getAllElements();
             this._addEventListeners();
             this._animateDetails();
-
-            this._hints = [];
+            this._setupHints();
         }
 
         focusAnswerInput() {
@@ -62,6 +61,10 @@ var $kt = $kt || {};
             void levelExpTmpBarsDiv.offsetWidth;
             
             this._growExpBars(expData);
+        }
+
+        get _currentHint() {
+            return this._hints[this._currentHintIndex];
         }
 
         /**
@@ -127,8 +130,10 @@ var $kt = $kt || {};
             this._levelExpDiv = document.getElementById('level-exp');
             
             this._hintContent = document.getElementById('hint-content');
+            this._hintFirstButton = document.getElementById('hint-first-button');
             this._hintPreviousButton = document.getElementById('hint-previous-button');
             this._hintNextButton = document.getElementById('hint-next-button');
+            this._hintLastButton = document.getElementById('hint-last-button');
         }
 
         _addEventListeners() {
@@ -136,6 +141,22 @@ var $kt = $kt || {};
             document.addEventListener('keydown', this._charEventListener.bind(this));
             this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainer.bind(this));
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
+
+            this._hintFirstButton.addEventListener('click', () => 
+                this._updateHintContent(0)
+            );
+
+            this._hintPreviousButton.addEventListener('click', () => 
+                this._updateHintContent(this._currentHintIndex - 1)
+            );
+
+            this._hintNextButton.addEventListener('click', () => 
+                this._updateHintContent(this._currentHintIndex + 1)
+            );
+
+            this._hintLastButton.addEventListener('click', () => 
+                this._updateHintContent(this._hints.length)
+            );
         }
 
         _answerInputEnterEventListener(event) {
@@ -209,6 +230,31 @@ var $kt = $kt || {};
                     });
                 }
             );
+        }
+
+        _setupHints() {
+            this._hints = [];
+            this._addHints();
+            this._currentHintIndex = this._hints.length - 1;
+            this._updateHintButtons();
+        }
+
+        _addHints() {
+            this._hints.push({ test: 'test1' }, { test: 'test2' }, { test: 'test3' });
+        }
+
+        _updateHintButtons() {
+            this._hintFirstButton.disabled = this._hintPreviousButton.disabled = this._currentHintIndex === 0;
+            this._hintLastButton.disabled = this._hintNextButton.disabled = this._currentHintIndex === this._hints.length - 1;
+        }
+
+        _updateHintContent(newHintIndex) {
+            if (newHintIndex === this._currentHintIndex) {
+                return;
+            }
+
+            this._currentHintIndex = Math.min(Math.max(newHintIndex, 0), this._hints.length - 1);
+            this._updateHintButtons();
         }
 
         _isLevelUpVisible() {
