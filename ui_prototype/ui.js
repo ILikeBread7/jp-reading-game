@@ -8,6 +8,8 @@ var $kt = $kt || {};
             this._getAllElements();
             this._addEventListeners();
             this._animateDetails();
+
+            this._hints = [];
         }
 
         focusAnswerInput() {
@@ -114,12 +116,19 @@ var $kt = $kt || {};
 
         _getAllElements() {
             this._answerInput = document.getElementById('answer-input');
-            this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
+            
             this._levelUpContainer = document.getElementById('level-up-container');
-            this._levelExpDiv = document.getElementById('level-exp');
             this._levelUpText = document.getElementById('level-up-text');
-            this._levelUpHint = document.getElementById('level-up-hint');
             this._levelUpTextChars = [...document.getElementsByClassName('level-up-text-char')];
+            
+            this._levelUpHint = document.getElementById('level-up-hint');
+            this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
+            
+            this._levelExpDiv = document.getElementById('level-exp');
+            
+            this._hintContent = document.getElementById('hint-content');
+            this._hintPreviousButton = document.getElementById('hint-previous-button');
+            this._hintNextButton = document.getElementById('hint-next-button');
         }
 
         _addEventListeners() {
