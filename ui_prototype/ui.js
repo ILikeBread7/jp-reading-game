@@ -143,19 +143,19 @@ var $kt = $kt || {};
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
 
             this._hintFirstButton.addEventListener('click', () => 
-                this._updateHintContent(0)
+                this._selectHint(0)
             );
 
             this._hintPreviousButton.addEventListener('click', () => 
-                this._updateHintContent(this._currentHintIndex - 1)
+                this._selectHint(this._currentHintIndex - 1)
             );
 
             this._hintNextButton.addEventListener('click', () => 
-                this._updateHintContent(this._currentHintIndex + 1)
+                this._selectHint(this._currentHintIndex + 1)
             );
 
             this._hintLastButton.addEventListener('click', () => 
-                this._updateHintContent(this._hints.length)
+                this._selectHint(this._hints.length)
             );
         }
 
@@ -233,28 +233,33 @@ var $kt = $kt || {};
         }
 
         _setupHints() {
-            this._hints = [];
-            this._addHints();
-            this._currentHintIndex = this._hints.length - 1;
-            this._updateHintButtons();
+            this._hints = ['<p>Hint 1!</p>', '<p>Hint 2!</p>', '<p>Hint 3!</p>'];
+            this._currentHintIndex = this._latestUnlockedHintIndex = this._hints.length - 1; // Change to reading from save file (local storage)
+            this._updateHintContent();
         }
 
-        _addHints() {
-            this._hints.push({ test: 'test1' }, { test: 'test2' }, { test: 'test3' });
+        _selectHint(newHintIndex) {
+            if (newHintIndex === this._currentHintIndex) {
+                return;
+            }
+            
+            const clampedHintIndex = Math.min(Math.max(newHintIndex, 0), this._latestUnlockedHintIndex);
+            if (clampedHintIndex === this._currentHintIndex) {
+                return;
+            }
+            
+            this._currentHintIndex = clampedHintIndex;
+            this._updateHintContent();
+        }
+
+        _updateHintContent() {
+            this._updateHintButtons();
+            this._hintContent.innerHTML = this._currentHint;
         }
 
         _updateHintButtons() {
             this._hintFirstButton.disabled = this._hintPreviousButton.disabled = this._currentHintIndex === 0;
-            this._hintLastButton.disabled = this._hintNextButton.disabled = this._currentHintIndex === this._hints.length - 1;
-        }
-
-        _updateHintContent(newHintIndex) {
-            if (newHintIndex === this._currentHintIndex) {
-                return;
-            }
-
-            this._currentHintIndex = Math.min(Math.max(newHintIndex, 0), this._hints.length - 1);
-            this._updateHintButtons();
+            this._hintLastButton.disabled = this._hintNextButton.disabled = this._currentHintIndex === this._latestUnlockedHintIndex;
         }
 
         _isLevelUpVisible() {
