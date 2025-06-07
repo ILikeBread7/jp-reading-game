@@ -177,6 +177,7 @@ var $kt = $kt || {};
                 { char: 'き', oldExpPercentage: 20, newExpPercentage: 40, addedExp: 2 }
             ]);
 
+            this._addNewHint();
             this.showLevelUp();
         }
 
@@ -263,7 +264,7 @@ var $kt = $kt || {};
             }
 
             this._hints = $kt.hints;
-            this._currentHintIndex = this._latestUnlockedHintIndex = this._hints.length - 1; // Change to reading from save file (local storage)
+            this._currentHintIndex = this._latestUnlockedHintIndex = 0; // Change to reading from save file (local storage)
             this._updateHintContent();
         }
 
@@ -289,6 +290,21 @@ var $kt = $kt || {};
         _updateHintButtons() {
             this._hintFirstButton.disabled = this._hintPreviousButton.disabled = this._currentHintIndex === 0;
             this._hintLastButton.disabled = this._hintNextButton.disabled = this._currentHintIndex === this._latestUnlockedHintIndex;
+        }
+
+        /**
+         * 
+         * @returns {boolean} true if new hint added, false if all hints had been added already
+         */
+        _addNewHint() {
+            const newHintIndex = Math.min(this._latestUnlockedHintIndex + 1, this._hints.length - 1);
+            if (newHintIndex > this._latestUnlockedHintIndex) {
+                this._latestUnlockedHintIndex = newHintIndex;
+                this._selectHint(newHintIndex);
+                return true;
+            }
+
+            return false;
         }
 
         _isLevelUpVisible() {
