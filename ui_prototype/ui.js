@@ -233,7 +233,12 @@ var $kt = $kt || {};
         }
 
         _setupHints() {
-            this._hints = ['<p>Hint 1!</p>', '<p>Hint 2!</p>', '<p>Hint 3!</p>'];
+            if (!$kt.hints) {
+                console.error('The "hints.js" file must be included before the "ui.js" file.')
+                return;
+            }
+
+            this._hints = $kt.hints;
             this._currentHintIndex = this._latestUnlockedHintIndex = this._hints.length - 1; // Change to reading from save file (local storage)
             this._updateHintContent();
         }

@@ -253,3 +253,12 @@ details.closing > summary::before {
 .icon-button:disabled {
     filter: invert(75%);
 }
+
+.columns-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column-half-width {
+    flex-basis: 50%;
+}
