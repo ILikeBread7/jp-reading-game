@@ -16,6 +16,8 @@ var $kt = $kt || {};
         }
 
         showLevelUp() {
+            this._levelUpHintContent.innerHTML = this._currentHint;
+
             const fadeInTime = 1;
             const charTransitionDelayTime = 0.125;
             const charTransitionTime = 0.375;
@@ -125,6 +127,7 @@ var $kt = $kt || {};
             this._levelUpTextChars = [...document.getElementsByClassName('level-up-text-char')];
             
             this._levelUpHint = document.getElementById('level-up-hint');
+            this._levelUpHintContent = document.getElementById('level-up-hint-content');
             this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
             
             this._levelExpDiv = document.getElementById('level-exp');
@@ -139,6 +142,8 @@ var $kt = $kt || {};
         _addEventListeners() {
             document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
+            document.addEventListener('click', this._documentClickEventLisetner.bind(this));
+            
             this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainer.bind(this));
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
 
@@ -183,23 +188,14 @@ var $kt = $kt || {};
             if (this._isLevelUpHintVisible()) {
                 this._closeLevelUpContainer();
             } else if (this._isLevelUpTextVisible()) {
-                // If fade out transition is already in progress
-                if (getComputedStyle(this._levelUpText).opacity < 1) {
-                    return;
-                }
-
-                this._removeTransition(this._levelUpText)
-                
-                // Force reflow to apply previous remove transition
-                void this._levelUpText.offsetWidth;
-                
-                this._fadeLevelUpTextToLevelUpHint('0.2s');
+                this._forceCloseLevelUpText();
             }
         }
 
+        
         _charEventListener(event) {
             const key = event.key;
-
+            
             if (
                 !this._isLevelUpVisible()
                 && !this._answerInputFocused()
@@ -209,7 +205,35 @@ var $kt = $kt || {};
                 this.focusAnswerInput();
             }
         }
+        
+        _documentClickEventLisetner(event) {
+            const target = event.target;
+            
+            if (this._isLevelUpHintVisible() && !this._levelUpHint.contains(target)) {
+                this._closeLevelUpContainer();
+                return;
+            }
+            
+            if (this._isLevelUpTextVisible()) {
+                this._forceCloseLevelUpText();
+                return;
+            }
+        }
+        
+        _forceCloseLevelUpText() {
+            // If fade out transition is already in progress
+            if (getComputedStyle(this._levelUpText).opacity < 1) {
+                return;
+            }
 
+            this._removeTransition(this._levelUpText)
+            
+            // Force reflow to apply previous remove transition
+            void this._levelUpText.offsetWidth;
+            
+            this._fadeLevelUpTextToLevelUpHint('0.2s');
+        }
+        
         _animateDetails() {
             const detailsElements = document.getElementsByTagName('details');
             [...detailsElements].forEach(details => {
