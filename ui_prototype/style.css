@@ -1,5 +1,14 @@
+:root {
+    --base-font-size: 16px;
+    --wrong-answer-font-size: calc(var(--base-font-size) * 1.5);
+    --answer-input-font-size: calc(var(--base-font-size) * 2);
+    --question-hint-font-size: calc(var(--base-font-size) * 2);
+    --question-kanji-font-size: calc(var(--base-font-size) * 4);
+}
+
 body {
     margin: 0;
+    font-size: var(--base-font-size);
 }
 
 #level-exp {
@@ -34,11 +43,11 @@ body {
 }
 
 #question-hint {
-    font-size: 32px;
+    font-size: var(--question-hint-font-size);
 }
 
 #question-kanji {
-    font-size: 64px;
+    font-size: var(--question-kanji-font-size);
 }
 
 #answer {
@@ -47,7 +56,7 @@ body {
 }
 
 #wrong-answer {
-    font-size: 24px;
+    font-size: var(--wrong-answer-font-size);
     color: #ff0000;
 }
 
@@ -56,7 +65,7 @@ body {
     background: transparent;
     border: none;
     outline: none;
-    font-size: 32px;
+    font-size: var(--answer-input-font-size);
     width: 99%;
 }
 
