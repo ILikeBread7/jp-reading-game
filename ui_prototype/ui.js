@@ -199,10 +199,10 @@ var $kt = $kt || {};
                 return;
             }
 
-            if (this._isLevelUpHintVisible()) {
-                this._closeLevelUpContainer();
-            } else if (this._isLevelUpTextVisible()) {
+            if (this._isLevelUpTextVisible()) {
                 this._forceCloseLevelUpText();
+            } else if (this._isLevelUpHintVisible()) {
+                this._closeLevelUpContainer();
             } else {
                 this._answerInputEnterEventListener(event);
             }
