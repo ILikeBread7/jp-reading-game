@@ -193,7 +193,6 @@ var $kt = $kt || {};
             }
         }
 
-        
         _charEventListener(event) {
             const key = event.key;
             
