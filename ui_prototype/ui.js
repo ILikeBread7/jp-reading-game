@@ -15,7 +15,12 @@ var $kt = $kt || {};
             this._answerInput.focus();
         }
 
-        showLevelUp() {
+        /**
+         * 
+         * @param {boolean} showHint true if hint should be shown, false otherwise
+         */
+        showLevelUp(showHint) {
+            this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHint;
 
             const fadeInTime = 1;
@@ -27,7 +32,7 @@ var $kt = $kt || {};
                 this._textJumpByChar.bind(this, this._levelUpTextChars, '-10px', `${charTransitionTime}s`, charTransitionDelayTime)
             );
 
-            this._fadeLevelUpTextToLevelUpHint('0.5s', `${totalTextTransitionTime}s`);
+            this._fadeLevelUpTextToLevelUpHint(showHint, '0.5s', `${totalTextTransitionTime}s`);
             this._answerInput.blur();
         }
 
@@ -70,12 +75,16 @@ var $kt = $kt || {};
         }
 
         /**
+         * @param {boolean} showHint true if hint should be shown, false otherwise
          * @param {string} duration Duration in CSS format
          * @param {string} [delay='0s'] Delay in CSS format, default is '0s'
          */
-        _fadeLevelUpTextToLevelUpHint(duration, delay = '0s') {
-            this._fadeOut(this._levelUpText, duration, delay,
-                this._fadeIn.bind(this, this._levelUpHint, '1s', '0s'));
+        _fadeLevelUpTextToLevelUpHint(showHint, duration, delay = '0s') {
+            const fadeTextListener = showHint
+                ? this._fadeIn.bind(this, this._levelUpHint, '1s', '0s')
+                : this._closeLevelUpContainer.bind(this, duration);
+            
+            this._fadeOut(this._levelUpText, duration, delay, fadeTextListener);
         }
 
         /**
@@ -144,7 +153,7 @@ var $kt = $kt || {};
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventLisetner.bind(this));
             
-            this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainer.bind(this));
+            this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
 
             this._hintFirstButton.addEventListener('click', () => 
@@ -177,8 +186,12 @@ var $kt = $kt || {};
                 { char: 'き', oldExpPercentage: 20, newExpPercentage: 40, addedExp: 2 }
             ]);
 
-            this._addNewHint();
-            this.showLevelUp();
+            if (this._isLevelUpVisible()) {
+                console.warn('Level up is visible!');
+            } else {
+                const showHint = this._addNewHint();
+                this.showLevelUp(showHint);
+            }
         }
 
         _documentEnterEventListener(event) {
@@ -231,7 +244,7 @@ var $kt = $kt || {};
             // Force reflow to apply previous remove transition
             void this._levelUpText.offsetWidth;
             
-            this._fadeLevelUpTextToLevelUpHint('0.2s');
+            this._fadeLevelUpTextToLevelUpHint(this._showHintOnLevelUp, '0.2s');
         }
         
         _animateDetails() {
@@ -264,6 +277,7 @@ var $kt = $kt || {};
 
             this._hints = $kt.hints;
             this._currentHintIndex = this._latestUnlockedHintIndex = 0; // Change to reading from save file (local storage)
+            this._showHintOnLevelUp = false;
             this._updateHintContent();
         }
 
@@ -326,8 +340,13 @@ var $kt = $kt || {};
             return this._isFocused(this._answerInput);
         }
 
-        _closeLevelUpContainer() {
-            this._fadeOut(this._levelUpContainer, '0.2s', '0s', () => {
+        /**
+         * 
+         * @param {string} [duration='0.2s'] Duration in CSS format, default us '0.2s'
+         * @param {string} [delay='0s'] Delay in CSS format, default is '0s'
+         */
+        _closeLevelUpContainer(duration = '0.2s', delay = '0s') {
+            this._fadeOut(this._levelUpContainer, duration, delay, () => {
                 this._removeTransition(this._levelUpText);
                 this._removeTransition(this._levelUpHint);
                 this._levelUpTextChars.forEach(this._removeTransition.bind(this));
