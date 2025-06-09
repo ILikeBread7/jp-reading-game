@@ -203,6 +203,8 @@ var $kt = $kt || {};
                 this._closeLevelUpContainer();
             } else if (this._isLevelUpTextVisible()) {
                 this._forceCloseLevelUpText();
+            } else {
+                this._answerInputEnterEventListener(event);
             }
         }
 
