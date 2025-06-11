@@ -16,10 +16,12 @@ var $kt = $kt || {};
         }
 
         /**
-         * 
+         * @param {string} levelName
+         * @param {number} totalExp
+         * @param {number} toNextLevelExp
          * @param {boolean} showHint true if hint should be shown, false otherwise
          */
-        showLevelUp(showHint) {
+        showLevelUp(levelName, totalExp, toNextLevelExp, showHint) {
             this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHint;
 
@@ -32,6 +34,7 @@ var $kt = $kt || {};
                 this._textJumpByChar.bind(this, this._levelUpTextChars, '-10px', `${charTransitionTime}s`, charTransitionDelayTime)
             );
 
+            this._showNewLevelDataFunction = this.showLevelData.bind(this, levelName, totalExp, 0, toNextLevelExp);
             this._fadeLevelUpTextToLevelUpHint(showHint, '0.5s', `${totalTextTransitionTime}s`);
             this._answerInput.blur();
         }
@@ -190,7 +193,7 @@ var $kt = $kt || {};
                 console.warn('Level up is visible!');
             } else {
                 const showHint = this._addNewHint();
-                this.showLevelUp(showHint);
+                this.showLevelUp('Level 3: さ行', 500, 25, showHint);
             }
         }
 
@@ -280,6 +283,7 @@ var $kt = $kt || {};
             this._hints = $kt.hints;
             this._currentHintIndex = this._latestUnlockedHintIndex = 0; // Change to reading from save file (local storage)
             this._showHintOnLevelUp = false;
+            this._showNewLevelDataFunction = null;
             this._updateHintContent();
         }
 
@@ -343,7 +347,7 @@ var $kt = $kt || {};
         }
 
         /**
-         * 
+         * Uses the _showNewLevelDataFunction field for its end listener
          * @param {string} [duration='0.2s'] Duration in CSS format, default us '0.2s'
          * @param {string} [delay='0s'] Delay in CSS format, default is '0s'
          */
@@ -352,6 +356,10 @@ var $kt = $kt || {};
                 this._removeTransition(this._levelUpText);
                 this._removeTransition(this._levelUpHint);
                 this._levelUpTextChars.forEach(this._removeTransition.bind(this));
+                if (this._showNewLevelDataFunction) {
+                    this._showNewLevelDataFunction();
+                    this._showNewLevelDataFunction = null;
+                }
             });
             this.focusAnswerInput();
         }
