@@ -4,6 +4,10 @@
     --answer-input-font-size: calc(var(--base-font-size) * 2);
     --question-hint-font-size: calc(var(--base-font-size) * 2);
     --question-kanji-font-size: calc(var(--base-font-size) * 4);
+    
+    --info-width: 50%;
+    --info-min-width: 300px;
+    --info-max-width: 500px;
 }
 
 body {
@@ -72,9 +76,9 @@ body {
 #info {
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    max-width: 500px;
-    min-width: 300px;
+    width: var(--info-width);
+    max-width: var(--info-max-width);
+    min-width: var(--info-min-width);
 }
 
 #info > * {
@@ -85,12 +89,14 @@ body {
     background-color: #deb887;
 }
 
-.control-panel {
+.summary-panel {
     padding: 3px 10px;
 }
 
 .buttons-panel {
-    float: right;
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
 }
 
@@ -104,6 +110,10 @@ body {
 
 #hint-panel {
     background-color: #78c990;
+}
+
+.controls-panel {
+    position: relative;
 }
 
 #hint-controls-panel {
@@ -136,7 +146,11 @@ summary {
 }
 
 #level-up-hint {
-    width: 50%;
+    --bigger-by: 20px;
+
+    width: calc(var(--info-width) + var(--bigger-by));
+    max-width: calc(var(--info-max-width) + var(--bigger-by));
+    min-width: calc(var(--info-min-width) + var(--bigger-by));
     border-radius: 5px;
     background-color: #78c990;
     box-shadow: 5px 5px 5px #000000;
