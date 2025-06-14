@@ -22,6 +22,8 @@ var $kt = $kt || {};
          * @param {boolean} showHint true if hint should be shown, false otherwise
          */
         showLevelUp(levelName, totalExp, toNextLevelExp, showHint) {
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
+            
             this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHint;
 
