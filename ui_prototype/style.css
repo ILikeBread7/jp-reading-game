@@ -10,9 +10,15 @@
     --info-max-width: 500px;
 }
 
+@font-face {
+    font-family: 'KantoreFont';
+    src: url('fonts/Noto/NotoSansJP-Regular.ttf');
+}
+
 body {
     margin: 0;
     font-size: var(--base-font-size);
+    font-family: KantoreFont, sans-serif;
 }
 
 #level-exp {
