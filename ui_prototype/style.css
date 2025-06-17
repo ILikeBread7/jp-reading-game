@@ -12,7 +12,9 @@
 
 @font-face {
     font-family: 'KantoreFont';
-    src: url('fonts/Noto/NotoSansJP-Regular.ttf');
+    src: 
+        local('Noto Sans CJK JP'),
+        url('fonts/Noto/NotoSansJP-Regular.ttf');
 }
 
 body {
