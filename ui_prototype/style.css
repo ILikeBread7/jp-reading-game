@@ -13,6 +13,13 @@
     --palette-secondary-color: #476288;
     --palette-text-color: #ddf2ff;
     --palette-secondary-text-color: #dca11d;
+
+    --palette-text-color-filter:
+        invert(90%) sepia(9%) saturate(676%) hue-rotate(180deg) brightness(102%) contrast(101%)
+        drop-shadow( 1px  0px 0px #000000) 
+        drop-shadow(-1px  0px 0px #000000)
+        drop-shadow( 0px  1px 0px #000000) 
+        drop-shadow( 0px -1px 0px #000000);
 }
 
 @font-face {
@@ -216,6 +223,7 @@ details > summary::before {
     width: 1.25em;
     height: 1.25em;
     vertical-align: -0.25em;
+    filter: var(--palette-text-color-filter);
 }
 
 details[open] > summary::before {
@@ -252,6 +260,7 @@ details.closing > summary::before {
     padding: 0px;
     background: none;
     border: 0px;
+    filter: var(--palette-text-color-filter);
 }
 
 .icon-button:enabled {
@@ -259,11 +268,15 @@ details.closing > summary::before {
 }
 
 .icon-button:enabled:hover {
-    filter: invert(90%);
+    filter: 
+        var(--palette-text-color-filter)
+        brightness(250%);
 }
 
 .icon-button:disabled {
-    filter: invert(75%);
+    filter:
+        var(--palette-text-color-filter)
+        invert(75%);
 }
 
 .columns-container {
