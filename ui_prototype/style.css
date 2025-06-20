@@ -255,7 +255,7 @@ details.closing > summary::before {
 }
 
 .icon-button {
-    width: 24px;
+    width: calc(var(--base-font-size) * 1.5);
     height: auto;
     padding: 0px;
     background: none;
