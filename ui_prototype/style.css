@@ -8,6 +8,11 @@
     --info-width: 50%;
     --info-min-width: 300px;
     --info-max-width: 500px;
+
+    --palette-main-color: #123456;
+    --palette-secondary-color: #476288;
+    --palette-text-color: #ddf2ff;
+    --palette-secondary-text-color: #dca11d;
 }
 
 @font-face {
@@ -21,12 +26,16 @@ body {
     margin: 0;
     font-size: var(--base-font-size);
     font-family: KantoreFont, sans-serif;
+
+    background-color: var(--palette-main-color);
+    color: var(--palette-text-color);
+    -webkit-text-stroke: #000000 2px;
+    paint-order: stroke fill;
 }
 
 #level-exp {
     position: absolute;
     right: 12px;
-    background-color: antiquewhite;
 }
 
 .level-exp-container {
@@ -51,7 +60,6 @@ body {
 
 #question {
     text-align: center;
-    background-color: #7fffd4;
 }
 
 #question-hint {
@@ -64,12 +72,15 @@ body {
 
 #answer {
     text-align: center;
-    background-color: #b5fff9;
+}
+
+#wrong-answer, .exp-max {
+    color: var(--palette-secondary-text-color);
+
 }
 
 #wrong-answer {
     font-size: var(--wrong-answer-font-size);
-    color: #ff0000;
 }
 
 #answer-input {
@@ -79,6 +90,7 @@ body {
     outline: none;
     font-size: var(--answer-input-font-size);
     width: 99%;
+    color: inherit;
 }
 
 #info {
@@ -93,10 +105,6 @@ body {
     margin-top: 10px;
 }
 
-#meaning-panel {
-    background-color: #deb887;
-}
-
 .summary-panel {
     padding: 3px 10px;
 }
@@ -108,28 +116,12 @@ body {
     display: flex;
 }
 
-#meaning-content {
-    background-color: #afa1a1;
-}
-
 .meaning-entry {
     padding: 10px;
 }
 
-#hint-panel {
-    background-color: #78c990;
-}
-
 .controls-panel {
     position: relative;
-}
-
-#hint-controls-panel {
-    background-color: #c77ec7;
-}
-
-#hint-content {
-    background-color: #9787de;
 }
 
 #hint-content {
@@ -139,6 +131,7 @@ body {
 .content-group {
     border-radius: 5px;
     overflow: hidden;
+    background-color: var(--palette-secondary-color);
 }
 
 summary {
@@ -160,14 +153,13 @@ summary {
     max-width: calc(var(--info-max-width) + var(--bigger-by));
     min-width: calc(var(--info-min-width) + var(--bigger-by));
     border-radius: 5px;
-    background-color: #78c990;
+    background-color: var(--palette-secondary-color);
     box-shadow: 5px 5px 5px #000000;
 }
 
 #level-up-text {
     display: flex;
     text-align: center;
-    background-color: #78c6c9;
 }
 
 #black-overlay {
@@ -183,10 +175,6 @@ summary {
 .fade-hidden {
     display: none;
     opacity: 0;
-}
-
-.exp-max {
-    color: #d10404;
 }
 
 .exp-max-chars-container {
