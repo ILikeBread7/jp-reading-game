@@ -35,6 +35,7 @@ var $kt = $kt || {};
             this._fadeIn(this._levelUpContainer, `${fadeInTime}s`, '0s',
                 this._textJumpByChar.bind(this, this._levelUpTextChars, '-10px', `${charTransitionTime}s`, charTransitionDelayTime)
             );
+            this._darkenIcons();
 
             this._showNewLevelDataFunction = this.showLevelData.bind(this, levelName, totalExp, 0, toNextLevelExp);
             this._fadeLevelUpTextToLevelUpHint(showHint, '0.5s', `${totalTextTransitionTime}s`);
@@ -73,6 +74,14 @@ var $kt = $kt || {};
             void levelExpTmpBarsDiv.offsetWidth;
             
             this._growExpBars(expData);
+        }
+
+        _darkenIcons() {
+            document.documentElement.style.setProperty('--icon-brightness', 'var(--darkened-opacity)');
+        }
+
+        _undarkenIcons() {
+            document.documentElement.style.removeProperty('--icon-brightness');
         }
 
         get _currentHint() {
@@ -363,6 +372,7 @@ var $kt = $kt || {};
                     this._showNewLevelDataFunction = null;
                 }
             });
+            this._undarkenIcons();
             this.focusAnswerInput();
         }
 
