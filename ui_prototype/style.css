@@ -213,9 +213,9 @@ details > summary::before {
     transition-property: transform;
     transition-duration: var(--animation-duration);
     transform: rotate(-90deg);
-    width: 1.25rem;
-    height: 1.25rem;
-    vertical-align: -0.25rem;
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: -0.25em;
 }
 
 details[open] > summary::before {
