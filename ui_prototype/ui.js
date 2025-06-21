@@ -28,17 +28,16 @@ var $kt = $kt || {};
             this._levelUpHintContent.innerHTML = this._currentHint;
 
             const fadeInTime = 1;
-            const charTransitionDelayTime = 0.125;
-            const charTransitionTime = 0.375;
-            const totalTextTransitionTime = fadeInTime + charTransitionDelayTime * (this._levelUpTextChars.length - 1) + charTransitionTime * 2;
+            const charTransitionDelayTime = 0.075;
+            const charTransitionTime = 0.325;
+            const totalTextTransitionTime = charTransitionDelayTime * (this._levelUpTextChars.length - 1) + charTransitionTime * 2;
 
-            this._fadeIn(this._levelUpContainer, `${fadeInTime}s`, '0s',
-                this._textJumpByChar.bind(this, this._levelUpTextChars, '-10px', `${charTransitionTime}s`, charTransitionDelayTime)
-            );
+            this._fadeIn(this._levelUpContainer, `${fadeInTime}s`, '0s');
+            this._textJumpByChar(this._levelUpTextChars, '-0.5em', `${charTransitionTime}s`, charTransitionDelayTime);
             this._darkenIcons();
 
             this._showNewLevelDataFunction = this.showLevelData.bind(this, levelName, totalExp, 0, toNextLevelExp);
-            this._fadeLevelUpTextToLevelUpHint(showHint, '0.5s', `${totalTextTransitionTime}s`);
+            this._fadeLevelUpTextToLevelUpHint(showHint, '0.35s', `${totalTextTransitionTime}s`);
             this._answerInput.blur();
         }
 
@@ -95,7 +94,7 @@ var $kt = $kt || {};
          */
         _fadeLevelUpTextToLevelUpHint(showHint, duration, delay = '0s') {
             const fadeTextListener = showHint
-                ? this._fadeIn.bind(this, this._levelUpHint, '1s', '0s')
+                ? this._fadeIn.bind(this, this._levelUpHint, duration, '0s')
                 : this._closeLevelUpContainer.bind(this, duration);
             
             this._fadeOut(this._levelUpText, duration, delay, fadeTextListener);
