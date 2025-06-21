@@ -171,7 +171,11 @@ summary {
 
 #level-up-text {
     display: flex;
+    gap: 0.25em;
     text-align: center;
+    color: var(--palette-secondary-text-color);
+    font-size: 5em;
+    -webkit-text-stroke: var(--palette-main-color) 0.5em;
 }
 
 #black-overlay {
@@ -306,4 +310,5 @@ details.closing > summary::before {
 
 #level-up-hint-panel {
     text-align: center;
+    color: var(--palette-secondary-text-color);
 }
