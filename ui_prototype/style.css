@@ -312,3 +312,22 @@ details.closing > summary::before {
     text-align: center;
     color: var(--palette-secondary-text-color);
 }
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.fade-in-out {
+    animation: fade-in-out 4s forwards;
+}

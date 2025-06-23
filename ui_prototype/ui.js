@@ -48,11 +48,7 @@ var $kt = $kt || {};
          * @param {number} toNextLevelExp
          */
         showLevelData(levelName, totalExp, currentLevelExp, toNextLevelExp) {
-            const currentExpPercentage = currentLevelExp * 100 / toNextLevelExp;
-            const expData = [{
-                oldExpPercentage: currentExpPercentage
-            }];
-            this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
+            this._levelExpDiv.innerHTML = $kt.templates.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp);
         }
 
         /**
@@ -64,13 +60,10 @@ var $kt = $kt || {};
          */
         showLevelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
             this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
-            const levelExpTmpBarsDiv = document.getElementById('level-exp-tmp-bars');
-            this._fadeIn(levelExpTmpBarsDiv, '1s', '0s', this._fadeOut.bind(this, levelExpTmpBarsDiv, '1s', '2s'));
             
-            // Force reflow
-            // Without it the transition might not work if
-            // there is another transition already in-progress
-            void levelExpTmpBarsDiv.offsetWidth;
+            // Force reflow to correctly apply
+            // the growing exp bars transitions
+            void this._levelExpDiv.offsetWidth;
             
             this._growExpBars(expData);
         }
@@ -121,6 +114,12 @@ var $kt = $kt || {};
          */
         _updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
             this._levelExpDiv.innerHTML = $kt.templates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
+            const levelExpTmpBars = document.getElementById('level-exp-tmp-bars');
+            levelExpTmpBars.onanimationend = event => {
+                if (event.target === levelExpTmpBars) {
+                    levelExpTmpBars.style.display = 'none';
+                }
+            }
         }
 
         /**

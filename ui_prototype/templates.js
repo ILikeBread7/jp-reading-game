@@ -12,17 +12,32 @@ var $kt = $kt || {};
          * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
          */
         levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
-            const expMaxSpan = `
-                <span class="fade-hidden exp-max">
-                    <span class="exp-max-chars-container">
-                        <span class="jumpable exp-max-char">M</span>
-                        <span class="jumpable exp-max-char">a</span>
-                        <span class="jumpable exp-max-char">x</span>
-                        <span class="jumpable exp-max-char">!</span>
-                    </span>
-                </span>
+            return `
+                ${this.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, expData[0].oldExpPercentage, expData[0].newExpPercentage >= 100)}
+                <div class="fade-in-out" id="level-exp-tmp-bars">
+                    <div>Total: +${expData[0].addedExp}XP!</div>
+                    ${expData.slice(1).map(exp => `
+                        <div>
+                            ${exp.char}: +${exp.addedExp}XP!
+                            ${this._tif(exp.newExpPercentage >= 100, this._expMaxSpan())}
+                            <div class="level-exp-container">
+                                <div class="level-exp-content" style="width:${exp.oldExpPercentage}%;"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
             `;
-            
+        }
+
+        /**
+         * @param {string} levelName
+         * @param {number} totalExp
+         * @param {number} currentLevelExp
+         * @param {number} toNextLevelExp
+         * @param {number} [levelExpPercentage=currentLevelExp * 100 / toNextLevelExp] 
+         * @param {boolean} [isLevelMax=false] 
+         */
+        levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, levelExpPercentage = currentLevelExp * 100 / toNextLevelExp, isLevelMax = false) {
             return `
                 <div id="level-total-exp">
                     Total EXP: ${totalExp}
@@ -32,25 +47,26 @@ var $kt = $kt || {};
                 </div>
                 <div id="level-name">
                     ${levelName}
-                    ${this._tif(expData[0].newExpPercentage >= 100, expMaxSpan)}
+                    ${this._tif(isLevelMax, this._expMaxSpan())}
                 </div>
                 <div id="level-exp-bars">
                     <div class="level-exp-container" id="level-current-level-exp-container">
-                        <div class="level-exp-content" id="level-current-level-exp-content" style="width:${expData[0].oldExpPercentage}%;"></div>
+                        <div class="level-exp-content" id="level-current-level-exp-content" style="width:${levelExpPercentage}%;"></div>
                     </div>
                 </div>
-                <div class="fade-hidden" id="level-exp-tmp-bars">
-                    <div>Total: +${expData[0].addedExp}XP!</div>
-                    ${expData.slice(1).map(exp => `
-                        <div>
-                            ${exp.char}: +${exp.addedExp}XP!
-                            ${this._tif(exp.newExpPercentage >= 100, expMaxSpan)}
-                            <div class="level-exp-container">
-                                <div class="level-exp-content" style="width:${exp.oldExpPercentage}%;"></div>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
+            `;
+        }
+
+        _expMaxSpan() {
+            return `
+                <span class="fade-hidden exp-max">
+                    <span class="exp-max-chars-container">
+                        <span class="jumpable exp-max-char">M</span>
+                        <span class="jumpable exp-max-char">a</span>
+                        <span class="jumpable exp-max-char">x</span>
+                        <span class="jumpable exp-max-char">!</span>
+                    </span>
+                </span>
             `;
         }
 
