@@ -229,7 +229,8 @@ var $kt = $kt || {};
 
         _charEventListener(event) {
             const key = event.key;
-            
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
+
             if (
                 !this._isLevelUpVisible()
                 && !this._answerInputFocused()
