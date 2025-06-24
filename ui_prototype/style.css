@@ -174,7 +174,7 @@ summary {
     gap: 0.25em;
     text-align: center;
     color: var(--palette-secondary-text-color);
-    font-size: 5em;
+    font-size: 3em;
     -webkit-text-stroke: var(--palette-main-color) 0.5em;
 }
 
