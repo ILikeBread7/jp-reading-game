@@ -6,3 +6,4 @@ jlpt_data/*.doc
 jlpt_mismatches.json
 dict_separator_test.json
 audio
+ui_prototype/particles.min.js
