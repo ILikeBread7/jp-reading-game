@@ -17,7 +17,8 @@ var $kt = $kt || {};
         }
 
         focusAnswerInput() {
-            this._answerInput.focus();
+            this._answerInput.focus({ preventScroll: true });
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
         }
 
         /**
@@ -234,13 +235,11 @@ var $kt = $kt || {};
 
         _charEventListener(event) {
             const key = event.key;
-            window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
 
             if (
                 !this._isLevelUpVisible()
-                && !this._answerInputFocused()
-                && key.length === 1
-                && key.charCodeAt(0) < 127
+                // Is a character, not a special key
+                && key.length === 1 && key.charCodeAt(0) < 127
             ) {
                 this.focusAnswerInput();
             }
