@@ -1,0 +1,12 @@
+entSeq
+kanji ?(optional)
+kana
+hint ?
+tags[] ?
+sense [
+    pos[]
+    misc[] ?
+    lsource[ { lang, value } ] ?
+    sInf?
+    gloss []
+]
