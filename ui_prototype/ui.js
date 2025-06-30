@@ -100,6 +100,11 @@ var $kt = $kt || {};
             this._levelExpDiv.style.removeProperty('z-index');
         }
 
+        _shakeWrongAnswer() {
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            this._wrongAnswer.classList.add('shake');
+        }
+
         get _currentHint() {
             return this._hints[this._currentHintIndex];
         }
@@ -169,7 +174,8 @@ var $kt = $kt || {};
 
         _getAllElements() {
             this._answerInput = document.getElementById('answer-input');
-            
+            this._wrongAnswer = document.getElementById('wrong-answer');
+
             this._levelUpContainer = document.getElementById('level-up-container');
             this._levelUpText = document.getElementById('level-up-text');
             this._levelUpTextChars = [...document.getElementsByClassName('level-up-text-char')];
@@ -194,6 +200,11 @@ var $kt = $kt || {};
             
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
+            this._wrongAnswer.addEventListener('animationend', event => {
+                if (event.target === this._wrongAnswer) {
+                    this._wrongAnswer.classList.remove('shake');
+                }
+            });
 
             this._hintFirstButton.addEventListener('click', () => 
                 this._selectHint(0)
@@ -218,6 +229,11 @@ var $kt = $kt || {};
             }
 
             event.stopPropagation();
+
+            if (this._answerInput.value === 'Bad') {
+                this._shakeWrongAnswer();
+                return;
+            }
 
             $kt.ui.showLevelExp('Level 2: か行', 123, 5, 12, [
                 { oldExpPercentage: 20, newExpPercentage: 100, addedExp: 3 },
