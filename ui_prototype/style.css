@@ -72,6 +72,8 @@ body {
 
 #question {
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 #question-hint {
@@ -84,6 +86,8 @@ body {
 
 #answer {
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 #wrong-answer, .exp-max {
