@@ -364,10 +364,6 @@ var $kt = $kt || {};
             return document.activeElement === element;
         }
 
-        _answerInputFocused() {
-            return this._isFocused(this._answerInput);
-        }
-
         /**
          * Uses the _showNewLevelDataFunction field for its end listener
          * @param {string} [duration='0.2s'] Duration in CSS format, default us '0.2s'
