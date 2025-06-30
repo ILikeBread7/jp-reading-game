@@ -107,7 +107,7 @@ body {
     border: none;
     outline: none;
     font-size: var(--answer-input-font-size);
-    width: 99%;
+    width: 100%;
     color: inherit;
 }
 
