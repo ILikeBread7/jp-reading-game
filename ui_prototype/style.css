@@ -273,6 +273,8 @@ details.closing > summary::before {
 #level-up-container {
     /* Redefining to prevent it from being changed with javascript */
     --icon-brightness: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .icon-button {

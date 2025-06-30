@@ -68,7 +68,8 @@ var $kt = $kt || {};
          */
         showLevelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
             this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
-            
+            this._moveLevelExpDivAbove();
+
             // Force reflow to correctly apply
             // the growing exp bars transitions
             void this._levelExpDiv.offsetWidth;
@@ -88,6 +89,15 @@ var $kt = $kt || {};
         _undarkenIcons() {
             document.documentElement.style.removeProperty('--details-arrow-transition-time');
             document.documentElement.style.removeProperty('--icon-brightness');
+        }
+
+        _moveLevelExpDivAbove() {
+            // 2 is above the level up elements
+            this._levelExpDiv.style['z-index'] = 2;
+        }
+
+        _moveLevelExpDivBackDown() {
+            this._levelExpDiv.style.removeProperty('z-index');
         }
 
         get _currentHint() {
@@ -132,6 +142,9 @@ var $kt = $kt || {};
             levelExpTmpBars.onanimationend = event => {
                 if (event.target === levelExpTmpBars) {
                     levelExpTmpBars.style.display = 'none';
+                    if (!this._isLevelUpVisible()) {
+                        this._moveLevelExpDivBackDown();
+                    }
                 }
             }
         }
@@ -378,6 +391,7 @@ var $kt = $kt || {};
                     this._showNewLevelDataFunction();
                     this._showNewLevelDataFunction = null;
                 }
+                this._moveLevelExpDivBackDown();
             });
             this._undarkenIcons(duration);
             this.focusAnswerInput();
