@@ -1,13 +1,13 @@
 :root {
-    --base-font-size: 16px;
+    --base-font-size: calc(max(0.9vmax, 16px));
     --wrong-answer-font-size: 1.5em;
     --answer-input-font-size: 2em;
     --question-hint-font-size: 2em;
     --question-kanji-font-size: 4em;
     
     --info-width: 50%;
-    --info-min-width: 300px;
-    --info-max-width: 500px;
+    --info-min-width: 18em;
+    --info-max-width: 32em;
 
     --darkened-opacity: 50%;
 
@@ -159,7 +159,7 @@ summary {
 }
 
 #level-up-hint {
-    --bigger-by: 20px;
+    --bigger-by: 1.25em;
 
     width: calc(var(--info-width) + var(--bigger-by));
     max-width: calc(var(--info-max-width) + var(--bigger-by));
