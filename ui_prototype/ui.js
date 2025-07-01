@@ -254,6 +254,7 @@ var $kt = $kt || {};
             } else if (this._isLevelUpHintVisible()) {
                 this._closeLevelUpContainer();
             } else {
+                this.focusAnswerInput();
                 this._answerInputEnterEventListener(event);
             }
         }
