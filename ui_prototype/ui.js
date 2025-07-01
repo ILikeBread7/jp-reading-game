@@ -23,7 +23,7 @@ var $kt = $kt || {};
          * @param {number} toNextLevelExp
          * @param {boolean} showHint true if hint should be shown, false otherwise
          */
-        showLevelUp(levelName, totalExp, toNextLevelExp, showHint) {
+        showLevelUp(levelName, totalExp, toNextLevelExp, maxedCharacters, totalCharacters, showHint) {
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
             
             this._showHintOnLevelUp = showHint;
@@ -39,7 +39,7 @@ var $kt = $kt || {};
             this._textJumpByChar(this._levelUpTextChars, '-0.5em', `${charTransitionTime}s`, charTransitionDelayTime);
             this._darkenIcons(fadeInTimeCss);
 
-            this._showNewLevelDataFunction = this.showLevelData.bind(this, levelName, totalExp, 0, toNextLevelExp);
+            this._showNewLevelDataFunction = this.showLevelData.bind(this, levelName, totalExp, 0, toNextLevelExp, maxedCharacters, totalCharacters);
             this._fadeLevelUpTextToLevelUpHint(showHint, '0.35s', `${totalTextTransitionTime}s`);
             this._answerInput.blur();
         }
@@ -49,9 +49,11 @@ var $kt = $kt || {};
          * @param {number} totalExp
          * @param {number} currentLevelExp
          * @param {number} toNextLevelExp
+         * @param {number} maxedCharacters 
+         * @param {number} totalCharacters 
          */
-        showLevelData(levelName, totalExp, currentLevelExp, toNextLevelExp) {
-            this._levelExpDiv.innerHTML = $kt.templates.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp);
+        showLevelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters) {
+            this._levelExpDiv.innerHTML = $kt.templates.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters);
         }
 
         /**
@@ -59,10 +61,12 @@ var $kt = $kt || {};
          * @param {number} totalExp
          * @param {number} currentLevelExp
          * @param {number} toNextLevelExp
+         * @param {number} maxedCharacters 
+         * @param {number} totalCharacters 
          * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage?: number, addedExp?: number } ] } expData 
          */
-        showLevelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
-            this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
+        showLevelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData) {
+            this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData);
             this._moveLevelExpDivAbove();
 
             // Force reflow to correctly apply
@@ -134,10 +138,12 @@ var $kt = $kt || {};
          * @param {number} totalExp
          * @param {number} currentLevelExp
          * @param {number} toNextLevelExp
+         * @param {number} maxedCharacters 
+         * @param {number} totalCharacters 
          * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage?: number, addedExp?: number } ] } expData 
          */
-        _updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, expData) {
-            this._levelExpDiv.innerHTML = $kt.templates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, expData);
+        _updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData) {
+            this._levelExpDiv.innerHTML = $kt.templates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData);
             const levelExpTmpBars = document.getElementById('level-exp-tmp-bars');
             levelExpTmpBars.onanimationend = event => {
                 if (event.target === levelExpTmpBars) {
@@ -230,7 +236,7 @@ var $kt = $kt || {};
                 return;
             }
 
-            $kt.ui.showLevelExp('Level 2: か行', 123, 5, 12, [
+            $kt.ui.showLevelExp('Level 2: か行', 123, 5, 12, 12, 48, [
                 { oldExpPercentage: 20, newExpPercentage: 100, addedExp: 3 },
                 { char: 'か', oldExpPercentage: 10, newExpPercentage: 100, addedExp: 1 },
                 { char: 'き', oldExpPercentage: 20, newExpPercentage: 40, addedExp: 2 }
@@ -240,7 +246,7 @@ var $kt = $kt || {};
                 console.warn('Level up is visible!');
             } else {
                 const showHint = this._addNewHint();
-                this.showLevelUp('Level 3: さ行', 500, 25, showHint);
+                this.showLevelUp('Level 3: さ行', 500, 25, 13, 48, showHint);
             }
         }
 
