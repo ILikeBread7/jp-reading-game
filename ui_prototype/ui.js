@@ -9,12 +9,7 @@ var $kt = $kt || {};
             this._addEventListeners();
             this._animateDetails();
             this._setupHints();
-
-            if (particlesJS) {
-                particlesJS.load('particles-js', 'particlesjs-config.json');
-            } else {
-                console.error('particles.js was not loaded!', `particlesJS object is ${particlesJS}`)
-            }
+            this._initBackgroundPaticles();
         }
 
         focusAnswerInput() {
@@ -323,6 +318,14 @@ var $kt = $kt || {};
                     });
                 }
             );
+        }
+
+        _initBackgroundPaticles() {
+            if (particlesJS) {
+                particlesJS.load('particles-js', 'particlesjs-config.json');
+            } else {
+                console.error('particles.js was not loaded!', `particlesJS object is ${particlesJS}`);
+            }
         }
 
         _setupHints() {
