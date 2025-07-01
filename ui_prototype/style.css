@@ -47,7 +47,8 @@ body {
 
 #level-exp {
     position: absolute;
-    right: 12px;
+    right: 0.75em;
+    min-width: 12em;
 }
 
 .level-exp-container {
