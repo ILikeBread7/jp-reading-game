@@ -6,7 +6,7 @@ tags[] ?
 sense [
     pos[]
     misc[] ?
-    lsource[ { lang, value } ] ?
+    lsource[ { lang, value?, type?, wasei? } ] ?
     sInf?
     gloss []
 ]

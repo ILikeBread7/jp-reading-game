@@ -1,6 +1,9 @@
 import fs from 'node:fs';
 import * as wanakana from 'wanakana';
 
+const READ_PATH = '';
+const WRITE_PATH = 'ui_prototype/';
+
 const LANGUAGES = new Map([
     ['kor', 'Korean'],
     ['chi', 'Chinese'],
@@ -416,8 +419,8 @@ const KATAKANA_MAP = new Map();
     });
 });
 
-const jlptKanjiData = JSON.parse(fs.readFileSync('jlpt_kanji.json', 'utf-8'));
-const jlptVocabData = JSON.parse(fs.readFileSync('jlpt_vocab.json', 'utf-8'));
+const jlptKanjiData = JSON.parse(fs.readFileSync(READ_PATH + 'jlpt_kanji.json', 'utf-8'));
+const jlptVocabData = JSON.parse(fs.readFileSync(READ_PATH + 'jlpt_vocab.json', 'utf-8'));
 
 const KANJI_N5_TAG = 'k5';
 const KANJI_N4_TAG = 'k4';
@@ -463,7 +466,7 @@ jlptVocabMap.forEach((value, key) => {
     jlptMismatchesMap.set(key, 0);
 });
 
-fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
+fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     if (err) {
         console.error(err);
         return;
@@ -486,19 +489,18 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                     return;
                 }
     
-                const filteredSense = elementToArray(entry['sense'])
+                const filteredSenses = elementToArray(entry['sense'])
                     .filter(sense => !sense.stagr || elementToArray(sense.stagr).includes(kana.reb))
                     .filter(sense => !sense.stagk || elementToArray(sense.stagk).includes(kanji.keb))
                     .filter(sense => sInfFilter(kanji, sense['s_inf']));
     
-                const newEntry = {};
-                newEntry.id = entry['ent_seq'];
+                const newEntry = { entSeq: entry['ent_seq'] };
                 if (kanji) {
-                    newEntry.kanji = kanji;
+                    newEntry.kanji = kanji.keb;
                     entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
                 }
-                newEntry.kana = kana;
-                newEntry.sense = filteredSense;
+                newEntry.kana = kana.reb;
+                newEntry.sense = filteredSenses.map(mapSense);
 
                 newEntry.tags = createTags(newEntry);
 
@@ -524,14 +526,14 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
         }
     });
 
-    fs.writeFile('jlpt_mismatches.json', JSON.stringify(
+    fs.writeFile(WRITE_PATH + 'jlpt_mismatches.json', JSON.stringify(
         jlptMismatches,
         null,
         2
     ), () => console.log('JLPT mismatches file written'));
     // END OF DEBUG
 
-    fs.writeFile('dict.json', JSON.stringify(result, null, 2), () => console.log('Dict file written!'));
+    fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(result, null, 2), () => console.log('Dict file written!'));
 });
 
 function elementToArray(element) {
@@ -553,32 +555,65 @@ function sInfFilter(kanji, sInf) {
     return true;
 }
 
+function mapSense(sense) {
+    const result = {
+        pos: elementToArray(sense.pos),
+        gloss: elementToArray(sense.gloss)
+    };
+
+    if (sense.misc) {
+        result.misc = elementToArray(sense.misc);
+    }
+
+    if (sense.s_inf) {
+        result.sInf = elementToArray(sense.s_inf);
+    }
+
+    if (sense.lsource) {
+        result.lsource = elementToArray(sense.lsource).map(ls => {
+            const lsource = { lang: LANGUAGES.get(ls.lang || 'eng') };
+            if (ls.value) {
+                lsource.value = ls.value;
+            }
+            if (ls.ls_type) {
+                lsource.type = ls.ls_type;
+            }
+            if (ls.ls_wasei) {
+                lsource.wasei = true;
+            }
+            return lsource;
+        });
+    }
+
+    return result;
+}
+
 function createUniqueHint(entry, entriesMap) {
     if (!entry.kanji) {
         return;
     }
 
-    const otherEntries = entriesMap.get(entry.kanji.keb)
+    const otherEntries = entriesMap.get(entry.kanji)
         .filter(other => other !== entry);
 
     if (otherEntries.length > 0) {
-        const sameLengthReadingOthers = otherEntries.filter(other => other.kana.reb.length === entry.kana.reb.length && other.kana.reb !== entry.kana.reb);
+        const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === entry.kana.length && other.kana !== entry.kana);
         if (sameLengthReadingOthers.length > 0) {
-            const charMatches = [...entry.kana.reb].map(char => false);
+            const charMatches = [...entry.kana].map(char => false);
             sameLengthReadingOthers.forEach(other => {
-                [...other.kana.reb].forEach((char, index) => {
-                    charMatches[index] ||= char === entry.kana.reb.charAt(index);
+                [...other.kana].forEach((char, index) => {
+                    charMatches[index] ||= char === entry.kana.charAt(index);
                 });
             });
 
             const firstUniqueCharIndex = charMatches.indexOf(false);
             if (firstUniqueCharIndex === -1) {
-                console.warn(`No unique first character found for id: ${entry.id}, kanji: ${entry.kanji.keb}, kana: ${entry.kana.reb}`);
+                console.warn(`No unique first character found for id: ${entry.id}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
             } else {
-                entry.hint = charMatches.map((value, index) => index === firstUniqueCharIndex ? entry.kana.reb.charAt(index) : MASK_CHAR).join('');
+                entry.hint = charMatches.map((value, index) => index === firstUniqueCharIndex ? entry.kana.charAt(index) : MASK_CHAR).join('');
             }
         } else {
-            entry.hint = [...entry.kana.reb].map(_ => MASK_CHAR).join('');
+            entry.hint = [...entry.kana].map(_ => MASK_CHAR).join('');
         }
     }
 }
@@ -603,7 +638,7 @@ function createKanaTags(entry) {
 }
 
 function createTagsForKana(entry, kanaMap) {
-    const maxKana = [...entry.kana.reb]
+    const maxKana = [...entry.kana]
         .map(char => kanaMap.get(char))
         .reduce((acc, curr) => (acc && curr) && (curr.level > acc.level ? curr : acc));
 
@@ -619,7 +654,7 @@ function createJLPTKanjiTags(entry) {
         return [];
     }
 
-    const kanjiList = [...entry.kanji.keb]
+    const kanjiList = [...entry.kanji]
         .filter(char => wanakana.isKanji(char));
 
     if (kanjiList.length > 0) {
@@ -644,7 +679,7 @@ function createJLPTVocabTags(entry) {
     const matches = [];
     
     if (entry.kanji) {
-        const key = JSON.stringify([entry.kanji.keb, entry.kana.reb]);
+        const key = JSON.stringify([entry.kanji, entry.kana]);
         const match = jlptVocabMap.get(key);
         if (match) {
             matches.push({ key, match });
@@ -693,7 +728,7 @@ function createKanjiLevelTagsFromExistingTags(entry, tags) {
         return [];
     }
 
-    const chars = [...entry.kanji.keb]
+    const chars = [...entry.kanji]
         .filter(char => !wanakana.isKana(char));
 
     if (chars.find(char => !wanakana.isKanji(char))) {
