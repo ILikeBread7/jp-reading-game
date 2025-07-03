@@ -13,7 +13,7 @@ const LANGUAGES = new Map([
     ['dut', 'Dutch'],
     ['spa', 'Spanish'],
     ['afr', 'Afrikaans'],
-    ['gre', 'Greek'],
+    ['gre', 'Modern Greek'],
     ['per', 'Persian'],
     ['ara', 'Arabic'],
     ['rus', 'Russian'],
