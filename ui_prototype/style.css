@@ -4,6 +4,7 @@
     --answer-input-font-size: 2em;
     --question-hint-font-size: 2em;
     --question-kanji-font-size: 4em;
+    --size-scale: 0.0625em; /* 1/16em = 1px in base font size (16px) */
     
     --info-width: 50%;
     --info-min-width: 18em;
@@ -18,10 +19,10 @@
 
     --palette-text-color-filter:
         invert(90%) sepia(9%) saturate(676%) hue-rotate(180deg) brightness(102%) contrast(101%)
-        drop-shadow( 1px  0px 0px #000000) 
-        drop-shadow(-1px  0px 0px #000000)
-        drop-shadow( 0px  1px 0px #000000) 
-        drop-shadow( 0px -1px 0px #000000);
+        drop-shadow(var(--size-scale) 0px 0px #000000)
+        drop-shadow(calc((-1) * var(--size-scale)) 0px 0px #000000)
+        drop-shadow(0px var(--size-scale) 0px #000000)
+        drop-shadow(0px calc((-1) * var(--size-scale)) 0px #000000);
 
     /* This variable will be changes with javascript */
     --icon-brightness: 100%;
@@ -41,7 +42,7 @@ body {
 
     background-color: var(--palette-main-color);
     color: var(--palette-text-color);
-    -webkit-text-stroke: #000000 2px;
+    -webkit-text-stroke: #000000 calc(2 * var(--size-scale));
     paint-order: stroke fill;
 }
 
@@ -55,11 +56,11 @@ body {
     width: 5.8em;
     height: 0.65em;
     background: #000000;
-    border: 5px ridge #000000;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    box-shadow: 3px 3px 3px #000000;
-    margin-bottom: 5px;
+    border: calc(5 * var(--size-scale)) ridge #000000;
+    border-top-left-radius: calc(5 * var(--size-scale));
+    border-bottom-right-radius: calc(5 * var(--size-scale));
+    box-shadow: calc(3 * var(--size-scale)) calc(3 * var(--size-scale)) calc(3 * var(--size-scale)) #000000;
+    margin-bottom: calc(5 * var(--size-scale));
 }
 
 #level-current-level-exp-content {
@@ -121,11 +122,11 @@ body {
 }
 
 #info > * {
-    margin-top: 10px;
+    margin-top: calc(10 * var(--size-scale));
 }
 
 .summary-panel {
-    padding: 3px 10px;
+    padding: calc(3 * var(--size-scale)) calc(10 * var(--size-scale));
 }
 
 .buttons-panel {
@@ -136,7 +137,7 @@ body {
 }
 
 .meaning-entry {
-    padding: 10px;
+    padding: calc(10 * var(--size-scale));
 }
 
 .controls-panel {
@@ -144,11 +145,11 @@ body {
 }
 
 #hint-content {
-    padding: 10px;
+    padding: calc(10 * var(--size-scale));
 }
 
 .content-group {
-    border-radius: 5px;
+    border-radius: calc(5 * var(--size-scale));
     overflow: hidden;
     background-color: var(--palette-secondary-color);
 }
@@ -170,9 +171,9 @@ summary {
     width: calc(var(--info-width) + var(--bigger-by));
     max-width: calc(var(--info-max-width) + var(--bigger-by));
     min-width: calc(var(--info-min-width) + var(--bigger-by));
-    border-radius: 5px;
+    border-radius: calc(5 * var(--size-scale));
     background-color: var(--palette-secondary-color);
-    box-shadow: 5px 5px 5px #000000;
+    box-shadow: calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) #000000;
 }
 
 #level-up-text {
