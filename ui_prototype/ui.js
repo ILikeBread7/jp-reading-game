@@ -99,8 +99,9 @@ var $kt = $kt || {};
             this._levelExpDiv.style.removeProperty('z-index');
         }
 
-        _shakeWrongAnswer() {
+        shakeWrongAnswer(answer) {
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            this._wrongAnswer.textContent = answer;
             this._wrongAnswer.classList.add('shake');
         }
 
@@ -232,7 +233,7 @@ var $kt = $kt || {};
             event.stopPropagation();
 
             if (this._answerInput.value === 'Bad') {
-                this._shakeWrongAnswer();
+                this.shakeWrongAnswer('テスト');
                 return;
             }
 
