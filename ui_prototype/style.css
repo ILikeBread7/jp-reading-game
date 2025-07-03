@@ -1,5 +1,5 @@
 :root {
-    --base-font-size: calc(max(0.9vmax, 16px));
+    --base-font-size: calc(max(0.9vw, 16px));
     --wrong-answer-font-size: 1.5em;
     --answer-input-font-size: 2em;
     --question-hint-font-size: 2em;
