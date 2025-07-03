@@ -44,12 +44,13 @@ body {
     color: var(--palette-text-color);
     -webkit-text-stroke: #000000 calc(2 * var(--size-scale));
     paint-order: stroke fill;
+
+    width: 100%;
 }
 
 #level-exp {
     position: absolute;
-    right: 0.75em;
-    min-width: 12em;
+    right: 20px; /* standard scrollbar width */
 }
 
 .level-exp-container {
