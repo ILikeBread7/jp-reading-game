@@ -354,6 +354,13 @@ const TERMS_TEXT_BY_CODE = new Map([
     [ "sk", { code: "sk", text: "search-only kana form" } ]
 ]);
 
+const GLOSS_TYPES = new Map([
+    [ 'lit', 'Literal' ],
+    [ 'fig', 'Figurative' ],
+    [ 'expl', 'Explanation' ],
+    [ 'tm', 'Trademark' ]
+]);
+
 const TERMS_TEXT_BY_TEXT = new Map();
 TERMS_TEXT_BY_CODE.forEach((value, key) => TERMS_TEXT_BY_TEXT.set(value.text, { code: value.code, text: value.text }));
 
@@ -558,7 +565,7 @@ function sInfFilter(kanji, sInf) {
 function mapSense(sense) {
     const result = {
         pos: elementToArray(sense.pos),
-        gloss: elementToArray(sense.gloss)
+        gloss: elementToArray(sense.gloss).map(g => typeof g === 'string' ? g : { value: g.value, type: GLOSS_TYPES.get(g.g_type) })
     };
 
     if (sense.misc) {
