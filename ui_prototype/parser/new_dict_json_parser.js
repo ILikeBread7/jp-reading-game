@@ -573,7 +573,7 @@ function mapSense(sense) {
     }
 
     if (sense.s_inf) {
-        result.sInf = elementToArray(sense.s_inf);
+        result.sInf = sense.s_inf;
     }
 
     if (sense.lsource) {
