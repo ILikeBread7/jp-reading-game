@@ -18,6 +18,29 @@ var $kt = $kt || {};
         }
 
         /**
+         * 
+         * @param { {
+         *  entSeq: number,
+         *  kanji: string?,
+         *  kana: string,
+         *  hint: string?,
+         *  tags: [string]?,
+         *  sense: [{
+         *      pos: [string],
+         *      misc: [string]?,
+         *      gloss: [string|{ value: string, type: string }],
+         *      lsource: [ { lang: string, value: string?, wasei: boolean? } ],
+         *      sInf: string?
+         *  }]
+         * } } question 
+         */
+        showQuestion(question) {
+            this._questionKanjiElement.textContent = question.kanji || question.kana;
+            this._questionHintElement.textContent = question.hint || '';
+            this._meaningContentElement.innerHTML = $kt.templates.questionMeaning(question.sense);
+        }
+
+        /**
          * @param {string} levelName
          * @param {number} totalExp
          * @param {number} toNextLevelExp
@@ -177,6 +200,11 @@ var $kt = $kt || {};
         _getAllElements() {
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
+
+            this._questionKanjiElement = document.getElementById('question-kanji');
+            this._questionHintElement = document.getElementById('question-hint');
+
+            this._meaningContentElement = document.getElementById('meaning-content');
 
             this._levelUpContainer = document.getElementById('level-up-container');
             this._levelUpText = document.getElementById('level-up-text');

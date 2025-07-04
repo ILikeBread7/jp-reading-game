@@ -5,6 +5,28 @@ var $kt = $kt || {};
     class KantoreTemplates {
 
         /**
+         * 
+         * @param {[{
+         *      pos: [string],
+         *      misc: [string]?,
+         *      gloss: [string|{ value: string, type: string }],
+         *      lsource: [ { lang: string, value: string?, wasei: boolean? } ],
+         *      sInf: string?
+         *  }]} meanings
+         */
+        questionMeaning(meanings) {
+            const SEPARATOR = ', ';
+            return meanings.map(m => `
+                <ul class="meaning-entry">
+                <li><span>Definition:</span> ${m.gloss.map(g => typeof g === "string" ? g : `${g.value} (${g.type})`).join(SEPARATOR)}</li>
+                    <li><span>Part of speech:</span> ${m.pos.join(SEPARATOR)}</li>
+                    ${this._coa(m.lsource) && `<li><span>From:</span> ${m.lsource.map(l => `${l.value} (${l.lang})${this._coa(l.wasei) && ' (wasei word)'}`).join(SEPARATOR)}</li>`}
+                    ${this._coa(m.misc || m.sInf) && `<li><span>Additional info:</span> ${[...(m.misc || []), m.sInf].filter(Boolean).join(SEPARATOR)}</li>`}
+                </ul>
+            `).join('');
+        }
+
+        /**
          * @param {string} levelName
          * @param {number} totalExp
          * @param {number} currentLevelExp
@@ -84,6 +106,16 @@ var $kt = $kt || {};
          */
         _tif(condition, value, elseValue = '') {
             return condition ? value : elseValue;
+        }
+
+        /**
+         * Function for html templates
+         * @param {any} value 
+         * @param {any} elseValue default '' (empty string)
+         * @returns 
+         */
+        _coa(value, elseValue = '') {
+            return value ?? elseValue;
         }
 
     }

@@ -1,6 +1,42 @@
 var $kt = $kt || {};
 
 (() => {
+    $kt.ui.showQuestion(
+        {
+            "entSeq": 1580120,
+            "kanji": "出船",
+            "kana": "でぶね",
+            "sense": [
+                {
+                    "pos": [
+                        "noun (common) (futsuumeishi)",
+                        "noun or participle which takes the aux. verb suru",
+                        "intransitive verb"
+                    ],
+                    "gloss": [
+                        "departure of a ship (from a port)",
+                        "setting sail"
+                    ]
+                },
+                {
+                    "pos": [
+                        "noun (common) (futsuumeishi)"
+                    ],
+                    "gloss": [
+                        "outgoing ship",
+                        "ship leaving port"
+                    ],
+                    "sInf": "also いでぶね"
+                }
+            ],
+            "tags": [
+                "h",
+                "k3"
+            ],
+            "hint": "・ぶ・"
+        }
+    );
+
     $kt.ui.focusAnswerInput();
     $kt.ui.showLevelData('Level 1: あ行', 75, 10, 15, 0, 48);
     setTimeout(() => {

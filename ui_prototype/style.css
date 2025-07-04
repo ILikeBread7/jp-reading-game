@@ -16,6 +16,7 @@
     --palette-secondary-color: #476288;
     --palette-text-color: #ddf2ff;
     --palette-secondary-text-color: #dca11d;
+    --palette-text-bleak-color: #bccdd8;
 
     --palette-text-color-filter:
         invert(90%) sepia(9%) saturate(676%) hue-rotate(180deg) brightness(102%) contrast(101%)
@@ -137,8 +138,20 @@ body {
     display: flex;
 }
 
-.meaning-entry {
-    padding: calc(10 * var(--size-scale));
+.meaning-entry > li::marker,
+.meaning-entry > li > span {
+    color: var(--palette-text-bleak-color);
+}
+
+.meaning-entry > li > span {
+    font-style: italic;
+}
+
+.meaning-entry { 
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    word-break: keep-all;
 }
 
 .controls-panel {
