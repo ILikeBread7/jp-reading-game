@@ -43,7 +43,7 @@ var $kt = $kt || {};
                     ${expData.slice(1).map(exp => `
                         <div>
                             ${exp.char}: +${exp.addedExp}XP!
-                            ${this._tif(exp.newExpPercentage >= 100, this._expMaxSpan())}
+                            ${this._tif(exp.newExpPercentage >= 100) && this._expMaxSpan()}
                             <div class="level-exp-container">
                                 <div class="level-exp-content" style="width:${exp.oldExpPercentage}%;"></div>
                             </div>
@@ -72,8 +72,8 @@ var $kt = $kt || {};
                     To next level: ${currentLevelExp} / ${toNextLevelExp}
                 </div>
                 <div id="level-name">
-                    ${levelName} ${this._tif(totalCharacters, `(${maxedCharacters}/${totalCharacters})`)}
-                    ${this._tif(isLevelMax, this._expMaxSpan())}
+                    ${levelName} ${this._tif(totalCharacters) && `(${maxedCharacters}/${totalCharacters})`}
+                    ${this._tif(isLevelMax) && this._expMaxSpan()}
                 </div>
                 <div id="level-exp-bars">
                     <div class="level-exp-container" id="level-current-level-exp-container">
@@ -97,19 +97,19 @@ var $kt = $kt || {};
         }
 
         /**
-         * Function for html templates
+         * Function for html templates, if value is falsey returns elseValue
          * @returns value if condition is met, elseValue otherwise
          * @param {boolean} condition 
          * @param {any} value 
          * @param {any} elseValue default '' (empty string)
          * @returns 
          */
-        _tif(condition, value, elseValue = '') {
-            return condition ? value : elseValue;
+        _tif(value, elseValue = '') {
+            return value || elseValue;
         }
 
         /**
-         * Function for html templates
+         * Function for html templates, if value is null or undefined returns elseValue
          * @param {any} value 
          * @param {any} elseValue default '' (empty string)
          * @returns 
