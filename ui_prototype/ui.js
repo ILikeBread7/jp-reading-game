@@ -242,7 +242,7 @@ var $kt = $kt || {};
         _addEventListeners() {
             document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
-            document.addEventListener('click', this._documentClickEventLisetner.bind(this));
+            document.addEventListener('click', this._documentClickEventListener.bind(this));
             
             this._settingsButton.addEventListener('click', () => console.log('Settings clicked!'));
 
@@ -325,7 +325,7 @@ var $kt = $kt || {};
             }
         }
         
-        _documentClickEventLisetner(event) {
+        _documentClickEventListener(event) {
             const target = event.target;
             
             if (this._isLevelUpHintVisible() && !this._levelUpHint.contains(target)) {
