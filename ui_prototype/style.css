@@ -6,6 +6,10 @@
     --question-kanji-font-size: 4em;
     --size-scale: 0.0625em; /* 1/16em = 1px in base font size (16px) */
     
+    --question-z-index: 1;
+    --settings-button-z-index: 2;
+    --level-up-z-index: 3;
+
     --info-width: 50%;
     --info-min-width: 18em;
     --info-max-width: 32em;
@@ -77,7 +81,7 @@ body {
 #question {
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: var(--question-z-index);
 }
 
 #question-hint {
@@ -91,7 +95,7 @@ body {
 #answer {
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: var(--question-z-index);
     overflow: hidden;
 }
 
@@ -292,11 +296,11 @@ details.closing > summary::before {
     /* Redefining to prevent it from being changed with javascript */
     --icon-brightness: 100%;
     position: relative;
-    z-index: 2;
+    z-index: var(--level-up-z-index);
 }
 
 .icon-button {
-    width: calc(var(--base-font-size) * 1.5);
+    width: 1.5rem;
     height: auto;
     padding: 0px;
     background: none;
@@ -408,7 +412,7 @@ details.closing > summary::before {
     opacity: 0;
     transition: visibility var(--transition-time), opacity var(--transition-time);
     color: var(--palette-text-color);
-    z-index: 2;
+    z-index: var(--level-up-z-index);
 }
 
 #loading-span {
@@ -461,4 +465,12 @@ details.closing > summary::before {
     66% {
         width: fit-content;
     }
+}
+
+#settings-button {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 2em;
+    z-index: var(--settings-button-z-index);
 }

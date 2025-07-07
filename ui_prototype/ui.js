@@ -127,8 +127,7 @@ var $kt = $kt || {};
         }
 
         _moveLevelExpDivAbove() {
-            // 2 is above the level up elements
-            this._levelExpDiv.style['z-index'] = 2;
+            this._levelExpDiv.style['z-index'] = 'var(--level-up-z-index)';
         }
 
         _moveLevelExpDivBackDown() {
@@ -213,6 +212,8 @@ var $kt = $kt || {};
         _getAllElements() {
             this._loadingDiv = document.getElementById('loading-div');
 
+            this._settingsButton = document.getElementById('settings-button');
+
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
 
@@ -243,6 +244,8 @@ var $kt = $kt || {};
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventLisetner.bind(this));
             
+            this._settingsButton.addEventListener('click', () => console.log('Settings clicked!'));
+
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
             this._wrongAnswer.addEventListener('animationend', event => {
