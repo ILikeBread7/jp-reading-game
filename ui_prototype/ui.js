@@ -32,11 +32,12 @@ var $kt = $kt || {};
          *      lsource: [ { lang: string, value: string?, wasei: boolean? } ],
          *      sInf: string?
          *  }]
-         * } } question 
+         * } } question
+         * @param {QUESTION_TYPE} [questionType=$kt.enums.QUESTION_TYPE.KANJI] 
          */
-        showQuestion(question) {
-            this._questionKanjiElement.textContent = question.kanji || question.kana;
-            this._questionHintElement.textContent = question.hint || '';
+        showQuestion(question, questionType = $kt.enums.QUESTION_TYPE.KANJI) {
+            this._questionKanjiElement.textContent = (questionType === $kt.enums.QUESTION_TYPE.KANJI && question.kanji) || question.kana;
+            this._questionHintElement.textContent = (questionType === $kt.enums.QUESTION_TYPE.KANJI && question.hint) || '';
             this._meaningContentElement.innerHTML = $kt.templates.questionMeaning(question.sense);
         }
 

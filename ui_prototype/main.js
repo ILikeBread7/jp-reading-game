@@ -1,6 +1,9 @@
 var $kt = $kt || {};
 
 (() => {
+    $kt.enums ||= {};
+    $kt.enums.QUESTION_TYPE = { KANA: 0, KANJI: 1 };
+
     $kt.ui.showQuestion(
         {
             "entSeq": 1580120,
