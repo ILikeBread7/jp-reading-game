@@ -393,3 +393,72 @@ details.closing > summary::before {
     --minus-range: calc((-1) * var(--range));
     animation: shake 0.5s;
 }
+
+#loading-div {
+    --spinner-text-distance: 1.5em;
+    --transition-time: 0.2s;
+    --visible-opacity: 0.8;
+    visibility: hidden;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0;
+    transition: visibility var(--transition-time), opacity var(--transition-time);
+    color: var(--palette-text-color);
+    z-index: 2;
+}
+
+#loading-span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + var(--spinner-text-distance)));
+}
+
+#spinner {
+    --base-transform: translate(-50%, calc(-50% - var(--spinner-text-distance)));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: var(--base-transform);
+    border: 1em solid #000;
+    border-radius: 50%;
+    border-left: 1em solid #fff;
+    width: 2.5em;
+    height: 2.5em;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: var(--base-transform) rotate(0deg);
+    }
+
+    100% {
+        transform: var(--base-transform) rotate(360deg);
+    }
+}
+
+#loading-dots {
+    display: inline-block;
+    animation: loading-dots 1s step-end infinite;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+
+@keyframes loading-dots {
+    0% {
+        width: 0.28em;
+    }
+
+    33% {
+        width: 0.56em;
+    }
+
+    66% {
+        width: fit-content;
+    }
+}

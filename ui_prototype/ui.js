@@ -39,6 +39,7 @@ var $kt = $kt || {};
             this._questionKanjiElement.textContent = (questionType === $kt.enums.QUESTION_TYPE.KANJI && question.kanji) || question.kana;
             this._questionHintElement.textContent = (questionType === $kt.enums.QUESTION_TYPE.KANJI && question.hint) || '';
             this._meaningContentElement.innerHTML = $kt.templates.questionMeaning(question.sense);
+            this.focusAnswerInput();
         }
 
         /**
@@ -98,6 +99,17 @@ var $kt = $kt || {};
             void this._levelExpDiv.offsetWidth;
             
             this._growExpBars(expData);
+        }
+
+        showLoading() {
+            this._loadingDiv.style.visibility = 'visible';
+            this._loadingDiv.style.opacity = 'var(--visible-opacity)';
+            this._answerInput.blur();
+        }
+
+        hideLoading() {
+            this._loadingDiv.style.removeProperty('visibility');
+            this._loadingDiv.style.removeProperty('opacity');
         }
 
         /**
@@ -199,6 +211,8 @@ var $kt = $kt || {};
         }
 
         _getAllElements() {
+            this._loadingDiv = document.getElementById('loading-div');
+
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
 
@@ -281,7 +295,7 @@ var $kt = $kt || {};
         }
 
         _documentEnterEventListener(event) {
-            if (event.key !== 'Enter') {
+            if (event.key !== 'Enter' || this._isLoadingVisible()) {
                 return;
             }
 
@@ -299,7 +313,8 @@ var $kt = $kt || {};
             const key = event.key;
 
             if (
-                !this._isLevelUpVisible()
+                !this._isLoadingVisible()
+                && !this._isLevelUpVisible()
                 // Is a character, not a special key
                 && key.length === 1 && key.charCodeAt(0) < 127
             ) {
@@ -415,6 +430,10 @@ var $kt = $kt || {};
             }
 
             return false;
+        }
+
+        _isLoadingVisible() {
+            return this._loadingDiv.checkVisibility({ visibilityProperty: true });
         }
 
         _isLevelUpVisible() {
