@@ -191,13 +191,20 @@ summary {
 
 #level-up-hint {
     --bigger-by: 1.25em;
-
-    width: calc(var(--info-width) + var(--bigger-by));
-    max-width: calc(var(--info-max-width) + var(--bigger-by));
-    min-width: calc(var(--info-min-width) + var(--bigger-by));
     border-radius: calc(5 * var(--size-scale));
     background-color: var(--palette-secondary-color);
     box-shadow: calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) #000000;
+}
+
+#settings-container,
+#level-up-hint {
+    width: calc(var(--info-width) + var(--bigger-by));
+    max-width: calc(var(--info-max-width) + var(--bigger-by));
+    min-width: calc(var(--info-min-width) + var(--bigger-by));
+}
+
+#settings-container {
+    --bigger-by: -5em;
 }
 
 #level-up-text {
@@ -484,4 +491,34 @@ details.closing > summary::before {
     left: 0px;
     width: 2em;
     z-index: var(--settings-button-z-index);
+}
+
+.menu-button {
+    color: inherit;
+    font-size: inherit;
+    background-color: var(--palette-secondary-color);
+    transition: background-color 0.2s;
+    border-radius: 1em;
+    height: 1.75em;
+}
+
+.menu-button:hover {
+    background-color: var(--palette-main-color);
+}
+
+.menu {
+    display: grid;
+}
+
+.range-input-label {
+    display: block;
+}
+
+input[type='range'] {
+    accent-color: var(--palette-secondary-text-color);
+    transition: filter 0.2s;
+}
+
+input[type='range']:hover {
+    filter: brightness(150%);
 }
