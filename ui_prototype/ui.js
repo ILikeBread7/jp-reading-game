@@ -101,14 +101,30 @@ var $kt = $kt || {};
         }
 
         showLoading() {
-            this._loadingDiv.style.visibility = 'visible';
-            this._loadingDiv.style.opacity = 'var(--visible-opacity)';
+            this._showOverlayElement(this._loadingDiv);
+        }
+        
+        _showSettings() {
+            this._showOverlayElement(this._settingsDiv);
+        }
+        
+        _showOverlayElement(element) {
+            element.style.visibility = 'visible';
+            element.style.opacity = 'var(--visible-opacity)';
             this._answerInput.blur();
         }
 
         hideLoading() {
-            this._loadingDiv.style.removeProperty('visibility');
-            this._loadingDiv.style.removeProperty('opacity');
+            this._hideOverlayElement(this._loadingDiv);
+        }
+        
+        _hideSettings() {
+            this._hideOverlayElement(this._settingsDiv);
+        }
+
+        _hideOverlayElement(element) {
+            element.style.removeProperty('visibility');
+            element.style.removeProperty('opacity');
         }
 
         _moveLevelExpDivAbove() {
@@ -197,6 +213,8 @@ var $kt = $kt || {};
         _getAllElements() {
             this._loadingDiv = document.getElementById('loading');
 
+            this._settingsDiv = document.getElementById('settings');
+            this._settingsContainer = document.getElementById('settings-container');
             this._settingsButton = document.getElementById('settings-button');
 
             this._answerInput = document.getElementById('answer-input');
@@ -229,7 +247,12 @@ var $kt = $kt || {};
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventListener.bind(this));
             
-            this._settingsButton.addEventListener('click', () => console.log('Settings clicked!'));
+            this._settingsButton.addEventListener('click', this._showSettings.bind(this));
+            this._settingsDiv.addEventListener('click', e => {
+                if (!this._settingsContainer.contains(e.target)) {
+                    this._hideSettings();
+                }
+            })
 
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
