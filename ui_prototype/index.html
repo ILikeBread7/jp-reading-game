@@ -11,9 +11,11 @@
         <script defer type="text/javascript" src="main.js"></script>
     </head>
     <body>
-        <div id="loading-div">
-            <div id="spinner"></div>
-            <span id="loading-span">Loading<span id="loading-dots">...</span></span>
+        <div class="black-overlay" id="loading">
+            <div class="centered" id="spinner-container">
+                <div id="spinner"></div>
+                Loading<span id="loading-dots">...</span>
+            </div>
         </div>
         <div id="particles-js"></div>
         <button class="control-button icon-button" id="settings-button" title="Settings"><img src="icons/settings.svg" alt="Close"/></button>
@@ -41,7 +43,7 @@
                     <!-- Content created dynamically -->
                  </div>
             </div>
-            <div id="black-overlay"></div>
+            <div class="black-overlay" id="level-up-black-overlay"></div>
         </div>
         <div id="level-exp">
             <!-- Content created dynamically -->

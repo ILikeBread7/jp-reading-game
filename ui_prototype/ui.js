@@ -210,7 +210,7 @@ var $kt = $kt || {};
         }
 
         _getAllElements() {
-            this._loadingDiv = document.getElementById('loading-div');
+            this._loadingDiv = document.getElementById('loading');
 
             this._settingsButton = document.getElementById('settings-button');
 

@@ -176,11 +176,19 @@ summary {
     cursor: pointer;
 }
 
-.level-up {
-    position: fixed;
+.level-up,
+.centered {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.level-up {
+    position: fixed;
+}
+
+.centered {
+    position: absolute;
 }
 
 #level-up-hint {
@@ -203,15 +211,18 @@ summary {
     -webkit-text-stroke: var(--palette-main-color) 0.5em;
 }
 
-#black-overlay {
+#level-up-black-overlay {
+    opacity: var(--darkened-opacity);
+    z-index: -1;
+}
+
+.black-overlay {
     position: fixed;
     top: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
     background-color: #000000;
-    opacity: var(--darkened-opacity);
-    z-index: -1;
 }
 
 .fade-hidden {
@@ -398,36 +409,21 @@ details.closing > summary::before {
     animation: shake 0.5s;
 }
 
-#loading-div {
-    --spinner-text-distance: 1.5em;
+#loading {
     --transition-time: 0.2s;
     --visible-opacity: 0.8;
     visibility: hidden;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
     opacity: 0;
     transition: visibility var(--transition-time), opacity var(--transition-time);
     color: var(--palette-text-color);
     z-index: var(--level-up-z-index);
 }
 
-#loading-span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, calc(-50% + var(--spinner-text-distance)));
+#spinner-container {
+    text-align: center;
 }
 
 #spinner {
-    --base-transform: translate(-50%, calc(-50% - var(--spinner-text-distance)));
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: var(--base-transform);
     border: 1em solid #000;
     border-radius: 50%;
     border-left: 1em solid #fff;
@@ -438,11 +434,11 @@ details.closing > summary::before {
 
 @keyframes spin {
     0% {
-        transform: var(--base-transform) rotate(0deg);
+        transform: rotate(0deg);
     }
 
     100% {
-        transform: var(--base-transform) rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
