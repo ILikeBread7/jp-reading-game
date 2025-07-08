@@ -239,11 +239,15 @@ summary {
 
 .overlay-element {
     --transition-time: 0.2s;
-    --visible-opacity: 0.75;
+    --visible-opacity: 0.5;
     visibility: hidden;
     transition: visibility var(--transition-time);
     color: var(--palette-text-color);
     z-index: var(--level-up-z-index);
+}
+
+#loading {
+    --visible-opacity: 0.75;
 }
 
 .fade-hidden {
