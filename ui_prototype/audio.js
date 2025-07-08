@@ -5,7 +5,7 @@ var $kt = $kt || {};
     class KantoreAudio {
 
         constructor() {
-            this._player = new AudioPlayer();
+            this._player = new AudioPlayer(1, 1);
             this.tracks = {
                 BGM_TRACK: { name: 'Juhani Junkala [Retro Game Music Pack] Level 1.ogg', volume: 0.3 },
                 SE_TEST_1: { name: '7.ogg' },
@@ -45,11 +45,34 @@ var $kt = $kt || {};
             this._player.stopBgm();
         }
 
+        /**
+         * 
+         * @param {number} newVolume in range 0-1
+         */
+        bgmVolumeChange(newVolume) {
+            this._player.bgmVolumeChange(newVolume);
+        }
+
+        /**
+         * 
+         * @param {number} newVolume in range 0-1
+         */
+        seVolumeChange(newVolume) {
+            this._player.seVolumeChange(newVolume);
+        }
+
     }
 
     class AudioPlayer {
 
-        constructor() {
+        /**
+         * 
+         * @param {number} bgmVolume range 0-1
+         * @param {number} seVolume range 0-1
+         */
+        constructor(bgmVolume, seVolume) {
+            this._bgmVolume = bgmVolume;
+            this._seVolume = seVolume;
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             this._audioCtx = new AudioContext();
             this._currentBgm = null;
@@ -68,25 +91,46 @@ var $kt = $kt || {};
         }
 
         playBgm(track, volume, speed) {
-            if (this._isSameTrack(track, this._currentBgm)) {
+            if (this._currentBgm !== null && this._isSameTrack(track, this._currentBgm.source)) {
                 return;
             }
 
             if (this._currentBgm !== null) {
-                this._currentBgm.stop();
+                this._currentBgm.source.stop();
             }
-            this._currentBgm = this._playSound(track, true, volume, speed);
+
+            this._currentBgm = this._playSound(track, true, volume * this._bgmVolume, speed);
+            this._currentBgmBaseVolume = volume;
         }
 
         playEffect(track, volume, speed) {
-            this._playVariedPitchSound(track, false, volume, speed);
+            this._playVariedPitchSound(track, false, volume * this._seVolume, speed);
         }
 
         stopBgm() {
             if (this._currentBgm !== null) {
-                this._currentBgm.stop();
+                this._currentBgm.source.stop();
                 this._currentBgm = null;
             }
+        }
+
+        /**
+         * 
+         * @param {number} newVolume in range 0-1
+         */
+        bgmVolumeChange(newVolume) {
+            this._bgmVolume = newVolume;
+            if (this._currentBgm !== null) {
+                this._currentBgm.gain.value = this._currentBgmBaseVolume * newVolume, this._audioCtx.currentTime;
+            }
+        }
+
+        /**
+         * 
+         * @param {number} newVolume in range 0-1
+         */
+        seVolumeChange(newVolume) {
+            this._seVolume = newVolume;
         }
 
         /**
@@ -99,7 +143,7 @@ var $kt = $kt || {};
          */
         _playVariedPitchSound(track, loop = false, volume = 1, speed = 1) {
             const newSpeed = speed * (0.95 + Math.random() * 0.1);
-            this._playSound(track, loop, volume, newSpeed);
+            void this._playSound(track, loop, volume, newSpeed);
         }
 
         /**
@@ -108,7 +152,7 @@ var $kt = $kt || {};
          * @param {boolean} [loop=false] 
          * @param {number} [volume=1] 
          * @param {number} [speed=1] 
-         * @returns {AudioBufferSourceNode}
+         * @returns {{source: AudioBufferSourceNode, gain: GainNode}}
          */
         _playSound(track, loop = false, volume = 1, speed = 1) {
             const audioBuffer = track;
@@ -123,7 +167,7 @@ var $kt = $kt || {};
 
             trackSource.playbackRate.value = speed;
             trackSource.start();
-            return trackSource;
+            return { source: trackSource, gain: gainNode.gain };
         }
 
         /**

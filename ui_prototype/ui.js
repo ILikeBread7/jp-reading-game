@@ -595,8 +595,8 @@ var $kt = $kt || {};
                 }
             });
             
-            this._bgmVolume.addEventListener('change', e => console.log(`BGM Volume changed to: ${e.target.value}`));
-            this._seVolume.addEventListener('change', e => console.log(`SE Volume changed to: ${e.target.value}`));
+            this._bgmVolume.addEventListener('change', e => $kt.audio.bgmVolumeChange(Number(e.target.value)));
+            this._seVolume.addEventListener('change', e => $kt.audio.seVolumeChange(Number(e.target.value)));
             this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
             this._returnToGame.addEventListener('click', this._hideSettings.bind(this));
         }
