@@ -111,8 +111,6 @@ var $kt = $kt || {};
         _showOverlayElement(element) {
             element.style.visibility = 'visible';
             element.style.setProperty('--current-opacity', 'var(--visible-opacity)');
-            // [...element.getElementsByClassName('black-overlay')]
-            //     .forEach(overlay =>  overlay.style.opacity = 'var(--visible-opacity)');
             this._answerInput.blur();
         }
 
@@ -127,8 +125,6 @@ var $kt = $kt || {};
         _hideOverlayElement(element) {
             element.style.removeProperty('visibility');
             element.style.removeProperty('--current-opacity');
-            // [...element.getElementsByClassName('black-overlay')]
-            //     .forEach(overlay => overlay.style.removeProperty('opacity'));
         }
 
         _moveLevelExpDivAbove() {
