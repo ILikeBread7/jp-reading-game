@@ -15,13 +15,13 @@ var $kt = $kt || {};
          *  }]} meanings
          */
         questionMeaning(meanings) {
-            const SEPARATOR = ', ';
+            const SEPARATOR = '; ';
             return meanings.map(m => `
                 <ul class="meaning-entry">
                 <li><span>Definition:</span> ${m.gloss.map(g => typeof g === "string" ? g : `${g.value} (${g.type})`).join(SEPARATOR)}</li>
                     <li><span>Part of speech:</span> ${m.pos.join(SEPARATOR)}</li>
                     ${this._coa(m.lsource) && `<li><span>From:</span> ${m.lsource.map(l => `${l.value} (${l.lang})${this._coa(l.wasei) && ' (wasei word)'}`).join(SEPARATOR)}</li>`}
-                    ${this._coa(m.misc || m.sInf) && `<li><span>Additional info:</span> ${[...(m.misc || []), m.sInf].filter(Boolean).join(SEPARATOR)}</li>`}
+                    ${this._coa(m.misc) && `<li><span>Additional info:</span> ${m.misc.join(SEPARATOR)}</li>`}
                 </ul>
             `).join('');
         }

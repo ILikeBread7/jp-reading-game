@@ -568,12 +568,8 @@ function mapSense(sense) {
         gloss: elementToArray(sense.gloss).map(g => typeof g === 'string' ? g : { value: g.value, type: GLOSS_TYPES.get(g.g_type) })
     };
 
-    if (sense.misc) {
-        result.misc = elementToArray(sense.misc);
-    }
-
-    if (sense.s_inf) {
-        result.sInf = sense.s_inf;
+    if (sense.misc || sense.s_inf) {
+        result.misc = [...(elementToArray(sense.misc)), sense.s_inf].filter(Boolean);
     }
 
     if (sense.lsource) {
