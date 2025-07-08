@@ -4,7 +4,12 @@ var $kt = $kt || {};
 
     class KantoreUi {
 
-        constructor() {
+        /**
+         * 
+         * @param {KantoreSettingsUi} settings 
+         */
+        constructor(settings) {
+            this.settings = settings;
             this._getAllElements();
             this._addEventListeners();
             this._animateDetails();
@@ -101,28 +106,20 @@ var $kt = $kt || {};
         }
 
         showLoading() {
-            this._showOverlayElement(this._loadingDiv);
+            this.showOverlayElement(this._loadingDiv);
         }
         
-        _showSettings() {
-            this._showOverlayElement(this._settingsDiv);
-        }
-        
-        _showOverlayElement(element) {
+        showOverlayElement(element) {
             element.style.visibility = 'visible';
             element.style.setProperty('--current-opacity', 'var(--visible-opacity)');
             this._answerInput.blur();
         }
 
         hideLoading() {
-            this._hideOverlayElement(this._loadingDiv);
-        }
-        
-        _hideSettings() {
-            this._hideOverlayElement(this._settingsDiv);
+            this.hideOverlayElement(this._loadingDiv);
         }
 
-        _hideOverlayElement(element) {
+        hideOverlayElement(element) {
             element.style.removeProperty('visibility');
             element.style.removeProperty('--current-opacity');
         }
@@ -213,10 +210,6 @@ var $kt = $kt || {};
         _getAllElements() {
             this._loadingDiv = document.getElementById('loading');
 
-            this._settingsDiv = document.getElementById('settings');
-            this._settingsContainer = document.getElementById('settings-container');
-            this._settingsButton = document.getElementById('settings-button');
-
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
 
@@ -246,13 +239,6 @@ var $kt = $kt || {};
             document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventListener.bind(this));
-            
-            this._settingsButton.addEventListener('click', this._showSettings.bind(this));
-            this._settingsDiv.addEventListener('click', e => {
-                if (!this._settingsContainer.contains(e.target)) {
-                    this._hideSettings();
-                }
-            })
 
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
@@ -583,6 +569,49 @@ var $kt = $kt || {};
     }
 
 
-    $kt.ui = new KantoreUi();
+    class KantoreSettingsUi {
+
+        constructor() {
+            this._getAllElements();
+            this._addEventListeners();
+        }
+
+        _getAllElements() {
+            this._settingsDiv = document.getElementById('settings');
+            this._settingsContainer = document.getElementById('settings-container');
+            this._settingsButton = document.getElementById('settings-button');
+
+            this._bgmVolume = document.getElementById('bgm-volume');
+            this._seVolume = document.getElementById('se-volume');
+            this._backToMenu = document.getElementById('back-to-main-menu-button');
+            this._returnToGame = document.getElementById('return-to-game-button');
+        }
+
+        _addEventListeners() {
+            this._settingsButton.addEventListener('click', this._showSettings.bind(this));
+            this._settingsDiv.addEventListener('click', e => {
+                if (!this._settingsContainer.contains(e.target)) {
+                    this._hideSettings();
+                }
+            });
+            
+            this._bgmVolume.addEventListener('change', e => console.log(`BGM Volume changed to: ${e.target.value}`));
+            this._seVolume.addEventListener('change', e => console.log(`SE Volume changed to: ${e.target.value}`));
+            this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
+            this._returnToGame.addEventListener('click', this._hideSettings.bind(this));
+        }
+
+        _showSettings() {
+            $kt.ui.showOverlayElement(this._settingsDiv);
+        }
+
+        _hideSettings() {
+            $kt.ui.hideOverlayElement(this._settingsDiv);
+            $kt.ui.focusAnswerInput();
+        }
+
+    }
+
+    $kt.ui = new KantoreUi(new KantoreSettingsUi());
 
 })();
