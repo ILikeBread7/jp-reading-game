@@ -574,6 +574,7 @@ var $kt = $kt || {};
         constructor() {
             this._getAllElements();
             this._addEventListeners();
+            this._restoreSavedSettings();
         }
 
         _getAllElements() {
@@ -595,10 +596,34 @@ var $kt = $kt || {};
                 }
             });
             
-            this._bgmVolume.addEventListener('change', e => $kt.audio.bgmVolumeChange(Number(e.target.value)));
-            this._seVolume.addEventListener('change', e => $kt.audio.seVolumeChange(Number(e.target.value)));
+            this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
+            this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
             this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
             this._returnToGame.addEventListener('click', this._hideSettings.bind(this));
+        }
+
+        _restoreSavedSettings() {
+            this._settings = $kt.persistence.getSettings() || { bgmVolume: 1, seVolume: 1 };
+            this._bgmVolume.value = this._settings.bgmVolume;
+            this._seVolume.value = this._settings.seVolume;
+            $kt.audio.bgmVolumeChange(this._settings.bgmVolume);
+            $kt.audio.seVolumeChange(this._settings.seVolume);
+        }
+
+        _bgmVolumeChanged(newVolume) {
+            this._settings.bgmVolume = newVolume;
+            $kt.audio.bgmVolumeChange(this._settings.bgmVolume);
+            this._saveSettings();
+        }
+
+        _seVolumeChanged(newVolume) {
+            this._settings.seVolume = newVolume;
+            $kt.audio.seVolumeChange(this._settings.seVolume);
+            this._saveSettings();
+        }
+
+        _saveSettings() {
+            $kt.persistence.setSettings(this._settings);
         }
 
         _showSettings() {
