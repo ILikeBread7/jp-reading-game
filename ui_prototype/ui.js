@@ -62,7 +62,6 @@ var $kt = $kt || {};
             const fadeInTimeCss = `${fadeInTime}s`;
             this._fadeIn(this._levelUpContainer, fadeInTimeCss, '0s');
             this._textJumpByChar(this._levelUpTextChars, '-0.5em', `${charTransitionTime}s`, charTransitionDelayTime);
-            this._darkenIcons(fadeInTimeCss);
 
             this._showNewLevelDataFunction = this.showLevelData.bind(this, levelName, totalExp, 0, toNextLevelExp, maxedCharacters, totalCharacters);
             this._fadeLevelUpTextToLevelUpHint(showHint, '0.35s', `${totalTextTransitionTime}s`);
@@ -110,20 +109,6 @@ var $kt = $kt || {};
         hideLoading() {
             this._loadingDiv.style.removeProperty('visibility');
             this._loadingDiv.style.removeProperty('opacity');
-        }
-
-        /**
-         * 
-         * @param {string} [transitionTime='0.2s'] 
-         */
-        _darkenIcons(transitionTime = '0.2s') {
-            document.documentElement.style.setProperty('--details-arrow-transition-time', transitionTime);
-            document.documentElement.style.setProperty('--icon-brightness', 'var(--darkened-opacity)');
-        }
-
-        _undarkenIcons() {
-            document.documentElement.style.removeProperty('--details-arrow-transition-time');
-            document.documentElement.style.removeProperty('--icon-brightness');
         }
 
         _moveLevelExpDivAbove() {
@@ -471,7 +456,6 @@ var $kt = $kt || {};
                 }
                 this._moveLevelExpDivBackDown();
             });
-            this._undarkenIcons(duration);
             this.focusAnswerInput();
         }
 
