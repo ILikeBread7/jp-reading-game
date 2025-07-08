@@ -409,7 +409,7 @@ details.closing > summary::before {
 
 #loading {
     --transition-time: 0.2s;
-    --visible-opacity: 0.8;
+    --visible-opacity: 0.75;
     visibility: hidden;
     opacity: 0;
     transition: visibility var(--transition-time), opacity var(--transition-time);
