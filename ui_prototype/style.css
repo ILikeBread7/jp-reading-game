@@ -538,3 +538,13 @@ input[type='range']:hover {
         box-shadow: 0 0 0 0.25em var(--palette-secondary-text-color);
     }
 }
+
+.key-label {
+    display: block;
+    background-color: var(--palette-text-color);
+    border-radius: 0.25em;
+    position: absolute;
+    top: 1.75em;
+    left: calc(var(--size-scale) * 3);
+    font-size: 0.75em;
+}
