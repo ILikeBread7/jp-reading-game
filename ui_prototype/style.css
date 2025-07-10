@@ -516,11 +516,11 @@ details.closing > summary::before {
 
 input[type='range'] {
     accent-color: var(--palette-secondary-color);
-    transition: filter 0.2s;
+    transition: accent-color 0.2s;
 }
 
 input[type='range']:hover {
-    filter: brightness(150%);
+    accent-color: var(--palette-main-color);
 }
 
 .menu-item:focus {
