@@ -256,8 +256,18 @@ var $kt = $kt || {};
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventListener.bind(this));
 
-            [...document.getElementsByClassName('menu-item')].forEach(element => {
-                element.addEventListener('mouseenter', () => element.focus())
+            [
+                ...document.getElementsByClassName('menu-item'),
+                ...document.getElementsByClassName('menu-item-label')
+            ].forEach(element => {
+                element.addEventListener('mouseenter', () => element.focus());
+                if (element.type === 'checkbox') {
+                    element.addEventListener('keypress', event => {
+                        if (event.key === 'Enter') {
+                            element.checked = !element.checked;
+                        }
+                    });
+                }
             });
 
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
@@ -373,6 +383,9 @@ var $kt = $kt || {};
         }
 
         _findMenuItem(startElement, getNextElementFunction, getDefaultElementFunction) {
+            if (startElement.parentNode.classList.contains('menu-item-label')) {
+                startElement = startElement.parentNode;
+            }
             let element = startElement;
 
             do {
@@ -390,7 +403,7 @@ var $kt = $kt || {};
         }
 
         _isElementMenuItem(element) {
-            return element && element.classList.contains('menu-item') && element.checkVisibility();
+            return element && (element.classList.contains('menu-item') || element.classList.contains('menu-item-label')) && element.checkVisibility();
         }
         
         _documentClickEventListener(event) {
