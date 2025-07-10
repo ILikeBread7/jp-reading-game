@@ -515,10 +515,26 @@ details.closing > summary::before {
 }
 
 input[type='range'] {
-    accent-color: var(--palette-secondary-text-color);
+    accent-color: var(--palette-secondary-color);
     transition: filter 0.2s;
 }
 
 input[type='range']:hover {
     filter: brightness(150%);
+}
+
+.menu-item:focus {
+    z-index: 1;
+    outline: none;
+    animation: menu-item-focus 0.5s alternate infinite;
+}
+
+@keyframes menu-item-focus {
+    0% {
+
+    }
+
+    100% {
+        box-shadow: 0 0 0 0.25em var(--palette-secondary-text-color);
+    }
 }

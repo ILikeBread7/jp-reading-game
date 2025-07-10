@@ -109,10 +109,26 @@ var $kt = $kt || {};
             this.showOverlayElement(this._loadingDiv);
         }
         
-        showOverlayElement(element) {
+        /**
+         * 
+         * @param {HTMLElement} element 
+         * @param {HTMLElement} [elementToFocus]
+         */
+        showOverlayElement(element, elementToFocus) {
             element.style.visibility = 'visible';
             element.style.setProperty('--current-opacity', 'var(--visible-opacity)');
-            this._answerInput.blur();
+
+            if (elementToFocus) {
+                element.ontransitionend = event => {
+                    if (event.target !== element) {
+                        return;
+                    }
+                    elementToFocus.focus({ focusVisible: true });
+                    element.ontransitionend = null;
+                };
+            } else {
+                this._answerInput.blur();
+            }
         }
 
         hideLoading() {
@@ -240,6 +256,10 @@ var $kt = $kt || {};
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventListener.bind(this));
 
+            [...document.getElementsByClassName('menu-item')].forEach(element => {
+                element.addEventListener('mouseenter', () => element.focus())
+            });
+
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
             this._wrongAnswer.addEventListener('animationend', event => {
@@ -292,7 +312,7 @@ var $kt = $kt || {};
         }
 
         _documentEnterEventListener(event) {
-            if (event.key !== 'Enter' || this._isLoadingVisible()) {
+            if (event.key !== 'Enter' || this._isMenuItemFocused() || this._isLoadingVisible()) {
                 return;
             }
 
@@ -309,6 +329,18 @@ var $kt = $kt || {};
         _charEventListener(event) {
             const key = event.key;
 
+            if (this._isMenuItemFocused()) {
+                if (key === 'ArrowUp') {
+                    this._findPreviousMenuItem(document.activeElement).focus();
+                    event.preventDefault();
+                } else if (key === 'ArrowDown') {
+                    this._findNextMenuItem(document.activeElement).focus();
+                    event.preventDefault();
+                }
+
+                return;
+            }
+
             if (
                 !this._isLoadingVisible()
                 && !this._isLevelUpVisible()
@@ -317,6 +349,35 @@ var $kt = $kt || {};
             ) {
                 this.focusAnswerInput();
             }
+        }
+
+        _findNextMenuItem(startElement) {
+            return this._findMenuItem(startElement, element => element.nextElementSibling, element => element.parentNode.firstElementChild);
+        }
+
+        _findPreviousMenuItem(startElement) {
+            return this._findMenuItem(startElement, element => element.previousElementSibling, element => element.parentNode.lastElementChild);
+        }
+
+        _findMenuItem(startElement, getNextElementFunction, getDefaultElementFunction) {
+            let element = startElement;
+
+            do {
+                element = getNextElementFunction(element);
+            } while (element && !this._isElementMenuItem(element));
+            
+            if (!element && getDefaultElementFunction) {
+                element = getDefaultElementFunction(startElement);
+                if (!this._isElementMenuItem(element)) {
+                    element = this._findMenuItem(element, getNextElementFunction);
+                }
+            }
+
+            return element;
+        }
+
+        _isElementMenuItem(element) {
+            return element && element.classList.contains('menu-item') && element.checkVisibility();
         }
         
         _documentClickEventListener(event) {
@@ -427,6 +488,11 @@ var $kt = $kt || {};
             }
 
             return false;
+        }
+
+        _isMenuItemFocused() {
+            const focusedItem = document.activeElement
+            return focusedItem && focusedItem.classList.contains('menu-item');
         }
 
         _isLoadingVisible() {
@@ -627,7 +693,7 @@ var $kt = $kt || {};
         }
 
         _showSettings() {
-            $kt.ui.showOverlayElement(this._settingsDiv);
+            $kt.ui.showOverlayElement(this._settingsDiv, this._returnToGame);
         }
 
         _hideSettings() {
@@ -638,5 +704,6 @@ var $kt = $kt || {};
     }
 
     $kt.ui = new KantoreUi(new KantoreSettingsUi());
+    $kt.ui.settings._showSettings();
 
 })();
