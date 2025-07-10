@@ -329,6 +329,11 @@ var $kt = $kt || {};
         _charEventListener(event) {
             const key = event.key;
 
+            if (key === 'Tab') {
+                this._documentTabEventListener();
+                event.preventDefault();
+            }
+
             if (this._isMenuItemFocused()) {
                 if (key === 'ArrowUp') {
                     this._findPreviousMenuItem(document.activeElement).focus();
@@ -348,6 +353,14 @@ var $kt = $kt || {};
                 && key.length === 1 && key.charCodeAt(0) < 127
             ) {
                 this.focusAnswerInput();
+            }
+        }
+
+        _documentTabEventListener() {
+            if (this.settings.isSettingsVisible()) {
+                this.settings.hideSettings();
+            } else {
+                this.settings.showSettings();
             }
         }
 
@@ -643,6 +656,10 @@ var $kt = $kt || {};
             this._restoreSavedSettings();
         }
 
+        isSettingsVisible() {
+            return this._settingsDiv.checkVisibility({ visibilityProperty: true });
+        }
+
         _getAllElements() {
             this._settingsDiv = document.getElementById('settings');
             this._settingsContainer = document.getElementById('settings-container');
@@ -655,17 +672,17 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            this._settingsButton.addEventListener('click', this._showSettings.bind(this));
+            this._settingsButton.addEventListener('click', this.showSettings.bind(this));
             this._settingsDiv.addEventListener('click', e => {
                 if (!this._settingsContainer.contains(e.target)) {
-                    this._hideSettings();
+                    this.hideSettings();
                 }
             });
             
             this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
             this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
             this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
-            this._returnToGame.addEventListener('click', this._hideSettings.bind(this));
+            this._returnToGame.addEventListener('click', this.hideSettings.bind(this));
         }
 
         _restoreSavedSettings() {
@@ -692,11 +709,11 @@ var $kt = $kt || {};
             $kt.persistence.setSettings(this._settings);
         }
 
-        _showSettings() {
+        showSettings() {
             $kt.ui.showOverlayElement(this._settingsDiv, this._returnToGame);
         }
 
-        _hideSettings() {
+        hideSettings() {
             $kt.ui.hideOverlayElement(this._settingsDiv);
             $kt.ui.focusAnswerInput();
         }
@@ -704,6 +721,5 @@ var $kt = $kt || {};
     }
 
     $kt.ui = new KantoreUi(new KantoreSettingsUi());
-    $kt.ui.settings._showSettings();
 
 })();
