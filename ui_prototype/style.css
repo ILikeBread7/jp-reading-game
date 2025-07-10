@@ -526,12 +526,12 @@ input[type='range']:hover {
 .menu-item:focus {
     z-index: 1;
     outline: none;
-    animation: menu-item-focus 0.5s alternate infinite;
+    animation: menu-item-focus 0.25s alternate infinite;
 }
 
 @keyframes menu-item-focus {
     0% {
-
+        box-shadow: 0 0 0 0.125em var(--palette-secondary-text-color);
     }
 
     100% {
