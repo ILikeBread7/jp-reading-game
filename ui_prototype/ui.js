@@ -8,8 +8,7 @@ var $kt = $kt || {};
          * 
          * @param {KantoreSettingsUi} settings 
          */
-        constructor(settings) {
-            this.settings = settings;
+        constructor() {
             this._getAllElements();
             this._addEventListeners();
             this._animateDetails();
@@ -140,6 +139,14 @@ var $kt = $kt || {};
             element.style.removeProperty('--current-opacity');
         }
 
+        setMeaningOpen(open) {
+            this._meanigsDetails.open = open;
+        }
+
+        setHintOpen(open) {
+            this._hintDetails.open = open;
+        }
+
         _moveLevelExpDivAbove() {
             this._levelExpDiv.style['z-index'] = 'var(--level-up-z-index)';
         }
@@ -249,6 +256,9 @@ var $kt = $kt || {};
             this._hintPreviousButton = document.getElementById('hint-previous-button');
             this._hintNextButton = document.getElementById('hint-next-button');
             this._hintLastButton = document.getElementById('hint-last-button');
+
+            this._hintDetails = document.getElementById('hint');
+            this._meanigsDetails = document.getElementById('meaning');
         }
 
         _addEventListeners() {
@@ -265,6 +275,7 @@ var $kt = $kt || {};
                     element.addEventListener('keypress', event => {
                         if (event.key === 'Enter') {
                             element.checked = !element.checked;
+                            element.dispatchEvent(new Event('change'));
                         }
                     });
                 }
@@ -440,9 +451,16 @@ var $kt = $kt || {};
                     const summary = details.firstElementChild;
 
                     summary.addEventListener('click', e => {
-                        if (details.hasAttribute('open')) {
+                        const isOpen = details.hasAttribute('open');
+                        if (isOpen) {
                             e.preventDefault();
                             details.classList.add('closing');
+                        }
+
+                        if (details === this._meanigsDetails) {
+                            this.settings.setCloseMeaningValue(isOpen);
+                        } else {
+                            this.settings.setCloseHintValue(isOpen);
                         }
                     })
 
@@ -680,6 +698,10 @@ var $kt = $kt || {};
 
             this._bgmVolume = document.getElementById('bgm-volume');
             this._seVolume = document.getElementById('se-volume');
+            
+            this._closeMeaning = document.getElementById('close-meaning');
+            this._closeHint = document.getElementById('close-hint');
+            
             this._backToMenu = document.getElementById('back-to-main-menu-button');
             this._returnToGame = document.getElementById('return-to-game-button');
         }
@@ -694,16 +716,26 @@ var $kt = $kt || {};
             
             this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
             this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
+            
+            this._closeMeaning.addEventListener('change', e => this._closeMeaningChanged(e.target.checked));
+            this._closeHint.addEventListener('change', e => this._closeHintChanged(e.target.checked));
+            
             this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
             this._returnToGame.addEventListener('click', this.hideSettings.bind(this));
         }
 
         _restoreSavedSettings() {
-            this._settings = $kt.persistence.getSettings() || { bgmVolume: 1, seVolume: 1 };
+            this._settings = $kt.persistence.getSettings() || { bgmVolume: 1, seVolume: 1, closeMeaning: false, closeHint: false };
+            
             this._bgmVolume.value = this._settings.bgmVolume;
             this._seVolume.value = this._settings.seVolume;
             $kt.audio.bgmVolumeChange(this._settings.bgmVolume);
             $kt.audio.seVolumeChange(this._settings.seVolume);
+            
+            this._closeMeaning.checked = this._settings.closeMeaning;
+            this._closeHint.checked = this._settings.closeHint;
+            $kt.ui.setMeaningOpen(!this._settings.closeMeaning);
+            $kt.ui.setHintOpen(!this._settings.closeHint);
         }
 
         _bgmVolumeChanged(newVolume) {
@@ -715,6 +747,30 @@ var $kt = $kt || {};
         _seVolumeChanged(newVolume) {
             this._settings.seVolume = newVolume;
             $kt.audio.seVolumeChange(this._settings.seVolume);
+            this._saveSettings();
+        }
+
+        _closeMeaningChanged(newValue) {
+            this._settings.closeMeaning = newValue;
+            $kt.ui.setMeaningOpen(!newValue);
+            this._saveSettings();
+        }
+
+        _closeHintChanged(newValue) {
+            this._settings.closeHint = newValue;
+            $kt.ui.setHintOpen(!newValue);
+            this._saveSettings();
+        }
+
+        setCloseMeaningValue(newValue) {
+            this._closeMeaning.checked = newValue;
+            this._settings.closeMeaning = newValue;
+            this._saveSettings();
+        }
+
+        setCloseHintValue(newValue) {
+            this._closeHint.checked = newValue;
+            this._settings.closeHint = newValue;
             this._saveSettings();
         }
 
@@ -733,6 +789,7 @@ var $kt = $kt || {};
 
     }
 
-    $kt.ui = new KantoreUi(new KantoreSettingsUi());
+    $kt.ui = new KantoreUi();
+    $kt.ui.settings = new KantoreSettingsUi();
 
 })();
