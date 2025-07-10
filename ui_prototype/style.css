@@ -548,3 +548,7 @@ input[type='range']:hover {
     left: calc(var(--size-scale) * 3);
     font-size: 0.75em;
 }
+
+#settings:not(.game-settings-menu) .game-settings-menu-only {
+    display: none;
+}
