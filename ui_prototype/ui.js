@@ -237,7 +237,7 @@ var $kt = $kt || {};
                 ...document.getElementsByClassName('menu-item'),
                 ...document.getElementsByClassName('menu-item-label')
             ].forEach(element => {
-                element.addEventListener('mouseenter', () => element.focus());
+                element.addEventListener('mouseenter', () => $kt.uiHelper.focusMenuItem(element));
                 if (element.type === 'checkbox') {
                     element.addEventListener('keypress', event => {
                         if (event.key === 'Enter') {
@@ -324,10 +324,10 @@ var $kt = $kt || {};
 
             if (this._isMenuItemFocused()) {
                 if (key === 'ArrowUp') {
-                    this._findPreviousMenuItem(document.activeElement).focus();
+                    $kt.uiHelper.focusMenuItem(this._findPreviousMenuItem(document.activeElement));
                     event.preventDefault();
                 } else if (key === 'ArrowDown') {
-                    this._findNextMenuItem(document.activeElement).focus();
+                    $kt.uiHelper.focusMenuItem(this._findNextMenuItem(document.activeElement));
                     event.preventDefault();
                 }
 
@@ -715,7 +715,7 @@ var $kt = $kt || {};
                     if (event.target !== element) {
                         return;
                     }
-                    elementToFocus.focus({ focusVisible: true });
+                    $kt.uiHelper.focusMenuItem(elementToFocus);
                     element.ontransitionend = null;
                 };
             } else {
@@ -753,6 +753,10 @@ var $kt = $kt || {};
 
         static focusAnswerInput() {
             $kt.ui.focusAnswerInput();
+        }
+
+        static focusMenuItem(element) {
+            element.focus({ focusVisible: true });
         }
 
         static connectCheckboxesToDetails() {
