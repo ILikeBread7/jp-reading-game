@@ -6,7 +6,7 @@
     --question-kanji-font-size: 4em;
     --size-scale: 0.0625em; /* 1/16em = 1px in base font size (16px) */
     
-    --default-transition-time: 0.2s;
+    --default-transition-time: 0.1s;
 
     --question-z-index: 1;
     --settings-button-z-index: 2;
