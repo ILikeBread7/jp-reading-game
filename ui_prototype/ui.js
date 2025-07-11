@@ -688,13 +688,13 @@ var $kt = $kt || {};
         }
 
         isSettingsVisible() {
-            return this._settingsDiv.checkVisibility({ visibilityProperty: true });
+            return $kt.settingsDiv.checkVisibility({ visibilityProperty: true });
         }
 
         _getAllElements() {
-            this._settingsDiv = document.getElementById('settings');
-            this._settingsContainer = document.getElementById('settings-container');
-            this._settingsButton = document.getElementById('settings-button');
+            $kt.settingsDiv = document.getElementById('settings');
+            $kt.settingsContainer = document.getElementById('settings-container');
+            $kt.settingsButton = document.getElementById('settings-button');
 
             this._bgmVolume = document.getElementById('bgm-volume');
             this._seVolume = document.getElementById('se-volume');
@@ -707,9 +707,9 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            this._settingsButton.addEventListener('click', this.showSettings.bind(this));
-            this._settingsDiv.addEventListener('click', e => {
-                if (!this._settingsContainer.contains(e.target)) {
+            $kt.settingsButton.addEventListener('click', this.showSettings.bind(this));
+            $kt.settingsDiv.addEventListener('click', e => {
+                if (!$kt.settingsContainer.contains(e.target)) {
                     this.hideSettings();
                 }
             });
@@ -725,65 +725,48 @@ var $kt = $kt || {};
         }
 
         _restoreSavedSettings() {
-            this._settings = $kt.persistence.getSettings() || { bgmVolume: 1, seVolume: 1, closeMeaning: false, closeHint: false };
-            
-            this._bgmVolume.value = this._settings.bgmVolume;
-            this._seVolume.value = this._settings.seVolume;
-            $kt.audio.bgmVolumeChange(this._settings.bgmVolume);
-            $kt.audio.seVolumeChange(this._settings.seVolume);
-            
-            this._closeMeaning.checked = this._settings.closeMeaning;
-            this._closeHint.checked = this._settings.closeHint;
-            $kt.ui.setMeaningOpen(!this._settings.closeMeaning);
-            $kt.ui.setHintOpen(!this._settings.closeHint);
+            this._bgmVolume.value = $kt.settings.bgmVolume;
+            this._seVolume.value = $kt.settings.seVolume;
+            this._closeMeaning.checked = $kt.settings.closeMeaning;
+            this._closeHint.checked = $kt.settings.closeHint;
+            $kt.ui.setMeaningOpen(!$kt.settings.closeMeaning);
+            $kt.ui.setHintOpen(!$kt.settings.closeHint);
         }
 
         _bgmVolumeChanged(newVolume) {
-            this._settings.bgmVolume = newVolume;
-            $kt.audio.bgmVolumeChange(this._settings.bgmVolume);
-            this._saveSettings();
+            $kt.settings.bgmVolume = newVolume;
         }
 
         _seVolumeChanged(newVolume) {
-            this._settings.seVolume = newVolume;
-            $kt.audio.seVolumeChange(this._settings.seVolume);
-            this._saveSettings();
+            $kt.settings.seVolume = newVolume;
         }
 
         _closeMeaningChanged(newValue) {
-            this._settings.closeMeaning = newValue;
+            $kt.settings.closeMeaning = newValue;
             $kt.ui.setMeaningOpen(!newValue);
-            this._saveSettings();
         }
 
         _closeHintChanged(newValue) {
-            this._settings.closeHint = newValue;
+            $kt.settings.closeHint = newValue;
             $kt.ui.setHintOpen(!newValue);
-            this._saveSettings();
         }
 
         setCloseMeaningValue(newValue) {
             this._closeMeaning.checked = newValue;
-            this._settings.closeMeaning = newValue;
-            this._saveSettings();
+            $kt.settings.closeMeaning = newValue;
         }
 
         setCloseHintValue(newValue) {
             this._closeHint.checked = newValue;
-            this._settings.closeHint = newValue;
-            this._saveSettings();
-        }
-
-        _saveSettings() {
-            $kt.persistence.setSettings(this._settings);
+            $kt.settings.closeHint = newValue;
         }
 
         showSettings() {
-            $kt.ui.showOverlayElement(this._settingsDiv, this._returnToGame);
+            $kt.ui.showOverlayElement($kt.settingsDiv, this._returnToGame);
         }
 
         hideSettings() {
-            $kt.ui.hideOverlayElement(this._settingsDiv);
+            $kt.ui.hideOverlayElement($kt.settingsDiv);
             $kt.ui.focusAnswerInput();
         }
 

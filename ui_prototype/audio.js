@@ -19,6 +19,8 @@ var $kt = $kt || {};
                 trackData.speed ??= 1;
                 trackData.buffer = this._player.loadTrack(trackData.name);
             });
+
+            this._restoreSavedSettings();
         }
 
         /**
@@ -59,6 +61,11 @@ var $kt = $kt || {};
          */
         seVolumeChange(newVolume) {
             this._player.seVolumeChange(newVolume);
+        }
+
+        _restoreSavedSettings() {
+            this.bgmVolumeChange($kt.settings.bgmVolume);
+            this.seVolumeChange($kt.settings.seVolume);
         }
 
     }
