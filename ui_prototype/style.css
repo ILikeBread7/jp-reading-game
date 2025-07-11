@@ -4,6 +4,8 @@
     --answer-input-font-size: 2em;
     --question-hint-font-size: 2em;
     --question-kanji-font-size: 4em;
+    --title-font-size: 5em;
+    --title-sub-font-size: 1.5em;
     --size-scale: 0.0625em; /* 1/16em = 1px in base font size (16px) */
     
     --default-transition-time: 0.1s;
@@ -206,6 +208,7 @@ summary {
     box-shadow: calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) #000000;
 }
 
+#main-menu,
 #settings-container,
 #level-up-hint {
     width: calc(var(--info-width) + var(--bigger-by));
@@ -213,6 +216,7 @@ summary {
     min-width: calc(var(--info-min-width) + var(--bigger-by));
 }
 
+#main-menu,
 #settings-container {
     --bigger-by: -5em;
 }
@@ -565,4 +569,49 @@ button.menu-item {
 
 #settings:not(.game-settings-menu) .game-settings-menu-only {
     display: none;
+}
+
+.scene-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    display: none;
+}
+
+#title-screen-container {
+    height: 100%;
+    display: initial;
+}
+
+#title-sub-text,
+#title-text {
+    width: 100%;
+    text-align: center;
+}
+
+#title-text {
+    font-size: var(--title-font-size);
+}
+
+#title-sub-text {
+    font-size: var(--title-sub-font-size);
+}
+
+#title-press-start-text {
+    position: absolute;
+    top: 3em;
+    width: 100%;
+    text-align: center;
+    animation: blink 0.5s alternate infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

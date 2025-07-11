@@ -196,6 +196,12 @@ var $kt = $kt || {};
         _getAllElements() {
             this._loadingDiv = document.getElementById('loading');
 
+            this._titleScene = document.getElementById('title-screen-container');
+            this._titleStartButton = document.getElementById('start-game-button');
+            $kt.uiHelper.focusDefaultMenuItem(this._titleStartButton);
+            
+            this._gameScene = document.getElementById('game-container');
+
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
 
@@ -228,6 +234,8 @@ var $kt = $kt || {};
             document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventListener.bind(this));
+
+            this._titleStartButton.addEventListener('click', this._switchToScene.bind(this, this._gameScene));
 
             [
                 ...document.getElementsByClassName('menu-item'),
@@ -338,6 +346,15 @@ var $kt = $kt || {};
             ) {
                 this.focusAnswerInput();
             }
+        }
+
+        _switchToScene(scene) {
+            [
+                this._titleScene,
+                this._gameScene
+            ].forEach(scene => scene.style.display = 'none');
+            scene.style.display = 'initial';
+            $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass);
         }
 
         _documentTabEventListener() {
@@ -670,7 +687,7 @@ var $kt = $kt || {};
             this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
             this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
             
-            this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
+            this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
             this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
         }
 
@@ -744,7 +761,11 @@ var $kt = $kt || {};
 
         static hideSettings() {
             $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
-            $kt.ui.focusAnswerInput();
+            if ($kt.ui._titleScene.checkVisibility()) {
+                $kt.uiHelper.focusDefaultMenuItem($kt.ui._titleStartButton);
+            } else {
+                $kt.ui.focusAnswerInput();
+            }
         }
 
         static focusAnswerInput() {
@@ -765,6 +786,20 @@ var $kt = $kt || {};
 
         static focusDefaultMenuItem(element) {
             element.focus({ focusVisible: true });
+        }
+
+        static backToTitle() {
+            $kt.ui._switchToScene($kt.ui._titleScene);
+            $kt.uiHelper.hideSettings();
+        }
+
+        static setSettingsClass(className) {
+            $kt.settingsUi._settingsDiv.classList.remove(
+                $kt.ui._titleScene.dataset.settingsClass,
+                $kt.ui._gameScene.dataset.settingsClass
+            );
+
+            $kt.settingsUi._settingsDiv.classList.add(className);
         }
 
         static connectCheckboxesToDetails() {
