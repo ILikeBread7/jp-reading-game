@@ -159,7 +159,7 @@ var $kt = $kt || {};
          * @param {boolean} [loop=false] 
          * @param {number} [volume=1] 
          * @param {number} [speed=1] 
-         * @returns {{source: AudioBufferSourceNode, gain: GainNode}}
+         * @returns {{source: AudioBufferSourceNode, gain: AudioParam}}
          */
         _playSound(track, loop = false, volume = 1, speed = 1) {
             const audioBuffer = track;
