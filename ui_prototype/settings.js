@@ -14,6 +14,9 @@ var $kt = $kt || {};
                 };
 
 
+            // Pass through all get/set property accessors
+            // to the underlying _settings object
+            // unless explicitly defined in this class
             Object.keys(this._settings)
                 .forEach(key => {
                     const propertyDescriptor = Object.getOwnPropertyDescriptor(KantoreSettings.prototype, key);
