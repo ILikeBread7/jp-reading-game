@@ -56,7 +56,7 @@ var $kt = $kt || {};
             this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHint;
 
-            const fadeInTime = 1;
+            const fadeInTime = 0.5;
             const charTransitionDelayTime = 0.075;
             const charTransitionTime = 0.325;
             const totalTextTransitionTime = charTransitionDelayTime * (this._levelUpTextChars.length - 1) + charTransitionTime * 2;
