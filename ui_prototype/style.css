@@ -556,8 +556,8 @@ button.menu-item {
     background-color: var(--palette-text-color);
     border-radius: 0.25em;
     position: absolute;
-    top: 1.65em;
-    left: calc(var(--size-scale) * 1.75);
+    top: 2em;
+    left: calc(var(--size-scale) * 4.5);
     font-size: 0.85em;
     -webkit-text-stroke: initial;
     color: #000000;
