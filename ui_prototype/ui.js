@@ -111,7 +111,7 @@ var $kt = $kt || {};
         }
 
         _moveLevelExpDivAbove() {
-            this._levelExpDiv.style['z-index'] = 'var(--level-up-z-index)';
+            this._levelExpDiv.style['z-index'] = 'var(--overlays-z-index)';
         }
 
         _moveLevelExpDivBackDown() {
