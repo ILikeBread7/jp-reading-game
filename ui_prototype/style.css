@@ -51,6 +51,15 @@ body {
     width: 100%;
 }
 
+button {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button, input {
+    color: inherit;
+}
+
 #level-exp {
     position: absolute;
     right: 20px; /* standard scrollbar width */
@@ -114,7 +123,6 @@ body {
     outline: none;
     font-size: var(--answer-input-font-size);
     width: 100%;
-    color: inherit;
 }
 
 #info {
@@ -494,8 +502,6 @@ details.closing > summary::before {
 }
 
 .menu-button {
-    color: inherit;
-    font-size: inherit;
     background-color: var(--palette-secondary-color);
     transition: background-color 0.2s;
     border-radius: 1em;
@@ -544,9 +550,11 @@ input[type='range']:hover {
     background-color: var(--palette-text-color);
     border-radius: 0.25em;
     position: absolute;
-    top: 1.75em;
-    left: calc(var(--size-scale) * 3);
-    font-size: 0.75em;
+    top: 1.65em;
+    left: calc(var(--size-scale) * 1.75);
+    font-size: 0.85em;
+    -webkit-text-stroke: initial;
+    color: #000000;
 }
 
 #settings:not(.game-settings-menu) .game-settings-menu-only {
