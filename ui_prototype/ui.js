@@ -6,10 +6,6 @@ var $kt = $kt || {};
     // of this class (friend class)
     class KantoreUi {
 
-        /**
-         * 
-         * @param {KantoreSettingsUi} settings 
-         */
         constructor() {
             this._getAllElements();
             this._addEventListeners();
