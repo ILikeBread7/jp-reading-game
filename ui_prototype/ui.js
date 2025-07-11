@@ -748,7 +748,7 @@ var $kt = $kt || {};
 
         static hideSettings() {
             $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
-            $kt.uiHelper.focusAnswerInput();
+            $kt.ui.focusAnswerInput();
         }
 
         static focusAnswerInput() {
