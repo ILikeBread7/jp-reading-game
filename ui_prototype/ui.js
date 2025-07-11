@@ -189,7 +189,7 @@ var $kt = $kt || {};
                 .forEach(expMax => {
                     const expMaxChars = [...expMax.getElementsByClassName('exp-max-char')];
                     this._fadeIn(expMax, '0.25s', '0.1s');
-                    this._textJumpByChar(expMaxChars, '-10px', '0.2s', 0.1);
+                    this._textJumpByChar(expMaxChars, '-10px', 'var(--default-transition-time)', 0.1);
                 });
         }
 
@@ -405,7 +405,7 @@ var $kt = $kt || {};
             // Force reflow to apply previous remove transition
             void this._levelUpText.offsetWidth;
             
-            this._fadeLevelUpTextToLevelUpHint(this._showHintOnLevelUp, '0.2s');
+            this._fadeLevelUpTextToLevelUpHint(this._showHintOnLevelUp, 'var(--default-transition-time)');
         }
         
         _animateDetails() {
@@ -517,10 +517,10 @@ var $kt = $kt || {};
 
         /**
          * Uses the _showNewLevelDataFunction field for its end listener
-         * @param {string} [duration='0.2s'] Duration in CSS format, default us '0.2s'
+         * @param {string} [duration='var(--default-transition-time)'] Duration in CSS format, default us 'var(--default-transition-time)'
          * @param {string} [delay='0s'] Delay in CSS format, default is '0s'
          */
-        _closeLevelUpContainer(duration = '0.2s', delay = '0s') {
+        _closeLevelUpContainer(duration = 'var(--default-transition-time)', delay = '0s') {
             this._fadeOut(this._levelUpContainer, duration, delay, () => {
                 this._removeTransition(this._levelUpText);
                 this._removeTransition(this._levelUpHint);

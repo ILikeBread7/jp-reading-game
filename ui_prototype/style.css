@@ -6,6 +6,8 @@
     --question-kanji-font-size: 4em;
     --size-scale: 0.0625em; /* 1/16em = 1px in base font size (16px) */
     
+    --default-transition-time: 0.2s;
+
     --question-z-index: 1;
     --settings-button-z-index: 2;
     --overlays-z-index: 3;
@@ -253,7 +255,7 @@ summary {
 }
 
 .overlay-element {
-    --transition-time: 0.2s;
+    --transition-time: var(--default-transition-time);
     --visible-opacity: 0.5;
     visibility: hidden;
     transition: visibility var(--transition-time);
@@ -281,7 +283,7 @@ summary {
 }
 
 details {
-    --animation-duration: 0.2s;
+    --animation-duration: var(--default-transition-time);
 }
 
 details > summary ~ * {
@@ -312,7 +314,7 @@ details > summary::before {
     filter:
         var(--palette-text-color-filter)
         brightness(var(--icon-brightness));
-    transition: filter var(--details-arrow-transition-time, 0.2s);
+    transition: filter var(--details-arrow-transition-time, var(--default-transition-time));
 }
 
 details[open] > summary::before {
@@ -503,7 +505,7 @@ details.closing > summary::before {
 
 .menu-button {
     background-color: var(--palette-secondary-color);
-    transition: background-color 0.2s;
+    transition: background-color var(--default-transition-time);
     border-radius: 1em;
     height: 1.75em;
 }
@@ -522,7 +524,7 @@ details.closing > summary::before {
 
 input[type='range'] {
     accent-color: var(--palette-secondary-color);
-    transition: accent-color 0.2s;
+    transition: accent-color var(--default-transition-time);
 }
 
 input[type='range']:hover {
