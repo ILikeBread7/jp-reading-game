@@ -2,6 +2,8 @@ var $kt = $kt || {};
 
 (() => {
 
+    // KantoreUiHelper has access to private fields
+    // of this class (friend class)
     class KantoreUi {
 
         /**
@@ -415,22 +417,15 @@ var $kt = $kt || {};
             [...detailsElements].forEach(details => {
                     const summary = details.firstElementChild;
 
-                    summary.addEventListener('click', e => {
-                        const isOpen = details.hasAttribute('open');
-                        if (isOpen) {
-                            e.preventDefault();
+                    summary.addEventListener('click', event => {
+                        if (details.open) {
+                            event.preventDefault();
                             details.classList.add('closing');
-                        }
-
-                        if (details === this._meanigsDetails) {
-                            $kt.uiHelper.setCloseMeaningSetting(isOpen);
-                        } else {
-                            $kt.uiHelper.setCloseHintSetting(isOpen);
                         }
                     })
 
-                    details.addEventListener('animationend', e => {
-                        if (e.animationName === 'close') {
+                    details.addEventListener('animationend', event => {
+                        if (event.animationName === 'close') {
                             details.removeAttribute('open');
                             details.classList.remove('closing');
                         }
@@ -643,7 +638,8 @@ var $kt = $kt || {};
         }
     }
 
-
+    // KantoreUiHelper has access to private fields
+    // of this class (friend class)
     class KantoreSettingsUi {
 
         constructor() {
@@ -678,9 +674,6 @@ var $kt = $kt || {};
             this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
             this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
             
-            this._closeMeaning.addEventListener('change', e => this._closeMeaningChanged(e.target.checked));
-            this._closeHint.addEventListener('change', e => this._closeHintChanged(e.target.checked));
-            
             this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
             this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
         }
@@ -690,8 +683,6 @@ var $kt = $kt || {};
             this._seVolume.value = $kt.settings.seVolume;
             this._closeMeaning.checked = $kt.settings.closeMeaning;
             this._closeHint.checked = $kt.settings.closeHint;
-            $kt.uiHelper.setMeaningOpen(!$kt.settings.closeMeaning);
-            $kt.uiHelper.setHintOpen(!$kt.settings.closeHint);
         }
 
         _bgmVolumeChanged(newVolume) {
@@ -700,16 +691,6 @@ var $kt = $kt || {};
 
         _seVolumeChanged(newVolume) {
             $kt.settings.seVolume = newVolume;
-        }
-
-        _closeMeaningChanged(newValue) {
-            $kt.settings.closeMeaning = newValue;
-            $kt.uiHelper.setMeaningOpen(!newValue);
-        }
-
-        _closeHintChanged(newValue) {
-            $kt.settings.closeHint = newValue;
-            $kt.uiHelper.setHintOpen(!newValue);
         }
 
     }
@@ -747,14 +728,6 @@ var $kt = $kt || {};
             element.style.removeProperty('--current-opacity');
         }
 
-        static setMeaningOpen(open) {
-            $kt.ui._meanigsDetails.open = open;
-        }
-
-        static setHintOpen(open) {
-            $kt.ui._hintDetails.open = open;
-        }
-
         static setCloseMeaningSetting(newValue) {
             $kt.settingsUi._closeMeaning.checked = newValue;
             $kt.settings.closeMeaning = newValue;
@@ -782,10 +755,33 @@ var $kt = $kt || {};
             $kt.ui.focusAnswerInput();
         }
 
+        static connectCheckboxesToDetails() {
+            [
+                [$kt.settingsUi._closeMeaning, $kt.ui._meanigsDetails, $kt.settings.closeMeaning, value => $kt.settings.closeMeaning = value],
+                [$kt.settingsUi._closeHint, $kt.ui._hintDetails, $kt.settings.closeHint, value => $kt.settings.closeHint = value]
+            ].forEach(([checkbox, details, initValue, changeListener]) => $kt.uiHelper._connectCheckboxToDetails(checkbox, details, initValue, changeListener));
+        }
+
+        static _connectCheckboxToDetails(checkbox, details, initValue, changeListener) {
+            checkbox.checked = initValue;
+            details.open = !initValue;
+            
+            checkbox.addEventListener('change', () => changeListener(checkbox.checked));
+            checkbox.addEventListener('change', () => details.open = !checkbox.checked);
+
+            const summary = details.firstElementChild;
+            // The open status updates after the click,
+            // so if its opening open = false,
+            // if closing open = true
+            summary.addEventListener('click', () => changeListener(details.open));
+            summary.addEventListener('click', () => checkbox.checked = details.open);
+        }
+
     }
 
     $kt.uiHelper = KantoreUiHelper;
     $kt.ui = new KantoreUi();
     $kt.settingsUi = new KantoreSettingsUi();
+    $kt.uiHelper.connectCheckboxesToDetails();
 
 })();
