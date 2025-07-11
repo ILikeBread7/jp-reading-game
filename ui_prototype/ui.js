@@ -105,46 +105,11 @@ var $kt = $kt || {};
         }
 
         showLoading() {
-            this.showOverlayElement(this._loadingDiv);
-        }
-        
-        /**
-         * 
-         * @param {HTMLElement} element 
-         * @param {HTMLElement} [elementToFocus]
-         */
-        showOverlayElement(element, elementToFocus) {
-            element.style.visibility = 'visible';
-            element.style.setProperty('--current-opacity', 'var(--visible-opacity)');
-
-            if (elementToFocus) {
-                element.ontransitionend = event => {
-                    if (event.target !== element) {
-                        return;
-                    }
-                    elementToFocus.focus({ focusVisible: true });
-                    element.ontransitionend = null;
-                };
-            } else {
-                this._answerInput.blur();
-            }
+            $kt.uiHelper.showOverlayElement(this._loadingDiv);
         }
 
         hideLoading() {
-            this.hideOverlayElement(this._loadingDiv);
-        }
-
-        hideOverlayElement(element) {
-            element.style.removeProperty('visibility');
-            element.style.removeProperty('--current-opacity');
-        }
-
-        setMeaningOpen(open) {
-            this._meanigsDetails.open = open;
-        }
-
-        setHintOpen(open) {
-            this._hintDetails.open = open;
+            $kt.uiHelper.hideOverlayElement(this._loadingDiv);
         }
 
         _moveLevelExpDivAbove() {
@@ -318,7 +283,7 @@ var $kt = $kt || {};
                 return;
             }
 
-            $kt.ui.showLevelExp('Level 2: か行', 123, 5, 12, 12, 48, [
+            this.showLevelExp('Level 2: か行', 123, 5, 12, 12, 48, [
                 { oldExpPercentage: 20, newExpPercentage: 100, addedExp: 3 },
                 { char: 'か', oldExpPercentage: 10, newExpPercentage: 100, addedExp: 1 },
                 { char: 'き', oldExpPercentage: 20, newExpPercentage: 40, addedExp: 2 }
@@ -378,10 +343,10 @@ var $kt = $kt || {};
         }
 
         _documentTabEventListener() {
-            if (this.settings.isSettingsVisible()) {
-                this.settings.hideSettings();
+            if ($kt.uiHelper.isSettingsVisible()) {
+                $kt.uiHelper.hideSettings();
             } else {
-                this.settings.showSettings();
+                $kt.uiHelper.showSettings();
             }
         }
 
@@ -458,9 +423,9 @@ var $kt = $kt || {};
                         }
 
                         if (details === this._meanigsDetails) {
-                            this.settings.setCloseMeaningValue(isOpen);
+                            $kt.uiHelper.setCloseMeaningSetting(isOpen);
                         } else {
-                            this.settings.setCloseHintValue(isOpen);
+                            $kt.uiHelper.setCloseHintSetting(isOpen);
                         }
                     })
 
@@ -687,14 +652,10 @@ var $kt = $kt || {};
             this._restoreSavedSettings();
         }
 
-        isSettingsVisible() {
-            return $kt.settingsDiv.checkVisibility({ visibilityProperty: true });
-        }
-
         _getAllElements() {
-            $kt.settingsDiv = document.getElementById('settings');
-            $kt.settingsContainer = document.getElementById('settings-container');
-            $kt.settingsButton = document.getElementById('settings-button');
+            this._settingsDiv = document.getElementById('settings');
+            this._settingsContainer = document.getElementById('settings-container');
+            this._settingsButton = document.getElementById('settings-button');
 
             this._bgmVolume = document.getElementById('bgm-volume');
             this._seVolume = document.getElementById('se-volume');
@@ -707,10 +668,10 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            $kt.settingsButton.addEventListener('click', this.showSettings.bind(this));
-            $kt.settingsDiv.addEventListener('click', e => {
-                if (!$kt.settingsContainer.contains(e.target)) {
-                    this.hideSettings();
+            this._settingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+            this._settingsDiv.addEventListener('click', e => {
+                if (!this._settingsContainer.contains(e.target)) {
+                    $kt.uiHelper.hideSettings();
                 }
             });
             
@@ -721,7 +682,7 @@ var $kt = $kt || {};
             this._closeHint.addEventListener('change', e => this._closeHintChanged(e.target.checked));
             
             this._backToMenu.addEventListener('click', () => console.log('Back to menu!'));
-            this._returnToGame.addEventListener('click', this.hideSettings.bind(this));
+            this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
         }
 
         _restoreSavedSettings() {
@@ -729,8 +690,8 @@ var $kt = $kt || {};
             this._seVolume.value = $kt.settings.seVolume;
             this._closeMeaning.checked = $kt.settings.closeMeaning;
             this._closeHint.checked = $kt.settings.closeHint;
-            $kt.ui.setMeaningOpen(!$kt.settings.closeMeaning);
-            $kt.ui.setHintOpen(!$kt.settings.closeHint);
+            $kt.uiHelper.setMeaningOpen(!$kt.settings.closeMeaning);
+            $kt.uiHelper.setHintOpen(!$kt.settings.closeHint);
         }
 
         _bgmVolumeChanged(newVolume) {
@@ -743,36 +704,88 @@ var $kt = $kt || {};
 
         _closeMeaningChanged(newValue) {
             $kt.settings.closeMeaning = newValue;
-            $kt.ui.setMeaningOpen(!newValue);
+            $kt.uiHelper.setMeaningOpen(!newValue);
         }
 
         _closeHintChanged(newValue) {
             $kt.settings.closeHint = newValue;
-            $kt.ui.setHintOpen(!newValue);
+            $kt.uiHelper.setHintOpen(!newValue);
         }
 
-        setCloseMeaningValue(newValue) {
-            this._closeMeaning.checked = newValue;
+    }
+
+    // Has access to privete fields of
+    // KantoreUi and KantoreSettingsUi
+    // to facilitate communication
+    // between the two (friend class)
+    class KantoreUiHelper {
+
+        /**
+         * 
+         * @param {HTMLElement} element 
+         * @param {HTMLElement} [elementToFocus]
+         */
+        static showOverlayElement(element, elementToFocus) {
+            element.style.visibility = 'visible';
+            element.style.setProperty('--current-opacity', 'var(--visible-opacity)');
+
+            if (elementToFocus) {
+                element.ontransitionend = event => {
+                    if (event.target !== element) {
+                        return;
+                    }
+                    elementToFocus.focus({ focusVisible: true });
+                    element.ontransitionend = null;
+                };
+            } else {
+                $kt.ui._answerInput.blur();
+            }
+        }
+
+        static hideOverlayElement(element) {
+            element.style.removeProperty('visibility');
+            element.style.removeProperty('--current-opacity');
+        }
+
+        static setMeaningOpen(open) {
+            $kt.ui._meanigsDetails.open = open;
+        }
+
+        static setHintOpen(open) {
+            $kt.ui._hintDetails.open = open;
+        }
+
+        static setCloseMeaningSetting(newValue) {
+            $kt.settingsUi._closeMeaning.checked = newValue;
             $kt.settings.closeMeaning = newValue;
         }
 
-        setCloseHintValue(newValue) {
-            this._closeHint.checked = newValue;
+        static setCloseHintSetting(newValue) {
+            $kt.settingsUi._closeHint.checked = newValue;
             $kt.settings.closeHint = newValue;
         }
 
-        showSettings() {
-            $kt.ui.showOverlayElement($kt.settingsDiv, this._returnToGame);
+        static isSettingsVisible() {
+            return $kt.settingsUi._settingsDiv.checkVisibility({ visibilityProperty: true });
         }
 
-        hideSettings() {
-            $kt.ui.hideOverlayElement($kt.settingsDiv);
+        static showSettings() {
+            $kt.uiHelper.showOverlayElement($kt.settingsUi._settingsDiv, $kt.settingsUi._returnToGame);
+        }
+
+        static hideSettings() {
+            $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
+            $kt.uiHelper.focusAnswerInput();
+        }
+
+        static focusAnswerInput() {
             $kt.ui.focusAnswerInput();
         }
 
     }
 
+    $kt.uiHelper = KantoreUiHelper;
     $kt.ui = new KantoreUi();
-    $kt.ui.settings = new KantoreSettingsUi();
+    $kt.settingsUi = new KantoreSettingsUi();
 
 })();
