@@ -708,6 +708,7 @@ var $kt = $kt || {};
 
         _seVolumeChanged(newVolume) {
             $kt.settings.seVolume = newVolume;
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
         }
 
     }
