@@ -641,3 +641,15 @@ button.menu-item {
         top: -0.5em;
     }
 }
+
+#version {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}
+
+#author {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
