@@ -15,6 +15,10 @@ var $kt = $kt || {};
         }
 
         focusAnswerInput() {
+            if (this._isLevelUpVisible()) {
+                return;
+            }
+
             this._answerInput.focus({ preventScroll: true });
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
         }
@@ -342,12 +346,12 @@ var $kt = $kt || {};
                 return;
             }
 
-            if (
-                !this._isLoadingVisible()
-                && !this._isLevelUpVisible()
-                // Is a character, not a special key
-                && key.length === 1 && key.charCodeAt(0) < 127
-            ) {
+            if (this._isLoadingVisible() || this._isLevelUpVisible()) {
+                return;
+            }
+
+            // Is a character, not a special key
+            if (key.length === 1 && key.charCodeAt(0) < 127) {
                 this.focusAnswerInput();
             }
         }
@@ -358,7 +362,16 @@ var $kt = $kt || {};
                 this._gameScene
             ].forEach(scene => scene.style.display = 'none');
             scene.style.display = 'initial';
+            this._removeLevelUpTransitions();
             $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass);
+        }
+        
+        _removeLevelUpTransitions() {
+            [...this._levelUpText.getElementsByClassName('level-up-text-char')]
+                .forEach(this._removeTransition.bind(this));
+            this._removeTransition(this._levelUpText);
+            this._removeTransition(this._levelUpHint);
+            this._removeTransition(this._levelUpContainer);
         }
 
         _documentTabEventListener() {
@@ -402,6 +415,10 @@ var $kt = $kt || {};
         }
         
         _documentClickEventListener(event) {
+            if ($kt.uiHelper.isSettingsVisible()) {
+                return;
+            }
+
             const target = event.target;
             
             if (this._isLevelUpHintVisible() && !this._levelUpHint.contains(target)) {

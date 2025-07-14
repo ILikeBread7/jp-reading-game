@@ -13,6 +13,7 @@
     --question-z-index: 1;
     --settings-button-z-index: 2;
     --overlays-z-index: 3;
+    --settings-z-index: 4;
 
     --info-width: 50%;
     --info-min-width: 18em;
@@ -614,4 +615,8 @@ button.menu-item {
     100% {
         opacity: 1;
     }
+}
+
+#settings {
+    z-index: var(--settings-z-index);
 }
