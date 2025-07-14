@@ -25,8 +25,8 @@
                 <input type="range" class="menu-item" id="bgm-volume" name="bgm-volume" min="0" max="1" step="0.1" value="1"/>
                 <label class="range-input-label" for="se-volume">SE volume:</label>
                 <input type="range" class="menu-item" id="se-volume" name="se-volume" min="0" max="1" step="0.1" value="1"/>
-                <label class="menu-item-label">Close meaning:<input type="checkbox" id="close-meaning" class="menu-item"/></label>
-                <label class="menu-item-label">Close hint:<input type="checkbox" id="close-hint" class="menu-item"/></label>
+                <label class="menu-item-label">Close meaning:<input type="checkbox" id="close-meaning" class="menu-item menu-checkbox"/></label>
+                <label class="menu-item-label">Close hint:<input type="checkbox" id="close-hint" class="menu-item menu-checkbox"/></label>
                 <button class="menu-item menu-button game-settings-menu-only" id="back-to-main-menu-button">Back to main menu</button>
                 <button class="menu-item menu-button" id="return-to-game-button">Return to the game</button>
             </div>
@@ -45,7 +45,7 @@
             </div>
 
             <div class="centered menu" id="main-menu">
-                <button class="menu-item menu-button" id="start-game-button">Start the game</button>
+                <button class="menu-item menu-button" id="start-game-button" data-se="SE_TEST_2_HIGH">Start the game</button>
                 <button class="menu-item menu-button" id="title-settings-button">Settings</button>
                 <button class="menu-item menu-button" id="credits-button">Credits</button>
                 <div id="title-press-start-text">Click the start button or press ENTER to start</div>

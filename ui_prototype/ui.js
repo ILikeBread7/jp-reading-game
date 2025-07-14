@@ -256,6 +256,7 @@ var $kt = $kt || {};
                 ...document.getElementsByClassName('menu-item-label')
             ].forEach(element => {
                 element.addEventListener('mouseenter', () => $kt.uiHelper.focusSelectedMenuItem(element));
+                
                 if (element.type === 'checkbox') {
                     element.addEventListener('keypress', event => {
                         if (event.key === 'Enter') {
@@ -265,6 +266,12 @@ var $kt = $kt || {};
                     });
                 }
             });
+
+            const menuItemPressedListenerCreator = element => element.addEventListener('click', () => $kt.audio.playEffect($kt.audio.tracks[element.dataset.se || 'SE_TEST_2']));
+            [...document.getElementsByClassName('menu-button')]
+                .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
+            [...document.getElementsByClassName('menu-checkbox')]
+                .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
 
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
