@@ -198,6 +198,8 @@ var $kt = $kt || {};
 
             this._titleScene = document.getElementById('title-screen-container');
             this._titleStartButton = document.getElementById('start-game-button');
+            this._titleSettingsButton = document.getElementById('title-settings-button');
+            this._titleCreditsButton = document.getElementById('credits-button');
             $kt.uiHelper.focusDefaultMenuItem(this._titleStartButton);
             
             this._gameScene = document.getElementById('game-container');
@@ -236,6 +238,8 @@ var $kt = $kt || {};
             document.addEventListener('click', this._documentClickEventListener.bind(this));
 
             this._titleStartButton.addEventListener('click', this._switchToScene.bind(this, this._gameScene));
+            this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+            this._titleCreditsButton.addEventListener('click', () => console.log('Credits!'));
 
             [
                 ...document.getElementsByClassName('menu-item'),

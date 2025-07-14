@@ -600,7 +600,7 @@ button.menu-item {
 
 #title-press-start-text {
     position: absolute;
-    top: 3em;
+    top: 7em;
     width: 100%;
     text-align: center;
     animation: blink 0.5s alternate infinite;
