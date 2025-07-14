@@ -14,6 +14,7 @@ var $kt = $kt || {};
                 SE_TEST_2_LOW: { name: 'Jingle_Achievement_01.ogg', speed: 0.8 }
             };
 
+            // Settings default parameters when missing
             Object.entries(this.tracks).forEach(([track, trackData]) => {
                 trackData.volume ??= 1;
                 trackData.speed ??= 1;
