@@ -172,8 +172,8 @@
         function createDicts(dict) {
             ctx.dict = dict;
 
-            const hiraganaGyous = ['a', 'k', 's', 't', 'n', 'h', 'm', 'y', 'r', 'w', 'nn'];
-            const katakanaGyous = ['A', 'K', 'S', 'N', 'H', 'M', 'T', 'Y', 'R', 'W', 'NN'];
+            const hiraganaGyous = ['a', 'n', 'm', 'r', 'k', 's', 't', 'h', 'y', 'w'];
+            const katakanaGyous = hiraganaGyous.map(gyou => gyou.toUpperCase());
             ctx.gyouDicts = new Map([...hiraganaGyous, ...katakanaGyous]
                 .map(gyou => [gyou, dict.filter(entry => entry.tags.includes(gyou))])
             );
@@ -219,30 +219,28 @@
 
             const hiraganaChars = [
                 'あいうえお',
+                'なにぬねの',
+                'まみむめも',
+                'らりるれろ',
                 'かきくけこがぎぐげご',
                 'さしすせそざじずぜぞ',
                 'たちっつてとだぢづでど',
-                'なにぬねの',
                 'はひふへほばびぶべぼぱぴぷぺぽ',
-                'まみむめも',
                 'やゆよゃゅょ',
-                'らりるれろ',
-                'わを',
-                'ん'
+                'わをん'
             ];
 
             const katakanaChars = [
                 'アイウエオ',
-                'カキクケコガギグゲゴー',
-                'サシスセソザジズゼゾ',
                 'ナニヌネノ',
-                'ハヒフヘホバビブベボパピプペポァィェォ',
                 'マミムメモ',
+                'ラリルレロー',
+                'カキクケコガギグゲゴ',
+                'サシスセソザジズゼゾ',
                 'タチッツテトダヂヅデドゥ',
+                'ハヒフヘホバビブベボパピプペポァィェォ',
                 'ヤユヨャュョ',
-                'ラリルレロ',
-                'ワヲ',
-                'ン'
+                'ワヲン'
             ];
 
             const kanjiLevelChars = [

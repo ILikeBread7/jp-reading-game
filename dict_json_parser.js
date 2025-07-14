@@ -308,30 +308,28 @@ LEVEL_KANJI.forEach((level, index) => {
 
 const HIRAGANA = [
     { tag: 'a', chars: 'あいうえお' },
+    { tag: 'n', chars: 'なにぬねの' },
+    { tag: 'm', chars: 'まみむめも' },
+    { tag: 'r', chars: 'らりるれろ' },
     { tag: 'k', chars: 'かきくけこがぎぐげご' },
     { tag: 's', chars: 'さしすせそざじずぜぞ' },
     { tag: 't', chars: 'たちっつてとだぢづでど' },
-    { tag: 'n', chars: 'なにぬねの' },
     { tag: 'h', chars: 'はひふへほばびぶべぼぱぴぷぺぽ' },
-    { tag: 'm', chars: 'まみむめも' },
     { tag: 'y', chars: 'やゆよゃゅょ' },
-    { tag: 'r', chars: 'らりるれろ' },
-    { tag: 'w', chars: 'わを' },
-    { tag: 'nn', chars: 'ん' }
+    { tag: 'w', chars: 'わをん' }
 ];
 
 const KATAKANA = [
     { tag: 'A' ,chars: 'アイウエオ' },
-    { tag: 'K' ,chars: 'カキクケコガギグゲゴー' },
-    { tag: 'S' ,chars: 'サシスセソザジズゼゾ' },
     { tag: 'N' ,chars: 'ナニヌネノ' },
-    { tag: 'H' ,chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
     { tag: 'M' ,chars: 'マミムメモ' },
+    { tag: 'R' ,chars: 'ラリルレロー' },
+    { tag: 'K' ,chars: 'カキクケコガギグゲゴ' },
+    { tag: 'S' ,chars: 'サシスセソザジズゼゾ' },
+    { tag: 'H' ,chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
     { tag: 'T' ,chars: 'タチッツテトダヂヅデドゥ' },
     { tag: 'Y' ,chars: 'ヤユヨャュョ' },
-    { tag: 'R' ,chars: 'ラリルレロ' },
-    { tag: 'W' ,chars: 'ワヲ' },
-    { tag: 'NN' ,chars: 'ン' }
+    { tag: 'W' ,chars: 'ワヲンヴ' }
 ];
 
 const HIRAGANA_MAP = new Map();
