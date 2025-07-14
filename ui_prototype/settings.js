@@ -5,13 +5,12 @@ var $kt = $kt || {};
     class KantoreSettings {
 
         constructor() {
-            this._settings = $kt.persistence.getSettings()
-                || {
+            this._settings = Object.assign({
                     bgmVolume: 1,
                     seVolume: 1,
                     closeMeaning: false,
                     closeHint: false
-                };
+                }, $kt.persistence.getSettings() || {});
 
 
             // Pass through all get/set property accessors
