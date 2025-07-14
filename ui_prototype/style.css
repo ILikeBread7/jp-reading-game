@@ -585,11 +585,17 @@ button.menu-item {
     display: initial;
 }
 
+#title-sub-text {
+    margin-top: -0.5em;
+}
+
 #title-sub-text,
 #title-text {
     width: 100%;
     text-align: center;
 }
+
+
 
 #title-text {
     font-size: var(--title-font-size);
@@ -619,4 +625,19 @@ button.menu-item {
 
 #settings {
     z-index: var(--settings-z-index);
+}
+
+.float {
+    position: relative;
+    animation: float 1.25s ease-in-out alternate infinite;
+}
+
+@keyframes float {
+    0% {
+        top: 0.5em;
+    }
+
+    100% {
+        top: -0.5em;
+    }
 }
