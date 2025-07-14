@@ -204,7 +204,6 @@ var $kt = $kt || {};
             this._titleStartButton = document.getElementById('start-game-button');
             this._titleSettingsButton = document.getElementById('title-settings-button');
             this._titleCreditsButton = document.getElementById('credits-button');
-            $kt.uiHelper.focusDefaultMenuItem(this._titleStartButton);
             
             this._gameScene = document.getElementById('game-container');
 
@@ -237,6 +236,13 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
+            // Prevents menu item from losing focus when clicked away from a menu
+            document.body.onmousedown = () => {
+                if (document.activeElement.classList.contains('menu-item')) {
+                    return false;
+                }
+            }
+
             document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventListener.bind(this));
@@ -360,8 +366,17 @@ var $kt = $kt || {};
             const scenes = [...document.getElementsByClassName('scene-container')];
             scenes.forEach(scene => scene.style.display = 'none');
             scene.style.display = 'initial';
-            this._removeLevelUpTransitions();
+            this._sceneSpecialHandling(scene);
             $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass, scenes.map(scene => scene.dataset.settingsClass));
+        }
+
+        _sceneSpecialHandling(scene) {
+            switch(scene) {
+                case this._gameScene:
+                    this._removeLevelUpTransitions();
+                    this.focusAnswerInput();
+                break;
+            }
         }
         
         _removeLevelUpTransitions() {
@@ -782,7 +797,7 @@ var $kt = $kt || {};
         static hideSettings() {
             $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
             if ($kt.ui._titleScene.checkVisibility()) {
-                $kt.uiHelper.focusDefaultMenuItem($kt.ui._titleStartButton);
+                $kt.uiHelper.startTitleScene();
             } else {
                 $kt.ui.focusAnswerInput();
             }
@@ -815,6 +830,16 @@ var $kt = $kt || {};
         static backToTitle() {
             $kt.ui._switchToScene($kt.ui._titleScene);
             $kt.uiHelper.hideSettings();
+            $kt.settingsUi._settingsDiv.ontransitionend = event => {
+                if (event.target === $kt.settingsUi._settingsDiv) {
+                    $kt.uiHelper.startTitleScene();
+                    $kt.settingsUi._settingsDiv.ontransitionend = null;
+                }
+            };
+        }
+
+        static startTitleScene() {
+            $kt.uiHelper.focusDefaultMenuItem($kt.ui._titleStartButton);
         }
 
         /**
@@ -854,6 +879,8 @@ var $kt = $kt || {};
     $kt.uiHelper = KantoreUiHelper;
     $kt.ui = new KantoreUi();
     $kt.settingsUi = new KantoreSettingsUi();
+
     $kt.uiHelper.connectCheckboxesToDetails();
+    $kt.uiHelper.startTitleScene();
 
 })();
