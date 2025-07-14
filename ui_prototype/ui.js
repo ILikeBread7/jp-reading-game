@@ -357,13 +357,11 @@ var $kt = $kt || {};
         }
 
         _switchToScene(scene) {
-            [
-                this._titleScene,
-                this._gameScene
-            ].forEach(scene => scene.style.display = 'none');
+            const scenes = [...document.getElementsByClassName('scene-container')];
+            scenes.forEach(scene => scene.style.display = 'none');
             scene.style.display = 'initial';
             this._removeLevelUpTransitions();
-            $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass);
+            $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass, scenes.map(scene => scene.dataset.settingsClass));
         }
         
         _removeLevelUpTransitions() {
@@ -819,12 +817,13 @@ var $kt = $kt || {};
             $kt.uiHelper.hideSettings();
         }
 
-        static setSettingsClass(className) {
-            $kt.settingsUi._settingsDiv.classList.remove(
-                $kt.ui._titleScene.dataset.settingsClass,
-                $kt.ui._gameScene.dataset.settingsClass
-            );
-
+        /**
+         * 
+         * @param {string} className Class name to be added
+         * @param {[string]} allSettingsClassNames Class names to be removed before adding the new one
+         */
+        static setSettingsClass(className, allSettingsClassNames) {
+            $kt.settingsUi._settingsDiv.classList.remove(...allSettingsClassNames);
             $kt.settingsUi._settingsDiv.classList.add(className);
         }
 
