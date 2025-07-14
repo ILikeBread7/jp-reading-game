@@ -245,7 +245,7 @@ var $kt = $kt || {};
                 ...document.getElementsByClassName('menu-item'),
                 ...document.getElementsByClassName('menu-item-label')
             ].forEach(element => {
-                element.addEventListener('mouseenter', () => $kt.uiHelper.focusMenuItem(element));
+                element.addEventListener('mouseenter', () => $kt.uiHelper.focusSelectedMenuItem(element));
                 if (element.type === 'checkbox') {
                     element.addEventListener('keypress', event => {
                         if (event.key === 'Enter') {
@@ -332,10 +332,10 @@ var $kt = $kt || {};
 
             if (this._isMenuItemFocused()) {
                 if (key === 'ArrowUp') {
-                    $kt.uiHelper.focusMenuItem(this._findPreviousMenuItem(document.activeElement));
+                    $kt.uiHelper.focusSelectedMenuItem(this._findPreviousMenuItem(document.activeElement));
                     event.preventDefault();
                 } else if (key === 'ArrowDown') {
-                    $kt.uiHelper.focusMenuItem(this._findNextMenuItem(document.activeElement));
+                    $kt.uiHelper.focusSelectedMenuItem(this._findNextMenuItem(document.activeElement));
                     event.preventDefault();
                 }
 
@@ -776,8 +776,8 @@ var $kt = $kt || {};
             $kt.ui.focusAnswerInput();
         }
 
-        static focusMenuItem(element) {
-            $kt.uiHelper.focusDefaultMenuItem(element);
+        static focusSelectedMenuItem(element) {
+            $kt.uiHelper._focusMenuItem(element);
 
             // This prevents multiple sounds from focusing
             // on the same checkbox over and over again
@@ -789,6 +789,10 @@ var $kt = $kt || {};
         }
 
         static focusDefaultMenuItem(element) {
+            $kt.uiHelper._focusMenuItem(element);
+        }
+
+        static _focusMenuItem(element) {
             element.focus({ focusVisible: true });
         }
 
