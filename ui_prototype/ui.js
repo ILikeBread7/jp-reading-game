@@ -288,7 +288,10 @@ var $kt = $kt || {};
             this._levelUpContainer = document.getElementById('level-up-container');
             this._levelUpText = document.getElementById('level-up-text');
             this._levelUpTextChars = [...document.getElementsByClassName('level-up-text-char')];
-            
+            this._gameClearText = document.getElementById('game-clear-text');
+            this._gameClearTextChars = [...document.getElementsByClassName('game-clear-text-char')];
+            this._gameOverText = document.getElementById('game-over-text');
+
             this._levelUpHint = document.getElementById('level-up-hint');
             this._levelUpHintContent = document.getElementById('level-up-hint-content');
             this._levelUpHintCloseButton = document.getElementById('level-up-hint-close-button');
@@ -488,9 +491,16 @@ var $kt = $kt || {};
                 case this._gameScene:
                     this._moveLevelExpDivBackDown();
                     this._removeLevelUpTransitions();
+                    this._displayAnnouncmentText(this._levelUpText);
                     this.focusAnswerInput();
                 break;
             }
+        }
+
+        _displayAnnouncmentText(textElement) {
+            [...document.getElementsByClassName('announcment-text')]
+                .forEach(text => text.style.display = 'none');
+            textElement.style.removeProperty('display');
         }
         
         _removeLevelUpTransitions() {

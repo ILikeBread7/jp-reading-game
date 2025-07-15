@@ -222,9 +222,15 @@ summary {
     --bigger-by: -5em;
 }
 
+#game-clear-text,
 #level-up-text {
     display: flex;
     gap: 0.25em;
+}
+
+#game-clear-text,
+#level-up-text,
+#game-over-text {
     text-align: center;
     color: var(--palette-secondary-text-color);
     font-size: 3em;
@@ -663,11 +669,11 @@ button.menu-item {
 
 @keyframes float {
     0% {
-        top: 0.5em;
+        top: 0.5rem;
     }
 
     100% {
-        top: -0.5em;
+        top: -0.5rem;
     }
 }
 
