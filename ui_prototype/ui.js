@@ -237,7 +237,7 @@ var $kt = $kt || {};
 
         _addEventListeners() {
             // Prevents menu item from losing focus when clicked away from a menu
-            document.body.onmousedown = event => {
+            document.body.onpointerdown = event => {
                 if (
                     document.activeElement.classList.contains('menu-item')
                     // Fixes clicking on range input
