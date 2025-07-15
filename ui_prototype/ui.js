@@ -208,7 +208,9 @@ var $kt = $kt || {};
             this._titleStartButton = document.getElementById('start-game-button');
             this._titleSettingsButton = document.getElementById('title-settings-button');
             this._titleCreditsButton = document.getElementById('credits-button');
-            
+            this._preTitleText = document.getElementById('pre-title-press-start-text');
+            this._mainMenu = document.getElementById('main-menu');
+
             this._gameScene = document.getElementById('game-container');
 
             this._answerInput = document.getElementById('answer-input');
@@ -341,6 +343,8 @@ var $kt = $kt || {};
                 this._forceCloseLevelUpText();
             } else if (this._isLevelUpHintVisible()) {
                 this._closeLevelUpContainer();
+            } else if (this._isPreTitleVisible()) {
+                this._hidePreTitle();
             } else {
                 this.focusAnswerInput();
                 this._answerInputEnterEventListener(event);
@@ -375,6 +379,14 @@ var $kt = $kt || {};
             if (key.length === 1 && key.charCodeAt(0) < 127) {
                 this.focusAnswerInput();
             }
+        }
+
+        _hidePreTitle() {
+            this._preTitleText.classList.add('hidden');
+            this._mainMenu.classList.remove('hidden');
+            $kt.uiHelper.startTitleScene();
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
         }
 
         _switchToScene(scene) {
@@ -449,6 +461,10 @@ var $kt = $kt || {};
 
             const target = event.target;
             
+            if ($kt.uiHelper.isSettingsButton(target)) {
+                return;
+            }
+
             if (this._isLevelUpHintVisible() && !this._levelUpHint.contains(target)) {
                 this._closeLevelUpContainer();
                 return;
@@ -456,6 +472,11 @@ var $kt = $kt || {};
             
             if (this._isLevelUpTextVisible()) {
                 this._forceCloseLevelUpText();
+                return;
+            }
+
+            if (this._isPreTitleVisible()) {
+                this._hidePreTitle();
                 return;
             }
         }
@@ -575,6 +596,10 @@ var $kt = $kt || {};
 
         _isLevelUpTextVisible() {
             return this._levelUpText.checkVisibility();
+        }
+
+        _isPreTitleVisible() {
+            return this._preTitleText.checkVisibility();
         }
 
         _isFocused(element) {
@@ -874,6 +899,10 @@ var $kt = $kt || {};
             ].forEach(([checkbox, details, initValue, changeListener]) => $kt.uiHelper._connectCheckboxToDetails(checkbox, details, initValue, changeListener));
         }
 
+        static isSettingsButton(element) {
+            return $kt.settingsUi._settingsButton.contains(element);
+        }
+
         static _connectCheckboxToDetails(checkbox, details, initValue, changeListener) {
             checkbox.checked = initValue;
             details.open = !initValue;
@@ -898,6 +927,5 @@ var $kt = $kt || {};
     $kt.uiHelper.connectCheckboxesToDetails();
 
     $kt.ui.hideStartupLoading();
-    $kt.uiHelper.startTitleScene();
 
 })();

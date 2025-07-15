@@ -625,8 +625,20 @@ button.menu-item {
 #title-press-start-text {
     position: absolute;
     top: 7em;
+}
+
+#pre-title-press-start-text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.centered-text {
     width: 100%;
     text-align: center;
+}
+
+.blink {
     animation: blink 0.5s alternate infinite;
 }
 
@@ -669,4 +681,8 @@ button.menu-item {
     position: absolute;
     right: 0px;
     bottom: 0px;
+}
+
+.hidden {
+    display: none;
 }
