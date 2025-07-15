@@ -270,11 +270,8 @@ var $kt = $kt || {};
             this._titleScene = document.getElementById('title-screen-container');
             this._titleStartButton = document.getElementById('start-game-button');
             this._titleSettingsButton = document.getElementById('title-settings-button');
-            this._titleCreditsButton = document.getElementById('credits-button');
-            this._titleCreditsBackButton = document.getElementById('credits-back-button');
             this._preTitleText = document.getElementById('pre-title-press-start-text');
             this._mainMenu = document.getElementById('main-menu');
-            this._creditsContainer = document.getElementById('credits-container');
             this._credits = document.getElementById('credits');
 
             this._gameScene = document.getElementById('game-container');
@@ -330,15 +327,6 @@ var $kt = $kt || {};
 
             this._titleStartButton.addEventListener('click', this._switchToScene.bind(this, this._gameScene));
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
-            this._titleCreditsButton.addEventListener('click', () => {
-                this._mainMenu.classList.add('hidden');
-                $kt.uiHelper.showMenu(this._creditsContainer);
-            });
-            this._titleCreditsBackButton.addEventListener('click', () => {
-                this._creditsContainer.classList.add('hidden');
-                this._mainMenu.classList.remove('hidden');
-                $kt.uiHelper.startTitleScene();
-            });
 
             this._questionAnswerContainer.addEventListener('animationend', event => {
                 if (event.target === this._questionAnswerContainer) {
@@ -373,8 +361,8 @@ var $kt = $kt || {};
                 .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
             [...document.getElementsByClassName('menu-checkbox')]
                 .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
-            [...document.getElementsByClassName('menu-back-button')]
-                .forEach(button => button.addEventListener('click', button => {
+            [...document.getElementsByClassName('menu-destination-button')]
+                .forEach(button => button.addEventListener('click', () => {
                     const destination = document.getElementById(button.dataset.destination);
                     button.parentNode.classList.add('hidden');
                     $kt.uiHelper.showMenu(destination);
