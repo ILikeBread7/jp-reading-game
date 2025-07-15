@@ -705,3 +705,22 @@ button.menu-item {
         top: 0px;
     }
 }
+
+.slide {
+    position: relative;
+    animation: slide 0.25s ease-in-out;
+}
+
+@keyframes slide {
+    0% {
+        top: 0px;
+    }
+
+    50% {
+        top: 1em;
+    }
+
+    100% {
+        top: 0px;
+    }
+}

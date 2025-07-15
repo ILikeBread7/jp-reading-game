@@ -139,7 +139,11 @@ var $kt = $kt || {};
             this._questionAnswerContainer.classList.add('jump');
             this._wrongAnswer.textContent = '';
             this._answerInput.value = '';
+        }
 
+        slideQuestionHint() {
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
+            this._questionHintElement.classList.add('slide');
         }
 
         get answer() {
@@ -276,7 +280,17 @@ var $kt = $kt || {};
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
             this._titleCreditsButton.addEventListener('click', () => console.log('Credits!'));
 
-            this._questionAnswerContainer.addEventListener('animationend', () => this._questionAnswerContainer.classList.remove('jump'));
+            this._questionAnswerContainer.addEventListener('animationend', event => {
+                if (event.target === this._questionAnswerContainer) {
+                    this._questionAnswerContainer.classList.remove('jump');
+                }
+            });
+
+            this._questionHintElement.addEventListener('animationend', event => {
+                if (event.target === this._questionHintElement) {
+                    this._questionHintElement.classList.remove('slide');
+                }
+            });
 
             [
                 ...document.getElementsByClassName('menu-item'),
@@ -339,6 +353,11 @@ var $kt = $kt || {};
 
             if (this.answer === 'Good') {
                 this.jumpRightAnswer();
+                return;
+            }
+
+            if (this.answer === 'Hint') {
+                this.slideQuestionHint();
                 return;
             }
 
