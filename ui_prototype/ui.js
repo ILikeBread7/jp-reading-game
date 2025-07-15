@@ -332,8 +332,7 @@ var $kt = $kt || {};
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
             this._titleCreditsButton.addEventListener('click', () => {
                 this._mainMenu.classList.add('hidden');
-                this._creditsContainer.classList.remove('hidden');
-                $kt.uiHelper.focusDefaultMenuItem(this._titleCreditsBackButton);
+                $kt.uiHelper.showMenu(this._creditsContainer);
             });
             this._titleCreditsBackButton.addEventListener('click', () => {
                 this._creditsContainer.classList.add('hidden');
@@ -374,6 +373,12 @@ var $kt = $kt || {};
                 .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
             [...document.getElementsByClassName('menu-checkbox')]
                 .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
+            [...document.getElementsByClassName('menu-back-button')]
+                .forEach(button => button.addEventListener('click', button => {
+                    const destination = document.getElementById(button.dataset.destination);
+                    button.parentNode.classList.add('hidden');
+                    $kt.uiHelper.showMenu(destination);
+                }));
 
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
@@ -957,16 +962,16 @@ var $kt = $kt || {};
          * @param {HTMLElement} element 
          * @param {HTMLElement} [elementToFocus]
          */
-        static showOverlayElement(element, elementToFocus) {
+        static showOverlayElement(element) {
             element.style.visibility = 'visible';
             element.style.setProperty('--current-opacity', 'var(--visible-opacity)');
 
-            if (elementToFocus) {
+            if (element.firstElementChild.classList.contains('menu')) {
                 element.ontransitionend = event => {
                     if (event.target !== element) {
                         return;
                     }
-                    $kt.uiHelper.focusDefaultMenuItem(elementToFocus);
+                    $kt.uiHelper.showMenu(element.firstElementChild);
                     element.ontransitionend = null;
                 };
             } else {
@@ -994,7 +999,7 @@ var $kt = $kt || {};
         }
 
         static showSettings() {
-            $kt.uiHelper.showOverlayElement($kt.settingsUi._settingsDiv, $kt.settingsUi._returnToGame);
+            $kt.uiHelper.showOverlayElement($kt.settingsUi._settingsDiv);
         }
 
         static hideSettings() {
@@ -1042,7 +1047,13 @@ var $kt = $kt || {};
         }
 
         static startTitleScene() {
-            $kt.uiHelper.focusDefaultMenuItem($kt.ui._titleStartButton);
+            $kt.uiHelper.showMenu($kt.ui._mainMenu);
+        }
+
+        static showMenu(menuElement) {
+            const defaultItem = document.getElementById(menuElement.dataset.defaultItem);
+            menuElement.classList.remove('hidden');
+            $kt.uiHelper.focusDefaultMenuItem(defaultItem);
         }
 
         /**
