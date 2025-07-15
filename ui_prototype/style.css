@@ -686,3 +686,22 @@ button.menu-item {
 .hidden {
     display: none;
 }
+
+.jump {
+    position: relative;
+    animation: jump 0.5s ease;
+}
+
+@keyframes jump {
+    0% {
+        top: 0px;
+    }
+
+    50% {
+        top: -2em;
+    }
+
+    100% {
+        top: 0px;
+    }
+}

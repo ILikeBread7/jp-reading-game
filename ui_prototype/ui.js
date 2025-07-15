@@ -45,6 +45,8 @@ var $kt = $kt || {};
             this._questionKanjiElement.textContent = (questionType === $kt.enums.QUESTION_TYPE.KANJI && question.kanji) || question.kana;
             this._questionHintElement.textContent = (questionType === $kt.enums.QUESTION_TYPE.KANJI && question.hint) || '';
             this._meaningContentElement.innerHTML = $kt.templates.questionMeaning(question.sense);
+            this._wrongAnswer.textContent = '';
+            this._answerInput.value = '';
             this.focusAnswerInput();
         }
 
@@ -132,6 +134,18 @@ var $kt = $kt || {};
             this._wrongAnswer.classList.add('shake');
         }
 
+        jumpRightAnswer() {
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
+            this._questionAnswerContainer.classList.add('jump');
+            this._wrongAnswer.textContent = '';
+            this._answerInput.value = '';
+
+        }
+
+        get answer() {
+            return this._answerInput.value;
+        }
+
         get _currentHint() {
             return this._hints[this._currentHintIndex];
         }
@@ -216,6 +230,7 @@ var $kt = $kt || {};
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
 
+            this._questionAnswerContainer = document.getElementById('question-answer-container');
             this._questionKanjiElement = document.getElementById('question-kanji');
             this._questionHintElement = document.getElementById('question-hint');
 
@@ -260,6 +275,8 @@ var $kt = $kt || {};
             this._titleStartButton.addEventListener('click', this._switchToScene.bind(this, this._gameScene));
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
             this._titleCreditsButton.addEventListener('click', () => console.log('Credits!'));
+
+            this._questionAnswerContainer.addEventListener('animationend', () => this._questionAnswerContainer.classList.remove('jump'));
 
             [
                 ...document.getElementsByClassName('menu-item'),
@@ -315,8 +332,13 @@ var $kt = $kt || {};
 
             event.stopPropagation();
 
-            if (this._answerInput.value === 'Bad') {
+            if (this.answer === 'Bad') {
                 this.shakeWrongAnswer('テスト');
+                return;
+            }
+
+            if (this.answer === 'Good') {
+                this.jumpRightAnswer();
                 return;
             }
 
