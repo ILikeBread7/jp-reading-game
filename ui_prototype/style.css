@@ -272,6 +272,23 @@ summary {
     --visible-opacity: 0.75;
 }
 
+.startup-loading {
+    --current-opacity: var(--visible-opacity);
+    animation: startup-loading var(--transition-time) 0.1s forwards;
+}
+
+@keyframes startup-loading {
+    0% {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
 .fade-hidden {
     display: none;
     opacity: 0;

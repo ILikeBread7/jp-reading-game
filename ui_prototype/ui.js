@@ -114,6 +114,10 @@ var $kt = $kt || {};
             $kt.uiHelper.hideOverlayElement(this._loadingDiv);
         }
 
+        hideStartupLoading() {
+            this._loadingDiv.classList.remove('startup-loading');
+        }
+
         _moveLevelExpDivAbove() {
             this._levelExpDiv.style['z-index'] = 'var(--overlays-z-index)';
         }
@@ -892,6 +896,8 @@ var $kt = $kt || {};
     $kt.settingsUi = new KantoreSettingsUi();
 
     $kt.uiHelper.connectCheckboxesToDetails();
+
+    $kt.ui.hideStartupLoading();
     $kt.uiHelper.startTitleScene();
 
 })();
