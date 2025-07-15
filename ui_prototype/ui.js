@@ -430,14 +430,26 @@ var $kt = $kt || {};
 
             if (this._isLevelUpTextVisible()) {
                 this._forceCloseLevelUpText();
-            } else if (this._isLevelUpHintVisible()) {
-                this._closeLevelUpContainer();
-            } else if (this._isPreTitleVisible()) {
-                this._hidePreTitle();
-            } else {
-                this.focusAnswerInput();
-                this._answerInputEnterEventListener(event);
+                return;
             }
+
+            if (this._isLevelUpHintVisible()) {
+                this._closeLevelUpContainer();
+                return;
+            }
+
+            if (this._isGameClearOrGameOverVisible()) {
+                $kt.uiHelper.backToTitle();
+                return;
+            }
+
+            if (this._isPreTitleVisible()) {
+                this._hidePreTitle();
+                return;
+            } 
+            
+            this.focusAnswerInput();
+            this._answerInputEnterEventListener(event);
         }
 
         _charEventListener(event) {
@@ -504,9 +516,10 @@ var $kt = $kt || {};
         }
         
         _removeLevelUpTransitions() {
-            [...this._levelUpText.getElementsByClassName('level-up-text-char')]
+            [ ...this._levelUpTextChars, ...this._gameClearTextChars ]
                 .forEach(this._removeTransition.bind(this));
             this._removeTransition(this._levelUpText);
+            this._removeTransition(this._gameClearText);
             this._removeTransition(this._levelUpHint);
             this._removeTransition(this._levelUpContainer);
         }
@@ -569,6 +582,11 @@ var $kt = $kt || {};
             
             if (this._isLevelUpTextVisible()) {
                 this._forceCloseLevelUpText();
+                return;
+            }
+
+            if (this._isGameClearOrGameOverVisible()) {
+                $kt.uiHelper.backToTitle();
                 return;
             }
 
@@ -693,6 +711,10 @@ var $kt = $kt || {};
 
         _isLevelUpTextVisible() {
             return this._levelUpText.checkVisibility();
+        }
+
+        _isGameClearOrGameOverVisible() {
+            return this._gameClearText.checkVisibility() || this._gameOverText.checkVisibility();
         }
 
         _isPreTitleVisible() {
