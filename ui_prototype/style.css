@@ -209,16 +209,14 @@ summary {
     box-shadow: calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) calc(5 * var(--size-scale)) #000000;
 }
 
-#main-menu,
-#settings-container,
+.menu,
 #level-up-hint {
     width: calc(var(--info-width) + var(--bigger-by));
     max-width: calc(var(--info-max-width) + var(--bigger-by));
     min-width: calc(var(--info-min-width) + var(--bigger-by));
 }
 
-#main-menu,
-#settings-container {
+.menu {
     --bigger-by: -5em;
 }
 
@@ -729,4 +727,10 @@ button.menu-item {
     100% {
         top: 0px;
     }
+}
+
+#credits {
+    max-height: 40vh;
+    overflow-y: auto;
+    white-space: pre-line;
 }

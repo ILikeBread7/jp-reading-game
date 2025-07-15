@@ -271,8 +271,11 @@ var $kt = $kt || {};
             this._titleStartButton = document.getElementById('start-game-button');
             this._titleSettingsButton = document.getElementById('title-settings-button');
             this._titleCreditsButton = document.getElementById('credits-button');
+            this._titleCreditsBackButton = document.getElementById('credits-back-button');
             this._preTitleText = document.getElementById('pre-title-press-start-text');
             this._mainMenu = document.getElementById('main-menu');
+            this._creditsContainer = document.getElementById('credits-container');
+            this._credits = document.getElementById('credits');
 
             this._gameScene = document.getElementById('game-container');
 
@@ -315,6 +318,7 @@ var $kt = $kt || {};
                     document.activeElement.classList.contains('menu-item')
                     // Fixes clicking on range input
                     && !event.target.classList.contains('menu-item')
+                    && event.target !== this._credits
                 ) {
                     return false;
                 }
@@ -326,7 +330,16 @@ var $kt = $kt || {};
 
             this._titleStartButton.addEventListener('click', this._switchToScene.bind(this, this._gameScene));
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
-            this._titleCreditsButton.addEventListener('click', () => console.log('Credits!'));
+            this._titleCreditsButton.addEventListener('click', () => {
+                this._mainMenu.classList.add('hidden');
+                this._creditsContainer.classList.remove('hidden');
+                $kt.uiHelper.focusDefaultMenuItem(this._titleCreditsBackButton);
+            });
+            this._titleCreditsBackButton.addEventListener('click', () => {
+                this._creditsContainer.classList.add('hidden');
+                this._mainMenu.classList.remove('hidden');
+                $kt.uiHelper.startTitleScene();
+            });
 
             this._questionAnswerContainer.addEventListener('animationend', event => {
                 if (event.target === this._questionAnswerContainer) {
@@ -461,6 +474,11 @@ var $kt = $kt || {};
             }
 
             if (this._isMenuItemFocused()) {
+                if (this._isCreditsVisible()) {
+                    this._handleCreditsScrolling(key);
+                    return;
+                }
+
                 if (key === 'ArrowUp') {
                     $kt.uiHelper.focusSelectedMenuItem(this._findPreviousMenuItem(document.activeElement));
                     event.preventDefault();
@@ -480,6 +498,28 @@ var $kt = $kt || {};
             if (key.length === 1 && key.charCodeAt(0) < 127) {
                 this.focusAnswerInput();
             }
+        }
+
+        _handleCreditsScrolling(key) {
+            if (key === 'ArrowLeft' || key === 'ArrowRight') {
+                return;
+            }
+
+            const arrowScroll = 72;
+            const pageScroll = 258;
+
+            let scroll = 0;
+            if (key.startsWith('Arrow')) {
+                scroll = arrowScroll;
+            } else if (key.startsWith('Page')) {
+                scroll = pageScroll;
+            }
+
+            if (key.endsWith('Up')) {
+                scroll *= -1;
+            }
+
+            this._credits.scrollBy({ top: scroll, behavior: 'smooth' });
         }
 
         _hidePreTitle() {
@@ -715,6 +755,10 @@ var $kt = $kt || {};
 
         _isGameClearOrGameOverVisible() {
             return this._gameClearText.checkVisibility() || this._gameOverText.checkVisibility();
+        }
+
+        _isCreditsVisible() {
+            return this._credits.checkVisibility();
         }
 
         _isPreTitleVisible() {
