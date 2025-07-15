@@ -83,6 +83,47 @@ var $kt = $kt || {};
             `;
         }
 
+        /**
+         * 
+         * @param {string} levelName 
+         * @param {number} totalCorrectAnswers 
+         * @returns 
+         */
+        practiceData(levelName, totalCorrectAnswers) {
+            return `
+                <div id="level-name">
+                    ${levelName}
+                </div>
+                <div id="level-total-exp">
+                    Total correct answers: ${totalCorrectAnswers}
+                </div>
+            `;
+        }
+
+        /**
+         * 
+         * @param {string} levelName 
+         * @param {number} currentAnswers 
+         * @param {number} totalQuestions 
+         * @param {number} [currentAnswersPercentage=currentAnswers * 100 / totalQuestions] 
+         * @returns 
+         */
+        arcadeData(levelName, currentAnswers, totalQuestions, currentAnswersPercentage = currentAnswers * 100 / totalQuestions) {
+            return `
+                <div id="level-name">
+                    ${levelName}
+                </div>
+                <div id="level-next-level">
+                    Correct answers: ${currentAnswers} / ${totalQuestions}
+                </div>
+                <div id="level-exp-bars">
+                    <div class="level-exp-container" id="level-current-level-exp-container">
+                        <div class="level-exp-content" id="level-current-level-exp-content" style="width:${currentAnswersPercentage}%;"></div>
+                    </div>
+                </div>
+            `;
+        }
+
         _expMaxSpan() {
             return `
                 <span class="fade-hidden exp-max">

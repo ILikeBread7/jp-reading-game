@@ -108,6 +108,51 @@ var $kt = $kt || {};
             this._growExpBars(expData);
         }
 
+        /**
+         * 
+         * @param {string} levelName 
+         * @param {number} totalCorrectAnswers 
+         */
+        showPracticeData(levelName, totalCorrectAnswers) {
+            this._levelExpDiv.innerHTML = $kt.templates.practiceData(levelName, totalCorrectAnswers);
+        }
+
+        /**
+         * 
+         * @param {string} levelName 
+         * @param {number} currentAnswers 
+         * @param {number} totalQuestions 
+         * @param {number?} oldExpPercentage
+         * @returns 
+         */
+        showArcadeData(levelName, currentAnswers, totalQuestions, oldExpPercentage) {
+            this._levelExpDiv.innerHTML = $kt.templates.arcadeData(levelName, currentAnswers, totalQuestions, oldExpPercentage);
+        }
+
+        /**
+         * 
+         * @param {string} levelName 
+         * @param {number} currentAnswers 
+         * @param {number} totalQuestions 
+         * @returns 
+         */
+        showArcadeExp(levelName, currentAnswers, totalQuestions) {
+            const oldExpPercentage = Math.max(0, (currentAnswers - 1) * 100 / totalQuestions);
+            const newExpPercentage = currentAnswers * 100 / totalQuestions;
+
+            this.showArcadeData(levelName, currentAnswers, totalQuestions, oldExpPercentage);
+            this._moveLevelExpDivAbove();
+
+            // Move the exp div back down after the same time as the fade-in-out animation takes
+            setTimeout(this._moveLevelExpDivBackDown.bind(this), 4000);
+
+            // Force reflow to correctly apply
+            // the growing exp bars transitions
+            void this._levelExpDiv.offsetWidth;
+            
+            this._growExpBars([{ oldExpPercentage, newExpPercentage }]);
+        }
+
         showLoading() {
             $kt.uiHelper.showOverlayElement(this._loadingDiv);
         }
@@ -441,6 +486,7 @@ var $kt = $kt || {};
         _sceneSpecialHandling(scene) {
             switch(scene) {
                 case this._gameScene:
+                    this._moveLevelExpDivBackDown();
                     this._removeLevelUpTransitions();
                     this.focusAnswerInput();
                 break;
