@@ -349,8 +349,7 @@ var $kt = $kt || {};
                 if (element.type === 'checkbox') {
                     element.addEventListener('keypress', event => {
                         if (event.key === 'Enter') {
-                            element.checked = !element.checked;
-                            element.dispatchEvent(new Event('change'));
+                            element.click();
                         }
                     });
                 }
