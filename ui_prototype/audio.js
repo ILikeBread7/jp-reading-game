@@ -41,7 +41,16 @@ var $kt = $kt || {};
          * @param {number} [speed=1] 
          */
         async playEffect(track, volume = 1, speed = 1) {
-            return track.buffer.then(buffer => this._player.playEffect(buffer, track.volume * volume, track.speed * speed));
+            const fulfilledTrackBufferMaybe = await this._getFulfilledPromise(track.buffer);
+            
+            if (fulfilledTrackBufferMaybe) {
+                const buffer = fulfilledTrackBufferMaybe;
+                return this._player.playEffect(buffer, track.volume * volume, track.speed * speed);
+            }
+        }
+
+        async _getFulfilledPromise(promise) {
+            return await Promise.race([promise, Promise.resolve()]);
         }
 
         stopBgm() {
