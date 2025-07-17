@@ -27,8 +27,8 @@
                 <input type="range" class="menu-item" id="se-volume" name="se-volume" min="0" max="1" step="0.1" value="1"/>
                 <label class="menu-item-label">Close meaning:<input type="checkbox" id="close-meaning" class="menu-item menu-checkbox"/></label>
                 <label class="menu-item-label">Close hint:<input type="checkbox" id="close-hint" class="menu-item menu-checkbox"/></label>
-                <label class="input-label game-settings-menu-only" for="hint-select">Hint:</label>
-                <select class="menu-item game-settings-menu-only" name="hint-select" id="hint-select">
+                <label class="input-label game-settings-menu-only" for="settings-hint-select">Hint:</label>
+                <select class="menu-item game-settings-menu-only" name="settings-hint-select" id="settings-hint-select">
                     <!-- Content created dynamically -->
                 </select>
                 <button class="menu-item menu-button game-settings-menu-only" id="back-to-main-menu-button">Back to main menu</button>
@@ -200,6 +200,9 @@
                              <div class="buttons-panel">
                                  <button class="control-button icon-button" id="hint-first-button" title="First hint"><img src="icons/first_page.svg" alt="First hint"/></button>
                                  <button class="control-button icon-button" id="hint-previous-button" title="Previous hint"><img src="icons/chevron_left.svg" alt="Previous hint"/></button>
+                                 <select id="hint-select">
+                                    <!-- Content created dynamically -->
+                                 </select>
                                  <button class="control-button icon-button" id="hint-next-button" title="Next hint"><img src="icons/chevron_right.svg" alt="Next hint"/></button>
                                  <button class="control-button icon-button" id="hint-last-button" title="Latest hint"><img src="icons/last_page.svg" alt="Latest hint"/></button>
                              </div>

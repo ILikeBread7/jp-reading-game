@@ -302,6 +302,7 @@ var $kt = $kt || {};
             this._hintPreviousButton = document.getElementById('hint-previous-button');
             this._hintNextButton = document.getElementById('hint-next-button');
             this._hintLastButton = document.getElementById('hint-last-button');
+            this._hintSelect = document.getElementById('hint-select');
 
             this._hintDetails = document.getElementById('hint');
             this._meanigsDetails = document.getElementById('meaning');
@@ -385,7 +386,7 @@ var $kt = $kt || {};
             );
 
             this._hintLastButton.addEventListener('click', () => 
-                this.selectHint(this._hints.length)
+                this.selectHint(this._hints.length - 1)
             );
         }
 
@@ -395,7 +396,11 @@ var $kt = $kt || {};
         }
 
         _saveMenuItemToRefocus() {
-            if (document.activeElement && document.activeElement.classList.contains('menu-item')) {
+            if (
+                document.activeElement
+                && document.activeElement.tagName !== 'SELECT'
+                && document.activeElement.classList.contains('menu-item')
+            ) {
                 this._elementToReactivate = document.activeElement;
                 this._elementToReactivate.classList.add('to-refocus');
             }
@@ -706,7 +711,7 @@ var $kt = $kt || {};
             }
             
             this._currentHintIndex = clampedHintIndex;
-            $kt.uiHelper.selectHintInSelects(newHintIndex);
+            $kt.uiHelper.selectHintInSelects(clampedHintIndex);
             this._updateHintContent();
         }
 
@@ -912,7 +917,7 @@ var $kt = $kt || {};
             
             this._closeMeaning = document.getElementById('close-meaning');
             this._closeHint = document.getElementById('close-hint');
-            this._hintSelect = document.getElementById('hint-select');
+            this._hintSelect = document.getElementById('settings-hint-select');
 
             this._backToMenu = document.getElementById('back-to-main-menu-button');
             this._returnToGame = document.getElementById('return-to-game-button');
@@ -1084,6 +1089,7 @@ var $kt = $kt || {};
 
         static initializeHintSelects(initialHintsNumber) {
             $kt.settingsUi._hintSelect.innerHTML = '';
+            $kt.ui._hintSelect.innerHTML = '';
             const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
             for (let hintIndex = 0; hintIndex < maxHints; hintIndex++ ) {
                 $kt.uiHelper.addNewHintToSelects(hintIndex);
@@ -1091,20 +1097,26 @@ var $kt = $kt || {};
         }
 
         static addNewHintToSelects(newHintIndex) {
+            this._addNewHintToSelect($kt.settingsUi._hintSelect, newHintIndex);
+            this._addNewHintToSelect($kt.ui._hintSelect, newHintIndex);
+        }
+
+        static _addNewHintToSelect(select ,newHintIndex) {
             const option = document.createElement('option');
             option.value = newHintIndex;
             option.text = $kt.hints[newHintIndex].name;
-            $kt.settingsUi._hintSelect.add(option, 0);
+            select.add(option, 0);
         }
 
         static selectHintInSelects(newHintIndex) {
             $kt.settingsUi._hintSelect.value = newHintIndex;
+            $kt.ui._hintSelect.value = newHintIndex;
         }
 
         static connectHintSelectsToHint() {
-            $kt.settingsUi._hintSelect.addEventListener('change', () => {
-                $kt.ui.selectHint($kt.settingsUi._hintSelect.value);
-            });
+            const changeListener = event => $kt.ui.selectHint(event.target.value);
+            $kt.settingsUi._hintSelect.addEventListener('change', changeListener);
+            $kt.ui._hintSelect.addEventListener('change', changeListener);
         }
 
         static _connectCheckboxToDetails(checkbox, details, initValue, changeListener) {

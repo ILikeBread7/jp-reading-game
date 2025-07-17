@@ -61,13 +61,17 @@ button, select {
     font-size: inherit;
 }
 
-button, input {
-    color: inherit;
+select {
+    color: var(--palette-text-color);
+    border-style: inset;
 }
 
-select {
-    color: #000000;
-    -webkit-text-stroke: initial;
+#hint-select {
+    font-size: 0.9em;
+}
+
+button, input {
+    color: inherit;
 }
 
 #level-exp {
@@ -180,6 +184,7 @@ select {
 
 #hint-content {
     padding: calc(10 * var(--size-scale));
+    padding-top: 1.5em;
 }
 
 .content-group {
@@ -534,6 +539,7 @@ details.closing > summary::before {
     z-index: var(--settings-button-z-index);
 }
 
+select,
 .menu-button {
     background-color: var(--palette-secondary-color);
     transition: background-color var(--default-transition-time);
@@ -541,6 +547,7 @@ details.closing > summary::before {
     height: 1.75em;
 }
 
+select:hover,
 .menu-button:hover {
     background-color: var(--palette-main-color);
 }
@@ -562,8 +569,14 @@ input[type='range']:hover {
     accent-color: var(--palette-main-color);
 }
 
+select,
 button.menu-item {
     border-color: var(--palette-text-color);
+    border-width: 0.125rem;
+}
+
+button.menu-item {
+    border-style: outset;
 }
 
 .menu-item.to-refocus,
