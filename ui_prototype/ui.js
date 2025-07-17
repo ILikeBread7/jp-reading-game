@@ -309,17 +309,7 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            // Prevents menu item from losing focus when clicked away from a menu
-            document.body.onpointerdown = event => {
-                if (
-                    document.activeElement.classList.contains('menu-item')
-                    // Fixes clicking on range input
-                    && !event.target.classList.contains('menu-item')
-                    && event.target !== this._credits
-                ) {
-                    return false;
-                }
-            }
+            this._preventMenuItemUnfocus();
 
             document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
@@ -390,6 +380,25 @@ var $kt = $kt || {};
             this._hintLastButton.addEventListener('click', () => 
                 this._selectHint(this._hints.length)
             );
+        }
+
+        _preventMenuItemUnfocus() {
+            document.body.addEventListener('pointerdown', () => {
+                if (document.activeElement && document.activeElement.classList.contains('menu-item')) {
+                    this._elementToReactivate = document.activeElement;
+                    this._elementToReactivate.classList.add('to-refocus');
+                }
+            });
+
+            document.body.addEventListener('pointerup', () => {
+                if (this._elementToReactivate) {
+                    if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
+                        $kt.uiHelper.focusMenuItem(this._elementToReactivate);
+                    }
+                    this._elementToReactivate.classList.remove('to-refocus');
+                    this._elementToReactivate = null;
+                }
+            });
         }
 
         _answerInputEnterEventListener(event) {
@@ -1003,7 +1012,7 @@ var $kt = $kt || {};
         }
 
         static focusSelectedMenuItem(element) {
-            $kt.uiHelper._focusMenuItem(element);
+            $kt.uiHelper.focusMenuItem(element);
 
             // This prevents multiple sounds from focusing
             // on the same checkbox over and over again
@@ -1015,10 +1024,10 @@ var $kt = $kt || {};
         }
 
         static focusDefaultMenuItem(element) {
-            $kt.uiHelper._focusMenuItem(element);
+            $kt.uiHelper.focusMenuItem(element);
         }
 
-        static _focusMenuItem(element) {
+        static focusMenuItem(element) {
             element.focus({ focusVisible: true });
         }
 

@@ -561,6 +561,7 @@ button.menu-item {
     border-color: var(--palette-text-color);
 }
 
+.menu-item.to-refocus,
 .menu-item:focus {
     z-index: 1;
     outline: none;
