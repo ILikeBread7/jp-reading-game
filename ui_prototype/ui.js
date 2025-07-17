@@ -383,22 +383,25 @@ var $kt = $kt || {};
         }
 
         _preventMenuItemUnfocus() {
-            document.body.addEventListener('pointerdown', () => {
-                if (document.activeElement && document.activeElement.classList.contains('menu-item')) {
-                    this._elementToReactivate = document.activeElement;
-                    this._elementToReactivate.classList.add('to-refocus');
-                }
-            });
+            document.body.addEventListener('pointerdown', this._saveMenuItemToRefocus.bind(this));
+            document.body.addEventListener('pointerup', this._refocusSavedMenuItem.bind(this));
+        }
 
-            document.body.addEventListener('pointerup', () => {
-                if (this._elementToReactivate) {
-                    if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
-                        $kt.uiHelper.focusMenuItem(this._elementToReactivate);
-                    }
-                    this._elementToReactivate.classList.remove('to-refocus');
-                    this._elementToReactivate = null;
+        _saveMenuItemToRefocus() {
+            if (document.activeElement && document.activeElement.classList.contains('menu-item')) {
+                this._elementToReactivate = document.activeElement;
+                this._elementToReactivate.classList.add('to-refocus');
+            }
+        }
+
+        _refocusSavedMenuItem() {
+            if (this._elementToReactivate) {
+                if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
+                    $kt.uiHelper.focusMenuItem(this._elementToReactivate);
                 }
-            });
+                this._elementToReactivate.classList.remove('to-refocus');
+                this._elementToReactivate = null;
+            }
         }
 
         _answerInputEnterEventListener(event) {
@@ -502,25 +505,15 @@ var $kt = $kt || {};
         }
 
         _handleCreditsScrolling(key) {
-            if (key === 'ArrowLeft' || key === 'ArrowRight') {
-                return;
+            if (
+                key.startsWith('Page')
+                || key === 'ArrowUp'
+                || key === 'ArrowDown'
+            ) {
+                this._saveMenuItemToRefocus();
+                this._credits.focus({ focusVisible: false });
+                setTimeout(this._refocusSavedMenuItem.bind(this), 10);
             }
-
-            const arrowScroll = 72;
-            const pageScroll = 258;
-
-            let scroll = 0;
-            if (key.startsWith('Arrow')) {
-                scroll = arrowScroll;
-            } else if (key.startsWith('Page')) {
-                scroll = pageScroll;
-            }
-
-            if (key.endsWith('Up')) {
-                scroll *= -1;
-            }
-
-            this._credits.scrollBy({ top: scroll, behavior: 'smooth' });
         }
 
         _hidePreTitle() {

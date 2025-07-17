@@ -732,6 +732,6 @@ button.menu-item {
 
 #credits {
     max-height: 40vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     white-space: pre-line;
 }
