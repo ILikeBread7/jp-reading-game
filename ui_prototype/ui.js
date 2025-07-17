@@ -188,9 +188,10 @@ var $kt = $kt || {};
             this._answerInput.value = '';
         }
 
-        slideQuestionHint() {
+        slideQuestionHint(newHint) {
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
             this._questionHintElement.classList.add('slide');
+            this._questionHintElement.textContent = newHint;
         }
 
         get answer() {
@@ -424,7 +425,7 @@ var $kt = $kt || {};
             }
 
             if (this.answer === 'Hint') {
-                this.slideQuestionHint();
+                this.slideQuestionHint('てすと');
                 return;
             }
 
