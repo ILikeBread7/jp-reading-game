@@ -1001,7 +1001,11 @@ var $kt = $kt || {};
         static hideSettings() {
             $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
             if ($kt.ui._titleScene.checkVisibility()) {
-                $kt.uiHelper.startTitleScene();
+                if ($kt.ui._credits.checkVisibility()) {
+                    $kt.uiHelper.showMenu($kt.ui._credits.parentNode);
+                } else {
+                    $kt.uiHelper.startTitleScene();
+                }
             } else {
                 $kt.ui.focusAnswerInput();
             }
