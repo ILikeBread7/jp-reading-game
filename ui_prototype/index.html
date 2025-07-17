@@ -21,12 +21,16 @@
         </div>
         <div class="overlay-element title-settings-menu" id="settings">
             <div class="centered menu" id="settings-container" data-default-item="return-to-game-button">
-                <label class="range-input-label" for="bgm-volume">BGM volume:</label>
+                <label class="input-label" for="bgm-volume">BGM volume:</label>
                 <input type="range" class="menu-item" id="bgm-volume" name="bgm-volume" min="0" max="1" step="0.1" value="1"/>
-                <label class="range-input-label" for="se-volume">SE volume:</label>
+                <label class="input-label" for="se-volume">SE volume:</label>
                 <input type="range" class="menu-item" id="se-volume" name="se-volume" min="0" max="1" step="0.1" value="1"/>
                 <label class="menu-item-label">Close meaning:<input type="checkbox" id="close-meaning" class="menu-item menu-checkbox"/></label>
                 <label class="menu-item-label">Close hint:<input type="checkbox" id="close-hint" class="menu-item menu-checkbox"/></label>
+                <label class="input-label game-settings-menu-only" for="hint-select">Hint:</label>
+                <select class="menu-item game-settings-menu-only" name="hint-select" id="hint-select">
+                    <!-- Content created dynamically -->
+                </select>
                 <button class="menu-item menu-button game-settings-menu-only" id="back-to-main-menu-button">Back to main menu</button>
                 <button class="menu-item menu-button" id="return-to-game-button">Return to the game</button>
             </div>

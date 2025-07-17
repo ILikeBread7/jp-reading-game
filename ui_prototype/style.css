@@ -56,13 +56,18 @@ body {
     width: 100%;
 }
 
-button {
+button, select {
     font-family: inherit;
     font-size: inherit;
 }
 
 button, input {
     color: inherit;
+}
+
+select {
+    color: #000000;
+    -webkit-text-stroke: initial;
 }
 
 #level-exp {
@@ -544,7 +549,7 @@ details.closing > summary::before {
     display: grid;
 }
 
-.range-input-label {
+.input-label {
     display: block;
 }
 

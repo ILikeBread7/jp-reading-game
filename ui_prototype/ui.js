@@ -58,7 +58,7 @@ var $kt = $kt || {};
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
             
             this._showHintOnLevelUp = showHint;
-            this._levelUpHintContent.innerHTML = this._currentHint;
+            this._levelUpHintContent.innerHTML = this._currentHintTemplate;
 
             const fadeInTime = 0.5;
             const charTransitionDelayTime = 0.075;
@@ -194,8 +194,8 @@ var $kt = $kt || {};
             return this._answerInput.value;
         }
 
-        get _currentHint() {
-            return this._hints[this._currentHintIndex];
+        get _currentHintTemplate() {
+            return this._hints[this._currentHintIndex].template;
         }
 
         /**
@@ -342,6 +342,14 @@ var $kt = $kt || {};
                         }
                     });
                 }
+
+                if (element.tagName === 'SELECT') {
+                    element.addEventListener('keypress', event => {
+                        if (event.key === 'Enter') {
+                            element.showPicker();
+                        }
+                    });
+                }
             });
 
             const menuItemPressedListenerCreator = element => element.addEventListener('click', () => $kt.audio.playEffect($kt.audio.tracks[element.dataset.se || 'SE_TEST_2']));
@@ -365,19 +373,19 @@ var $kt = $kt || {};
             });
 
             this._hintFirstButton.addEventListener('click', () => 
-                this._selectHint(0)
+                this.selectHint(0)
             );
 
             this._hintPreviousButton.addEventListener('click', () => 
-                this._selectHint(this._currentHintIndex - 1)
+                this.selectHint(this._currentHintIndex - 1)
             );
 
             this._hintNextButton.addEventListener('click', () => 
-                this._selectHint(this._currentHintIndex + 1)
+                this.selectHint(this._currentHintIndex + 1)
             );
 
             this._hintLastButton.addEventListener('click', () => 
-                this._selectHint(this._hints.length)
+                this.selectHint(this._hints.length)
             );
         }
 
@@ -537,6 +545,7 @@ var $kt = $kt || {};
                     this._moveLevelExpDivBackDown();
                     this._removeLevelUpTransitions();
                     this._displayAnnouncmentText(this._levelUpText);
+                    $kt.uiHelper.initializeHintSelects($kt.ui._currentHintIndex + 1);
                     this.focusAnswerInput();
                 break;
             }
@@ -686,7 +695,7 @@ var $kt = $kt || {};
             this._updateHintContent();
         }
 
-        _selectHint(newHintIndex) {
+        selectHint(newHintIndex) {
             if (newHintIndex === this._currentHintIndex) {
                 return;
             }
@@ -697,12 +706,13 @@ var $kt = $kt || {};
             }
             
             this._currentHintIndex = clampedHintIndex;
+            $kt.uiHelper.selectHintInSelects(newHintIndex);
             this._updateHintContent();
         }
 
         _updateHintContent() {
             this._updateHintButtons();
-            this._hintContent.innerHTML = this._currentHint;
+            this._hintContent.innerHTML = this._currentHintTemplate;
         }
 
         _updateHintButtons() {
@@ -718,7 +728,8 @@ var $kt = $kt || {};
             const newHintIndex = Math.min(this._latestUnlockedHintIndex + 1, this._hints.length - 1);
             if (newHintIndex > this._latestUnlockedHintIndex) {
                 this._latestUnlockedHintIndex = newHintIndex;
-                this._selectHint(newHintIndex);
+                $kt.uiHelper.addNewHintToSelects(newHintIndex);
+                this.selectHint(newHintIndex);
                 return true;
             }
 
@@ -901,7 +912,8 @@ var $kt = $kt || {};
             
             this._closeMeaning = document.getElementById('close-meaning');
             this._closeHint = document.getElementById('close-hint');
-            
+            this._hintSelect = document.getElementById('hint-select');
+
             this._backToMenu = document.getElementById('back-to-main-menu-button');
             this._returnToGame = document.getElementById('return-to-game-button');
         }
@@ -1070,6 +1082,31 @@ var $kt = $kt || {};
             return $kt.settingsUi._settingsButton.contains(element);
         }
 
+        static initializeHintSelects(initialHintsNumber) {
+            $kt.settingsUi._hintSelect.innerHTML = '';
+            const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
+            for (let hintIndex = 0; hintIndex < maxHints; hintIndex++ ) {
+                $kt.uiHelper.addNewHintToSelects(hintIndex);
+            }
+        }
+
+        static addNewHintToSelects(newHintIndex) {
+            const option = document.createElement('option');
+            option.value = newHintIndex;
+            option.text = $kt.hints[newHintIndex].name;
+            $kt.settingsUi._hintSelect.add(option, 0);
+        }
+
+        static selectHintInSelects(newHintIndex) {
+            $kt.settingsUi._hintSelect.value = newHintIndex;
+        }
+
+        static connectHintSelectsToHint() {
+            $kt.settingsUi._hintSelect.addEventListener('change', () => {
+                $kt.ui.selectHint($kt.settingsUi._hintSelect.value);
+            });
+        }
+
         static _connectCheckboxToDetails(checkbox, details, initValue, changeListener) {
             checkbox.checked = initValue;
             details.open = !initValue;
@@ -1092,6 +1129,7 @@ var $kt = $kt || {};
     $kt.settingsUi = new KantoreSettingsUi();
 
     $kt.uiHelper.connectCheckboxesToDetails();
+    $kt.uiHelper.connectHintSelectsToHint();
 
     $kt.ui.hideStartupLoading();
 
