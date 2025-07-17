@@ -2,6 +2,8 @@ var $kt = $kt || {};
 
 (() => {
 
+    const REFOCUS_TIME = 10;
+
     // KantoreUiHelper has access to private fields
     // of this class (friend class)
     class KantoreUi {
@@ -512,7 +514,7 @@ var $kt = $kt || {};
             ) {
                 this._saveMenuItemToRefocus();
                 this._credits.focus({ focusVisible: false });
-                setTimeout(this._refocusSavedMenuItem.bind(this), 10);
+                setTimeout(this._refocusSavedMenuItem.bind(this), REFOCUS_TIME);
             }
         }
 
