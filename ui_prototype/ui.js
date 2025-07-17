@@ -17,10 +17,6 @@ var $kt = $kt || {};
         }
 
         focusAnswerInput() {
-            if (this._isLevelUpVisible()) {
-                return;
-            }
-
             this._answerInput.focus({ preventScroll: true });
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth'});
         }
