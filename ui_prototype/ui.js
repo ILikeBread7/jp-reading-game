@@ -958,12 +958,13 @@ var $kt = $kt || {};
             element.style.visibility = 'visible';
             element.style.setProperty('--current-opacity', 'var(--visible-opacity)');
 
-            if (element.firstElementChild.classList.contains('menu')) {
+            const firstChildElement = element.firstElementChild;
+            if (firstChildElement && firstChildElement.classList.contains('menu')) {
                 element.ontransitionend = event => {
                     if (event.target !== element) {
                         return;
                     }
-                    $kt.uiHelper.showMenu(element.firstElementChild);
+                    $kt.uiHelper.showMenu(firstChildElement);
                     element.ontransitionend = null;
                 };
             } else {
