@@ -14,6 +14,7 @@ var $kt = $kt || {};
             this._animateDetails();
             this._setupHints();
             this._initBackgroundPaticles();
+            this._restoreSavedSettings();
         }
 
         focusAnswerInput() {
@@ -190,6 +191,35 @@ var $kt = $kt || {};
             this._questionHintElement.textContent = newHint;
         }
 
+        /**
+         * 
+         * @param {'auto'|'always'|'never'} visibility 
+         */
+        adjustMobileOnlyElementsVisibility(visibility) {
+            const adjustVisibilityFunction = this._createAdjustVisibilityFunction(visibility);
+            [...document.getElementsByClassName('mobile-only')]
+                .forEach(adjustVisibilityFunction);
+        }
+
+        /**
+         * 
+         * @param {'auto'|'always'|'never'} visibility 
+         */
+        _createAdjustVisibilityFunction(visibility) {
+            switch (visibility) {
+                case 'auto':
+                    return element => element.style.removeProperty('display');
+                case 'never':
+                    return element => element.style.display = 'none';
+                case 'always':
+                    return element => element.style.display = 'initial';
+            }
+        }
+
+        _restoreSavedSettings() {
+            this.adjustMobileOnlyElementsVisibility($kt.settings.showSubmitButton);
+        }
+
         get answer() {
             return this._answerInput.value;
         }
@@ -277,6 +307,7 @@ var $kt = $kt || {};
 
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
+            this._answerSubmitButton = document.getElementById('answer-submit-button');
 
             this._questionAnswerContainer = document.getElementById('question-answer-container');
             this._questionKanjiElement = document.getElementById('question-kanji');
@@ -314,6 +345,12 @@ var $kt = $kt || {};
             document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
             document.addEventListener('keydown', this._charEventListener.bind(this));
             document.addEventListener('click', this._documentClickEventListener.bind(this));
+
+            this._answerSubmitButton.addEventListener('click', event => {
+                event.stopPropagation();
+                this._submitAnswer();
+                this.focusAnswerInput();
+            });
 
             this._titleStartButton.addEventListener('click', this._switchToScene.bind(this, this._gameScene));
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
@@ -422,7 +459,10 @@ var $kt = $kt || {};
             }
 
             event.stopPropagation();
+            this._submitAnswer();
+        }
 
+        _submitAnswer() {
             if (this.answer === 'Bad') {
                 this.shakeWrongAnswer('テスト');
                 return;
@@ -918,6 +958,7 @@ var $kt = $kt || {};
             this._closeMeaning = document.getElementById('close-meaning');
             this._closeHint = document.getElementById('close-hint');
             this._hintSelect = document.getElementById('settings-hint-select');
+            this._submitButtonSelect = document.getElementById('settings-submit-button-select');
 
             this._backToMenu = document.getElementById('back-to-main-menu-button');
             this._returnToGame = document.getElementById('return-to-game-button');
@@ -930,6 +971,8 @@ var $kt = $kt || {};
                     $kt.uiHelper.hideSettings();
                 }
             });
+
+            this._submitButtonSelect.addEventListener('change', e => $kt.settings.showSubmitButton = e.target.value);
             
             this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
             this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
@@ -943,6 +986,7 @@ var $kt = $kt || {};
             this._seVolume.value = $kt.settings.seVolume;
             this._closeMeaning.checked = $kt.settings.closeMeaning;
             this._closeHint.checked = $kt.settings.closeHint;
+            this._submitButtonSelect.value = $kt.settings.showSubmitButton;
         }
 
         _bgmVolumeChanged(newVolume) {

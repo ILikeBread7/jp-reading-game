@@ -753,6 +753,10 @@ button.menu-item {
     white-space: pre-line;
 }
 
+#answer-submit-button {
+    width: 10em;
+}
+
 @media (max-width: 980px) {
     #level-exp {
         position: relative;
@@ -760,6 +764,12 @@ button.menu-item {
         right: initial;
         left: calc(100% - 20px);
         transform: translateX(-100%);
+    }
+}
+
+@media (width > 980px) {
+    .mobile-only {
+        display: none;
     }
 }
 

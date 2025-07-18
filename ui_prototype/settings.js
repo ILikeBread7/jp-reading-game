@@ -9,7 +9,8 @@ var $kt = $kt || {};
                     bgmVolume: 1,
                     seVolume: 1,
                     closeMeaning: false,
-                    closeHint: false
+                    closeHint: false,
+                    showSubmitButton: 'auto'
                 }, $kt.persistence.getSettings() || {});
 
 
@@ -44,6 +45,15 @@ var $kt = $kt || {};
         set seVolume(value) {
             this._settings.seVolume = value;
             $kt.audio.seVolumeChange(this._settings.seVolume);
+            this._saveSettings();
+        }
+
+        /**
+         * @param {'auto'|'always'|'never'} value 
+         */
+        set showSubmitButton(value) {
+            this._settings.showSubmitButton = value;
+            $kt.ui.adjustMobileOnlyElementsVisibility(value);
             this._saveSettings();
         }
 

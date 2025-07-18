@@ -26,6 +26,12 @@
                 <input type="range" class="menu-item" id="bgm-volume" name="bgm-volume" min="0" max="1" step="0.1" value="1"/>
                 <label class="input-label" for="se-volume">SE volume:</label>
                 <input type="range" class="menu-item" id="se-volume" name="se-volume" min="0" max="1" step="0.1" value="1"/>
+                <label class="input-label" for="settings-submit-button-select">Show submit button:</label>
+                <select class="menu-item" name="settings-submit-button-select" id="settings-submit-button-select">
+                    <option value="auto">Auto</option>
+                    <option value="always">Always show</option>
+                    <option value="never">Always hide</option>
+                </select>
                 <label class="menu-item-label">Close meaning:<input type="checkbox" id="close-meaning" class="menu-item menu-checkbox"/></label>
                 <label class="menu-item-label">Close hint:<input type="checkbox" id="close-hint" class="menu-item menu-checkbox"/></label>
                 <label class="input-label game-settings-menu-only" for="settings-hint-select">Hint:</label>
@@ -181,6 +187,7 @@
                          <!-- Content created dynamically -->
                      </div>
                      <input id="answer-input"></input>
+                     <button class="menu-button mobile-only" id="answer-submit-button">Submit</button>
                  </div>
              </div>
              <div id="info">
