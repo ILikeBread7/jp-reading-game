@@ -635,8 +635,6 @@ button.menu-item {
     text-align: center;
 }
 
-
-
 #title-text {
     font-size: var(--title-font-size);
 }
@@ -753,4 +751,50 @@ button.menu-item {
     max-height: 40vh;
     overflow-y: scroll;
     white-space: pre-line;
+}
+
+@media (max-width: 980px) {
+    #level-exp {
+        position: relative;
+        width: fit-content;
+        right: initial;
+        left: calc(100% - 20px);
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 600px) {
+    #title-text {
+        font-size: calc(var(--title-font-size) * 0.6);
+    }
+
+    #title-sub-text {
+        font-size: calc(var(--title-sub-font-size) * 0.7);
+    }
+}
+
+@media (max-width: 385px) {
+    #title-text {
+        font-size: calc(var(--title-font-size) * 0.55);
+    }
+
+    #title-sub-text {
+        font-size: calc(var(--title-sub-font-size) * 0.67);
+    }
+}
+
+@media (max-height: 525px) {
+    #credits-container {
+        margin-top: 10vh;
+    }
+}
+
+@media (max-height: 360px) {
+    #main-menu {
+        margin-top: 5vh;
+    }
+
+    #title-press-start-text {
+        top: calc(50% + 5em);
+    }
 }
