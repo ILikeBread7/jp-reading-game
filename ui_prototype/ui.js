@@ -1091,7 +1091,7 @@ var $kt = $kt || {};
             $kt.settingsUi._hintSelect.innerHTML = '';
             $kt.ui._hintSelect.innerHTML = '';
             const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
-            for (let hintIndex = 0; hintIndex < maxHints; hintIndex++ ) {
+            for (let hintIndex = 0; hintIndex < maxHints; hintIndex++) {
                 $kt.uiHelper.addNewHintToSelects(hintIndex);
             }
         }
