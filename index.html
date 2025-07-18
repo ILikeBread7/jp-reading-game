@@ -172,8 +172,8 @@
         function createDicts(dict) {
             ctx.dict = dict;
 
-            const hiraganaGyous = ['a', 'n', 'm', 'r', 'k', 's', 't', 'h', 'y', 'w'];
-            const katakanaGyous = hiraganaGyous.map(gyou => gyou.toUpperCase());
+            const hiraganaGyous = ['a', 'm', 'r', 'n', 'k', 's', 't', 'h', 'y', 'w'];
+            const katakanaGyous = ['A', 'W', 'M', 'R', 'N', 'K', 'S', 'T', 'H', 'Y'];
             ctx.gyouDicts = new Map([...hiraganaGyous, ...katakanaGyous]
                 .map(gyou => [gyou, dict.filter(entry => entry.tags.includes(gyou))])
             );
@@ -219,9 +219,9 @@
 
             const hiraganaChars = [
                 'あいうえお',
-                'なにぬねの',
                 'まみむめも',
                 'らりるれろ',
+                'なにぬねの',
                 'かきくけこがぎぐげご',
                 'さしすせそざじずぜぞ',
                 'たちっつてとだぢづでど',
@@ -232,15 +232,15 @@
 
             const katakanaChars = [
                 'アイウエオ',
-                'ナニヌネノ',
                 'マミムメモ',
                 'ラリルレロー',
+                'ナニヌネノ',
                 'カキクケコガギグゲゴ',
                 'サシスセソザジズゼゾ',
                 'タチッツテトダヂヅデドゥ',
                 'ハヒフヘホバビブベボパピプペポァィェォ',
                 'ヤユヨャュョ',
-                'ワヲン'
+                'ワヲンヴ'
             ];
 
             const kanjiLevelChars = [

@@ -308,9 +308,9 @@ LEVEL_KANJI.forEach((level, index) => {
 
 const HIRAGANA = [
     { tag: 'a', chars: 'あいうえお' },
-    { tag: 'n', chars: 'なにぬねの' },
     { tag: 'm', chars: 'まみむめも' },
     { tag: 'r', chars: 'らりるれろ' },
+    { tag: 'n', chars: 'なにぬねの' },
     { tag: 'k', chars: 'かきくけこがぎぐげご' },
     { tag: 's', chars: 'さしすせそざじずぜぞ' },
     { tag: 't', chars: 'たちっつてとだぢづでど' },
@@ -321,9 +321,9 @@ const HIRAGANA = [
 
 const KATAKANA = [
     { tag: 'A' ,chars: 'アイウエオ' },
-    { tag: 'N' ,chars: 'ナニヌネノ' },
     { tag: 'M' ,chars: 'マミムメモ' },
     { tag: 'R' ,chars: 'ラリルレロー' },
+    { tag: 'N' ,chars: 'ナニヌネノ' },
     { tag: 'K' ,chars: 'カキクケコガギグゲゴ' },
     { tag: 'S' ,chars: 'サシスセソザジズゼゾ' },
     { tag: 'H' ,chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
