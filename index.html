@@ -259,13 +259,12 @@
             ctx.kanjiLevelChars = kanjiLevelChars;
             console.log(ctx);
 
-            const kanaChars = [...hiraganaChars, ...katakanaChars];
-            for (let i = 0; i < kanaChars.length; i++) {
-                const chars = [...kanaChars[i]];
+            for (let i = 0; i < ctx.levelChars.length; i++) {
+                const chars = [...ctx.levelChars[i]];
                 console.log(
-                    kanaChars[i],
-                    chars.filter(c => !(ctx.levelDicts[i].MAIN_DICT || ctx.levelDicts[i]).find(q => [...q.kana.reb].includes(c)))
-                )
+                    ctx.levelChars[i],
+                    chars.map(c => `${c}: ${(ctx.levelDicts[i].MAIN_DICT || ctx.levelDicts[i]).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c)).length}`)
+                );
             } 
         }
 
