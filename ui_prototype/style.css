@@ -647,7 +647,8 @@ button.menu-item {
 
 #title-press-start-text {
     position: absolute;
-    top: 7em;
+    top: calc(50% + 4em);
+    width: 100%;
 }
 
 #pre-title-press-start-text {

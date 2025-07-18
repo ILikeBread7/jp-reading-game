@@ -361,7 +361,7 @@ var $kt = $kt || {};
             [...document.getElementsByClassName('menu-destination-button')]
                 .forEach(button => button.addEventListener('click', () => {
                     const destination = document.getElementById(button.dataset.destination);
-                    button.parentNode.classList.add('hidden');
+                    $kt.uiHelper.hideMenu(button.parentNode);
                     $kt.uiHelper.showMenu(destination);
                 }));
 
@@ -530,7 +530,7 @@ var $kt = $kt || {};
 
         _hidePreTitle() {
             this._preTitleText.classList.add('hidden');
-            this._mainMenu.classList.remove('hidden');
+            $kt.uiHelper.showMenu(this._mainMenu);
             $kt.uiHelper.startTitleScene();
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
             $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
@@ -1063,7 +1063,15 @@ var $kt = $kt || {};
         static showMenu(menuElement) {
             const defaultItem = document.getElementById(menuElement.dataset.defaultItem);
             menuElement.classList.remove('hidden');
+            [...document.getElementsByClassName('for-' + menuElement.id)]
+                .forEach(element => element.classList.remove('hidden'));
             $kt.uiHelper.focusDefaultMenuItem(defaultItem);
+        }
+
+        static hideMenu(menuElement) {
+            menuElement.classList.add('hidden');
+            [...document.getElementsByClassName('for-' + menuElement.id)]
+                .forEach(element => element.classList.add('hidden'));
         }
 
         /**
