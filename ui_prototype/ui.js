@@ -973,6 +973,7 @@ var $kt = $kt || {};
             
             this._showMeaning = document.getElementById('close-meaning');
             this._showHint = document.getElementById('close-hint');
+            this._fullscreen = document.getElementById('settings-fullscreen');
             this._hintSelect = document.getElementById('settings-hint-select');
             this._submitButtonSelect = document.getElementById('settings-submit-button-select');
 
@@ -995,6 +996,8 @@ var $kt = $kt || {};
             
             this._showMeaning.addEventListener('change', e => $kt.settings.showMeaning = e.target.checked);
             this._showHint.addEventListener('change', e => $kt.settings.showHint = e.target.checked);
+            this._fullscreen.addEventListener('change', $kt.uiHelper.toggleFullscreen);
+            document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
 
             this._hintSelect.addEventListener('change', e => $kt.settings.currentHintIndex = Number(e.target.value));
 
@@ -1192,6 +1195,14 @@ var $kt = $kt || {};
         static addNewHintToSelects(newHintIndex) {
             this._addNewHintToSelect($kt.settingsUi._hintSelect, newHintIndex);
             this._addNewHintToSelect($kt.ui._hintSelect, newHintIndex);
+        }
+
+        static toggleFullscreen() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                document.documentElement.requestFullscreen();
+            }
         }
 
         static _addNewHintToSelect(select ,newHintIndex) {

@@ -28,7 +28,8 @@ var $kt = $kt || {};
 
             this._events = new EventTarget();
             this._eventNames = {
-                CURRENT_HINT_INDEX: 'currentHintIndex'
+                CURRENT_HINT_INDEX: 'currentHintIndex',
+                FULLSCREEN: 'fullscreen'
             };
 
             // Pass through all get/set property accessors
