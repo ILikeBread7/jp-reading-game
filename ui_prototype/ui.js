@@ -3,6 +3,7 @@ var $kt = $kt || {};
 (() => {
 
     const REFOCUS_TIME = 10;
+    const EVENTS = $kt.settings.eventNames;
 
     // KantoreUiHelper has access to private fields
     // of this class (friend class)
@@ -14,7 +15,7 @@ var $kt = $kt || {};
             this._animateDetails();
             this._setupHints();
             this._initBackgroundPaticles();
-            this._restoreSavedSettings();
+            this._connectSettings();
         }
 
         focusAnswerInput() {
@@ -216,8 +217,18 @@ var $kt = $kt || {};
             }
         }
 
-        _restoreSavedSettings() {
-            this.adjustMobileOnlyElementsVisibility($kt.settings.showSubmitButton);
+        _connectSettings() {
+            const openCloseDetails = (details, value) => {
+                if (!value && details.checkVisibility()) {
+                    details.classList.add('closing');
+                } else {
+                    details.classList.remove('closing');
+                    details.open = value;
+                }
+            }
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, this.adjustMobileOnlyElementsVisibility.bind(this));
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
         }
 
         get answer() {
@@ -336,7 +347,7 @@ var $kt = $kt || {};
             this._hintSelect = document.getElementById('hint-select');
 
             this._hintDetails = document.getElementById('hint');
-            this._meanigsDetails = document.getElementById('meaning');
+            this._meaningDetails = document.getElementById('meaning');
         }
 
         _addEventListeners() {
@@ -703,20 +714,22 @@ var $kt = $kt || {};
                     const summary = details.firstElementChild;
 
                     summary.addEventListener('click', event => {
-                        if (details.open) {
-                            event.preventDefault();
-                            details.classList.add('closing');
-                        }
+                        event.preventDefault();
+                        $kt.settings[`close${this._capitalize(details.id)}`] = !details.open;
                     })
 
                     details.addEventListener('animationend', event => {
                         if (event.animationName === 'close') {
-                            details.removeAttribute('open');
+                            details.open = false;
                             details.classList.remove('closing');
                         }
                     });
                 }
             );
+        }
+
+        _capitalize(text) {
+            return text.charAt(0).toUpperCase() + text.slice(1);
         }
 
         _initBackgroundPaticles() {
@@ -944,7 +957,7 @@ var $kt = $kt || {};
         constructor() {
             this._getAllElements();
             this._addEventListeners();
-            this._restoreSavedSettings();
+            this._connectSettings();
         }
 
         _getAllElements() {
@@ -955,8 +968,8 @@ var $kt = $kt || {};
             this._bgmVolume = document.getElementById('bgm-volume');
             this._seVolume = document.getElementById('se-volume');
             
-            this._closeMeaning = document.getElementById('close-meaning');
-            this._closeHint = document.getElementById('close-hint');
+            this._showMeaning = document.getElementById('close-meaning');
+            this._showHint = document.getElementById('close-hint');
             this._hintSelect = document.getElementById('settings-hint-select');
             this._submitButtonSelect = document.getElementById('settings-submit-button-select');
 
@@ -977,16 +990,19 @@ var $kt = $kt || {};
             this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
             this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
             
+            this._showMeaning.addEventListener('change', e => $kt.settings.showMeaning = e.target.checked);
+            this._showHint.addEventListener('change', e => $kt.settings.showHint = e.target.checked);
+
             this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
             this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
         }
 
-        _restoreSavedSettings() {
-            this._bgmVolume.value = $kt.settings.bgmVolume;
-            this._seVolume.value = $kt.settings.seVolume;
-            this._closeMeaning.checked = $kt.settings.closeMeaning;
-            this._closeHint.checked = $kt.settings.closeHint;
-            this._submitButtonSelect.value = $kt.settings.showSubmitButton;
+        _connectSettings() {
+            $kt.uiHelper.connectSettingToListener(EVENTS.BGM_VOLUME, value => this._bgmVolume.value = Number(value));
+            $kt.uiHelper.connectSettingToListener(EVENTS.SE_VOLUME, value => this._seVolume.value = Number(value));
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, value => this._showMeaning.checked = value);
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, value => this._showHint.checked = value);
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, value => this._submitButtonSelect.value = value);
         }
 
         _bgmVolumeChanged(newVolume) {
@@ -1034,14 +1050,24 @@ var $kt = $kt || {};
             element.style.removeProperty('--current-opacity');
         }
 
-        static setCloseMeaningSetting(newValue) {
-            $kt.settingsUi._closeMeaning.checked = newValue;
-            $kt.settings.closeMeaning = newValue;
+        /**
+         * 
+         * @param {string} settingName 
+         * @param {(value) => {}} settingChangedListener 
+         */
+        static connectSettingToListener(settingName, settingChangedListener) {
+            settingChangedListener($kt.settings[settingName]);
+            $kt.settings.events.addEventListener(settingName, event => settingChangedListener(event.value));
         }
 
-        static setCloseHintSetting(newValue) {
-            $kt.settingsUi._closeHint.checked = newValue;
-            $kt.settings.closeHint = newValue;
+        static setshowMeaningSetting(newValue) {
+            $kt.settingsUi._showMeaning.checked = newValue;
+            $kt.settings.showMeaning = newValue;
+        }
+
+        static setshowHintSetting(newValue) {
+            $kt.settingsUi._showHint.checked = newValue;
+            $kt.settings.showHint = newValue;
         }
 
         static isSettingsVisible() {
@@ -1128,13 +1154,6 @@ var $kt = $kt || {};
             $kt.settingsUi._settingsDiv.classList.add(className);
         }
 
-        static connectCheckboxesToDetails() {
-            [
-                [$kt.settingsUi._closeMeaning, $kt.ui._meanigsDetails, $kt.settings.closeMeaning, value => $kt.settings.closeMeaning = value],
-                [$kt.settingsUi._closeHint, $kt.ui._hintDetails, $kt.settings.closeHint, value => $kt.settings.closeHint = value]
-            ].forEach(([checkbox, details, initValue, changeListener]) => $kt.uiHelper._connectCheckboxToDetails(checkbox, details, initValue, changeListener));
-        }
-
         static isSettingsButton(element) {
             return $kt.settingsUi._settingsButton.contains(element);
         }
@@ -1171,28 +1190,12 @@ var $kt = $kt || {};
             $kt.ui._hintSelect.addEventListener('change', changeListener);
         }
 
-        static _connectCheckboxToDetails(checkbox, details, initValue, changeListener) {
-            checkbox.checked = initValue;
-            details.open = !initValue;
-            
-            checkbox.addEventListener('change', () => changeListener(checkbox.checked));
-            checkbox.addEventListener('change', () => details.open = !checkbox.checked);
-
-            const summary = details.firstElementChild;
-            // The open status updates after the click,
-            // so if its opening open = false,
-            // if closing open = true
-            summary.addEventListener('click', () => changeListener(details.open));
-            summary.addEventListener('click', () => checkbox.checked = details.open);
-        }
-
     }
 
     $kt.uiHelper = KantoreUiHelper;
     $kt.ui = new KantoreUi();
     $kt.settingsUi = new KantoreSettingsUi();
 
-    $kt.uiHelper.connectCheckboxesToDetails();
     $kt.uiHelper.connectHintSelectsToHint();
 
     $kt.ui.hideStartupLoading();

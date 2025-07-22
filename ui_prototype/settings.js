@@ -2,16 +2,32 @@ var $kt = $kt || {};
 
 (() => {
 
+    class SettingsChangedEvent extends Event {
+
+        constructor(settingName, value) {
+            super(settingName);
+            this._value = value;
+        }
+
+        get value() {
+            return this._value;
+        }
+
+    }
+
     class KantoreSettings {
 
         constructor() {
             this._settings = Object.assign({
                     bgmVolume: 1,
                     seVolume: 1,
-                    closeMeaning: false,
-                    closeHint: false,
+                    showMeaning: true,
+                    showHint: true,
                     showSubmitButton: 'auto'
                 }, $kt.persistence.getSettings() || {});
+
+            this._events = new EventTarget();
+            this._eventNames = {};
 
 
             // Pass through all get/set property accessors
@@ -24,41 +40,29 @@ var $kt = $kt || {};
                         get: (propertyDescriptor && propertyDescriptor['get']) || (() => this._settings[key]),
                         set: (propertyDescriptor && propertyDescriptor['set']) || (value => {
                             this._settings[key] = value;
+                            this._events.dispatchEvent(new SettingsChangedEvent(key, value));
                             this._saveSettings();
                         })
                     });
+                    this._eventNames[this._fromCamelCaseToConstCase(key)] = key;
                 });
+            Object.freeze(this._eventNames);
         }
 
-        /**
-         * @param {number} value
-         */
-        set bgmVolume(value) {
-            this._settings.bgmVolume = value;
-            $kt.audio.bgmVolumeChange(this._settings.bgmVolume);
-            this._saveSettings();
+        get events() {
+            return this._events;
         }
 
-        /**
-         * @param {number} value
-         */
-        set seVolume(value) {
-            this._settings.seVolume = value;
-            $kt.audio.seVolumeChange(this._settings.seVolume);
-            this._saveSettings();
-        }
-
-        /**
-         * @param {'auto'|'always'|'never'} value 
-         */
-        set showSubmitButton(value) {
-            this._settings.showSubmitButton = value;
-            $kt.ui.adjustMobileOnlyElementsVisibility(value);
-            this._saveSettings();
+        get eventNames() {
+            return this._eventNames;
         }
 
         _saveSettings() {
             $kt.persistence.setSettings(this._settings);
+        }
+
+        _fromCamelCaseToConstCase(name) {
+            return name.replaceAll(/([A-Z])/g, '_$1').toUpperCase();
         }
 
     }

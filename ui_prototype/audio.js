@@ -2,6 +2,8 @@ var $kt = $kt || {};
 
 (() => {
 
+    const EVENTS = $kt.settings.eventNames;
+
     class KantoreAudio {
 
         constructor() {
@@ -21,7 +23,7 @@ var $kt = $kt || {};
                 trackData.buffer = this._player.loadTrack(trackData.name);
             });
 
-            this._restoreSavedSettings();
+            this._connectSettings();
         }
 
         /**
@@ -73,9 +75,9 @@ var $kt = $kt || {};
             this._player.seVolumeChange(newVolume);
         }
 
-        _restoreSavedSettings() {
-            this.bgmVolumeChange($kt.settings.bgmVolume);
-            this.seVolumeChange($kt.settings.seVolume);
+        _connectSettings() {
+            $kt.uiHelper.connectSettingToListener(EVENTS.BGM_VOLUME, this.bgmVolumeChange.bind(this));
+            $kt.uiHelper.connectSettingToListener(EVENTS.SE_VOLUME, this.seVolumeChange.bind(this));
         }
 
     }
