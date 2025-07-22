@@ -540,6 +540,7 @@ details.closing > summary::before {
 }
 
 select,
+#answer-submit-button,
 .menu-button {
     background-color: var(--palette-secondary-color);
     transition: background-color var(--default-transition-time);
@@ -548,6 +549,7 @@ select,
 }
 
 select:hover,
+#answer-submit-button:hover,
 .menu-button:hover {
     background-color: var(--palette-main-color);
 }
