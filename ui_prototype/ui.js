@@ -718,7 +718,7 @@ var $kt = $kt || {};
 
                     summary.addEventListener('click', event => {
                         event.preventDefault();
-                        $kt.settings[`close${this._capitalize(details.id)}`] = !details.open;
+                        $kt.settings[details.dataset.settingName] = !details.open;
                     })
 
                     details.addEventListener('animationend', event => {
@@ -729,10 +729,6 @@ var $kt = $kt || {};
                     });
                 }
             );
-        }
-
-        _capitalize(text) {
-            return text.charAt(0).toUpperCase() + text.slice(1);
         }
 
         _initBackgroundPaticles() {
