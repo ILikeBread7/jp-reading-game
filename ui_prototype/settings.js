@@ -18,19 +18,24 @@ var $kt = $kt || {};
     class KantoreSettings {
 
         constructor() {
+            this._submitButtonValues = Object.freeze({
+                AUTO: 1,
+                NEVER: 2,
+                ALWAYS: 3
+            });
+
             this._settings = Object.assign({
                     bgmVolume: 1,
                     seVolume: 1,
                     showMeaning: true,
                     showHint: true,
-                    showSubmitButton: 'auto'
+                    showSubmitButton: this._submitButtonValues.AUTO
                 }, $kt.persistence.getSettings() || {});
 
             this._events = new EventTarget();
             this._eventNames = {
                 CURRENT_HINT_INDEX: 'currentHintIndex'
             };
-
 
             // Pass through all get/set property accessors
             // to the underlying _settings object
@@ -57,6 +62,10 @@ var $kt = $kt || {};
 
         get eventNames() {
             return this._eventNames;
+        }
+
+        get submitButtonValues() {
+            return this._submitButtonValues;
         }
 
         /**

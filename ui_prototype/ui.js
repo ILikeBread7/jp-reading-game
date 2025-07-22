@@ -194,7 +194,7 @@ var $kt = $kt || {};
 
         /**
          * 
-         * @param {'auto'|'always'|'never'} visibility 
+         * @param {$kt.settings.submitButtonValues} visibility 
          */
         adjustMobileOnlyElementsVisibility(visibility) {
             const adjustVisibilityFunction = this._createAdjustVisibilityFunction(visibility);
@@ -204,15 +204,16 @@ var $kt = $kt || {};
 
         /**
          * 
-         * @param {'auto'|'always'|'never'} visibility 
+         * @param {$kt.settings.submitButtonValues} visibility 
          */
         _createAdjustVisibilityFunction(visibility) {
+            const { AUTO, NEVER, ALWAYS } = $kt.settings.submitButtonValues;
             switch (visibility) {
-                case 'auto':
+                case AUTO:
                     return element => element.style.removeProperty('display');
-                case 'never':
+                case NEVER:
                     return element => element.style.display = 'none';
-                case 'always':
+                case ALWAYS:
                     return element => element.style.display = 'initial';
             }
         }
@@ -226,10 +227,10 @@ var $kt = $kt || {};
                     details.open = value;
                 }
             }
-            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, this.adjustMobileOnlyElementsVisibility.bind(this));
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
             $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, (value = 0) => this.selectHint(value));
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, this.adjustMobileOnlyElementsVisibility.bind(this));
         }
 
         get answer() {
@@ -957,7 +958,9 @@ var $kt = $kt || {};
         constructor() {
             this._getAllElements();
             this._addEventListeners();
+            this._addSubmitButtonOptions();
             this._connectSettings();
+
         }
 
         _getAllElements() {
@@ -985,7 +988,7 @@ var $kt = $kt || {};
                 }
             });
 
-            this._submitButtonSelect.addEventListener('change', e => $kt.settings.showSubmitButton = e.target.value);
+            this._submitButtonSelect.addEventListener('change', e => $kt.settings.showSubmitButton = Number(e.target.value));
             
             this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
             this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
@@ -997,6 +1000,22 @@ var $kt = $kt || {};
 
             this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
             this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
+        }
+
+        _addSubmitButtonOptions() {
+            const { AUTO, NEVER, ALWAYS } = $kt.settings.submitButtonValues;
+            [
+                { value: AUTO, text: 'Auto' },
+                { value: NEVER, text: 'Always hide' },
+                { value: ALWAYS, text: 'Always show' }
+            ].forEach(({ value, text }) => this._addOptionToSelect(this._submitButtonSelect, value, text));
+        }
+
+        _addOptionToSelect(select, value, text) {
+            const option = document.createElement('option');
+            option.value = value;
+            option.text = text;
+            select.add(option);
         }
 
         _connectSettings() {
