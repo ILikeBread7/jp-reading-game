@@ -14,6 +14,7 @@
     --settings-button-z-index: 2;
     --overlays-z-index: 3;
     --settings-z-index: 4;
+    --fullscreen-button-z-index: 5;
 
     --info-width: 50%;
     --info-min-width: 18em;
@@ -531,11 +532,14 @@ details.closing > summary::before {
     }
 }
 
+.ui-button {
+    width: 2em;
+}
+
 #settings-button {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 2em;
     z-index: var(--settings-button-z-index);
 }
 
@@ -695,15 +699,9 @@ button.menu-item {
     }
 }
 
-#version {
+#signature {
     position: absolute;
     left: 0px;
-    bottom: 0px;
-}
-
-#author {
-    position: absolute;
-    right: 0px;
     bottom: 0px;
 }
 
@@ -757,6 +755,13 @@ button.menu-item {
 
 #answer-submit-button {
     width: 10em;
+}
+
+#fullscreen-button {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    z-index: var(--fullscreen-button-z-index);
 }
 
 @media (max-width: 980px) {

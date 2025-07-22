@@ -350,6 +350,8 @@ var $kt = $kt || {};
 
             this._hintDetails = document.getElementById('hint');
             this._meaningDetails = document.getElementById('meaning');
+
+            this._fullscreenButton = document.getElementById('fullscreen-button');
         }
 
         _addEventListeners() {
@@ -440,6 +442,16 @@ var $kt = $kt || {};
             this._hintLastButton.addEventListener('click', () => 
                 this.selectHint(this._hints.length - 1)
             );
+
+            this._fullscreenButton.addEventListener('click', $kt.uiHelper.toggleFullscreen);
+            document.addEventListener('fullscreenchange', this._toggleFullscreenIcon.bind(this));
+        }
+
+        _toggleFullscreenIcon() {
+            const fullscreenIcon = this._fullscreenButton.firstElementChild;
+            const currentIconSrc = fullscreenIcon.src;
+            fullscreenIcon.src = fullscreenIcon.dataset.exitIcon;
+            fullscreenIcon.dataset.exitIcon = currentIconSrc;
         }
 
         _preventMenuItemUnfocus() {
