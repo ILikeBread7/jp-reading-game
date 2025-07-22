@@ -194,7 +194,7 @@ var $kt = $kt || {};
 
         /**
          * 
-         * @param {$kt.settings.submitButtonValues} visibility 
+         * @param {$kt.enums.SUBMIT_BUTTON} visibility 
          */
         adjustMobileOnlyElementsVisibility(visibility) {
             const adjustVisibilityFunction = this._createAdjustVisibilityFunction(visibility);
@@ -204,10 +204,10 @@ var $kt = $kt || {};
 
         /**
          * 
-         * @param {$kt.settings.submitButtonValues} visibility 
+         * @param {$kt.enums.SUBMIT_BUTTON} visibility 
          */
         _createAdjustVisibilityFunction(visibility) {
-            const { AUTO, NEVER, ALWAYS } = $kt.settings.submitButtonValues;
+            const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
             switch (visibility) {
                 case AUTO:
                     return element => element.style.removeProperty('display');
@@ -1003,7 +1003,7 @@ var $kt = $kt || {};
         }
 
         _addSubmitButtonOptions() {
-            const { AUTO, NEVER, ALWAYS } = $kt.settings.submitButtonValues;
+            const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
             [
                 { value: AUTO, text: 'Auto' },
                 { value: NEVER, text: 'Always hide' },

@@ -18,18 +18,12 @@ var $kt = $kt || {};
     class KantoreSettings {
 
         constructor() {
-            this._submitButtonValues = Object.freeze({
-                AUTO: 1,
-                NEVER: 2,
-                ALWAYS: 3
-            });
-
             this._settings = Object.assign({
                     bgmVolume: 1,
                     seVolume: 1,
                     showMeaning: true,
                     showHint: true,
-                    showSubmitButton: this._submitButtonValues.AUTO
+                    showSubmitButton: $kt.enums.SUBMIT_BUTTON.AUTO
                 }, $kt.persistence.getSettings() || {});
 
             this._events = new EventTarget();
@@ -62,10 +56,6 @@ var $kt = $kt || {};
 
         get eventNames() {
             return this._eventNames;
-        }
-
-        get submitButtonValues() {
-            return this._submitButtonValues;
         }
 
         /**

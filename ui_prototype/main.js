@@ -1,8 +1,6 @@
 var $kt = $kt || {};
 
 (() => {
-    $kt.enums ||= {};
-    $kt.enums.QUESTION_TYPE = { KANA: 1, KANJI: 2 };
 
     $kt.ui.showQuestion(
         {
