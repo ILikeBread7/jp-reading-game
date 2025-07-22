@@ -27,7 +27,9 @@ var $kt = $kt || {};
                 }, $kt.persistence.getSettings() || {});
 
             this._events = new EventTarget();
-            this._eventNames = {};
+            this._eventNames = {
+                CURRENT_HINT_INDEX: 'currentHintIndex'
+            };
 
 
             // Pass through all get/set property accessors
@@ -55,6 +57,13 @@ var $kt = $kt || {};
 
         get eventNames() {
             return this._eventNames;
+        }
+
+        /**
+         * @param {number} value
+         */
+        set currentHintIndex(value) {
+            this._events.dispatchEvent(new SettingsChangedEvent(this._eventNames.CURRENT_HINT_INDEX, value));
         }
 
         _saveSettings() {

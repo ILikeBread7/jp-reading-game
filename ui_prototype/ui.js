@@ -229,6 +229,7 @@ var $kt = $kt || {};
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, this.adjustMobileOnlyElementsVisibility.bind(this));
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
+            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, (value = 0) => this.selectHint(value));
         }
 
         get answer() {
@@ -420,6 +421,8 @@ var $kt = $kt || {};
                     this._wrongAnswer.classList.remove('shake');
                 }
             });
+
+            this._hintSelect.addEventListener('change', e => this.selectHint(Number(e.target.value)));
 
             this._hintFirstButton.addEventListener('click', () => 
                 this.selectHint(0)
@@ -763,8 +766,9 @@ var $kt = $kt || {};
                 return;
             }
             
-            this._currentHintIndex = clampedHintIndex;
-            $kt.uiHelper.selectHintInSelects(clampedHintIndex);
+            $kt.settings.currentHintIndex =
+                this._hintSelect.value =
+                this._currentHintIndex = clampedHintIndex;
             this._updateHintContent();
         }
 
@@ -993,6 +997,8 @@ var $kt = $kt || {};
             this._showMeaning.addEventListener('change', e => $kt.settings.showMeaning = e.target.checked);
             this._showHint.addEventListener('change', e => $kt.settings.showHint = e.target.checked);
 
+            this._hintSelect.addEventListener('change', e => $kt.settings.currentHintIndex = Number(e.target.value));
+
             this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
             this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
         }
@@ -1003,6 +1009,7 @@ var $kt = $kt || {};
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, value => this._showMeaning.checked = value);
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, value => this._showHint.checked = value);
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, value => this._submitButtonSelect.value = value);
+            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, value => this._hintSelect.value = value);
         }
 
         _bgmVolumeChanged(newVolume) {
@@ -1179,25 +1186,11 @@ var $kt = $kt || {};
             select.add(option, 0);
         }
 
-        static selectHintInSelects(newHintIndex) {
-            $kt.settingsUi._hintSelect.value = newHintIndex;
-            $kt.ui._hintSelect.value = newHintIndex;
-        }
-
-        static connectHintSelectsToHint() {
-            const changeListener = event => $kt.ui.selectHint(event.target.value);
-            $kt.settingsUi._hintSelect.addEventListener('change', changeListener);
-            $kt.ui._hintSelect.addEventListener('change', changeListener);
-        }
-
     }
 
     $kt.uiHelper = KantoreUiHelper;
     $kt.ui = new KantoreUi();
     $kt.settingsUi = new KantoreSettingsUi();
-
-    $kt.uiHelper.connectHintSelectsToHint();
-
     $kt.ui.hideStartupLoading();
 
 })();
