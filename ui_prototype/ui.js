@@ -1197,6 +1197,14 @@ var $kt = $kt || {};
             return $kt.settingsUi._settingsButton.contains(element);
         }
 
+        static toggleFullscreen() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                document.documentElement.requestFullscreen();
+            }
+        }
+
         static initializeHintSelects(initialHintsNumber) {
             $kt.settingsUi._hintSelect.innerHTML = '';
             $kt.ui._hintSelect.innerHTML = '';
@@ -1209,14 +1217,6 @@ var $kt = $kt || {};
         static addNewHintToSelects(newHintIndex) {
             this._addNewHintToSelect($kt.settingsUi._hintSelect, newHintIndex);
             this._addNewHintToSelect($kt.ui._hintSelect, newHintIndex);
-        }
-
-        static toggleFullscreen() {
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            } else {
-                document.documentElement.requestFullscreen();
-            }
         }
 
         static _addNewHintToSelect(select ,newHintIndex) {
