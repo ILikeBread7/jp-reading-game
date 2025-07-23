@@ -173,7 +173,7 @@
             ctx.dict = dict;
 
             const hiraganaGyous = ['a', 'm', 'r', 'n', 'k', 's', 't', 'h', 'y', 'w'];
-            const katakanaGyous = ['A', 'W', 'M', 'R', 'N', 'K', 'S', 'T', 'H', 'Y'];
+            const katakanaGyous = ['A', 'M', 'R', 'N', 'K', 'S', 'T', 'H', 'Y', 'W'];
             ctx.gyouDicts = new Map([...hiraganaGyous, ...katakanaGyous]
                 .map(gyou => [gyou, dict.filter(entry => entry.tags.includes(gyou))])
             );
@@ -261,9 +261,16 @@
 
             for (let i = 0; i < ctx.levelChars.length; i++) {
                 const chars = [...ctx.levelChars[i]];
+                const entriesNumbersPerChar = chars.map(c => {
+                    const numOfEntriesInMainDict = (ctx.levelDicts[i].MAIN_DICT || ctx.levelDicts[i]).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c)).length;
+                    const subDictEntries = (ctx.levelDicts[i].SUB_DICT || []).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c));
+                    const numOfRePriSubDictEntries = subDictEntries.map(q => q.kana.re_pri).filter(Boolean).length;
+                    const numOfTotalSubDictEntries = subDictEntries.length;
+                    return [ c, numOfEntriesInMainDict, numOfRePriSubDictEntries, numOfTotalSubDictEntries ];
+                });
                 console.log(
                     ctx.levelChars[i],
-                    chars.map(c => `${c}: ${(ctx.levelDicts[i].MAIN_DICT || ctx.levelDicts[i]).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c)).length}`)
+                    entriesNumbersPerChar.map(e => `${e[0]}: ${e.slice(1).join(', ')}`)
                 );
             } 
         }
