@@ -1005,15 +1005,8 @@ var $kt = $kt || {};
 
             this._submitButtonSelect.addEventListener('change', e => $kt.settings.showSubmitButton = Number(e.target.value));
             
-            this._bgmVolume.addEventListener('change', e => this._bgmVolumeChanged(Number(e.target.value)));
-            this._seVolume.addEventListener('change', e => this._seVolumeChanged(Number(e.target.value)));
-            
-            this._showMeaning.addEventListener('change', e => $kt.settings.showMeaning = e.target.checked);
-            this._showHint.addEventListener('change', e => $kt.settings.showHint = e.target.checked);
             this._fullscreen.addEventListener('change', $kt.uiHelper.toggleFullscreen);
             document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
-
-            this._hintSelect.addEventListener('change', e => $kt.settings.currentHintIndex = Number(e.target.value));
 
             this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
             this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
@@ -1036,21 +1029,12 @@ var $kt = $kt || {};
         }
 
         _connectSettings() {
-            $kt.uiHelper.connectSettingToListener(EVENTS.BGM_VOLUME, value => this._bgmVolume.value = Number(value));
-            $kt.uiHelper.connectSettingToListener(EVENTS.SE_VOLUME, value => this._seVolume.value = Number(value));
-            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, value => this._showMeaning.checked = value);
-            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, value => this._showHint.checked = value);
-            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, value => this._submitButtonSelect.value = value);
-            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, value => this._hintSelect.value = value);
-        }
-
-        _bgmVolumeChanged(newVolume) {
-            $kt.settings.bgmVolume = newVolume;
-        }
-
-        _seVolumeChanged(newVolume) {
-            $kt.settings.seVolume = newVolume;
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            $kt.uiHelper.connectElementToSetting(EVENTS.BGM_VOLUME, this._bgmVolume);
+            $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1));
+            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_MEANING, this._showMeaning);
+            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_HINT, this._showHint);
+            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_SUBMIT_BUTTON, this._submitButtonSelect);
+            $kt.uiHelper.connectElementToSetting(EVENTS.CURRENT_HINT_INDEX, this._hintSelect);
         }
 
     }
@@ -1097,6 +1081,31 @@ var $kt = $kt || {};
         static connectSettingToListener(settingName, settingChangedListener) {
             settingChangedListener($kt.settings[settingName]);
             $kt.settings.events.addEventListener(settingName, event => settingChangedListener(event.value));
+        }
+
+        /**
+         * 
+         * @param {$kt.settings.eventNames} settingName 
+         * @param {HTMLElement} element 
+         * @param {() => {}?} elementAdditionalListener optional
+         */
+        static connectElementToSetting(settingName, element, elementAdditionalListener) {
+            const [ settingChangedListener, elementChangedListener ] =
+                element.type === 'checkbox'
+                    ? [
+                        value => element.checked = value,
+                        () => $kt.settings[settingName] = element.checked
+                    ]
+                    : [
+                        value => element.value = value,
+                        () => $kt.settings[settingName] = Number(element.value)
+                    ];
+            
+            $kt.uiHelper.connectSettingToListener(settingName, settingChangedListener);
+            element.addEventListener('change', elementChangedListener);
+            if (elementAdditionalListener) {
+                element.addEventListener('change', elementAdditionalListener);
+            }
         }
 
         static setshowMeaningSetting(newValue) {
