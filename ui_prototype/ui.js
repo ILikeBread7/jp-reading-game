@@ -471,13 +471,15 @@ var $kt = $kt || {};
         }
 
         _refocusSavedMenuItem() {
-            if (this._elementToReactivate) {
-                if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
-                    $kt.uiHelper.focusMenuItem(this._elementToReactivate);
+            setTimeout(() => {
+                if (this._elementToReactivate) {
+                    if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
+                        $kt.uiHelper.focusMenuItem(this._elementToReactivate);
+                    }
+                    this._elementToReactivate.classList.remove('to-refocus');
+                    this._elementToReactivate = null;
                 }
-                this._elementToReactivate.classList.remove('to-refocus');
-                this._elementToReactivate = null;
-            }
+            }, REFOCUS_TIME);
         }
 
         _answerInputEnterEventListener(event) {
@@ -591,7 +593,7 @@ var $kt = $kt || {};
             ) {
                 this._saveMenuItemToRefocus();
                 this._credits.focus({ focusVisible: false });
-                setTimeout(this._refocusSavedMenuItem.bind(this), REFOCUS_TIME);
+                this._refocusSavedMenuItem();
             }
         }
 
