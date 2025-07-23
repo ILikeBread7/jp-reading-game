@@ -309,13 +309,6 @@ var $kt = $kt || {};
         _getAllElements() {
             this._loadingDiv = document.getElementById('loading');
 
-            this._titleScene = document.getElementById('title-screen-container');
-            this._titleStartButton = document.getElementById('start-game-button');
-            this._titleSettingsButton = document.getElementById('title-settings-button');
-            this._preTitleText = document.getElementById('pre-title-press-start-text');
-            this._mainMenu = document.getElementById('main-menu');
-            this._credits = document.getElementById('credits');
-
             this._gameScene = document.getElementById('game-container');
 
             this._answerInput = document.getElementById('answer-input');
@@ -366,9 +359,6 @@ var $kt = $kt || {};
                 this._submitAnswer();
                 this.focusAnswerInput();
             });
-
-            this._titleStartButton.addEventListener('click', this._switchToScene.bind(this, this._gameScene));
-            this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
 
             this._questionAnswerContainer.addEventListener('animationend', event => {
                 if (event.target === this._questionAnswerContainer) {
@@ -452,6 +442,12 @@ var $kt = $kt || {};
             const currentIconSrc = fullscreenIcon.src;
             fullscreenIcon.src = fullscreenIcon.dataset.exitIcon;
             fullscreenIcon.dataset.exitIcon = currentIconSrc;
+        }
+
+        focusTemporarily(element) {
+            this._saveMenuItemToRefocus();
+            element.focus({ focusVisible: false });
+            this._refocusSavedMenuItem();
         }
 
         _preventMenuItemUnfocus() {
@@ -541,10 +537,9 @@ var $kt = $kt || {};
                 return;
             }
 
-            if (this._isPreTitleVisible()) {
-                this._hidePreTitle();
+            if ($kt.titleUi.enterListener()) {
                 return;
-            } 
+            }
             
             this.focusAnswerInput();
             this._answerInputEnterEventListener(event);
@@ -559,8 +554,7 @@ var $kt = $kt || {};
             }
 
             if (this._isMenuItemFocused()) {
-                if (this._isCreditsVisible()) {
-                    this._handleCreditsScrolling(key);
+                if ($kt.titleUi.keyListener(key)) {
                     return;
                 }
 
@@ -585,44 +579,12 @@ var $kt = $kt || {};
             }
         }
 
-        _handleCreditsScrolling(key) {
-            if (
-                key.startsWith('Page')
-                || key === 'ArrowUp'
-                || key === 'ArrowDown'
-            ) {
-                this._saveMenuItemToRefocus();
-                this._credits.focus({ focusVisible: false });
-                this._refocusSavedMenuItem();
-            }
-        }
-
-        _hidePreTitle() {
-            this._preTitleText.classList.add('hidden');
-            $kt.uiHelper.showMenu(this._mainMenu);
-            $kt.uiHelper.startTitleScene();
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
-            $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
-        }
-
-        _switchToScene(scene) {
-            const scenes = [...document.getElementsByClassName('scene-container')];
-            scenes.forEach(scene => scene.style.display = 'none');
-            scene.style.display = 'initial';
-            this._sceneSpecialHandling(scene);
-            $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass, scenes.map(scene => scene.dataset.settingsClass));
-        }
-
-        _sceneSpecialHandling(scene) {
-            switch(scene) {
-                case this._gameScene:
-                    this._moveLevelExpDivBackDown();
-                    this._removeLevelUpTransitions();
-                    this._displayAnnouncmentText(this._levelUpText);
-                    $kt.uiHelper.initializeHintSelects($kt.ui._currentHintIndex + 1);
-                    this.focusAnswerInput();
-                break;
-            }
+        _gameStarted() {
+            this._moveLevelExpDivBackDown();
+            this._removeLevelUpTransitions();
+            this._displayAnnouncmentText(this._levelUpText);
+            $kt.uiHelper.initializeHintSelects($kt.ui._currentHintIndex + 1);
+            this.focusAnswerInput();
         }
 
         _displayAnnouncmentText(textElement) {
@@ -706,8 +668,7 @@ var $kt = $kt || {};
                 return;
             }
 
-            if (this._isPreTitleVisible()) {
-                this._hidePreTitle();
+            if ($kt.titleUi.clickListener()) {
                 return;
             }
         }
@@ -832,14 +793,6 @@ var $kt = $kt || {};
 
         _isGameClearOrGameOverVisible() {
             return this._gameClearText.checkVisibility() || this._gameOverText.checkVisibility();
-        }
-
-        _isCreditsVisible() {
-            return this._credits.checkVisibility();
-        }
-
-        _isPreTitleVisible() {
-            return this._preTitleText.checkVisibility();
         }
 
         _isFocused(element) {
@@ -1039,10 +992,91 @@ var $kt = $kt || {};
 
     }
 
+    // KantoreUiHelper has access to private fields
+    // of this class (friend class)
+    class KantoreTitleUi {
+
+        constructor() {
+            this._getAllElements();
+            this._addEventListeners();
+        }
+
+        enterListener() {
+            return this._handlePreTitle();
+        }
+
+        keyListener(key) {
+            if (this._isCreditsVisible()) {
+                this._handleCreditsScrolling(key);
+                return true;
+            }
+            return false;
+        }
+
+        clickListener() {
+            return this._handlePreTitle();
+        }
+
+        startTitleScene() {
+            $kt.uiHelper.showMenu(this._mainMenu);
+        }
+
+        /**
+         * 
+         * @returns {boolean} true if pre title was active, false if not
+         */
+        _handlePreTitle() {
+            if (this._isPreTitleVisible()) {
+                this._hidePreTitle();
+                return true;
+            }
+            return false;
+        }
+
+        _handleCreditsScrolling(key) {
+            if (
+                key.startsWith('Page')
+                || key === 'ArrowUp'
+                || key === 'ArrowDown'
+            ) {
+                $kt.uiHelper.focusTemporarily(this._credits);
+            }
+        }
+
+        _getAllElements() {
+            this._titleScene = document.getElementById('title-screen-container');
+            this._titleStartButton = document.getElementById('start-game-button');
+            this._titleSettingsButton = document.getElementById('title-settings-button');
+            this._preTitleText = document.getElementById('pre-title-press-start-text');
+            this._mainMenu = document.getElementById('main-menu');
+            this._credits = document.getElementById('credits');
+        }
+
+        _addEventListeners() {
+            this._titleStartButton.addEventListener('click', $kt.uiHelper.switchToGameScene);
+            this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+        }
+        
+        _isPreTitleVisible() {
+            return this._preTitleText.checkVisibility();
+        }
+
+        _isCreditsVisible() {
+            return this._credits.checkVisibility();
+        }
+
+        _hidePreTitle() {
+            this._preTitleText.classList.add('hidden');
+            $kt.uiHelper.showMenu(this._mainMenu);
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
+        }
+    }
+
     // Has access to privete fields of
-    // KantoreUi and KantoreSettingsUi
+    // KantoreUi, KantoreSettingsUi and KantoreTitleUi
     // to facilitate communication
-    // between the two (friend class)
+    // between them (friend class)
     class KantoreUiHelper {
 
         /**
@@ -1128,11 +1162,11 @@ var $kt = $kt || {};
 
         static hideSettings() {
             $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
-            if ($kt.ui._titleScene.checkVisibility()) {
-                if ($kt.ui._credits.checkVisibility()) {
+            if ($kt.titleUi._titleScene.checkVisibility()) {
+                if ($kt.titleUi._credits.checkVisibility()) {
                     $kt.uiHelper.showMenu($kt.ui._credits.parentNode);
                 } else {
-                    $kt.uiHelper.startTitleScene();
+                    $kt.titleUi.startTitleScene();
                 }
             } else {
                 $kt.ui.focusAnswerInput();
@@ -1163,19 +1197,28 @@ var $kt = $kt || {};
             element.focus({ focusVisible: true });
         }
 
+        static switchToGameScene() {
+            $kt.uiHelper.switchToScene($kt.ui._gameScene);
+            // This will later be called with events, not diractly
+            $kt.ui._gameStarted();
+        }
+
+        static switchToScene(scene) {
+            const scenes = [...document.getElementsByClassName('scene-container')];
+            scenes.forEach(scene => scene.style.display = 'none');
+            scene.style.display = 'initial';
+            $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass, scenes.map(scene => scene.dataset.settingsClass));
+        }
+
         static backToTitle() {
-            $kt.ui._switchToScene($kt.ui._titleScene);
+            $kt.uiHelper.switchToScene($kt.titleUi._titleScene);
             $kt.uiHelper.hideSettings();
             $kt.settingsUi._settingsDiv.ontransitionend = event => {
                 if (event.target === $kt.settingsUi._settingsDiv) {
-                    $kt.uiHelper.startTitleScene();
+                    $kt.titleUi.startTitleScene();
                     $kt.settingsUi._settingsDiv.ontransitionend = null;
                 }
             };
-        }
-
-        static startTitleScene() {
-            $kt.uiHelper.showMenu($kt.ui._mainMenu);
         }
 
         static showMenu(menuElement) {
@@ -1204,6 +1247,10 @@ var $kt = $kt || {};
 
         static isSettingsButton(element) {
             return $kt.settingsUi._settingsButton.contains(element);
+        }
+
+        static focusTemporarily(element) {
+            return $kt.ui.focusTemporarily(element);
         }
 
         static toggleFullscreen() {
@@ -1240,6 +1287,7 @@ var $kt = $kt || {};
     $kt.uiHelper = KantoreUiHelper;
     $kt.ui = new KantoreUi();
     $kt.settingsUi = new KantoreSettingsUi();
+    $kt.titleUi = new KantoreTitleUi();
     $kt.ui.hideStartupLoading();
 
 })();
