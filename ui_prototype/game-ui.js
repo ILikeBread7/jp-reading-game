@@ -409,8 +409,8 @@ var $kt = $kt || {};
             }
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
-            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, (value = 0) => {
-                this.selectHint(value);
+            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, (newHintIndex = 0) => {
+                this._selectHintNoUpdateSettings(newHintIndex);
                 this._hintSelect.value = this._currentHintIndex;
             });
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, $kt.uiHelper.adjustMobileOnlyElementsVisibility);
@@ -494,6 +494,11 @@ var $kt = $kt || {};
         }
 
         selectHint(newHintIndex) {
+            this._selectHintNoUpdateSettings(newHintIndex);
+            $kt.settings.currentHintIndex = this._currentHintIndex;
+        }
+
+        _selectHintNoUpdateSettings(newHintIndex) {
             if (newHintIndex === this._currentHintIndex) {
                 return;
             }
@@ -503,8 +508,7 @@ var $kt = $kt || {};
                 return;
             }
             
-            $kt.settings.currentHintIndex =
-                this._currentHintIndex = clampedHintIndex;
+            this._currentHintIndex = clampedHintIndex;
             this._updateHintContent();
         }
 
