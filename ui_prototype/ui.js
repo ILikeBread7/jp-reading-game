@@ -13,9 +13,476 @@ var $kt = $kt || {};
             this._getAllElements();
             this._addEventListeners();
             this._animateDetails();
-            this._setupHints();
             this._initBackgroundPaticles();
+        }
+
+        showLoading() {
+            $kt.uiHelper.showOverlayElement(this._loadingDiv);
+        }
+
+        hideLoading() {
+            $kt.uiHelper.hideOverlayElement(this._loadingDiv);
+        }
+
+        hideStartupLoading() {
+            this._loadingDiv.classList.remove('startup-loading');
+        }
+
+        _getAllElements() {
+            this._loadingDiv = document.getElementById('loading');
+            this._fullscreenButton = document.getElementById('fullscreen-button');
+        }
+
+        _addEventListeners() {
+            this._preventMenuItemUnfocus();
+
+            document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
+            document.addEventListener('keydown', this._charEventListener.bind(this));
+            document.addEventListener('click', this._documentClickEventListener.bind(this));
+
+            [
+                ...document.getElementsByClassName('menu-item'),
+                ...document.getElementsByClassName('menu-item-label')
+            ].forEach(element => {
+                element.addEventListener('mouseenter', () => $kt.uiHelper.focusSelectedMenuItem(element));
+                
+                if (element.type === 'checkbox') {
+                    element.addEventListener('keypress', event => {
+                        if (event.key === 'Enter') {
+                            element.click();
+                        }
+                    });
+                }
+
+                if (element.tagName === 'SELECT') {
+                    element.addEventListener('keypress', event => {
+                        if (event.key === 'Enter') {
+                            element.showPicker();
+                        }
+                    });
+                }
+            });
+
+            const menuItemPressedListenerCreator = element => element.addEventListener('click', () => $kt.audio.playEffect($kt.audio.tracks[element.dataset.se || 'SE_TEST_2']));
+            [...document.getElementsByClassName('menu-button')]
+                .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
+            [...document.getElementsByClassName('menu-checkbox')]
+                .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
+            [...document.getElementsByClassName('menu-destination-button')]
+                .forEach(button => button.addEventListener('click', () => {
+                    const destination = document.getElementById(button.dataset.destination);
+                    $kt.uiHelper.hideMenu(button.parentNode);
+                    $kt.uiHelper.showMenu(destination);
+                }));
+
+            this._fullscreenButton.addEventListener('click', $kt.uiHelper.toggleFullscreen);
+            document.addEventListener('fullscreenchange', this._toggleFullscreenIcon.bind(this));
+        }
+
+        _toggleFullscreenIcon() {
+            const fullscreenIcon = this._fullscreenButton.firstElementChild;
+            const currentIconSrc = fullscreenIcon.src;
+            fullscreenIcon.src = fullscreenIcon.dataset.exitIcon;
+            fullscreenIcon.dataset.exitIcon = currentIconSrc;
+        }
+
+        focusTemporarily(element) {
+            this._saveMenuItemToRefocus();
+            element.focus({ focusVisible: false });
+            this._refocusSavedMenuItem();
+        }
+
+        _preventMenuItemUnfocus() {
+            document.body.addEventListener('pointerdown', this._saveMenuItemToRefocus.bind(this));
+            document.body.addEventListener('pointerup', this._refocusSavedMenuItem.bind(this));
+        }
+
+        _saveMenuItemToRefocus() {
+            if (
+                document.activeElement
+                && document.activeElement.tagName !== 'SELECT'
+                && document.activeElement.classList.contains('menu-item')
+            ) {
+                this._elementToReactivate = document.activeElement;
+                this._elementToReactivate.classList.add('to-refocus');
+            }
+        }
+
+        _refocusSavedMenuItem() {
+            setTimeout(() => {
+                if (this._elementToReactivate) {
+                    if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
+                        $kt.uiHelper.focusMenuItem(this._elementToReactivate);
+                    }
+                    this._elementToReactivate.classList.remove('to-refocus');
+                    this._elementToReactivate = null;
+                }
+            }, REFOCUS_TIME);
+        }
+
+        _documentEnterEventListener(event) {
+            if (event.key !== 'Enter' || this._isMenuItemFocused() || this._isLoadingVisible()) {
+                return;
+            }
+
+            if ($kt.titleUi.enterListener(event)) {
+                return;
+            }
+
+            if ($kt.gameUi.enterListener(event)) {
+                return;
+            }
+        }
+
+        _charEventListener(event) {
+            const key = event.key;
+
+            if (key === 'Tab') {
+                $kt.settingsUi.tabEventListener();
+                event.preventDefault();
+            }
+
+            if (this._isMenuItemFocused()) {
+                if ($kt.titleUi.keyListener(key)) {
+                    return;
+                }
+
+                if (key === 'ArrowUp') {
+                    $kt.uiHelper.focusSelectedMenuItem(this._findPreviousMenuItem(document.activeElement));
+                    event.preventDefault();
+                } else if (key === 'ArrowDown') {
+                    $kt.uiHelper.focusSelectedMenuItem(this._findNextMenuItem(document.activeElement));
+                    event.preventDefault();
+                }
+
+                return;
+            }
+
+            if (this._isLoadingVisible()) {
+                return;
+            }
+
+            if ($kt.gameUi.keyListener(key)) {
+                return;
+            }
+        }
+
+        _findNextMenuItem(startElement) {
+            return this._findMenuItem(startElement, element => element.nextElementSibling, element => element.parentNode.firstElementChild);
+        }
+
+        _findPreviousMenuItem(startElement) {
+            return this._findMenuItem(startElement, element => element.previousElementSibling, element => element.parentNode.lastElementChild);
+        }
+
+        _findMenuItem(startElement, getNextElementFunction, getDefaultElementFunction) {
+            if (startElement.parentNode.classList.contains('menu-item-label')) {
+                startElement = startElement.parentNode;
+            }
+            let element = startElement;
+
+            do {
+                element = getNextElementFunction(element);
+            } while (element && !this._isElementMenuItem(element));
+            
+            if (!element && getDefaultElementFunction) {
+                element = getDefaultElementFunction(startElement);
+                if (!this._isElementMenuItem(element)) {
+                    element = this._findMenuItem(element, getNextElementFunction);
+                }
+            }
+
+            return element;
+        }
+
+        _isElementMenuItem(element) {
+            return element && (element.classList.contains('menu-item') || element.classList.contains('menu-item-label')) && element.checkVisibility();
+        }
+        
+        _documentClickEventListener(event) {
+            if ($kt.uiHelper.isSettingsVisible()) {
+                return;
+            }
+
+            const target = event.target;
+            
+            if ($kt.uiHelper.isSettingsButton(target)) {
+                return;
+            }
+
+            if ($kt.gameUi.clickListener(target)) {
+                return;
+            }
+
+            if ($kt.titleUi.clickListener()) {
+                return;
+            }
+        }
+        
+        _animateDetails() {
+            const detailsElements = document.getElementsByTagName('details');
+            [...detailsElements].forEach(details => {
+                    const summary = details.firstElementChild;
+
+                    summary.addEventListener('click', event => {
+                        event.preventDefault();
+                        $kt.settings[details.dataset.settingName] = !details.open;
+                    })
+
+                    details.addEventListener('animationend', event => {
+                        if (event.animationName === 'close') {
+                            details.open = false;
+                            details.classList.remove('closing');
+                        }
+                    });
+                }
+            );
+        }
+
+        _initBackgroundPaticles() {
+            if (particlesJS) {
+                particlesJS.load('particles-js', 'particlesjs-config.json');
+            } else {
+                console.error('particles.js was not loaded!', `particlesJS object is ${particlesJS}`);
+            }
+        }
+
+        _isMenuItemFocused() {
+            const focusedItem = document.activeElement
+            return focusedItem && focusedItem.classList.contains('menu-item');
+        }
+
+        _isLoadingVisible() {
+            return this._loadingDiv.checkVisibility({ visibilityProperty: true });
+        }
+
+        _isFocused(element) {
+            return document.activeElement === element;
+        }
+    }
+
+    // KantoreUiHelper has access to private fields
+    // of this class (friend class)
+    class KantoreSettingsUi {
+
+        constructor() {
+            this._getAllElements();
+            this._addEventListeners();
+            this._addSubmitButtonOptions();
             this._connectSettings();
+        }
+
+        tabEventListener() {
+            if ($kt.uiHelper.isSettingsVisible()) {
+                $kt.uiHelper.hideSettings();
+            } else {
+                $kt.uiHelper.showSettings();
+            }
+        }
+
+        _getAllElements() {
+            this._settingsDiv = document.getElementById('settings');
+            this._settingsContainer = document.getElementById('settings-container');
+            this._settingsButton = document.getElementById('settings-button');
+
+            this._bgmVolume = document.getElementById('bgm-volume');
+            this._seVolume = document.getElementById('se-volume');
+            
+            this._showMeaning = document.getElementById('close-meaning');
+            this._showHint = document.getElementById('close-hint');
+            this._fullscreen = document.getElementById('settings-fullscreen');
+            this._hintSelect = document.getElementById('settings-hint-select');
+            this._submitButtonSelect = document.getElementById('settings-submit-button-select');
+
+            this._backToMenu = document.getElementById('back-to-main-menu-button');
+            this._returnToGame = document.getElementById('return-to-game-button');
+        }
+
+        _addEventListeners() {
+            this._settingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+            this._settingsDiv.addEventListener('click', e => {
+                if (!this._settingsContainer.contains(e.target)) {
+                    $kt.uiHelper.hideSettings();
+                }
+            });
+
+            this._submitButtonSelect.addEventListener('change', e => $kt.settings.showSubmitButton = Number(e.target.value));
+            
+            this._fullscreen.addEventListener('change', $kt.uiHelper.toggleFullscreen);
+            document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
+
+            this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
+            this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
+        }
+
+        _addSubmitButtonOptions() {
+            const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
+            [
+                { value: AUTO, text: 'Auto' },
+                { value: NEVER, text: 'Always hide' },
+                { value: ALWAYS, text: 'Always show' }
+            ].forEach(({ value, text }) => this._addOptionToSelect(this._submitButtonSelect, value, text));
+        }
+
+        _addOptionToSelect(select, value, text) {
+            const option = document.createElement('option');
+            option.value = value;
+            option.text = text;
+            select.add(option);
+        }
+
+        _connectSettings() {
+            $kt.uiHelper.connectElementToSetting(EVENTS.BGM_VOLUME, this._bgmVolume);
+            $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1));
+            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_MEANING, this._showMeaning);
+            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_HINT, this._showHint);
+            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_SUBMIT_BUTTON, this._submitButtonSelect);
+            $kt.uiHelper.connectElementToSetting(EVENTS.CURRENT_HINT_INDEX, this._hintSelect);
+        }
+
+    }
+
+    // KantoreUiHelper has access to private fields
+    // of this class (friend class)
+    class KantoreTitleUi {
+
+        constructor() {
+            this._getAllElements();
+            this._addEventListeners();
+        }
+
+        enterListener() {
+            return this._handlePreTitle();
+        }
+
+        keyListener(key) {
+            if (this._isCreditsVisible()) {
+                this._handleCreditsScrolling(key);
+                return true;
+            }
+            return false;
+        }
+
+        clickListener() {
+            return this._handlePreTitle();
+        }
+
+        startTitleScene() {
+            $kt.uiHelper.showMenu(this._mainMenu);
+        }
+
+        /**
+         * 
+         * @returns {boolean} true if pre title was active, false if not
+         */
+        _handlePreTitle() {
+            if (this._isPreTitleVisible()) {
+                this._hidePreTitle();
+                return true;
+            }
+            return false;
+        }
+
+        _handleCreditsScrolling(key) {
+            if (
+                key.startsWith('Page')
+                || key === 'ArrowUp'
+                || key === 'ArrowDown'
+            ) {
+                $kt.uiHelper.focusTemporarily(this._credits);
+            }
+        }
+
+        _getAllElements() {
+            this._titleScene = document.getElementById('title-screen-container');
+            this._titleStartButton = document.getElementById('start-game-button');
+            this._titleSettingsButton = document.getElementById('title-settings-button');
+            this._preTitleText = document.getElementById('pre-title-press-start-text');
+            this._mainMenu = document.getElementById('main-menu');
+            this._credits = document.getElementById('credits');
+        }
+
+        _addEventListeners() {
+            this._titleStartButton.addEventListener('click', $kt.uiHelper.startGame);
+            this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+        }
+        
+        _isPreTitleVisible() {
+            return this._preTitleText.checkVisibility();
+        }
+
+        _isCreditsVisible() {
+            return this._credits.checkVisibility();
+        }
+
+        _hidePreTitle() {
+            this._preTitleText.classList.add('hidden');
+            $kt.uiHelper.showMenu(this._mainMenu);
+            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
+        }
+    }
+
+    // KantoreUiHelper has access to private fields
+    // of this class (friend class)
+    class KantoreGameUi {
+
+        constructor() {
+            this._getAllElements();
+            this._addEventListeners();
+            this._setupHints();
+            this._connectSettings();
+        }
+
+        enterListener(event) {
+            if (this._enterOrClickListener()) {
+                return true;
+            }
+
+            this.focusAnswerInput();
+            this._answerInputEnterEventListener(event);
+        }
+
+        clickListener(target) {
+            return this._enterOrClickListener(target);
+        }
+
+        keyListener(key) {
+            if (this._isLevelUpVisible()) {
+                return true;
+            }
+
+            // Is a character, not a special key
+            if (key.length === 1 && key.charCodeAt(0) < 127) {
+                this.focusAnswerInput();
+                return true;
+            }
+
+            return false;
+        }
+
+        /**
+         * 
+         * @param {HTMLElement?} target optional, event target
+         * @returns 
+         */
+        _enterOrClickListener(target) {
+            if (this._isLevelUpTextVisible()) {
+                this._forceCloseLevelUpText();
+                return true;
+            }
+
+            if (this._isLevelUpHintVisible() && (!target || !this._levelUpHint.contains(target))) {
+                this._closeLevelUpContainer();
+                return true;
+            }
+
+            if (this._isGameClearOrGameOverVisible()) {
+                $kt.uiHelper.backToTitle();
+                return true;
+            }
+
+            return false;
         }
 
         focusAnswerInput() {
@@ -153,16 +620,18 @@ var $kt = $kt || {};
             this._growExpBars([{ oldExpPercentage, newExpPercentage }]);
         }
 
-        showLoading() {
-            $kt.uiHelper.showOverlayElement(this._loadingDiv);
-        }
+        _forceCloseLevelUpText() {
+            // If fade out transition is already in progress
+            if (getComputedStyle(this._levelUpText).opacity < 1) {
+                return;
+            }
 
-        hideLoading() {
-            $kt.uiHelper.hideOverlayElement(this._loadingDiv);
-        }
-
-        hideStartupLoading() {
-            this._loadingDiv.classList.remove('startup-loading');
+            this._removeTransition(this._levelUpText)
+            
+            // Force reflow to apply previous remove transition
+            void this._levelUpText.offsetWidth;
+            
+            this._fadeLevelUpTextToLevelUpHint(this._showHintOnLevelUp, 'var(--default-transition-time)');
         }
 
         _moveLevelExpDivAbove() {
@@ -190,47 +659,6 @@ var $kt = $kt || {};
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
             this._questionHintElement.classList.add('slide');
             this._questionHintElement.textContent = newHint;
-        }
-
-        /**
-         * 
-         * @param {$kt.enums.SUBMIT_BUTTON} visibility 
-         */
-        adjustMobileOnlyElementsVisibility(visibility) {
-            const adjustVisibilityFunction = this._createAdjustVisibilityFunction(visibility);
-            [...document.getElementsByClassName('mobile-only')]
-                .forEach(adjustVisibilityFunction);
-        }
-
-        /**
-         * 
-         * @param {$kt.enums.SUBMIT_BUTTON} visibility 
-         */
-        _createAdjustVisibilityFunction(visibility) {
-            const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
-            switch (visibility) {
-                case AUTO:
-                    return element => element.style.removeProperty('display');
-                case NEVER:
-                    return element => element.style.display = 'none';
-                case ALWAYS:
-                    return element => element.style.display = 'initial';
-            }
-        }
-
-        _connectSettings() {
-            const openCloseDetails = (details, value) => {
-                if (!value && details.checkVisibility()) {
-                    details.classList.add('closing');
-                } else {
-                    details.classList.remove('closing');
-                    details.open = value;
-                }
-            }
-            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
-            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
-            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, (value = 0) => this.selectHint(value));
-            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, this.adjustMobileOnlyElementsVisibility.bind(this));
         }
 
         get answer() {
@@ -265,6 +693,7 @@ var $kt = $kt || {};
         _textJumpByChar(charElements, height, duration, delayByChar, delayToStart = 0) {
             charElements.forEach((char, index) => this._jump(char, height, duration, `${index * delayByChar + delayToStart}s`))
         }
+
 
         /**
          * @param {string} levelName
@@ -307,10 +736,8 @@ var $kt = $kt || {};
         }
 
         _getAllElements() {
-            this._loadingDiv = document.getElementById('loading');
-
             this._gameScene = document.getElementById('game-container');
-
+            
             this._answerInput = document.getElementById('answer-input');
             this._wrongAnswer = document.getElementById('wrong-answer');
             this._answerSubmitButton = document.getElementById('answer-submit-button');
@@ -343,17 +770,9 @@ var $kt = $kt || {};
 
             this._hintDetails = document.getElementById('hint');
             this._meaningDetails = document.getElementById('meaning');
-
-            this._fullscreenButton = document.getElementById('fullscreen-button');
         }
 
         _addEventListeners() {
-            this._preventMenuItemUnfocus();
-
-            document.addEventListener('keypress', this._documentEnterEventListener.bind(this));
-            document.addEventListener('keydown', this._charEventListener.bind(this));
-            document.addEventListener('click', this._documentClickEventListener.bind(this));
-
             this._answerSubmitButton.addEventListener('click', event => {
                 event.stopPropagation();
                 this._submitAnswer();
@@ -371,41 +790,6 @@ var $kt = $kt || {};
                     this._questionHintElement.classList.remove('slide');
                 }
             });
-
-            [
-                ...document.getElementsByClassName('menu-item'),
-                ...document.getElementsByClassName('menu-item-label')
-            ].forEach(element => {
-                element.addEventListener('mouseenter', () => $kt.uiHelper.focusSelectedMenuItem(element));
-                
-                if (element.type === 'checkbox') {
-                    element.addEventListener('keypress', event => {
-                        if (event.key === 'Enter') {
-                            element.click();
-                        }
-                    });
-                }
-
-                if (element.tagName === 'SELECT') {
-                    element.addEventListener('keypress', event => {
-                        if (event.key === 'Enter') {
-                            element.showPicker();
-                        }
-                    });
-                }
-            });
-
-            const menuItemPressedListenerCreator = element => element.addEventListener('click', () => $kt.audio.playEffect($kt.audio.tracks[element.dataset.se || 'SE_TEST_2']));
-            [...document.getElementsByClassName('menu-button')]
-                .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
-            [...document.getElementsByClassName('menu-checkbox')]
-                .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
-            [...document.getElementsByClassName('menu-destination-button')]
-                .forEach(button => button.addEventListener('click', () => {
-                    const destination = document.getElementById(button.dataset.destination);
-                    $kt.uiHelper.hideMenu(button.parentNode);
-                    $kt.uiHelper.showMenu(destination);
-                }));
 
             this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
@@ -432,50 +816,24 @@ var $kt = $kt || {};
             this._hintLastButton.addEventListener('click', () => 
                 this.selectHint(this._hints.length - 1)
             );
-
-            this._fullscreenButton.addEventListener('click', $kt.uiHelper.toggleFullscreen);
-            document.addEventListener('fullscreenchange', this._toggleFullscreenIcon.bind(this));
         }
 
-        _toggleFullscreenIcon() {
-            const fullscreenIcon = this._fullscreenButton.firstElementChild;
-            const currentIconSrc = fullscreenIcon.src;
-            fullscreenIcon.src = fullscreenIcon.dataset.exitIcon;
-            fullscreenIcon.dataset.exitIcon = currentIconSrc;
-        }
-
-        focusTemporarily(element) {
-            this._saveMenuItemToRefocus();
-            element.focus({ focusVisible: false });
-            this._refocusSavedMenuItem();
-        }
-
-        _preventMenuItemUnfocus() {
-            document.body.addEventListener('pointerdown', this._saveMenuItemToRefocus.bind(this));
-            document.body.addEventListener('pointerup', this._refocusSavedMenuItem.bind(this));
-        }
-
-        _saveMenuItemToRefocus() {
-            if (
-                document.activeElement
-                && document.activeElement.tagName !== 'SELECT'
-                && document.activeElement.classList.contains('menu-item')
-            ) {
-                this._elementToReactivate = document.activeElement;
-                this._elementToReactivate.classList.add('to-refocus');
-            }
-        }
-
-        _refocusSavedMenuItem() {
-            setTimeout(() => {
-                if (this._elementToReactivate) {
-                    if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
-                        $kt.uiHelper.focusMenuItem(this._elementToReactivate);
-                    }
-                    this._elementToReactivate.classList.remove('to-refocus');
-                    this._elementToReactivate = null;
+        _connectSettings() {
+            const openCloseDetails = (details, value) => {
+                if (!value && details.checkVisibility()) {
+                    details.classList.add('closing');
+                } else {
+                    details.classList.remove('closing');
+                    details.open = value;
                 }
-            }, REFOCUS_TIME);
+            }
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
+            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, (value = 0) => {
+                this.selectHint(value);
+                this._hintSelect.value = this._currentHintIndex;
+            });
+            $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, $kt.uiHelper.adjustMobileOnlyElementsVisibility);
         }
 
         _answerInputEnterEventListener(event) {
@@ -517,73 +875,13 @@ var $kt = $kt || {};
             }
         }
 
-        _documentEnterEventListener(event) {
-            if (event.key !== 'Enter' || this._isMenuItemFocused() || this._isLoadingVisible()) {
-                return;
-            }
-
-            if (this._isLevelUpTextVisible()) {
-                this._forceCloseLevelUpText();
-                return;
-            }
-
-            if (this._isLevelUpHintVisible()) {
-                this._closeLevelUpContainer();
-                return;
-            }
-
-            if (this._isGameClearOrGameOverVisible()) {
-                $kt.uiHelper.backToTitle();
-                return;
-            }
-
-            if ($kt.titleUi.enterListener()) {
-                return;
-            }
-            
-            this.focusAnswerInput();
-            this._answerInputEnterEventListener(event);
-        }
-
-        _charEventListener(event) {
-            const key = event.key;
-
-            if (key === 'Tab') {
-                this._documentTabEventListener();
-                event.preventDefault();
-            }
-
-            if (this._isMenuItemFocused()) {
-                if ($kt.titleUi.keyListener(key)) {
-                    return;
-                }
-
-                if (key === 'ArrowUp') {
-                    $kt.uiHelper.focusSelectedMenuItem(this._findPreviousMenuItem(document.activeElement));
-                    event.preventDefault();
-                } else if (key === 'ArrowDown') {
-                    $kt.uiHelper.focusSelectedMenuItem(this._findNextMenuItem(document.activeElement));
-                    event.preventDefault();
-                }
-
-                return;
-            }
-
-            if (this._isLoadingVisible() || this._isLevelUpVisible()) {
-                return;
-            }
-
-            // Is a character, not a special key
-            if (key.length === 1 && key.charCodeAt(0) < 127) {
-                this.focusAnswerInput();
-            }
-        }
-
-        _gameStarted() {
+        startGame() {
+            $kt.uiHelper.switchToScene(this._gameScene);
             this._moveLevelExpDivBackDown();
             this._removeLevelUpTransitions();
             this._displayAnnouncmentText(this._levelUpText);
-            $kt.uiHelper.initializeHintSelects($kt.ui._currentHintIndex + 1);
+            $kt.uiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
+            $kt.settings.currentHintIndex = this._currentHintIndex;
             this.focusAnswerInput();
         }
 
@@ -600,119 +898,6 @@ var $kt = $kt || {};
             this._removeTransition(this._gameClearText);
             this._removeTransition(this._levelUpHint);
             this._removeTransition(this._levelUpContainer);
-        }
-
-        _documentTabEventListener() {
-            if ($kt.uiHelper.isSettingsVisible()) {
-                $kt.uiHelper.hideSettings();
-            } else {
-                $kt.uiHelper.showSettings();
-            }
-        }
-
-        _findNextMenuItem(startElement) {
-            return this._findMenuItem(startElement, element => element.nextElementSibling, element => element.parentNode.firstElementChild);
-        }
-
-        _findPreviousMenuItem(startElement) {
-            return this._findMenuItem(startElement, element => element.previousElementSibling, element => element.parentNode.lastElementChild);
-        }
-
-        _findMenuItem(startElement, getNextElementFunction, getDefaultElementFunction) {
-            if (startElement.parentNode.classList.contains('menu-item-label')) {
-                startElement = startElement.parentNode;
-            }
-            let element = startElement;
-
-            do {
-                element = getNextElementFunction(element);
-            } while (element && !this._isElementMenuItem(element));
-            
-            if (!element && getDefaultElementFunction) {
-                element = getDefaultElementFunction(startElement);
-                if (!this._isElementMenuItem(element)) {
-                    element = this._findMenuItem(element, getNextElementFunction);
-                }
-            }
-
-            return element;
-        }
-
-        _isElementMenuItem(element) {
-            return element && (element.classList.contains('menu-item') || element.classList.contains('menu-item-label')) && element.checkVisibility();
-        }
-        
-        _documentClickEventListener(event) {
-            if ($kt.uiHelper.isSettingsVisible()) {
-                return;
-            }
-
-            const target = event.target;
-            
-            if ($kt.uiHelper.isSettingsButton(target)) {
-                return;
-            }
-
-            if (this._isLevelUpHintVisible() && !this._levelUpHint.contains(target)) {
-                this._closeLevelUpContainer();
-                return;
-            }
-            
-            if (this._isLevelUpTextVisible()) {
-                this._forceCloseLevelUpText();
-                return;
-            }
-
-            if (this._isGameClearOrGameOverVisible()) {
-                $kt.uiHelper.backToTitle();
-                return;
-            }
-
-            if ($kt.titleUi.clickListener()) {
-                return;
-            }
-        }
-        
-        _forceCloseLevelUpText() {
-            // If fade out transition is already in progress
-            if (getComputedStyle(this._levelUpText).opacity < 1) {
-                return;
-            }
-
-            this._removeTransition(this._levelUpText)
-            
-            // Force reflow to apply previous remove transition
-            void this._levelUpText.offsetWidth;
-            
-            this._fadeLevelUpTextToLevelUpHint(this._showHintOnLevelUp, 'var(--default-transition-time)');
-        }
-        
-        _animateDetails() {
-            const detailsElements = document.getElementsByTagName('details');
-            [...detailsElements].forEach(details => {
-                    const summary = details.firstElementChild;
-
-                    summary.addEventListener('click', event => {
-                        event.preventDefault();
-                        $kt.settings[details.dataset.settingName] = !details.open;
-                    })
-
-                    details.addEventListener('animationend', event => {
-                        if (event.animationName === 'close') {
-                            details.open = false;
-                            details.classList.remove('closing');
-                        }
-                    });
-                }
-            );
-        }
-
-        _initBackgroundPaticles() {
-            if (particlesJS) {
-                particlesJS.load('particles-js', 'particlesjs-config.json');
-            } else {
-                console.error('particles.js was not loaded!', `particlesJS object is ${particlesJS}`);
-            }
         }
 
         _setupHints() {
@@ -739,7 +924,6 @@ var $kt = $kt || {};
             }
             
             $kt.settings.currentHintIndex =
-                this._hintSelect.value =
                 this._currentHintIndex = clampedHintIndex;
             this._updateHintContent();
         }
@@ -770,15 +954,6 @@ var $kt = $kt || {};
             return false;
         }
 
-        _isMenuItemFocused() {
-            const focusedItem = document.activeElement
-            return focusedItem && focusedItem.classList.contains('menu-item');
-        }
-
-        _isLoadingVisible() {
-            return this._loadingDiv.checkVisibility({ visibilityProperty: true });
-        }
-
         _isLevelUpVisible() {
             return this._levelUpContainer.checkVisibility();
         }
@@ -793,10 +968,6 @@ var $kt = $kt || {};
 
         _isGameClearOrGameOverVisible() {
             return this._gameClearText.checkVisibility() || this._gameOverText.checkVisibility();
-        }
-
-        _isFocused(element) {
-            return document.activeElement === element;
         }
 
         /**
@@ -916,165 +1087,11 @@ var $kt = $kt || {};
             element.style.removeProperty('top');
             element.ontransitionend = null;
         }
-    }
 
-    // KantoreUiHelper has access to private fields
-    // of this class (friend class)
-    class KantoreSettingsUi {
-
-        constructor() {
-            this._getAllElements();
-            this._addEventListeners();
-            this._addSubmitButtonOptions();
-            this._connectSettings();
-
-        }
-
-        _getAllElements() {
-            this._settingsDiv = document.getElementById('settings');
-            this._settingsContainer = document.getElementById('settings-container');
-            this._settingsButton = document.getElementById('settings-button');
-
-            this._bgmVolume = document.getElementById('bgm-volume');
-            this._seVolume = document.getElementById('se-volume');
-            
-            this._showMeaning = document.getElementById('close-meaning');
-            this._showHint = document.getElementById('close-hint');
-            this._fullscreen = document.getElementById('settings-fullscreen');
-            this._hintSelect = document.getElementById('settings-hint-select');
-            this._submitButtonSelect = document.getElementById('settings-submit-button-select');
-
-            this._backToMenu = document.getElementById('back-to-main-menu-button');
-            this._returnToGame = document.getElementById('return-to-game-button');
-        }
-
-        _addEventListeners() {
-            this._settingsButton.addEventListener('click', $kt.uiHelper.showSettings);
-            this._settingsDiv.addEventListener('click', e => {
-                if (!this._settingsContainer.contains(e.target)) {
-                    $kt.uiHelper.hideSettings();
-                }
-            });
-
-            this._submitButtonSelect.addEventListener('change', e => $kt.settings.showSubmitButton = Number(e.target.value));
-            
-            this._fullscreen.addEventListener('change', $kt.uiHelper.toggleFullscreen);
-            document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
-
-            this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
-            this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
-        }
-
-        _addSubmitButtonOptions() {
-            const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
-            [
-                { value: AUTO, text: 'Auto' },
-                { value: NEVER, text: 'Always hide' },
-                { value: ALWAYS, text: 'Always show' }
-            ].forEach(({ value, text }) => this._addOptionToSelect(this._submitButtonSelect, value, text));
-        }
-
-        _addOptionToSelect(select, value, text) {
-            const option = document.createElement('option');
-            option.value = value;
-            option.text = text;
-            select.add(option);
-        }
-
-        _connectSettings() {
-            $kt.uiHelper.connectElementToSetting(EVENTS.BGM_VOLUME, this._bgmVolume);
-            $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1));
-            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_MEANING, this._showMeaning);
-            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_HINT, this._showHint);
-            $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_SUBMIT_BUTTON, this._submitButtonSelect);
-            $kt.uiHelper.connectElementToSetting(EVENTS.CURRENT_HINT_INDEX, this._hintSelect);
-        }
-
-    }
-
-    // KantoreUiHelper has access to private fields
-    // of this class (friend class)
-    class KantoreTitleUi {
-
-        constructor() {
-            this._getAllElements();
-            this._addEventListeners();
-        }
-
-        enterListener() {
-            return this._handlePreTitle();
-        }
-
-        keyListener(key) {
-            if (this._isCreditsVisible()) {
-                this._handleCreditsScrolling(key);
-                return true;
-            }
-            return false;
-        }
-
-        clickListener() {
-            return this._handlePreTitle();
-        }
-
-        startTitleScene() {
-            $kt.uiHelper.showMenu(this._mainMenu);
-        }
-
-        /**
-         * 
-         * @returns {boolean} true if pre title was active, false if not
-         */
-        _handlePreTitle() {
-            if (this._isPreTitleVisible()) {
-                this._hidePreTitle();
-                return true;
-            }
-            return false;
-        }
-
-        _handleCreditsScrolling(key) {
-            if (
-                key.startsWith('Page')
-                || key === 'ArrowUp'
-                || key === 'ArrowDown'
-            ) {
-                $kt.uiHelper.focusTemporarily(this._credits);
-            }
-        }
-
-        _getAllElements() {
-            this._titleScene = document.getElementById('title-screen-container');
-            this._titleStartButton = document.getElementById('start-game-button');
-            this._titleSettingsButton = document.getElementById('title-settings-button');
-            this._preTitleText = document.getElementById('pre-title-press-start-text');
-            this._mainMenu = document.getElementById('main-menu');
-            this._credits = document.getElementById('credits');
-        }
-
-        _addEventListeners() {
-            this._titleStartButton.addEventListener('click', $kt.uiHelper.switchToGameScene);
-            this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
-        }
-        
-        _isPreTitleVisible() {
-            return this._preTitleText.checkVisibility();
-        }
-
-        _isCreditsVisible() {
-            return this._credits.checkVisibility();
-        }
-
-        _hidePreTitle() {
-            this._preTitleText.classList.add('hidden');
-            $kt.uiHelper.showMenu(this._mainMenu);
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
-            $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
-        }
     }
 
     // Has access to privete fields of
-    // KantoreUi, KantoreSettingsUi and KantoreTitleUi
+    // KantoreUi, KantoreSettingsUi, KantoreGameUi and KantoreTitleUi
     // to facilitate communication
     // between them (friend class)
     class KantoreUiHelper {
@@ -1169,12 +1186,12 @@ var $kt = $kt || {};
                     $kt.titleUi.startTitleScene();
                 }
             } else {
-                $kt.ui.focusAnswerInput();
+                $kt.gameUi.focusAnswerInput();
             }
         }
 
         static focusAnswerInput() {
-            $kt.ui.focusAnswerInput();
+            $kt.gameUi.focusAnswerInput();
         }
 
         static focusSelectedMenuItem(element) {
@@ -1197,10 +1214,8 @@ var $kt = $kt || {};
             element.focus({ focusVisible: true });
         }
 
-        static switchToGameScene() {
-            $kt.uiHelper.switchToScene($kt.ui._gameScene);
-            // This will later be called with events, not diractly
-            $kt.ui._gameStarted();
+        static startGame() {
+            $kt.gameUi.startGame();
         }
 
         static switchToScene(scene) {
@@ -1261,9 +1276,35 @@ var $kt = $kt || {};
             }
         }
 
+        /**
+         * 
+         * @param {$kt.enums.SUBMIT_BUTTON} visibility 
+         */
+        static adjustMobileOnlyElementsVisibility(visibility) {
+            const adjustVisibilityFunction = $kt.uiHelper._createAdjustVisibilityFunction(visibility);
+            [...document.getElementsByClassName('mobile-only')]
+                .forEach(adjustVisibilityFunction);
+        }
+
+        /**
+         * 
+         * @param {$kt.enums.SUBMIT_BUTTON} visibility 
+         */
+        static _createAdjustVisibilityFunction(visibility) {
+            const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
+            switch (visibility) {
+                case AUTO:
+                    return element => element.style.removeProperty('display');
+                case NEVER:
+                    return element => element.style.display = 'none';
+                case ALWAYS:
+                    return element => element.style.display = 'initial';
+            }
+        }
+
         static initializeHintSelects(initialHintsNumber) {
             $kt.settingsUi._hintSelect.innerHTML = '';
-            $kt.ui._hintSelect.innerHTML = '';
+            $kt.gameUi._hintSelect.innerHTML = '';
             const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
             for (let hintIndex = 0; hintIndex < maxHints; hintIndex++) {
                 $kt.uiHelper.addNewHintToSelects(hintIndex);
@@ -1272,7 +1313,7 @@ var $kt = $kt || {};
 
         static addNewHintToSelects(newHintIndex) {
             this._addNewHintToSelect($kt.settingsUi._hintSelect, newHintIndex);
-            this._addNewHintToSelect($kt.ui._hintSelect, newHintIndex);
+            this._addNewHintToSelect($kt.gameUi._hintSelect, newHintIndex);
         }
 
         static _addNewHintToSelect(select ,newHintIndex) {
@@ -1288,6 +1329,7 @@ var $kt = $kt || {};
     $kt.ui = new KantoreUi();
     $kt.settingsUi = new KantoreSettingsUi();
     $kt.titleUi = new KantoreTitleUi();
+    $kt.gameUi = new KantoreGameUi();
     $kt.ui.hideStartupLoading();
 
 })();
