@@ -49,8 +49,6 @@ var $kt = $kt || {};
                 }
             });
 
-            this._submitButtonSelect.addEventListener('change', e => $kt.settings.showSubmitButton = Number(e.target.value));
-            
             this._fullscreen.addEventListener('change', $kt.uiHelper.toggleFullscreen);
             document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
 

@@ -255,9 +255,6 @@ var $kt = $kt || {};
             return this._loadingDiv.checkVisibility({ visibilityProperty: true });
         }
 
-        _isFocused(element) {
-            return document.activeElement === element;
-        }
     }
 
     $kt.ui = new KantoreUi();
