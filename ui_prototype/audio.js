@@ -17,7 +17,7 @@ var $kt = $kt || {};
             };
 
             // Settings default parameters when missing
-            Object.entries(this.tracks).forEach(([track, trackData]) => {
+            Object.entries(this.tracks).forEach(([, trackData]) => {
                 trackData.volume ??= 1;
                 trackData.speed ??= 1;
                 trackData.buffer = this._player.loadTrack(trackData.name);
