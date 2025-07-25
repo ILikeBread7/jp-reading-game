@@ -74,7 +74,10 @@ var $kt = $kt || {};
                     $kt.uiHelper.showMenu(destination);
                 }));
 
-            this._fullscreenButton.addEventListener('click', $kt.uiHelper.toggleFullscreen);
+            this._fullscreenButton.addEventListener('click', event => {
+                $kt.uiHelper.toggleFullscreen();
+                event.stopPropagation();
+            });
             document.addEventListener('fullscreenchange', this._toggleFullscreenIcon.bind(this));
         }
 
