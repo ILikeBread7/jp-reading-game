@@ -27,10 +27,6 @@ var $kt = $kt || {};
                 }, $kt.persistence.getSettings() || {});
 
             this._events = new EventTarget();
-            this._eventNames = {
-                CURRENT_HINT_INDEX: 'currentHintIndex',
-                FULLSCREEN: 'fullscreen'
-            };
 
             // Pass through all get/set property accessors
             // to the underlying _settings object
@@ -46,9 +42,25 @@ var $kt = $kt || {};
                             this._saveSettings();
                         })
                     });
-                    this._eventNames[this._fromCamelCaseToConstCase(key)] = key;
                 });
-            Object.freeze(this._eventNames);
+
+            // Map all property to event names
+            this._eventNames = Object.freeze(
+                [
+                    'fullscreen',
+                    ...Object.keys({
+                        ...Object.getOwnPropertyDescriptors(this),
+                        ...Object.getOwnPropertyDescriptors(KantoreSettings.prototype)
+                    })
+                ]
+                    .filter(prop => !prop.startsWith('_') && prop != 'constructor')
+                    .reduce(
+                        (acc, prop) => {
+                            acc[this._fromCamelCaseToConstCase(prop)] = prop;
+                            return acc;
+                        }, {}
+                    )
+            );
         }
 
         get events() {
