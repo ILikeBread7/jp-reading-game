@@ -44,7 +44,7 @@ var $kt = $kt || {};
                     });
                 });
 
-            // Map all property to event names
+            // Map all property names to event names
             this._eventNames = Object.freeze(
                 [
                     'fullscreen',
