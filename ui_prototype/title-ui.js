@@ -30,6 +30,9 @@ var $kt = $kt || {};
         }
 
         startTitleScene() {
+            if (this._isPreTitleVisible()) {
+                return;
+            }
             $kt.uiHelper.showMenu(this._mainMenu);
         }
 
