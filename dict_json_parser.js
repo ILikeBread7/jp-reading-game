@@ -516,7 +516,8 @@ function createTags(entry) {
     const tags = [
         ...createKanaTags(entry),
         ...createJLPTKanjiTags(entry),
-        ...createJLPTVocabTags(entry)
+        ...createJLPTVocabTags(entry),
+        ...createFrequencyTags(entry)
     ];
 
     tags.push(...createKanjiLevelTagsFromExistingTags(entry, tags));
@@ -646,6 +647,13 @@ function createKanjiLevelTagsFromExistingTags(entry, tags) {
     }
 
     return [ maxTags.levelTag ];
+}
+
+function createFrequencyTags(entry) {
+    return [
+        ...((entry.kanji && entry.kanji.ke_pri && elementToArray(entry.kanji.ke_pri)) || []).map(pri => `kp${pri}`),
+        ...((entry.kana && entry.kana.re_pri && elementToArray(entry.kana.re_pri)) || []).map(pri => `rp${pri}`)
+    ]
 }
 
 function getTermCodeOrUndefined(term) {
