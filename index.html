@@ -192,30 +192,25 @@
                 ctx[`jlptGyou${gyouDictKey}`] = gyouDictValue.filter(entry => isJlptWord(entry));
             });
 
-            ctx.kanjiLevelDicts = [];
+            ctx.levelDicts = [];
             ctx.dict.forEach(entry => {
-                const levelTag = entry.tags.find(tag => tag.startsWith('L'));
+                const levelTags = entry.tags.filter(tag => tag.startsWith('L'));
 
-                if (!levelTag) {
+                if (levelTags.length === 0) {
                     return;
                 }
 
-                const level = Number(levelTag.substring(1));
-                const index = level - 1;
-
-                if (!ctx.kanjiLevelDicts[index]) {
-                    ctx.kanjiLevelDicts[index] = [ entry ];
-                } else {
-                    ctx.kanjiLevelDicts[index].push(entry);
-                }
+                levelTags.forEach(levelTag => {
+                    const level = Number(levelTag.substring(1));
+                    const index = level - 1;
+    
+                    if (!ctx.levelDicts[index]) {
+                        ctx.levelDicts[index] = [ entry ];
+                    } else {
+                        ctx.levelDicts[index].push(entry);
+                    }
+                });
             });
-
-            ctx.levelDicts = [
-                ...[...hiraganaGyous, ...katakanaGyous].map(gyou => ({ MAIN_DICT: ctx[`jlptGyou${gyou}`], SUB_DICT: ctx.gyouDicts.get(gyou) })),
-                ...ctx.kanjiLevelDicts,
-                ...[5, 4, 3, 2, 1].map(level => ctx[`jlptN${level}`]),
-                ctx.dict
-            ];
 
             const hiraganaChars = [
                 'あいうえお',
@@ -262,8 +257,8 @@
             for (let i = 0; i < ctx.levelChars.length; i++) {
                 const chars = [...ctx.levelChars[i]];
                 const entriesNumbersPerChar = chars.map(c => {
-                    const numOfEntriesInMainDict = (ctx.levelDicts[i].MAIN_DICT || ctx.levelDicts[i]).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c)).length;
-                    const subDictEntries = (ctx.levelDicts[i].SUB_DICT || []).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c));
+                    const numOfEntriesInMainDict = (ctx.levelDicts[i] && (ctx.levelDicts[i].MAIN_DICT || ctx.levelDicts[i]) || []).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c)).length;
+                    const subDictEntries = ((ctx.levelDicts[i] && ctx.levelDicts[i].SUB_DICT) || []).filter(q => [...q.kana.reb, ...((q.kanji && q.kanji.keb) || [])].includes(c));
                     const numOfRePriSubDictEntries = subDictEntries.map(q => q.kana.re_pri).filter(Boolean).length;
                     const numOfTotalSubDictEntries = subDictEntries.length;
                     return [ c, numOfEntriesInMainDict, numOfRePriSubDictEntries, numOfTotalSubDictEntries ];

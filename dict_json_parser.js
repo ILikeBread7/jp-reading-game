@@ -299,13 +299,6 @@ const LEVEL_KANJI = [
     { vocabTag: 'v4', kanjiChars: [...'会同事社'] }
 ];
 
-const LEVEL_KANJI_MAP = new Map();
-LEVEL_KANJI.forEach((level, index) => {
-    level.kanjiChars.forEach(char => {
-        LEVEL_KANJI_MAP.set(char, { levelTag: `L${(index + 1).toString().padStart(3, '0')}`, vocabTag: level.vocabTag });
-    });
-});
-
 const HIRAGANA = [
     { tag: 'a', chars: 'あいうえお' },
     { tag: 'm', chars: 'まみむめも' },
@@ -320,17 +313,30 @@ const HIRAGANA = [
 ];
 
 const KATAKANA = [
-    { tag: 'A' ,chars: 'アイウエオ' },
-    { tag: 'M' ,chars: 'マミムメモ' },
-    { tag: 'R' ,chars: 'ラリルレロー' },
-    { tag: 'N' ,chars: 'ナニヌネノ' },
-    { tag: 'K' ,chars: 'カキクケコガギグゲゴ' },
-    { tag: 'S' ,chars: 'サシスセソザジズゼゾ' },
-    { tag: 'H' ,chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
-    { tag: 'T' ,chars: 'タチッツテトダヂヅデドゥ' },
-    { tag: 'Y' ,chars: 'ヤユヨャュョ' },
-    { tag: 'W' ,chars: 'ワヲンヴ' }
+    { tag: 'A', chars: 'アイウエオ' },
+    { tag: 'M', chars: 'マミムメモ' },
+    { tag: 'R', chars: 'ラリルレロー' },
+    { tag: 'N', chars: 'ナニヌネノ' },
+    { tag: 'K', chars: 'カキクケコガギグゲゴ' },
+    { tag: 'S', chars: 'サシスセソザジズゼゾ' },
+    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
+    { tag: 'T', chars: 'タチッツテトダヂヅデドゥ' },
+    { tag: 'Y', chars: 'ヤユヨャュョ' },
+    { tag: 'W', chars: 'ワヲンヴ' }
 ];
+
+const KANA_GYOUS = [ ...HIRAGANA, ...KATAKANA ];
+const KANA_GYOU_TO_LEVEL_MAP = new Map(
+    KANA_GYOUS.map((gyou, index) => [gyou.tag, index + 1])
+);
+
+const LEVEL_KANJI_MAP = new Map();
+const KANJI_LEVEL_OFFSET = KANA_GYOUS.length;
+LEVEL_KANJI.forEach((level, index) => {
+    level.kanjiChars.forEach(char => {
+        LEVEL_KANJI_MAP.set(char, { levelTag: `L${(KANJI_LEVEL_OFFSET + index + 1).toString().padStart(3, '0')}`, vocabTag: level.vocabTag });
+    });
+});
 
 const HIRAGANA_MAP = new Map();
 const KATAKANA_MAP = new Map();
@@ -392,6 +398,19 @@ jlptVocabMap.forEach((value, key) => {
     jlptMismatchesMap.set(key, 0);
 });
 
+const CHAR_TO_LEVEL = new Map();
+[
+    ...KANA_GYOUS.map(gyou => [...gyou.chars]),
+    ...LEVEL_KANJI.map(level => level.kanjiChars)
+].forEach((chars, index) => {
+    const level = index + 1;
+    chars.forEach(char => {
+        CHAR_TO_LEVEL.set(char, level);
+    });
+});
+
+const numOfEntriesPerChar = new Map();
+
 fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     if (err) {
         console.error(err);
@@ -444,6 +463,9 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     });
 
     result.forEach(entry => createUniqueHint(entry, entriesMap));
+
+    numOfEntriesPerChar.entries()
+        .forEach(([key, value]) => console.log(key, value));
 
     // DEBUG
     const jlptMismatches = {};
@@ -520,7 +542,7 @@ function createTags(entry) {
         ...createFrequencyTags(entry)
     ];
 
-    tags.push(...createKanjiLevelTagsFromExistingTags(entry, tags));
+    tags.push(...createLevelTagsFromExistingTags(entry, tags));
 
     return tags;
 }
@@ -613,6 +635,49 @@ function createJLPTVocabTags(entry) {
     return [];
 }
 
+function createLevelTagsFromExistingTags(entry, tags) {
+    const kanaLevelTags = createKanaLevelTagsFromExistingTags(tags);
+    const kanjiLevelTags = createKanjiLevelTagsFromExistingTags(entry, tags);
+    const result = [ ...kanaLevelTags, ...kanjiLevelTags ];
+
+    const numOfEntriesMapUpdate = char =>
+        numOfEntriesPerChar.set(
+            char,
+            (numOfEntriesPerChar.get(char) || 0) + 1
+        );
+
+    const filterLevelTag = char =>
+        result.includes(levelNumberToTag(CHAR_TO_LEVEL.get(char)));
+
+    if (kanaLevelTags.length > 0) {
+        [...new Set([...entry.kana.reb])]
+            .filter(filterLevelTag)
+            .forEach(numOfEntriesMapUpdate);
+    } else if (kanjiLevelTags.length > 0) {
+        [...new Set([...entry.kana.reb])]
+            .filter(wanakana.isKanji)
+            .filter(filterLevelTag)
+            .forEach(numOfEntriesMapUpdate);
+    }
+
+    return result;
+}
+
+function createKanaLevelTagsFromExistingTags(tags) {
+    const entryJLPTVocabTag = tags.find(tag => tag.startsWith('v'));
+    if (!entryJLPTVocabTag) {
+        return [];
+    }
+
+    const entryKanaTag = tags.find(tag => tag.length === 1);
+    if (!entryKanaTag) {
+        return [];
+    }
+
+    const level = KANA_GYOU_TO_LEVEL_MAP.get(entryKanaTag);
+    return [ levelNumberToTag(level) ];
+}
+
 function createKanjiLevelTagsFromExistingTags(entry, tags) {
     if (!entry.kanji) {
         return [];
@@ -656,8 +721,48 @@ function createFrequencyTags(entry) {
     ]
 }
 
+function createSupplementaryTags(entry, priorities) {
+
+}
+
+function createPriorities(entries) {
+    const reduceBuilder = tagPrefix =>
+        (acc, entry) => {
+            entry.tags
+                .filter(tag => tag.startsWith(tagPrefix))
+                .forEach(tag => {
+                    const entryList = acc.get(tag) || [];
+                    entryList.push(entry);
+                    acc.set(tag, entryList);
+                })
+            return acc;
+        };
+
+    const order = [
+        ...[(() => {
+            const result = [];
+            for (let i = 1; i <= 48; i++) {
+                result.push(`nf${i.toString().padStart(2, '0')}`);
+            }
+            return result;
+        })()],
+        ...[1, 2].map(num => [`ichi${num}`, `news${num}`, `gai${num}`])
+    ]
+
+    return {
+        orderKanji: order.map(o => `kp${o}`),
+        orderKana: order.map(o => `rp${o}`),
+        kanji: entries.reduce(reduceBuilder('kp'), new Map()),
+        kana: entries.reduce(reduceBuilder('rp'), new Map())
+    }
+}
+
 function getTermCodeOrUndefined(term) {
     return term ? term.code : undefined;
+}
+
+function levelNumberToTag(level) {
+    return `L${level.toString().padStart(3, '0')}`;
 }
 
 // Returns the tags array if applicable
