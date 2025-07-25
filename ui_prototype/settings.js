@@ -48,13 +48,10 @@ var $kt = $kt || {};
 
             // Map all property names to event names
             this._eventNames = Object.freeze(
-                [
-                    'fullscreen',
-                    ...Object.keys({
-                        ...Object.getOwnPropertyDescriptors(this),
-                        ...Object.getOwnPropertyDescriptors(KantoreSettings.prototype)
-                    })
-                ]
+                Object.keys({
+                    ...Object.getOwnPropertyDescriptors(this),
+                    ...Object.getOwnPropertyDescriptors(KantoreSettings.prototype)
+                })
                     .filter(prop => !prop.startsWith('_') && prop != 'constructor')
                     .reduce(
                         (acc, prop) => {
