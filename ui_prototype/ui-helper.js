@@ -102,10 +102,6 @@ var $kt = $kt || {};
             }
         }
 
-        static focusAnswerInput() {
-            $kt.gameUi.focusAnswerInput();
-        }
-
         static focusSelectedMenuItem(element) {
             $kt.uiHelper.focusMenuItem(element);
 
