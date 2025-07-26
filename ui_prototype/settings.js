@@ -48,11 +48,12 @@ var $kt = $kt || {};
 
             // Map all property names to event names
             this._eventNames = Object.freeze(
-                Object.keys({
+                Object.entries({
                     ...Object.getOwnPropertyDescriptors(this),
                     ...Object.getOwnPropertyDescriptors(KantoreSettings.prototype)
                 })
-                    .filter(prop => !prop.startsWith('_') && prop != 'constructor')
+                    .filter(([, description]) => description.set)
+                    .map(([prop, ]) => prop)
                     .reduce(
                         (acc, prop) => {
                             acc[this._fromCamelCaseToConstCase(prop)] = prop;
