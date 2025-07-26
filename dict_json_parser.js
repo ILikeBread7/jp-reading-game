@@ -291,6 +291,8 @@ const UNUSED_KANJI_TERMS_SET = new Set(['uk', 'rK', 'sK']);
 const UNUSED_KANA_TERMS_SET = new Set(['sk']);
 
 const MASK_CHAR = '・';
+const KANJI_PRIORITY_PREFIX = 'kp';
+const KANA_PRIORITY_PREFIX = 'rp';
 
 const LEVEL_KANJI = [
     { vocabTag: 'v5', kanjiChars: [...'日一国人年'] },
@@ -716,13 +718,13 @@ function createKanjiLevelTagsFromExistingTags(entry, tags) {
 
 function createFrequencyTags(entry) {
     return [
-        ...((entry.kanji && entry.kanji.ke_pri && elementToArray(entry.kanji.ke_pri)) || []).map(pri => `kp${pri}`),
-        ...((entry.kana && entry.kana.re_pri && elementToArray(entry.kana.re_pri)) || []).map(pri => `rp${pri}`)
+        ...((entry.kanji && entry.kanji.ke_pri && elementToArray(entry.kanji.ke_pri)) || []).map(pri => `${KANJI_PRIORITY_PREFIX}${pri}`),
+        ...((entry.kana && entry.kana.re_pri && elementToArray(entry.kana.re_pri)) || []).map(pri => `${KANA_PRIORITY_PREFIX}${pri}`)
     ]
 }
 
-function createSupplementaryTags(entry, priorities) {
-
+function createSupplementaryTags(entries, priorities) {
+    console.log(priorities);
 }
 
 function createPriorities(entries) {
@@ -750,10 +752,10 @@ function createPriorities(entries) {
     ]
 
     return {
-        orderKanji: order.map(o => `kp${o}`),
-        orderKana: order.map(o => `rp${o}`),
-        kanji: entries.reduce(reduceBuilder('kp'), new Map()),
-        kana: entries.reduce(reduceBuilder('rp'), new Map())
+        orderKanji: order.map(o => `${KANJI_PRIORITY_PREFIX}${o}`),
+        orderKana: order.map(o => `${KANA_PRIORITY_PREFIX}${o}`),
+        kanji: entries.reduce(reduceBuilder(KANJI_PRIORITY_PREFIX), new Map()),
+        kana: entries.reduce(reduceBuilder(KANA_PRIORITY_PREFIX), new Map())
     }
 }
 
