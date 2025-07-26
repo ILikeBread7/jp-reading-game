@@ -293,6 +293,7 @@ const UNUSED_KANA_TERMS_SET = new Set(['sk']);
 const MASK_CHAR = '・';
 const KANJI_PRIORITY_PREFIX = 'kp';
 const KANA_PRIORITY_PREFIX = 'rp';
+const MIN_ENTRIES_PER_CHAR = 20;
 
 const LEVEL_KANJI = [
     { vocabTag: 'v5', kanjiChars: [...'日一国人年'] },
@@ -321,8 +322,8 @@ const KATAKANA = [
     { tag: 'N', chars: 'ナニヌネノ' },
     { tag: 'K', chars: 'カキクケコガギグゲゴ' },
     { tag: 'S', chars: 'サシスセソザジズゼゾ' },
-    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
     { tag: 'T', chars: 'タチッツテトダヂヅデドゥ' },
+    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
     { tag: 'Y', chars: 'ヤユヨャュョ' },
     { tag: 'W', chars: 'ワヲンヴ' }
 ];
@@ -400,11 +401,13 @@ jlptVocabMap.forEach((value, key) => {
     jlptMismatchesMap.set(key, 0);
 });
 
-const CHAR_TO_LEVEL = new Map();
-[
+const LEVEL_CHARS = [
     ...KANA_GYOUS.map(gyou => [...gyou.chars]),
     ...LEVEL_KANJI.map(level => level.kanjiChars)
-].forEach((chars, index) => {
+];
+
+const CHAR_TO_LEVEL = new Map();
+LEVEL_CHARS.forEach((chars, index) => {
     const level = index + 1;
     chars.forEach(char => {
         CHAR_TO_LEVEL.set(char, level);
@@ -465,9 +468,12 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     });
 
     result.forEach(entry => createUniqueHint(entry, entriesMap));
+    
+    const priorities = createPriorities(result);
+    createSupplementaryLevelTags(priorities, result);
 
-    numOfEntriesPerChar.entries()
-        .forEach(([key, value]) => console.log(key, value));
+    // numOfEntriesPerChar.entries()
+    //     .forEach(([key, value]) => console.log(key, value));
 
     // DEBUG
     const jlptMismatches = {};
@@ -544,7 +550,7 @@ function createTags(entry) {
         ...createFrequencyTags(entry)
     ];
 
-    tags.push(...createLevelTagsFromExistingTags(entry, tags));
+    // tags.push(...createLevelTagsFromExistingTags(entry, tags));
 
     return tags;
 }
@@ -656,7 +662,7 @@ function createLevelTagsFromExistingTags(entry, tags) {
             .filter(filterLevelTag)
             .forEach(numOfEntriesMapUpdate);
     } else if (kanjiLevelTags.length > 0) {
-        [...new Set([...entry.kana.reb])]
+        [...new Set([...entry.kanji.keb])]
             .filter(wanakana.isKanji)
             .filter(filterLevelTag)
             .forEach(numOfEntriesMapUpdate);
@@ -723,8 +729,73 @@ function createFrequencyTags(entry) {
     ]
 }
 
-function createSupplementaryTags(entries, priorities) {
-    console.log(priorities);
+function createSupplementaryLevelTags(priorities, entries) {
+    const acceptableCharsSet = new Set();
+
+    LEVEL_CHARS.forEach((chars, index, array) => {
+        const currentLevel = index + 1;
+        const totalLevels = array.length;
+        chars.forEach(char => acceptableCharsSet.add(char));
+
+        chars.forEach(char => {
+            console.log(`Creating level tags for: ${char}, Level: ${currentLevel} / ${totalLevels}`);
+    
+            const isKanji = wanakana.isKanji(char);
+            const [ order, orderEntries ] = isKanji
+                ? [ priorities.orderKanji, priorities.kanjiEntries ]
+                : [ priorities.orderKana, priorities.kanaEntries ];
+            
+            const charFilter = isKanji
+                ? entry => entry.kanji && entry.kanji.keb.includes(char) && new Set(entry.kanji.keb).difference(acceptableCharsSet).size === 0
+                : entry => entry.kana.reb.includes(char) && new Set(entry.kana.reb).difference(acceptableCharsSet).size === 0;
+                
+            const charEntries = [];
+            for (
+                let i = 0;
+                i < order.length && charEntries.length < MIN_ENTRIES_PER_CHAR;
+                i++
+            ) {
+                const currentOrder = order[i];
+                const charPriorityEntries = (orderEntries.get(currentOrder) || []).filter(charFilter);
+                addAndDeduplicate(charPriorityEntries, charEntries);
+            }
+    
+            if (charEntries.length < MIN_ENTRIES_PER_CHAR) {
+                addAndDeduplicate(entries.filter(charFilter), charEntries);
+            }
+    
+            const level = CHAR_TO_LEVEL.get(char);
+            if (!level) {
+                console.warn('Char with no level!', char);
+            }
+            const levelTag = levelNumberToTag(level);
+            charEntries
+                .filter(entry => !entry.tags.includes(levelTag))
+                .forEach(entry => entry.tags.push(levelTag));
+        });
+    });
+}
+
+function addAndDeduplicate(source, destination) {
+    const startLength = destination.length;
+
+    destination.push(...source);
+    for (let i = destination.length - 1; i >= startLength; i--) {
+        const currentAddedEntry = destination[i];
+        for (let j = 0; j < startLength; j++) {
+            const currentExistingEntry = destination[j];
+            if (isSameEntry(currentAddedEntry, currentExistingEntry)) {
+                destination.splice(i, 1);
+                break;
+            }
+        }
+    }
+}
+
+function isSameEntry(entry1, entry2) {
+    return entry1.id === entry2.id
+            && ((entry1.kanji && entry1.kanji.keb) === (entry2.kanji && entry2.kanji.keb))
+            && entry1.kana.reb === entry2.kana.reb;
 }
 
 function createPriorities(entries) {
@@ -749,13 +820,13 @@ function createPriorities(entries) {
             return result;
         })()],
         ...[1, 2].map(num => [`ichi${num}`, `news${num}`, `gai${num}`])
-    ]
+    ].flatMap(x => x);
 
     return {
         orderKanji: order.map(o => `${KANJI_PRIORITY_PREFIX}${o}`),
         orderKana: order.map(o => `${KANA_PRIORITY_PREFIX}${o}`),
-        kanji: entries.reduce(reduceBuilder(KANJI_PRIORITY_PREFIX), new Map()),
-        kana: entries.reduce(reduceBuilder(KANA_PRIORITY_PREFIX), new Map())
+        kanjiEntries: entries.reduce(reduceBuilder(KANJI_PRIORITY_PREFIX), new Map()),
+        kanaEntries: entries.reduce(reduceBuilder(KANA_PRIORITY_PREFIX), new Map())
     }
 }
 

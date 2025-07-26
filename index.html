@@ -377,7 +377,7 @@
             const levelDictIndex = Math.min(ctx.level - 1, ctx.levelDicts.length - 1);
             ctx.currentDict = getDictForLevel(ctx.levelDicts[levelDictIndex], MAIN_DICT);
             ctx.expPerChar = Math.max(Math.round(ctx.level * ctx.level / 2), 1);
-            ctx.mode = ctx.level >= 23 ? KANJI_MODE : KANA_MODE;
+            ctx.mode = ctx.level > ctx.gyouDicts.size ? KANJI_MODE : KANA_MODE;
             
             if (ctx.level > ctx.levelChars.length) {
                 ctx.charRepsToLevelUp = baseRepsToLevelUp;
