@@ -49,8 +49,8 @@ var $kt = $kt || {};
             // Map all property names to event names
             this._eventNames = Object.freeze(
                 Object.entries({
-                    ...Object.getOwnPropertyDescriptors(this),
-                    ...Object.getOwnPropertyDescriptors(KantoreSettings.prototype)
+                    ...Object.getOwnPropertyDescriptors(KantoreSettings.prototype),
+                    ...Object.getOwnPropertyDescriptors(this)
                 })
                     .filter(([, description]) => description.set)
                     .map(([prop, ]) => prop)
