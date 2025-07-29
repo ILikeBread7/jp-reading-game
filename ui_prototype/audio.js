@@ -94,7 +94,6 @@ var $kt = $kt || {};
         constructor(bgmVolume, seVolume) {
             this._bgmVolume = bgmVolume;
             this._seVolume = seVolume;
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
             this._audioCtx = new AudioContext();
             this._currentBgm = null;
         }
