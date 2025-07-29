@@ -95,7 +95,7 @@ var $kt = $kt || {};
             $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
             if ($kt.titleUi._titleScene.checkVisibility()) {
                 if ($kt.titleUi._credits.checkVisibility()) {
-                    $kt.uiHelper.showMenu($kt.ui._credits.parentNode);
+                    $kt.uiHelper.showMenu($kt.titleUi._credits.parentNode);
                 } else {
                     $kt.titleUi.startTitleScene();
                 }
