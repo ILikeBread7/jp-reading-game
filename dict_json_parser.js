@@ -146,7 +146,7 @@ const TERMS_TEXT_BY_CODE = new Map([
     [ "hist", { code: "hist", text: "historical term" } ],
     [ "hon", { code: "hon", text: "honorific or respectful (sonkeigo) language" } ],
     [ "hum", { code: "hum", text: "humble (kenjougo) language" } ],
-    [ "id", { code: "id", text: "idiomatic expression" } ],
+    [ "entSeq", { code: "entSeq", text: "idiomatic expression" } ],
     [ "joc", { code: "joc", text: "jocular, humorous term" } ],
     [ "leg", { code: "leg", text: "legend" } ],
     [ "m-sl", { code: "m-sl", text: "manga slang" } ],
@@ -445,7 +445,7 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                     .filter(sense => sInfFilter(kanji, sense['s_inf']));
     
                 const newEntry = {};
-                newEntry.id = entry['ent_seq'];
+                newEntry.entSeq = entry['ent_seq'];
                 if (kanji) {
                     newEntry.kanji = kanji;
                     entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
@@ -532,7 +532,7 @@ function createUniqueHint(entry, entriesMap) {
 
             const firstUniqueCharIndex = charMatches.indexOf(false);
             if (firstUniqueCharIndex === -1) {
-                console.warn(`No unique first character found for id: ${entry.id}, kanji: ${entry.kanji.keb}, kana: ${entry.kana.reb}`);
+                console.warn(`No unique first character found for entSeq: ${entry.entSeq}, kanji: ${entry.kanji.keb}, kana: ${entry.kana.reb}`);
             } else {
                 entry.hint = charMatches.map((value, index) => index === firstUniqueCharIndex ? entry.kana.reb.charAt(index) : MASK_CHAR).join('');
             }
@@ -793,7 +793,7 @@ function addAndDeduplicate(source, destination) {
 }
 
 function isSameEntry(entry1, entry2) {
-    return entry1.id === entry2.id
+    return entry1.entSeq === entry2.entSeq
             && ((entry1.kanji && entry1.kanji.keb) === (entry2.kanji && entry2.kanji.keb))
             && entry1.kana.reb === entry2.kana.reb;
 }
@@ -841,7 +841,7 @@ function levelNumberToTag(level) {
 // Returns the tags array if applicable
 // or null if not an exception
 function handleJLPTVocabExceptions(entry) {
-    switch (entry.id) {
+    switch (entry.entSeq) {
         case 1059720: // シーン - scene, sight (not JLPT word); not to be confused with シーン - silently, quietly (JLPT N2)
         case 5741603: // 坊っちゃん - the novel title instead of the word
         case 5740764: // ワンピース - the manga title instead of the dress
