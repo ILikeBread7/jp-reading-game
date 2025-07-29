@@ -4,19 +4,6 @@ var $kt = $kt || {};
 
 (() => {
 
-    class SettingsChangedEvent extends Event {
-
-        constructor(settingName, value) {
-            super(settingName);
-            this._value = value;
-        }
-
-        get value() {
-            return this._value;
-        }
-
-    }
-
     class KantoreSettings {
 
         constructor() {
@@ -40,7 +27,7 @@ var $kt = $kt || {};
                         get: (propertyDescriptor && propertyDescriptor['get']) || (() => this._settings[key]),
                         set: (propertyDescriptor && propertyDescriptor['set']) || (value => {
                             this._settings[key] = value;
-                            this._events.dispatchEvent(new SettingsChangedEvent(key, value));
+                            this._dispatchSettingChangedEvent(key, value);
                             this._saveSettings();
                         })
                     });
@@ -75,7 +62,7 @@ var $kt = $kt || {};
          * @param {number} value
          */
         set currentHintIndex(value) {
-            this._events.dispatchEvent(new SettingsChangedEvent(this._eventNames.CURRENT_HINT_INDEX, value));
+            this._dispatchSettingChangedEvent(this._eventNames.CURRENT_HINT_INDEX, value);
         }
 
         _saveSettings() {
@@ -84,6 +71,10 @@ var $kt = $kt || {};
 
         _fromCamelCaseToConstCase(name) {
             return name.replaceAll(/([A-Z])/g, '_$1').toUpperCase();
+        }
+
+        _dispatchSettingChangedEvent(eventName, value) {
+            this._events.dispatchEvent(new CustomEvent(eventName, { detail : {value} } ));
         }
 
     }

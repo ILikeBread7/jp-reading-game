@@ -45,7 +45,7 @@ var $kt = $kt || {};
          */
         static connectSettingToListener(settingName, settingChangedListener) {
             settingChangedListener($kt.settings[settingName]);
-            $kt.settings.events.addEventListener(settingName, event => settingChangedListener(event.value));
+            $kt.settings.events.addEventListener(settingName, event => settingChangedListener(event.detail.value));
         }
 
         /**
