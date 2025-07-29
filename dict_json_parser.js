@@ -424,8 +424,9 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     const dictEntries = data['JMdict']['entry'];
     const entriesMap = new Map();
 
-    const result = dictEntries.flatMap((entry, index) => {
-        const separatedEntry = [];
+    const vulgarEntries = [];
+    const entries = dictEntries.flatMap((entry, index) => {
+        const separatedEntries = [];
     
         elementToArray(entry['k_ele']).forEach(kanji => {
             elementToArray(entry['r_ele']).forEach(kana => {
@@ -451,9 +452,26 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                 newEntry.kana = kana;
                 newEntry.sense = filteredSense;
 
-                newEntry.tags = createTags(newEntry);
+                const vulgMiscText = TERMS_TEXT_BY_CODE.get('vulg').text;
+                const vulgarSenses = filteredSense
+                    .filter(sense => elementToArray(sense.misc).includes(vulgMiscText));
 
-                separatedEntry.push(newEntry);
+                if (vulgarSenses.length > 0) {
+                    const vulgarEntry = { ...newEntry };
+                    vulgarEntry.sense = vulgarSenses;
+                    vulgarEntry.tags = [ 'vulg' ];
+                    vulgarEntries.push(vulgarEntry);
+
+                    if (vulgarSenses.length === filteredSense) {
+                        return;
+                    }
+
+                    newEntry.sense = filteredSense
+                        .filter(sense => !elementToArray(sense.misc).includes(vulgMiscText));
+                }
+
+                newEntry.tags = createTags(newEntry);
+                separatedEntries.push(newEntry);
             });
         });
     
@@ -462,13 +480,13 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
             console.log(`${Math.floor(100 * index / dictEntries.length)}%, ${index} / ${dictEntries.length}`);
         }
 
-        return separatedEntry;
+        return separatedEntries;
     });
 
-    result.forEach(entry => createUniqueHint(entry, entriesMap));
+    entries.forEach(entry => createUniqueHint(entry, entriesMap));
     
-    const priorities = createPriorities(result);
-    createLevelTagsFromPriorities(priorities, result);
+    const priorities = createPriorities(entries);
+    createLevelTagsFromPriorities(priorities, entries);
 
     // numOfEntriesPerChar.entries()
     //     .forEach(([key, value]) => console.log(key, value));
@@ -488,7 +506,8 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     ), () => console.log('JLPT mismatches file written'));
     // END OF DEBUG
 
-    fs.writeFile('dict.json', JSON.stringify(result, null, 2), () => console.log('Dict file written!'));
+    fs.writeFile('dict.json', JSON.stringify(entries, null, 2), () => console.log('Dict file written!'));
+    fs.writeFile('dict_vulgar.json', JSON.stringify(vulgarEntries, null, 2), () => console.log('Vulgar dict file written!'));
 });
 
 function elementToArray(element) {
