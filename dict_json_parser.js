@@ -746,8 +746,8 @@ function createSupplementaryLevelTags(priorities, entries) {
                 : [ priorities.orderKana, priorities.kanaEntries ];
             
             const charFilter = isKanji
-                ? entry => entry.kanji && entry.kanji.keb.includes(char) && new Set(entry.kanji.keb).difference(acceptableCharsSet).size === 0
-                : entry => entry.kana.reb.includes(char) && new Set(entry.kana.reb).difference(acceptableCharsSet).size === 0;
+                ? entry => entry.kanji && entry.kanji.keb.includes(char) && new Set(entry.kanji.keb).isDisjointFrom(acceptableCharsSet)
+                : entry => entry.kana.reb.includes(char) && new Set(entry.kana.reb).isDisjointFrom(acceptableCharsSet);
                 
             const charEntries = [];
             for (
