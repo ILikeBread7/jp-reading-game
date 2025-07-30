@@ -574,7 +574,8 @@ function createTags(entry) {
         ...createKanaTags(entry),
         ...createJLPTKanjiTags(entry),
         ...createJLPTVocabTags(entry),
-        ...createFrequencyTags(entry)
+        ...createFrequencyTags(entry),
+        ...createCategoryTags(entry)
     ];
 
     return tags;
@@ -666,6 +667,46 @@ function createJLPTVocabTags(entry) {
     }
 
     return [];
+}
+
+function createCategoryTags(entry) {
+    const result = [];
+    const misc = entry.sense.flatMap(sense => elementToArray(sense.misc));
+
+    if (misc.includes('slang') || misc.includes('manga slang') || misc.includes('Internet slang')) {
+        result.push('slang');
+    }
+
+    if (misc.includes('idiomatic expression')) {
+        result.push('idiom');
+    }
+
+    if (misc.includes('proverb')) {
+        result.push('proverb');
+    }
+
+    // For new parser pass ke_inf as an additional parameter
+    // because it's no longer available in the kanji object
+    if (entry.kanji) {
+        const keInf = elementToArray(entry.kanji['ke_inf']);
+        if (keInf.includes(TERMS_TEXT_BY_CODE.get('ateji').text)) {
+            result.push('ateji');
+        }
+    }
+
+    const field = entry.sense.flatMap(sense => elementToArray(sense.field));
+    const dialect = entry.sense.flatMap(sense => elementToArray(sense.dial));
+    
+    [ ...field, ...dialect ]
+        .filter(Boolean)
+        .map(tagText => TERMS_TEXT_BY_TEXT.get(tagText).code)
+        .forEach(tag => {
+            if (!result.includes(tag)) {
+                result.push(tag);
+            }
+        });
+
+    return result;
 }
 
 function createFrequencyTags(entry) {
