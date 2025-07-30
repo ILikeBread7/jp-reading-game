@@ -24,6 +24,8 @@ var $kt = $kt || {};
                     <li><span>Part of speech:</span> ${m.pos.join(SEPARATOR)}</li>
                     ${this._coa(m.lsource) && `<li><span>From:</span> ${m.lsource.map(l => `${l.value} (${l.lang})${this._coa(l.wasei) && ' (wasei word)'}`).join(SEPARATOR)}</li>`}
                     ${this._coa(m.misc) && `<li><span>Additional info:</span> ${m.misc.join(SEPARATOR)}</li>`}
+                    ${this._coa(m.field) && `<li><span>Field:</span> ${m.field.join(SEPARATOR)}</li>`}
+                    ${this._coa(m.dial) && `<li><span>Dialect:</span> ${m.dial.join(SEPARATOR)}</li>`}
                 </ul>
             `).join('');
         }
