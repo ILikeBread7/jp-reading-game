@@ -431,6 +431,10 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
         const separatedEntries = [];
     
         elementToArray(entry['k_ele']).forEach(kanji => {
+            if (kanji && elementToArray(kanji['ke_inf']).includes("search-only kanji form")) {
+                return;
+            }
+
             elementToArray(entry['r_ele']).forEach(kana => {
                 if (kanji && kana.re_restr && !elementToArray(kana.re_restr).includes(kanji.keb)) {
                     return;
@@ -467,7 +471,7 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                         vulgarEntriesMap.set(kanji.keb, [...(vulgarEntriesMap.get(kanji.keb) || []), vulgarEntry]);
                     }
 
-                    if (vulgarSenses.length === filteredSense) {
+                    if (vulgarSenses.length === filteredSense.length) {
                         return;
                     }
 
