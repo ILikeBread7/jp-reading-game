@@ -293,6 +293,7 @@ const UNUSED_KANA_TERMS_SET = new Set(['sk']);
 const MASK_CHAR = '・';
 const KANJI_PRIORITY_PREFIX = 'kp';
 const KANA_PRIORITY_PREFIX = 'rp';
+const TARGET_ENTRIES_PER_CHAR = 20;
 const MIN_ENTRIES_PER_CHAR = 5;
 
 const LEVEL_KANJI = [
@@ -690,7 +691,7 @@ function createLevelTagsFromPriorities(priorities, entries) {
             const charEntries = [];
             for (
                 let i = 0;
-                i < order.length && charEntries.length < MIN_ENTRIES_PER_CHAR;
+                i < order.length && charEntries.length < TARGET_ENTRIES_PER_CHAR;
                 i++
             ) {
                 const currentOrder = lastPriority = order[i];
