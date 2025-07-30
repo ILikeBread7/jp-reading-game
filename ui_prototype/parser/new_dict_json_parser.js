@@ -370,6 +370,10 @@ const UNUSED_KANJI_TERMS_SET = new Set(['uk', 'rK', 'sK']);
 const UNUSED_KANA_TERMS_SET = new Set(['sk']);
 
 const MASK_CHAR = '・';
+const KANJI_PRIORITY_PREFIX = 'kp';
+const KANA_PRIORITY_PREFIX = 'rp';
+const TARGET_ENTRIES_PER_CHAR = 20;
+const MIN_ENTRIES_PER_CHAR = 5;
 
 const LEVEL_KANJI = [
     { vocabTag: 'v5', kanjiChars: [...'日一国人年'] },
@@ -378,40 +382,40 @@ const LEVEL_KANJI = [
     { vocabTag: 'v4', kanjiChars: [...'会同事社'] }
 ];
 
-const LEVEL_KANJI_MAP = new Map();
-LEVEL_KANJI.forEach((level, index) => {
-    level.kanjiChars.forEach(char => {
-        LEVEL_KANJI_MAP.set(char, { levelTag: `L${(index + 1).toString().padStart(3, '0')}`, vocabTag: level.vocabTag });
-    });
-});
-
 const HIRAGANA = [
     { tag: 'a', chars: 'あいうえお' },
+    { tag: 'm', chars: 'まみむめも' },
+    { tag: 'r', chars: 'らりるれろ' },
+    { tag: 'n', chars: 'なにぬねの' },
     { tag: 'k', chars: 'かきくけこがぎぐげご' },
     { tag: 's', chars: 'さしすせそざじずぜぞ' },
     { tag: 't', chars: 'たちっつてとだぢづでど' },
-    { tag: 'n', chars: 'なにぬねの' },
     { tag: 'h', chars: 'はひふへほばびぶべぼぱぴぷぺぽ' },
-    { tag: 'm', chars: 'まみむめも' },
     { tag: 'y', chars: 'やゆよゃゅょ' },
-    { tag: 'r', chars: 'らりるれろ' },
-    { tag: 'w', chars: 'わを' },
-    { tag: 'nn', chars: 'ん' }
+    { tag: 'w', chars: 'わをん' }
 ];
 
 const KATAKANA = [
-    { tag: 'A' ,chars: 'アイウエオ' },
-    { tag: 'K' ,chars: 'カキクケコガギグゲゴー' },
-    { tag: 'S' ,chars: 'サシスセソザジズゼゾ' },
-    { tag: 'N' ,chars: 'ナニヌネノ' },
-    { tag: 'H' ,chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
-    { tag: 'M' ,chars: 'マミムメモ' },
-    { tag: 'T' ,chars: 'タチッツテトダヂヅデドゥ' },
-    { tag: 'Y' ,chars: 'ヤユヨャュョ' },
-    { tag: 'R' ,chars: 'ラリルレロ' },
-    { tag: 'W' ,chars: 'ワヲ' },
-    { tag: 'NN' ,chars: 'ン' }
+    { tag: 'A', chars: 'アイウエオ' },
+    { tag: 'M', chars: 'マミムメモ' },
+    { tag: 'R', chars: 'ラリルレロー' },
+    { tag: 'N', chars: 'ナニヌネノ' },
+    { tag: 'K', chars: 'カキクケコガギグゲゴ' },
+    { tag: 'S', chars: 'サシスセソザジズゼゾ' },
+    { tag: 'T', chars: 'タチッツテトダヂヅデドゥ' },
+    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
+    { tag: 'Y', chars: 'ヤユヨャュョ' },
+    { tag: 'W', chars: 'ワヲンヴ' }
 ];
+
+const KANA_GYOUS = [ ...HIRAGANA, ...KATAKANA ];
+const LEVEL_KANJI_MAP = new Map();
+const KANJI_LEVEL_OFFSET = KANA_GYOUS.length;
+LEVEL_KANJI.forEach((level, index) => {
+    level.kanjiChars.forEach(char => {
+        LEVEL_KANJI_MAP.set(char, { levelTag: `L${(KANJI_LEVEL_OFFSET + index + 1).toString().padStart(3, '0')}`, vocabTag: level.vocabTag });
+    });
+});
 
 const HIRAGANA_MAP = new Map();
 const KATAKANA_MAP = new Map();
@@ -473,6 +477,19 @@ jlptVocabMap.forEach((value, key) => {
     jlptMismatchesMap.set(key, 0);
 });
 
+const LEVEL_CHARS = [
+    ...KANA_GYOUS.map(gyou => [...gyou.chars]),
+    ...LEVEL_KANJI.map(level => level.kanjiChars)
+];
+
+const CHAR_TO_LEVEL = new Map();
+LEVEL_CHARS.forEach((chars, index) => {
+    const level = index + 1;
+    chars.forEach(char => {
+        CHAR_TO_LEVEL.set(char, level);
+    });
+});
+
 fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     if (err) {
         console.error(err);
@@ -482,11 +499,17 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     const data = JSON.parse(jsonData);
     const dictEntries = data['JMdict']['entry'];
     const entriesMap = new Map();
+    const vulgarEntriesMap = new Map();
 
-    const result = dictEntries.flatMap((entry, index) => {
+    const vulgarEntries = [];
+    const entries = dictEntries.flatMap((entry, index) => {
         const separatedEntry = [];
     
         elementToArray(entry['k_ele']).forEach(kanji => {
+            if (kanji && elementToArray(kanji['ke_inf']).includes("search-only kanji form")) {
+                return;
+            }
+
             elementToArray(entry['r_ele']).forEach(kana => {
                 if (kanji && kana.re_restr && !elementToArray(kana.re_restr).includes(kanji.keb)) {
                     return;
@@ -495,22 +518,49 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                 if (kana.re_inf && UNUSED_KANA_TERMS_SET.intersection(new Set(elementToArray(kana.re_inf).map(term => TERMS_MAPPER.get(term).code))).size > 0) {
                     return;
                 }
+
+                const originalEntry = { kanji, kana };
     
                 const filteredSenses = elementToArray(entry['sense'])
                     .filter(sense => !sense.stagr || elementToArray(sense.stagr).includes(kana.reb))
                     .filter(sense => !sense.stagk || elementToArray(sense.stagk).includes(kanji.keb))
-                    .filter(sense => sInfFilter(kanji, sense['s_inf']));
+                    .filter(sense => sInfFilter(kanji, sense['s_inf']))
+                    .map(mapSense);
     
                 const newEntry = { entSeq: entry['ent_seq'] };
                 if (kanji) {
                     newEntry.kanji = kanji.keb;
-                    entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
                 }
                 newEntry.kana = kana.reb;
-                newEntry.sense = filteredSenses.map(mapSense);
+                newEntry.sense = filteredSenses;
 
-                newEntry.tags = createTags(newEntry);
+                const vulgMiscText = TERMS_TEXT_BY_CODE.get('vulg').text;
+                const vulgarSenses = filteredSenses
+                    .filter(sense => (sense.misc || []).includes(vulgMiscText));
 
+                if (vulgarSenses.length > 0) {
+                    const vulgarEntry = { ...newEntry };
+                    vulgarEntry.sense = vulgarSenses;
+                    vulgarEntry.tags = [ 'vulg' ];
+                    vulgarEntries.push(vulgarEntry);
+
+                    if (kanji) {
+                        vulgarEntriesMap.set(kanji.keb, [...(vulgarEntriesMap.get(kanji.keb) || []), vulgarEntry]);
+                    }
+
+                    if (vulgarSenses.length === filteredSenses.length) {
+                        return;
+                    }
+
+                    newEntry.sense = filteredSenses
+                        .filter(sense => !(sense.misc || []).includes(vulgMiscText));
+                }
+
+                if (kanji) {
+                    entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
+                }
+
+                newEntry.tags = createTags(newEntry, originalEntry);
                 separatedEntry.push(newEntry);
             });
         });
@@ -523,7 +573,11 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
         return separatedEntry;
     });
 
-    result.forEach(entry => createUniqueHint(entry, entriesMap));
+    entries.forEach(entry => createUniqueHint(entry, entriesMap));
+    vulgarEntries.forEach(entry => createUniqueHint(entry, vulgarEntriesMap));
+    
+    const priorities = createPriorities(entries);
+    createLevelTagsFromPriorities(priorities, entries);
 
     // DEBUG
     const jlptMismatches = {};
@@ -540,7 +594,8 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     ), () => console.log('JLPT mismatches file written'));
     // END OF DEBUG
 
-    fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(result, null, 2), () => console.log('Dict file written!'));
+    fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, 2), () => console.log('Dict file written!'));
+    fs.writeFile(WRITE_PATH + 'dict_vulgar.json', JSON.stringify(vulgarEntries, null, 2), () => console.log('Vulgar dict file written!'));
 });
 
 function elementToArray(element) {
@@ -588,6 +643,14 @@ function mapSense(sense) {
         });
     }
 
+    if (sense.field) {
+        result.field = elementToArray(sense.field);
+    }
+
+    if (sense.dial) {
+        result.dial = elementToArray(sense.dial);
+    }
+
     return result;
 }
 
@@ -621,14 +684,14 @@ function createUniqueHint(entry, entriesMap) {
     }
 }
 
-function createTags(entry) {
+function createTags(entry, originalEntry) {
     const tags = [
         ...createKanaTags(entry),
         ...createJLPTKanjiTags(entry),
-        ...createJLPTVocabTags(entry)
+        ...createJLPTVocabTags(entry, originalEntry),
+        ...createFrequencyTags(entry, originalEntry),
+        ...createCategoryTags(entry, originalEntry)
     ];
-
-    tags.push(...createKanjiLevelTagsFromExistingTags(entry, tags));
 
     return tags;
 }
@@ -673,7 +736,7 @@ function createJLPTKanjiTags(entry) {
     return [];
 }
 
-function createJLPTVocabTags(entry) {
+function createJLPTVocabTags(entry, originalEntry) {
     const exceptionTags = handleJLPTVocabExceptions(entry);
     if (exceptionTags !== null) {
         return exceptionTags;
@@ -692,7 +755,7 @@ function createJLPTVocabTags(entry) {
     // No kanji or kanji isn't used
     if (
         !entry.kanji
-        || elementToArray(entry.kanji['ke_inf']).find(keInf => UNUSED_KANJI_TERMS_SET.has(getTermCodeOrUndefined(TERMS_MAPPER.get(keInf))))
+        || elementToArray(originalEntry.kanji['ke_inf']).find(keInf => UNUSED_KANJI_TERMS_SET.has(getTermCodeOrUndefined(TERMS_MAPPER.get(keInf))))
         || UNUSED_KANJI_TERMS_SET
             .intersection(
                 new Set(
@@ -703,7 +766,7 @@ function createJLPTVocabTags(entry) {
             )
             .size > 0
     ) {
-        const key = JSON.stringify([entry.kana.reb]);
+        const key = JSON.stringify([entry.kana]);
         const match = jlptVocabMap.get(key);
         if (match) {
             matches.push({ key, match });
@@ -721,44 +784,162 @@ function createJLPTVocabTags(entry) {
     return [];
 }
 
-function createKanjiLevelTagsFromExistingTags(entry, tags) {
-    if (!entry.kanji) {
-        return [];
+
+function createCategoryTags(entry, originalEntry) {
+    const result = [];
+    const misc = entry.sense.flatMap(sense => sense.misc);
+
+    if (misc.includes('slang') || misc.includes('manga slang') || misc.includes('Internet slang')) {
+        result.push('slang');
     }
 
-    const entryVocabTag = tags.find(tag => tag.startsWith('v'));
-    if (!entryVocabTag) {
-        return [];
+    if (misc.includes('idiomatic expression')) {
+        result.push('idiom');
     }
 
-    const chars = [...entry.kanji]
-        .filter(char => !wanakana.isKana(char));
-
-    if (chars.find(char => !wanakana.isKanji(char))) {
-        return [];
+    if (misc.includes('proverb')) {
+        result.push('proverb');
     }
 
-    const charLevelKanjiEntries = chars
-        .map(char => LEVEL_KANJI_MAP.get(char));
-
-    if (charLevelKanjiEntries.includes(undefined)) {
-        return [];
+    if (entry.kanji) {
+        const keInf = elementToArray(originalEntry.kanji['ke_inf']);
+        if (keInf.includes(TERMS_TEXT_BY_CODE.get('ateji').text)) {
+            result.push('ateji');
+        }
     }
 
-    const maxTags = charLevelKanjiEntries
-        .reduce((acc, curr) => curr.levelTag > acc.levelTag ? curr : acc);
+    const field = entry.sense.flatMap(sense => sense.field);
+    const dialect = entry.sense.flatMap(sense => sense.dial);
+    
+    [ ...field, ...dialect ]
+        .filter(Boolean)
+        .map(tagText => TERMS_TEXT_BY_TEXT.get(tagText).code)
+        .forEach(tag => {
+            if (!result.includes(tag)) {
+                result.push(tag);
+            }
+        });
 
-    // Smaller tag means higher vocab level so if the entry vocab level
-    // is higher (smaller tag) we don't match the word to the level
-    if (entryVocabTag < maxTags.vocabTag) {
-        return [];
+    return result;
+}
+
+function createFrequencyTags(entry, originalEntry) {
+    return [
+        ...((entry.kanji && originalEntry.kanji.ke_pri && elementToArray(originalEntry.kanji.ke_pri)) || []).map(pri => `${KANJI_PRIORITY_PREFIX}${pri}`),
+        ...((entry.kana && originalEntry.kana.re_pri && elementToArray(originalEntry.kana.re_pri)) || []).map(pri => `${KANA_PRIORITY_PREFIX}${pri}`)
+    ]
+}
+
+function createLevelTagsFromPriorities(priorities, entries) {
+    const acceptableCharsSet = new Set();
+
+    LEVEL_CHARS.forEach((chars, index, array) => {
+        const currentLevel = index + 1;
+        const totalLevels = array.length;
+        chars.forEach(char => acceptableCharsSet.add(char));
+
+        chars.forEach(char => {
+            console.log(`Creating level tags for: ${char}, Level: ${currentLevel} / ${totalLevels}`);
+    
+            const existingEntryKeys = new Set();
+            const isKanji = wanakana.isKanji(char);
+            const [ order, orderEntries, generateKeyFunction ] = isKanji
+                ? [ priorities.orderKanji, priorities.kanjiEntries, generateKanjiKey ]
+                : [ priorities.orderKana, priorities.kanaEntries, generateKanaKey ];
+            
+            const charFilter = isKanji
+                ? entry => entry.kanji && entry.kanji.includes(char) && new Set(entry.kanji).isSubsetOf(acceptableCharsSet)
+                : entry => entry.kana.includes(char) && new Set(entry.kana).isSubsetOf(acceptableCharsSet);
+                
+            let lastPriority;
+            const charEntries = [];
+            for (
+                let i = 0;
+                i < order.length && charEntries.length < TARGET_ENTRIES_PER_CHAR;
+                i++
+            ) {
+                const currentOrder = lastPriority = order[i];
+                const charPriorityEntries = (orderEntries.get(currentOrder) || []).filter(charFilter);
+                addAndDeduplicate(charPriorityEntries, charEntries, generateKeyFunction, existingEntryKeys);
+            }
+            console.log(` - Last priority: ${lastPriority}`);
+            
+            if (charEntries.length < MIN_ENTRIES_PER_CHAR) {
+                console.log(` - Adding all entries, size with priorities only: ${charEntries.length}`);
+                addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys);
+            }
+            console.log(` - Total number of entries: ${charEntries.length}`);
+    
+            const level = CHAR_TO_LEVEL.get(char);
+            if (!level) {
+                console.warn('Char with no level!', char);
+            }
+            const levelTag = levelNumberToTag(level);
+            charEntries
+                .filter(entry => !entry.tags.includes(levelTag))
+                .forEach(entry => entry.tags.push(levelTag));
+        });
+    });
+}
+
+function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys) {
+    source.forEach(entry => {
+        const key = generateKeyFunction(entry);
+        if (existingEntryKeys.has(key)) {
+            return;
+        }
+
+        existingEntryKeys.add(key);
+        destination.push(entry);
+    });
+}
+
+function generateKanaKey(entry) {
+    return `${entry.entSeq}_${entry.kana}`;
+}
+
+function generateKanjiKey(entry) {
+    return `${entry.kanji || ''}_${entry.kana}`;
+}
+
+function createPriorities(entries) {
+    const reduceBuilder = tagPrefix =>
+        (acc, entry) => {
+            entry.tags
+                .filter(tag => tag.startsWith(tagPrefix))
+                .forEach(tag => {
+                    const entryList = acc.get(tag) || [];
+                    entryList.push(entry);
+                    acc.set(tag, entryList);
+                })
+            return acc;
+        };
+
+    const order = [
+        ...[1, 2].map(num => [`ichi${num}`, `spec${num}`, `news${num}`, `gai${num}`]),
+        ...[(() => {
+            const result = [];
+            for (let i = 1; i <= 48; i++) {
+                result.push(`nf${i.toString().padStart(2, '0')}`);
+            }
+            return result;
+        })()]
+    ].flatMap(x => x);
+
+    return {
+        orderKanji: order.map(o => `${KANJI_PRIORITY_PREFIX}${o}`),
+        orderKana: order.map(o => `${KANA_PRIORITY_PREFIX}${o}`),
+        kanjiEntries: entries.reduce(reduceBuilder(KANJI_PRIORITY_PREFIX), new Map()),
+        kanaEntries: entries.reduce(reduceBuilder(KANA_PRIORITY_PREFIX), new Map())
     }
-
-    return [ maxTags.levelTag ];
 }
 
 function getTermCodeOrUndefined(term) {
     return term ? term.code : undefined;
+}
+
+function levelNumberToTag(level) {
+    return `L${level.toString().padStart(3, '0')}`;
 }
 
 // Returns the tags array if applicable
