@@ -424,6 +424,7 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     const data = JSON.parse(jsonData);
     const dictEntries = data['JMdict']['entry'];
     const entriesMap = new Map();
+    const vulgarEntriesMap = new Map();
 
     const vulgarEntries = [];
     const entries = dictEntries.flatMap((entry, index) => {
@@ -448,7 +449,6 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                 newEntry.entSeq = entry['ent_seq'];
                 if (kanji) {
                     newEntry.kanji = kanji;
-                    entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
                 }
                 newEntry.kana = kana;
                 newEntry.sense = filteredSense;
@@ -463,12 +463,20 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
                     vulgarEntry.tags = [ 'vulg' ];
                     vulgarEntries.push(vulgarEntry);
 
+                    if (kanji) {
+                        vulgarEntriesMap.set(kanji.keb, [...(vulgarEntriesMap.get(kanji.keb) || []), vulgarEntry]);
+                    }
+
                     if (vulgarSenses.length === filteredSense) {
                         return;
                     }
 
                     newEntry.sense = filteredSense
                         .filter(sense => !elementToArray(sense.misc).includes(vulgMiscText));
+                }
+
+                if (kanji) {
+                    entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
                 }
 
                 newEntry.tags = createTags(newEntry);
@@ -485,6 +493,7 @@ fs.readFile('JMdict_e.json', 'utf-8', (err, jsonData) => {
     });
 
     entries.forEach(entry => createUniqueHint(entry, entriesMap));
+    vulgarEntries.forEach(entry => createUniqueHint(entry, vulgarEntriesMap));
     
     const priorities = createPriorities(entries);
     createLevelTagsFromPriorities(priorities, entries);
