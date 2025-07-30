@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import * as wanakana from 'wanakana';
 
 const READ_PATH = '';
-const WRITE_PATH = 'ui_prototype/';
+const WRITE_PATH = 'ui_prototype/dicts/';
 
 const LANGUAGES = new Map([
     ['kor', 'Korean'],
@@ -686,7 +686,6 @@ function createUniqueHint(entry, entriesMap) {
 
 function createTags(entry, originalEntry) {
     const tags = [
-        ...createKanaTags(entry),
         ...createJLPTKanjiTags(entry),
         ...createJLPTVocabTags(entry, originalEntry),
         ...createFrequencyTags(entry, originalEntry),
