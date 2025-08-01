@@ -375,6 +375,8 @@ const KANA_PRIORITY_PREFIX = 'rp';
 const TARGET_ENTRIES_PER_CHAR = 20;
 const MIN_ENTRIES_PER_CHAR = 5;
 
+const JSON_FORMAT_INDENT_SIZE = 2;
+
 const LEVEL_KANJI = [
     { vocabTag: 'v5', kanjiChars: [...'日一国人年'] },
     { vocabTag: 'v5', kanjiChars: [...'大十二本中'] },
@@ -608,8 +610,17 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     ), () => console.log('JLPT mismatches file written'));
     // END OF DEBUG
 
-    fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, 2), () => console.log('Dict file written!'));
-    fs.writeFile(WRITE_PATH + 'dict_vulgar.json', JSON.stringify(vulgarEntries, null, 2), () => console.log('Vulgar dict file written!'));
+    fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Dict file written!'));
+    fs.writeFile(WRITE_PATH + 'dict_vulgar.json', JSON.stringify(vulgarEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
+    
+    separateIntoTagEntries(entries)
+        .forEach((tagEntries, tag) =>
+            fs.writeFile(
+                `${WRITE_PATH}${tag}.json`,
+                JSON.stringify(tagEntries, null, JSON_FORMAT_INDENT_SIZE),
+                () => console.log(`${tag} tag dict file written!`)
+            )
+        );
 });
 
 function elementToArray(element) {
@@ -953,6 +964,17 @@ function getTermCodeOrUndefined(term) {
 
 function levelNumberToTag(level) {
     return `L${level.toString().padStart(3, '0')}`;
+}
+
+function separateIntoTagEntries(entries) {
+    return entries.reduce((acc, entry) => {
+        entry.tags.forEach(tag => {
+            const tagEntries = acc.get(tag) || [];
+            tagEntries.push(entry);
+            acc.set(tag, tagEntries);
+        });
+        return acc;
+    }, new Map());
 }
 
 // Returns the tags array if applicable
