@@ -541,7 +541,6 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                 if (vulgarSenses.length > 0) {
                     const vulgarEntry = { ...newEntry };
                     vulgarEntry.sense = vulgarSenses;
-                    vulgarEntry.tags = [ 'vulg' ];
                     vulgarEntries.push(vulgarEntry);
 
                     if (kanji) {
