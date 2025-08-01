@@ -802,17 +802,17 @@ function createCategoryTags(entry, originalEntry) {
     const result = [];
     const misc = entry.sense.flatMap(sense => sense.misc);
 
-    if (misc.includes('slang') || misc.includes('manga slang') || misc.includes('Internet slang')) {
-        result.push('slang');
-    }
-
-    if (misc.includes('idiomatic expression')) {
-        result.push('idiom');
-    }
-
-    if (misc.includes('proverb')) {
-        result.push('proverb');
-    }
+    [
+        'idiomatic expression', 'proverb',
+        'slang', 'manga slang', 'Internet slang'
+    ]
+        .filter(tagText => misc.includes(tagText))
+        .map(tagText => TERMS_TEXT_BY_TEXT.get(tagText).code)
+        .forEach(tag => {
+            if (!result.includes(tag)) {
+                result.push(tag);
+            }
+        });
 
     if (entry.kanji) {
         const keInf = elementToArray(originalEntry.kanji['ke_inf']);
