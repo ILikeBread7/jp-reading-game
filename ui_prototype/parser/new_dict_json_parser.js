@@ -501,13 +501,28 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     const entriesMap = new Map();
     const vulgarEntriesMap = new Map();
 
+    const SEARCH_ONLY_KANJI = "search-only kanji form";
     const vulgarEntries = [];
     const entries = dictEntries.flatMap((entry, index) => {
         const separatedEntry = [];
     
-        elementToArray(entry['k_ele']).forEach(kanji => {
-            if (kanji && elementToArray(kanji['ke_inf']).includes("search-only kanji form")) {
-                return;
+        elementToArray(entry['k_ele']).forEach((kanji, index, kanjiElements) => {
+            if (kanji && elementToArray(kanji['ke_inf']).includes(SEARCH_ONLY_KANJI)) {
+                // If all kanji are search-only
+                // use only the first one
+                if (index > 0) {
+                    return;
+                }
+                
+                // If there is another kanji in the entry
+                // that is not search-only use that one
+                if (kanjiElements.some(k => !elementToArray(k['ke_inf']).includes(SEARCH_ONLY_KANJI))) {
+                    return;
+                }
+
+                // If the only kanji in the entry is search-only
+                // proceed with kana but no kanji
+                kanji = undefined;
             }
 
             elementToArray(entry['r_ele']).forEach(kana => {
