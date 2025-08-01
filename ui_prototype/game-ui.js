@@ -11,10 +11,19 @@ var $kt = $kt || {};
     class KantoreGameUi {
 
         constructor() {
+            this._createEvents();
             this._getAllElements();
             this._addEventListeners();
             this._setupHints();
             this._connectSettings();
+        }
+
+        get events() {
+            return this._events;
+        }
+
+        get eventNames() {
+            return this._eventNames;
         }
 
         enterListener(event) {
@@ -317,6 +326,13 @@ var $kt = $kt || {};
                 });
         }
 
+        _createEvents() {
+            this._events = new EventTarget();
+            this._eventNames = {
+                START: 'start'
+            };
+        }
+
         _getAllElements() {
             this._gameScene = document.getElementById('game-container');
             
@@ -465,6 +481,7 @@ var $kt = $kt || {};
             $kt.uiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
             $kt.settings.currentHintIndex = this._currentHintIndex;
             this.focusAnswerInput();
+            this._dispatchEvent(this._eventNames.START);
         }
 
         _displayAnnouncmentText(textElement) {
@@ -573,6 +590,10 @@ var $kt = $kt || {};
                 this._moveLevelExpDivBackDown();
             });
             this.focusAnswerInput();
+        }
+
+        _dispatchEvent(eventName, detail) {
+            this._events.dispatchEvent(new CustomEvent(eventName, { detail }));
         }
 
         /**
