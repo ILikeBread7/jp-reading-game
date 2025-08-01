@@ -147,6 +147,15 @@ var $kt = $kt || {};
             }
 
             if (this._isMenuItemFocused()) {
+                if (key === 'Shift') {
+                    const parentMenu = this._findParentMenu(document.activeElement);
+                    const goBackButton = parentMenu.dataset.goBackButton;
+                    if (goBackButton) {
+                        document.getElementById(goBackButton).click();
+                        return;
+                    }
+                }
+
                 if ($kt.titleUi.keyListener(key)) {
                     return;
                 }
@@ -169,6 +178,16 @@ var $kt = $kt || {};
             if ($kt.gameUi.keyListener(key)) {
                 return;
             }
+        }
+
+        _findParentMenu(element) {
+            let node = element;
+
+            while (!node.classList.contains('menu')) {
+                node = node.parentNode;
+            }
+
+            return node;
         }
 
         _findNextMenuItem(startElement) {
