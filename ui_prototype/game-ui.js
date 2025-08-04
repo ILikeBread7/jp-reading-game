@@ -328,9 +328,9 @@ var $kt = $kt || {};
 
         _createEvents() {
             this._events = new EventTarget();
-            this._eventNames = {
+            this._eventNames = Object.freeze({
                 START: 'start'
-            };
+            });
         }
 
         _getAllElements() {
