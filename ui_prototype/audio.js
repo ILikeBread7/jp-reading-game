@@ -9,7 +9,7 @@ var $kt = $kt || {};
     class KantoreAudio {
 
         constructor() {
-            this._player = new AudioPlayer(1, 1);
+            this._player = new AudioPlayer();
             this.tracks = {
                 BGM_TRACK: { name: 'Juhani Junkala [Retro Game Music Pack] Level 1.ogg', volume: 0.3 },
                 SE_TEST_1: { name: '7.ogg' },
@@ -88,10 +88,10 @@ var $kt = $kt || {};
 
         /**
          * 
-         * @param {number} bgmVolume range 0-1
-         * @param {number} seVolume range 0-1
+         * @param {number} [bgmVolume=1] range 0-1, default 1
+         * @param {number} [seVolume=1] range 0-1, default 1
          */
-        constructor(bgmVolume, seVolume) {
+        constructor(bgmVolume = 1, seVolume = 1) {
             this._bgmVolume = bgmVolume;
             this._seVolume = seVolume;
             this._audioCtx = new AudioContext();
