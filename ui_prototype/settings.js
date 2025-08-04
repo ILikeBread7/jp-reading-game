@@ -15,8 +15,26 @@ var $kt = $kt || {};
                     showSubmitButton: $kt.enums.SUBMIT_BUTTON.AUTO
                 }, $kt.persistence.getSettings() || {});
 
-            this._events = new EventTarget();
+            this._createSettingsPropertyAccessors();
+            this._createEvents();
+        }
 
+        get events() {
+            return this._events;
+        }
+
+        get eventNames() {
+            return this._eventNames;
+        }
+
+        /**
+         * @param {number} value
+         */
+        set currentHintIndex(value) {
+            this._dispatchSettingChangedEvent(this._eventNames.CURRENT_HINT_INDEX, value);
+        }
+
+        _createSettingsPropertyAccessors() {
             // Pass through all get/set property accessors
             // to the underlying _settings object
             // unless explicitly defined in this class
@@ -32,6 +50,10 @@ var $kt = $kt || {};
                         })
                     });
                 });
+        }
+
+        _createEvents() {
+            this._events = new EventTarget();
 
             // Map all property names to event names
             this._eventNames = Object.freeze(
@@ -48,21 +70,6 @@ var $kt = $kt || {};
                         }, {}
                     )
             );
-        }
-
-        get events() {
-            return this._events;
-        }
-
-        get eventNames() {
-            return this._eventNames;
-        }
-
-        /**
-         * @param {number} value
-         */
-        set currentHintIndex(value) {
-            this._dispatchSettingChangedEvent(this._eventNames.CURRENT_HINT_INDEX, value);
         }
 
         _saveSettings() {
