@@ -11,6 +11,7 @@ export default defineConfig([
 		languageOptions: {
 			globals: {
 				particlesJS: "readonly",
+				wanakana: "readonly"
 			},
 		},
 	},

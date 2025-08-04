@@ -44,9 +44,21 @@ var $kt = $kt || {};
                 return true;
             }
 
-            // Is a character, not a special key
-            if (key.length === 1 && key.charCodeAt(0) < 127) {
+            if (
+                // Is a character, not a special key
+                (key.length === 1 && key.charCodeAt(0) < 127)
+                || key === 'Backspace'
+                || key === 'Delete'
+                || key === 'ArrowLeft'
+                || key === 'ArrowRight'
+            ) {
                 this.focusAnswerInput();
+                return true;
+            }
+
+            // Allow scrolling the page with Page and Arrow Up/Down keys
+            if (key.startsWith('Page') || key === 'ArrowUp' || key === 'ArrowDown') {
+                this._answerInput.blur();
                 return true;
             }
 
@@ -329,7 +341,8 @@ var $kt = $kt || {};
         _createEvents() {
             this._events = new EventTarget();
             this._eventNames = Object.freeze({
-                START: 'start'
+                START: 'start',
+                ANSWER: 'answer'
             });
         }
 
@@ -444,18 +457,9 @@ var $kt = $kt || {};
         }
 
         _submitAnswer() {
-            if (this.answer === 'Bad') {
-                this.shakeWrongAnswer('テスト');
-                return;
-            }
+            this._dispatchEvent(this._eventNames.ANSWER, { answer: this.answer });
 
-            if (this.answer === 'Good') {
-                this.jumpRightAnswer();
-                return;
-            }
-
-            if (this.answer === 'Hint') {
-                this.slideQuestionHint('てすと');
+            if (this.answer !== 'level') {
                 return;
             }
 

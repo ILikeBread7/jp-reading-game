@@ -7,42 +7,18 @@ var $kt = $kt || {};
     const EVENTS = $kt.gameUi.eventNames;
     const events = $kt.gameUi.events;
 
+    // To be loaded from persistence later
+    const currentLevel = 1;
+
+    let currentLevelDict = $kt.dicts.getLevelDict(currentLevel);
+    currentLevelDict.load()
+        .then(() => $kt.dicts.getLevelDict(currentLevel + 1).load());
+
+    const game = new $kt.Game();
+
     events.addEventListener(EVENTS.START, () => {
-        $kt.gameUi.showQuestion(
-            {
-                "entSeq": 1580120,
-                "kanji": "出船",
-                "kana": "でぶね",
-                "sense": [
-                    {
-                        "pos": [
-                            "noun (common) (futsuumeishi)",
-                            "noun or participle which takes the aux. verb suru",
-                            "intransitive verb"
-                        ],
-                        "gloss": [
-                            "departure of a ship (from a port)",
-                            "setting sail"
-                        ]
-                    },
-                    {
-                        "pos": [
-                            "noun (common) (futsuumeishi)"
-                        ],
-                        "gloss": [
-                            "outgoing ship",
-                            "ship leaving port"
-                        ],
-                        "sInf": "also いでぶね"
-                    }
-                ],
-                "tags": [
-                    "h",
-                    "k3"
-                ],
-                "hint": "・ぶ・"
-            }
-        );
+        game.start(currentLevelDict, $kt.enums.QUESTION_TYPE.KANA);
+        game.askQuestion();
     
         $kt.gameUi.showLevelData('Level 1: あ行', 75, 10, 15, 0, 48);
         setTimeout(() => {
@@ -52,6 +28,22 @@ var $kt = $kt || {};
                 { char: 'き', oldExpPercentage: 20, newExpPercentage: 40, addedExp: 2 }
             ]);
         }, 1000);
+    });
+
+    events.addEventListener(EVENTS.ANSWER, event => {
+        const answer = event.detail.answer;
+
+        if (!answer) {
+            $kt.gameUi.slideQuestionHint(game.giveUpAndGetQuestionHint());
+            return;
+        }
+
+        if (game.answerMatches(answer)) {
+            $kt.gameUi.jumpRightAnswer();
+            game.askQuestion();
+        } else {
+            $kt.gameUi.shakeWrongAnswer(answer);
+        }
     });
 
 })();

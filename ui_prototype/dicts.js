@@ -259,8 +259,9 @@ var $kt = $kt || {};
             }
             
             return this._promise = fetch(`dicts/${this._name}.json`)
+                .then(data => data.json())
                 .then(data => {
-                    this._data = Object.freeze(data.json());
+                    this._data = Object.freeze(data);
                     delete this._promise;
                     return this._data;
                 })
