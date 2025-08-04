@@ -9,6 +9,8 @@ var $kt = $kt || {};
     class KantoreAudio {
 
         constructor() {
+            this._currentBgmTrack = null;
+            
             this._player = new AudioPlayer();
             this.tracks = {
                 BGM_TRACK: { name: 'Juhani Junkala [Retro Game Music Pack] Level 1.ogg', volume: 0.3 },
@@ -17,12 +19,24 @@ var $kt = $kt || {};
                 SE_TEST_2_HIGH: { name: 'Jingle_Achievement_01.ogg', speed: 1.2 },
                 SE_TEST_2_LOW: { name: 'Jingle_Achievement_01.ogg', speed: 0.8 }
             };
-
-            // Settings default parameters when missing
+            
+            const tracksPromiseMap = new Map();
             Object.entries(this.tracks).forEach(([, trackData]) => {
+                // Settings default parameters when missing
                 trackData.volume ??= 1;
                 trackData.speed ??= 1;
-                trackData.buffer = this._player.loadTrack(trackData.name);
+
+                // Preload all audio files
+                trackData.promise = this._getOrCreateTrackPromise(trackData.name, tracksPromiseMap)
+                    .then(buffer => {
+                        trackData.buffer = buffer;
+                        delete trackData.promise;
+
+                        // Has to return buffer so subsequent
+                        // .then calls on this promise can also
+                        // access it
+                        return buffer;
+                    });
             });
 
             this._connectSettings();
@@ -35,7 +49,25 @@ var $kt = $kt || {};
          * @param {number} [speed=1] 
          */
         async playBgm(track, volume = 1, speed = 1) {
-            return track.buffer.then(buffer => this._player.playBgm(buffer, track.volume * volume, track.speed * speed));
+            this._currentBgmTrack = track;
+            const playFunc = buffer =>
+                this._player.playBgm(buffer, track.volume * volume, track.speed * speed);
+            
+            const buffer = track.buffer;
+            if (buffer) {
+                return playFunc(buffer);
+            } else {
+                return track.promise.then(buffer => {
+                    if (track === this._currentBgmTrack) {
+                        playFunc(buffer);
+                    }
+
+                    // Has to return buffer so subsequent
+                    // .then calls on this promise can also
+                    // access it
+                    return buffer;
+                });
+            }
         }
 
         /**
@@ -44,20 +76,27 @@ var $kt = $kt || {};
          * @param {number} [volume=1] 
          * @param {number} [speed=1] 
          */
-        async playEffect(track, volume = 1, speed = 1) {
-            const fulfilledTrackBufferMaybe = await this._getFulfilledPromise(track.buffer);
+        playEffect(track, volume = 1, speed = 1) {
+            const buffer = track.buffer;
             
-            if (fulfilledTrackBufferMaybe) {
-                const buffer = fulfilledTrackBufferMaybe;
+            if (buffer) {
                 return this._player.playEffect(buffer, track.volume * volume, track.speed * speed);
             }
         }
 
-        async _getFulfilledPromise(promise) {
-            return await Promise.race([promise, Promise.resolve()]);
+        _getOrCreateTrackPromise(trackName, tracksPromiseMap) {
+            const promiseFromMap = tracksPromiseMap.get(trackName);
+            if (promiseFromMap) {
+                return promiseFromMap;
+            }
+
+            const promise = this._player.loadTrack(trackName);
+            tracksPromiseMap.set(trackName, promise);
+            return promise;
         }
 
         stopBgm() {
+            this._currentBgmTrack = null;
             this._player.stopBgm();
         }
 
