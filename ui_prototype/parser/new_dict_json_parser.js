@@ -611,7 +611,7 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     // END OF DEBUG
 
     fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Dict file written!'));
-    fs.writeFile(WRITE_PATH + 'dict_vulgar.json', JSON.stringify(vulgarEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
+    fs.writeFile(WRITE_PATH + 'vulg.json', JSON.stringify(vulgarEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
     
     separateIntoTagEntries(entries)
         .forEach((tagEntries, tag) =>
@@ -814,7 +814,7 @@ function createCategoryTags(entry, originalEntry) {
     const misc = entry.sense.flatMap(sense => sense.misc);
 
     [
-        'idiomatic expression', 'proverb',
+        'idiomatic expression', 'proverb', 'archaic',
         'slang', 'manga slang', 'Internet slang'
     ]
         .filter(tagText => misc.includes(tagText))
@@ -968,7 +968,8 @@ function levelNumberToTag(level) {
 
 function separateIntoTagEntries(entries) {
     return entries.reduce((acc, entry) => {
-        entry.tags.forEach(tag => {
+        const tags = entry.tags.length > 0 ? entry.tags : [ 'notag' ];
+        tags.forEach(tag => {
             const tagEntries = acc.get(tag) || [];
             tagEntries.push(entry);
             acc.set(tag, tagEntries);
