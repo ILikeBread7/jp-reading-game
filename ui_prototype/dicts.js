@@ -254,6 +254,10 @@ var $kt = $kt || {};
         }
 
         async load() {
+            if (this._promise) {
+                return this._promise;
+            }
+            
             return this._promise = fetch(`dicts/${this._name}.json`)
                 .then(data => {
                     this._data = Object.freeze(data.json());
