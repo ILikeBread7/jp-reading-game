@@ -11,12 +11,12 @@ var $kt = $kt || {};
     const currentLevel = 1;
 
     let currentLevelDict = $kt.dicts.getLevelDict(currentLevel);
-    currentLevelDict.load()
-        .then(() => $kt.dicts.getLevelDict(currentLevel + 1).load());
+    currentLevelDict.load();
 
     const game = new $kt.Game();
 
     events.addEventListener(EVENTS.START, () => {
+        $kt.dicts.getLevelDict(currentLevel + 1).load();
         game.start(currentLevelDict, $kt.enums.QUESTION_TYPE.KANA);
         game.askQuestion();
     
