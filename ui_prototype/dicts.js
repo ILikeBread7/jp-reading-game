@@ -262,10 +262,12 @@ var $kt = $kt || {};
                 .then(data => data.json())
                 .then(data => {
                     this._data = Object.freeze(data);
-                    delete this._promise;
                     return this._data;
                 })
-                .catch(console.error);
+                .catch(err => {
+                    console.error(err);
+                    delete this._promise;
+                });
         }
 
         isLoaded() {
