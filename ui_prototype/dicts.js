@@ -249,8 +249,17 @@ var $kt = $kt || {};
 
     class BaseDict {
 
-        constructor(name) {
+        /**
+         * 
+         * @param {string} name 
+         * @param {[] | undefined} data 
+         */
+        constructor(name, data) {
             this._name = name;
+            if (data) {
+                this._data = data;
+                this._promise = Promise.resolve();
+            }
         }
 
         async load() {
@@ -272,6 +281,17 @@ var $kt = $kt || {};
 
         isLoaded() {
             return !!this._data;
+        }
+
+        filter(filter) {
+            if (!this.isLoaded()) {
+                console.error('Cannot filter a not yet loaded dict.');
+            }
+            
+            return new BaseDict(
+                this._name,
+                this._data.filter(filter)
+            )
         }
 
         get data() {

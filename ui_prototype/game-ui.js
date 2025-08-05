@@ -472,7 +472,7 @@ var $kt = $kt || {};
             if (this._isLevelUpVisible()) {
                 console.warn('Level up is visible!');
             } else {
-                const showHint = this._addNewHint();
+                const showHint = this.addNewHint();
                 this.showLevelUp('Level 3: さ行', 500, 25, 13, 48, showHint);
             }
         }
@@ -549,7 +549,7 @@ var $kt = $kt || {};
          * 
          * @returns {boolean} true if new hint added, false if all hints had been added already
          */
-        _addNewHint() {
+        addNewHint() {
             const newHintIndex = Math.min(this._latestUnlockedHintIndex + 1, this._hints.length - 1);
             if (newHintIndex > this._latestUnlockedHintIndex) {
                 this._latestUnlockedHintIndex = newHintIndex;

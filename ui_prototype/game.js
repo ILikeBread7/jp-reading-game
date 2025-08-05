@@ -4,65 +4,137 @@ var $kt = $kt || {};
 
 (() => {
 
+    const EXP_PER_CHAR = 2;
+
     class KantoreGame {
 
-        constructor() {
+        constructor(level) {
+            this._currentLevel = level;
+            this._levelName = $kt.levels.getLevelName(level);
 
-        }
-
-        start(dict, mode) {
-            this._currentQueston = null;
-            this._dict = dict;
-            this._mode = mode;
-            this._gaveUp = false;
-        }
-
-        askQuestion() {
-            if (this._dict.isLoaded()) {
-                this._askNewQuestion();
-            } else {
-                $kt.ui.showLoading();
-                this._dict.load()
-                    .then(() => {
-                        this._askNewQuestion();
-                        $kt.ui.hideLoading();
-                    })
-            }
-        }
-
-        answerMatches(answer) {
-            return wanakana.toKatakana(this._currentQueston.kana) === wanakana.toKatakana(answer);
-        }
-
-        giveUp() {
-            this._gaveUp = true;
-        }
-
-        getQuestionHint() {
-            if (this._mode === $kt.enums.QUESTION_TYPE.KANA) {
-                return wanakana.toRomaji(this._currentQueston.kana);
-            } else if (this._gaveUp) {
-                return`${this._currentQueston.kana} (${wanakana.toRomaji(this._currentQueston.kana, { customRomajiMapping: { 'ぁ': 'xa', 'ぃ': 'xi',  'ぅ': 'xu', 'ぇ': 'xe', 'ぉ': 'xo', 'ァ': 'xa', 'ィ': 'xi', 'ゥ': 'xu', 'ェ': 'xe', 'ォ': 'xo' } })})`;
-            } else {
-                return this._currentQueston.kana;
-            }
-        }
-
-        _askNewQuestion() {
-            this._gaveUp = false;
-            const question = this._findNewQuestion(this._dict.data, this._currentQueston);
-            $kt.gameUi.showQuestion(question, this._mode);
-            this._currentQueston = question;
-        }
-
-        _findNewQuestion(dictData, previousQuestion) {
-            let newQuestion;
-
-            do {
-                newQuestion = dictData[Math.floor(Math.random() * dictData.length)];
-            } while(dictData.length > 1 && previousQuestion && (previousQuestion === newQuestion || (this._mode === $kt.enums.QUESTION_TYPE.KANA && newQuestion.kana === previousQuestion.kana)));
+            this._levelChars = $kt.levels.getCharsWithRepsPerLevel(level);
+            this._levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
+            this._remainingChars = new Set(this._levelChars.keys());
             
-            return newQuestion;
+            this._questionType = $kt.levels.getQuestionType(level);
+            
+            this._totalExp = 0; // Get from persistence
+            this._currentLevelExp = 0; // Get from persistence
+            this._toNextLevelExp = this._levelChars.entries()
+                .reduce(
+                    (acc, [, { targetReps }]) => acc + targetReps
+                    , 0
+                ) * EXP_PER_CHAR;
+            this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(level);
+            this._totalCharacters = $kt.levels.getTotalCharsForDisplay(level);
+
+            this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
+            this._currentLevelDict.load();
+
+            this._gameLevel = new $kt.GameLevel();
+        }
+
+        start() {
+            $kt.dicts.getLevelDict(this._currentLevel + 1)
+                .load();
+            $kt.gameUi.showLevelData(
+                this._levelName,
+                this._totalExp,
+                this._currentLevelExp,
+                this._toNextLevelExp,
+                this._maxedCharacters,
+                this._totalCharacters
+            );
+            
+            this._gameLevel.start(this._currentLevelDict, this._questionType);
+            this._gameLevel.askFirstQuestion();
+        }
+
+        answer(answer) {
+            if (!answer) {
+                $kt.gameUi.slideQuestionHint(this._gameLevel.getQuestionHint());
+                this._gameLevel.giveUp();
+                return;
+            }
+
+            if (this._gameLevel.answerMatches(answer)) {
+                $kt.gameUi.jumpRightAnswer();
+                this._updateScore();
+                this._gameLevel.askQuestion();
+            } else {
+                const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
+                $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
+            }
+        }
+
+        _updateScore() {
+            if (this._gameLevel.gaveUp || this._currentLevel > $kt.levels.maxLevel) {
+                return;
+            }
+
+            const questionChars = this._gameLevel.questionChars;
+            const charsForExp = this._remainingChars.intersection(new Set([...questionChars]));
+            const addedScore = charsForExp.size * EXP_PER_CHAR;
+
+            const oldTotalExp = this._totalExp;
+            this._totalExp += addedScore;
+            const expPerChar = [];
+            let updateRemainingChars = false;
+
+            charsForExp.forEach(char => {
+                const charReps = this._levelChars.get(char);
+                const oldExpPercentage = this._calculateCharExpPercentage(charReps);
+                charReps.remainingReps--;
+                const newExpPercentage = this._calculateCharExpPercentage(charReps);
+                
+                expPerChar.push({
+                    char: char,
+                    oldExpPercentage: oldExpPercentage,
+                    newExpPercentage: newExpPercentage,
+                    addedExp: EXP_PER_CHAR
+                });
+
+                if (charReps.remainingReps <= 0) {
+                    updateRemainingChars = true;
+                    this._remainingChars.delete(char);
+                    this._maxedCharacters++;
+                }
+            });
+
+            $kt.gameUi.showLevelExp(
+                this._levelName,
+                this._totalExp,
+                this._currentLevelExp,
+                this._toNextLevelExp,
+                this._maxedCharacters,
+                this._totalCharacters,
+                [
+                    {
+                        oldExpPercentage: this._calculatePercentage(oldTotalExp, this._toNextLevelExp),
+                        newExpPercentage: this._calculatePercentage(this._totalExp, this._toNextLevelExp),
+                        addedExp: addedScore
+                    },
+                    ...expPerChar
+                ]
+            );
+
+            if (updateRemainingChars) {
+                if (this._remainingChars.size === 0) {
+                    const hintAdded = $kt.gameUi.addNewHint();
+                    $kt.gameUi.showLevelUp('a', 1, 2, 3, 4, hintAdded);
+                } else {
+                    this._gameLevel.filterDictByRemainingChars(this._remainingChars);
+                }
+            }
+
+        }
+
+        _calculateCharExpPercentage(charReps) {
+            return 100 - this._calculatePercentage(charReps.remainingReps, charReps.targetReps);
+        }
+
+        _calculatePercentage(fraction, total) {
+            return fraction * 100 / total;
         }
 
     }
