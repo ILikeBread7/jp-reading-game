@@ -34,7 +34,8 @@ var $kt = $kt || {};
         const answer = event.detail.answer;
 
         if (!answer) {
-            $kt.gameUi.slideQuestionHint(game.giveUpAndGetQuestionHint());
+            $kt.gameUi.slideQuestionHint(game.getQuestionHint());
+            game.giveUp();
             return;
         }
 

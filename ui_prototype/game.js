@@ -34,13 +34,14 @@ var $kt = $kt || {};
             return wanakana.toKatakana(this._currentQueston.kana) === wanakana.toKatakana(answer);
         }
 
-        giveUpAndGetQuestionHint() {
-            const givenUp = this._gaveUp;
+        giveUp() {
             this._gaveUp = true;
+        }
 
+        getQuestionHint() {
             if (this._mode === $kt.enums.QUESTION_TYPE.KANA) {
                 return wanakana.toRomaji(this._currentQueston.kana);
-            } else if (givenUp) {
+            } else if (this._gaveUp) {
                 return`${this._currentQueston.kana} (${wanakana.toRomaji(this._currentQueston.kana, { customRomajiMapping: { 'ぁ': 'xa', 'ぃ': 'xi',  'ぅ': 'xu', 'ぇ': 'xe', 'ぉ': 'xo', 'ァ': 'xa', 'ィ': 'xi', 'ゥ': 'xu', 'ェ': 'xe', 'ォ': 'xo' } })})`;
             } else {
                 return this._currentQueston.kana;
