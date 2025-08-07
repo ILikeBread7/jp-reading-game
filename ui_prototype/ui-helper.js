@@ -29,7 +29,7 @@ var $kt = $kt || {};
                     element.ontransitionend = null;
                 };
             } else {
-                $kt.ui._answerInput.blur();
+                $kt.gameUi._answerInput.blur();
             }
         }
 
