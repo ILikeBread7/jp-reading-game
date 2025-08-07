@@ -551,9 +551,13 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                 newEntry.kana = kana.reb;
                 newEntry.sense = filteredSenses;
 
+                // This is specifically for
+                // ent_seq: 1137670, ラーゲ
+                const vulgGlosses = [ 'sex position' ];
+                
                 const vulgMiscText = TERMS_TEXT_BY_CODE.get('vulg').text;
                 const vulgarSenses = filteredSenses
-                    .filter(sense => (sense.misc || []).includes(vulgMiscText));
+                    .filter(sense => (sense.misc || []).includes(vulgMiscText) || vulgGlosses.some(vulgGloss => sense.gloss.includes(vulgGloss)));
 
                 if (vulgarSenses.length > 0) {
                     const vulgarEntry = { ...newEntry };
