@@ -15,7 +15,12 @@ var $kt = $kt || {};
 
             this._levelChars = $kt.levels.getCharsWithRepsPerLevel(level);
             this._levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
-            this._remainingChars = new Set(this._levelChars.keys());
+            
+            this._remainingChars = new Set(
+                this._levelChars.entries()
+                    .filter(([ , { remainingReps } ]) => remainingReps > 0)
+                    .map(([ char ]) => char)
+            );
             
             this._questionType = $kt.levels.getQuestionType(level);
             
@@ -26,7 +31,14 @@ var $kt = $kt || {};
                     (acc, { targetReps }) => acc + targetReps
                     , 0
                 ) * this._expPerChar;
-            this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(level);
+
+            this._maxedCharacters =
+                $kt.levels.getTotalCharsUntilLevel(level)
+                + this._levelChars.values()
+                    .filter(({ remainingReps }) => remainingReps <= 0)
+                    .toArray()
+                    .length;
+
             this._totalCharacters = $kt.levels.getTotalCharsForDisplay(level);
 
             this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
