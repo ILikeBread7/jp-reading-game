@@ -72,9 +72,14 @@ var $kt = $kt || {};
                 <div id="level-total-exp">
                     Total EXP: ${totalExp}
                 </div>
-                <div id="level-next-level">
-                    To next level: ${currentLevelExp} / ${toNextLevelExp}
-                </div>
+                ${
+                    this._tif(toNextLevelExp > 0)
+                    && /*html*/`
+                        <div id="level-next-level">
+                            To next level: ${currentLevelExp} / ${toNextLevelExp}
+                        </div>
+                    `
+                }
                 <div id="level-name">
                     ${levelName} ${this._tif(totalCharacters) && `(${maxedCharacters}/${totalCharacters})`}
                     ${this._tif(isLevelMax) && this._expMaxSpan()}

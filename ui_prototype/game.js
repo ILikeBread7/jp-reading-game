@@ -78,7 +78,7 @@ var $kt = $kt || {};
          * @returns {boolean} true if leveled up, false otherwise
          */
         _updateScore() {
-            if (this._gameLevel.gaveUp || this._currentLevel > $kt.levels.maxLevel) {
+            if (this._gameLevel.gaveUp) {
                 return false;
             }
 
@@ -172,10 +172,15 @@ var $kt = $kt || {};
             this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
             
             // Load current level dict in case it couldn't be loaded earlier
-            // and preload the next level's dict
-            this._currentLevelDict.load().then(
-                () => $kt.dicts.getLevelDict(this._currentLevel + 1).load()
-            );
+            const dictPromise = this._currentLevelDict.load();
+            
+            // Preload the next level's dict
+            // (including final dict after all levels are finished)
+            if (this._currentLevel <= $kt.levels.maxLevel) {
+                dictPromise.then(
+                    () => $kt.dicts.getLevelDict(this._currentLevel + 1).load()
+                );
+            }
 
             this._gameLevel.start(this._currentLevelDict, this._questionType);
         }

@@ -24,7 +24,8 @@ var $kt = $kt || {};
         'ハ行',
         'タ行',
         'ヤ行',
-        'ワ行'
+        'ワ行',
+        'End game'
     ];
 
     const LEVEL_CHARS = [
@@ -61,12 +62,16 @@ var $kt = $kt || {};
 
         static getCharsWithRepsPerLevel(level) {
             return new Map(
-                LEVEL_CHARS[level - 1]
+                (LEVEL_CHARS[level - 1] || [])
                     .map(char => [ char, REPS_PER_CHAR ])
             );
         }
 
         static getQuestionType(level) {
+            if (level > this.maxLevel) {
+                return $kt.enums.QUESTION_TYPE.KANJI;
+            }
+
             return wanakana.isKanji(LEVEL_CHARS[level - 1][0])
                 ? $kt.enums.QUESTION_TYPE.KANJI
                 : $kt.enums.QUESTION_TYPE.KANA;
