@@ -55,17 +55,23 @@ var $kt = $kt || {};
 
             if (this._gameLevel.answerMatches(answer)) {
                 $kt.gameUi.jumpRightAnswer();
-                this._updateScore();
-                this._gameLevel.askQuestion();
+                const leveledUp = this._updateScore();
+                if (!leveledUp) {
+                    this._gameLevel.askQuestion();
+                }
             } else {
                 const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
                 $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
             }
         }
 
+        /**
+         * 
+         * @returns {boolean} true if leveled up, false otherwise
+         */
         _updateScore() {
             if (this._gameLevel.gaveUp || this._currentLevel > $kt.levels.maxLevel) {
-                return;
+                return false;
             }
 
             const questionChars = this._gameLevel.questionChars;
@@ -119,11 +125,13 @@ var $kt = $kt || {};
             if (updateRemainingChars) {
                 if (this._remainingChars.size === 0) {
                     this._levelUp();
+                    return true;
                 } else {
                     this._gameLevel.filterDictByRemainingChars(this._remainingChars);
                 }
             }
 
+            return false;
         }
 
         _levelUp() {
