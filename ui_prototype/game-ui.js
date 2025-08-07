@@ -122,12 +122,9 @@ var $kt = $kt || {};
         }
 
         /**
-         * @param {string} levelName
-         * @param {number} totalExp
-         * @param {number} toNextLevelExp
          * @param {boolean} showHint true if hint should be shown, false otherwise
          */
-        showLevelUp(levelName, totalExp, toNextLevelExp, maxedCharacters, totalCharacters, showHint) {
+        showLevelUp(showHint) {
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
             
             this._showHintOnLevelUp = showHint;
@@ -142,7 +139,6 @@ var $kt = $kt || {};
             this._fadeIn(this._levelUpContainer, fadeInTimeCss, '0s');
             this._textJumpByChar(this._levelUpTextChars, '-0.5em', `${charTransitionTime}s`, charTransitionDelayTime);
 
-            this._showNewLevelDataFunction = this.showLevelData.bind(this, levelName, totalExp, 0, toNextLevelExp, maxedCharacters, totalCharacters);
             this._fadeLevelUpTextToLevelUpHint(showHint, '0.35s', `${totalTextTransitionTime}s`);
             this._answerInput.blur();
         }
@@ -512,7 +508,6 @@ var $kt = $kt || {};
             this._hints = $kt.hints;
             this._currentHintIndex = this._latestUnlockedHintIndex = 0; // Change to reading from save file (local storage)
             this._showHintOnLevelUp = false;
-            this._showNewLevelDataFunction = null;
             this._updateHintContent();
         }
 
@@ -578,7 +573,6 @@ var $kt = $kt || {};
         }
 
         /**
-         * Uses the _showNewLevelDataFunction field for its end listener
          * @param {string} [duration='var(--default-transition-time)'] Duration in CSS format, default is 'var(--default-transition-time)'
          * @param {string} [delay='0s'] Delay in CSS format, default is '0s'
          */
@@ -587,10 +581,6 @@ var $kt = $kt || {};
                 this._removeTransition(this._levelUpText);
                 this._removeTransition(this._levelUpHint);
                 this._levelUpTextChars.forEach(this._removeTransition.bind(this));
-                if (this._showNewLevelDataFunction) {
-                    this._showNewLevelDataFunction();
-                    this._showNewLevelDataFunction = null;
-                }
                 this._moveLevelExpDivBackDown();
             });
             this.focusAnswerInput();

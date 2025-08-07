@@ -43,7 +43,7 @@ var $kt = $kt || {};
             return /*html*/`
                 ${this.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData[0].oldExpPercentage, expData[0].newExpPercentage >= 100)}
                 <div class="fade-in-out" id="level-exp-tmp-bars">
-                    <div>Total: +${expData[0].addedExp}XP!</div>
+                    ${this._tif(expData[0].addedExp > 0) && /*html*/`<div>Total: +${expData[0].addedExp}XP!</div>` || 'Correct answer!'}
                     ${expData.slice(1).map(exp => /*html*/`
                         <div>
                             ${exp.char}: +${exp.addedExp}XP!

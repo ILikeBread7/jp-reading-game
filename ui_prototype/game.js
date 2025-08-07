@@ -11,8 +11,11 @@ var $kt = $kt || {};
 
         constructor(level) {
             this._currentLevel = level;
+            this._gameLevel = new $kt.GameLevel();
+        }
 
-            this._setupNewLevel();
+        start() {
+            this._setupCurrentLevel();
 
             this._remainingChars.forEach(char => {
                 if (this._levelChars.get(char).remainingReps <= 0) {
@@ -28,10 +31,6 @@ var $kt = $kt || {};
                     .toArray()
                     .length;
 
-            this._gameLevel = new $kt.GameLevel();
-        }
-
-        start() {
             $kt.dicts.getLevelDict(this._currentLevel + 1)
                 .load();
             $kt.gameUi.showLevelData(
@@ -74,8 +73,9 @@ var $kt = $kt || {};
             const expPerChar = this._expPerChar;
             const addedScore = charsForExp.size * expPerChar;
 
-            const oldTotalExp = this._totalExp;
+            const oldCurrentLevelExp = this._currentLevelExp;
             this._totalExp += addedScore;
+            this._currentLevelExp += addedScore;
             const addedExpPerChar = [];
             let updateRemainingChars = false;
 
@@ -108,8 +108,8 @@ var $kt = $kt || {};
                 this._totalCharacters,
                 [
                     {
-                        oldExpPercentage: this._calculatePercentage(oldTotalExp, this._toNextLevelExp),
-                        newExpPercentage: this._calculatePercentage(this._totalExp, this._toNextLevelExp),
+                        oldExpPercentage: this._calculatePercentage(oldCurrentLevelExp, this._toNextLevelExp),
+                        newExpPercentage: this._calculatePercentage(this._currentLevelExp, this._toNextLevelExp),
                         addedExp: addedScore
                     },
                     ...addedExpPerChar
@@ -118,8 +118,7 @@ var $kt = $kt || {};
 
             if (updateRemainingChars) {
                 if (this._remainingChars.size === 0) {
-                    const hintAdded = $kt.gameUi.addNewHint();
-                    $kt.gameUi.showLevelUp('a', 1, 2, 3, 4, hintAdded);
+                    this._levelUp();
                 } else {
                     this._gameLevel.filterDictByRemainingChars(this._remainingChars);
                 }
@@ -129,11 +128,12 @@ var $kt = $kt || {};
 
         _levelUp() {
             this._currentLevel++;
-            this._setupNewLevel();
-            $kt.gameUi.showLevelUp('a', 1, 2, 3, 4, hintAdded);
+            this._setupCurrentLevel();
+            const hintAdded = $kt.gameUi.addNewHint();
+            $kt.gameUi.showLevelUp(hintAdded);
         }
 
-        _setupNewLevel() {
+        _setupCurrentLevel() {
             this._levelName = $kt.levels.getLevelName(this._currentLevel);
 
             this._levelChars = $kt.levels.getCharsWithRepsPerLevel(this._currentLevel);
