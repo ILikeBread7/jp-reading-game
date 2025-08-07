@@ -20,9 +20,9 @@ var $kt = $kt || {};
             
             this._totalExp = 0; // Get from persistence
             this._currentLevelExp = 0; // Get from persistence
-            this._toNextLevelExp = this._levelChars.entries()
+            this._toNextLevelExp = this._levelChars.values()
                 .reduce(
-                    (acc, [, { targetReps }]) => acc + targetReps
+                    (acc, { targetReps }) => acc + targetReps
                     , 0
                 ) * EXP_PER_CHAR;
             this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(level);
