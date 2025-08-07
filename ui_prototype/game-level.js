@@ -66,9 +66,9 @@ var $kt = $kt || {};
         }
 
         formatWrongAnswer(answer) {
-            return wanakana.isKatakana(this._currentQueston.kana)
-                ? wanakana.toKatakana(answer)
-                : wanakana.toHiragana(answer);
+            return wanakana.isHiragana(this._currentQueston.kana)
+                ? wanakana.toHiragana(answer)
+                : wanakana.toKatakana(answer);
         }
 
         filterDictByRemainingChars(remainingChars) {

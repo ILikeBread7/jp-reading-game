@@ -50,7 +50,7 @@ var $kt = $kt || {};
         [...'ワヲンヴ']
     ];
 
-    const REPS_PER_CHAR = 5;
+    const REPS_PER_CHAR = 1;
 
     class KantoreLevels {
 

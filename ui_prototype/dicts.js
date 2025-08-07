@@ -335,6 +335,10 @@ var $kt = $kt || {};
                 this._levelDicts.push(dict);
                 this._dicts.set(dictName, dict);
             }
+
+            // Add dict to be used after all levels are finished
+            const finalDict = new BaseDict('L021');
+            this._levelDicts.push(finalDict);
         }
 
         _createCategoryDicts() {

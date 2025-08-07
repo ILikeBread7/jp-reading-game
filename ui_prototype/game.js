@@ -12,6 +12,9 @@ var $kt = $kt || {};
         constructor(level) {
             this._currentLevel = level;
             this._gameLevel = new $kt.GameLevel();
+
+            // Preload the current level dict
+            $kt.dicts.getLevelDict(level).load();
         }
 
         start() {
@@ -31,19 +34,13 @@ var $kt = $kt || {};
                     .toArray()
                     .length;
 
-            $kt.dicts.getLevelDict(this._currentLevel + 1)
-                .load();
-            $kt.gameUi.showLevelData(
-                this._levelName,
-                this._totalExp,
-                this._currentLevelExp,
-                this._toNextLevelExp,
-                this._maxedCharacters,
-                this._totalCharacters
-            );
-            
-            this._gameLevel.start(this._currentLevelDict, this._questionType);
+            this._showCurrentLevelData();
             this._gameLevel.askFirstQuestion();
+        }
+
+        startNewLevel() {
+            this._showCurrentLevelData();
+            this._gameLevel.askQuestion();
         }
 
         answer(answer) {
@@ -63,6 +60,17 @@ var $kt = $kt || {};
                 const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
                 $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
             }
+        }
+
+        _showCurrentLevelData() {
+            $kt.gameUi.showLevelData(
+                this._levelName,
+                this._totalExp,
+                this._currentLevelExp,
+                this._toNextLevelExp,
+                this._maxedCharacters,
+                this._totalCharacters
+            );
         }
 
         /**
@@ -162,7 +170,14 @@ var $kt = $kt || {};
             this._totalCharacters = $kt.levels.getTotalCharsForDisplay(this._currentLevel);
 
             this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
-            this._currentLevelDict.load();
+            
+            // Load current level dict in case it couldn't be loaded earlier
+            // and preload the next level's dict
+            this._currentLevelDict.load().then(
+                () => $kt.dicts.getLevelDict(this._currentLevel + 1).load()
+            );
+
+            this._gameLevel.start(this._currentLevelDict, this._questionType);
         }
 
         _calculateCharExpPercentage(charReps) {

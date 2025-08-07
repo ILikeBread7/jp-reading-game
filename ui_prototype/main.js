@@ -19,4 +19,8 @@ var $kt = $kt || {};
         game.answer(answer);
     });
 
+    events.addEventListener(EVENTS.LEVEL_UP, () => {
+        game.startNewLevel();
+    });
+
 })();

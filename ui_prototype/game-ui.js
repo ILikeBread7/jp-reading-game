@@ -338,7 +338,8 @@ var $kt = $kt || {};
             this._events = new EventTarget();
             this._eventNames = Object.freeze({
                 START: 'start',
-                ANSWER: 'answer'
+                ANSWER: 'answer',
+                LEVEL_UP: 'levelUp'
             });
         }
 
@@ -583,7 +584,7 @@ var $kt = $kt || {};
                 this._levelUpTextChars.forEach(this._removeTransition.bind(this));
                 this._moveLevelExpDivBackDown();
             });
-            this.focusAnswerInput();
+            this._dispatchEvent(this._eventNames.LEVEL_UP);
         }
 
         _dispatchEvent(eventName, detail) {
