@@ -4,7 +4,7 @@ var $kt = $kt || {};
 
 (() => {
 
-    const NUMBER_OF_LEVELS = 23;
+    const NUMBER_OF_LEVELS = $kt.levels.maxLevel;
     const CATEGORY_TAGS = [
         'Buddh',
         'Christn',
