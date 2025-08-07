@@ -81,14 +81,14 @@ var $kt = $kt || {};
 
         static _filterKana(entry, remainingChars) {
             return !remainingChars.isDisjointFrom(
-                    new Set([...entry.kana])
+                    new Set(entry.kana)
                 );
         }
 
         static _filterKanji(entry, remainingChars) {
             return entry.kanji
                 && !remainingChars.isDisjointFrom(
-                        new Set([...entry.kanji])
+                        new Set(entry.kanji)
                     );
         }
 

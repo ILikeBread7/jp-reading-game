@@ -73,7 +73,7 @@ var $kt = $kt || {};
             }
 
             const questionChars = this._gameLevel.questionChars;
-            const charsForExp = this._remainingChars.intersection(new Set([...questionChars]));
+            const charsForExp = this._remainingChars.intersection(new Set(questionChars));
             const addedScore = charsForExp.size * EXP_PER_CHAR;
 
             const oldTotalExp = this._totalExp;
