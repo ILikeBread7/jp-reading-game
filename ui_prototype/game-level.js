@@ -101,12 +101,37 @@ var $kt = $kt || {};
 
         _findNewQuestion(dictData, previousQuestion) {
             let newQuestion;
+            let retries = 10;
 
             do {
                 newQuestion = dictData[Math.floor(Math.random() * dictData.length)];
-            } while(dictData.length > 1 && previousQuestion && (previousQuestion === newQuestion || (this._questionType === $kt.enums.QUESTION_TYPE.KANA && newQuestion.kana === previousQuestion.kana)));
+            } while(
+                dictData.length > 1
+                && --retries
+                && this._isSameQuestion(newQuestion, previousQuestion)
+            );
             
             return newQuestion;
+        }
+
+        _isSameQuestion(question1, question2) {
+            if (question1 === question2) {
+                return true;
+            }
+
+            // If one is undefined but the other isn't
+            if (!!question1 !== !!question2) {
+                return false;
+            }
+
+            if (
+                this._questionType === $kt.enums.QUESTION_TYPE.KANJI
+                && question1.kanji !== question2.kanji
+            ) {
+                return false;
+            }
+
+            return question1.kana === question2.kana;
         }
 
     }
