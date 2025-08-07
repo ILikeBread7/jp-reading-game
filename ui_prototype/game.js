@@ -4,7 +4,8 @@ var $kt = $kt || {};
 
 (() => {
 
-    const EXP_PER_CHAR = 2;
+    const EXP_PER_KANA = 10;
+    const EXP_PER_KANJI = 20;
 
     class KantoreGame {
 
@@ -24,7 +25,7 @@ var $kt = $kt || {};
                 .reduce(
                     (acc, { targetReps }) => acc + targetReps
                     , 0
-                ) * EXP_PER_CHAR;
+                ) * this._expPerChar;
             this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(level);
             this._totalCharacters = $kt.levels.getTotalCharsForDisplay(level);
 
@@ -74,11 +75,12 @@ var $kt = $kt || {};
 
             const questionChars = this._gameLevel.questionChars;
             const charsForExp = this._remainingChars.intersection(new Set(questionChars));
-            const addedScore = charsForExp.size * EXP_PER_CHAR;
+            const expPerChar = this._expPerChar;
+            const addedScore = charsForExp.size * expPerChar;
 
             const oldTotalExp = this._totalExp;
             this._totalExp += addedScore;
-            const expPerChar = [];
+            const addedExpPerChar = [];
             let updateRemainingChars = false;
 
             charsForExp.forEach(char => {
@@ -87,11 +89,11 @@ var $kt = $kt || {};
                 charReps.remainingReps--;
                 const newExpPercentage = this._calculateCharExpPercentage(charReps);
                 
-                expPerChar.push({
+                addedExpPerChar.push({
                     char: char,
                     oldExpPercentage: oldExpPercentage,
                     newExpPercentage: newExpPercentage,
-                    addedExp: EXP_PER_CHAR
+                    addedExp: expPerChar
                 });
 
                 if (charReps.remainingReps <= 0) {
@@ -114,7 +116,7 @@ var $kt = $kt || {};
                         newExpPercentage: this._calculatePercentage(this._totalExp, this._toNextLevelExp),
                         addedExp: addedScore
                     },
-                    ...expPerChar
+                    ...addedExpPerChar
                 ]
             );
 
@@ -135,6 +137,12 @@ var $kt = $kt || {};
 
         _calculatePercentage(fraction, total) {
             return fraction * 100 / total;
+        }
+
+        get _expPerChar() {
+            return this._questionType === $kt.enums.QUESTION_TYPE.KANJI
+                ? EXP_PER_KANJI
+                : EXP_PER_KANA;
         }
 
     }
