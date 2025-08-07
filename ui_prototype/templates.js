@@ -18,14 +18,14 @@ var $kt = $kt || {};
          */
         questionMeaning(meanings) {
             const SEPARATOR = '; ';
-            return meanings.map(m => `
+            return meanings.map(m => /*html*/`
                 <ul class="meaning-entry">
                 <li><span>Definition:</span> ${m.gloss.map(g => typeof g === "string" ? g : `${g.value} (${g.type})`).join(SEPARATOR)}</li>
                     <li><span>Part of speech:</span> ${m.pos.join(SEPARATOR)}</li>
-                    ${this._coa(m.lsource) && `<li><span>From:</span> ${m.lsource.map(l => `${l.value} (${l.lang})${this._coa(l.wasei) && ' (wasei word)'}`).join(SEPARATOR)}</li>`}
-                    ${this._coa(m.misc) && `<li><span>Additional info:</span> ${m.misc.join(SEPARATOR)}</li>`}
-                    ${this._coa(m.field) && `<li><span>Field:</span> ${m.field.join(SEPARATOR)}</li>`}
-                    ${this._coa(m.dial) && `<li><span>Dialect:</span> ${m.dial.join(SEPARATOR)}</li>`}
+                    ${this._coa(m.lsource) && /*html*/`<li><span>From:</span> ${m.lsource.map(l => `${l.value} (${l.lang})${this._coa(l.wasei) && ' (wasei word)'}`).join(SEPARATOR)}</li>`}
+                    ${this._coa(m.misc) && /*html*/`<li><span>Additional info:</span> ${m.misc.join(SEPARATOR)}</li>`}
+                    ${this._coa(m.field) && /*html*/`<li><span>Field:</span> ${m.field.join(SEPARATOR)}</li>`}
+                    ${this._coa(m.dial) && /*html*/`<li><span>Dialect:</span> ${m.dial.join(SEPARATOR)}</li>`}
                 </ul>
             `).join('');
         }
@@ -40,11 +40,11 @@ var $kt = $kt || {};
          * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
          */
         levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData) {
-            return `
+            return /*html*/`
                 ${this.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData[0].oldExpPercentage, expData[0].newExpPercentage >= 100)}
                 <div class="fade-in-out" id="level-exp-tmp-bars">
                     <div>Total: +${expData[0].addedExp}XP!</div>
-                    ${expData.slice(1).map(exp => `
+                    ${expData.slice(1).map(exp => /*html*/`
                         <div>
                             ${exp.char}: +${exp.addedExp}XP!
                             ${this._tif(exp.newExpPercentage >= 100) && this._expMaxSpan()}
@@ -68,7 +68,7 @@ var $kt = $kt || {};
          * @param {boolean} [isLevelMax=false] 
          */
         levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, levelExpPercentage = currentLevelExp * 100 / toNextLevelExp, isLevelMax = false) {
-            return `
+            return /*html*/`
                 <div id="level-total-exp">
                     Total EXP: ${totalExp}
                 </div>
@@ -94,7 +94,7 @@ var $kt = $kt || {};
          * @returns 
          */
         practiceData(levelName, totalCorrectAnswers) {
-            return `
+            return /*html*/`
                 <div id="level-name">
                     ${levelName}
                 </div>
@@ -113,7 +113,7 @@ var $kt = $kt || {};
          * @returns 
          */
         arcadeData(levelName, currentAnswers, totalQuestions, currentAnswersPercentage = currentAnswers * 100 / totalQuestions) {
-            return `
+            return /*html*/`
                 <div id="level-name">
                     ${levelName}
                 </div>
@@ -129,7 +129,7 @@ var $kt = $kt || {};
         }
 
         _expMaxSpan() {
-            return `
+            return /*html*/`
                 <span class="fade-hidden exp-max">
                     <span class="exp-max-chars-container">
                         <span class="jumpable exp-max-char">M</span>

@@ -7,7 +7,7 @@ var $kt = $kt || {};
     $kt.hints = [
         {
             name: 'Level 1: あ行',
-            template:
+            template: /*html*/
                 `<div>あ - a</div>
                 <div>い - i</div>
                 <div>う - u</div>
@@ -17,7 +17,7 @@ var $kt = $kt || {};
 
         {
             name: 'Level 2: か行',
-            template:
+            template: /*html*/
                 `<div class="columns-container">
                     <div class="column-half-width">か - ka</div>
                     <div class="column-half-width">が - ga</div>
@@ -34,7 +34,7 @@ var $kt = $kt || {};
 
         {
             name: 'Level 3: さ行',
-            template:
+            template: /*html*/
                 `<div class="columns-container">
                     <div class="column-half-width">さ - sa</div>
                     <div class="column-half-width">ざ - za</div>
