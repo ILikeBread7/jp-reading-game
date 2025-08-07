@@ -11,38 +11,22 @@ var $kt = $kt || {};
 
         constructor(level) {
             this._currentLevel = level;
-            this._levelName = $kt.levels.getLevelName(level);
 
-            this._levelChars = $kt.levels.getCharsWithRepsPerLevel(level);
-            this._levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
-            
-            this._remainingChars = new Set(
-                this._levelChars.entries()
-                    .filter(([ , { remainingReps } ]) => remainingReps > 0)
-                    .map(([ char ]) => char)
-            );
-            
-            this._questionType = $kt.levels.getQuestionType(level);
-            
+            this._setupNewLevel();
+
+            this._remainingChars.forEach(char => {
+                if (this._levelChars.get(char).remainingReps <= 0) {
+                    this._remainingChars.delete(char);
+                }
+            });
+
             this._totalExp = 0; // Get from persistence
-            this._currentLevelExp = 0; // Get from persistence
-            this._toNextLevelExp = this._levelChars.values()
-                .reduce(
-                    (acc, { targetReps }) => acc + targetReps
-                    , 0
-                ) * this._expPerChar;
-
-            this._maxedCharacters =
-                $kt.levels.getTotalCharsUntilLevel(level)
-                + this._levelChars.values()
+            this._currentLevelExp += 0; // Get from persistence
+            this._maxedCharacters +=
+                this._levelChars.values()
                     .filter(({ remainingReps }) => remainingReps <= 0)
                     .toArray()
                     .length;
-
-            this._totalCharacters = $kt.levels.getTotalCharsForDisplay(level);
-
-            this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
-            this._currentLevelDict.load();
 
             this._gameLevel = new $kt.GameLevel();
         }
@@ -141,6 +125,36 @@ var $kt = $kt || {};
                 }
             }
 
+        }
+
+        _levelUp() {
+            this._currentLevel++;
+            this._setupNewLevel();
+            $kt.gameUi.showLevelUp('a', 1, 2, 3, 4, hintAdded);
+        }
+
+        _setupNewLevel() {
+            this._levelName = $kt.levels.getLevelName(this._currentLevel);
+
+            this._levelChars = $kt.levels.getCharsWithRepsPerLevel(this._currentLevel);
+            this._levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
+            
+            this._remainingChars = new Set(this._levelChars.keys());
+            
+            this._questionType = $kt.levels.getQuestionType(this._currentLevel);
+
+            this._currentLevelExp = 0;
+            this._toNextLevelExp = this._levelChars.values()
+                .reduce(
+                    (acc, { targetReps }) => acc + targetReps
+                    , 0
+                ) * this._expPerChar;
+
+            this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(this._currentLevel);
+            this._totalCharacters = $kt.levels.getTotalCharsForDisplay(this._currentLevel);
+
+            this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
+            this._currentLevelDict.load();
         }
 
         _calculateCharExpPercentage(charReps) {
