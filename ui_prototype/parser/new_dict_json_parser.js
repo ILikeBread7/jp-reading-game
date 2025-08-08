@@ -971,15 +971,43 @@ function levelNumberToTag(level) {
 }
 
 function separateIntoTagEntries(entries) {
+    const NO_TAG = 'notag';
+
     return entries.reduce((acc, entry) => {
-        const tags = entry.tags.length > 0 ? entry.tags : [ 'notag' ];
+        const tags = entry.tags.length > 0 ? entry.tags : [ NO_TAG ];
         tags.forEach(tag => {
-            const tagEntries = acc.get(tag) || [];
-            tagEntries.push(entry);
-            acc.set(tag, tagEntries);
+            if (isKanaLevelTag(tag)) {
+                const kanaEntry = { ...entry };
+                delete kanaEntry.kanji;
+                delete kanaEntry.hint;
+                addToTagMap(kanaEntry, tag, acc);
+
+                if (entry.kanji && entry.tags.length === 1) {
+                    addToTagMap(entry, NO_TAG, acc);
+                }
+            } else {
+                addToTagMap(entry, tag, acc);
+            }
         });
         return acc;
     }, new Map());
+}
+
+function addToTagMap(entry, tag, map) {
+    const tagEntries = map.get(tag) || [];
+    tagEntries.push(entry);
+    map.set(tag, tagEntries);
+}
+
+function isKanaLevelTag(tag) {
+    const KANA_LVEL_PREFIX = 'L';
+
+    if (!tag.startsWith(KANA_LVEL_PREFIX)) {
+        return false;
+    }
+
+    const level = Number(tag.substring(KANA_LVEL_PREFIX.length));
+    return level <= KANA_GYOUS.length;
 }
 
 // Returns the tags array if applicable

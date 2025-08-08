@@ -10,10 +10,9 @@ var $kt = $kt || {};
 
         }
 
-        start(dict, questionType) {
+        start(dict) {
             this._currentQueston = null;
             this._dict = dict;
-            this._questionType = questionType;
             this._gaveUp = false;
         }
 
@@ -50,13 +49,11 @@ var $kt = $kt || {};
         }
 
         get questionChars() {
-            return this._questionType === $kt.enums.QUESTION_TYPE.KANJI
-                ? this._currentQueston.kanji
-                : this._currentQueston.kana;
+            return this._currentQueston.kanji || this._currentQueston.kana;
         } 
 
         getQuestionHint() {
-            if (this._questionType === $kt.enums.QUESTION_TYPE.KANA) {
+            if (!this._currentQueston.kanji) {
                 return wanakana.toRomaji(this._currentQueston.kana);
             } else if (this._gaveUp) {
                 return`${this._currentQueston.kana} (${wanakana.toRomaji(this._currentQueston.kana, { customRomajiMapping: { 'ぁ': 'xa', 'ぃ': 'xi',  'ぅ': 'xu', 'ぇ': 'xe', 'ぉ': 'xo', 'ァ': 'xa', 'ィ': 'xi', 'ゥ': 'xu', 'ェ': 'xe', 'ォ': 'xo' } })})`;
@@ -72,30 +69,15 @@ var $kt = $kt || {};
         }
 
         filterDictByRemainingChars(remainingChars) {
-            const filterFunc = this._questionType === $kt.enums.QUESTION_TYPE.KANA
-                ? KantoreGameLevel._filterKana
-                : KantoreGameLevel._filterKanji;
-                
-            this._dict = this._dict.filter(entry => filterFunc(entry, remainingChars));
-        }
-
-        static _filterKana(entry, remainingChars) {
-            return !remainingChars.isDisjointFrom(
-                    new Set(entry.kana)
-                );
-        }
-
-        static _filterKanji(entry, remainingChars) {
-            return entry.kanji
-                && !remainingChars.isDisjointFrom(
-                        new Set(entry.kanji)
-                    );
+            this._dict = this._dict.filter(
+                entry => !remainingChars.isDisjointFrom(new Set(entry.kanji || entry.kana))
+            );
         }
 
         _askNewQuestion() {
             this._gaveUp = false;
             const question = this._findNewQuestion(this._dict.data, this._currentQueston);
-            $kt.gameUi.showQuestion(question, this._questionType);
+            $kt.gameUi.showQuestion(question);
             this._currentQueston = question;
         }
 
@@ -124,14 +106,9 @@ var $kt = $kt || {};
                 return false;
             }
 
-            if (
-                this._questionType === $kt.enums.QUESTION_TYPE.KANJI
-                && question1.kanji !== question2.kanji
-            ) {
-                return false;
-            }
 
-            return question1.kana === question2.kana;
+            return question1.kanji === question2.kanji
+                && question1.kana === question2.kana;
         }
 
     }

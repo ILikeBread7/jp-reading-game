@@ -84,8 +84,7 @@ var $kt = $kt || {};
 
             const questionChars = this._gameLevel.questionChars;
             const charsForExp = this._remainingChars.intersection(new Set(questionChars));
-            const expPerChar = this._expPerChar;
-            const addedScore = charsForExp.size * expPerChar;
+            const addedScore = charsForExp.size * this._expPerChar;
 
             const oldCurrentLevelExp = this._currentLevelExp;
             this._totalExp += addedScore;
@@ -103,7 +102,7 @@ var $kt = $kt || {};
                     char: char,
                     oldExpPercentage: oldExpPercentage,
                     newExpPercentage: newExpPercentage,
-                    addedExp: expPerChar
+                    addedExp: this._expPerChar
                 });
 
                 if (charReps.remainingReps <= 0) {
@@ -157,7 +156,7 @@ var $kt = $kt || {};
             
             this._remainingChars = new Set(this._levelChars.keys());
             
-            this._questionType = $kt.levels.getQuestionType(this._currentLevel);
+            this._expPerChar = this._isKanjiLevel ? EXP_PER_KANJI : EXP_PER_KANA;
 
             this._currentLevelExp = 0;
             this._toNextLevelExp = this._levelChars.values()
@@ -182,7 +181,12 @@ var $kt = $kt || {};
                 );
             }
 
-            this._gameLevel.start(this._currentLevelDict, this._questionType);
+            this._gameLevel.start(this._currentLevelDict);
+        }
+
+        get _isKanjiLevel() {
+            return this._levelChars.size > 0
+                && wanakana.isKanji(this._levelChars.keys().next().value);
         }
 
         _calculateCharExpPercentage(charReps) {
@@ -191,12 +195,6 @@ var $kt = $kt || {};
 
         _calculatePercentage(fraction, total) {
             return fraction * 100 / total;
-        }
-
-        get _expPerChar() {
-            return this._questionType === $kt.enums.QUESTION_TYPE.KANJI
-                ? EXP_PER_KANJI
-                : EXP_PER_KANA;
         }
 
     }

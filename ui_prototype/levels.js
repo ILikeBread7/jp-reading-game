@@ -66,16 +66,6 @@ var $kt = $kt || {};
             );
         }
 
-        static getQuestionType(level) {
-            if (level > this.maxLevel) {
-                return $kt.enums.QUESTION_TYPE.KANJI;
-            }
-
-            return wanakana.isKanji(LEVEL_CHARS[level - 1][0])
-                ? $kt.enums.QUESTION_TYPE.KANJI
-                : $kt.enums.QUESTION_TYPE.KANA;
-        }
-
         static get maxLevel() {
             return LEVEL_CHARS.length;
         }
