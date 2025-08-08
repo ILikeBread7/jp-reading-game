@@ -282,6 +282,5 @@ var $kt = $kt || {};
     }
 
     $kt.ui = new KantoreUi();
-    $kt.ui.hideStartupLoading();
 
 })();

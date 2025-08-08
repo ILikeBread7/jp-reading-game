@@ -20,6 +20,10 @@ var $kt = $kt || {};
                 SE_TEST_2_LOW: { name: 'Jingle_Achievement_01.ogg', speed: 0.8 }
             };
             
+            this._connectSettings();
+        }
+
+        preloadAudio() {
             const tracksPromiseMap = new Map();
             Object.entries(this.tracks).forEach(([, trackData]) => {
                 // Settings default parameters when missing
@@ -38,8 +42,6 @@ var $kt = $kt || {};
                         return buffer;
                     });
             });
-
-            this._connectSettings();
         }
 
         /**
@@ -57,6 +59,9 @@ var $kt = $kt || {};
             if (buffer) {
                 return playFunc(buffer);
             } else {
+                if (!track.promise) {
+                    return Promise.reject();
+                }
                 return track.promise.then(buffer => {
                     if (track === this._currentBgmTrack) {
                         playFunc(buffer);

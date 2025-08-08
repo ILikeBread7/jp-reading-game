@@ -10,6 +10,8 @@ var $kt = $kt || {};
     // Level to be loaded from persistence later
     const game = new $kt.Game(1);
 
+    $kt.audio.preloadAudio();
+
     events.addEventListener(EVENTS.START, () => {
         game.start();
     });
@@ -26,5 +28,7 @@ var $kt = $kt || {};
     events.addEventListener(EVENTS.BACK_TO_TITLE, () => {
         game.stopLoadingDict();
     });
+
+    $kt.ui.hideStartupLoading();
 
 })();
