@@ -14,7 +14,7 @@ var $kt = $kt || {};
             this._gameLevel = new $kt.GameLevel();
 
             // Preload the current level dict
-            $kt.dicts.getLevelDict(level).load();
+            $kt.dicts.getLevelDict(level).preload();
         }
 
         start() {
@@ -59,6 +59,12 @@ var $kt = $kt || {};
             } else {
                 const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
                 $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
+            }
+        }
+
+        stopLoadingDict() {
+            if (this._currentLevelDict.isComplex) {
+                this._currentLevelDict.stopLoading();
             }
         }
 
@@ -170,13 +176,13 @@ var $kt = $kt || {};
 
             this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
             
-            // Load current level dict in case it couldn't be loaded earlier
+            // Properly load current level dict
             const dictPromise = this._currentLevelDict.load();
             
             // Preload the next level's dict if it exists
             const nextLevelDict = $kt.dicts.getLevelDict(this._currentLevel + 1);
             if (nextLevelDict) {
-                dictPromise.then(() => nextLevelDict.load());
+                dictPromise.then(() => nextLevelDict.preload());
             }
 
             this._gameLevel.start(this._currentLevelDict);

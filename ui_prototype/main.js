@@ -23,4 +23,8 @@ var $kt = $kt || {};
         game.startNewLevel();
     });
 
+    events.addEventListener(EVENTS.BACK_TO_TITLE, () => {
+        game.stopLoadingDict();
+    });
+
 })();

@@ -144,6 +144,7 @@ var $kt = $kt || {};
                     $kt.settingsUi._settingsDiv.ontransitionend = null;
                 }
             };
+            $kt.gameUi.dispatchBackToTitleEvent();
         }
 
         static showMenu(menuElement) {

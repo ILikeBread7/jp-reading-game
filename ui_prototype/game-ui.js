@@ -260,6 +260,10 @@ var $kt = $kt || {};
             this._questionHintElement.textContent = newHint;
         }
 
+        dispatchBackToTitleEvent() {
+            this._dispatchEvent(this._eventNames.BACK_TO_TITLE);
+        }
+
         get answer() {
             return this._answerInput.value;
         }
@@ -338,7 +342,8 @@ var $kt = $kt || {};
             this._eventNames = Object.freeze({
                 START: 'start',
                 ANSWER: 'answer',
-                LEVEL_UP: 'levelUp'
+                LEVEL_UP: 'levelUp',
+                BACK_TO_TITLE: 'backToTitle'
             });
         }
 

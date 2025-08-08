@@ -262,6 +262,10 @@ var $kt = $kt || {};
             }
         }
 
+        preload() {
+            this.load();
+        }
+
         async load() {
             if (this._promise) {
                 return this._promise;
@@ -279,12 +283,16 @@ var $kt = $kt || {};
                 });
         }
 
-        isLoaded() {
+        get isLoaded() {
             return !!this._data;
         }
 
+        get data() {
+            return this._data;
+        }
+
         filter(filter) {
-            if (!this.isLoaded()) {
+            if (!this.isLoaded) {
                 console.error('Cannot filter a not yet loaded dict.');
             }
             
@@ -294,8 +302,67 @@ var $kt = $kt || {};
             )
         }
 
+    }
+
+    class ComplexDict {
+
+        constructor(subdicts) {
+            this._data = [];
+            this._subdicts = subdicts;
+            this._notYetLoadedSubdicts = new Set(subdicts);
+            this._keepLoading = false;
+        }
+
+        preload() {
+            if (this.isLoaded) {
+                return;
+            }
+
+            this._promise = this._loadNextSubdict()
+                .catch(err => {
+                    console.error(err);
+                    delete this._promise;
+                });
+        }
+
+        async load() {
+            this._keepLoading = true;
+            const promise = this._loadNextSubdict();
+            this._promise ??= promise;
+            return this._promise;
+        }
+
+        stopLoading() {
+            this._keepLoading = false;
+        }
+
+        get isLoaded() {
+            return this._data.length > 0;
+        }
+
         get data() {
             return this._data;
+        }
+
+        get isComplex() {
+            return true;
+        }
+
+        async _loadNextSubdict() {
+            if (this._notYetLoadedSubdicts.size === 0) {
+                return Promise.resolve();
+            }
+
+            const subdict = this._notYetLoadedSubdicts.values().next().value;
+            return subdict.load().then(() => {
+                if (this._notYetLoadedSubdicts.delete(subdict)) {
+                    this._data.push(...subdict.data);
+                }
+
+                if (this._keepLoading) {
+                    this._loadNextSubdict();
+                }
+            });
         }
 
     }
@@ -306,6 +373,7 @@ var $kt = $kt || {};
             this._dicts = new Map();
             this._createLevelDicts();
             this._createCategoryDicts();
+            Object.freeze(this._dicts);
         }
 
         /**
@@ -337,8 +405,9 @@ var $kt = $kt || {};
             }
 
             // Add dict to be used after all levels are finished
-            const finalDict = new BaseDict('L021');
+            const finalDict = new ComplexDict(this._levelDicts.toReversed());
             this._levelDicts.push(finalDict);
+            Object.freeze(this._levelDicts);
         }
 
         _createCategoryDicts() {

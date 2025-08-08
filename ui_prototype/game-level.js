@@ -24,7 +24,7 @@ var $kt = $kt || {};
         }
 
         askQuestion() {
-            if (this._dict.isLoaded()) {
+            if (this._dict.isLoaded) {
                 this._askNewQuestion();
             } else {
                 $kt.ui.showLoading();
