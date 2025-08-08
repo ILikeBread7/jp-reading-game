@@ -173,12 +173,10 @@ var $kt = $kt || {};
             // Load current level dict in case it couldn't be loaded earlier
             const dictPromise = this._currentLevelDict.load();
             
-            // Preload the next level's dict
-            // (including final dict after all levels are finished)
-            if (this._currentLevel <= $kt.levels.maxLevel) {
-                dictPromise.then(
-                    () => $kt.dicts.getLevelDict(this._currentLevel + 1).load()
-                );
+            // Preload the next level's dict if it exists
+            const nextLevelDict = $kt.dicts.getLevelDict(this._currentLevel + 1);
+            if (nextLevelDict) {
+                dictPromise.then(() => nextLevelDict.load());
             }
 
             this._gameLevel.start(this._currentLevelDict);
