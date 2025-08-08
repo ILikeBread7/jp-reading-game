@@ -361,6 +361,11 @@ const GLOSS_TYPES = new Map([
     [ 'tm', 'Trademark' ]
 ]);
 
+// This is specifically for ent_seq: 1137670, ラーゲ
+const VULG_GLOSSES = [ 'sex position' ];
+
+const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo' ];
+
 const TERMS_TEXT_BY_TEXT = new Map();
 TERMS_TEXT_BY_CODE.forEach((value, key) => TERMS_TEXT_BY_TEXT.set(value.text, { code: value.code, text: value.text }));
 
@@ -550,14 +555,10 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                 }
                 newEntry.kana = kana.reb;
                 newEntry.sense = filteredSenses;
-
-                // This is specifically for
-                // ent_seq: 1137670, ラーゲ
-                const vulgGlosses = [ 'sex position' ];
                 
                 const vulgMiscText = TERMS_TEXT_BY_CODE.get('vulg').text;
                 const vulgarSenses = filteredSenses
-                    .filter(sense => (sense.misc || []).includes(vulgMiscText) || vulgGlosses.some(vulgGloss => sense.gloss.includes(vulgGloss)));
+                    .filter(sense => (sense.misc || []).includes(vulgMiscText) || VULG_GLOSSES.some(vulgGloss => sense.gloss.includes(vulgGloss)));
 
                 if (vulgarSenses.length > 0) {
                     const vulgarEntry = { ...newEntry };
@@ -649,7 +650,7 @@ function sInfFilter(kanji, sInf) {
 function mapSense(sense) {
     const result = {
         pos: elementToArray(sense.pos),
-        gloss: elementToArray(sense.gloss).map(g => typeof g === 'string' ? g : { value: g.value, type: GLOSS_TYPES.get(g.g_type) })
+        gloss: elementToArray(sense.gloss).map(g => typeof g === 'object' ? { value: g.value, type: GLOSS_TYPES.get(g.g_type) } : g.toString())
     };
 
     if (sense.misc || sense.s_inf) {
@@ -912,6 +913,10 @@ function createLevelTagsFromPriorities(priorities, entries) {
 
 function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys) {
     source.forEach(entry => {
+        if (isLevelEntryToBeFilteredOut(entry)) {
+            return;
+        }
+
         const key = generateKeyFunction(entry);
         if (existingEntryKeys.has(key)) {
             return;
@@ -922,8 +927,22 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
     });
 }
 
+function isLevelEntryToBeFilteredOut(entry) {
+    return entry.sense.flatMap(sense => sense.gloss).some(
+        entryGloss => 
+            FILTER_OUT_LEVEL_ENTRY_GLOSSES
+                .some(
+                    filterOutGloss => (
+                        typeof entryGloss === 'string'
+                            ? entryGloss
+                            : entryGloss.value
+                        ).includes(filterOutGloss)
+                )
+    );
+}
+
 function generateKanaKey(entry) {
-    return `${entry.entSeq}_${entry.kana}`;
+    return entry.kana;
 }
 
 function generateKanjiKey(entry) {
@@ -1013,7 +1032,7 @@ function isKanaLevelTag(tag) {
 // Returns the tags array if applicable
 // or null if not an exception
 function handleJLPTVocabExceptions(entry) {
-    switch (entry.id) {
+    switch (entry.entSeq) {
         case 1059720: // シーン - scene, sight (not JLPT word); not to be confused with シーン - silently, quietly (JLPT N2)
         case 5741603: // 坊っちゃん - the novel title instead of the word
         case 5740764: // ワンピース - the manga title instead of the dress
