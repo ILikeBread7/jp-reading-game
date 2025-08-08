@@ -24,8 +24,7 @@ var $kt = $kt || {};
         'ハ行',
         'タ行',
         'ヤ行',
-        'ワ行',
-        'End game'
+        'ワ行'
     ];
 
     const LEVEL_CHARS = [
@@ -56,7 +55,7 @@ var $kt = $kt || {};
     class KantoreLevels {
 
         static getLevelName(level) {
-            const name = LEVEL_NAMES[level - 1];
+            const name = LEVEL_NAMES[level - 1] || 'End game';
             return `Level ${level}: ${name}`;
         }
 
