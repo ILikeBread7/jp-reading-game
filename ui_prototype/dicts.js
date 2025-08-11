@@ -318,6 +318,7 @@ var $kt = $kt || {};
                 return;
             }
 
+            this._keepLoading = false;
             this._promise = this._loadNextSubdict()
                 .catch(err => {
                     console.error(err);
