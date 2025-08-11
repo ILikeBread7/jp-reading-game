@@ -89,7 +89,7 @@ var $kt = $kt || {};
                 newQuestion = dictData[Math.floor(Math.random() * dictData.length)];
             } while(
                 dictData.length > 1
-                && --retries
+                && retries-- > 0
                 && this._isSameQuestion(newQuestion, previousQuestion)
             );
             
