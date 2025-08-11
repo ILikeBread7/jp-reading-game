@@ -362,7 +362,7 @@ const GLOSS_TYPES = new Map([
 ]);
 
 // This is specifically for ent_seq: 1137670, ラーゲ
-const VULG_GLOSSES = [ 'sex position' ];
+const VULG_GLOSSES = new Set([ 'sex position' ]);
 
 const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo' ];
 
@@ -537,7 +537,7 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                     return;
                 }
 
-                if (kana.re_inf && UNUSED_KANA_TERMS_SET.intersection(new Set(elementToArray(kana.re_inf).map(term => TERMS_MAPPER.get(term).code))).size > 0) {
+                if (kana.re_inf && !UNUSED_KANA_TERMS_SET.isDisjointFrom(new Set(elementToArray(kana.re_inf).map(term => TERMS_MAPPER.get(term).code)))) {
                     return;
                 }
 
@@ -558,7 +558,12 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                 
                 const vulgMiscText = TERMS_TEXT_BY_CODE.get('vulg').text;
                 const vulgarSenses = filteredSenses
-                    .filter(sense => (sense.misc || []).includes(vulgMiscText) || VULG_GLOSSES.some(vulgGloss => sense.gloss.includes(vulgGloss)));
+                    .filter(sense => (sense.misc || []).includes(vulgMiscText) || sense.gloss.some(gloss => {
+                        const glossText = typeof gloss === 'string'
+                            ? gloss
+                            : gloss.value;
+                        return VULG_GLOSSES.has(glossText);
+                     }));
 
                 if (vulgarSenses.length > 0) {
                     const vulgarEntry = { ...newEntry };
@@ -785,15 +790,14 @@ function createJLPTVocabTags(entry, originalEntry) {
     if (
         !entry.kanji
         || elementToArray(originalEntry.kanji['ke_inf']).find(keInf => UNUSED_KANJI_TERMS_SET.has(getTermCodeOrUndefined(TERMS_MAPPER.get(keInf))))
-        || UNUSED_KANJI_TERMS_SET
-            .intersection(
+        || !UNUSED_KANJI_TERMS_SET
+            .isDisjointFrom(
                 new Set(
                     entry.sense
                         .flatMap(sense => elementToArray(sense.misc))
                         .map(term => getTermCodeOrUndefined(TERMS_MAPPER.get(term)))
                 )
             )
-            .size > 0
     ) {
         const key = JSON.stringify([entry.kana]);
         const match = jlptVocabMap.get(key);
