@@ -7,8 +7,13 @@ var $kt = $kt || {};
     const EVENTS = $kt.gameUi.eventNames;
     const events = $kt.gameUi.events;
 
-    // Level to be loaded from persistence later
-    const game = new $kt.Game(21);
+    const gameStatus = $kt.persistence.getGameStatus() || {
+        level: 1,
+        totalExp: 0,
+        currentLevelExp: 0
+    };
+    console.log(gameStatus)
+    const game = new $kt.Game(gameStatus);
 
     $kt.audio.preloadAudio();
 

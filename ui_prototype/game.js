@@ -9,33 +9,38 @@ var $kt = $kt || {};
 
     class KantoreGame {
 
-        constructor(level) {
-            this._currentLevel = level;
+        /**
+         * 
+         * @param {{
+         *  level: number,
+         *  totalExp: number,
+         *  currentLevelExp: number,
+         *  levelChars: { char: string, remainingReps: number, totalReps: number } | undefined
+         * }} gameStatus 
+         */
+        constructor(gameStatus) {
+            this._gameStatus = gameStatus;
             this._gameLevel = new $kt.GameLevel();
-
-            // Preload the current level dict
-            $kt.dicts.getLevelDict(level).preload();
+            $kt.dicts.getLevelDict(this._gameStatus.level).preload();
         }
 
         start() {
-            this._setupCurrentLevel();
+            this._setupLevelFromGameStatus();
 
             this._remainingChars.forEach(char => {
-                if (this._levelChars.get(char).remainingReps <= 0) {
+                if (this._gameStatus.levelChars.get(char).remainingReps <= 0) {
                     this._remainingChars.delete(char);
                 }
             });
 
-            this._totalExp = 0; // Get from persistence
-            this._currentLevelExp += 0; // Get from persistence
             this._maxedCharacters +=
-                this._levelChars.values()
+                this._gameStatus.levelChars.values()
                     .filter(({ remainingReps }) => remainingReps <= 0)
                     .toArray()
                     .length;
 
             this._showCurrentLevelData();
-            this._gameLevel.askFirstQuestion();
+            this._gameLevel.askFirstQuestion(this._gameStatus.question);
         }
 
         startNewLevel() {
@@ -58,6 +63,7 @@ var $kt = $kt || {};
                 } else {
                     this._gameLevel.askQuestion();
                 }
+                $kt.persistence.setGameStatus(this._gameStatus);
             } else {
                 const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
                 $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
@@ -73,8 +79,8 @@ var $kt = $kt || {};
         _showCurrentLevelData() {
             $kt.gameUi.showLevelData(
                 this._levelName,
-                this._totalExp,
-                this._currentLevelExp,
+                this._gameStatus.totalExp,
+                this._gameStatus.currentLevelExp,
                 this._toNextLevelExp,
                 this._maxedCharacters,
                 this._totalCharacters
@@ -94,14 +100,14 @@ var $kt = $kt || {};
             const charsForExp = this._remainingChars.intersection(new Set(questionChars));
             const addedScore = charsForExp.size * this._expPerChar;
 
-            const oldCurrentLevelExp = this._currentLevelExp;
-            this._totalExp += addedScore;
-            this._currentLevelExp += addedScore;
+            const oldCurrentLevelExp = this._gameStatus.currentLevelExp;
+            this._gameStatus.totalExp += addedScore;
+            this._gameStatus.currentLevelExp += addedScore;
             const addedExpPerChar = [];
             let updateRemainingChars = false;
 
             charsForExp.forEach(char => {
-                const charReps = this._levelChars.get(char);
+                const charReps = this._gameStatus.levelChars.get(char);
                 const oldExpPercentage = this._calculateCharExpPercentage(charReps);
                 charReps.remainingReps--;
                 const newExpPercentage = this._calculateCharExpPercentage(charReps);
@@ -122,15 +128,15 @@ var $kt = $kt || {};
 
             $kt.gameUi.showLevelExp(
                 this._levelName,
-                this._totalExp,
-                this._currentLevelExp,
+                this._gameStatus.totalExp,
+                this._gameStatus.currentLevelExp,
                 this._toNextLevelExp,
                 this._maxedCharacters,
                 this._totalCharacters,
                 [
                     {
                         oldExpPercentage: this._calculatePercentage(oldCurrentLevelExp, this._toNextLevelExp),
-                        newExpPercentage: this._calculatePercentage(this._currentLevelExp, this._toNextLevelExp),
+                        newExpPercentage: this._calculatePercentage(this._gameStatus.currentLevelExp, this._toNextLevelExp),
                         addedExp: addedScore
                     },
                     ...addedExpPerChar
@@ -149,39 +155,51 @@ var $kt = $kt || {};
         }
 
         _levelUp() {
-            this._currentLevel++;
-            this._setupCurrentLevel();
+            this._gameStatus.level++;
+            $kt.persistence.removeGameQuestion();
+            this._setupNewLevel();
             const hintAdded = $kt.gameUi.addNewHint();
             $kt.gameUi.showLevelUp(hintAdded);
         }
 
-        _setupCurrentLevel() {
-            this._levelName = $kt.levels.getLevelName(this._currentLevel);
+        _setupNewLevel() {
+            this._gameStatus.currentLevelExp = 0;
+            this._setupLevelChars();
+            this._setupLevelCommon();
+        }
 
-            this._levelChars = $kt.levels.getCharsWithRepsPerLevel(this._currentLevel);
-            this._levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
-            
-            this._remainingChars = new Set(this._levelChars.keys());
-            
-            this._expPerChar = this._isKanjiLevel ? EXP_PER_KANJI : EXP_PER_KANA;
+        _setupLevelFromGameStatus() {
+            if (!this._gameStatus.levelChars) {
+                this._setupLevelChars();
+            }
+            this._setupLevelCommon();
+        }
 
-            this._currentLevelExp = 0;
-            this._toNextLevelExp = this._levelChars.values()
+        _setupLevelChars() {
+            this._gameStatus.levelChars = $kt.levels.getCharsWithRepsPerLevel(this._gameStatus.level);
+            this._gameStatus.levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
+        }
+        
+        _setupLevelCommon() {
+            this._levelName = $kt.levels.getLevelName(this._gameStatus.level);
+            this._remainingChars = new Set(this._gameStatus.levelChars.keys());
+            this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(this._gameStatus.level);
+            this._totalCharacters = $kt.levels.getTotalCharsForDisplay(this._gameStatus.level);
+
+            this._setupExpPerChar();
+            this._toNextLevelExp = this._gameStatus.levelChars.values()
                 .reduce(
                     (acc, { targetReps }) => acc + targetReps
                     , 0
                 ) * this._expPerChar;
 
-            this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(this._currentLevel);
-            this._totalCharacters = $kt.levels.getTotalCharsForDisplay(this._currentLevel);
-
-            this._currentLevelDict = $kt.dicts.getLevelDict(this._currentLevel);
+            this._currentLevelDict = $kt.dicts.getLevelDict(this._gameStatus.level);
             
             // Properly load current level dict
             const dictPromise = this._currentLevelDict.load();
             
             // Preload the next level's dict if it exists
-            const nextLevelDict = $kt.dicts.getLevelDict(this._currentLevel + 1);
+            const nextLevelDict = $kt.dicts.getLevelDict(this._gameStatus.level + 1);
             if (nextLevelDict) {
                 dictPromise.then(() => nextLevelDict.preload());
             }
@@ -189,9 +207,13 @@ var $kt = $kt || {};
             this._gameLevel.start(this._currentLevelDict);
         }
 
+        _setupExpPerChar() {
+            this._expPerChar = this._isKanjiLevel ? EXP_PER_KANJI : EXP_PER_KANA;
+        }
+
         get _isKanjiLevel() {
-            return this._levelChars.size > 0
-                && wanakana.isKanji(this._levelChars.keys().next().value);
+            return this._gameStatus.levelChars.size > 0
+                && wanakana.isKanji(this._gameStatus.levelChars.keys().next().value);
         }
 
         _calculateCharExpPercentage(charReps) {

@@ -17,10 +17,12 @@ var $kt = $kt || {};
         }
 
         askFirstQuestion() {
-            // TODO If persisted quesiton exists and is applicable
-            // for this level, ask that first, otherwise ask
-            // a normal question
-            this.askQuestion();
+            const firstQuestion = $kt.persistence.getGameQuestion();
+            if (firstQuestion) {
+                this._askExistingQuestion(firstQuestion);
+            } else {
+                this.askQuestion();
+            }
         }
 
         askQuestion() {
@@ -77,6 +79,11 @@ var $kt = $kt || {};
         _askNewQuestion() {
             this._gaveUp = false;
             const question = this._findNewQuestion(this._dict.data, this._currentQueston);
+            this._askExistingQuestion(question);
+            $kt.persistence.setGameQuestion(question);
+        }
+
+        _askExistingQuestion(question) {
             $kt.gameUi.showQuestion(question);
             this._currentQueston = question;
         }
