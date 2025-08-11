@@ -790,6 +790,24 @@ button.menu-item {
     }
 }
 
+@media (max-width: 520px) {
+    :root {
+        --wrong-answer-font-size: 1.25em;
+        --answer-input-font-size: 1.325em;
+        --question-hint-font-size: 1.325em;
+        --question-kanji-font-size: 3em;
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --wrong-answer-font-size: 1.125em;
+        --answer-input-font-size: 1.25em;
+        --question-hint-font-size: 1.25em;
+        --question-kanji-font-size: 2.5em;
+    }
+}
+
 @media (max-width: 385px) {
     #title-text {
         font-size: calc(var(--title-font-size) * 0.55);
