@@ -93,7 +93,7 @@ var $kt = $kt || {};
                 </div>
                 <div id="level-exp-bars">
                     <div class="level-exp-container" id="level-current-level-exp-container">
-                        <div class="level-exp-content" id="level-current-level-exp-content" style="width:${levelExpPercentage}%;"></div>
+                        <div class="level-exp-content" id="level-current-level-exp-content" style="width:${Number.isFinite(levelExpPercentage) ? levelExpPercentage : 100}%;"></div>
                     </div>
                 </div>
             `;
