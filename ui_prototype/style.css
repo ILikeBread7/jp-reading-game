@@ -799,7 +799,7 @@ button.menu-item {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 435px) {
     :root {
         --wrong-answer-font-size: 1.125em;
         --answer-input-font-size: 1.25em;
