@@ -20,7 +20,7 @@ var $kt = $kt || {};
             const SEPARATOR = '; ';
             return meanings.map(m => /*html*/`
                 <ul class="meaning-entry">
-                <li><span>Definition:</span> ${m.gloss.map(g => typeof g === "string" ? g : `${g.value} (${g.type})`).join(SEPARATOR)}</li>
+                <li><span>Definition:</span> ${m.gloss.map(g => typeof g === 'string' ? g : `${g.value} (${g.type})`).join(SEPARATOR)}</li>
                     <li><span>Part of speech:</span> ${m.pos.join(SEPARATOR)}</li>
                     ${KT._coa(m.lsource) && /*html*/`<li><span>From:</span> ${m.lsource.map(KT._mapLanguageSource).join(SEPARATOR)}</li>`}
                     ${KT._coa(m.misc) && /*html*/`<li><span>Additional info:</span> ${m.misc.join(SEPARATOR)}</li>`}
