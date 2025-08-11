@@ -53,7 +53,9 @@ var $kt = $kt || {};
             if (this._gameLevel.answerMatches(answer)) {
                 $kt.gameUi.jumpRightAnswer();
                 const leveledUp = this._updateScore();
-                if (!leveledUp) {
+                if (leveledUp) {
+                    this._levelUp();
+                } else {
                     this._gameLevel.askQuestion();
                 }
             } else {
@@ -137,7 +139,6 @@ var $kt = $kt || {};
 
             if (updateRemainingChars) {
                 if (this._remainingChars.size === 0) {
-                    this._levelUp();
                     return true;
                 } else {
                     this._gameLevel.filterDictByRemainingChars(this._remainingChars);
