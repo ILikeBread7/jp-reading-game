@@ -327,6 +327,7 @@ var $kt = $kt || {};
         }
 
         async load() {
+            this._addAlreadyLoadedSubdicts();
             this._keepLoading = true;
             const promise = this._loadNextSubdict();
             this._promise ??= promise;
@@ -338,6 +339,7 @@ var $kt = $kt || {};
         }
 
         get isLoaded() {
+            this._addAlreadyLoadedSubdicts();
             return this._data.length > 0;
         }
 
@@ -362,6 +364,15 @@ var $kt = $kt || {};
 
                 if (this._keepLoading) {
                     this._loadNextSubdict();
+                }
+            });
+        }
+
+        _addAlreadyLoadedSubdicts() {
+            this._notYetLoadedSubdicts.forEach(subdict => {
+                if (subdict.isLoaded) {
+                    this._notYetLoadedSubdicts.delete(subdict);
+                    this._data.push(...subdict.data);
                 }
             });
         }

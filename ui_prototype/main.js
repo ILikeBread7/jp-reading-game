@@ -8,7 +8,7 @@ var $kt = $kt || {};
     const events = $kt.gameUi.events;
 
     // Level to be loaded from persistence later
-    const game = new $kt.Game(1);
+    const game = new $kt.Game(21);
 
     $kt.audio.preloadAudio();
 
