@@ -364,7 +364,12 @@ const GLOSS_TYPES = new Map([
 // This is specifically for ent_seq: 1137670, ラーゲ
 const VULG_GLOSSES = new Set([ 'sex position' ]);
 
-const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo' ];
+const VULG_MISC_TEXTS = new Set([
+    TERMS_TEXT_BY_CODE.get('vulg').text,
+    TERMS_TEXT_BY_CODE.get('sens').text
+]);
+
+const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo', 'erotic' ];
 
 const TERMS_TEXT_BY_TEXT = new Map();
 TERMS_TEXT_BY_CODE.forEach((value, key) => TERMS_TEXT_BY_TEXT.set(value.text, { code: value.code, text: value.text }));
@@ -556,14 +561,17 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                 newEntry.kana = kana.reb;
                 newEntry.sense = filteredSenses;
                 
-                const vulgMiscText = TERMS_TEXT_BY_CODE.get('vulg').text;
-                const vulgarSenses = filteredSenses
-                    .filter(sense => (sense.misc || []).includes(vulgMiscText) || sense.gloss.some(gloss => {
+                const filterVulgarSensesFunc = sense => {
+                    return !VULG_MISC_TEXTS.isDisjointFrom(new Set(sense.misc || [])) || sense.gloss.some(gloss => {
                         const glossText = typeof gloss === 'string'
                             ? gloss
                             : gloss.value;
                         return VULG_GLOSSES.has(glossText);
-                     }));
+                     });
+                };
+
+                const vulgarSenses = filteredSenses
+                    .filter(filterVulgarSensesFunc);
 
                 if (vulgarSenses.length > 0) {
                     const vulgarEntry = { ...newEntry };
@@ -579,7 +587,7 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                     }
 
                     newEntry.sense = filteredSenses
-                        .filter(sense => !(sense.misc || []).includes(vulgMiscText));
+                        .filter(sense => !filterVulgarSensesFunc(sense));
                 }
 
                 if (kanji) {
