@@ -17,6 +17,7 @@ var $kt = $kt || {};
     $kt.audio.preloadAudio();
 
     events.addEventListener(EVENTS.START, () => {
+        $kt.gameUi.setupLevelHints(gameStatus.level);
         game.start();
     });
 

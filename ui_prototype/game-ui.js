@@ -14,7 +14,6 @@ var $kt = $kt || {};
             this._createEvents();
             this._getAllElements();
             this._addEventListeners();
-            this._setupHints();
             this._connectSettings();
         }
 
@@ -445,7 +444,13 @@ var $kt = $kt || {};
             }
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
             $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
-            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, (newHintIndex = 0) => {
+            $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, newHintIndex => {
+                // Skip setting the new hint while connecting the setting
+                // it will be set when starting the game
+                if (newHintIndex === undefined) {
+                    return;
+                }
+
                 this._selectHintNoUpdateSettings(newHintIndex);
                 this._hintSelect.value = this._currentHintIndex;
             });
@@ -470,8 +475,6 @@ var $kt = $kt || {};
             this._moveLevelExpDivBackDown();
             this._removeLevelUpTransitions();
             this._displayAnnouncmentText(this._levelUpText);
-            $kt.uiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
-            $kt.settings.currentHintIndex = this._currentHintIndex;
             this.focusAnswerInput();
             this._dispatchEvent(this._eventNames.START);
         }
@@ -491,14 +494,18 @@ var $kt = $kt || {};
             this._removeTransition(this._levelUpContainer);
         }
 
-        _setupHints() {
+        setupLevelHints(level) {
             if (!$kt.hints) {
                 console.error('The "hints.js" file must be included before the "ui.js" file.')
                 return;
             }
 
             this._hints = $kt.hints;
-            this._currentHintIndex = this._latestUnlockedHintIndex = 0; // Change to reading from save file (local storage)
+
+            this._currentHintIndex = this._latestUnlockedHintIndex = Math.min(level, this._hints.length) - 1;
+            $kt.uiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
+            $kt.settings.currentHintIndex = this._currentHintIndex;
+            
             this._showHintOnLevelUp = false;
             this._updateHintContent();
         }
