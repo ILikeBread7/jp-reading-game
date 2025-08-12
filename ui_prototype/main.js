@@ -7,6 +7,9 @@ var $kt = $kt || {};
     const EVENTS = $kt.gameUi.eventNames;
     const events = $kt.gameUi.events;
 
+    const flags = $kt.persistence.getFlags() || {
+        levelOneHintShown: false
+    };
     const gameStatus = $kt.persistence.getGameStatus() || {
         level: 1,
         totalExp: 0,
@@ -19,6 +22,15 @@ var $kt = $kt || {};
     events.addEventListener(EVENTS.START, () => {
         $kt.gameUi.setupLevelHints(gameStatus.level);
         game.start();
+
+        if (!flags.levelOneHintShown) {
+            // Needs the timeout to work
+            setTimeout(() => {
+                $kt.gameUi.showHint();
+                flags.levelOneHintShown = true;
+                $kt.persistence.setFlags(flags);
+            }, 0);
+        }
     });
 
     events.addEventListener(EVENTS.ANSWER, event => {

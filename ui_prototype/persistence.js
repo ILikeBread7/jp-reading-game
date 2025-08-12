@@ -8,6 +8,7 @@ var $kt = $kt || {};
     const SETTINGS_KEY = 'settings';
     const GAME_STATUS_KEY = 'gameStatus';
     const GAME_QUESTION_KEY = 'gameQuestion';
+    const FLAGS_KEY = 'flags';
 
     class KantorePersistence {
 
@@ -37,6 +38,14 @@ var $kt = $kt || {};
 
         static setGameQuestion(value) {
             this._set(GAME_QUESTION_KEY, value);
+        }
+
+        static getFlags() {
+            return this._get(FLAGS_KEY);
+        }
+
+        static setFlags(value) {
+            this._set(FLAGS_KEY, value);
         }
 
         static _get(key) {

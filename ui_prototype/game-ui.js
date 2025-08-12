@@ -4,6 +4,7 @@ var $kt = $kt || {};
 
 (() => {
 
+    const LEVEL_UP_FADE_IN_TIME = 0.5;
     const EVENTS = $kt.settings.eventNames;
 
     // KantoreUiHelper has access to private fields
@@ -119,21 +120,35 @@ var $kt = $kt || {};
             this.focusAnswerInput();
         }
 
+        showHint() {
+            this._isShowingHintOnly = true;
+
+            this._levelUpHintContent.innerHTML = this._currentHintTemplate;
+            this._prepareLevelUpContainerForHintOnly();
+            
+            const fadeInTimeCss = `${LEVEL_UP_FADE_IN_TIME}s`;
+            this._fadeIn(this._levelUpContainer, fadeInTimeCss, '0s');
+            
+            this._answerInput.blur();
+        }
+
         /**
          * @param {boolean} showHint true if hint should be shown, false otherwise
          */
         showLevelUp(showHint) {
+            this._isShowingHintOnly = false;
+
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
             
             this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHintTemplate;
+            this._prepareLevelUpContainerForLevelUp();
 
-            const fadeInTime = 0.5;
             const charTransitionDelayTime = 0.075;
             const charTransitionTime = 0.325;
             const totalTextTransitionTime = charTransitionDelayTime * (this._levelUpTextChars.length - 1) + charTransitionTime * 2;
 
-            const fadeInTimeCss = `${fadeInTime}s`;
+            const fadeInTimeCss = `${LEVEL_UP_FADE_IN_TIME}s`;
             this._fadeIn(this._levelUpContainer, fadeInTimeCss, '0s');
             this._textJumpByChar(this._levelUpTextChars, '-0.5em', `${charTransitionTime}s`, charTransitionDelayTime);
 
@@ -216,6 +231,16 @@ var $kt = $kt || {};
             void this._levelExpDiv.offsetWidth;
             
             this._growExpBars([{ oldExpPercentage, newExpPercentage }]);
+        }
+
+        _prepareLevelUpContainerForHintOnly() {
+            this._levelUpText.style.display = 'none';
+            this._levelUpHint.classList.remove('fade-hidden');
+        }
+
+        _prepareLevelUpContainerForLevelUp() {
+            this._levelUpText.style.removeProperty('display');
+            this._levelUpHint.classList.add('fade-hidden');
         }
 
         _forceCloseLevelUpText() {
@@ -582,7 +607,12 @@ var $kt = $kt || {};
                 this._levelUpTextChars.forEach(this._removeTransition.bind(this));
                 this._moveLevelExpDivBackDown();
             });
-            this._dispatchEvent(this._eventNames.LEVEL_UP);
+
+            if (!this._isShowingHintOnly) {
+                this._dispatchEvent(this._eventNames.LEVEL_UP);
+            }
+
+            this.focusAnswerInput();
         }
 
         _dispatchEvent(eventName, detail) {
