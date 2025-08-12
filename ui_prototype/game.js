@@ -55,7 +55,7 @@ var $kt = $kt || {};
             this._askFirstQuestion();
 
             if (this._gameStatus.gaveUp) {
-                $kt.gameUi.showQuestionHint(this._gameLevel.getQuestionHint());
+                $kt.gameUi.showQuestionHint(this._gameLevel.questionHint);
                 this._gameLevel.giveUp();
             }
         }
@@ -67,7 +67,7 @@ var $kt = $kt || {};
 
         answer(answer) {
             if (!answer) {
-                $kt.gameUi.slideQuestionHint(this._gameLevel.getQuestionHint());
+                $kt.gameUi.slideQuestionHint(this._gameLevel.questionHint);
                 this._gameLevel.giveUp();
                 this._saveGameStatus();
                 return;
