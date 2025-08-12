@@ -106,6 +106,7 @@ button, input {
 }
 
 #question {
+    margin-top: 0.75em;
     text-align: center;
     position: relative;
     z-index: var(--question-z-index);
