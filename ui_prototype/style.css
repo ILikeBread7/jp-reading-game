@@ -796,7 +796,7 @@ button.menu-item {
     }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 640px) {
     :root {
         --wrong-answer-font-size: 1.375em;
         --answer-input-font-size: 1.75em;
@@ -805,12 +805,21 @@ button.menu-item {
     }
 }
 
-@media (max-width: 435px) {
+@media (max-width: 480px) {
     :root {
         --wrong-answer-font-size: 1.25em;
         --answer-input-font-size: 1.5em;
         --question-hint-font-size: 1.5em;
         --question-kanji-font-size: 2.5em;
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --wrong-answer-font-size: 1.125em;
+        --answer-input-font-size: 1.25em;
+        --question-hint-font-size: 1.25em;
+        --question-kanji-font-size: 2em;
     }
 }
 
