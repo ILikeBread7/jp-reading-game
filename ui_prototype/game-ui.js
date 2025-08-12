@@ -257,6 +257,10 @@ var $kt = $kt || {};
         slideQuestionHint(newHint) {
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
             this._questionHintElement.classList.add('slide');
+            this.showQuestionHint(newHint);
+        }
+
+        showQuestionHint(newHint) {
             this._questionHintElement.textContent = newHint;
         }
 

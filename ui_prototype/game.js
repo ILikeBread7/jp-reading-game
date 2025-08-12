@@ -27,20 +27,36 @@ var $kt = $kt || {};
         start() {
             this._setupLevelFromGameStatus();
 
+            let updateRemainingChars = false;
             this._remainingChars.forEach(char => {
-                if (this._gameStatus.levelChars.get(char).remainingReps <= 0) {
+                if (this._levelChars.get(char).remainingReps <= 0) {
                     this._remainingChars.delete(char);
+                    updateRemainingChars = true;
                 }
             });
 
-            this._maxedCharacters +=
-                this._gameStatus.levelChars.values()
-                    .filter(({ remainingReps }) => remainingReps <= 0)
-                    .toArray()
-                    .length;
+            
+            if (updateRemainingChars) {
+                if (this._remainingChars.size === 0) {
+                    this._levelUp();
+                    return;
+                }
+
+                this._gameLevel.filterDictByRemainingChars(this._remainingChars);
+                
+                this._maxedCharacters +=
+                    this._levelChars.values()
+                        .filter(({ remainingReps }) => remainingReps <= 0)
+                        .toArray()
+                        .length;
+            }
 
             this._showCurrentLevelData();
             this._gameLevel.askFirstQuestion(this._gameStatus.question);
+            if (this._gameStatus.gaveUp) {
+                $kt.gameUi.showQuestionHint(this._gameLevel.getQuestionHint());
+                this._gameLevel.giveUp();
+            }
         }
 
         startNewLevel() {
@@ -52,6 +68,7 @@ var $kt = $kt || {};
             if (!answer) {
                 $kt.gameUi.slideQuestionHint(this._gameLevel.getQuestionHint());
                 this._gameLevel.giveUp();
+                this._saveGameStatus();
                 return;
             }
 
@@ -63,7 +80,7 @@ var $kt = $kt || {};
                 } else {
                     this._gameLevel.askQuestion();
                 }
-                $kt.persistence.setGameStatus(this._gameStatus);
+                this._saveGameStatus();
             } else {
                 const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
                 $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
@@ -74,6 +91,16 @@ var $kt = $kt || {};
             if (this._currentLevelDict.isComplex) {
                 this._currentLevelDict.stopLoading();
             }
+        }
+
+        _saveGameStatus() {
+            this._gameStatus.currentCharReps = this._levelChars.entries()
+                .map(([ char, { remainingReps, targetReps } ]) => {
+                    return [ char, targetReps - remainingReps ];
+                })
+                .toArray();
+            this._gameStatus.gaveUp = this._gameLevel.gaveUp;
+            $kt.persistence.setGameStatus(this._gameStatus);
         }
 
         _showCurrentLevelData() {
@@ -107,7 +134,7 @@ var $kt = $kt || {};
             let updateRemainingChars = false;
 
             charsForExp.forEach(char => {
-                const charReps = this._gameStatus.levelChars.get(char);
+                const charReps = this._levelChars.get(char);
                 const oldExpPercentage = this._calculateCharExpPercentage(charReps);
                 charReps.remainingReps--;
                 const newExpPercentage = this._calculateCharExpPercentage(charReps);
@@ -169,25 +196,32 @@ var $kt = $kt || {};
         }
 
         _setupLevelFromGameStatus() {
-            if (!this._gameStatus.levelChars) {
-                this._setupLevelChars();
+            this._setupLevelChars();
+            if (this._gameStatus.currentCharReps) {
+                this._gameStatus.currentCharReps
+                    .forEach(([ char, reps ]) => {
+                        const charReps = this._levelChars.get(char);
+                        if (charReps) {
+                            charReps.remainingReps -= reps;
+                        }
+                    });
             }
             this._setupLevelCommon();
         }
 
         _setupLevelChars() {
-            this._gameStatus.levelChars = $kt.levels.getCharsWithRepsPerLevel(this._gameStatus.level);
-            this._gameStatus.levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
+            this._levelChars = $kt.levels.getCharsWithRepsPerLevel(this._gameStatus.level);
+            this._levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
         }
         
         _setupLevelCommon() {
             this._levelName = $kt.levels.getLevelName(this._gameStatus.level);
-            this._remainingChars = new Set(this._gameStatus.levelChars.keys());
+            this._remainingChars = new Set(this._levelChars.keys());
             this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(this._gameStatus.level);
             this._totalCharacters = $kt.levels.getTotalCharsForDisplay(this._gameStatus.level);
 
             this._setupExpPerChar();
-            this._toNextLevelExp = this._gameStatus.levelChars.values()
+            this._toNextLevelExp = this._levelChars.values()
                 .reduce(
                     (acc, { targetReps }) => acc + targetReps
                     , 0
@@ -212,8 +246,8 @@ var $kt = $kt || {};
         }
 
         get _isKanjiLevel() {
-            return this._gameStatus.levelChars.size > 0
-                && wanakana.isKanji(this._gameStatus.levelChars.keys().next().value);
+            return this._levelChars.size > 0
+                && wanakana.isKanji(this._levelChars.keys().next().value);
         }
 
         _calculateCharExpPercentage(charReps) {

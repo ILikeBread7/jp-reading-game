@@ -12,7 +12,6 @@ var $kt = $kt || {};
         totalExp: 0,
         currentLevelExp: 0
     };
-    console.log(gameStatus)
     const game = new $kt.Game(gameStatus);
 
     $kt.audio.preloadAudio();
