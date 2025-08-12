@@ -16,24 +16,26 @@ var $kt = $kt || {};
             this._gaveUp = false;
         }
 
-        askFirstQuestion() {
-            const firstQuestion = $kt.persistence.getGameQuestion();
+        askFirstQuestion(firstQuestion) {
             if (firstQuestion) {
                 this._askExistingQuestion(firstQuestion);
             } else {
-                this.askQuestion();
+                return this.askQuestion();
             }
         }
 
-        askQuestion() {
+        async askQuestion() {
             if (this._dict.isLoaded) {
-                this._askNewQuestion();
+                const question = this._askNewQuestion();
+                return Promise.resolve()
+                    .then(() => question);
             } else {
                 $kt.ui.showLoading();
-                this._dict.load()
+                return this._dict.load()
                     .then(() => {
-                        this._askNewQuestion();
+                        const question = this._askNewQuestion();
                         $kt.ui.hideLoading();
+                        return question;
                     })
             }
         }
@@ -75,12 +77,12 @@ var $kt = $kt || {};
                 entry => !remainingChars.isDisjointFrom(new Set(entry.kanji || entry.kana))
             );
         }
-
+  
         _askNewQuestion() {
             this._gaveUp = false;
             const question = this._findNewQuestion(this._dict.data, this._currentQueston);
             this._askExistingQuestion(question);
-            $kt.persistence.setGameQuestion(question);
+            return question;
         }
 
         _askExistingQuestion(question) {

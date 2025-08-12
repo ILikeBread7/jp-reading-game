@@ -52,7 +52,8 @@ var $kt = $kt || {};
             }
 
             this._showCurrentLevelData();
-            this._gameLevel.askFirstQuestion(this._gameStatus.question);
+            this._askFirstQuestion();
+
             if (this._gameStatus.gaveUp) {
                 $kt.gameUi.showQuestionHint(this._gameLevel.getQuestionHint());
                 this._gameLevel.giveUp();
@@ -61,7 +62,7 @@ var $kt = $kt || {};
 
         startNewLevel() {
             this._showCurrentLevelData();
-            this._gameLevel.askQuestion();
+            this._askAndSaveQuestion();
         }
 
         answer(answer) {
@@ -78,7 +79,7 @@ var $kt = $kt || {};
                 if (leveledUp) {
                     this._levelUp();
                 } else {
-                    this._gameLevel.askQuestion();
+                    this._askAndSaveQuestion();
                 }
                 this._saveGameStatus();
             } else {
@@ -91,6 +92,26 @@ var $kt = $kt || {};
             if (this._currentLevelDict.isComplex) {
                 this._currentLevelDict.stopLoading();
             }
+        }
+
+        _askFirstQuestion() {
+            const savedQuestion = $kt.persistence.getGameQuestion();
+            const questionPromise = this._gameLevel.askFirstQuestion(savedQuestion);
+            this._saveQuestion(questionPromise);
+        }
+
+        _askAndSaveQuestion() {
+            const questionPromise = this._gameLevel.askQuestion();
+            this._saveQuestion(questionPromise);
+        }
+
+        _saveQuestion(questionPromise) {
+            if (!questionPromise) {
+                return;
+            }
+
+            questionPromise
+                .then(question => $kt.persistence.setGameQuestion(question));
         }
 
         _saveGameStatus() {
