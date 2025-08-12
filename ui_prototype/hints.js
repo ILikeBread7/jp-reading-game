@@ -12,7 +12,19 @@ var $kt = $kt || {};
                 <div>い - i</div>
                 <div>う - u</div>
                 <div>え - e</div>
-                <div>お - o</div>`
+                <div>お - o</div>
+
+                <div class="hint-explanation">
+                    Read the word at the top of the screen and
+                    type it into the input below using the above hints.
+                </div>
+                <div class="hint-explanation">
+                    Press ENTER to confirm your answer.
+                </div>
+                <div class="hint-explanation">
+                    Press ENTER with an empty input
+                    to get an extra hint but you won't receive any exp.
+                </div>`
         },
 
         {

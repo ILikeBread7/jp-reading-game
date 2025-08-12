@@ -71,6 +71,11 @@ select {
     font-size: 0.9em;
 }
 
+.hint-explanation {
+    text-align: center;
+    margin-top: 0.5em;
+}
+
 button, input {
     color: inherit;
 }
