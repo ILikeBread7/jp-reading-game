@@ -131,17 +131,14 @@ var $kt = $kt || {};
             );
         }
 
-        static startGamePractice() {
-            $kt.gameUi.startGame($kt.enums.GAME_TYPE.PRACTICE);
+        static startGamePractice(categoryName, dict) {
+            $kt.gameUi.startGame($kt.enums.GAME_TYPE.PRACTICE, categoryName, dict);
             document.body.classList.add(
                 'game', 'game-practice'
             );
         }
 
         static _removeGameModeClasses() {
-            // document.body.classList.remove(
-            //     'game', 'game-main', 'game-practice'
-            // );
             document.body.removeAttribute('class');
         }
 

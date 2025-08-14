@@ -24,7 +24,8 @@ var $kt = $kt || {};
 
     events.addEventListener(EVENTS.START, event => {
         const TYPES = $kt.enums.GAME_TYPE;
-        const gameType = event.detail.gameType;
+        const detail = event.detail;
+        const gameType = detail.gameType;
 
         switch(gameType) {
             case TYPES.MAIN:
@@ -42,10 +43,11 @@ var $kt = $kt || {};
                     }, 0);
                 }
             break;
-            case TYPES.PRACTICE:
+            case TYPES.PRACTICE: {
                 game = gamePractice;
-                gamePractice.start('Test', $kt.dicts.getCategoryDict('sl'));
-            break;
+                const { categoryName, dict } = detail;
+                gamePractice.start(categoryName, dict);
+            } break;
         }
 
     });

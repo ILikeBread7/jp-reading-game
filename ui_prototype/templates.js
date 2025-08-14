@@ -159,6 +159,53 @@ var $kt = $kt || {};
             `;
         }
 
+        static categoriesMenu(categories) {
+            const firstButtonCssName = KT._cssName(categories[0].name);
+            const firstButtonId = `category-${firstButtonCssName}-button`;
+
+            return /*html*/`
+                <div class="centered menu hidden" id="categories-container" data-default-item="${firstButtonId}" data-go-back-button="categories-back-button">
+                    ${categories.map(KT._categoryButton).join('')}
+                    <button class="menu-item menu-button menu-destination-button" id="categories-back-button" data-se="SE_TEST_2_LOW" data-destination="main-menu">Go back</button>
+                </div>
+            `;
+        }
+
+        static _categoryButton(category) {
+            const categoryCssName = KT._cssName(category.name);
+            return /*html*/`
+                <button class="menu-item menu-button menu-destination-button" id="category-${categoryCssName}-button" data-destination="category-${categoryCssName}-container">${category.name}</button>
+            `;
+        }
+
+        static categoryMenu(category) {
+            const categoryCssName = KT._cssName(category.name);
+            const firstButtonCssName = KT._cssName(category.entries[0].name);
+            const firstButtonId = `category-${categoryCssName}-${firstButtonCssName}-button`;
+
+            return /*html*/`
+                <div class="centered menu hidden" id="category-${categoryCssName}-container" data-default-item="${firstButtonId}" data-go-back-button="category-${categoryCssName}-back-button">
+                    ${category.entries.map(KT._categoryEntryButton.bind(KT, categoryCssName)).join('')}
+                    <button class="menu-item menu-button menu-destination-button" id="category-${categoryCssName}-back-button" data-se="SE_TEST_2_LOW" data-destination="categories-container">Go back</button>
+                </div>
+            `;
+        }
+
+        static _categoryEntryButton(categoryCssName, entry) {
+            const buttonCssName = KT._cssName(entry.name);
+            const dictData = entry.level
+                ? /*html*/`data-level-dict="${entry.level}"`
+                : /*html*/`data-tag-dict="${entry.tag}"`
+
+            return /*html*/`
+                <button class="menu-item menu-button category-entry-button" id="category-${categoryCssName}-${buttonCssName}-button" ${dictData}>${entry.name}</button>
+            `;
+        }
+
+        static _cssName(name) {
+            return name.replaceAll(' ', '-').toLowerCase();
+        }
+
         /**
          * Function for html templates, if value is falsey returns elseValue
          * @returns value if condition is met, elseValue otherwise

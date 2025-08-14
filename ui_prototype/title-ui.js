@@ -11,6 +11,7 @@ var $kt = $kt || {};
         constructor() {
             this._getAllElements();
             this._addEventListeners();
+            this._createCategoryMenus();
         }
 
         enterListener() {
@@ -61,7 +62,6 @@ var $kt = $kt || {};
         _getAllElements() {
             this._titleScene = document.getElementById('title-screen-container');
             this._titleStartGameMainButton = document.getElementById('start-game-main-button');
-            this._titleStartGamePracticeButton = document.getElementById('start-game-practice-button');
             this._titleSettingsButton = document.getElementById('title-settings-button');
             this._preTitleText = document.getElementById('pre-title-press-start-text');
             this._mainMenu = document.getElementById('main-menu');
@@ -70,7 +70,6 @@ var $kt = $kt || {};
 
         _addEventListeners() {
             this._titleStartGameMainButton.addEventListener('click', $kt.uiHelper.startGameMain);
-            this._titleStartGamePracticeButton.addEventListener('click', $kt.uiHelper.startGamePractice);
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
         }
         
@@ -87,6 +86,42 @@ var $kt = $kt || {};
             $kt.uiHelper.showMenu(this._mainMenu);
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
             $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
+        }
+
+        _createCategoryMenus() {
+            const container = this._titleScene;
+            const categories = [
+                { name: 'Levels', entries: [
+                    { name: 'Level 1', level: 1 },
+                    { name: 'All levels', level: $kt.levels.maxLevel + 1 }
+                ]},
+                { name: 'Informal', entries: [
+                    { name: 'Slang', tag: 'sl' },
+                    { name: 'Vulgar', tag: 'vulg' }
+                ]}
+            ];
+
+            container.insertAdjacentHTML(
+                'beforeend',
+                $kt.templates.categoriesMenu(categories)
+            );
+
+            container.insertAdjacentHTML(
+                'beforeend',
+                categories
+                    .map($kt.templates.categoryMenu)
+                    .join('')
+            );
+
+            [...document.getElementsByClassName('category-entry-button')]
+                .forEach(button => button.addEventListener('click', () => {
+                    const categoryName = button.textContent;
+                    const dict = button.dataset.levelDict
+                        ? $kt.dicts.getLevelDict(Number(button.dataset.levelDict))
+                        : $kt.dicts.getCategoryDict(button.dataset.tagDict);
+
+                    $kt.uiHelper.startGamePractice(categoryName, dict);
+                }));
         }
     }
 

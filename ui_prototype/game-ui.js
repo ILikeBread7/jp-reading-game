@@ -495,13 +495,19 @@ var $kt = $kt || {};
             this._dispatchEvent(this._eventNames.ANSWER, { answer: this.answer });
         }
 
-        startGame(gameType) {
+        /**
+         * 
+         * @param {$kt.enums.GAME_TYPE} gameType 
+         * @param {string | undefined} categoryName 
+         * @param {BaseDict | ComplexDict | undefined} dict 
+         */
+        startGame(gameType, categoryName, dict) {
             $kt.uiHelper.switchToScene(this._gameScene);
             this._moveLevelExpDivBackDown();
             this._removeLevelUpTransitions();
             this._displayAnnouncmentText(this._levelUpText);
             this.focusAnswerInput();
-            this._dispatchEvent(this._eventNames.START, { gameType });
+            this._dispatchEvent(this._eventNames.START, { gameType, categoryName, dict });
         }
 
         _displayAnnouncmentText(textElement) {
