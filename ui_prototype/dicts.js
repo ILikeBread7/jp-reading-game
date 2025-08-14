@@ -402,7 +402,7 @@ var $kt = $kt || {};
          * @param {string} name 
          * @returns {BaseDict | undefined}
          */
-        getDict(name) {
+        getCategoryDict(name) {
             return this._dicts.get(name);
         }
 

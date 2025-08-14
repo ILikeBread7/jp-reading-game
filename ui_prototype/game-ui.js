@@ -501,7 +501,7 @@ var $kt = $kt || {};
             this._removeLevelUpTransitions();
             this._displayAnnouncmentText(this._levelUpText);
             this.focusAnswerInput();
-            this._dispatchEvent(this._eventNames.START);
+            this._dispatchEvent(this._eventNames.START, { gameType: $kt.enums.GAME_TYPE.MAIN });
         }
 
         _displayAnnouncmentText(textElement) {

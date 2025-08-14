@@ -7,10 +7,10 @@ var $kt = $kt || {};
     const EXP_PER_KANA = 10;
     const EXP_PER_KANJI = 20;
 
-    class KantoreGame {
+    class KantoreGameMain extends $kt.GameBase {
 
         /**
-         * 
+         * @param {KantoreGameLevel} gameLevel 
          * @param {{
          *  level: number,
          *  totalExp: number,
@@ -18,9 +18,9 @@ var $kt = $kt || {};
          *  levelChars: { char: string, remainingReps: number, totalReps: number } | undefined
          * }} gameStatus 
          */
-        constructor(gameStatus) {
+        constructor(gameLevel, gameStatus) {
+            super(gameLevel);
             this._gameStatus = gameStatus;
-            this._gameLevel = new $kt.GameLevel();
             $kt.dicts.getLevelDict(this._gameStatus.level).preload();
         }
 
@@ -67,8 +67,7 @@ var $kt = $kt || {};
 
         answer(answer) {
             if (!answer) {
-                $kt.gameUi.slideQuestionHint(this._gameLevel.questionHint);
-                this._gameLevel.giveUp();
+                this._giveUp();
                 this._saveGameStatus();
                 return;
             }
@@ -83,14 +82,7 @@ var $kt = $kt || {};
                 }
                 this._saveGameStatus();
             } else {
-                const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
-                $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
-            }
-        }
-
-        stopLoadingDict() {
-            if (this._currentLevelDict.isComplex) {
-                this._currentLevelDict.stopLoading();
+                this._wrongAnswer(answer);
             }
         }
 
@@ -281,6 +273,6 @@ var $kt = $kt || {};
 
     }
 
-    $kt.Game = KantoreGame;
+    $kt.GameMain = KantoreGameMain;
 
 })();

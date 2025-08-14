@@ -113,6 +113,12 @@ var $kt = $kt || {};
                 <div id="level-total-exp">
                     Total correct answers: ${totalCorrectAnswers}
                 </div>
+                ${
+                    KT._tif(totalCorrectAnswers > 0) && /*html*/
+                    `<div class="fade-in-out">
+                        Correct answer!
+                    </div>`
+                }
             `;
         }
 
