@@ -549,6 +549,10 @@ details.closing > summary::before {
     z-index: var(--settings-button-z-index);
 }
 
+.menu-spacer {
+    margin-top: 0.5em;
+}
+
 select,
 #answer-submit-button,
 .menu-button {
