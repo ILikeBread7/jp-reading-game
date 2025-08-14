@@ -230,7 +230,7 @@ var $kt = $kt || {};
         static _addNewHintToSelect(select ,newHintIndex) {
             const option = document.createElement('option');
             option.value = newHintIndex;
-            option.text = $kt.hints[newHintIndex].name;
+            option.text = $kt.levels.getLevelName(newHintIndex + 1);
             select.add(option, 0);
         }
 

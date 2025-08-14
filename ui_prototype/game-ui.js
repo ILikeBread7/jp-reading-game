@@ -297,7 +297,7 @@ var $kt = $kt || {};
         }
 
         get _currentHintTemplate() {
-            return this._hints[this._currentHintIndex].template;
+            return this._hints[this._currentHintIndex];
         }
 
         /**
