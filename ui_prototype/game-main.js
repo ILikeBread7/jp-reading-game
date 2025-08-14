@@ -240,10 +240,10 @@ var $kt = $kt || {};
                     , 0
                 ) * this._expPerChar;
 
-            this._currentLevelDict = $kt.dicts.getLevelDict(this._gameStatus.level);
+            this._dict = $kt.dicts.getLevelDict(this._gameStatus.level);
             
             // Properly load current level dict
-            const dictPromise = this._currentLevelDict.load();
+            const dictPromise = this._dict.load();
             
             // Preload the next level's dict if it exists
             const nextLevelDict = $kt.dicts.getLevelDict(this._gameStatus.level + 1);
@@ -251,7 +251,7 @@ var $kt = $kt || {};
                 dictPromise.then(() => nextLevelDict.preload());
             }
 
-            this._gameLevel.start(this._currentLevelDict);
+            this._gameLevel.start(this._dict);
         }
 
         _setupExpPerChar() {

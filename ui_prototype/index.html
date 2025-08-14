@@ -26,7 +26,7 @@
         <script defer type="text/javascript" src="game-practice.js"></script>
         <script defer type="text/javascript" src="main.js"></script>
     </head>
-    <body>
+    <body class="title">
         <div class="overlay-element startup-loading" id="loading">
             <div class="centered" id="spinner-container">
                 <div id="spinner"></div>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <button class="control-button icon-button ui-button" id="fullscreen-button" title="Fullscreen"><img src="icons/fullscreen.svg" data-exit-icon="icons/fullscreen_exit.svg" alt="Fullscreen"/></button>
-        <div class="overlay-element title-settings-menu" id="settings">
+        <div class="overlay-element" id="settings">
             <div class="centered menu" id="settings-container" data-default-item="return-to-game-button" data-go-back-button="return-to-game-button">
                 <label class="input-label" for="bgm-volume">BGM volume:</label>
                 <input type="range" class="menu-item" id="bgm-volume" name="bgm-volume" min="0" max="1" step="0.1" value="1"/>
@@ -47,20 +47,20 @@
                 <select class="menu-item" name="settings-submit-button-select" id="settings-submit-button-select">
                     <!-- Content created dynamically -->
                 </select>
-                <label class="input-label game-settings-menu-only" for="settings-hint-select">Hint:</label>
-                <select class="menu-item game-settings-menu-only" name="settings-hint-select" id="settings-hint-select">
+                <label class="input-label game-main-only" for="settings-hint-select">Hint:</label>
+                <select class="menu-item game-main-only" name="settings-hint-select" id="settings-hint-select">
                     <!-- Content created dynamically -->
                 </select>
 
                 <div class="menu-spacer"></div>
 
-                <label class="menu-item-label">Show meaning:<input type="checkbox" id="close-meaning" class="menu-item menu-checkbox"/></label>
-                <label class="menu-item-label">Show hint:<input type="checkbox" id="close-hint" class="menu-item menu-checkbox"/></label>
+                <label class="menu-item-label game-only">Show meaning:<input type="checkbox" id="close-meaning" class="menu-item menu-checkbox"/></label>
+                <label class="menu-item-label game-main-only">Show hint:<input type="checkbox" id="close-hint" class="menu-item menu-checkbox"/></label>
                 <label class="menu-item-label">Fullscreen:<input type="checkbox" id="settings-fullscreen" class="menu-item menu-checkbox"/></label>
                 
                 <div class="menu-spacer"></div>
                 
-                <button class="menu-item menu-button game-settings-menu-only" id="back-to-main-menu-button">Back to main menu</button>
+                <button class="menu-item menu-button game-only" id="back-to-main-menu-button">Back to main menu</button>
                 <button class="menu-item menu-button" id="return-to-game-button">Return to the game</button>
             </div>
         </div>
@@ -71,7 +71,7 @@
         </div>
 
         <!-- Title screen -->
-        <div class="scene-container" id="title-screen-container" data-settings-class="title-settings-menu">
+        <div class="scene-container" id="title-screen-container" data-scene-class="title">
             <div class="float" id="title-container">
                 <div id="title-text">Kantore 漢トレ</div>
                 <div id="title-sub-text">Japanese Kana & Kanji reading training</div>
@@ -81,8 +81,9 @@
                 Click or press ENTER to start
             </div>
 
-            <div class="centered menu hidden" id="main-menu" data-default-item="start-game-button">
-                <button class="menu-item menu-button" id="start-game-button" data-se="SE_TEST_2_HIGH">Start the game</button>
+            <div class="centered menu hidden" id="main-menu" data-default-item="start-game-main-button">
+                <button class="menu-item menu-button" id="start-game-main-button" data-se="SE_TEST_2_HIGH">Start the game</button>
+                <button class="menu-item menu-button" id="start-game-practice-button" data-se="SE_TEST_2_HIGH">Practice mode</button>
                 <button class="menu-item menu-button" id="title-settings-button">Settings</button>
                 <button class="menu-item menu-button menu-destination-button" id="credits-button" data-destination="credits-container">Credits</button>
             </div>
@@ -152,7 +153,7 @@
         </div>
 
         <!-- Game -->
-        <div class="scene-container" id="game-container" data-settings-class="game-settings-menu">
+        <div class="scene-container" id="game-container" data-scene-class="game">
             <div class="fade-hidden" id="level-up-container">
                 <div class="level-up announcment-text" id="level-up-text">
                     <span class="jumpable level-up-text-char">L</span>
@@ -219,7 +220,7 @@
                         <!-- Content created dynamically -->
                     </div>
                 </details>
-                <details open class="content-group" id="hint" data-setting-name="showHint">
+                <details open class="content-group game-main-only" id="hint" data-setting-name="showHint">
                     <summary class="summary-panel" id="hint-panel">
                         Hint
                     </summary>

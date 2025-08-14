@@ -124,15 +124,33 @@ var $kt = $kt || {};
             element.focus({ focusVisible: true });
         }
 
-        static startGame() {
-            $kt.gameUi.startGame();
+        static startGameMain() {
+            $kt.gameUi.startGame($kt.enums.GAME_TYPE.MAIN);
+            document.body.classList.add(
+                'game', 'game-main'
+            );
+        }
+
+        static startGamePractice() {
+            $kt.gameUi.startGame($kt.enums.GAME_TYPE.PRACTICE);
+            document.body.classList.add(
+                'game', 'game-practice'
+            );
+        }
+
+        static _removeGameModeClasses() {
+            // document.body.classList.remove(
+            //     'game', 'game-main', 'game-practice'
+            // );
+            document.body.removeAttribute('class');
         }
 
         static switchToScene(scene) {
+            $kt.uiHelper._removeGameModeClasses();
             const scenes = [...document.getElementsByClassName('scene-container')];
             scenes.forEach(scene => scene.style.display = 'none');
             scene.style.display = 'initial';
-            $kt.uiHelper.setSettingsClass(scene.dataset.settingsClass, scenes.map(scene => scene.dataset.settingsClass));
+            $kt.uiHelper.setSceneClass(scene.dataset.sceneClass, scenes.map(scene => scene.dataset.sceneClass));
         }
 
         static backToTitle() {
@@ -166,9 +184,10 @@ var $kt = $kt || {};
          * @param {string} className Class name to be added
          * @param {[string]} allSettingsClassNames Class names to be removed before adding the new one
          */
-        static setSettingsClass(className, allSettingsClassNames) {
-            $kt.settingsUi._settingsDiv.classList.remove(...allSettingsClassNames);
-            $kt.settingsUi._settingsDiv.classList.add(className);
+        static setSceneClass(className, allSettingsClassNames) {
+            const body = document.body;
+            body.classList.remove(...allSettingsClassNames);
+            body.classList.add(className);
         }
 
         static isSettingsButton(element) {

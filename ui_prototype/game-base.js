@@ -15,8 +15,8 @@ var $kt = $kt || {};
         }
 
         stopLoadingDict() {
-            if (this._currentLevelDict.isComplex) {
-                this._currentLevelDict.stopLoading();
+            if (this._dict.isComplex) {
+                this._dict.stopLoading();
             }
         }
 

@@ -20,6 +20,7 @@ var $kt = $kt || {};
          * @param {BaseDict | ComplexDict} dict 
          */
         start(categoryName, dict) {
+            this._dict = dict;
             this._correctAnswersNumber = 0;
             this._categoryLabel = `Practice: ${categoryName}`;
             this._showPracticeData();

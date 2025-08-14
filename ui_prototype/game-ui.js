@@ -495,13 +495,13 @@ var $kt = $kt || {};
             this._dispatchEvent(this._eventNames.ANSWER, { answer: this.answer });
         }
 
-        startGame() {
+        startGame(gameType) {
             $kt.uiHelper.switchToScene(this._gameScene);
             this._moveLevelExpDivBackDown();
             this._removeLevelUpTransitions();
             this._displayAnnouncmentText(this._levelUpText);
             this.focusAnswerInput();
-            this._dispatchEvent(this._eventNames.START, { gameType: $kt.enums.GAME_TYPE.MAIN });
+            this._dispatchEvent(this._eventNames.START, { gameType });
         }
 
         _displayAnnouncmentText(textElement) {

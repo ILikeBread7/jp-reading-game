@@ -624,7 +624,8 @@ button.menu-item {
     color: #000000;
 }
 
-#settings:not(.game-settings-menu) .game-settings-menu-only {
+body:not(.game-main) .game-main-only,
+body:not(.game) .game-only {
     display: none;
 }
 

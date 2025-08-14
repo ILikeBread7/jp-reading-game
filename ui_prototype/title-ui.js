@@ -60,7 +60,8 @@ var $kt = $kt || {};
 
         _getAllElements() {
             this._titleScene = document.getElementById('title-screen-container');
-            this._titleStartButton = document.getElementById('start-game-button');
+            this._titleStartGameMainButton = document.getElementById('start-game-main-button');
+            this._titleStartGamePracticeButton = document.getElementById('start-game-practice-button');
             this._titleSettingsButton = document.getElementById('title-settings-button');
             this._preTitleText = document.getElementById('pre-title-press-start-text');
             this._mainMenu = document.getElementById('main-menu');
@@ -68,7 +69,8 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            this._titleStartButton.addEventListener('click', $kt.uiHelper.startGame);
+            this._titleStartGameMainButton.addEventListener('click', $kt.uiHelper.startGameMain);
+            this._titleStartGamePracticeButton.addEventListener('click', $kt.uiHelper.startGamePractice);
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
         }
         
