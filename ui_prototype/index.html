@@ -152,95 +152,95 @@
         </div>
 
         <!-- Game -->
-         <div class="scene-container" id="game-container" data-settings-class="game-settings-menu">
-             <div class="fade-hidden" id="level-up-container">
-                 <div class="level-up announcment-text" id="level-up-text">
-                     <span class="jumpable level-up-text-char">L</span>
-                     <span class="jumpable level-up-text-char">e</span>
-                     <span class="jumpable level-up-text-char">v</span>
-                     <span class="jumpable level-up-text-char">e</span>
-                     <span class="jumpable level-up-text-char">l</span>
-                     <span>&nbsp;</span> <!-- Spaces not animated -->
-                     <span class="jumpable level-up-text-char">u</span>
-                     <span class="jumpable level-up-text-char">p</span>
-                     <span class="jumpable level-up-text-char">!</span>
-                 </div>
-                <div class="level-up announcment-text" id="game-clear-text">
-                     <span class="jumpable game-clear-text-char">C</span>
-                     <span class="jumpable game-clear-text-char">l</span>
-                     <span class="jumpable game-clear-text-char">e</span>
-                     <span class="jumpable game-clear-text-char">a</span>
-                     <span class="jumpable game-clear-text-char">r</span>
-                     <span class="jumpable game-clear-text-char">!</span>
-                 </div>
-                <div class="level-up announcment-text" id="game-over-text">
-                     <div class="float">Game over...</div>
-                 </div>
-                 <div class="level-up fade-hidden" id="level-up-hint">
-                     <div class="controls-panel" id="level-up-hint-panel">
-                         New level!
-                         <div class="buttons-panel">
-                             <button class="control-button icon-button" id="level-up-hint-close-button" title="Close"><img src="icons/close.svg" alt="Close"/></button>
-                         </div>
-                     </div>
-                     <!-- Newest hint -->
-                      <div id="level-up-hint-content">
-                         <!-- Content created dynamically -->
-                      </div>
-                 </div>
-                 <div class="black-overlay" id="level-up-black-overlay"></div>
-             </div>
-             <div id="level-exp">
-                 <!-- Content created dynamically -->
-             </div>
-             <div id="question-answer-container">
-                 <div id="question">
-                     <div id="question-hint">
-                         <!-- Content created dynamically -->
-                     </div>
-                     <div id="question-kanji">
-                         <!-- Content created dynamically -->
-                     </div>
-                 </div>
-                 <div id="answer">
-                     <div id="wrong-answer">
-                         <!-- Content created dynamically -->
-                     </div>
-                     <input id="answer-input"></input>
-                     <button class="mobile-only" id="answer-submit-button">Submit</button>
-                 </div>
-             </div>
-             <div id="info">
-                 <details open class="content-group" id="meaning" data-setting-name="showMeaning">
-                     <summary class="summary-panel" id="meaning-panel">
-                         Meaning
-                     </summary>
-                     <div id="meaning-content">
-                         <!-- Content created dynamically -->
-                     </div>
-                 </details>
-                 <details open class="content-group" id="hint" data-setting-name="showHint">
-                     <summary class="summary-panel" id="hint-panel">
-                         Hint
-                     </summary>
-                     <div id="hint-collapsible-part">
-                         <div class="controls-panel" id="hint-controls-panel">
-                             <div class="buttons-panel">
-                                 <button class="control-button icon-button" id="hint-first-button" title="First hint"><img src="icons/first_page.svg" alt="First hint"/></button>
-                                 <button class="control-button icon-button" id="hint-previous-button" title="Previous hint"><img src="icons/chevron_left.svg" alt="Previous hint"/></button>
-                                 <select id="hint-select">
-                                    <!-- Content created dynamically -->
-                                 </select>
-                                 <button class="control-button icon-button" id="hint-next-button" title="Next hint"><img src="icons/chevron_right.svg" alt="Next hint"/></button>
-                                 <button class="control-button icon-button" id="hint-last-button" title="Latest hint"><img src="icons/last_page.svg" alt="Latest hint"/></button>
-                             </div>
-                         </div>
-                         <!-- The content of the below div will be vreated dynamically -->
-                         <div id="hint-content">
-                         </div>
-                     </div>
-                 </details>
-             </div>
-         </div>
+        <div class="scene-container" id="game-container" data-settings-class="game-settings-menu">
+            <div class="fade-hidden" id="level-up-container">
+                <div class="level-up announcment-text" id="level-up-text">
+                    <span class="jumpable level-up-text-char">L</span>
+                    <span class="jumpable level-up-text-char">e</span>
+                    <span class="jumpable level-up-text-char">v</span>
+                    <span class="jumpable level-up-text-char">e</span>
+                    <span class="jumpable level-up-text-char">l</span>
+                    <span>&nbsp;</span> <!-- Spaces not animated -->
+                    <span class="jumpable level-up-text-char">u</span>
+                    <span class="jumpable level-up-text-char">p</span>
+                    <span class="jumpable level-up-text-char">!</span>
+                </div>
+            <div class="level-up announcment-text" id="game-clear-text">
+                    <span class="jumpable game-clear-text-char">C</span>
+                    <span class="jumpable game-clear-text-char">l</span>
+                    <span class="jumpable game-clear-text-char">e</span>
+                    <span class="jumpable game-clear-text-char">a</span>
+                    <span class="jumpable game-clear-text-char">r</span>
+                    <span class="jumpable game-clear-text-char">!</span>
+                </div>
+            <div class="level-up announcment-text" id="game-over-text">
+                    <div class="float">Game over...</div>
+                </div>
+                <div class="level-up fade-hidden" id="level-up-hint">
+                    <div class="controls-panel" id="level-up-hint-panel">
+                        New level!
+                        <div class="buttons-panel">
+                            <button class="control-button icon-button" id="level-up-hint-close-button" title="Close"><img src="icons/close.svg" alt="Close"/></button>
+                        </div>
+                    </div>
+                    <!-- Newest hint -->
+                    <div id="level-up-hint-content">
+                        <!-- Content created dynamically -->
+                    </div>
+                </div>
+                <div class="black-overlay" id="level-up-black-overlay"></div>
+            </div>
+            <div id="level-exp">
+                <!-- Content created dynamically -->
+            </div>
+            <div id="question-answer-container">
+                <div id="question">
+                    <div id="question-hint">
+                        <!-- Content created dynamically -->
+                    </div>
+                    <div id="question-kanji">
+                        <!-- Content created dynamically -->
+                    </div>
+                </div>
+                <div id="answer">
+                    <div id="wrong-answer">
+                        <!-- Content created dynamically -->
+                    </div>
+                    <input id="answer-input"></input>
+                    <button class="mobile-only" id="answer-submit-button">Submit</button>
+                </div>
+            </div>
+            <div id="info">
+                <details open class="content-group" id="meaning" data-setting-name="showMeaning">
+                    <summary class="summary-panel" id="meaning-panel">
+                        Meaning
+                    </summary>
+                    <div id="meaning-content">
+                        <!-- Content created dynamically -->
+                    </div>
+                </details>
+                <details open class="content-group" id="hint" data-setting-name="showHint">
+                    <summary class="summary-panel" id="hint-panel">
+                        Hint
+                    </summary>
+                    <div id="hint-collapsible-part">
+                        <div class="controls-panel" id="hint-controls-panel">
+                            <div class="buttons-panel">
+                                <button class="control-button icon-button" id="hint-first-button" title="First hint"><img src="icons/first_page.svg" alt="First hint"/></button>
+                                <button class="control-button icon-button" id="hint-previous-button" title="Previous hint"><img src="icons/chevron_left.svg" alt="Previous hint"/></button>
+                                <select id="hint-select">
+                                <!-- Content created dynamically -->
+                                </select>
+                                <button class="control-button icon-button" id="hint-next-button" title="Next hint"><img src="icons/chevron_right.svg" alt="Next hint"/></button>
+                                <button class="control-button icon-button" id="hint-last-button" title="Latest hint"><img src="icons/last_page.svg" alt="Latest hint"/></button>
+                            </div>
+                        </div>
+                        <!-- The content of the below div will be vreated dynamically -->
+                        <div id="hint-content">
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
     </body>
 </html>
