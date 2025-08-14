@@ -183,6 +183,7 @@ button, input {
     flex-direction: column;
     gap: 0.25em;
     word-break: keep-all;
+    padding-right: 1em;
 }
 
 .controls-panel {
