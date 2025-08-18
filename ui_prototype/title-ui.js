@@ -119,7 +119,7 @@ var $kt = $kt || {};
                     .join('')
             );
 
-            [...document.getElementsByClassName('category-entry-button')]
+            [...this._titleScene.getElementsByClassName('category-entry-button')]
                 .forEach(button => button.addEventListener('click', () => {
                     const categoryName = button.textContent;
                     const dict = button.dataset.levelDict
