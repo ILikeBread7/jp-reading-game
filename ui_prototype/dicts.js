@@ -5,6 +5,84 @@ var $kt = $kt || {};
 (() => {
 
     const NUMBER_OF_LEVELS = $kt.levels.maxLevel;
+
+    const LEVELS_CATEGORY = {
+        name: 'Levels', entries: (() => {
+            const levels = [ { name: 'All levels', level: NUMBER_OF_LEVELS + 1 } ];
+            for (let level = 1; level <= NUMBER_OF_LEVELS; level++) {
+                levels.push({ name: $kt.levels.getLevelName(level), level });
+            }
+            return levels;
+        })()
+    }
+
+    const INFORMAL = {
+        name: 'Informal', entries: [
+            { name: 'Slang', tag: 'sl' },
+            { name: 'Manga slang', tag: 'm-sl' },
+            { name: 'Internet slang', tag: 'net-sl' },
+            { name: 'Vulgar', tag: 'vulg' }
+        ],
+        complexEntries: [
+            { name: 'All informal expressions', tag: 'informal-all' }
+        ]
+    };
+
+    const DIALECTS = {
+        name: 'Dialects', entries: [
+            { name: 'Kansai-ben', tag: 'ksb' },
+            { name: 'Brazilian', tag: 'bra' },
+            { name: 'Hokkaido-ben', tag: 'hob' },
+            { name: 'Kantou-ben', tag: 'ktb' },
+            { name: 'Kyoto-ben', tag: 'kyb' },
+            { name: 'Kyuushuu-ben', tag: 'kyu' },
+            { name: 'Nagano-ben', tag: 'nab' },
+            { name: 'Osaka-ben', tag: 'osb' },
+            { name: 'Ryuukyuu-ben', tag: 'rkb' },
+            { name: 'Touhoku-ben', tag: 'thb' },
+            { name: 'Tosa-ben', tag: 'tsb' },
+            { name: 'Tsugaru-ben', tag: 'tsug' }
+        ], complexEntries: [
+            { name: 'All dialects', tag: 'dialects-all' }
+        ]
+    };
+
+    const JLPT = {
+        name: 'JLPT', entries: [
+            { name: 'JLPT N5 vocabulary', tag: 'v5' },
+            { name: 'JLPT N4 vocabulary', tag: 'v4' },
+            { name: 'JLPT N3 vocabulary', tag: 'v3' },
+            { name: 'JLPT N2 vocabulary', tag: 'v2' },
+            { name: 'JLPT N1 vocabulary', tag: 'v1' },
+            { name: 'JLPT N5 kanji', tag: 'k5' },
+            { name: 'JLPT N4 kanji', tag: 'k4' },
+            { name: 'JLPT N3 kanji', tag: 'k3' },
+            { name: 'JLPT N2 kanji', tag: 'k2' },
+            { name: 'JLPT N1 kanji', tag: 'k1' }
+        ],
+        complexEntries: [
+            { name: 'All JLPT', tag: 'jlpt-all' },
+            { name: 'All JLPT vocabulary', tag: 'jlpt-v', tags: [ 'v5', 'v4', 'v3', 'v2', 'v1' ] },
+            { name: 'All JLPT kanji', tag: 'jlpt-k', tags: [ 'k5', 'k4', 'k3', 'k2', 'k1' ] }
+        ]
+    };
+
+    const OTHER = {
+        name: 'Other', entries: [
+            { name: 'Idiomatic expression', tag: 'id' },
+            { name: 'Proverb', tag: 'proverb' },
+            { name: 'Archaic', tag: 'arch' },
+            { name: 'Ateji', tag: 'ateji' }
+        ]
+    };
+
+    const CATEGORIES = [
+        INFORMAL,
+        DIALECTS,
+        JLPT,
+        OTHER
+    ];
+
     const CATEGORY_TAGS = [
         'Buddh',
         'Christn',
@@ -399,11 +477,15 @@ var $kt = $kt || {};
 
         /**
          * 
-         * @param {string} name 
+         * @param {string} tag 
          * @returns {BaseDict | undefined}
          */
-        getCategoryDict(name) {
-            return this._dicts.get(name);
+        getCategoryDict(tag) {
+            return this._dicts.get(tag);
+        }
+
+        get categories() {
+            return CATEGORIES;
         }
 
         _createLevelDicts() {
@@ -423,9 +505,29 @@ var $kt = $kt || {};
         }
 
         _createCategoryDicts() {
-            CATEGORY_TAGS.forEach(tag => 
-                this._dicts.set(tag, new BaseDict(tag))
-            );
+            CATEGORIES.forEach(category => {
+                category.entries.forEach(({ tag }) => {
+                    this._dicts.set(tag, new BaseDict(tag));
+                });
+
+                if (category.complexEntries) {
+                    category.complexEntries.forEach(({ tag, tags }) => {
+                        // If there are no tags it's the "All" entry
+                        const dictTags = tags || category.entries.map(({ tag }) => tag);
+
+                        this._dicts.set(tag, new ComplexDict(
+                            dictTags.map(tag => this.getCategoryDict(tag))
+                        ));
+                    });
+
+                    category.entries.unshift(...category.complexEntries);
+                    delete category.complexEntries;
+                }
+
+            });
+
+            CATEGORIES.unshift(LEVELS_CATEGORY);
+            Object.freeze(CATEGORIES);
         }
 
     }

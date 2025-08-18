@@ -96,16 +96,7 @@ var $kt = $kt || {};
 
         _createCategoryMenus() {
             const container = this._titleScene;
-            const categories = [
-                { name: 'Levels', entries: [
-                    { name: 'Level 1', level: 1 },
-                    { name: 'All levels', level: $kt.levels.maxLevel + 1 }
-                ]},
-                { name: 'Informal', entries: [
-                    { name: 'Slang', tag: 'sl' },
-                    { name: 'Vulgar', tag: 'vulg' }
-                ]}
-            ];
+            const categories = $kt.dicts.categories;
 
             container.insertAdjacentHTML(
                 'beforeend',
