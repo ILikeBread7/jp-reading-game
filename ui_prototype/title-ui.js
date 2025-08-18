@@ -12,6 +12,7 @@ var $kt = $kt || {};
             this._getAllElements();
             this._addEventListeners();
             this._createCategoryMenus();
+            this._getAllMenuElements();
         }
 
         enterListener() {
@@ -34,7 +35,12 @@ var $kt = $kt || {};
             if (this._isPreTitleVisible()) {
                 return;
             }
-            $kt.uiHelper.showMenu(this._mainMenu);
+
+            const menuToShow = this._menuElements
+                .find(menu => menu.checkVisibility())
+                || this._mainMenu;
+
+            $kt.uiHelper.showMenu(menuToShow);
         }
 
         /**
@@ -122,6 +128,10 @@ var $kt = $kt || {};
 
                     $kt.uiHelper.startGamePractice(categoryName, dict);
                 }));
+        }
+
+        _getAllMenuElements() {
+            this._menuElements = [...this._titleScene.getElementsByClassName('menu')];
         }
     }
 
