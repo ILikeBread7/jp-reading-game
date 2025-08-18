@@ -203,7 +203,11 @@ var $kt = $kt || {};
         }
 
         static _cssName(name) {
-            return name.replaceAll(' ', '-').toLowerCase();
+            return name
+                .replaceAll(/[^0-9a-zA-Z ]/g, '')   // Remove all non-alphanumeric characters
+                .trim()
+                .replaceAll(/\s+/g, '-')    // Replace all spaces (and sequences of spaces) with dashes
+                .toLowerCase();
         }
 
         /**
