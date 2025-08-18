@@ -7,14 +7,16 @@ var $kt = $kt || {};
     const EVENTS = $kt.gameUi.eventNames;
     const events = $kt.gameUi.events;
 
-    const flags = $kt.persistence.getFlags() || {
-        levelOneHintShown: false
-    };
-    const gameStatus = $kt.persistence.getGameStatus() || {
-        level: 1,
-        totalExp: 0,
-        currentLevelExp: 0
-    };
+    const flags = Object.assign({
+            levelOneHintShown: false
+        }, $kt.persistence.getFlags() || {});
+
+    const gameStatus = Object.assign({
+            level: 1,
+            totalExp: 0,
+            currentLevelExp: 0
+        }, $kt.persistence.getGameStatus() || {});
+        
     const gameLevel = new $kt.GameLevel();
     const gameMain = new $kt.GameMain(gameLevel, gameStatus);
     const gamePractice = new $kt.GamePractice(gameLevel);
