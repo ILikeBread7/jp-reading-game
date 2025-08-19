@@ -21,9 +21,6 @@ var $kt = $kt || {};
          */
         start(categoryName, dict) {
             this._dict = dict;
-            // For complex dicts, they will not fully load on gameLevel.askQuestion
-            dict.load();
-
             this._correctAnswersNumber = 0;
             this._categoryLabel = `Practice: ${categoryName}`;
             this._showPracticeData();

@@ -14,6 +14,9 @@ var $kt = $kt || {};
             this._currentQueston = null;
             this._dict = dict;
             this._gaveUp = false;
+
+            // For complex dicts, they will not fully load on gameLevel.askQuestion
+            dict.load();
         }
 
         askFirstQuestion(firstQuestion) {
