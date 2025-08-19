@@ -330,13 +330,17 @@ var $kt = $kt || {};
         /**
          * 
          * @param {string} name 
+         * @param {Promise<[] | undefined>} promise 
          * @param {[] | undefined} data 
          */
-        constructor(name, data) {
+        constructor(name, promise, data) {
             this._name = name;
+            this._promise = promise;
+            
             if (data) {
                 this._data = data;
-                this._promise = Promise.resolve();
+            } else if (promise) {
+                promise.then(data => this._data = data);
             }
         }
 
@@ -370,14 +374,18 @@ var $kt = $kt || {};
         }
 
         filter(filter) {
-            if (!this.isLoaded) {
-                console.error('Cannot filter a not yet loaded dict.');
+            if (this.isLoaded) {
+                return new BaseDict(
+                    this._name,
+                    this._promise,
+                    this._data.filter(filter)
+                );
             }
             
             return new BaseDict(
                 this._name,
-                this._data.filter(filter)
-            )
+                this.load().then(() => this._data.filter(filter))
+            );
         }
 
     }
