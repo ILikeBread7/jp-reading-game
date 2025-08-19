@@ -52,6 +52,9 @@ var $kt = $kt || {};
 
     const REPS_PER_CHAR = 1;
 
+    const HIRAGANA_LEVELS_RANGE = Object.freeze([1, 10]);
+    const KATAKANA_LEVELS_RANGE = Object.freeze([11, 20]);
+
     class KantoreLevels {
 
         static getLevelName(level) {
@@ -93,15 +96,23 @@ var $kt = $kt || {};
         static _getTotalCharsLevelRange(level) {
             // Hiragana
             if (level <=10) {
-                return [1, 10];
+                return HIRAGANA_LEVELS_RANGE;
             }
 
             // Katakana
             if (level <= 20) {
-                return [11, 20];
+                return KATAKANA_LEVELS_RANGE;
             }
 
             return [21, LEVEL_CHARS.length];
+        }
+
+        static get hiraganaLevelsRange() {
+            return HIRAGANA_LEVELS_RANGE;
+        }
+
+        static get katakanaanaLevelsRange() {
+            return KATAKANA_LEVELS_RANGE;
         }
 
     }

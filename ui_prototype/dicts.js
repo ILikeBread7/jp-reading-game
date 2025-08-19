@@ -6,18 +6,26 @@ var $kt = $kt || {};
 
     const NUMBER_OF_LEVELS = $kt.levels.maxLevel;
 
+    const [ HIRAGANA_LEVELS_START, HIRAGANA_LEVELS_END ] = $kt.levels.hiraganaLevelsRange;
+    const [ KATAKANA_LEVELS_START, KATAKANA_LEVELS_END ] = $kt.levels.katakanaanaLevelsRange;
     const LEVELS_CATEGORY = {
         name: 'Levels', entries: (() => {
-            const levels = [ { name: 'All levels', level: NUMBER_OF_LEVELS + 1 } ];
+            const levels = [
+                { name: 'All levels', level: NUMBER_OF_LEVELS + 1 },
+            ];
             for (let level = 1; level <= NUMBER_OF_LEVELS; level++) {
                 levels.push({ name: $kt.levels.getLevelName(level), level });
             }
             return levels;
-        })()
+        })(),
+        complexEntries: [
+            { name: 'All hiragana levels', tag: 'level-hiragana-all', levelStart: HIRAGANA_LEVELS_START, levelEnd: HIRAGANA_LEVELS_END },
+            { name: 'All katakana levels', tag: 'level-katakana-all', levelStart: KATAKANA_LEVELS_START, levelEnd: KATAKANA_LEVELS_END }
+        ]
     }
 
     const INFORMAL = {
-        name: 'Informal', entries: [
+        name: 'Informal expressions', entries: [
             { name: 'Slang', tag: 'sl' },
             { name: 'Manga slang', tag: 'm-sl' },
             { name: 'Internet slang', tag: 'net-sl' },
@@ -77,6 +85,7 @@ var $kt = $kt || {};
     };
 
     const CATEGORIES = [
+        LEVELS_CATEGORY,
         INFORMAL,
         DIALECTS,
         JLPT,
@@ -514,12 +523,26 @@ var $kt = $kt || {};
 
         _createCategoryDicts() {
             CATEGORIES.forEach(category => {
-                category.entries.forEach(({ tag }) => {
+                category.entries.forEach(({ tag, level }) => {
+                    if (level) {
+                        return;
+                    }
+
                     this._dicts.set(tag, new BaseDict(tag));
                 });
 
                 if (category.complexEntries) {
-                    category.complexEntries.forEach(({ tag, tags }) => {
+                    category.complexEntries.forEach(({ tag, tags, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
+                        if (levelStart) {
+                            const levelsSubdicts = [];
+                            for (let level = levelStart; level <= levelEnd; level++) {
+                                levelsSubdicts.push(this.getLevelDict(level));
+                            }
+                            
+                            this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
+                            return;
+                        }
+                        
                         // If there are no tags it's the "All" entry
                         const dictTags = tags || category.entries.map(({ tag }) => tag);
 
@@ -534,7 +557,6 @@ var $kt = $kt || {};
 
             });
 
-            CATEGORIES.unshift(LEVELS_CATEGORY);
             Object.freeze(CATEGORIES);
         }
 
