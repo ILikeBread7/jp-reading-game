@@ -30,9 +30,9 @@ var $kt = $kt || {};
 
     const DIALECTS = {
         name: 'Dialects', entries: [
-            { name: 'Kansai-ben', tag: 'ksb' },
             { name: 'Brazilian', tag: 'bra' },
             { name: 'Hokkaido-ben', tag: 'hob' },
+            { name: 'Kansai-ben', tag: 'ksb' },
             { name: 'Kantou-ben', tag: 'ktb' },
             { name: 'Kyoto-ben', tag: 'kyb' },
             { name: 'Kyuushuu-ben', tag: 'kyu' },
@@ -507,7 +507,7 @@ var $kt = $kt || {};
             }
 
             // Add dict to be used after all levels are finished
-            const finalDict = new ComplexDict(this._levelDicts.toReversed());
+            const finalDict = new ComplexDict(this._shuffle([...this._levelDicts])); // Copying the array to not modify the original
             this._levelDicts.push(finalDict);
             Object.freeze(this._levelDicts);
         }
@@ -524,7 +524,7 @@ var $kt = $kt || {};
                         const dictTags = tags || category.entries.map(({ tag }) => tag);
 
                         this._dicts.set(tag, new ComplexDict(
-                            dictTags.map(tag => this.getCategoryDict(tag))
+                            this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
                         ));
                     });
 
@@ -536,6 +536,23 @@ var $kt = $kt || {};
 
             CATEGORIES.unshift(LEVELS_CATEGORY);
             Object.freeze(CATEGORIES);
+        }
+
+        /**
+         * 
+         * @param {[]} array 
+         * @returns {[]} The same array shuffled in place
+         */
+        _shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const randomIndex = Math.floor(Math.random() * (i + 1));
+                
+                const tmp = array[i];
+                array[i] = array[randomIndex];
+                array[randomIndex] = tmp;
+            }
+
+            return array;
         }
 
     }
