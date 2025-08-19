@@ -163,11 +163,17 @@ var $kt = $kt || {};
         }
 
         static showMenu(menuElement) {
-            const defaultItem = document.getElementById(menuElement.dataset.defaultItem);
             menuElement.classList.remove('hidden');
             [...document.getElementsByClassName('for-' + menuElement.id)]
                 .forEach(element => element.classList.remove('hidden'));
-            $kt.uiHelper.focusDefaultMenuItem(defaultItem);
+            
+            const dataset = menuElement.dataset;
+            let itemToFocus = document.getElementById(dataset.lastUsedItem || dataset.defaultItem);
+            if (!itemToFocus.checkVisibility()) {
+                const defaultItem = document.getElementById(dataset.defaultItem);
+                itemToFocus = defaultItem;
+            }
+            $kt.uiHelper.focusDefaultMenuItem(itemToFocus);
         }
 
         static hideMenu(menuElement) {

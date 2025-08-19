@@ -47,6 +47,14 @@ var $kt = $kt || {};
             ].forEach(element => {
                 element.addEventListener('mouseenter', () => $kt.uiHelper.focusSelectedMenuItem(element));
                 
+                if (element.tagName === 'SELECT') {
+                    element.addEventListener('keypress', event => {
+                        if (event.key === 'Enter') {
+                            element.showPicker();
+                        }
+                    });
+                }
+
                 if (element.type === 'checkbox') {
                     element.addEventListener('keypress', event => {
                         if (event.key === 'Enter') {
@@ -55,18 +63,18 @@ var $kt = $kt || {};
                     });
                 }
 
-                if (element.tagName === 'SELECT') {
-                    element.addEventListener('keypress', event => {
-                        if (event.key === 'Enter') {
-                            element.showPicker();
-                        }
-                    });
-                }
+                const menuElement = this._findParentMenu(element);
+                const elementId = element.id;
+                element.addEventListener('focus', () => menuElement.dataset.lastUsedItem = elementId);
             });
 
             const menuItemPressedListenerCreator = element => element.addEventListener('click', () => $kt.audio.playEffect($kt.audio.tracks[element.dataset.se || 'SE_TEST_2']));
             [...document.getElementsByClassName('menu-button')]
-                .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
+                .forEach(element => {
+                    element.addEventListener('click', menuItemPressedListenerCreator(element));
+                    
+
+                });
             [...document.getElementsByClassName('menu-checkbox')]
                 .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
             [...document.getElementsByClassName('menu-destination-button')]
