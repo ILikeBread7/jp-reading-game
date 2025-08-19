@@ -663,7 +663,7 @@ body:not(.game) .game-only {
 
 #title-press-start-text {
     position: absolute;
-    top: calc(50% + 4em);
+    top: calc(50% + 4.5em);
     width: 100%;
 }
 
@@ -759,9 +759,17 @@ body:not(.game) .game-only {
     }
 }
 
-#credits {
+.scrollable {
     max-height: 40vh;
     overflow-y: scroll;
+    padding: 0.7em;
+}
+
+#credits {
+    padding: 0;
+}
+
+#credits {
     white-space: pre-line;
 }
 
@@ -840,17 +848,25 @@ body:not(.game) .game-only {
 }
 
 @media (max-height: 525px) {
-    #credits-container {
+    .scrollable-container {
         margin-top: 10vh;
+    }
+
+    #pre-title-press-start-text {
+        top: calc(50% + 2em);
     }
 }
 
-@media (max-height: 360px) {
+@media (max-height: 400px) {
+    .scrollable-container {
+        margin-top: 15vh;
+    }
+
     #main-menu {
-        margin-top: 5vh;
+        margin-top: 10vh;
     }
 
     #title-press-start-text {
-        top: calc(50% + 5em);
+        top: calc(50% + 6.5em);
     }
 }
