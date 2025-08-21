@@ -107,18 +107,20 @@ var $kt = $kt || {};
          */
         static practiceData(levelName, totalCorrectAnswers) {
             return /*html*/`
-                <div id="level-name">
-                    ${levelName}
+                <div id="practice-data-container">
+                    <div id="level-name">
+                        ${levelName}
+                    </div>
+                    <div id="level-total-exp">
+                        Total correct answers: ${totalCorrectAnswers}
+                    </div>
+                    ${
+                        KT._tif(totalCorrectAnswers > 0) && /*html*/
+                        `<div class="fade-in-out">
+                            Correct answer!
+                        </div>`
+                    }
                 </div>
-                <div id="level-total-exp">
-                    Total correct answers: ${totalCorrectAnswers}
-                </div>
-                ${
-                    KT._tif(totalCorrectAnswers > 0) && /*html*/
-                    `<div class="fade-in-out">
-                        Correct answer!
-                    </div>`
-                }
             `;
         }
 

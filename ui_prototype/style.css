@@ -765,6 +765,10 @@ body:not(.game) .game-only {
     padding: 0.7em;
 }
 
+#practice-data-container {
+    text-align: right;
+}
+
 #credits {
     padding: 0;
 }

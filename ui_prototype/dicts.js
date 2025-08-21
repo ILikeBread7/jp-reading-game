@@ -24,18 +24,6 @@ var $kt = $kt || {};
         ]
     }
 
-    const INFORMAL = {
-        name: 'Informal expressions', entries: [
-            { name: 'Slang', tag: 'sl' },
-            { name: 'Manga slang', tag: 'm-sl' },
-            { name: 'Internet slang', tag: 'net-sl' },
-            { name: 'Vulgar', tag: 'vulg' }
-        ],
-        complexEntries: [
-            { name: 'All informal expressions', tag: 'informal-all' }
-        ]
-    };
-
     const DIALECTS = {
         name: 'Dialects', entries: [
             { name: 'Brazilian', tag: 'bra' },
@@ -75,21 +63,339 @@ var $kt = $kt || {};
         ]
     };
 
-    const OTHER = {
-        name: 'Other', entries: [
-            { name: 'Idiomatic expression', tag: 'id' },
-            { name: 'Proverb', tag: 'proverb' },
+    const MEDICINE = {
+        name: 'Medicine', entries: [
+            { name: 'Anatomy', tag: 'anat' },
+            { name: 'Embryology', tag: 'embryo' },
+            { name: 'Dentistry', tag: 'dent' },
+            { name: 'Biochemistry', tag: 'biochem' },
+            { name: 'Genetics', tag: 'genet' },
+            { name: 'Medicine', tag: 'med' },
+            { name: 'Pathology', tag: 'pathol' },
+            { name: 'Pharmacology', tag: 'pharm' },
+            { name: 'Physiology', tag: 'physiol' },
+            { name: 'Psychiatry', tag: 'psy' },
+            { name: 'Psychoanalysis', tag: 'psyanal' },
+            { name: 'Psychology', tag: 'psych' },
+            { name: 'Surgery', tag: 'surg' },
+            { name: 'Veterinary terms', tag: 'vet' }
+        ],
+        complexEntries: [
+            { name: 'All medical terms', tag: 'medicine-all' }
+        ]
+    };
+
+    const SCIENCE = {
+        name: 'Science', entries: [
+            { name: 'Physics', tag: 'physics' },
+            { name: 'Archeology', tag: 'archeol' },
+            { name: 'Astronomy', tag: 'astron' },
+            { name: 'Agriculture', tag: 'agric' },
+            { name: 'Botany', tag: 'bot' },
+            { name: 'Chemistry', tag: 'chem' },
+            { name: 'Biology', tag: 'biol' },
+            { name: 'Crystallography', tag: 'cryst' },
+            { name: 'Ecology', tag: 'ecol' },
+            { name: 'Entomology', tag: 'ent' },
+            { name: 'Geography', tag: 'geogr' },
+            { name: 'Geology', tag: 'geol' },
+            { name: 'Meteorology', tag: 'met' },
+            { name: 'Mineralogy', tag: 'min' },
+            { name: 'Ornithology', tag: 'ornith' },
+            { name: 'Paleontology', tag: 'paleo' },
+            { name: 'Zoology', tag: 'zool' }
+        ],
+        complexEntries: [
+            { name: 'All scientific terms', tag: 'science-all' }
+        ]
+    };
+
+    const MATHEMATICS = {
+        name: 'Mathematics', entries: [
+            { name: 'Geometry', tag: 'geom' },
+            { name: 'Logic', tag: 'logic' },
+            { name: 'Mathematics', tag: 'math' },
+            { name: 'Statistics', tag: 'stat' }
+        ],
+        complexEntries: [
+            { name: 'All mathematical terms', tag: 'mathematics-all' }
+        ]
+    };
+
+    const ENGINEERING_AND_INDUSTRY = {
+        name: 'Engineering and Industry', entries: [
+            { name: 'Architecture', tag: 'archit' },
+            { name: 'Civil engineering', tag: 'civeng' },
+            { name: 'Computing', tag: 'comp' },
+            { name: 'Electricity, elec. eng.', tag: 'elec' },
+            { name: 'Electronics', tag: 'electr' },
+            { name: 'Engineering', tag: 'engr' },
+            { name: 'Internet', tag: 'internet' },
+            { name: 'Mechanical engineering', tag: 'mech' },
+            { name: 'Mining', tag: 'mining' },
+            { name: 'Printing', tag: 'print' },
+            { name: 'Railway', tag: 'rail' },
+            { name: 'Telecommunications', tag: 'telec' },
+            { name: 'Clothing', tag: 'cloth' }
+        ],
+        complexEntries: [
+            { name: 'All engineering and industry terms', tag: 'eng-ind-all' }
+        ]
+    };
+
+    const SOCIETY = {
+        name: 'Society', entries: [
+            { name: 'Law', tag: 'law' },
+            { name: 'Politics', tag: 'politics' },
+            { name: 'Philosophy', tag: 'phil' },
+            { name: 'Stock market', tag: 'stockm' }
+        ],
+        complexEntries: [
+            { name: 'All societal terms', tag: 'society-all' }
+        ]
+    };
+
+    const MILITARY_AND_AVIATION = {
+        name: 'Military and Aviation', entries: [
+            { name: 'Military', tag: 'mil' },
+            { name: 'Aviation', tag: 'aviat' }
+        ],
+        complexEntries: [
+            { name: 'All military and aviation terms', tag: 'mil-av-all' }
+        ]
+    };
+
+    const LINGUISTICS = {
+        name: 'Linguistics', entries: [
+            { name: 'Grammar', tag: 'gramm' },
+            { name: 'Linguistics', tag: 'ling' }
+        ],
+        complexEntries: [
+            { name: 'All linguistic terms', tag: 'linguistics-all' }
+        ]
+    };
+
+    const ARTS = {
+        name: 'Arts', entries: [
+            { name: 'Art, aesthetics', tag: 'art' },
+            { name: 'Audiovisual', tag: 'audvid' },
+            { name: 'Film', tag: 'film' },
+            { name: 'Kabuki', tag: 'kabuki' },
+            { name: 'Manga', tag: 'manga' },
+            { name: 'Music', tag: 'music' },
+            { name: 'Noh', tag: 'noh' },
+            { name: 'Photography', tag: 'photo' },
+            { name: 'Television', tag: 'tv' }
+        ],
+        complexEntries: [
+            { name: 'All artistic terms', tag: 'art-all' }
+        ]
+    };
+
+    const HOBBIES = {
+        name: 'Hobbies', entries: [
+            { name: 'Fishing', tag: 'fish' },
+            { name: 'Gardening, horticulture', tag: 'gardn' },
+            { name: 'Food, cooking', tag: 'food' }
+        ],
+        complexEntries: [
+            { name: 'All hobby terms', tag: 'hobby-all' }
+        ]
+    };
+
+    const SPORTS = {
+        name: 'Sports', entries: [
+            { name: 'Baseball', tag: 'baseb' },
+            { name: 'Boxing', tag: 'boxing' },
+            { name: 'Figure skating', tag: 'figskt' },
+            { name: 'Golf', tag: 'golf' },
+            { name: 'Horse racing', tag: 'horse' },
+            { name: 'Martial arts', tag: 'MA' },
+            { name: 'Motorsport', tag: 'motor' },
+            { name: 'Professional wrestling', tag: 'prowres' },
+            { name: 'Skiing', tag: 'ski' },
+            { name: 'Sports', tag: 'sports' },
+            { name: 'Sumo', tag: 'sumo' }
+        ],
+        complexEntries: [
+            { name: 'All sports terms', tag: 'sports-all' }
+        ]
+    };
+
+    const GAMES = {
+        name: 'Games', entries: [
+            { name: 'Mahjong', tag: 'mahj' },
+            { name: 'Card games', tag: 'cards' },
+            { name: 'Go (game)', tag: 'go' },
+            { name: 'Hanafuda', tag: 'hanaf' },
+            { name: 'Shogi', tag: 'shogi' },
+            { name: 'Video games', tag: 'vidg' }
+        ],
+        complexEntries: [
+            { name: 'All game terms', tag: 'game-all' }
+        ]
+    };
+
+    const RELIGION_AND_MYTHS = {
+        name: 'Religion and Myths', entries: [
+            { name: 'Buddhism', tag: 'Buddh' },
+            { name: 'Chinese mythology', tag: 'chmyth' },
+            { name: 'Christianity', tag: 'Christn' },
+            { name: 'Greek mythology', tag: 'grmyth' },
+            { name: 'Japanese mythology', tag: 'jpmyth' },
+            { name: 'Roman mythology', tag: 'rommyth' },
+            { name: 'Shinto', tag: 'Shinto' },
+            { name: 'Deity', tag: 'dei' },
+            { name: 'Legend', tag: 'leg' },
+            { name: 'Mythology', tag: 'myth' },
+            { name: 'Religion', tag: 'relig' }
+        ],
+        complexEntries: [
+            { name: 'All religious and mythical terms', tag: 'reg-myth-all' }
+        ]
+    };
+
+    const ECONOMICS = {
+        name: 'Economics', entries: [
+            { name: 'Business', tag: 'bus' },
+            { name: 'Economics', tag: 'econ' },
+            { name: 'Finance', tag: 'finc' }
+        ],
+        complexEntries: [
+            { name: 'All economy terms', tag: 'economics-all' }
+        ]
+    };
+
+    const PEOPLE_PLACES_AND_NAMES = {
+        name: 'People, places and names', entries: [
+            { name: 'Given name or forename', tag: 'given' },
+            { name: 'Company name', tag: 'company' },
+            { name: 'Organization name', tag: 'organization' },
+            { name: 'Full name of a particular person', tag: 'person' },
+            { name: 'Place name', tag: 'place' },
+            { name: 'Railway station', tag: 'station' },
+            { name: 'Family or surname', tag: 'surname' }
+        ],
+        complexEntries: [
+            { name: 'All people and place names', tag: 'people-places-all' }
+        ]
+    };
+
+    const PROPER_NAMES = {
+        name: 'Proper names', entries: [
+            { name: 'Trademark', tag: 'tradem' },
+            { name: 'Character', tag: 'char' },
+            { name: 'Creature', tag: 'creat' },
+            { name: 'Document', tag: 'doc' },
+            { name: 'Event', tag: 'ev' },
+            { name: 'Fiction', tag: 'fict' },
+            { name: 'Group', tag: 'group' },
+            { name: 'Object', tag: 'obj' },
+            { name: 'Product name', tag: 'product' },
+            { name: 'Service', tag: 'serv' },
+            { name: 'Ship name', tag: 'ship' },
+            { name: 'Unclassified name', tag: 'unclass' },
+            { name: 'Work of art, literature, music, etc.', tag: 'work' }
+        ],
+        complexEntries: [
+            { name: 'All proper names', tag: 'proper-names-all' }
+        ]
+    };
+
+    const OLD_AND_RARE_LANGUAGE = {
+        name: 'Old and rare language', entries: [
             { name: 'Archaic', tag: 'arch' },
-            { name: 'Ateji', tag: 'ateji' }
+            { name: 'Dated term', tag: 'dated' },
+            { name: 'Historical term', tag: 'hist' },
+            { name: 'Obsolete term', tag: 'obs' },
+            { name: 'Rare term', tag: 'rare' }
+        ],
+        complexEntries: [
+            { name: 'All old and rare terms', tag: 'old-rare-all' }
+        ]
+    };
+
+    const INFORMAL_LANGUAGE = {
+        name: 'Informal language', entries: [
+            { name: "Children's language", tag: 'chn' },
+            { name: 'Colloquial', tag: 'col' },
+            { name: 'Derogatory', tag: 'derog' },
+            { name: 'Familiar language', tag: 'fam' },
+            { name: 'Female term or language', tag: 'fem' },
+            { name: 'Jocular, humorous term', tag: 'joc' },
+            { name: 'Manga slang', tag: 'm-sl' },
+            { name: 'Male term or language', tag: 'male' },
+            { name: 'Internet slang', tag: 'net-sl' },
+            { name: 'Sensitive', tag: 'sens' },
+            { name: 'Slang', tag: 'sl' },
+            { name: 'Vulgar expression or word', tag: 'vulg' }
+        ],
+        complexEntries: [
+            { name: 'All informal expressions', tag: 'informal-all' }
+        ]
+    };
+
+    const FORMAL_AND_LITERARY_LANGUAGE = {
+        name: 'Formal and literary language', entries: [
+            { name: 'Formal or literary term', tag: 'form' },
+            { name: 'Honorific or respectful (sonkeigo) language', tag: 'hon' },
+            { name: 'Humble (kenjougo) language', tag: 'hum' },
+            { name: 'Poetical term', tag: 'poet' },
+            { name: 'Polite (teineigo) language', tag: 'pol' }
+        ],
+        complexEntries: [
+            { name: 'All formal expressions', tag: 'formal-all' }
+        ]
+    };
+
+    const EXPRESSIONS = {
+        name: 'Expressions', entries: [
+            { name: 'Ateji', tag: 'ateji' },
+            { name: 'Euphemistic', tag: 'euph' },
+            { name: 'Abbreviation', tag: 'abbr' },
+            { name: 'Idiomatic expression', tag: 'id' },
+            { name: 'Onomatopoeic or mimetic word', tag: 'on-mim' },
+            { name: 'Proverb', tag: 'proverb' },
+            { name: 'Quotation', tag: 'quote' },
+            { name: 'Yojijukugo', tag: 'yoji' },
+            { name: 'Word usually written using kana alone', tag: 'uk' }
+        ],
+        complexEntries: [
+            { name: 'All expressions', tag: 'expressions-all' }
         ]
     };
 
     const CATEGORIES = [
+        // General language
         LEVELS_CATEGORY,
-        INFORMAL,
+        INFORMAL_LANGUAGE,
+        FORMAL_AND_LITERARY_LANGUAGE,
         DIALECTS,
+        PEOPLE_PLACES_AND_NAMES,
+        PROPER_NAMES,
+        OLD_AND_RARE_LANGUAGE,
+        EXPRESSIONS,
         JLPT,
-        OTHER
+
+        // Fun
+        HOBBIES,
+        GAMES,
+        SPORTS,
+
+        // Humanities
+        SOCIETY,
+        ARTS,
+        LINGUISTICS,
+        RELIGION_AND_MYTHS,
+        ECONOMICS,
+
+        // Science and engineering
+        SCIENCE,
+        MEDICINE,
+        MATHEMATICS,
+        ENGINEERING_AND_INDUSTRY,
+        MILITARY_AND_AVIATION,
+
     ];
 
     const CATEGORY_TAGS = [
