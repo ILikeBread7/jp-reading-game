@@ -100,15 +100,26 @@ var $kt = $kt || {};
 
             container.insertAdjacentHTML(
                 'beforeend',
-                $kt.templates.categoriesMenu(categories)
+                $kt.templates.generalCategoriesMenu(categories)
             );
 
             container.insertAdjacentHTML(
                 'beforeend',
                 categories
-                    .map($kt.templates.categoryMenu)
+                    .map($kt.templates.categoriesMenu)
                     .join('')
             );
+
+            categories.forEach(generalCategory => {
+                const categories = generalCategory.entries;
+
+                container.insertAdjacentHTML(
+                    'beforeend',
+                    categories
+                        .map(category => $kt.templates.categoryMenu(generalCategory, category))
+                        .join('')
+                );
+            });
 
             [...this._titleScene.getElementsByClassName('category-entry-button')]
                 .forEach(button => button.addEventListener('click', () => {

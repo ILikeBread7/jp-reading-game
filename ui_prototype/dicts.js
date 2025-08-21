@@ -366,36 +366,48 @@ var $kt = $kt || {};
     };
 
     const CATEGORIES = [
-        // General language
-        LEVELS_CATEGORY,
-        INFORMAL_LANGUAGE,
-        FORMAL_AND_LITERARY_LANGUAGE,
-        DIALECTS,
-        PEOPLE_PLACES_AND_NAMES,
-        PROPER_NAMES,
-        OLD_AND_RARE_LANGUAGE,
-        EXPRESSIONS,
-        JLPT,
-
-        // Fun
-        HOBBIES,
-        GAMES,
-        SPORTS,
-
-        // Humanities
-        SOCIETY,
-        ARTS,
-        LINGUISTICS,
-        RELIGION_AND_MYTHS,
-        ECONOMICS,
-
-        // Science and engineering
-        SCIENCE,
-        MEDICINE,
-        MATHEMATICS,
-        ENGINEERING_AND_INDUSTRY,
-        MILITARY_AND_AVIATION,
-
+        {
+            name: 'General language',
+            entries: [
+                LEVELS_CATEGORY,
+                INFORMAL_LANGUAGE,
+                FORMAL_AND_LITERARY_LANGUAGE,
+                DIALECTS,
+                PEOPLE_PLACES_AND_NAMES,
+                PROPER_NAMES,
+                OLD_AND_RARE_LANGUAGE,
+                EXPRESSIONS,
+                JLPT
+            ]
+        },
+        {
+            name: 'Sports, games and hobbies',
+            entries: [
+                SPORTS,
+                GAMES,
+                HOBBIES
+            ]
+        },
+        {
+            name: 'Humanities',
+            entries: [
+                SOCIETY,
+                ARTS,
+                LINGUISTICS,
+                RELIGION_AND_MYTHS,
+                ECONOMICS
+            ]
+        },
+        {
+            name: 'Science, Engineering and Industry',
+            entries: [
+                SCIENCE,
+                MEDICINE,
+                MATHEMATICS,
+                ENGINEERING_AND_INDUSTRY,
+                MILITARY_AND_AVIATION
+            ]
+        }
     ];
 
     const CATEGORY_TAGS = [
@@ -828,44 +840,46 @@ var $kt = $kt || {};
         }
 
         _createCategoryDicts() {
-            CATEGORIES.forEach(category => {
-                category.entries.forEach(({ tag, level }) => {
-                    if (level) {
-                        return;
-                    }
-
-                    this._dicts.set(tag, new BaseDict(tag));
-                });
-
-                if (category.complexEntries) {
-                    category.complexEntries.forEach(({ tag, tags }) => {
-                        // If there are no tags it's the "All" entry
-                        const dictTags = tags || category.entries.map(({ tag }) => tag);
-
-                        this._dicts.set(tag, new ComplexDict(
-                            this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
-                        ));
-                    });
-
-                    category.entries.unshift(...category.complexEntries);
-                    delete category.complexEntries;
-                }
-
-                if (category.complexLevelEntries) {
-                    category.complexLevelEntries.forEach(({ tag, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
-                        
-                        const levelsSubdicts = [];
-                        for (let level = levelStart; level <= levelEnd; level++) {
-                            levelsSubdicts.push(this.getLevelDict(level));
+            CATEGORIES.forEach(generalCategory => {
+                generalCategory.entries.forEach(category => {
+                    category.entries.forEach(({ tag, level }) => {
+                        if (level) {
+                            return;
                         }
 
-                        this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
+                        this._dicts.set(tag, new BaseDict(tag));
                     });
 
-                    category.entries.unshift(...category.complexLevelEntries);
-                    delete category.complexLevelEntries;
-                }
-            });
+                    if (category.complexEntries) {
+                        category.complexEntries.forEach(({ tag, tags }) => {
+                            // If there are no tags it's the "All" entry
+                            const dictTags = tags || category.entries.map(({ tag }) => tag);
+
+                            this._dicts.set(tag, new ComplexDict(
+                                this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
+                            ));
+                        });
+
+                        category.entries.unshift(...category.complexEntries);
+                        delete category.complexEntries;
+                    }
+
+                    if (category.complexLevelEntries) {
+                        category.complexLevelEntries.forEach(({ tag, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
+                            
+                            const levelsSubdicts = [];
+                            for (let level = levelStart; level <= levelEnd; level++) {
+                                levelsSubdicts.push(this.getLevelDict(level));
+                            }
+
+                            this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
+                        });
+
+                        category.entries.unshift(...category.complexLevelEntries);
+                        delete category.complexLevelEntries;
+                    }
+                });
+            })
 
             Object.freeze(CATEGORIES);
         }

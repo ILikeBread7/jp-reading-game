@@ -161,34 +161,57 @@ var $kt = $kt || {};
             `;
         }
 
-        static categoriesMenu(categories) {
+        static generalCategoriesMenu(categories) {
             const firstButtonCssName = KT._cssName(categories[0].name);
-            const firstButtonId = `category-${firstButtonCssName}-button`;
+            const firstButtonId = `categories-${firstButtonCssName}-button`;
 
             return /*html*/`
-                <div class="centered menu hidden scrollable scrollable-container" id="categories-container" data-default-item="${firstButtonId}" data-go-back-button="categories-back-button">
-                    ${categories.map(KT._categoryButton).join('')}
-                    <button class="menu-item menu-button menu-destination-button" id="categories-back-button" data-se="SE_TEST_2_LOW" data-destination="main-menu">Go back</button>
+                <div class="centered menu hidden scrollable scrollable-container" id="general-categories-container" data-default-item="${firstButtonId}" data-go-back-button="general-categories-back-button">
+                    ${categories.map(KT._generalCategoryButton).join('')}
+                    <button class="menu-item menu-button menu-destination-button" id="general-categories-back-button" data-se="SE_TEST_2_LOW" data-destination="main-menu">Go back</button>
                 </div>
             `;
         }
 
-        static _categoryButton(category) {
-            const categoryCssName = KT._cssName(category.name);
+        static _generalCategoryButton(generalCategory) {
+            const categoryCssName = KT._cssName(generalCategory.name);
             return /*html*/`
-                <button class="menu-item menu-button menu-destination-button" id="category-${categoryCssName}-button" data-destination="category-${categoryCssName}-container">${category.name}</button>
+                <button class="menu-item menu-button menu-destination-button" id="categories-${categoryCssName}-button" data-destination="categories-${categoryCssName}-container">${generalCategory.name}</button>
             `;
         }
 
-        static categoryMenu(category) {
+        static categoriesMenu(generalCategory) {
+            const categories = generalCategory.entries;
+            const categoryCssName = KT._cssName(generalCategory.name);
+            const firstButtonCssName = KT._cssName(categories[0].name);
+            const firstButtonId = `category-${categoryCssName}-${firstButtonCssName}-button`;
+
+            return /*html*/`
+                <div class="centered menu hidden scrollable scrollable-container" id="categories-${categoryCssName}-container" data-default-item="${firstButtonId}" data-go-back-button="categories-${categoryCssName}-back-button">
+                    ${categories.map(KT._categoryButton.bind(KT, categoryCssName)).join('')}
+                    <button class="menu-item menu-button menu-destination-button" id="categories-${categoryCssName}-back-button" data-se="SE_TEST_2_LOW" data-destination="general-categories-container">Go back</button>
+                </div>
+            `;
+        }
+
+        static _categoryButton(categoryCssName, category) {
+            const buttonCssName = KT._cssName(category.name);
+            
+            return /*html*/`
+                <button class="menu-item menu-button menu-destination-button" id="category-${categoryCssName}-${buttonCssName}-button" data-destination="category-${categoryCssName}-${buttonCssName}-container">${category.name}</button>
+            `;
+        }
+
+        static categoryMenu(generalCategory, category) {
+            const generalCategoryCssName = KT._cssName(generalCategory.name);
             const categoryCssName = KT._cssName(category.name);
             const firstButtonCssName = KT._cssName(category.entries[0].name);
             const firstButtonId = `category-${categoryCssName}-${firstButtonCssName}-button`;
 
             return /*html*/`
-                <div class="centered menu hidden scrollable scrollable-container" id="category-${categoryCssName}-container" data-default-item="${firstButtonId}" data-go-back-button="category-${categoryCssName}-back-button">
+                <div class="centered menu hidden scrollable scrollable-container" id="category-${generalCategoryCssName}-${categoryCssName}-container" data-default-item="${firstButtonId}" data-go-back-button="category-${generalCategoryCssName}-${categoryCssName}-back-button">
                     ${category.entries.map(KT._categoryEntryButton.bind(KT, categoryCssName)).join('')}
-                    <button class="menu-item menu-button menu-destination-button" id="category-${categoryCssName}-back-button" data-se="SE_TEST_2_LOW" data-destination="categories-container">Go back</button>
+                    <button class="menu-item menu-button menu-destination-button" id="category-${generalCategoryCssName}-${categoryCssName}-back-button" data-se="SE_TEST_2_LOW" data-destination="categories-${generalCategoryCssName}-container">Go back</button>
                 </div>
             `;
         }
