@@ -18,7 +18,7 @@ var $kt = $kt || {};
             }
             return levels;
         })(),
-        complexEntries: [
+        complexLevelEntries: [
             { name: 'All hiragana levels', tag: 'level-hiragana-all', levelStart: HIRAGANA_LEVELS_START, levelEnd: HIRAGANA_LEVELS_END },
             { name: 'All katakana levels', tag: 'level-katakana-all', levelStart: KATAKANA_LEVELS_START, levelEnd: KATAKANA_LEVELS_END }
         ]
@@ -532,17 +532,7 @@ var $kt = $kt || {};
                 });
 
                 if (category.complexEntries) {
-                    category.complexEntries.forEach(({ tag, tags, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
-                        if (levelStart) {
-                            const levelsSubdicts = [];
-                            for (let level = levelStart; level <= levelEnd; level++) {
-                                levelsSubdicts.push(this.getLevelDict(level));
-                            }
-                            
-                            this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
-                            return;
-                        }
-                        
+                    category.complexEntries.forEach(({ tag, tags }) => {
                         // If there are no tags it's the "All" entry
                         const dictTags = tags || category.entries.map(({ tag }) => tag);
 
@@ -555,6 +545,20 @@ var $kt = $kt || {};
                     delete category.complexEntries;
                 }
 
+                if (category.complexLevelEntries) {
+                    category.complexLevelEntries.forEach(({ tag, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
+                        
+                        const levelsSubdicts = [];
+                        for (let level = levelStart; level <= levelEnd; level++) {
+                            levelsSubdicts.push(this.getLevelDict(level));
+                        }
+
+                        this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
+                    });
+
+                    category.entries.unshift(...category.complexLevelEntries);
+                    delete category.complexLevelEntries;
+                }
             });
 
             Object.freeze(CATEGORIES);
