@@ -199,7 +199,7 @@ var $kt = $kt || {};
             $kt.persistence.removeGameQuestion();
             this._setupNewLevel();
             const hintAdded = $kt.gameUi.addNewHint();
-            $kt.gameUi.showLevelUp(hintAdded);
+            $kt.gameUi.showLevelUp(this._gameStatus.level, hintAdded);
         }
 
         _setupNewLevel() {

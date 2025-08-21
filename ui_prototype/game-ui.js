@@ -133,9 +133,10 @@ var $kt = $kt || {};
         }
 
         /**
+         * @param {number} newLevel 
          * @param {boolean} showHint true if hint should be shown, false otherwise
          */
-        showLevelUp(showHint) {
+        showLevelUp(newLevel, showHint) {
             this._isShowingHintOnly = false;
 
             $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
@@ -154,6 +155,8 @@ var $kt = $kt || {};
 
             this._fadeLevelUpTextToLevelUpHint(showHint, '0.35s', `${totalTextTransitionTime}s`);
             this._answerInput.blur();
+
+            this._dispatchEvent(this._eventNames.LEVEL_UP_BEFORE, { newLevel });
         }
 
         /**
@@ -370,7 +373,8 @@ var $kt = $kt || {};
             this._eventNames = Object.freeze({
                 START: 'start',
                 ANSWER: 'answer',
-                LEVEL_UP: 'levelUp',
+                LEVEL_UP_BEFORE: 'levelUpBefore',
+                LEVEL_UP_AFTER: 'levelUpAfter',
                 BACK_TO_TITLE: 'backToTitle'
             });
         }
@@ -615,7 +619,7 @@ var $kt = $kt || {};
             });
 
             if (!this._isShowingHintOnly) {
-                this._dispatchEvent(this._eventNames.LEVEL_UP);
+                this._dispatchEvent(this._eventNames.LEVEL_UP_AFTER);
             }
 
             this.focusAnswerInput();

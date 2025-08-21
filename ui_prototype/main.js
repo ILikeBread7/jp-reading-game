@@ -8,7 +8,8 @@ var $kt = $kt || {};
     const events = $kt.gameUi.events;
 
     const flags = Object.assign({
-            levelOneHintShown: false
+            showHintOnGameStart: true,
+            maxLevelFinished: false
         }, $kt.persistence.getFlags() || {});
 
     const gameStatus = Object.assign({
@@ -16,7 +17,15 @@ var $kt = $kt || {};
             totalExp: 0,
             currentLevelExp: 0
         }, $kt.persistence.getGameStatus() || {});
-        
+
+    // If there were new levels added in an update
+    // since the player last played and finished the game
+    if (flags.maxLevelFinished && gameStatus.level <= $kt.levels.maxLevel) {
+        $kt.persistence.removeGameQuestion();
+        flags.maxLevelFinished = false;
+        $kt.persistence.setFlags(flags);
+    }
+
     const gameLevel = new $kt.GameLevel();
     const gameMain = new $kt.GameMain(gameLevel, gameStatus);
     const gamePractice = new $kt.GamePractice(gameLevel);
@@ -36,11 +45,11 @@ var $kt = $kt || {};
                 $kt.gameUi.setupLevelHints(gameStatus.level);
                 gameMain.start();
 
-                if (!flags.levelOneHintShown) {
+                if (flags.showHintOnGameStart) {
                     // Needs the timeout to work
                     setTimeout(() => {
                         $kt.gameUi.showHint();
-                        flags.levelOneHintShown = true;
+                        flags.showHintOnGameStart = false;
                         $kt.persistence.setFlags(flags);
                     }, 0);
                 }
@@ -59,8 +68,19 @@ var $kt = $kt || {};
         game.answer(answer);
     });
 
-    events.addEventListener(EVENTS.LEVEL_UP, () => {
+    events.addEventListener(EVENTS.LEVEL_UP_BEFORE, event => {
+        const newLevel = event.detail.newLevel;
+        if (newLevel > $kt.levels.maxLevel) {
+            flags.maxLevelFinished = true;
+        }
+        flags.showHintOnGameStart = true;
+        $kt.persistence.setFlags(flags);
+    });
+
+    events.addEventListener(EVENTS.LEVEL_UP_AFTER, () => {
         game.startNewLevel();
+        flags.showHintOnGameStart = false;
+        $kt.persistence.setFlags(flags);
     });
 
     events.addEventListener(EVENTS.BACK_TO_TITLE, () => {
