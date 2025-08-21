@@ -361,15 +361,12 @@ const GLOSS_TYPES = new Map([
     [ 'tm', 'Trademark' ]
 ]);
 
-// This is specifically for ent_seq: 1137670, ラーゲ
-const VULG_GLOSSES = new Set([ 'sex position' ]);
-
 const VULG_MISC_TEXTS = new Set([
-    TERMS_TEXT_BY_CODE.get('vulg').text,
-    TERMS_TEXT_BY_CODE.get('sens').text
+    TERMS_TEXT_BY_CODE.get('vulg').text
 ]);
 
-const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo', 'erotic' ];
+const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo', 'erotic', 'Judaism', 'sex position' ];
+const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([ TERMS_TEXT_BY_CODE.get('sens').text ]);
 
 const TERMS_TEXT_BY_TEXT = new Map();
 TERMS_TEXT_BY_CODE.forEach((value, key) => TERMS_TEXT_BY_TEXT.set(value.text, { code: value.code, text: value.text }));
@@ -559,18 +556,16 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                     newEntry.kanji = kanji.keb;
                 }
                 newEntry.kana = kana.reb;
-                newEntry.sense = filteredSenses;
+                newEntry.sense = filteredSenses.map(sense => sense.sense);
+                originalEntry.misc = filteredSenses
+                    .map(sense => sense.originalMisc)
+                    .filter(Boolean);
                 
                 const filterVulgarSensesFunc = sense => {
-                    return !VULG_MISC_TEXTS.isDisjointFrom(new Set(sense.misc || [])) || sense.gloss.some(gloss => {
-                        const glossText = typeof gloss === 'string'
-                            ? gloss
-                            : gloss.value;
-                        return VULG_GLOSSES.has(glossText);
-                     });
+                    return !VULG_MISC_TEXTS.isDisjointFrom(new Set(sense.misc || []));
                 };
 
-                const vulgarSenses = filteredSenses
+                const vulgarSenses = newEntry.sense
                     .filter(filterVulgarSensesFunc);
 
                 if (vulgarSenses.length > 0) {
@@ -582,11 +577,11 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                         vulgarEntriesMap.set(kanji.keb, [...(vulgarEntriesMap.get(kanji.keb) || []), vulgarEntry]);
                     }
 
-                    if (vulgarSenses.length === filteredSenses.length) {
+                    if (vulgarSenses.length === newEntry.sense.length) {
                         return;
                     }
 
-                    newEntry.sense = filteredSenses
+                    newEntry.sense = newEntry.sense
                         .filter(sense => !filterVulgarSensesFunc(sense));
                 }
 
@@ -694,7 +689,7 @@ function mapSense(sense) {
         result.dial = elementToArray(sense.dial);
     }
 
-    return result;
+    return { sense: result, originalMisc: sense.misc && elementToArray(sense.misc) };
 }
 
 function createUniqueHint(entry, entriesMap) {
@@ -828,14 +823,9 @@ function createJLPTVocabTags(entry, originalEntry) {
 
 function createCategoryTags(entry, originalEntry) {
     const result = [];
-    const misc = entry.sense.flatMap(sense => sense.misc);
 
-    [
-        'idiomatic expression', 'proverb', 'archaic',
-        'slang', 'manga slang', 'Internet slang'
-    ]
-        .filter(tagText => misc.includes(tagText))
-        .map(tagText => TERMS_TEXT_BY_TEXT.get(tagText).code)
+    originalEntry.misc.flatMap(miscs => miscs)
+        .map(misc => TERMS_TEXT_BY_TEXT.get(misc).code)
         .forEach(tag => {
             if (!result.includes(tag)) {
                 result.push(tag);
@@ -940,16 +930,21 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
 }
 
 function isLevelEntryToBeFilteredOut(entry) {
-    return entry.sense.flatMap(sense => sense.gloss).some(
-        entryGloss => 
-            FILTER_OUT_LEVEL_ENTRY_GLOSSES
-                .some(
-                    filterOutGloss => (
-                        typeof entryGloss === 'string'
-                            ? entryGloss
-                            : entryGloss.value
-                        ).includes(filterOutGloss)
-                )
+    return (
+            entry.misc
+            && entry.misc.flatMap(miscs => miscs)
+                .some(misc => FILTER_OUT_LEVEL_ENTRY_MISCS.has(misc))
+        )
+        || entry.sense.flatMap(sense => sense.gloss).some(
+            entryGloss => 
+                FILTER_OUT_LEVEL_ENTRY_GLOSSES
+                    .some(
+                        filterOutGloss => (
+                            typeof entryGloss === 'string'
+                                ? entryGloss
+                                : entryGloss.value
+                            ).includes(filterOutGloss)
+                    )
     );
 }
 
