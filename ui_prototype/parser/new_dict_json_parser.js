@@ -361,9 +361,14 @@ const GLOSS_TYPES = new Map([
     [ 'tm', 'Trademark' ]
 ]);
 
-const VULG_MISC_TEXTS = new Set([
-    TERMS_TEXT_BY_CODE.get('vulg').text
+const CENSORED_MISC_TAGS = new Set([
+    'vulg', 'sens', 'derog'
 ]);
+
+const CENSORED_MISC_TEXTS = new Set(
+    [...CENSORED_MISC_TAGS]
+        .map(tag => TERMS_TEXT_BY_CODE.get(tag).text)
+);
 
 const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo', 'erotic', 'Judaism', 'sex position' ];
 const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([ TERMS_TEXT_BY_CODE.get('sens').text ]);
@@ -508,10 +513,10 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     const data = JSON.parse(jsonData);
     const dictEntries = data['JMdict']['entry'];
     const entriesMap = new Map();
-    const vulgarEntriesMap = new Map();
+    const censoredEntriesMap = new Map();
 
     const SEARCH_ONLY_KANJI = "search-only kanji form";
-    const vulgarEntries = [];
+    const censoredEntries = [];
     const entries = dictEntries.flatMap((entry, index) => {
         const separatedEntry = [];
     
@@ -560,36 +565,41 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
                 originalEntry.misc = filteredSenses
                     .map(sense => sense.originalMisc)
                     .filter(Boolean);
+
+                newEntry.tags = createTags(newEntry, originalEntry);
                 
                 const filterVulgarSensesFunc = sense => {
-                    return !VULG_MISC_TEXTS.isDisjointFrom(new Set(sense.misc || []));
+                    return !CENSORED_MISC_TEXTS.isDisjointFrom(new Set(sense.misc || []));
                 };
 
-                const vulgarSenses = newEntry.sense
+                const censoredSenses = newEntry.sense
                     .filter(filterVulgarSensesFunc);
 
-                if (vulgarSenses.length > 0) {
-                    const vulgarEntry = { ...newEntry };
-                    vulgarEntry.sense = vulgarSenses;
-                    vulgarEntries.push(vulgarEntry);
+                if (censoredSenses.length > 0) {
+                    const censoredEntry = { ...newEntry };
+                    censoredEntry.sense = censoredSenses;
+                    censoredEntry.tags = newEntry.tags
+                        .filter(tag => CENSORED_MISC_TAGS.has(tag));
+                    censoredEntries.push(censoredEntry);
 
                     if (kanji) {
-                        vulgarEntriesMap.set(kanji.keb, [...(vulgarEntriesMap.get(kanji.keb) || []), vulgarEntry]);
+                        censoredEntriesMap.set(kanji.keb, [...(censoredEntriesMap.get(kanji.keb) || []), censoredEntry]);
                     }
 
-                    if (vulgarSenses.length === newEntry.sense.length) {
+                    if (censoredSenses.length === newEntry.sense.length) {
                         return;
                     }
 
                     newEntry.sense = newEntry.sense
                         .filter(sense => !filterVulgarSensesFunc(sense));
+                    newEntry.tags = newEntry.tags
+                        .filter(tag => !CENSORED_MISC_TAGS.has(tag));
                 }
 
                 if (kanji) {
                     entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
                 }
 
-                newEntry.tags = createTags(newEntry, originalEntry);
                 separatedEntry.push(newEntry);
             });
         });
@@ -603,7 +613,7 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     });
 
     entries.forEach(entry => createUniqueHint(entry, entriesMap));
-    vulgarEntries.forEach(entry => createUniqueHint(entry, vulgarEntriesMap));
+    censoredEntries.forEach(entry => createUniqueHint(entry, censoredEntriesMap));
     
     const priorities = createPriorities(entries);
     createLevelTagsFromPriorities(priorities, entries);
@@ -624,9 +634,9 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     // END OF DEBUG
 
     fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Dict file written!'));
-    fs.writeFile(WRITE_PATH + 'vulg.json', JSON.stringify(vulgarEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
+    fs.writeFile(WRITE_PATH + 'dict_censored.json', JSON.stringify(censoredEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
     
-    separateIntoTagEntries(entries)
+    separateIntoTagEntries([ ...entries, ...censoredEntries ])
         .forEach((tagEntries, tag) =>
             fs.writeFile(
                 `${WRITE_PATH}${tag}.json`,
