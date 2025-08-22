@@ -72,8 +72,6 @@ var $kt = $kt || {};
             [...document.getElementsByClassName('menu-button')]
                 .forEach(element => {
                     element.addEventListener('click', menuItemPressedListenerCreator(element));
-                    
-
                 });
             [...document.getElementsByClassName('menu-checkbox')]
                 .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
@@ -157,9 +155,24 @@ var $kt = $kt || {};
             if (this._isMenuItemFocused()) {
                 if (key === 'Shift') {
                     const parentMenu = this._findParentMenu(document.activeElement);
-                    const goBackButton = parentMenu.dataset.goBackButton;
-                    if (goBackButton) {
-                        document.getElementById(goBackButton).click();
+                    if (parentMenu.hasAttribute('data-no-back-button')) {
+                        return;
+                    }
+
+                    const dataset = parentMenu.dataset;
+
+                    if (!dataset.backButton) {
+                        const backButton = parentMenu.getElementsByClassName('back-button')[0];
+                        if (backButton) {
+                            dataset.goBackButton = backButton.id;
+                            backButton.click();
+                        }
+                        return;
+                    }
+
+                    const backButton = dataset.backButton;
+                    if (backButton) {
+                        document.getElementById(backButton).click();
                         return;
                     }
                 }

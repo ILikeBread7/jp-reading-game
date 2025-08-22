@@ -168,6 +168,14 @@ var $kt = $kt || {};
                 .forEach(element => element.classList.remove('hidden'));
             
             const dataset = menuElement.dataset;
+
+            if (!dataset.defaultItem) {
+                const firstItem = menuElement.getElementsByClassName('menu-item')[0];
+                dataset.defaultItem = firstItem.id;
+                $kt.uiHelper.focusDefaultMenuItem(firstItem);
+                return;
+            }
+
             let itemToFocus = document.getElementById(dataset.lastUsedItem || dataset.defaultItem);
             if (!itemToFocus.checkVisibility()) {
                 const defaultItem = document.getElementById(dataset.defaultItem);

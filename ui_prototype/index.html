@@ -35,7 +35,7 @@
         </div>
         <button class="control-button icon-button ui-button" id="fullscreen-button" title="Fullscreen"><img src="icons/fullscreen.svg" data-exit-icon="icons/fullscreen_exit.svg" alt="Fullscreen"/></button>
         <div class="overlay-element" id="settings">
-            <div class="centered menu" id="settings-container" data-default-item="return-to-game-button" data-go-back-button="return-to-game-button">
+            <div class="centered menu" id="settings-container" data-default-item="return-to-game-button">
                 <label class="input-label" for="bgm-volume">BGM volume:</label>
                 <input type="range" class="menu-item" id="bgm-volume" name="bgm-volume" min="0" max="1" step="0.1" value="1"/>
                 <label class="input-label" for="se-volume">SE volume:</label>
@@ -81,7 +81,7 @@
                 Click or press ENTER to start
             </div>
 
-            <div class="centered menu hidden" id="main-menu" data-default-item="start-game-main-button">
+            <div class="centered menu hidden" id="main-menu" data-no-back-button>
                 <button class="menu-item menu-button" id="start-game-main-button" data-se="SE_TEST_2_HIGH">Start the game</button>
                 <button class="menu-item menu-button menu-destination-button" id="start-game-practice-button" data-destination="general-categories-container" data-se="SE_TEST_2_HIGH">Practice mode</button>
                 <button class="menu-item menu-button" id="title-settings-button">Settings</button>
@@ -89,7 +89,7 @@
             </div>
             <div class="blink centered-text hidden for-main-menu" id="title-press-start-text">Click the start button or press ENTER to start</div>
 
-            <div class="centered menu hidden scrollable-container" id="credits-container" data-default-item="credits-back-button" data-go-back-button="credits-back-button">
+            <div class="centered menu hidden scrollable-container" id="credits-container" data-default-item="credits-back-button">
                 <div class="scrollable" id="credits">Test
                     Test
                     Test
@@ -143,7 +143,7 @@
                     Test
                     Test
                 </div>
-                <button class="menu-item menu-button menu-destination-button" id="credits-back-button" data-se="SE_TEST_2_LOW" data-destination="main-menu">Go back</button>
+                <button class="menu-item menu-button menu-destination-button back-button" id="credits-back-button" data-se="SE_TEST_2_LOW" data-destination="main-menu">Go back</button>
             </div>
 
             <div id="signature">
