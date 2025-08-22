@@ -68,7 +68,21 @@ var $kt = $kt || {};
                 element.addEventListener('focus', () => menuElement.dataset.lastUsedItem = elementId);
             });
 
-            const menuItemPressedListenerCreator = element => element.addEventListener('click', () => $kt.audio.playEffect($kt.audio.tracks[element.dataset.se || 'SE_TEST_2']));
+            const menuItemPressedListenerCreator = element => {
+                const se = (() => {
+                    const datasetSe = element.dataset.se;
+                    if (datasetSe) {
+                        return $kt.audio.tracks[datasetSe];
+                    }
+
+                    return element.classList.contains('back-button')
+                        ? $kt.audio.tracks.SE_TEST_2
+                        : $kt.audio.tracks.SE_TEST_1;
+                })();
+                
+                element.addEventListener('click', () => $kt.audio.playEffect(se));
+            }
+
             [...document.getElementsByClassName('menu-button')]
                 .forEach(element => {
                     element.addEventListener('click', menuItemPressedListenerCreator(element));
