@@ -161,70 +161,60 @@ var $kt = $kt || {};
             `;
         }
 
-        static generalCategoriesMenu(categories) {
-            const firstButtonCssName = KT._cssName(categories[0].name);
-            const firstButtonId = `categories-${firstButtonCssName}-button`;
+        static categoriesMenu(categories) {
+            const category = { name: 'Categories', entries: categories };
+            const parentMenuId = 'main-menu';
+            const parentCategoryCssName = 'main';
+            return KT._categoryMenu(category, parentMenuId, parentCategoryCssName);
+        }
+
+        static _categoryMenu(category, parentMenuId, parentCategoryCssName) {
+            const entries = category.entries;
+            if (!entries) {
+                return;
+            }
+            const { categoryId, categoryCssName } = KantoreTemplates._createCategoryIdAndCssName(category, parentCategoryCssName);
 
             return /*html*/`
-                <div class="centered menu hidden scrollable scrollable-container" id="general-categories-container" data-default-item="${firstButtonId}" data-go-back-button="general-categories-back-button">
-                    ${categories.map(KT._generalCategoryButton).join('')}
-                    <button class="menu-item menu-button menu-destination-button" id="general-categories-back-button" data-se="SE_TEST_2_LOW" data-destination="main-menu">Go back</button>
+                <div class="centered menu hidden scrollable scrollable-container" id="${categoryId}">
+                    ${entries.map(entry => KT._entryButton(entry, categoryCssName)).join('')}
+                    <button class="menu-item menu-button menu-destination-button back-button" id="category-${categoryCssName}-back-button" data-destination="${parentMenuId}">Go back</button>
                 </div>
-            `;
+            ` + entries.map(entry => KT._categoryMenu(entry, categoryId, categoryCssName)).join('');
         }
 
-        static _generalCategoryButton(generalCategory) {
-            const categoryCssName = KT._cssName(generalCategory.name);
-            return /*html*/`
-                <button class="menu-item menu-button menu-destination-button" id="categories-${categoryCssName}-button" data-destination="categories-${categoryCssName}-container">${generalCategory.name}</button>
-            `;
+        static _entryButton(entry, categoryCssName) {
+            if (entry.entries) {
+                return KT._subcategoryEntryButton(entry, categoryCssName);
+            }
+            return KT._categoryEntryButton(entry, categoryCssName);
         }
 
-        static categoriesMenu(generalCategory) {
-            const categories = generalCategory.entries;
-            const categoryCssName = KT._cssName(generalCategory.name);
-            const firstButtonCssName = KT._cssName(categories[0].name);
-            const firstButtonId = `category-${categoryCssName}-${firstButtonCssName}-button`;
-
-            return /*html*/`
-                <div class="centered menu hidden scrollable scrollable-container" id="categories-${categoryCssName}-container" data-default-item="${firstButtonId}" data-go-back-button="categories-${categoryCssName}-back-button">
-                    ${categories.map(KT._categoryButton.bind(KT, categoryCssName)).join('')}
-                    <button class="menu-item menu-button menu-destination-button" id="categories-${categoryCssName}-back-button" data-se="SE_TEST_2_LOW" data-destination="general-categories-container">Go back</button>
-                </div>
-            `;
-        }
-
-        static _categoryButton(categoryCssName, category) {
-            const buttonCssName = KT._cssName(category.name);
-            
-            return /*html*/`
-                <button class="menu-item menu-button menu-destination-button" id="category-${categoryCssName}-${buttonCssName}-button" data-destination="category-${categoryCssName}-${buttonCssName}-container">${category.name}</button>
-            `;
-        }
-
-        static categoryMenu(generalCategory, category) {
-            const generalCategoryCssName = KT._cssName(generalCategory.name);
-            const categoryCssName = KT._cssName(category.name);
-            const firstButtonCssName = KT._cssName(category.entries[0].name);
-            const firstButtonId = `category-${categoryCssName}-${firstButtonCssName}-button`;
-
-            return /*html*/`
-                <div class="centered menu hidden scrollable scrollable-container" id="category-${generalCategoryCssName}-${categoryCssName}-container" data-default-item="${firstButtonId}" data-go-back-button="category-${generalCategoryCssName}-${categoryCssName}-back-button">
-                    ${category.entries.map(KT._categoryEntryButton.bind(KT, categoryCssName)).join('')}
-                    <button class="menu-item menu-button menu-destination-button" id="category-${generalCategoryCssName}-${categoryCssName}-back-button" data-se="SE_TEST_2_LOW" data-destination="categories-${generalCategoryCssName}-container">Go back</button>
-                </div>
-            `;
-        }
-
-        static _categoryEntryButton(categoryCssName, entry) {
+        static _categoryEntryButton(entry, categoryCssName) {
             const buttonCssName = KT._cssName(entry.name);
             const dictData = entry.level
                 ? /*html*/`data-level-dict="${entry.level}"`
                 : /*html*/`data-tag-dict="${entry.tag}"`
 
             return /*html*/`
-                <button class="menu-item menu-button category-entry-button" id="category-${categoryCssName}-${buttonCssName}-button" ${dictData}>${entry.name}</button>
+                <button class="menu-item menu-button category-entry-button" id="category-${categoryCssName}-entry-${buttonCssName}-button" ${dictData}>${entry.name}</button>
             `;
+        }
+
+        static _subcategoryEntryButton(subcategory, parentCategoryCssName) {
+            const buttonCssName = KT._cssName(subcategory.name);
+            const { categoryId, categoryCssName } = KT._createCategoryIdAndCssName(subcategory, parentCategoryCssName);
+            
+            return /*html*/`
+                <button class="menu-item menu-button menu-destination-button" id="category-${categoryCssName}-entry-${buttonCssName}-button" data-destination="${categoryId}">${subcategory.name}</button>
+            `;
+        }
+
+        static _createCategoryIdAndCssName(category, parentCategoryCssName) {
+            const currentCategoryCssName = KT._cssName(category.name);
+            const categoryCssName = `${parentCategoryCssName}-${currentCategoryCssName}`;
+            const categoryId = `category-${categoryCssName}-container`;
+            return { categoryId, categoryCssName };
         }
 
         static _cssName(name) {
