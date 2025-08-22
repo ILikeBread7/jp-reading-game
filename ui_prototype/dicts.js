@@ -8,19 +8,35 @@ var $kt = $kt || {};
 
     const [ HIRAGANA_LEVELS_START, HIRAGANA_LEVELS_END ] = $kt.levels.hiraganaLevelsRange;
     const [ KATAKANA_LEVELS_START, KATAKANA_LEVELS_END ] = $kt.levels.katakanaanaLevelsRange;
-    const LEVELS_CATEGORY = {
-        name: 'Levels', entries: (() => {
-            const levels = [
-                { name: 'All levels', level: NUMBER_OF_LEVELS + 1 },
-            ];
-            for (let level = 1; level <= NUMBER_OF_LEVELS; level++) {
-                levels.push({ name: $kt.levels.getLevelName(level), level });
-            }
-            return levels;
-        })(),
+    
+    const createLevelEntries = (levelStart, levelEnd, levels = []) => {
+        for (let level = levelStart; level <= levelEnd; level++) {
+            levels.push({ name: $kt.levels.getLevelName(level), level });
+        }
+        return levels;
+    };
+    
+    const LEVELS_HIRAGANA_CATEGORY = {
+        name: 'Hiragana',
+        entries: createLevelEntries(HIRAGANA_LEVELS_START, HIRAGANA_LEVELS_END),
         complexLevelEntries: [
-            { name: 'All hiragana levels', tag: 'level-hiragana-all', levelStart: HIRAGANA_LEVELS_START, levelEnd: HIRAGANA_LEVELS_END },
+            { name: 'All hiragana levels', tag: 'level-hiragana-all', levelStart: HIRAGANA_LEVELS_START, levelEnd: HIRAGANA_LEVELS_END }
+        ]
+    }
+
+    const LEVELS_KATAKANA_CATEGORY = {
+        name: 'Katakana',
+        entries: createLevelEntries(KATAKANA_LEVELS_START, KATAKANA_LEVELS_END),
+        complexLevelEntries: [
             { name: 'All katakana levels', tag: 'level-katakana-all', levelStart: KATAKANA_LEVELS_START, levelEnd: KATAKANA_LEVELS_END }
+        ]
+    }
+
+    const LEVELS_CATEGORY = {
+        name: 'Levels', entries: [
+            { name: 'All levels', level: NUMBER_OF_LEVELS + 1 },
+            LEVELS_HIRAGANA_CATEGORY,
+            LEVELS_KATAKANA_CATEGORY
         ]
     }
 
@@ -273,7 +289,6 @@ var $kt = $kt || {};
             { name: 'Organization name', tag: 'organization' },
             { name: 'Full name of a particular person', tag: 'person' },
             { name: 'Place name', tag: 'place' },
-            { name: 'Railway station', tag: 'station' },
             { name: 'Family or surname', tag: 'surname' }
         ],
         complexEntries: [
@@ -378,6 +393,9 @@ var $kt = $kt || {};
                 OLD_AND_RARE_LANGUAGE,
                 EXPRESSIONS,
                 JLPT
+            ],
+            complexEntries: [
+                { name: 'All general language', tag: 'general-all' }
             ]
         },
         {
@@ -840,6 +858,14 @@ var $kt = $kt || {};
         }
 
         _createCategoryDicts() {
+            const findAllTags = entry => {
+                if (entry.entries) {
+                    return entry.entries.flatMap(findAllTags);
+                }
+
+                return entry.tag;
+            };
+
             const addDicts = category => {
                 if (category.level) {
                     return;
@@ -858,7 +884,7 @@ var $kt = $kt || {};
                 if (category.complexEntries) {
                     category.complexEntries.forEach(({ tag, tags }) => {
                         // If there are no tags it's the "All" entry
-                        const dictTags = tags || category.entries.map(({ tag }) => tag);
+                        const dictTags = tags || findAllTags(category);
 
                         this._dicts.set(tag, new ComplexDict(
                             this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
