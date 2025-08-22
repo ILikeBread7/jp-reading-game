@@ -366,10 +366,10 @@ var $kt = $kt || {};
     };
 
     const CATEGORIES = [
+        LEVELS_CATEGORY,
         {
             name: 'General language',
             entries: [
-                LEVELS_CATEGORY,
                 INFORMAL_LANGUAGE,
                 FORMAL_AND_LITERARY_LANGUAGE,
                 DIALECTS,
@@ -840,47 +840,52 @@ var $kt = $kt || {};
         }
 
         _createCategoryDicts() {
-            CATEGORIES.forEach(generalCategory => {
-                generalCategory.entries.forEach(category => {
-                    category.entries.forEach(({ tag, level }) => {
-                        if (level) {
-                            return;
-                        }
+            const addDicts = category => {
+                if (category.level) {
+                    return;
+                }
 
-                        this._dicts.set(tag, new BaseDict(tag));
+                const tag = category.tag;
+                if (tag) {
+                    this._dicts.set(tag, new BaseDict(tag));
+                    return;
+                }
+
+                if (category.entries) {
+                    category.entries.forEach(addDicts);
+                }
+
+                if (category.complexEntries) {
+                    category.complexEntries.forEach(({ tag, tags }) => {
+                        // If there are no tags it's the "All" entry
+                        const dictTags = tags || category.entries.map(({ tag }) => tag);
+
+                        this._dicts.set(tag, new ComplexDict(
+                            this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
+                        ));
                     });
 
-                    if (category.complexEntries) {
-                        category.complexEntries.forEach(({ tag, tags }) => {
-                            // If there are no tags it's the "All" entry
-                            const dictTags = tags || category.entries.map(({ tag }) => tag);
+                    category.entries.unshift(...category.complexEntries);
+                    delete category.complexEntries;
+                }
 
-                            this._dicts.set(tag, new ComplexDict(
-                                this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
-                            ));
-                        });
+                if (category.complexLevelEntries) {
+                    category.complexLevelEntries.forEach(({ tag, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
+                        
+                        const levelsSubdicts = [];
+                        for (let level = levelStart; level <= levelEnd; level++) {
+                            levelsSubdicts.push(this.getLevelDict(level));
+                        }
 
-                        category.entries.unshift(...category.complexEntries);
-                        delete category.complexEntries;
-                    }
+                        this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
+                    });
 
-                    if (category.complexLevelEntries) {
-                        category.complexLevelEntries.forEach(({ tag, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
-                            
-                            const levelsSubdicts = [];
-                            for (let level = levelStart; level <= levelEnd; level++) {
-                                levelsSubdicts.push(this.getLevelDict(level));
-                            }
+                    category.entries.unshift(...category.complexLevelEntries);
+                    delete category.complexLevelEntries;
+                }
+            };
 
-                            this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
-                        });
-
-                        category.entries.unshift(...category.complexLevelEntries);
-                        delete category.complexLevelEntries;
-                    }
-                });
-            })
-
+            CATEGORIES.forEach(addDicts);
             Object.freeze(CATEGORIES);
         }
 
