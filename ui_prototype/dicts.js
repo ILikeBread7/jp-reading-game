@@ -33,7 +33,7 @@ var $kt = $kt || {};
     }
 
     const LEVELS_CATEGORY = {
-        name: 'Levels', entries: [
+        name: 'Main game mode levels', entries: [
             { name: 'All levels', level: NUMBER_OF_LEVELS + 1 },
             LEVELS_HIRAGANA_CATEGORY,
             LEVELS_KATAKANA_CATEGORY
@@ -41,13 +41,13 @@ var $kt = $kt || {};
     }
 
     const CENSORED = {
-        name: 'Derogatory, Sensitive, and Vulgar expressions', entries: [
+        name: 'Sensitive expressions', entries: [
             { name: 'Derogatory', tag: 'derog' },
             { name: 'Sensitive', tag: 'sens' },
-            { name: 'Vulgar expression or word', tag: 'vulg' }
+            { name: 'Vulgar', tag: 'vulg' }
         ],
         complexEntries: [
-            { name: 'All derogatory, sensitive, and vulgar expressions', tag: 'censored-all' }
+            { name: 'All sensitive expressions', tag: 'censored-all' }
         ]
     }
 
@@ -152,6 +152,7 @@ var $kt = $kt || {};
     const ENGINEERING_AND_INDUSTRY = {
         name: 'Engineering and Industry', entries: [
             { name: 'Architecture', tag: 'archit' },
+            { name: 'Aviation', tag: 'aviat' },
             { name: 'Civil engineering', tag: 'civeng' },
             { name: 'Computing', tag: 'comp' },
             { name: 'Electricity, elec. eng.', tag: 'elec' },
@@ -159,6 +160,7 @@ var $kt = $kt || {};
             { name: 'Engineering', tag: 'engr' },
             { name: 'Internet', tag: 'internet' },
             { name: 'Mechanical engineering', tag: 'mech' },
+            { name: 'Military', tag: 'mil' },
             { name: 'Mining', tag: 'mining' },
             { name: 'Printing', tag: 'print' },
             { name: 'Railway', tag: 'rail' },
@@ -166,7 +168,7 @@ var $kt = $kt || {};
             { name: 'Clothing', tag: 'cloth' }
         ],
         complexEntries: [
-            { name: 'All engineering and industry terms', tag: 'eng-ind-all' }
+            { name: 'All engineering and industry', tag: 'eng-ind-all' }
         ]
     };
 
@@ -179,16 +181,6 @@ var $kt = $kt || {};
         ],
         complexEntries: [
             { name: 'All societal terms', tag: 'society-all' }
-        ]
-    };
-
-    const MILITARY_AND_AVIATION = {
-        name: 'Military and Aviation', entries: [
-            { name: 'Military', tag: 'mil' },
-            { name: 'Aviation', tag: 'aviat' }
-        ],
-        complexEntries: [
-            { name: 'All military and aviation terms', tag: 'mil-av-all' }
         ]
     };
 
@@ -380,7 +372,7 @@ var $kt = $kt || {};
             { name: 'Proverb', tag: 'proverb' },
             { name: 'Quotation', tag: 'quote' },
             { name: 'Yojijukugo', tag: 'yoji' },
-            { name: 'Word usually written using kana alone', tag: 'uk' }
+            { name: 'Usually written using kana alone', tag: 'uk' }
         ],
         complexEntries: [
             { name: 'All expressions', tag: 'expressions-all' }
@@ -424,18 +416,23 @@ var $kt = $kt || {};
                 LINGUISTICS,
                 RELIGION_AND_MYTHS,
                 ECONOMICS
+            ],
+            complexEntries: [
+                { name: 'All humanistic terms', tag: 'humanities-all' }
             ]
         },
         {
-            name: 'Science, Engineering, and Industry',
+            name: 'Sciences and Mathematics',
             entries: [
                 SCIENCE,
                 MEDICINE,
-                MATHEMATICS,
-                ENGINEERING_AND_INDUSTRY,
-                MILITARY_AND_AVIATION
+                MATHEMATICS
+            ],
+            complexEntries: [
+                { name: 'All sciences and mathematics', tag: 'science-math-all' }
             ]
-        }
+        },
+        ENGINEERING_AND_INDUSTRY
     ];
 
     const CATEGORY_TAGS = [
@@ -879,7 +876,7 @@ var $kt = $kt || {};
             );
             const globalAllTag = 'global-all';
             this._dicts.set(globalAllTag, globalAllEntry);
-            CATEGORIES.unshift({ name: 'All', tag: globalAllTag });
+            CATEGORIES.unshift({ name: 'All terms and expressions', tag: globalAllTag });
             
             this._addDicts(CENSORED);
             CATEGORIES.push(CENSORED);
