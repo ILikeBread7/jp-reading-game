@@ -51,6 +51,68 @@ var $kt = $kt || {};
         ]
     }
 
+    const NUMBER_OF_ENTRIES_PER_PRIORITY = 500;
+
+    const PRIORITY_NUMBERS = (() => {
+        const result = [];
+        for (let i = 1; i < 48; i++) {
+            result.push({ number: i, tag: i.toString().padStart(2, '0')});
+        }
+        return result;
+    })();
+
+    const createFreqEntryFunction = (text, tagPrefix) => {
+        return {
+            name: `Most frequent by ${text}`,
+            entries: PRIORITY_NUMBERS.map(({number, tag}) => {
+                const start = NUMBER_OF_ENTRIES_PER_PRIORITY * (number - 1) + 1;
+                const end = number * NUMBER_OF_ENTRIES_PER_PRIORITY;
+                return { name: `${start} - ${end} frequent ${text}s`, tag: `${tagPrefix}${tag}`};
+            }),
+            complexEntries: [
+                { name: `All most frequent by ${text}`, tag: `freq-${text}-all` },
+                ...(() => {
+                    const result = [];
+                    for (let endNumber = 2; endNumber < PRIORITY_NUMBERS.length; endNumber *= 2) {
+                        const end = endNumber * NUMBER_OF_ENTRIES_PER_PRIORITY;
+                        const tags = PRIORITY_NUMBERS.slice(0, endNumber).map(({ tag }) => `${tagPrefix}${tag}`);
+                        result.push({ name: `${end} most frequent by ${text}`, tags: tags, tag: `freq-${text}-${end}` });
+                    }
+                    return result;
+                })()
+            ]
+        };
+    };
+
+    const freqTagsFunctionCreator = tag => number => [ `rp${tag}${number}`, `kp${tag}${number}` ];
+    const FREQ_NUMBERS = [ 1, 2 ];
+    const FREQ_GAI_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('gai')).filter(tag => tag !== 'kpgai2');
+    const FREQ_ICHI_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('ichi'));
+    const FREQ_SPEC_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('spec'));
+    const FREQ_NEWS_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('news'));
+    const filterMostFrequentOnly = tag => !tag.endsWith('2');
+    
+    const FREQUENCY = {
+        name: 'Expressions by frequency', entries: [
+            createFreqEntryFunction('reading', 'rpnf'),
+            createFreqEntryFunction('writing', 'kpnf'),
+            {
+                name: 'Other frequent expressions', entries: [],
+                complexEntries: [
+                    { name: 'All frequent expressions', tags: [ ...FREQ_GAI_TAGS, ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ], tag: 'freq-other-all' },
+                    { name: 'All most frequent expressions', tags: [ ...FREQ_GAI_TAGS, ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ].filter(filterMostFrequentOnly), tag: 'freq-other-most' },
+                    { name: 'Most frequent foreign words', tags: FREQ_GAI_TAGS.filter(filterMostFrequentOnly), tag: 'freq-gai-most' },
+                    { name: 'All Frequent foreign words', tags: FREQ_GAI_TAGS, tag: 'freq-gai' },
+                    { name: 'Most frequent other words', tags: [ ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ].filter(filterMostFrequentOnly), tag: 'freq-ichi-spec-news-most' },
+                    { name: 'All frequent other words', tags: [ ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ], tag: 'freq-ichi-spec-news' }
+                ]
+            }
+        ],
+        complexEntries: [
+            { name: 'All frequent expressions', tag: 'frequency-all' }
+        ]
+    }
+
     const DIALECTS = {
         name: 'Dialects', entries: [
             { name: 'Brazilian', tag: 'bra' },
@@ -432,7 +494,8 @@ var $kt = $kt || {};
                 { name: 'All sciences and mathematics', tag: 'science-math-all' }
             ]
         },
-        ENGINEERING_AND_INDUSTRY
+        ENGINEERING_AND_INDUSTRY,
+        FREQUENCY
     ];
 
     const CATEGORY_TAGS = [
@@ -906,7 +969,7 @@ var $kt = $kt || {};
                         const dictTags = tags || this._findAllTags(category);
     
                         this._dicts.set(tag, new ComplexDict(
-                            this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
+                            this._shuffle(dictTags).map(tag => this._getOrCreateCategoryDict(tag))
                         ));
                     });
     
