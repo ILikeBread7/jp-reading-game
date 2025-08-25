@@ -69,7 +69,18 @@ var $kt = $kt || {};
             }
         }
 
+        /**
+         * 
+         * @param {string} kana 
+         * @returns 
+         */
         _formatToRomaji(kana) {
+            kana = kana.trim();
+            
+            if (kana.endsWith('っ') || kana.endsWith('ッ')) {
+                kana = kana.substring(0, kana.length - 1) + 'ltsu';
+            }
+
             return wanakana.toRomaji(
                 kana.replaceAll('ー', '-'),
                 {
@@ -79,13 +90,11 @@ var $kt = $kt || {};
                         'ぅ': 'lu',
                         'ぇ': 'le',
                         'ぉ': 'lo',
-                        'っ': 'ltsu',
                         'ァ': 'la',
                         'ィ': 'li',
                         'ゥ': 'lu',
                         'ェ': 'le',
-                        'ォ': 'lo',
-                        'ッ': 'ltsu'
+                        'ォ': 'lo'
                     }
                 }
             );
