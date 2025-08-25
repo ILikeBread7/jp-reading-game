@@ -99,10 +99,10 @@ var $kt = $kt || {};
             {
                 name: 'Other frequent expressions', entries: [],
                 complexEntries: [
-                    { name: 'All frequent expressions', tags: [ ...FREQ_GAI_TAGS, ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ], tag: 'freq-other-all' },
+                    { name: 'All other frequent expressions', tags: [ ...FREQ_GAI_TAGS, ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ], tag: 'freq-other-all' },
                     { name: 'All most frequent expressions', tags: [ ...FREQ_GAI_TAGS, ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ].filter(filterMostFrequentOnly), tag: 'freq-other-most' },
                     { name: 'Most frequent foreign words', tags: FREQ_GAI_TAGS.filter(filterMostFrequentOnly), tag: 'freq-gai-most' },
-                    { name: 'All Frequent foreign words', tags: FREQ_GAI_TAGS, tag: 'freq-gai' },
+                    { name: 'All frequent foreign words', tags: FREQ_GAI_TAGS, tag: 'freq-gai' },
                     { name: 'Most frequent other words', tags: [ ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ].filter(filterMostFrequentOnly), tag: 'freq-ichi-spec-news-most' },
                     { name: 'All frequent other words', tags: [ ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ], tag: 'freq-ichi-spec-news' }
                 ]
@@ -459,43 +459,50 @@ var $kt = $kt || {};
                 { name: 'All general language', tag: 'general-all' }
             ]
         },
+        FREQUENCY,
         {
-            name: 'Sports, Games, and Hobbies',
-            entries: [
-                SPORTS,
-                GAMES,
-                HOBBIES
+            name: 'Expressions by field', entries: [
+                ENGINEERING_AND_INDUSTRY,
+                {
+                    name: 'Humanities',
+                    entries: [
+                        SOCIETY,
+                        ARTS,
+                        LINGUISTICS,
+                        RELIGION_AND_MYTHS,
+                        ECONOMICS
+                    ],
+                    complexEntries: [
+                        { name: 'All humanistic terms', tag: 'humanities-all' }
+                    ]
+                },
+                {
+                    name: 'Sciences and Mathematics',
+                    entries: [
+                        SCIENCE,
+                        MEDICINE,
+                        MATHEMATICS
+                    ],
+                    complexEntries: [
+                        { name: 'All sciences and mathematics', tag: 'science-math-all' }
+                    ]
+                },
+                {
+                    name: 'Sports, Games, and Hobbies',
+                    entries: [
+                        SPORTS,
+                        GAMES,
+                        HOBBIES
+                    ],
+                    complexEntries: [
+                        { name: 'All sports, games, and hobbies', tag: 'sports-games-hobbies-all' }
+                    ]
+                }
             ],
             complexEntries: [
-                { name: 'All sports, games, and hobbies', tag: 'sports-games-hobbies-all' }
+                { name: 'All fields', tag: 'fields-all' }
             ]
-        },
-        {
-            name: 'Humanities',
-            entries: [
-                SOCIETY,
-                ARTS,
-                LINGUISTICS,
-                RELIGION_AND_MYTHS,
-                ECONOMICS
-            ],
-            complexEntries: [
-                { name: 'All humanistic terms', tag: 'humanities-all' }
-            ]
-        },
-        {
-            name: 'Sciences and Mathematics',
-            entries: [
-                SCIENCE,
-                MEDICINE,
-                MATHEMATICS
-            ],
-            complexEntries: [
-                { name: 'All sciences and mathematics', tag: 'science-math-all' }
-            ]
-        },
-        ENGINEERING_AND_INDUSTRY,
-        FREQUENCY
+        }
     ];
 
     const CATEGORY_TAGS = [
