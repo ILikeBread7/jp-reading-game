@@ -406,11 +406,14 @@ var $kt = $kt || {};
             ]
         },
         {
-            name: 'Sports, games, and hobbies',
+            name: 'Sports, Games, and Hobbies',
             entries: [
                 SPORTS,
                 GAMES,
                 HOBBIES
+            ],
+            complexEntries: [
+                { name: 'All sports, games, and hobbies', tag: 'sports-games-hobbies-all' }
             ]
         },
         {
