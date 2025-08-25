@@ -40,6 +40,17 @@ var $kt = $kt || {};
         ]
     }
 
+    const CENSORED = {
+        name: 'Derogatory, Sensitive, and Vulgar expressions', entries: [
+            { name: 'Derogatory', tag: 'derog' },
+            { name: 'Sensitive', tag: 'sens' },
+            { name: 'Vulgar expression or word', tag: 'vulg' }
+        ],
+        complexEntries: [
+            { name: 'All derogatory, sensitive, and vulgar expressions', tag: 'censored-all' }
+        ]
+    }
+
     const DIALECTS = {
         name: 'Dialects', entries: [
             { name: 'Brazilian', tag: 'bra' },
@@ -263,8 +274,7 @@ var $kt = $kt || {};
             { name: 'Shinto', tag: 'Shinto' },
             { name: 'Deity', tag: 'dei' },
             { name: 'Legend', tag: 'leg' },
-            { name: 'Mythology', tag: 'myth' },
-            { name: 'Religion', tag: 'relig' }
+            { name: 'Mythology', tag: 'myth' }
         ],
         complexEntries: [
             { name: 'All religious and mythical terms', tag: 'reg-myth-all' }
@@ -283,7 +293,7 @@ var $kt = $kt || {};
     };
 
     const PEOPLE_PLACES_AND_NAMES = {
-        name: 'People, places and names', entries: [
+        name: 'People, places, and names', entries: [
             { name: 'Given name or forename', tag: 'given' },
             { name: 'Company name', tag: 'company' },
             { name: 'Organization name', tag: 'organization' },
@@ -334,16 +344,13 @@ var $kt = $kt || {};
         name: 'Informal language', entries: [
             { name: "Children's language", tag: 'chn' },
             { name: 'Colloquial', tag: 'col' },
-            { name: 'Derogatory', tag: 'derog' },
             { name: 'Familiar language', tag: 'fam' },
             { name: 'Female term or language', tag: 'fem' },
             { name: 'Jocular, humorous term', tag: 'joc' },
             { name: 'Manga slang', tag: 'm-sl' },
             { name: 'Male term or language', tag: 'male' },
             { name: 'Internet slang', tag: 'net-sl' },
-            { name: 'Sensitive', tag: 'sens' },
-            { name: 'Slang', tag: 'sl' },
-            { name: 'Vulgar expression or word', tag: 'vulg' }
+            { name: 'Slang', tag: 'sl' }
         ],
         complexEntries: [
             { name: 'All informal expressions', tag: 'informal-all' }
@@ -399,7 +406,7 @@ var $kt = $kt || {};
             ]
         },
         {
-            name: 'Sports, games and hobbies',
+            name: 'Sports, games, and hobbies',
             entries: [
                 SPORTS,
                 GAMES,
@@ -417,7 +424,7 @@ var $kt = $kt || {};
             ]
         },
         {
-            name: 'Science, Engineering and Industry',
+            name: 'Science, Engineering, and Industry',
             entries: [
                 SCIENCE,
                 MEDICINE,
@@ -858,43 +865,55 @@ var $kt = $kt || {};
         }
 
         _createCategoryDicts() {
-            const findAllTags = entry => {
-                if (entry.entries) {
-                    return entry.entries.flatMap(findAllTags);
-                }
+            CATEGORIES.forEach(this._addDicts.bind(this));
+            
+            const globalAllEntry = new ComplexDict(
+                this._shuffle(
+                    this._dicts.values()
+                        .filter(dict => !dict.isComplex)
+                        .toArray()
+                )
+            );
+            const globalAllTag = 'global-all';
+            this._dicts.set(globalAllTag, globalAllEntry);
+            CATEGORIES.unshift({ name: 'All', tag: globalAllTag });
+            
+            this._addDicts(CENSORED);
+            CATEGORIES.push(CENSORED);
 
-                return entry.tag;
-            };
+            Object.freeze(CATEGORIES);
+        }
 
-            const addDicts = category => {
+        _addDicts(category) {
+            const addDictsInner = category => {
                 if (category.level) {
                     return;
                 }
-
+    
                 const tag = category.tag;
                 if (tag) {
                     this._dicts.set(tag, new BaseDict(tag));
                     return;
                 }
-
+    
                 if (category.entries) {
-                    category.entries.forEach(addDicts);
+                    category.entries.forEach(addDictsInner);
                 }
-
+    
                 if (category.complexEntries) {
                     category.complexEntries.forEach(({ tag, tags }) => {
                         // If there are no tags it's the "All" entry
-                        const dictTags = tags || findAllTags(category);
-
+                        const dictTags = tags || this._findAllTags(category);
+    
                         this._dicts.set(tag, new ComplexDict(
                             this._shuffle(dictTags).map(tag => this.getCategoryDict(tag))
                         ));
                     });
-
+    
                     category.entries.unshift(...category.complexEntries);
                     delete category.complexEntries;
                 }
-
+    
                 if (category.complexLevelEntries) {
                     category.complexLevelEntries.forEach(({ tag, levelStart, levelEnd = NUMBER_OF_LEVELS }) => {
                         
@@ -902,17 +921,39 @@ var $kt = $kt || {};
                         for (let level = levelStart; level <= levelEnd; level++) {
                             levelsSubdicts.push(this.getLevelDict(level));
                         }
-
+    
                         this._dicts.set(tag, new ComplexDict(this._shuffle(levelsSubdicts)));
                     });
-
+    
                     category.entries.unshift(...category.complexLevelEntries);
                     delete category.complexLevelEntries;
                 }
-            };
+            }
 
-            CATEGORIES.forEach(addDicts);
-            Object.freeze(CATEGORIES);
+            addDictsInner(category);
+        };
+
+        _findAllTags(entry) {
+            const findAllTagsInner = entry => {
+                if (entry.entries) {
+                    return entry.entries.flatMap(findAllTagsInner);
+                }
+    
+                return entry.tag || [];
+            }
+
+            return findAllTagsInner(entry);
+        };
+
+        _getOrCreateCategoryDict(tag) {
+            const dict = this.getCategoryDict(tag);
+            if (dict) {
+                return dict;
+            }
+
+            const newDict = new BaseDict(tag);
+            this._dicts.set(tag, newDict);
+            return newDict;
         }
 
         /**
