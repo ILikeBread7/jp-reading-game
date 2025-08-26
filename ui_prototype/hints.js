@@ -6,11 +6,60 @@ var $kt = $kt || {};
 
     $kt.hints = [
         /*html*/
-        `<div>あ - a</div>
-        <div>い - i</div>
-        <div>う - u</div>
-        <div>え - e</div>
-        <div>お - o</div>
+        `<style>
+            .hint-u-shop {
+                position: relative;
+                top: -0.25em;
+            }
+
+            .hint-u-overlap {
+                position: relative;
+                left: -1.8em;
+                top: 0.0625em
+            }
+
+            .hint-o-cross {
+                position: relative;
+            }
+
+            .hint-o-cross::after {
+                content: '✝';
+                position: absolute;
+                left: 0.2em;
+                top: 0.0325em;
+            }
+        </style>
+        
+        <div>
+            <span class="hint-emphasis">あ - a</span>,
+            "<span class="hint-emphasis">A</span>pple"
+            🍎
+            🍎<span class="hint-overlap">あ</span>
+        </div>
+        <div>
+            <span class="hint-emphasis">い - i</span>,
+            "Spaghett<span class="hint-emphasis">i</span>"
+            🍝
+            🍝<span class="hint-overlap">い</span>
+        </div>
+        <div>
+            <span class="hint-emphasis">う - u</span>,
+            "Drive-thr<span class="hint-emphasis">u</span>"
+            🚘<span class="hint-u-shop">🏪</span>
+            🚘<span class="hint-u-shop">🏪</span><span class="hint-u-overlap">う</span>
+        </div>
+        <div>
+            <span class="hint-emphasis">え - e</span>,
+            "<span class="hint-emphasis">E</span>lephant"
+            🐘
+            🐘<span class="hint-overlap">え</span>
+        </div>
+        <div>
+            <span class="hint-emphasis">お - o</span>,
+            "<span class="hint-emphasis">O</span>bituary"
+            <span class="hint-o-cross">📰</span>
+            <span class="hint-o-cross">📰</span><span class="hint-overlap">お</span>
+        </div>
 
         <div class="hint-explanation">
             Read the word at the top of the screen and

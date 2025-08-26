@@ -16,3 +16,6 @@ https://codepen.io/sosuke/pen/Pjoqqp
 
 particles.js
 https://vincentgarreau.com/particles.js/
+
+IPA dict
+https://github.com/open-dict-data/ipa-dict

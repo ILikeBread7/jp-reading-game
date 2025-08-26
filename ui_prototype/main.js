@@ -4,6 +4,14 @@ var $kt = $kt || {};
 
 (() => {
 
+    // For testing only
+    // document.body.insertAdjacentHTML(
+    //     'afterbegin',
+    //     `<div style="position:absolute;z-index:999;background-color:var(--palette-secondary-color)">
+    //         ${$kt.hints[0]}
+    //     </div>`
+    // );
+
     const EVENTS = $kt.gameUi.eventNames;
     const events = $kt.gameUi.events;
 
