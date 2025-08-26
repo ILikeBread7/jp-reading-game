@@ -80,13 +80,11 @@ var $kt = $kt || {};
                         : $kt.audio.tracks.SE_TEST_1;
                 })();
                 
-                element.addEventListener('click', () => $kt.audio.playEffect(se));
+                return () => $kt.audio.playEffect(se);
             }
 
             [...document.getElementsByClassName('menu-button')]
-                .forEach(element => {
-                    element.addEventListener('click', menuItemPressedListenerCreator(element));
-                });
+                .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
             [...document.getElementsByClassName('menu-checkbox')]
                 .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
             [...document.getElementsByClassName('menu-destination-button')]
