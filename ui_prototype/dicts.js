@@ -61,7 +61,7 @@ var $kt = $kt || {};
         return result;
     })();
 
-    const createFreqEntryFunction = (text, tagPrefix) => {
+    const createFreqCategoryFunction = (text, tagPrefix) => {
         return {
             name: `Most frequent by ${text}`,
             entries: PRIORITY_NUMBERS.map(({number, tag}) => {
@@ -83,6 +83,8 @@ var $kt = $kt || {};
             ]
         };
     };
+    const FREQ_READING_CATEGORY = createFreqCategoryFunction('reading', 'rpnf');
+    const FREQ_WRITING_CATEGORY = createFreqCategoryFunction('writing', 'kpnf');
 
     const freqTagsFunctionCreator = tag => number => [ `rp${tag}${number}`, `kp${tag}${number}` ];
     const FREQ_NUMBERS = [ 1, 2 ];
@@ -92,10 +94,20 @@ var $kt = $kt || {};
     const FREQ_NEWS_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('news'));
     const filterMostFrequentOnly = tag => !tag.endsWith('2');
     
+    const mapEntryToTag = entry => entry.tag;
+    const FREQ_ALL_TAGS = [
+        ...FREQ_GAI_TAGS,
+        ...FREQ_ICHI_TAGS,
+        ...FREQ_SPEC_TAGS,
+        ...FREQ_NEWS_TAGS,
+        ...FREQ_READING_CATEGORY.entries.map(mapEntryToTag),
+        ...FREQ_WRITING_CATEGORY.entries.map(mapEntryToTag)
+    ];
+    
     const FREQUENCY = {
         name: 'Expressions by frequency', entries: [
-            createFreqEntryFunction('reading', 'rpnf'),
-            createFreqEntryFunction('writing', 'kpnf'),
+            FREQ_READING_CATEGORY,
+            FREQ_WRITING_CATEGORY,
             {
                 name: 'Other frequent expressions', entries: [],
                 complexEntries: [
@@ -109,7 +121,7 @@ var $kt = $kt || {};
             }
         ],
         complexEntries: [
-            { name: 'All frequent expressions', tag: 'frequency-all' }
+            { name: 'All frequent expressions', tags: FREQ_ALL_TAGS, tag: 'frequency-all' }
         ]
     }
 
