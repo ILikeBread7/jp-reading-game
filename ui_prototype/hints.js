@@ -57,8 +57,8 @@ var $kt = $kt || {};
         <div>
             <span class="hint-emphasis">お - o</span>,
             "<span class="hint-emphasis">O</span>bituary"
-            <span class="hint-o-cross">📰</span>
-            <span class="hint-o-cross">📰</span><span class="hint-overlap">お</span>
+            <span class="hint-o-cross">🗞</span>
+            <span class="hint-o-cross">🗞</span><span class="hint-overlap">お</span>
         </div>
 
         <div class="hint-explanation">
