@@ -12,12 +12,6 @@ var $kt = $kt || {};
                 top: -0.25em;
             }
 
-            .hint-u-overlap {
-                position: relative;
-                left: -1.8em;
-                top: 0.0625em
-            }
-
             .hint-o-cross {
                 position: relative;
             }
@@ -46,7 +40,7 @@ var $kt = $kt || {};
             <span class="hint-emphasis">う - u</span>,
             "Drive-thr<span class="hint-emphasis">u</span>"
             🚘<span class="hint-u-shop">🏪</span>
-            🚘<span class="hint-u-shop">🏪</span><span class="hint-u-overlap">う</span>
+            🚘<span class="hint-u-shop">🏪</span><span class="hint-double-icon-overlap">う</span>
         </div>
         <div>
             <span class="hint-emphasis">え - e</span>,
@@ -71,6 +65,50 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             Press ENTER with an empty input
             to get an extra hint but you won't receive any exp.
+        </div>`,
+
+        /*html*/
+        `<style>
+            .hint-mi-overlap {
+                top: 0.155em;
+            }
+
+            .hint-me-overlap {
+                left: -0.875em;
+            }
+        </style>
+        
+        <div>
+            <div>
+                <span class="hint-emphasis">ま - ma</span>,
+                "<span class="hint-emphasis">Ma</span>estro"
+                🧔🎻
+                🧔🎻<span class="hint-double-icon-overlap">ま</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">み - mi</span>,
+                "Acade<span class="hint-emphasis">mi</span>a"
+                🏫
+                🏫<span class="hint-overlap hint-mi-overlap">み</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">む - mu</span>,
+                "<span class="hint-emphasis">Mu</span>cho"
+                👐
+                👐<span class="hint-overlap">む</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">め - me</span>,
+                "<span class="hint-emphasis">Me</span>lee"
+                ⚔
+                ⚔<span class="hint-overlap hint-me-overlap">め</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">も - mo</span>,
+                "<span class="hint-emphasis">Mo</span>bile"
+                📱
+                📱<span class="hint-overlap">も</span>
+            </div>
         </div>`,
 
         /*html*/
