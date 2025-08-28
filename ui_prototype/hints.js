@@ -11,17 +11,6 @@ var $kt = $kt || {};
                 position: relative;
                 top: -0.25em;
             }
-
-            .hint-o-cross {
-                position: relative;
-            }
-
-            .hint-o-cross::after {
-                content: '✝';
-                position: absolute;
-                left: 0.2em;
-                top: 0.0325em;
-            }
         </style>
         
         <div>
@@ -50,9 +39,9 @@ var $kt = $kt || {};
         </div>
         <div>
             <span class="hint-emphasis">お - o</span>,
-            "<span class="hint-emphasis">O</span>bituary"
-            <span class="hint-o-cross">🗞</span>
-            <span class="hint-o-cross">🗞</span><span class="hint-overlap">お</span>
+            "<span class="hint-emphasis">O</span>yster"
+            🦪
+            🦪<span class="hint-overlap">お</span>
         </div>
 
         <div class="hint-explanation">
@@ -164,13 +153,7 @@ var $kt = $kt || {};
         </div>`,
 
         /*html*/
-        `<style>
-            .hint-no-overlap {
-                left: -2.45em;
-            }
-        </style>
-        
-        <div>
+        `<div>
             <div>
                 <span class="hint-emphasis">な - na</span>,
                 "<span class="hint-emphasis">Na</span>chos"
@@ -197,9 +180,9 @@ var $kt = $kt || {};
             </div>
             <div>
                 <span class="hint-emphasis">の - no</span>,
-                "<span class="hint-emphasis">No</span> hablo español"
-                🙅🗣🇪🇸
-                🙅🗣🇪🇸<span class="hint-overlap hint-no-overlap">の</span>
+                "<span class="hint-emphasis">No</span>ise"
+                🔊
+                🔊<span class="hint-overlap">の</span>
             </div>
         </div>`,
 
