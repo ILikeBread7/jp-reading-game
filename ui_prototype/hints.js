@@ -114,9 +114,9 @@ var $kt = $kt || {};
         <div>
             <div>
                 <span class="hint-emphasis">ら - ra</span>,
-                "<span class="hint-emphasis">Ra</span>o"
-                🦁
-                🦁<span class="hint-overlap">ら</span>
+                "<span class="hint-emphasis">Ra</span>bbit"
+                🐇
+                🐇<span class="hint-overlap">ら</span>
             </div>
             <div>
                 <span class="hint-emphasis">り - ri</span>,
@@ -138,9 +138,9 @@ var $kt = $kt || {};
             </div>
             <div>
                 <span class="hint-emphasis">ろ - ro</span>,
-                "<span class="hint-emphasis">Ro</span>ad"
-                🛣
-                🛣<span class="hint-overlap">ろ</span>
+                "<span class="hint-emphasis">Ro</span>ar"
+                🦁
+                🦁<span class="hint-overlap">ろ</span>
             </div>
             <div class="hint-explanation">
                 Remembering the difference between る (ru) and ろ (ro)
