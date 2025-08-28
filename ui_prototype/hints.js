@@ -107,7 +107,7 @@ var $kt = $kt || {};
             </div>
         </div>`,
 
-                /*html*/
+        /*html*/
         `<style>
             .hint-ruby::after {
                 content: '💎';
@@ -163,7 +163,7 @@ var $kt = $kt || {};
             </div>
         </div>`,
 
-                /*html*/
+        /*html*/
         `<style>
             .hint-no-overlap {
                 left: -2.45em;
