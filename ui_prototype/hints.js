@@ -111,6 +111,62 @@ var $kt = $kt || {};
             </div>
         </div>`,
 
+                /*html*/
+        `<style>
+            .hint-ruby::after {
+                content: '💎';
+                filter:
+                    hue-rotate(140deg)
+                    saturate(250%)
+                    ;
+            }
+
+            .hint-ru-overlap {
+                top: -0.015em;
+            }
+        </style>
+        
+        <div>
+            <div>
+                <span class="hint-emphasis">ら - ra</span>,
+                "<span class="hint-emphasis">Ra</span>o"
+                🦁
+                🦁<span class="hint-overlap">ら</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">り - ri</span>,
+                "<span class="hint-emphasis">Ri</span>o De Janeiro"
+                🌎🏙
+                🌎🏙<span class="hint-double-icon-overlap">り</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">る - ru</span>,
+                "<span class="hint-emphasis">Ru</span>by"
+                <span class="hint-ruby"></span>
+                <span class="hint-ruby"></span><span class="hint-overlap hint-ru-overlap">る</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">れ - re</span>,
+                "<span class="hint-emphasis">Re</span>indeer"
+                🦌
+                🦌<span class="hint-overlap">れ</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">ろ - ro</span>,
+                "<span class="hint-emphasis">Ro</span>ad"
+                🛣
+                🛣<span class="hint-overlap">ろ</span>
+            </div>
+            <div class="hint-explanation">
+                Remembering the difference between る (ru) and ろ (ro)
+                might be tricky, but you can try remembering it like this:
+            </div>
+            <div class="hint-explanation">
+                R<span class="hint-emphasis">u</span> (<span class="hint-emphasis">る</span>) is c<span class="hint-emphasis">u</span>rled like it has rhe<span class="hint-emphasis">u</span>matism,
+                and r<span class="hint-emphasis">o</span> (<span class="hint-emphasis">ろ</span>) is n<span class="hint-emphasis">o</span>t.
+            </div>
+        </div>`,
+
         /*html*/
         `<div class="columns-container">
             <div class="column-half-width">か - ka</div>
