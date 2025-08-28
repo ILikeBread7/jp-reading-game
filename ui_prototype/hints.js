@@ -69,10 +69,6 @@ var $kt = $kt || {};
 
         /*html*/
         `<style>
-            .hint-mi-overlap {
-                top: 0.155em;
-            }
-
             .hint-me-overlap {
                 left: -0.875em;
             }
@@ -87,9 +83,9 @@ var $kt = $kt || {};
             </div>
             <div>
                 <span class="hint-emphasis">み - mi</span>,
-                "Acade<span class="hint-emphasis">mi</span>a"
-                🏫
-                🏫<span class="hint-overlap hint-mi-overlap">み</span>
+                "Origa<span class="hint-emphasis">mi</span>"
+                📃🦢
+                📃🦢<span class="hint-double-icon-overlap">み</span>
             </div>
             <div>
                 <span class="hint-emphasis">む - mu</span>,
@@ -164,6 +160,46 @@ var $kt = $kt || {};
             <div class="hint-explanation">
                 R<span class="hint-emphasis">u</span> (<span class="hint-emphasis">る</span>) is c<span class="hint-emphasis">u</span>rled like it has rhe<span class="hint-emphasis">u</span>matism,
                 and r<span class="hint-emphasis">o</span> (<span class="hint-emphasis">ろ</span>) is n<span class="hint-emphasis">o</span>t.
+            </div>
+        </div>`,
+
+                /*html*/
+        `<style>
+            .hint-no-overlap {
+                left: -2.45em;
+            }
+        </style>
+        
+        <div>
+            <div>
+                <span class="hint-emphasis">な - na</span>,
+                "<span class="hint-emphasis">Na</span>chos"
+                🧆
+                🧆<span class="hint-overlap">な</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">に - ni</span>,
+                "<span class="hint-emphasis">Ni</span>ece"
+                👧
+                👧<span class="hint-overlap">に</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">ぬ - nu</span>,
+                "G<span class="hint-emphasis">nu</span>"
+                🐃
+                🐃<span class="hint-overlap">ぬ</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">ね - ne</span>,
+                "<span class="hint-emphasis">Ne</span>cromancy"
+                💀🧙‍♂
+                💀🧙‍♂<span class="hint-double-icon-overlap">ね</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">の - no</span>,
+                "<span class="hint-emphasis">No</span> hablo español"
+                🙅🗣🇪🇸
+                🙅🗣🇪🇸<span class="hint-overlap hint-no-overlap">の</span>
             </div>
         </div>`,
 
