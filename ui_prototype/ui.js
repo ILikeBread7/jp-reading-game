@@ -252,7 +252,7 @@ var $kt = $kt || {};
         }
 
         _isElementMenuItem(element) {
-            return element && (element.classList.contains('menu-item') || element.classList.contains('menu-item-label')) && element.checkVisibility();
+            return element && (element.classList.contains('menu-item') || element.classList.contains('menu-item-label')) && element.checkVisibility() && !element.disabled;
         }
         
         _documentClickEventListener(event) {

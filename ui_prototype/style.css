@@ -618,6 +618,10 @@ button.menu-item {
     animation: menu-item-focus 0.25s alternate infinite;
 }
 
+.menu-item:disabled {
+    filter: grayscale(50%) brightness(66%);
+}
+
 @keyframes menu-item-focus {
     0% {
         box-shadow: 0 0 0 0.125em var(--palette-secondary-text-color);

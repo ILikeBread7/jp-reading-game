@@ -112,10 +112,23 @@ var $kt = $kt || {};
 
                     $kt.uiHelper.startGamePractice(categoryName, dict);
                 }));
+
+            this._disableCategoryMenuElements();
         }
 
         _getAllMenuElements() {
             this._menuElements = [...this._titleScene.getElementsByClassName('menu')];
+        }
+
+        _disableCategoryMenuElements() {
+            const beatenLevelsButton = document.getElementById('category-main-categories-main-game-mode-levels-entry-beaten-levels-only-button');
+            const levelsMenuButton = document.getElementById('category-main-categories-main-game-mode-levels-entry-main-game-mode-levels-button');
+            
+            levelsMenuButton.addEventListener('click', () => {
+                const gameStatus = $kt.persistence.getGameStatus();
+                const disabled = !gameStatus || gameStatus.level <= 1;
+                beatenLevelsButton.disabled = disabled;
+            });
         }
     }
 
