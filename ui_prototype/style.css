@@ -207,7 +207,7 @@ button, input {
 
 #hint-content {
     padding: calc(10 * var(--size-scale));
-    padding-top: 1.5em;
+    padding-top: 2em;
 }
 
 .content-group {
@@ -448,6 +448,12 @@ details.closing > summary::before {
 
 .column-half-width {
     flex-basis: 50%;
+}
+
+@media (max-width: 568px) {
+    .column-half-width {
+        flex-basis: 100%;
+    }
 }
 
 #level-up-hint-panel {

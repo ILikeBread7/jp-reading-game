@@ -187,17 +187,122 @@ var $kt = $kt || {};
         </div>`,
 
         /*html*/
-        `<div class="columns-container">
-            <div class="column-half-width">か - ka</div>
-            <div class="column-half-width">が - ga</div>
-            <div class="column-half-width">き - ki</div>
-            <div class="column-half-width">ぎ - gi</div>
-            <div class="column-half-width">く - ku</div>
-            <div class="column-half-width">ぐ - gu</div>
-            <div class="column-half-width">け - ke</div>
-            <div class="column-half-width">げ - ge</div>
-            <div class="column-half-width">こ - ko</div>
-            <div class="column-half-width">ご - go</div>
+        `<style>
+            .hint-kielbasa::after {
+                content: '🥒';
+                filter:
+                    hue-rotate(250deg)
+                    saturate(175%)
+                    brightness(75%);
+            }
+
+            .hint-ko-overlap {
+                top: -0.05em;
+                left: -1.05em;
+            }
+
+            .hint-shogi {
+                position: relative;
+                filter: sepia(100%) saturate(50%)
+            }
+
+            .hint-shogi::after {
+                content: '歩';
+                position: absolute;
+                left: 0.5em;
+                top: 0.85em;
+                font-size: 0.5em;
+                -webkit-text-stroke: initial;
+                color: #000000;
+            }
+
+            .hint-gi-overlap {
+                top: 0em;
+                left: -0.95em;
+            }
+
+            .hint-go-overlap {
+                top: 0.03em;
+                left: -1.15em;
+            }
+        </style>
+        
+        <div class="columns-container">
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">か - ka</span>,
+                    "<span class="hint-emphasis">Ka</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap">か</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">き - ki</span>,
+                    "<span class="hint-emphasis">Ki</span>elbasa"
+                    <span class="hint-kielbasa"></span>
+                    <span class="hint-kielbasa"></span><span class="hint-overlap">き</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">く - ku</span>,
+                    "<span class="hint-emphasis">Ku</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap">く</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">け - ke</span>,
+                    "<span class="hint-emphasis">Ke</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">け</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">こ - ko</span>,
+                    "<span class="hint-emphasis">Ko</span>ng"
+                    🦧
+                    🦧<span class="hint-overlap hint-ko-overlap">こ</span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">が - ga</span>,
+                    "<span class="hint-emphasis">Ga</span>rbage"
+                    🗑
+                    🗑<span class="hint-overlap">が</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぎ - gi</span>,
+                    "Sho<span class="hint-emphasis">gi</span>"
+                    <span class="hint-shogi">☗</span>
+                    <span class="hint-shogi">☗</span><span class="hint-overlap hint-gi-overlap">ぎ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぐ - gu</span>,
+                    "<span class="hint-emphasis">Gu</span>cci"
+                    👜
+                    👜<span class="hint-overlap">ぐ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">げ - ge</span>,
+                    "<span class="hint-emphasis">Ge</span>isha"
+                    💃👘
+                    💃👘<span class="hint-double-icon-overlap">げ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ご - go</span>,
+                    "<span class="hint-emphasis">Go</span>ng"
+                    🟠
+                    🟠<span class="hint-overlap hint-go-overlap">ご</span>
+                </div>
+            </div>
+        </div>
+        <div class="hint-explanation">
+            From now on some of the characters will have an additional marking (<span class="hint-emphasis">゛</span>) at top-right called "dakuten".
+        </div>
+        <div class="hint-explanation">
+            It turns some sounds into voiced sounds, for example here it turns "k" sounds into "g" sounds.
+        </div>
+        <div class="hint-explanation">
+            It doesn't apply to any of the previous characters,
+            but it will apply to most of the future ones
+            and will be explained whenever it does apply.
         </div>`,
         
         /*html*/
