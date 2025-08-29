@@ -124,11 +124,17 @@ var $kt = $kt || {};
             const beatenLevelsButton = document.getElementById('category-main-categories-main-game-mode-levels-entry-beaten-levels-only-button');
             const levelsMenuButton = document.getElementById('category-main-categories-main-game-mode-levels-entry-main-game-mode-levels-button');
             
-            levelsMenuButton.addEventListener('click', () => {
+            const showMenuListener = () => {
                 const gameStatus = $kt.persistence.getGameStatus();
                 const disabled = !gameStatus || gameStatus.level <= 1;
                 beatenLevelsButton.disabled = disabled;
-            });
+
+                if (!disabled) {
+                    levelsMenuButton.removeEventListener('click', showMenuListener);
+                }
+            };
+
+            levelsMenuButton.addEventListener('click', showMenuListener);
         }
     }
 
