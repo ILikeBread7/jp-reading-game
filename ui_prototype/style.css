@@ -780,7 +780,7 @@ body:not(.game) .game-only {
 
 .scrollable {
     max-height: 40vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 0.7em;
 }
 
