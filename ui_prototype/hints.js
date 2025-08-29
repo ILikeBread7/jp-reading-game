@@ -139,8 +139,8 @@ var $kt = $kt || {};
             <div>
                 <span class="hint-emphasis">ろ - ro</span>,
                 "<span class="hint-emphasis">Ro</span>ar"
-                🦁
-                🦁<span class="hint-overlap">ろ</span>
+                🦁📢
+                🦁📢<span class="hint-double-icon-overlap">ろ</span>
             </div>
             <div class="hint-explanation">
                 Remembering the difference between る (ru) and ろ (ro)
