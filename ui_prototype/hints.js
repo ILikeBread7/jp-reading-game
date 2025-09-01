@@ -394,6 +394,12 @@ var $kt = $kt || {};
                     🕷<span class="hint-overlap">ぞ</span>
                 </div>
             </div>
+        </div>
+        <div class="hint-explanation">
+            The "shi" and "ji" are a little different because is no "si" (like in "<span class="hint-emphasis">si</span>ege") or "zi" (like in "jacuz<span class="hint-emphasis">zi</span>") sound in Japanese.
+        </div>
+        <div class="hint-explanation">
+            They can still be written as "si" and "zi" but the "shi" and "ji" spellings are closer to the actual pronunciation.
         </div>`,
         
         /*html*/
