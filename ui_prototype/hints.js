@@ -394,9 +394,6 @@ var $kt = $kt || {};
                     🕷<span class="hint-overlap">ぞ</span>
                 </div>
             </div>
-        </div>
-        <div class="hint-explanation">
-        
         </div>`,
         
         /*html*/
