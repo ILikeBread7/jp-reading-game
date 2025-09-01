@@ -7,7 +7,12 @@ var $kt = $kt || {};
     $kt.hints = [
         /*html*/
         `<style>
-            .hint-u-shop {
+            .hint-u-shop::before {
+                content: '🚘';
+            }
+
+            .hint-u-shop::after {
+                content: '🏪';
                 position: relative;
                 top: -0.25em;
             }
@@ -28,8 +33,8 @@ var $kt = $kt || {};
         <div>
             <span class="hint-emphasis">う - u</span>,
             "Drive-thr<span class="hint-emphasis">u</span>"
-            🚘<span class="hint-u-shop">🏪</span>
-            🚘<span class="hint-u-shop">🏪</span><span class="hint-double-icon-overlap">う</span>
+            <span class="hint-u-shop"></span>
+            <span class="hint-u-shop"></span><span class="hint-double-icon-overlap">う</span>
         </div>
         <div>
             <span class="hint-emphasis">え - e</span>,
@@ -100,10 +105,7 @@ var $kt = $kt || {};
         `<style>
             .hint-ruby::after {
                 content: '💎';
-                filter:
-                    hue-rotate(140deg)
-                    saturate(250%)
-                    ;
+                filter: hue-rotate(140deg) saturate(250%);
             }
 
             .hint-ru-overlap {
@@ -203,7 +205,11 @@ var $kt = $kt || {};
 
             .hint-shogi {
                 position: relative;
-                filter: sepia(100%) saturate(50%)
+            }
+
+            .hint-shogi::before {
+                content: '☗';
+                filter: sepia(100%) saturate(50%);
             }
 
             .hint-shogi::after {
@@ -270,8 +276,8 @@ var $kt = $kt || {};
                 <div>
                     <span class="hint-emphasis">ぎ - gi</span>,
                     "Sho<span class="hint-emphasis">gi</span>"
-                    <span class="hint-shogi">☗</span>
-                    <span class="hint-shogi">☗</span><span class="hint-overlap hint-gi-overlap">ぎ</span>
+                    <span class="hint-shogi"></span>
+                    <span class="hint-shogi"></span><span class="hint-overlap hint-gi-overlap">ぎ</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぐ - gu</span>,
