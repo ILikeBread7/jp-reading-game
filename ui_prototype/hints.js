@@ -123,8 +123,8 @@ var $kt = $kt || {};
             <div>
                 <span class="hint-emphasis">り - ri</span>,
                 "<span class="hint-emphasis">Ri</span>o De Janeiro"
-                🌎🏙
-                🌎🏙<span class="hint-double-icon-overlap">り</span>
+                🇧🇷🏙
+                🇧🇷🏙<span class="hint-double-icon-overlap">り</span>
             </div>
             <div>
                 <span class="hint-emphasis">る - ru</span>,
@@ -309,6 +309,94 @@ var $kt = $kt || {};
             It doesn't apply to any of the previous characters,
             but it will apply to most of the future ones
             and will be explained whenever it does apply.
+        </div>`,
+        
+        /*html*/
+        `<style>
+            .hint-sauerkraut::after {
+                content: '🥘';
+                filter: grayscale(75%) brightness(150%);
+            }
+
+            .hint-shiitake::after {
+                content: '🍄';
+                filter: hue-rotate(35deg) grayscale(25%);
+            }
+
+            .hint-zucchini::after {
+                content: '🍠';
+                filter: hue-rotate(175deg) sepia(66%) saturate(200%);
+            }
+        </style>
+        
+        <div class="columns-container">
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">さ - sa</span>,
+                    "<span class="hint-emphasis">Sa</span>uerkraut"
+                    <span class="hint-sauerkraut"></span>
+                    <span class="hint-sauerkraut"></span><span class="hint-overlap">さ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">し - shi</span>,
+                    "<span class="hint-emphasis">Shi</span>itake"
+                    <span class="hint-shiitake"></span>
+                    <span class="hint-shiitake"></span><span class="hint-overlap">し</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">す - su</span>,
+                    "<span class="hint-emphasis">Su</span>baru"
+                    🌌
+                    🌌<span class="hint-overlap">す</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">せ - se</span>,
+                    "<span class="hint-emphasis">Se</span>ance"
+                    👻
+                    👻<span class="hint-overlap">せ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">そ - so</span>,
+                    "<span class="hint-emphasis">So</span>ftball"
+                    🥎
+                    🥎<span class="hint-overlap">そ</span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ざ - za</span>,
+                    "<span class="hint-emphasis">Za</span>greb"
+                    🇭🇷🏙
+                    🇭🇷🏙<span class="hint-double-icon-overlap">ざ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">じ - ji</span>,
+                    "Mount Fu<span class="hint-emphasis">ji</span>"
+                    🗻
+                    🗻<span class="hint-overlap">じ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ず - zu</span>,
+                    "<span class="hint-emphasis">Zu</span>cchini"
+                    <span class="hint-zucchini"></span>
+                    <span class="hint-zucchini"></span><span class="hint-overlap">ず</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぜ - ze</span>,
+                    "<span class="hint-emphasis">Ze</span>lda"
+                    👸
+                    👸<span class="hint-overlap">ぜ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぞ - zo</span>,
+                    "<span class="hint-emphasis">Zo</span>ra spider"
+                    🕷
+                    🕷<span class="hint-overlap">ぞ</span>
+                </div>
+            </div>
+        </div>
+        <div class="hint-explanation">
+        
         </div>`,
         
         /*html*/
