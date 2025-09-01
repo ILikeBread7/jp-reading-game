@@ -401,6 +401,95 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             They can still be written as "si" and "zi" but the "shi" and "ji" spellings are closer to the actual pronunciation.
         </div>`,
+
+        /*html*/
+        `<style>
+        
+        </style>
+        
+        <div class="columns-container">
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">た - ta</span>,
+                    "<span class="hint-emphasis">Ka</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap">た</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ち - chi</span>,
+                    "<span class="hint-emphasis">Ki</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">ち</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">つ - tsu</span>,
+                    "<span class="hint-emphasis">Ku</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap">つ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">て - te</span>,
+                    "<span class="hint-emphasis">Ke</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">て</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">と - to</span>,
+                    "<span class="hint-emphasis">Ko</span>ng"
+                    🦧
+                    🦧<span class="hint-overlap">と</span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">だ - da</span>,
+                    "<span class="hint-emphasis">Ga</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap">だ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぢ - di</span>,
+                    "<span class="hint-emphasis">Gi</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">ぢ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">づ - dzu</span>,
+                    "<span class="hint-emphasis">Gu</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap">づ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">で - de</span>,
+                    "<span class="hint-emphasis">Ge</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">で</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ど - do</span>,
+                    "<span class="hint-emphasis">Go</span>ng"
+                    🦧
+                    🦧<span class="hint-overlap">ど</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <span class="hint-emphasis">っ - ltsu (small tsu)</span> - doubles the next sound,
+            が<span class="hint-emphasis">っこ</span>う (ga<span class="hint-emphasis">kko</span>u).
+        </div>
+        <div class="hint-explanation">
+            The "dzu" character is pronounced "zu", same as "ず", but for disambiguation purposes can be spelled differently.
+            Inputting "zu" in this game is recognized as "ず", so disambiguation is needed.
+        </div>
+        <div class="hint-explanation">
+            The "tsu", "dzu" and "ltsu" can also be written as "tu", "du" and "ltu" but again, the "tsu" and "dzu" spellings are closer to the actual pronunciation.
+        </div>
+        <div class="hint-explanation">
+            Small tsu (<span class="hint-emphasis">っ</span>) is usually written as a double letter instead of "ltsu" except when it needs to be written by itself.
+        </div>
+        <div class="hint-explanation">
+            It can also be written as "xtsu" but "ltsu" might be easier to remember ("<span class="hint-emphasis">l</span>ittle tsu").
+        </div>`,
         
         /*html*/
         `<div class="columns-container">
