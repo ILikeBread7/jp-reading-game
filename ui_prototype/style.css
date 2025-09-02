@@ -42,12 +42,18 @@
     src: 
         local('Noto Sans CJK JP'),
         url('fonts/Noto/NotoSansJP-Regular.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KantoreEmoji';
+    src: local('Noto Color Emoji');
 }
 
 body {
     margin: 0;
     font-size: var(--base-font-size);
-    font-family: KantoreFont, sans-serif;
+    font-family: KantoreFont, KantoreEmoji, sans-serif;
 
     background-color: var(--palette-main-color);
     color: var(--palette-text-color);
@@ -69,6 +75,12 @@ select {
 
 #hint-select {
     font-size: 0.9em;
+}
+
+.hint-svg-icon {
+    height: 1.4em;
+    min-width: 1em;
+    vertical-align: bottom;
 }
 
 .hint-explanation {

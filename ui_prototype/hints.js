@@ -404,72 +404,81 @@ var $kt = $kt || {};
 
         /*html*/
         `<style>
-        
+            .hint-chia::after {
+                content: '🍚';
+                filter: invert(75%) brightness(175%);
+            }
+
+            .hint-te-overlap {
+                top: -0.1em;
+            }
+
+            .hint-toilet::after {
+                content: '🚽';
+                transform: scaleX(-1);
+                display: inline-block;
+            }
         </style>
         
         <div class="columns-container">
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">た - ta</span>,
-                    "<span class="hint-emphasis">Ka</span>yak"
-                    🛶
-                    🛶<span class="hint-overlap">た</span>
+                    "<span class="hint-emphasis">Ta</span>co"
+                    🌮
+                    🌮<span class="hint-overlap">た</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ち - chi</span>,
-                    "<span class="hint-emphasis">Ki</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">ち</span>
+                    "<span class="hint-emphasis">Chi</span>a"
+                    <span class="hint-chia"></span>
+                    <span class="hint-chia"></span><span class="hint-overlap">ち</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">つ - tsu</span>,
-                    "<span class="hint-emphasis">Ku</span>dos"
-                    🙋
-                    🙋<span class="hint-overlap">つ</span>
+                    "Juju<span class="hint-emphasis">tsu</span>"
+                    🥋
+                    🥋<span class="hint-overlap">つ</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">て - te</span>,
-                    "<span class="hint-emphasis">Ke</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">て</span>
+                    "<span class="hint-emphasis">Te</span>nnis"
+                    🎾
+                    🎾<span class="hint-overlap hint-te-overlap">て</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">と - to</span>,
-                    "<span class="hint-emphasis">Ko</span>ng"
-                    🦧
-                    🦧<span class="hint-overlap">と</span>
+                    "<span class="hint-emphasis">To</span>ilet"
+                    <span class="hint-toilet"></span>
+                    <span class="hint-toilet"></span><span class="hint-overlap">と</span>
                 </div>
             </div>
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">だ - da</span>,
-                    "<span class="hint-emphasis">Ga</span>yak"
-                    🛶
-                    🛶<span class="hint-overlap">だ</span>
+                    "<span class="hint-emphasis">Da</span>ikon"
+                    <img class="hint-svg-icon" src="icons/hints/daikon.svg"/>
+                    <img class="hint-svg-icon" src="icons/hints/daikon.svg"/><span class="hint-overlap">だ</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぢ - di</span>,
-                    "<span class="hint-emphasis">Gi</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">ぢ</span>
+                    Same sound as じ (ji)
                 </div>
                 <div>
                     <span class="hint-emphasis">づ - dzu</span>,
-                    "<span class="hint-emphasis">Gu</span>dos"
-                    🙋
-                    🙋<span class="hint-overlap">づ</span>
+                    Same sound as ず (zu)
                 </div>
                 <div>
                     <span class="hint-emphasis">で - de</span>,
-                    "<span class="hint-emphasis">Ge</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">で</span>
+                    "<span class="hint-emphasis">De</span>vilish"
+                    👹
+                    👹<span class="hint-overlap">で</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ど - do</span>,
-                    "<span class="hint-emphasis">Go</span>ng"
-                    🦧
-                    🦧<span class="hint-overlap">ど</span>
+                    "<span class="hint-emphasis">Do</span>g"
+                    🐕
+                    🐕<span class="hint-overlap">ど</span>
                 </div>
             </div>
         </div>
@@ -482,7 +491,7 @@ var $kt = $kt || {};
             Inputting "zu" in this game is recognized as "ず", so disambiguation is needed.
         </div>
         <div class="hint-explanation">
-            The "tsu", "dzu" and "ltsu" can also be written as "tu", "du" and "ltu" but again, the "tsu" and "dzu" spellings are closer to the actual pronunciation.
+            The "tsu", "dzu" and "ltsu" can also be written as "tu", "du" and "ltu" but the "tsu" and "dzu" spellings are closer to the actual pronunciation.
         </div>
         <div class="hint-explanation">
             Small tsu (<span class="hint-emphasis">っ</span>) is usually written as a double letter instead of "ltsu" except when it needs to be written by itself.

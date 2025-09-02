@@ -19,3 +19,6 @@ https://vincentgarreau.com/particles.js/
 
 IPA dict
 https://github.com/open-dict-data/ipa-dict
+
+SVG
+https://freesvg.org/1545492674 // Daikon
