@@ -499,6 +499,113 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             It can also be written as "xtsu" but "ltsu" might be easier to remember ("<span class="hint-emphasis">l</span>ittle tsu").
         </div>`,
+
+        /*html*/
+        `<style>
+        
+        </style>
+        
+        <div class="columns-container">
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">は - ha</span>,
+                    "<span class="hint-emphasis">Ka</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap">は</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ひ - hi</span>,
+                    "<span class="hint-emphasis">Ki</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">ひ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ふ - fu</span>,
+                    "<span class="hint-emphasis">Ku</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap">ふ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">へ - he</span>,
+                    "<span class="hint-emphasis">Ke</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">へ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ほ - ho</span>,
+                    "<span class="hint-emphasis">Ko</span>ng"
+                    🦧
+                    🦧<span class="hint-overlap">ほ</span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ば - ba</span>,
+                    "<span class="hint-emphasis">Ga</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap">ば</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">び - bi</span>,
+                    "<span class="hint-emphasis">Gi</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">び</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぶ - bu</span>,
+                    "<span class="hint-emphasis">Gu</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap">ぶ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">べ - be</span>,
+                    "<span class="hint-emphasis">Ge</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">べ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぼ - bo</span>,
+                    "<span class="hint-emphasis">Go</span>ng"
+                    🦧
+                    🦧<span class="hint-overlap">ぼ</span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ぱ - pa</span>,
+                    "<span class="hint-emphasis">Ga</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap">ぱ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぴ - pi</span>,
+                    "<span class="hint-emphasis">Gi</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">ぴ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぷ - pu</span>,
+                    "<span class="hint-emphasis">Gu</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap">ぷ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぺ - pe</span>,
+                    "<span class="hint-emphasis">Ge</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap">ぺ</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ぽ - po</span>,
+                    "<span class="hint-emphasis">Go</span>ng"
+                    🦧
+                    🦧<span class="hint-overlap">ぽ</span>
+                </div>
+            </div>
+        </div>
+        <div class="hint-explanation">
+            
+        </div>`,
         
         /*html*/
         `<div class="columns-container">
