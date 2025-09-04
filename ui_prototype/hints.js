@@ -509,9 +509,9 @@ var $kt = $kt || {};
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">は - ha</span>,
-                    "<span class="hint-emphasis">Ka</span>yak"
-                    🛶
-                    🛶<span class="hint-overlap">は</span>
+                    "<span class="hint-emphasis">Ha</span>iku"
+                    📃
+                    📃<span class="hint-overlap">は</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ひ - hi</span>,
@@ -612,6 +612,10 @@ var $kt = $kt || {};
         </div>
         <div class="hint-explanation">
             "Fu" can also be written as "hu", but "fu" is again closer to the real pronunciation.
+        </div>
+        <div class="hint-explanation">
+            When used as grammatical particles は (ha) and へ (he) are read as "wa" and "e" respectively.
+            This doesn't apply when they're used as a part of a word, and isn't relevant to this game, but it's important to know when reading full sentences.
         </div>`,
         
         /*html*/
