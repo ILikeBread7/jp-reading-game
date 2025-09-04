@@ -92,11 +92,17 @@ select {
     color: var(--palette-secondary-text-color);
 }
 
+.hint-double-icon-overlap::after,
+.hint-overlap::after {
+    content: attr(data-content);
+    position: absolute;
+}
+
 .hint-double-icon-overlap,
 .hint-overlap {
     position: relative;
     left: -1.125em;
-    top: 0.0625em
+    top: 0.0625em;
 }
 
 .hint-double-icon-overlap {

@@ -22,31 +22,31 @@ var $kt = $kt || {};
             <span class="hint-emphasis">あ - a</span>,
             "<span class="hint-emphasis">A</span>pple"
             🍎
-            🍎<span class="hint-overlap">あ</span>
+            🍎<span class="hint-overlap" data-content="あ"></span>
         </div>
         <div>
             <span class="hint-emphasis">い - i</span>,
             "Spaghett<span class="hint-emphasis">i</span>"
             🍝
-            🍝<span class="hint-overlap">い</span>
+            🍝<span class="hint-overlap" data-content="い"></span>
         </div>
         <div>
             <span class="hint-emphasis">う - u</span>,
             "Drive-thr<span class="hint-emphasis">u</span>"
             <span class="hint-u-shop"></span>
-            <span class="hint-u-shop"></span><span class="hint-double-icon-overlap">う</span>
+            <span class="hint-u-shop"></span><span class="hint-double-icon-overlap" data-content="う"></span>
         </div>
         <div>
             <span class="hint-emphasis">え - e</span>,
             "<span class="hint-emphasis">E</span>lephant"
             🐘
-            🐘<span class="hint-overlap">え</span>
+            🐘<span class="hint-overlap" data-content="え"></span>
         </div>
         <div>
             <span class="hint-emphasis">お - o</span>,
             "<span class="hint-emphasis">O</span>yster"
             🦪
-            🦪<span class="hint-overlap">お</span>
+            🦪<span class="hint-overlap" data-content="お"></span>
         </div>
 
         <div class="hint-explanation">
@@ -73,19 +73,19 @@ var $kt = $kt || {};
                 <span class="hint-emphasis">ま - ma</span>,
                 "<span class="hint-emphasis">Ma</span>estro"
                 🧔🎻
-                🧔🎻<span class="hint-double-icon-overlap">ま</span>
+                🧔🎻<span class="hint-double-icon-overlap" data-content="ま"></span>
             </div>
             <div>
                 <span class="hint-emphasis">み - mi</span>,
                 "Origa<span class="hint-emphasis">mi</span>"
                 📃🦢
-                📃🦢<span class="hint-double-icon-overlap">み</span>
+                📃🦢<span class="hint-double-icon-overlap" data-content="み"></span>
             </div>
             <div>
                 <span class="hint-emphasis">む - mu</span>,
                 "<span class="hint-emphasis">Mu</span>cho"
                 👐
-                👐<span class="hint-overlap">む</span>
+                👐<span class="hint-overlap" data-content="む"></span>
             </div>
             <div>
                 <span class="hint-emphasis">め - me</span>,
@@ -97,7 +97,7 @@ var $kt = $kt || {};
                 <span class="hint-emphasis">も - mo</span>,
                 "<span class="hint-emphasis">Mo</span>bile"
                 📱
-                📱<span class="hint-overlap">も</span>
+                📱<span class="hint-overlap" data-content="も"></span>
             </div>
         </div>`,
 
@@ -118,13 +118,13 @@ var $kt = $kt || {};
                 <span class="hint-emphasis">ら - ra</span>,
                 "<span class="hint-emphasis">Ra</span>bbit"
                 🐇
-                🐇<span class="hint-overlap">ら</span>
+                🐇<span class="hint-overlap" data-content="ら"></span>
             </div>
             <div>
                 <span class="hint-emphasis">り - ri</span>,
                 "<span class="hint-emphasis">Ri</span>o De Janeiro"
                 🇧🇷🏙
-                🇧🇷🏙<span class="hint-double-icon-overlap">り</span>
+                🇧🇷🏙<span class="hint-double-icon-overlap" data-content="り"></span>
             </div>
             <div>
                 <span class="hint-emphasis">る - ru</span>,
@@ -136,13 +136,13 @@ var $kt = $kt || {};
                 <span class="hint-emphasis">れ - re</span>,
                 "<span class="hint-emphasis">Re</span>indeer"
                 🦌
-                🦌<span class="hint-overlap">れ</span>
+                🦌<span class="hint-overlap" data-content="れ"></span>
             </div>
             <div>
                 <span class="hint-emphasis">ろ - ro</span>,
                 "<span class="hint-emphasis">Ro</span>ar"
                 🦁📢
-                🦁📢<span class="hint-double-icon-overlap">ろ</span>
+                🦁📢<span class="hint-double-icon-overlap" data-content="ろ"></span>
             </div>
             <div class="hint-explanation">
                 Remembering the difference between る (ru) and ろ (ro)
@@ -160,31 +160,31 @@ var $kt = $kt || {};
                 <span class="hint-emphasis">な - na</span>,
                 "<span class="hint-emphasis">Na</span>chos"
                 🧆
-                🧆<span class="hint-overlap">な</span>
+                🧆<span class="hint-overlap" data-content="な"></span>
             </div>
             <div>
                 <span class="hint-emphasis">に - ni</span>,
                 "<span class="hint-emphasis">Ni</span>ece"
                 👧
-                👧<span class="hint-overlap">に</span>
+                👧<span class="hint-overlap" data-content="に"></span>
             </div>
             <div>
                 <span class="hint-emphasis">ぬ - nu</span>,
                 "G<span class="hint-emphasis">nu</span>"
                 🐃
-                🐃<span class="hint-overlap">ぬ</span>
+                🐃<span class="hint-overlap" data-content="ぬ"></span>
             </div>
             <div>
                 <span class="hint-emphasis">ね - ne</span>,
                 "<span class="hint-emphasis">Ne</span>cromancy"
                 💀🧙‍♂
-                💀🧙‍♂<span class="hint-double-icon-overlap">ね</span>
+                💀🧙‍♂<span class="hint-double-icon-overlap" data-content="ね"></span>
             </div>
             <div>
                 <span class="hint-emphasis">の - no</span>,
                 "<span class="hint-emphasis">No</span>ise"
                 🔊
-                🔊<span class="hint-overlap">の</span>
+                🔊<span class="hint-overlap" data-content="の"></span>
             </div>
         </div>`,
 
@@ -239,25 +239,25 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">か - ka</span>,
                     "<span class="hint-emphasis">Ka</span>yak"
                     🛶
-                    🛶<span class="hint-overlap">か</span>
+                    🛶<span class="hint-overlap" data-content="か"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">き - ki</span>,
                     "<span class="hint-emphasis">Ki</span>elbasa"
                     <span class="hint-kielbasa"></span>
-                    <span class="hint-kielbasa"></span><span class="hint-overlap">き</span>
+                    <span class="hint-kielbasa"></span><span class="hint-overlap" data-content="き"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">く - ku</span>,
                     "<span class="hint-emphasis">Ku</span>dos"
                     🙋
-                    🙋<span class="hint-overlap">く</span>
+                    🙋<span class="hint-overlap" data-content="く"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">け - ke</span>,
                     "<span class="hint-emphasis">Ke</span>rmit"
                     🐸
-                    🐸<span class="hint-overlap">け</span>
+                    🐸<span class="hint-overlap" data-content="け"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">こ - ko</span>,
@@ -271,7 +271,7 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">が - ga</span>,
                     "<span class="hint-emphasis">Ga</span>rbage"
                     🗑
-                    🗑<span class="hint-overlap">が</span>
+                    🗑<span class="hint-overlap" data-content="が"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぎ - gi</span>,
@@ -283,13 +283,13 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">ぐ - gu</span>,
                     "<span class="hint-emphasis">Gu</span>cci"
                     👜
-                    👜<span class="hint-overlap">ぐ</span>
+                    👜<span class="hint-overlap" data-content="ぐ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">げ - ge</span>,
                     "<span class="hint-emphasis">Ge</span>isha"
                     💃👘
-                    💃👘<span class="hint-double-icon-overlap">げ</span>
+                    💃👘<span class="hint-double-icon-overlap" data-content="げ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ご - go</span>,
@@ -335,31 +335,31 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">さ - sa</span>,
                     "<span class="hint-emphasis">Sa</span>uerkraut"
                     <span class="hint-sauerkraut"></span>
-                    <span class="hint-sauerkraut"></span><span class="hint-overlap">さ</span>
+                    <span class="hint-sauerkraut"></span><span class="hint-overlap" data-content="さ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">し - shi</span>,
                     "<span class="hint-emphasis">Shi</span>itake"
                     <span class="hint-shiitake"></span>
-                    <span class="hint-shiitake"></span><span class="hint-overlap">し</span>
+                    <span class="hint-shiitake"></span><span class="hint-overlap" data-content="し"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">す - su</span>,
                     "<span class="hint-emphasis">Su</span>baru"
                     🌌
-                    🌌<span class="hint-overlap">す</span>
+                    🌌<span class="hint-overlap" data-content="す"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">せ - se</span>,
                     "<span class="hint-emphasis">Se</span>ance"
                     👻
-                    👻<span class="hint-overlap">せ</span>
+                    👻<span class="hint-overlap" data-content="せ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">そ - so</span>,
                     "<span class="hint-emphasis">So</span>ftball"
                     🥎
-                    🥎<span class="hint-overlap">そ</span>
+                    🥎<span class="hint-overlap" data-content="そ"></span>
                 </div>
             </div>
             <div class="column-half-width">
@@ -367,31 +367,31 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">ざ - za</span>,
                     "<span class="hint-emphasis">Za</span>greb"
                     🇭🇷🏙
-                    🇭🇷🏙<span class="hint-double-icon-overlap">ざ</span>
+                    🇭🇷🏙<span class="hint-double-icon-overlap" data-content="ざ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">じ - ji</span>,
                     "Mount Fu<span class="hint-emphasis">ji</span>"
                     🗻
-                    🗻<span class="hint-overlap">じ</span>
+                    🗻<span class="hint-overlap" data-content="じ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ず - zu</span>,
                     "<span class="hint-emphasis">Zu</span>cchini"
                     <span class="hint-zucchini"></span>
-                    <span class="hint-zucchini"></span><span class="hint-overlap">ず</span>
+                    <span class="hint-zucchini"></span><span class="hint-overlap" data-content="ず"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぜ - ze</span>,
                     "<span class="hint-emphasis">Ze</span>lda"
                     👸
-                    👸<span class="hint-overlap">ぜ</span>
+                    👸<span class="hint-overlap" data-content="ぜ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぞ - zo</span>,
                     "<span class="hint-emphasis">Zo</span>ra spider"
                     🕷
-                    🕷<span class="hint-overlap">ぞ</span>
+                    🕷<span class="hint-overlap" data-content="ぞ"></span>
                 </div>
             </div>
         </div>
@@ -426,19 +426,19 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">た - ta</span>,
                     "<span class="hint-emphasis">Ta</span>co"
                     🌮
-                    🌮<span class="hint-overlap">た</span>
+                    🌮<span class="hint-overlap" data-content="た"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ち - chi</span>,
                     "<span class="hint-emphasis">Chi</span>a"
                     <span class="hint-chia"></span>
-                    <span class="hint-chia"></span><span class="hint-overlap">ち</span>
+                    <span class="hint-chia"></span><span class="hint-overlap" data-content="ち"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">つ - tsu</span>,
                     "Juju<span class="hint-emphasis">tsu</span>"
                     🥋
-                    🥋<span class="hint-overlap">つ</span>
+                    🥋<span class="hint-overlap" data-content="つ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">て - te</span>,
@@ -450,7 +450,7 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">と - to</span>,
                     "<span class="hint-emphasis">To</span>ilet"
                     <span class="hint-toilet"></span>
-                    <span class="hint-toilet"></span><span class="hint-overlap">と</span>
+                    <span class="hint-toilet"></span><span class="hint-overlap" data-content="と"></span>
                 </div>
             </div>
             <div class="column-half-width">
@@ -458,7 +458,7 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">だ - da</span>,
                     "<span class="hint-emphasis">Da</span>ikon"
                     <img class="hint-svg-icon" src="icons/hints/daikon.svg"/>
-                    <img class="hint-svg-icon" src="icons/hints/daikon.svg"/><span class="hint-overlap">だ</span>
+                    <img class="hint-svg-icon" src="icons/hints/daikon.svg"/><span class="hint-overlap" data-content="だ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぢ - di</span>,
@@ -472,13 +472,13 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">で - de</span>,
                     "<span class="hint-emphasis">De</span>vilish"
                     👹
-                    👹<span class="hint-overlap">で</span>
+                    👹<span class="hint-overlap" data-content="で"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ど - do</span>,
                     "<span class="hint-emphasis">Do</span>g"
                     🐕
-                    🐕<span class="hint-overlap">ど</span>
+                    🐕<span class="hint-overlap" data-content="ど"></span>
                 </div>
             </div>
         </div>
@@ -502,7 +502,19 @@ var $kt = $kt || {};
 
         /*html*/
         `<style>
-        
+            .hint-ha-overlap {
+                top: 0em;
+            }
+
+            .hint-horse::after {
+                content: '🐴';
+                transform: scaleX(-1);
+                display: inline-block;
+            }
+
+            .hint-po-overlap {
+                top: -0.01em;
+            }
         </style>
         
         <div class="columns-container">
@@ -511,95 +523,95 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">は - ha</span>,
                     "<span class="hint-emphasis">Ha</span>iku"
                     📃
-                    📃<span class="hint-overlap">は</span>
+                    📃<span class="hint-overlap hint-ha-overlap">は</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ひ - hi</span>,
-                    "<span class="hint-emphasis">Ki</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">ひ</span>
+                    "Mo<span class="hint-emphasis">hi</span>can"
+                    🏹🪶
+                    🏹🪶<span class="hint-double-icon-overlap" data-content="ひ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ふ - fu</span>,
-                    "<span class="hint-emphasis">Ku</span>dos"
-                    🙋
-                    🙋<span class="hint-overlap">ふ</span>
+                    "<span class="hint-emphasis">Fu</span>ji"
+                    🗻
+                    🗻<span class="hint-overlap" data-content="ふ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">へ - he</span>,
-                    "<span class="hint-emphasis">Ke</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">へ</span>
+                    "<span class="hint-emphasis">He</span>y"
+                    👋
+                    👋<span class="hint-overlap" data-content="へ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ほ - ho</span>,
-                    "<span class="hint-emphasis">Ko</span>ng"
-                    🦧
-                    🦧<span class="hint-overlap">ほ</span>
+                    "<span class="hint-emphasis">Ho</span>rse"
+                    <span class="hint-horse"></span>
+                    <span class="hint-horse"></span><span class="hint-overlap" data-content="ほ"></span>
                 </div>
             </div>
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">ば - ba</span>,
-                    "<span class="hint-emphasis">Ga</span>yak"
-                    🛶
-                    🛶<span class="hint-overlap">ば</span>
+                    "<span class="hint-emphasis">Ba</span>you"
+                    🏞️
+                    🏞️<span class="hint-overlap" data-content="ば"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">び - bi</span>,
-                    "<span class="hint-emphasis">Gi</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">び</span>
+                    "Zom<span class="hint-emphasis">bi</span>e"
+                    🧟
+                    🧟<span class="hint-overlap" data-content="び"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぶ - bu</span>,
-                    "<span class="hint-emphasis">Gu</span>dos"
-                    🙋
-                    🙋<span class="hint-overlap">ぶ</span>
+                    "<span class="hint-emphasis">Bu</span>ddhism"
+                    🧘
+                    🧘<span class="hint-overlap" data-content="ぶ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">べ - be</span>,
-                    "<span class="hint-emphasis">Ge</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">べ</span>
+                    "<span class="hint-emphasis">Be</span>ethoven"
+                    🤵🎹
+                    🤵🎹<span class="hint-double-icon-overlap" data-content="べ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぼ - bo</span>,
-                    "<span class="hint-emphasis">Go</span>ng"
-                    🦧
-                    🦧<span class="hint-overlap">ぼ</span>
+                    "<span class="hint-emphasis">Bo</span>ard game"
+                    🎲
+                    🎲<span class="hint-overlap" data-content="ぼ"></span>
                 </div>
             </div>
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">ぱ - pa</span>,
-                    "<span class="hint-emphasis">Ga</span>yak"
-                    🛶
-                    🛶<span class="hint-overlap">ぱ</span>
+                    "<span class="hint-emphasis">Pa</span>cifism"
+                    ☮️
+                    ☮️<span class="hint-overlap" data-content="ぱ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぴ - pi</span>,
-                    "<span class="hint-emphasis">Gi</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">ぴ</span>
+                    "<span class="hint-emphasis">Pi</span>zza"
+                    🍕
+                    🍕<span class="hint-overlap" data-content="ぴ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぷ - pu</span>,
-                    "<span class="hint-emphasis">Gu</span>dos"
-                    🙋
-                    🙋<span class="hint-overlap">ぷ</span>
+                    "Cap<span class="hint-emphasis">pu</span>ccino"
+                    ☕
+                    ☕<span class="hint-overlap" data-content="ぷ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぺ - pe</span>,
-                    "<span class="hint-emphasis">Ge</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap">ぺ</span>
+                    "<span class="hint-emphasis">Pe</span>ar"
+                    🍐
+                    🍐<span class="hint-overlap" data-content="ぺ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ぽ - po</span>,
-                    "<span class="hint-emphasis">Go</span>ng"
-                    🦧
-                    🦧<span class="hint-overlap">ぽ</span>
+                    "<span class="hint-emphasis">Po</span>ng"
+                    🕹️
+                    🕹️<span class="hint-overlap hint-po-overlap" data-content="ぽ"></span>
                 </div>
             </div>
         </div>
