@@ -604,7 +604,14 @@ var $kt = $kt || {};
             </div>
         </div>
         <div class="hint-explanation">
-            
+            Characters in this section can have an additional marking (<span class="hint-emphasis">゜</span>) at top-right called "handakuten",
+            which turns the "h" sounds into "p" sounds.
+        </div>
+        <div class="hint-explanation">
+            It only applies here, to the "h" sounds, and nowhere else.
+        </div>
+        <div class="hint-explanation">
+            "Fu" can also be written as "hu", but "fu" is again closer to the real pronunciation.
         </div>`,
         
         /*html*/
