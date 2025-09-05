@@ -661,21 +661,24 @@ var $kt = $kt || {};
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">ゃ - lya</span>,
-                    "<span class="hint-emphasis">Ga</span>yak"
-                    🛶
-                    🛶<span class="hint-overlap" data-content="ゃ"></span>
-                </div>
+                    <span class="hint-emphasis">きゅ - kyu</span>,
+                    "<span class="hint-emphasis">Kyu</span>"
+                    🥋
+                    🥋<span class="hint-double-characters-overlap" data-content="きゅ"></span>
+                    </div>
                 <div>
                     <span class="hint-emphasis">ゅ - lyu</span>,
-                    "<span class="hint-emphasis">Gi</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap" data-content="ゅ"></span>
+                    <span class="hint-emphasis">みゃ - mya</span>,
+                    "<span class="hint-emphasis">Mya</span>nmar"
+                    🇲🇲
+                    🇲🇲<span class="hint-double-characters-overlap" data-content="みゃ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ょ - lyo</span>,
-                    "<span class="hint-emphasis">Gu</span>dos"
-                    🙋
-                    🙋<span class="hint-overlap" data-content="ょ"></span>
+                    <span class="hint-emphasis">ぴょ - pyo</span>,
+                    "<span class="hint-emphasis">Pyo</span>ngyang"
+                    🇰🇵🏙
+                    🇰🇵🏙<span class="hint-double-characters-overlap hint-pyo-overlap" data-content="ぴょ"></span>
                 </div>
             </div>
         </div>
@@ -693,27 +696,6 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             The same applies for all combinations of characters ending with "i" (including ones with dakuten or handakuten)
             and all small "y" characters, e.g. ぎゅ "gyu", ぴょ "pyo", etc.
-        </div>
-        <div class="hint-explanation">
-            Some of the pronunciation examples:
-            <div>
-                <span class="hint-emphasis">きゅ - kyu</span>,
-                "<span class="hint-emphasis">Kyu</span>"
-                🥋
-                🥋<span class="hint-double-characters-overlap" data-content="きゅ"></span>
-            </div>
-            <div>
-                <span class="hint-emphasis">みゃ - mya</span>,
-                "<span class="hint-emphasis">Mya</span>nmar"
-                🇲🇲
-                🇲🇲<span class="hint-double-characters-overlap" data-content="みゃ"></span>
-            </div>
-            <div>
-                <span class="hint-emphasis">ぴょ - pyo</span>,
-                "<span class="hint-emphasis">Pyo</span>ngyang"
-                🇰🇵🏙
-                🇰🇵🏙<span class="hint-double-characters-overlap hint-pyo-overlap" data-content="ぴょ"></span>
-            </div>
         </div>
         <div class="hint-explanation">
             Once again しゃ "sha", しゅ "shu", しょ "sho", and じゃ "ja", じゅ "ju", じょ "jo" are special because of the pronunciation
