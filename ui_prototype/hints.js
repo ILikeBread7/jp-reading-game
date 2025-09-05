@@ -718,6 +718,10 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             Once again しゃ "sha", しゅ "shu", しょ "sho", and じゃ "ja", じゅ "ju", じょ "jo" are special because of the pronunciation
             but they can still be spelled "sya", "syu", "sho", and "jya", "jyu", "jyo".
+        </div>
+        <div class="hint-explanation">
+            Same as with small tsu, ゃ, ゅ, and ょ would only be written as "lya", "lyu", and "lyo" if they appear alone.
+            They can also be written as "xya", "xyu", and "xyo".
         </div>`,
         
         /*html*/
