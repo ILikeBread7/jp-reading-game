@@ -642,37 +642,37 @@ var $kt = $kt || {};
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">や - ya</span>,
-                    "<span class="hint-emphasis">Ka</span>yak"
-                    🛶
-                    🛶<span class="hint-overlap" data-content="や"></span>
+                    "<span class="hint-emphasis">Ya</span>p"
+                    🗣️
+                    🗣️<span class="hint-overlap" data-content="や"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ゆ - yu</span>,
-                    "<span class="hint-emphasis">Ki</span>rmit"
-                    🐸
-                    🐸<span class="hint-overlap" data-content="ゆ"></span>
+                    "<span class="hint-emphasis">Yu</span>kata"
+                    👘
+                    👘<span class="hint-overlap" data-content="ゆ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">よ - yo</span>,
-                    "<span class="hint-emphasis">Ku</span>dos"
-                    🙋
-                    🙋<span class="hint-overlap" data-content="よ"></span>
+                    "New <span class="hint-emphasis">Yo</span>rk"
+                    🗽
+                    🗽<span class="hint-overlap" data-content="よ"></span>
                 </div>
             </div>
             <div class="column-half-width">
                 <div>
                     <span class="hint-emphasis">ゃ - lya</span>,
-                    <span class="hint-emphasis">きゅ - kyu</span>,
-                    "<span class="hint-emphasis">Kyu</span>"
-                    🥋
-                    🥋<span class="hint-double-characters-overlap" data-content="きゅ"></span>
-                    </div>
-                <div>
-                    <span class="hint-emphasis">ゅ - lyu</span>,
                     <span class="hint-emphasis">みゃ - mya</span>,
                     "<span class="hint-emphasis">Mya</span>nmar"
                     🇲🇲
                     🇲🇲<span class="hint-double-characters-overlap" data-content="みゃ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ゅ - lyu</span>,
+                    <span class="hint-emphasis">きゅ - kyu</span>,
+                    "<span class="hint-emphasis">Kyu</span>"
+                    🥋
+                    🥋<span class="hint-double-characters-overlap" data-content="きゅ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ょ - lyo</span>,
