@@ -485,6 +485,7 @@ var $kt = $kt || {};
         <div>
             <span class="hint-emphasis">っ - ltsu (small tsu)</span> - doubles the next sound,
             が<span class="hint-emphasis">っこ</span>う (ga<span class="hint-emphasis">kko</span>u).
+            Similar to the word "boo<span class="hint-emphasis">kk</span>eeping".
         </div>
         <div class="hint-explanation">
             The "dzu" character is pronounced "zu", same as "ず", but for disambiguation purposes can be spelled differently.
