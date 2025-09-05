@@ -1042,17 +1042,6 @@ var $kt = $kt || {};
                     🟠<span class="hint-overlap hint-go-overlap">ゴ</span>
                 </div>
             </div>
-        </div>
-        <div class="hint-explanation">
-            From now on some of the characters will have an additional marking (<span class="hint-emphasis">゛</span>) at top-right called "dakuten".
-        </div>
-        <div class="hint-explanation">
-            It turns some sounds into voiced sounds, for example here it turns "k" sounds into "g" sounds.
-        </div>
-        <div class="hint-explanation">
-            It doesn't apply to any of the previous characters,
-            but it will apply to most of the future ones
-            and will be explained whenever it does apply.
         </div>`,
 
         /*html*/
@@ -1138,12 +1127,6 @@ var $kt = $kt || {};
                     🕷<span class="hint-overlap" data-content="ゾ"></span>
                 </div>
             </div>
-        </div>
-        <div class="hint-explanation">
-            The "shi" and "ji" are a little different because is no "si" (like in "<span class="hint-emphasis">si</span>ege") or "zi" (like in "jacuz<span class="hint-emphasis">zi</span>") sound in Japanese.
-        </div>
-        <div class="hint-explanation">
-            They can still be written as "si" and "zi" but the "shi" and "ji" spellings are closer to the actual pronunciation.
         </div>`,
 
         /*html*/
@@ -1196,6 +1179,21 @@ var $kt = $kt || {};
                     <span class="hint-toilet"></span>
                     <span class="hint-toilet"></span><span class="hint-overlap" data-content="ト"></span>
                 </div>
+                <div>
+                    <span class="hint-emphasis">ィ - li</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ティ - teli (ti)</span>,
+                    "<span class="hint-emphasis">Do</span>g"
+                    🐕
+                    🐕<span class="hint-overlap" data-content="ティ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">テゥ - telu (tu)</span>,
+                    "<span class="hint-emphasis">Do</span>g"
+                    🐕
+                    🐕<span class="hint-overlap" data-content="テゥ"></span>
+                </div>
             </div>
             <div class="column-half-width">
                 <div>
@@ -1224,25 +1222,37 @@ var $kt = $kt || {};
                     🐕
                     🐕<span class="hint-overlap" data-content="ド"></span>
                 </div>
+                <div>
+                    <span class="hint-emphasis">ゥ - lu</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ディ - deli (di)</span>,
+                    "<span class="hint-emphasis">Do</span>g"
+                    🐕
+                    🐕<span class="hint-overlap" data-content="ディ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">デゥ - delu (du)</span>,
+                    "<span class="hint-emphasis">Do</span>g"
+                    🐕
+                    🐕<span class="hint-overlap" data-content="デゥ"></span>
+                </div>
             </div>
         </div>
         <div>
-            <span class="hint-emphasis">ッ - ltsu (small tsu)</span> - doubles the next sound,
-            ガ<span class="hint-emphasis">ッコ</span>ウ (ga<span class="hint-emphasis">kko</span>u).
-            Similar to the word "boo<span class="hint-emphasis">kk</span>eeping".
+            <span class="hint-emphasis">ッ - ltsu (small tsu)</span>
         </div>
         <div class="hint-explanation">
-            The "dzu" character is pronounced "zu", same as "ズ", but for disambiguation purposes can be spelled differently.
-            Inputting "zu" in this game is recognized as "ズ", so disambiguation is needed.
+            In katakana vowels (アイウエオ) have their small versions (ァィゥェォ)
+            that can be combined with テ "te" and デ "de" characters to create new sounds.
         </div>
         <div class="hint-explanation">
-            The "tsu", "dzu" and "ltsu" can also be written as "tu", "du" and "ltu" but the "tsu" and "dzu" spellings are closer to the actual pronunciation.
+            The spellings "teli", "telu", "deli", and "delu" are for disambiguation,
+            as "ti" usually means チ, "tu" is ツ, "di" is ヂ, and "du" is ヅ.
+            They can also be spelled "texi", "texu", "dexi", and "dexu" respectively.
         </div>
         <div class="hint-explanation">
-            Small tsu (<span class="hint-emphasis">ッ</span>) is usually written as a double letter instead of "ltsu" except when it needs to be written by itself.
-        </div>
-        <div class="hint-explanation">
-            It can also be written as "xtsu" but "ltsu" might be easier to remember ("<span class="hint-emphasis">l</span>ittle tsu").
+            These can also be used in hiragana (ぁぃぅぇぉ) but again are less common.
         </div>`,
 
         /*html*/
