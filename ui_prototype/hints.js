@@ -846,6 +846,10 @@ var $kt = $kt || {};
             .hint-ru-overlap {
                 top: -0.015em;
             }
+
+            .hint-line-overlap {
+                left: -1.11em;
+            }
         </style>
         
         <div>
@@ -879,13 +883,18 @@ var $kt = $kt || {};
                 🦁📢
                 🦁📢<span class="hint-double-icon-overlap" data-content="ロ"></span>
             </div>
-            <div class="hint-explanation">
-                Remembering the difference between ル (ru) and ロ (ro)
-                might be tricky, but you can try remembering it like this:
+            <div>
+                <span class="hint-emphasis">ー - -</span>,
+                "Baz<span class="hint-emphasis">aa</span>r"
+                🛍️
+                🛍️<span class="hint-overlap hint-line-overlap" data-content="ー"></span>
             </div>
             <div class="hint-explanation">
-                R<span class="hint-emphasis">u</span> (<span class="hint-emphasis">ル</span>) is c<span class="hint-emphasis">u</span>rled like it has rhe<span class="hint-emphasis">u</span>matism,
-                and r<span class="hint-emphasis">o</span> (<span class="hint-emphasis">ロ</span>) is n<span class="hint-emphasis">o</span>t.
+                Here's the first difference.
+                In katakana there is an additional character "ー" (written with a hyphen "-") which lenghtens the previous sound.
+            </div>
+            <div class="hint-explanation">
+                It can also be used with hiragana but is much more common in katakana, that's why it's covered now.
             </div>
         </div>`,
 
