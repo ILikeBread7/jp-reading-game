@@ -629,6 +629,96 @@ var $kt = $kt || {};
             When used as grammatical particles は (ha) and へ (he) are read as "wa" and "e" respectively.
             This doesn't apply when they're used as a part of a word, and isn't relevant to this game, but it's important to know when reading full sentences.
         </div>`,
+
+        /*html*/
+        `<style>
+            .hint-pyo-overlap {
+                left: -2.2em;
+            }
+        </style>
+        
+        <div class="columns-container">
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">や - ya</span>,
+                    "<span class="hint-emphasis">Ka</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap" data-content="や"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ゆ - yu</span>,
+                    "<span class="hint-emphasis">Ki</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap" data-content="ゆ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">よ - yo</span>,
+                    "<span class="hint-emphasis">Ku</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap" data-content="よ"></span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ゃ - lya</span>,
+                    "<span class="hint-emphasis">Ga</span>yak"
+                    🛶
+                    🛶<span class="hint-overlap" data-content="ゃ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ゅ - lyu</span>,
+                    "<span class="hint-emphasis">Gi</span>rmit"
+                    🐸
+                    🐸<span class="hint-overlap" data-content="ゅ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ょ - lyo</span>,
+                    "<span class="hint-emphasis">Gu</span>dos"
+                    🙋
+                    🙋<span class="hint-overlap" data-content="ょ"></span>
+                </div>
+            </div>
+        </div>
+        <div class="hint-explanation">
+            The small (ゃ, ゅ, and ょ) characters are placed after characters ending in an "i" sound,
+            e.g. きゃ, しゃ, ちゃ, にゃ, ひゃ, みゃ, りゃ.
+        </div>
+        <div class="hint-explanation">
+            This makes them become joined sounds spelled like
+            the first sound of the first character
+            (so for き "ki" the first sound is "k")
+            joined with the full "y" character, so "ya" for ゃ
+            resulting in "kya" for きゃ.
+        </div>
+        <div class="hint-explanation">
+            The same applies for all combinations of characters ending with "i" (including ones with dakuten or handakuten)
+            and all small "y" characters, e.g. ぎゅ "gyu", ぴょ "pyo", etc.
+        </div>
+        <div class="hint-explanation">
+            Some of the pronunciation examples:
+            <div>
+                <span class="hint-emphasis">きゅ - kyu</span>,
+                "<span class="hint-emphasis">Kyu</span>"
+                🥋
+                🥋<span class="hint-double-characters-overlap" data-content="きゅ"></span>
+            </div>
+            <div>
+                <span class="hint-emphasis">みゃ - mya</span>,
+                "<span class="hint-emphasis">Mya</span>nmar"
+                🇲🇲
+                🇲🇲<span class="hint-double-characters-overlap" data-content="みゃ"></span>
+            </div>
+            <div>
+                <span class="hint-emphasis">ぴょ - pyo</span>,
+                "<span class="hint-emphasis">Pyo</span>ngyang"
+                🇰🇵🏙
+                🇰🇵🏙<span class="hint-double-characters-overlap hint-pyo-overlap" data-content="ぴょ"></span>
+            </div>
+        </div>
+        <div class="hint-explanation">
+            Once again しゃ "sha", しゅ "shu", しょ "sho", and じゃ "ja", じゅ "ju", じょ "jo" are special because of the pronunciation
+            but they can still be spelled "sya", "syu", "sho", and "jya", "jyu", "jyo".
+        </div>`,
         
         /*html*/
         `<div class="columns-container">
