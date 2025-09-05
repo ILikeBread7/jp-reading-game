@@ -416,8 +416,8 @@ const KATAKANA = [
     { tag: 'N', chars: 'ナニヌネノ' },
     { tag: 'K', chars: 'カキクケコガギグゲゴ' },
     { tag: 'S', chars: 'サシスセソザジズゼゾ' },
-    { tag: 'T', chars: 'タチッツテトダヂヅデドゥ' },
-    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァィェォ' },
+    { tag: 'T', chars: 'タチッツテトダヂヅデドゥィ' },
+    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァェォ' },
     { tag: 'Y', chars: 'ヤユヨャュョ' },
     { tag: 'W', chars: 'ワヲンヴ' }
 ];
