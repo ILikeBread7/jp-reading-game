@@ -706,6 +706,39 @@ var $kt = $kt || {};
             Same as with small tsu, ゃ, ゅ, and ょ would only be written as "lya", "lyu", and "lyo" if they appear alone.
             They can also be written as "xya", "xyu", and "xyo".
         </div>`,
+
+        /*html*/
+        `<div>
+            <span class="hint-emphasis">わ - wa</span>,
+            "<span class="hint-emphasis">Wa</span>gyu beef"
+            🐮🥩
+            🐮🥩<span class="hint-double-icon-overlap" data-content="わ"></span>
+        </div>
+        <div>
+            <span class="hint-emphasis">を - wo</span>,
+            Same sound as お (o)
+        </div>
+        <div>
+            <span class="hint-emphasis">ん - n</span>,
+            "Vale<span class="hint-emphasis">n</span>tine's"
+            💕
+            💕<span class="hint-overlap" data-content="ん"></span>
+        </div>
+
+        <div class="hint-explanation">
+            を "wo" is mainly used as a grammatical particle and rarely appears in individual words.
+            The spelling is used for disambiguation and reflects how it was pronounced historically but not nowadays.
+        </div>
+        <div class="hint-explanation">
+            The ん "n" sound doesn't combine with other sounds,
+            so for example んい "n" + "i" is always different from に "ni"
+            and is pronounced as two seperate sounds, "n" followed by "i".
+        </div>
+        <div class="hint-explanation">
+            If writing ん "n" as is would create ambiguity
+            it should be followed by an apostrophe (').
+            For example あんい "an'i" without the apostrophe would be spelled "ani" which could also mean あに.
+        </div>`,
         
         /*html*/
         `<div class="columns-container">
