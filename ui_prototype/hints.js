@@ -1445,29 +1445,6 @@ var $kt = $kt || {};
                     🇰🇵🏙<span class="hint-double-characters-overlap hint-pyo-overlap" data-content="ピョ"></span>
                 </div>
             </div>
-        </div>
-        <div class="hint-explanation">
-            The small (ャ, ュ, and ョ) characters are placed after characters ending in an "i" sound,
-            e.g. キャ, シャ, チャ, ニャ, ヒャ, ミャ, リャ.
-        </div>
-        <div class="hint-explanation">
-            This makes them become joined sounds spelled like
-            the first sound of the first character
-            (so for キ (ki) the first sound is "k")
-            joined with the full "y" character, so "ya" for ャ
-            resulting in "kya" for キャ.
-        </div>
-        <div class="hint-explanation">
-            The same applies for all combinations of characters ending with "i" (including ones with dakuten or handakuten)
-            and all small "y" characters, e.g. ギュ (gyu), ピョ (pyo), etc.
-        </div>
-        <div class="hint-explanation">
-            Once again シャ (sha), シュ (shu), ショ (sho), and ジャ (ja), ジュ (ju), ジョ (jo) are special because of the pronunciation
-            but they can still be spelled "sya", "syu", "sho", and "jya", "jyu", "jyo".
-        </div>
-        <div class="hint-explanation">
-            Same as with small tsu, ャ, ュ, and ョ would only be written as "lya", "lyu", and "lyo" if they appear alone.
-            They can also be written as "xya", "xyu", and "xyo".
         </div>`,
 
         /*html*/
@@ -1486,21 +1463,6 @@ var $kt = $kt || {};
             "Vale<span class="hint-emphasis">n</span>tine's"
             💕
             💕<span class="hint-overlap" data-content="ン"></span>
-        </div>
-
-        <div class="hint-explanation">
-            ヲ (wo) is mainly used as a grammatical particle and rarely appears in individual words.
-            The spelling is used for disambiguation and reflects how it was pronounced historically but not nowadays.
-        </div>
-        <div class="hint-explanation">
-            The ン (n) sound doesn't combine with other sounds,
-            so for example ンイ "n" + "i" is always different from ニ (ni)
-            and is pronounced as two seperate sounds, "n" followed by "i".
-        </div>
-        <div class="hint-explanation">
-            If writing ン (n) as is would create ambiguity
-            it should be followed by an apostrophe (').
-            For example アンイ "an'i" without the apostrophe would be spelled "ani" which could also mean アニ.
         </div>`,
 
         /*html*/
