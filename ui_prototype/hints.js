@@ -1249,8 +1249,8 @@ var $kt = $kt || {};
             </div>
         </div>
         <div class="hint-explanation">
-            In katakana vowels (アイウエオ) have their small versions (ァィゥェォ)
-            that can be combined with テ (te) and デ (de) characters to create new sounds.
+            In katakana vowels (アイウエオ) have their small versions (ァィゥェォ),
+            some of which can be combined with テ (te) and デ (de) characters to create new sounds.
         </div>
         <div class="hint-explanation">
             The spellings "teli", "telu", "deli", and "delu" are for disambiguation,
@@ -1375,20 +1375,36 @@ var $kt = $kt || {};
                     🕹️<span class="hint-overlap hint-po-overlap" data-content="ポ"></span>
                 </div>
             </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ファ - fa</span>,
+                    "<span class="hint-emphasis">Fa</span>rm"
+                    👨‍🌾
+                    👨‍🌾<span class="hint-double-characters-overlap" data-content="ファ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">フィ - fi</span>,
+                    "<span class="hint-emphasis">Fi</span>eld"
+                    🌾
+                    🌾<span class="hint-double-characters-overlap" data-content="フィ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">フェ - fe</span>,
+                    "<span class="hint-emphasis">Fe</span>ncing"
+                    🤺
+                    🤺<span class="hint-double-characters-overlap" data-content="フェ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">フォ - fo</span>,
+                    "<span class="hint-emphasis">Fo</span>rest"
+                    🌲
+                    🌲<span class="hint-double-characters-overlap" data-content="フォ"></span>
+                </div>
+            </div>
         </div>
         <div class="hint-explanation">
-            Characters in this section can have an additional marking (<span class="hint-emphasis">゜</span>) at top-right called "handakuten",
-            which turns the "h" sounds into "p" sounds.
-        </div>
-        <div class="hint-explanation">
-            It only applies here, to the "h" sounds, and nowhere else.
-        </div>
-        <div class="hint-explanation">
-            "Fu" can also be written as "hu", but "fu" is again closer to the real pronunciation.
-        </div>
-        <div class="hint-explanation">
-            When used as grammatical particles ハ (ha) and ヘ (he) are read as "wa" and "e" respectively.
-            This doesn't apply when they're used as a part of a word, and isn't relevant to this game, but it's important to know when reading full sentences.
+            Small vowels (ァィェォ) can be combined with フ (fu) to create "fa", "fi", "fe", and "fo" sounds.
+            They are always spelled the same because these spellings don't exist elsewhere in Japanese so there is no need for any disambiguation.
         </div>`,
 
         /*html*/
