@@ -115,6 +115,10 @@ select {
     left: -1.8em;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 button, input {
     color: inherit;
 }

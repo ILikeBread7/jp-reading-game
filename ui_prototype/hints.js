@@ -1150,6 +1150,10 @@ var $kt = $kt || {};
                 transform: scaleX(-1);
                 display: inline-block;
             }
+
+            .hint-du-overlap {
+                left: -2.075em;
+            }
         </style>
         
         <div class="columns-container">
@@ -1189,15 +1193,18 @@ var $kt = $kt || {};
                 </div>
                 <div>
                     <span class="hint-emphasis">ティ - teli (ti)</span>,
-                    "<span class="hint-emphasis">Do</span>g"
-                    🐕
-                    🐕<span class="hint-overlap" data-content="ティ"></span>
+                    "<span class="hint-emphasis">Ti</span>er"
+                    📶
+                    📶<span class="hint-double-characters-overlap" data-content="ティ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">テゥ - telu (tu)</span>,
-                    "<span class="hint-emphasis">Do</span>g"
-                    🐕
-                    🐕<span class="hint-overlap" data-content="テゥ"></span>
+                    "Vanua<span class="hint-emphasis">tu</span>"
+                    🇻🇺
+                    🇻🇺<span class="hint-double-characters-overlap" data-content="テゥ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ッ - ltsu (small tsu)</span>
                 </div>
             </div>
             <div class="column-half-width">
@@ -1232,20 +1239,17 @@ var $kt = $kt || {};
                 </div>
                 <div>
                     <span class="hint-emphasis">ディ - deli (di)</span>,
-                    "<span class="hint-emphasis">Do</span>g"
-                    🐕
-                    🐕<span class="hint-overlap" data-content="ディ"></span>
+                    "<span class="hint-emphasis">Di</span>va"
+                    💃
+                    💃<span class="hint-double-characters-overlap" data-content="ディ"></span>
                 </div>
                 <div>
                     <span class="hint-emphasis">デゥ - delu (du)</span>,
-                    "<span class="hint-emphasis">Do</span>g"
-                    🐕
-                    🐕<span class="hint-overlap" data-content="デゥ"></span>
+                    "Katman<span class="hint-emphasis">du</span>"
+                    <span class="nowrap">🇳🇵🏙</span>
+                    🇳🇵🏙<span class="hint-double-characters-overlap hint-du-overlap" data-content="デゥ"></span>
                 </div>
             </div>
-        </div>
-        <div>
-            <span class="hint-emphasis">ッ - ltsu (small tsu)</span>
         </div>
         <div class="hint-explanation">
             In katakana vowels (アイウエオ) have their small versions (ァィゥェォ)
