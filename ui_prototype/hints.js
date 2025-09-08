@@ -48,7 +48,6 @@ var $kt = $kt || {};
             🦪
             🦪<span class="hint-overlap" data-content="お"></span>
         </div>
-
         <div class="hint-explanation">
             Read the word at the top of the screen and
             type it into the input below using the above hints.
@@ -729,7 +728,6 @@ var $kt = $kt || {};
             💕
             💕<span class="hint-overlap" data-content="ん"></span>
         </div>
-
         <div class="hint-explanation">
             を (wo) is mainly used as a grammatical particle and rarely appears in individual words.
             The spelling is used for disambiguation and reflects how it was pronounced historically but not nowadays.
@@ -788,7 +786,6 @@ var $kt = $kt || {};
             🦪
             🦪<span class="hint-overlap" data-content="オ"></span>
         </div>
-
         <div class="hint-explanation">
             The first set of characters (hiragana) is finished so let's move on to the second one (katakana).
         </div>
