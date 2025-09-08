@@ -488,7 +488,11 @@ var $kt = $kt || {};
             Similar to the word "boo<span class="hint-emphasis">kk</span>eeping".
         </div>
         <div class="hint-explanation">
-            The "dzu" character is pronounced "zu", same as "ず", but for disambiguation purposes can be spelled differently.
+            The ち "chi" character is different, like し "shi" in the previous section.
+            It can still be written as "ti" but "chi" is closer to the actual pronunciation.
+        </div>
+        <div class="hint-explanation">
+            The づ "dzu" character is pronounced "zu", same as "ず", but for disambiguation purposes can be spelled differently.
             Inputting "zu" in this game is recognized as "ず", so disambiguation is needed.
         </div>
         <div class="hint-explanation">
@@ -701,6 +705,7 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             Once again しゃ "sha", しゅ "shu", しょ "sho", and じゃ "ja", じゅ "ju", じょ "jo" are special because of the pronunciation
             but they can still be spelled "sya", "syu", "sho", and "jya", "jyu", "jyo".
+            The same applies to ちゃ "cha / cya / tya", ちゅ "chu / cyu / tyu", ちょ "cho / cyo / tyo", ぢゃ "dya" (pronounced "ja"), ぢゅ "dyu" (pronounced "ju"), ぢょ "dyo" (pronounced "jo").
         </div>
         <div class="hint-explanation">
             Same as with small tsu, ゃ, ゅ, and ょ would only be written as "lya", "lyu", and "lyo" if they appear alone.
