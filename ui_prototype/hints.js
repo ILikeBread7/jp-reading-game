@@ -1479,17 +1479,19 @@ var $kt = $kt || {};
         </div>`,
 
         /*html*/
-        `<div class="columns-container">
-            <div class="column-half-width">さ - sa</div>
-            <div class="column-half-width">ざ - za</div>
-            <div class="column-half-width">し - shi</div>
-            <div class="column-half-width">じ - ji</div>
-            <div class="column-half-width">す - su</div>
-            <div class="column-half-width">ず - zu</div>
-            <div class="column-half-width">せ - se</div>
-            <div class="column-half-width">ぜ - ze</div>
-            <div class="column-half-width">そ - so</div>
-            <div class="column-half-width">ぞ - zo</div>
+        `<div class="centered-text">
+            <div>Congratulations! You completed all levels prepared up to this point!</div>
+            <div class="hint-explanation">
+                I will be adding more levels in future updates
+                but for now you can try the practice mode or
+                stay in this mode and review all material from
+                all existing levels!
+            </div>
+            <div class="hint-explanation">
+                I would also love to see your feedback in the comments on the
+                <a target="_blank" href="https://ilikebread7.itch.io/">itch.io</a> page for this game or wherever else you're playing it right now!
+            </div>
+            <div class="hint-explanation">Thank you for playing this game and I hope you will check back when new levels are added!</div>
         </div>`
     ];
 

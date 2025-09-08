@@ -73,6 +73,10 @@ select {
     border-style: inset;
 }
 
+a {
+    color: var(--palette-secondary-text-color);
+}
+
 #hint-select {
     font-size: 0.9em;
 }
