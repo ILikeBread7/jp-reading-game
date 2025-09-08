@@ -479,23 +479,22 @@ details.closing > summary::before {
     flex-basis: 50%;
 }
 
-.column-half-width:nth-of-type(3) {
+/* All except the first 2 (starting at element 3) */
+.column-half-width:nth-of-type(n + 3) {
     margin-top: var(--column-vertical-margin);
+}
+
+.column-half-width:nth-of-type(odd):last-of-type {
     flex-basis: 100%;
 }
 
 @media (max-width: 568px) {
     .column-half-width {
         flex-basis: 100%;
-        margin-bottom: var(--column-vertical-margin);
     }
 
-    .column-half-width:last-of-type {
-        margin-bottom: initial;
-    }
-
-    .column-half-width:nth-of-type(3) {
-        margin-top: initial;
+    .column-half-width:nth-of-type(2) {
+        margin-top: var(--column-vertical-margin);
     }
 }
 
