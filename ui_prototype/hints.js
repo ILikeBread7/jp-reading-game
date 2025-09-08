@@ -149,8 +149,8 @@ var $kt = $kt || {};
                 might be tricky, but you can try remembering it like this:
             </div>
             <div class="hint-explanation">
-                R<span class="hint-emphasis">u</span> (<span class="hint-emphasis">る</span>) is c<span class="hint-emphasis">u</span>rled like it has rhe<span class="hint-emphasis">u</span>matism,
-                and r<span class="hint-emphasis">o</span> (<span class="hint-emphasis">ろ</span>) is n<span class="hint-emphasis">o</span>t.
+                "R<span class="hint-emphasis">u</span>" (<span class="hint-emphasis">る</span>) is c<span class="hint-emphasis">u</span>rled like it has rhe<span class="hint-emphasis">u</span>matism,
+                and "r<span class="hint-emphasis">o</span>" (<span class="hint-emphasis">ろ</span>) is n<span class="hint-emphasis">o</span>t.
             </div>
         </div>`,
 
@@ -396,7 +396,7 @@ var $kt = $kt || {};
             </div>
         </div>
         <div class="hint-explanation">
-            The "shi" and "ji" are a little different because is no "si" (like in "<span class="hint-emphasis">si</span>ege") or "zi" (like in "jacuz<span class="hint-emphasis">zi</span>") sound in Japanese.
+            The し (shi) and じ (ji) are a little different because is no "si" (like in "<span class="hint-emphasis">si</span>ege") or "zi" (like in "jacuz<span class="hint-emphasis">zi</span>") sound in Japanese.
         </div>
         <div class="hint-explanation">
             They can still be written as "si" and "zi" but the "shi" and "ji" spellings are closer to the actual pronunciation.
@@ -488,15 +488,15 @@ var $kt = $kt || {};
             Similar to the word "boo<span class="hint-emphasis">kk</span>eeping".
         </div>
         <div class="hint-explanation">
-            The ち "chi" character is different, like し "shi" in the previous section.
+            The ち (chi) character is different, like し (shi) in the previous section.
             It can still be written as "ti" but "chi" is closer to the actual pronunciation.
         </div>
         <div class="hint-explanation">
-            The づ "dzu" character is pronounced "zu", same as "ず", but for disambiguation purposes can be spelled differently.
+            The づ (dzu) character is pronounced "zu", same as "ず", but for disambiguation purposes can be spelled differently.
             Inputting "zu" in this game is recognized as "ず", so disambiguation is needed.
         </div>
         <div class="hint-explanation">
-            The "tsu", "dzu" and "ltsu" can also be written as "tu", "du" and "ltu" but the "tsu" and "dzu" spellings are closer to the actual pronunciation.
+            The つ (tsu), づ (dzu) and っ (ltsu) can also be written as "tu", "du" and "ltu" but the "tsu" and "dzu" spellings are closer to the actual pronunciation.
         </div>
         <div class="hint-explanation">
             Small tsu (<span class="hint-emphasis">っ</span>) is usually written as a double letter instead of "ltsu" except when it needs to be written by itself.
@@ -628,7 +628,7 @@ var $kt = $kt || {};
             It only applies here, to the "h" sounds, and nowhere else.
         </div>
         <div class="hint-explanation">
-            "Fu" can also be written as "hu", but "fu" is again closer to the real pronunciation.
+            ふ (fu) can also be written as "hu", but "fu" is again closer to the real pronunciation.
         </div>
         <div class="hint-explanation">
             When used as grammatical particles は (ha) and へ (he) are read as "wa" and "e" respectively.
@@ -688,24 +688,24 @@ var $kt = $kt || {};
             </div>
         </div>
         <div class="hint-explanation">
-            The small (ゃ, ゅ, and ょ) characters are placed after characters ending in an "i" sound,
+            The small ゃ, ゅ, and ょ characters are placed after characters ending in an "i" sound,
             e.g. きゃ, しゃ, ちゃ, にゃ, ひゃ, みゃ, りゃ.
         </div>
         <div class="hint-explanation">
             This makes them become joined sounds spelled like
             the first sound of the first character
-            (so for き "ki" the first sound is "k")
+            (so for き (ki) the first sound is "k")
             joined with the full "y" character, so "ya" for ゃ
             resulting in "kya" for きゃ.
         </div>
         <div class="hint-explanation">
             The same applies for all combinations of characters ending with "i" (including ones with dakuten or handakuten)
-            and all small "y" characters, e.g. ぎゅ "gyu", ぴょ "pyo", etc.
+            and all small "y" characters, e.g. ぎゅ (gyu), ぴょ (pyo), etc.
         </div>
         <div class="hint-explanation">
-            Once again しゃ "sha", しゅ "shu", しょ "sho", and じゃ "ja", じゅ "ju", じょ "jo" are special because of the pronunciation
+            Once again しゃ (sha), しゅ (shu), しょ (sho), and じゃ (ja), じゅ (ju), じょ (jo) are special because of the pronunciation
             but they can still be spelled "sya", "syu", "sho", and "jya", "jyu", "jyo".
-            The same applies to ちゃ "cha / cya / tya", ちゅ "chu / cyu / tyu", ちょ "cho / cyo / tyo", ぢゃ "dya" (pronounced "ja"), ぢゅ "dyu" (pronounced "ju"), ぢょ "dyo" (pronounced "jo").
+            The same applies to ちゃ (cha / cya / tya), ちゅ (chu / cyu / tyu), ちょ (cho / cyo / tyo), ぢゃ (dya, pronounced "ja"), ぢゅ (dyu, pronounced "ju"), and ぢょ (dyo, pronounced "jo").
         </div>
         <div class="hint-explanation">
             Same as with small tsu, ゃ, ゅ, and ょ would only be written as "lya", "lyu", and "lyo" if they appear alone.
@@ -731,18 +731,18 @@ var $kt = $kt || {};
         </div>
 
         <div class="hint-explanation">
-            を "wo" is mainly used as a grammatical particle and rarely appears in individual words.
+            を (wo) is mainly used as a grammatical particle and rarely appears in individual words.
             The spelling is used for disambiguation and reflects how it was pronounced historically but not nowadays.
         </div>
         <div class="hint-explanation">
-            The ん "n" sound doesn't combine with other sounds,
-            so for example んい "n" + "i" is always different from に "ni"
+            The ん (n) sound doesn't combine with other sounds,
+            so for example んい ("n" + "i") is always different from に (ni)
             and is pronounced as two seperate sounds, "n" followed by "i".
         </div>
         <div class="hint-explanation">
-            If writing ん "n" as is would create ambiguity
+            If writing ん (n) as is would create ambiguity
             it should be followed by an apostrophe (').
-            For example あんい "an'i" without the apostrophe would be spelled "ani" which could also mean あに.
+            For example あんい (an'i) without the apostrophe would be spelled "ani" which could also mean あに.
         </div>`,
         
         /*html*/
@@ -1249,7 +1249,7 @@ var $kt = $kt || {};
         </div>
         <div class="hint-explanation">
             In katakana vowels (アイウエオ) have their small versions (ァィゥェォ)
-            that can be combined with テ "te" and デ "de" characters to create new sounds.
+            that can be combined with テ (te) and デ (de) characters to create new sounds.
         </div>
         <div class="hint-explanation">
             The spellings "teli", "telu", "deli", and "delu" are for disambiguation,
@@ -1449,16 +1449,16 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             This makes them become joined sounds spelled like
             the first sound of the first character
-            (so for キ "ki" the first sound is "k")
+            (so for キ (ki) the first sound is "k")
             joined with the full "y" character, so "ya" for ャ
             resulting in "kya" for キャ.
         </div>
         <div class="hint-explanation">
             The same applies for all combinations of characters ending with "i" (including ones with dakuten or handakuten)
-            and all small "y" characters, e.g. ギュ "gyu", ピョ "pyo", etc.
+            and all small "y" characters, e.g. ギュ (gyu), ピョ (pyo), etc.
         </div>
         <div class="hint-explanation">
-            Once again シャ "sha", シュ "shu", ショ "sho", and ジャ "ja", ジュ "ju", ジョ "jo" are special because of the pronunciation
+            Once again シャ (sha), シュ (shu), ショ (sho), and ジャ (ja), ジュ (ju), ジョ (jo) are special because of the pronunciation
             but they can still be spelled "sya", "syu", "sho", and "jya", "jyu", "jyo".
         </div>
         <div class="hint-explanation">
@@ -1485,16 +1485,16 @@ var $kt = $kt || {};
         </div>
 
         <div class="hint-explanation">
-            ヲ "wo" is mainly used as a grammatical particle and rarely appears in individual words.
+            ヲ (wo) is mainly used as a grammatical particle and rarely appears in individual words.
             The spelling is used for disambiguation and reflects how it was pronounced historically but not nowadays.
         </div>
         <div class="hint-explanation">
-            The ン "n" sound doesn't combine with other sounds,
-            so for example ンイ "n" + "i" is always different from ニ "ni"
+            The ン (n) sound doesn't combine with other sounds,
+            so for example ンイ "n" + "i" is always different from ニ (ni)
             and is pronounced as two seperate sounds, "n" followed by "i".
         </div>
         <div class="hint-explanation">
-            If writing ン "n" as is would create ambiguity
+            If writing ン (n) as is would create ambiguity
             it should be followed by an apostrophe (').
             For example アンイ "an'i" without the apostrophe would be spelled "ani" which could also mean アニ.
         </div>`,
