@@ -85,6 +85,14 @@ var $kt = $kt || {};
                 kana.replaceAll('ー', '-'),
                 {
                     customRomajiMapping: {
+                        'ゔぁ': 'va',
+                        'ゔぃ': 'vi',
+                        'ゔぇ': 've',
+                        'ゔぉ': 'vo',
+                        'ヴァ': 'va',
+                        'ヴィ': 'vi',
+                        'ヴェ': 've',
+                        'ヴォ': 'vo',
                         'ぁ': 'la',
                         'ぃ': 'li',
                         'ぅ': 'lu',
