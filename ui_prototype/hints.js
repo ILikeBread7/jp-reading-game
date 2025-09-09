@@ -61,13 +61,7 @@ var $kt = $kt || {};
         </div>`,
 
         /*html*/
-        `<style>
-            .hint-me-overlap {
-                left: -0.875em;
-            }
-        </style>
-        
-        <div>
+        `<div>
             <div>
                 <span class="hint-emphasis">ま - ma</span>,
                 "<span class="hint-emphasis">Ma</span>estro"
@@ -501,7 +495,7 @@ var $kt = $kt || {};
             Small tsu (<span class="hint-emphasis">っ</span>) is usually written as a double letter instead of "ltsu" except when it needs to be written by itself.
         </div>
         <div class="hint-explanation">
-            It can also be written as "xtsu" but "ltsu" might be easier to remember ("<span class="hint-emphasis">l</span>ittle tsu").
+            It can also be written as "xtsu" but "ltsu" might be easier to remember ("smal<span class="hint-emphasis">l</span> tsu" or "<span class="hint-emphasis">l</span>ittle tsu").
         </div>`,
 
         /*html*/
@@ -799,18 +793,12 @@ var $kt = $kt || {};
         </div>`,
 
         /*html*/
-        `<style>
-            .hint-me-overlap {
-                left: -0.875em;
-            }
-        </style>
-        
-        <div>
+        `<div>
             <div>
                 <span class="hint-emphasis">マ - ma</span>,
                 "<span class="hint-emphasis">Ma</span>estro"
                 🧔🎻
-                🧔🎻<span class="hint-double-icon-overlap" data-content="マ"></span>
+                🧔🎻<span class="hint-double-icon-overlap hint-ma-overlap" data-content="マ"></span>
             </div>
             <div>
                 <span class="hint-emphasis">ミ - mi</span>,
@@ -828,7 +816,7 @@ var $kt = $kt || {};
                 <span class="hint-emphasis">メ - me</span>,
                 "<span class="hint-emphasis">Me</span>lee"
                 ⚔
-                ⚔<span class="hint-overlap hint-me-overlap">メ</span>
+                ⚔<span class="hint-overlap">メ</span>
             </div>
             <div>
                 <span class="hint-emphasis">モ - mo</span>,
@@ -1185,24 +1173,6 @@ var $kt = $kt || {};
                     <span class="hint-toilet"></span>
                     <span class="hint-toilet"></span><span class="hint-overlap" data-content="ト"></span>
                 </div>
-                <div>
-                    <span class="hint-emphasis">ィ - li</span>
-                </div>
-                <div>
-                    <span class="hint-emphasis">ティ - teli (ti)</span>,
-                    "<span class="hint-emphasis">Ti</span>er"
-                    📶
-                    📶<span class="hint-double-characters-overlap" data-content="ティ"></span>
-                </div>
-                <div>
-                    <span class="hint-emphasis">テゥ - telu (tu)</span>,
-                    "Vanua<span class="hint-emphasis">tu</span>"
-                    🇻🇺
-                    🇻🇺<span class="hint-double-characters-overlap" data-content="テゥ"></span>
-                </div>
-                <div>
-                    <span class="hint-emphasis">ッ - ltsu (small tsu)</span>
-                </div>
             </div>
             <div class="column-half-width">
                 <div>
@@ -1231,8 +1201,30 @@ var $kt = $kt || {};
                     🐕
                     🐕<span class="hint-overlap" data-content="ド"></span>
                 </div>
+            </div>
+            <div class="column-half-width">
                 <div>
-                    <span class="hint-emphasis">ゥ - lu</span>
+                    <span class="hint-emphasis">ィ - li (small i)</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ティ - teli (ti)</span>,
+                    "<span class="hint-emphasis">Ti</span>er"
+                    📶
+                    📶<span class="hint-double-characters-overlap" data-content="ティ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">テゥ - telu (tu)</span>,
+                    "Vanua<span class="hint-emphasis">tu</span>"
+                    🇻🇺
+                    🇻🇺<span class="hint-double-characters-overlap" data-content="テゥ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ッ - ltsu (small tsu)</span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ゥ - lu (small u)</span>
                 </div>
                 <div>
                     <span class="hint-emphasis">ディ - deli (di)</span>,
