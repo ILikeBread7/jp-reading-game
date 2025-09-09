@@ -18,7 +18,7 @@
 
     --info-width: 90%;
     --info-min-width: 21em;
-    --info-max-width: 32em;
+    --info-max-width: 33em;
 
     --palette-main-color: #123456;
     --palette-secondary-color: #476288;
@@ -492,7 +492,7 @@ details.closing > summary::before {
     flex-basis: 100%;
 }
 
-@media (max-width: 568px) {
+@media (max-width: 571px) {
     .column-half-width {
         flex-basis: 100%;
     }

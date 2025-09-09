@@ -1461,21 +1461,69 @@ var $kt = $kt || {};
         </div>`,
 
         /*html*/
-        `<div>
-            <span class="hint-emphasis">ワ - wa</span>,
-            "<span class="hint-emphasis">Wa</span>gyu beef"
-            🐮🥩
-            🐮🥩<span class="hint-double-icon-overlap" data-content="ワ"></span>
-        </div>
-        <div>
-            <span class="hint-emphasis">ヲ - wo</span>,
-            Same sound as オ (o)
-        </div>
-        <div>
-            <span class="hint-emphasis">ン - n</span>,
-            "Vale<span class="hint-emphasis">n</span>tine's"
-            💕
-            💕<span class="hint-overlap" data-content="ン"></span>
+        `<style>
+            .hint-vi-overlap {
+                left: -2.2em;
+            }
+        </style>
+        
+        <div class="columns-container">
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ワ - wa</span>,
+                    "<span class="hint-emphasis">Wa</span>gyu beef"
+                    🐮🥩
+                    🐮🥩<span class="hint-double-icon-overlap" data-content="ワ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ヲ - wo</span>,
+                    Same sound as オ (o)
+                </div>
+                <div>
+                    <span class="hint-emphasis">ン - n</span>,
+                    "Vale<span class="hint-emphasis">n</span>tine's"
+                    💕
+                    💕<span class="hint-overlap" data-content="ン"></span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ヴ - vu</span>,
+                    "Sca<span class="hint-emphasis">vu</span>zzo"
+                    🇮🇹🏙
+                    🇮🇹🏙<span class="hint-double-icon-overlap" data-content="ヴ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ヴァ - va</span>,
+                    "<span class="hint-emphasis">Va</span>ledictorian"
+                    👨‍🎓
+                    👨‍🎓<span class="hint-double-characters-overlap" data-content="ヴァ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ヴィ - vi</span>,
+                    "<span class="hint-emphasis">Vi</span>enna"
+                    🇦🇹🏙
+                    🇦🇹🏙<span class="hint-double-characters-overlap hint-vi-overlap" data-content="ヴィ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ヴェ - ve</span>,
+                    "<span class="hint-emphasis">Ve</span>getable"
+                    🥦
+                    🥦<span class="hint-double-characters-overlap" data-content="ヴェ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ヴォ - vo</span>,
+                    "<span class="hint-emphasis">Vo</span>ice"
+                    🎙️
+                    🎙️<span class="hint-double-characters-overlap" data-content="ヴォ"></span>
+                </div>
+            </div>
+            <div class="hint-explanation">
+                In katakana ウ (u) can also be used with dakuten to create ヴ (vu).
+            </div>
+            <div class="hint-explanation">
+                It can also be combined with small vowels to create all the other "v" sounds.
+            </div>
         </div>`,
 
         /*html*/
