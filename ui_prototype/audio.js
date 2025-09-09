@@ -13,7 +13,7 @@ var $kt = $kt || {};
             
             this._player = new AudioPlayer();
             this.tracks = {
-                BGM_TRACK: { name: 'Juhani Junkala [Retro Game Music Pack] Level 1.ogg', volume: 0.3 },
+                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg' },
                 SE_TEST_1: { name: '7.ogg' },
                 SE_TEST_2: { name: 'Jingle_Achievement_01.ogg' },
                 SE_TEST_2_HIGH: { name: 'Jingle_Achievement_01.ogg', speed: 1.2 },
