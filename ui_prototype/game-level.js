@@ -131,7 +131,7 @@ var $kt = $kt || {};
         formatWrongAnswer(answer) {
             return wanakana.isHiragana(this._currentQueston.kana)
                 ? wanakana.toHiragana(answer)
-                : wanakana.toKatakana(answer);
+                : `${wanakana.toKatakana(answer)} (${wanakana.toHiragana(answer)})`;
         }
 
         filterDictByRemainingChars(remainingChars) {
