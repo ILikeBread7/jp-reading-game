@@ -25,3 +25,6 @@ https://freesvg.org/1545492674 // Daikon
 
 Music
 https://dova-s.jp/bgm/play18489.html // BGM 虹ヲ駆ル舞 written by 秦暁
+
+SE
+効果音ラボ https://soundeffect-lab.info/
