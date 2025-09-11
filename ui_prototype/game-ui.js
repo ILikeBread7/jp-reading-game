@@ -77,7 +77,7 @@ var $kt = $kt || {};
             }
 
             if (this._isLevelUpHintVisible() && (!target || !this._levelUpHint.contains(target))) {
-                this._closeLevelUpContainer();
+                this._closeLevelUpContainerAndPlaySound();
                 return true;
             }
 
@@ -87,6 +87,11 @@ var $kt = $kt || {};
             }
 
             return false;
+        }
+
+        _closeLevelUpContainerAndPlaySound() {
+            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
+            this._closeLevelUpContainer();
         }
 
         focusAnswerInput() {
@@ -139,7 +144,7 @@ var $kt = $kt || {};
         showLevelUp(newLevel, showHint) {
             this._isShowingHintOnly = false;
 
-            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
+            $kt.audio.playEffect($kt.audio.tracks.LEVEL_UP);
             
             this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHintTemplate;
@@ -187,7 +192,18 @@ var $kt = $kt || {};
             // Force reflow to correctly apply
             // the growing exp bars transitions
             void this._levelExpDiv.offsetWidth;
-            
+
+            if (expData.find(exp => exp.addedExp > 0)) {
+                $kt.audio.playEffect($kt.audio.tracks.EXP_GROW);
+
+                if (expData.find(exp => exp.newExpPercentage >= 100)) {
+                    setTimeout(
+                        () => $kt.audio.playEffect($kt.audio.tracks.EXP_MAX),
+                        750 // Time to let the exp bars grow
+                    );
+                }
+            }
+
             this._growExpBars(expData);
         }
 
@@ -275,7 +291,7 @@ var $kt = $kt || {};
         }
 
         jumpRightAnswer() {
-            $kt.audio.playEffect($kt.audio.tracks.CONFIRM);
+            $kt.audio.playEffect($kt.audio.tracks.CORRECT);
             this._questionAnswerContainer.classList.add('jump');
             this._wrongAnswer.textContent = '';
             this._answerInput.value = '';
@@ -435,7 +451,7 @@ var $kt = $kt || {};
                 }
             });
 
-            this._levelUpHintCloseButton.addEventListener('click', () => this._closeLevelUpContainer());
+            this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainerAndPlaySound.bind(this));
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
             this._wrongAnswer.addEventListener('animationend', event => {
                 if (event.target === this._wrongAnswer) {

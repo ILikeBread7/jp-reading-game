@@ -13,10 +13,14 @@ var $kt = $kt || {};
             
             this._player = new AudioPlayer();
             this.tracks = {
-                CONFIRM: { name: 'システム決定音_12_2.ogg', speed: 1.2 },
-                SELECT: { name: 'システム決定音_12_2.ogg' },
-                CANCEL: { name: 'システム決定音_12_2.ogg', speed: 0.8 },
-                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg', volume: 0.3 }
+                CORRECT: { name: '決定ボタンを押す3.ogg', speed: 1.5 },
+                CONFIRM: { name: '決定ボタンを押す3.ogg', speed: 1.2 },
+                SELECT: { name: '決定ボタンを押す3.ogg' },
+                CANCEL: { name: '決定ボタンを押す3.ogg', speed: 0.8 },
+                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg', volume: 0.3 },
+                EXP_GROW: { name: '成功音.ogg' },
+                EXP_MAX: { name: '決定ボタンを押す1.ogg' },
+                LEVEL_UP: { name: '決定ボタンを押す4.ogg' }
             };
             
             this._connectSettings();
