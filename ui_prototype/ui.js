@@ -76,8 +76,8 @@ var $kt = $kt || {};
                     }
 
                     return element.classList.contains('back-button')
-                        ? $kt.audio.tracks.SE_TEST_2
-                        : $kt.audio.tracks.SE_TEST_1;
+                        ? $kt.audio.tracks.CANCEL
+                        : $kt.audio.tracks.CONFIRM;
                 })();
                 
                 return () => $kt.audio.playEffect(se);

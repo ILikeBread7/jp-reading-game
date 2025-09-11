@@ -139,7 +139,7 @@ var $kt = $kt || {};
         showLevelUp(newLevel, showHint) {
             this._isShowingHintOnly = false;
 
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
+            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
             
             this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHintTemplate;
@@ -269,20 +269,20 @@ var $kt = $kt || {};
         }
 
         shakeWrongAnswer(answer) {
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
             this._wrongAnswer.textContent = answer;
             this._wrongAnswer.classList.add('shake');
         }
 
         jumpRightAnswer() {
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
+            $kt.audio.playEffect($kt.audio.tracks.CONFIRM);
             this._questionAnswerContainer.classList.add('jump');
             this._wrongAnswer.textContent = '';
             this._answerInput.value = '';
         }
 
         slideQuestionHint(newHint) {
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_2);
+            $kt.audio.playEffect($kt.audio.tracks.SELECT);
             this._questionHintElement.classList.add('slide');
             this.showQuestionHint(newHint);
         }

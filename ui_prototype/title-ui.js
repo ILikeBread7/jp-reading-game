@@ -90,7 +90,7 @@ var $kt = $kt || {};
         _hidePreTitle() {
             this._preTitleText.classList.add('hidden');
             $kt.uiHelper.showMenu(this._mainMenu);
-            $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1);
+            $kt.audio.playEffect($kt.audio.tracks.CONFIRM);
             $kt.audio.playBgm($kt.audio.tracks.BGM_TRACK);
         }
 

@@ -19,9 +19,9 @@ var $kt = $kt || {};
 
         tabEventListener() {
             if ($kt.uiHelper.isSettingsVisible()) {
-                $kt.uiHelper.hideSettings();
+                this._hideSettingsAndPlaySound();
             } else {
-                $kt.uiHelper.showSettings();
+                this._showSettingsAndPlaySound();
             }
         }
 
@@ -44,10 +44,10 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            this._settingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+            this._settingsButton.addEventListener('click', this._showSettingsAndPlaySound.bind(this));
             this._settingsDiv.addEventListener('click', e => {
                 if (!this._settingsContainer.contains(e.target)) {
-                    $kt.uiHelper.hideSettings();
+                    this._hideSettingsAndPlaySound();
                 }
             });
 
@@ -76,11 +76,21 @@ var $kt = $kt || {};
 
         _connectSettings() {
             $kt.uiHelper.connectElementToSetting(EVENTS.BGM_VOLUME, this._bgmVolume);
-            $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => $kt.audio.playEffect($kt.audio.tracks.SE_TEST_1));
+            $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => $kt.audio.playEffect($kt.audio.tracks.SELECT));
             $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_MEANING, this._showMeaning);
             $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_HINT, this._showHint);
             $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_SUBMIT_BUTTON, this._submitButtonSelect);
             $kt.uiHelper.connectElementToSetting(EVENTS.CURRENT_HINT_INDEX, this._hintSelect);
+        }
+
+        _showSettingsAndPlaySound() {
+            $kt.uiHelper.showSettings();
+            $kt.audio.playEffect($kt.audio.tracks.CONFIRM);
+        }
+
+        _hideSettingsAndPlaySound() {
+            $kt.uiHelper.hideSettings();
+            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
         }
 
     }

@@ -13,11 +13,10 @@ var $kt = $kt || {};
             
             this._player = new AudioPlayer();
             this.tracks = {
-                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg' },
-                SE_TEST_1: { name: '7.ogg' },
-                SE_TEST_2: { name: 'Jingle_Achievement_01.ogg' },
-                SE_TEST_2_HIGH: { name: 'Jingle_Achievement_01.ogg', speed: 1.2 },
-                SE_TEST_2_LOW: { name: 'Jingle_Achievement_01.ogg', speed: 0.8 }
+                CONFIRM: { name: 'システム決定音_12_2.ogg', speed: 1.2 },
+                SELECT: { name: 'システム決定音_12_2.ogg' },
+                CANCEL: { name: 'システム決定音_12_2.ogg', speed: 0.8 },
+                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg', volume: 0.3 }
             };
             
             this._connectSettings();
