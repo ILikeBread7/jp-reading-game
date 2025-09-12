@@ -453,7 +453,7 @@ var $kt = $kt || {};
                 }
             });
 
-            this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainerAndPlaySound.bind(this));
+            this._levelUpHintCloseButton.addEventListener('click', this._closeLevelUpContainer.bind(this));
             this._answerInput.addEventListener('keypress', this._answerInputEnterEventListener.bind(this));
             this._wrongAnswer.addEventListener('animationend', event => {
                 if (event.target === this._wrongAnswer) {

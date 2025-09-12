@@ -75,7 +75,7 @@ var $kt = $kt || {};
                         return $kt.audio.tracks[datasetSe];
                     }
 
-                    return element.classList.contains('back-button')
+                    return element.hasAttribute('data-close-button') || element.classList.contains('back-button')
                         ? $kt.audio.tracks.CANCEL
                         : $kt.audio.tracks.CONFIRM;
                 })();
@@ -83,10 +83,17 @@ var $kt = $kt || {};
                 return () => $kt.audio.playEffect(se);
             }
 
-            [...document.getElementsByClassName('menu-button')]
-                .forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
-            [...document.getElementsByClassName('menu-checkbox')]
+            [
+                ...document.getElementsByClassName('menu-button'),
+                ...document.getElementsByClassName('icon-button')
+            ].forEach(element => element.addEventListener('click', menuItemPressedListenerCreator(element)));
+
+            [
+                ...document.getElementsByClassName('menu-checkbox'),
+                ...document.getElementsByTagName('select')
+            ]
                 .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
+            
             [...document.getElementsByClassName('menu-destination-button')]
                 .forEach(button => button.addEventListener('click', () => {
                     const destination = document.getElementById(button.dataset.destination);

@@ -44,7 +44,7 @@ var $kt = $kt || {};
         }
 
         _addEventListeners() {
-            this._settingsButton.addEventListener('click', this._showSettingsAndPlaySound.bind(this));
+            this._settingsButton.addEventListener('click', $kt.uiHelper.showSettings);
             this._settingsDiv.addEventListener('click', e => {
                 if (!this._settingsContainer.contains(e.target)) {
                     this._hideSettingsAndPlaySound();
