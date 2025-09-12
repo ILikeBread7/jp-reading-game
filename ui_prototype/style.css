@@ -841,11 +841,8 @@ body:not(.game) .game-only {
 }
 
 #credits {
-    padding: 0;
-}
-
-#credits {
-    white-space: pre-line;
+    padding: 0.5em;
+    text-align: center;
 }
 
 #answer-submit-button {
