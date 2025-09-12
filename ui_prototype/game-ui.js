@@ -193,17 +193,6 @@ var $kt = $kt || {};
             // the growing exp bars transitions
             void this._levelExpDiv.offsetWidth;
 
-            if (expData.find(exp => exp.addedExp > 0)) {
-                $kt.audio.playEffect($kt.audio.tracks.EXP_GROW);
-
-                if (expData.find(exp => exp.newExpPercentage >= 100)) {
-                    setTimeout(
-                        () => $kt.audio.playEffect($kt.audio.tracks.EXP_MAX),
-                        750 // Time to let the exp bars grow
-                    );
-                }
-            }
-
             this._growExpBars(expData);
         }
 
@@ -371,6 +360,19 @@ var $kt = $kt || {};
          * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage: number, addedExp: number } ] } expData 
          */
         _growExpBars(expData) {
+            // Exp growing and exp max sounds
+            if (expData.some(exp => exp.addedExp > 0)) {
+                $kt.audio.playEffect($kt.audio.tracks.EXP_GROW);
+
+                if (expData.some(exp => exp.newExpPercentage >= 100)) {
+                    setTimeout(
+                        () => $kt.audio.playEffect($kt.audio.tracks.EXP_MAX),
+                        750 // Time to let the exp bars grow
+                    );
+                }
+            }
+
+            // Growing exp bars visually
             [...this._levelExpDiv.getElementsByClassName('level-exp-content')]
                 .forEach((expBar, index) => {
                     const exp = expData[index];
