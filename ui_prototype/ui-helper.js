@@ -111,9 +111,8 @@ var $kt = $kt || {};
             // on the same checkbox over and over again
             // directly or through a label
             if (!element.parentNode.classList.contains('menu-item-label')) {
-                $kt.audio.playEffect($kt.audio.tracks.SELECT);
+                $kt.audio.playEffectDebounced($kt.audio.tracks.SELECT);
             }
-
         }
 
         static focusDefaultMenuItem(element) {
