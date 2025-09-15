@@ -370,7 +370,12 @@ const CENSORED_MISC_TEXTS = new Set(
         .map(tag => TERMS_TEXT_BY_CODE.get(tag).text)
 );
 
-const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo', 'fascism', 'fascist', 'erotic', 'sex position', 'Judaism', 'Allah', 'Protestant', 'fotiaoqiang' ];
+const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [
+    'Aum Shinrikyo', 'fascism', 'fascist',              // Cult or political
+    'erotic', 'sex position',                           // Sensitive
+    'Judaism', 'Allah', 'Protestant',                   // Religion
+    'fotiaoqiang', 'Minerva (goddess)', 'Vulcan (god)'  // Contain characters we don't want to deal with
+];
 const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([ TERMS_TEXT_BY_CODE.get('sens').text ]);
 
 const TERMS_TEXT_BY_TEXT = new Map();
@@ -416,8 +421,8 @@ const KATAKANA = [
     { tag: 'N', chars: 'ナニヌネノ' },
     { tag: 'K', chars: 'カキクケコガギグゲゴ' },
     { tag: 'S', chars: 'サシスセソザジズゼゾ' },
-    { tag: 'T', chars: 'タチッツテトダヂヅデドゥィ' },
-    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァェォ' },
+    { tag: 'T', chars: 'タチッツテトダヂヅデドィゥェ' },
+    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァォ' },
     { tag: 'Y', chars: 'ヤユヨャュョ' },
     { tag: 'W', chars: 'ワヲンヴ' }
 ];

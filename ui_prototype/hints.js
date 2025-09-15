@@ -1240,6 +1240,17 @@ var $kt = $kt || {};
                     🇳🇵🏙<span class="hint-double-characters-overlap hint-du-overlap" data-content="デゥ"></span>
                 </div>
             </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ェ - le (small e)</span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">チェ - che</span>,
+                    "<span class="hint-emphasis">Che</span>rry"
+                    🍒
+                    🍒<span class="hint-double-characters-overlap" data-content="チェ"></span>
+                </div>
+            </div>
         </div>
         <div class="hint-explanation">
             In katakana vowels (アイウエオ) have their small versions (ァィゥェォ),
@@ -1249,6 +1260,10 @@ var $kt = $kt || {};
             The spellings "teli", "telu", "deli", and "delu" are for disambiguation,
             as "ti" usually means チ, "tu" is ツ, "di" is ヂ, and "du" is ヅ.
             They can also be spelled "texi", "texu", "dexi", and "dexu" respectively.
+        </div>
+        <div class="hint-explanation">
+            チェ (che) doesn't need disambiguation bacause there is no other "che" sound
+            in Japanese so it can be spelled as is.
         </div>
         <div class="hint-explanation">
             These can also be used in hiragana (ぁぃぅぇぉ) but again are less common.
@@ -1481,6 +1496,26 @@ var $kt = $kt || {};
             </div>
             <div class="column-half-width">
                 <div>
+                    <span class="hint-emphasis">ウィ - uli (wi)</span>,
+                    "<span class="hint-emphasis">W(U)i</span>ener"
+                    🌭
+                    🌭<span class="hint-double-characters-overlap" data-content="ウィ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ウェ - ule (we)</span>,
+                    "<span class="hint-emphasis">W(U)e</span>ight"
+                    🏋
+                    🏋<span class="hint-double-characters-overlap" data-content="ウェ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ウォ - ulo (wo)</span>,
+                    "<span class="hint-emphasis">W(U)o</span>rn"
+                    🏚
+                    🏚<span class="hint-double-characters-overlap" data-content="ウォ"></span>
+                </div>
+            </div>
+            <div class="column-half-width">
+                <div>
                     <span class="hint-emphasis">ヴ - vu</span>,
                     "Sca<span class="hint-emphasis">vu</span>zzo"
                     🇮🇹🏙
@@ -1515,7 +1550,13 @@ var $kt = $kt || {};
                 In katakana ウ (u) can also be used with dakuten to create ヴ (vu).
             </div>
             <div class="hint-explanation">
-                It can also be combined with small vowels to create all the other "v" sounds.
+                Both ウ (u) and ヴ (vu) can also be combined with small vowels to create
+                ウィ (ui), ウェ (ue), and ウォ (uo) for ウ (u),
+                and all the other "v" sounds for ヴ (vu).
+            </div>
+            <div class="hint-explanation">
+                If combined with a small vowel the ウ (u) character is read more like "w".
+                That's why the examples use words with "w" instead of "u" but when written down it should still be spelled as "u".
             </div>
         </div>`,
 
