@@ -5,12 +5,12 @@ var $kt = $kt || {};
 (() => {
 
     const EVENTS = $kt.settings.eventNames;
-    const EFFECT_DEBOUNCE_TIME = 50;
+    const EFFECT_COOLDOWN_TIME = 50;
 
     class KantoreAudio {
 
         constructor() {
-            this._lastEffectPlayedTime = 0;
+            this._lastEffectPlayedTime = -EFFECT_COOLDOWN_TIME;
             this._currentBgmTrack = null;
             
             this._player = new AudioPlayer();
@@ -90,7 +90,7 @@ var $kt = $kt || {};
             const buffer = track.buffer;
             
             if (buffer) {
-                this._debounceEffect();
+                this._addEffectCooldown();
                 return this._player.playEffect(buffer, track.volume * volume, track.speed * speed);
             }
         }
@@ -101,20 +101,20 @@ var $kt = $kt || {};
          * @param {number} [volume=1] 
          * @param {number} [speed=1] 
          */
-        playEffectDebounced(track, volume = 1, speed = 1) {
-            if (this._isEffectDebounced()) {
+        playEffectWithCooldown(track, volume = 1, speed = 1) {
+            if (this._isEffectCooldownPeriod()) {
                 return;
             }
 
             this.playEffect(track, volume, speed);
         }
 
-        _debounceEffect() {
+        _addEffectCooldown() {
             this._lastEffectPlayedTime = performance.now();
         }
 
-        _isEffectDebounced() {
-            return performance.now() - this._lastEffectPlayedTime < EFFECT_DEBOUNCE_TIME;
+        _isEffectCooldownPeriod() {
+            return performance.now() - this._lastEffectPlayedTime < EFFECT_COOLDOWN_TIME;
         }
 
         _getOrCreateTrackPromise(trackName, tracksPromiseMap) {
