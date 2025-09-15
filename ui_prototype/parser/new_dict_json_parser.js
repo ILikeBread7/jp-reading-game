@@ -370,7 +370,7 @@ const CENSORED_MISC_TEXTS = new Set(
         .map(tag => TERMS_TEXT_BY_CODE.get(tag).text)
 );
 
-const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo', 'erotic', 'Judaism', 'sex position' ];
+const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [ 'Aum Shinrikyo', 'fascism', 'fascist', 'erotic', 'sex position', 'Judaism', 'Allah', 'Protestant', 'fotiaoqiang' ];
 const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([ TERMS_TEXT_BY_CODE.get('sens').text ]);
 
 const TERMS_TEXT_BY_TEXT = new Map();

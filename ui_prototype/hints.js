@@ -50,7 +50,8 @@ var $kt = $kt || {};
         </div>
         <div class="hint-explanation">
             Read the word at the top of the screen and
-            type it into the input below using the above hints.
+            type it into the input below the question
+            using the above hints.
         </div>
         <div class="hint-explanation">
             Press ENTER to confirm your answer.
@@ -675,7 +676,7 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">ょ - lyo</span>,
                     <span class="hint-emphasis">ぴょ - pyo</span>,
                     "<span class="hint-emphasis">Pyo</span>ngyang"
-                    🇰🇵🏙
+                    <span class="nowrap">🇰🇵🏙</span>
                     🇰🇵🏙<span class="hint-double-characters-overlap hint-pyo-overlap" data-content="ぴょ"></span>
                 </div>
             </div>
@@ -789,7 +790,7 @@ var $kt = $kt || {};
         <div class="hint-explanation">
             All characters in hiragana have a one to one equivalent in katakana
             so assume that everything that applies to hiragana also applies to
-            katakana and the equivalent characters unless stated otherwise.
+            the equivalent characters in katakana unless stated otherwise.
         </div>`,
 
         /*html*/
@@ -1446,7 +1447,7 @@ var $kt = $kt || {};
                     <span class="hint-emphasis">ョ - lyo</span>,
                     <span class="hint-emphasis">ピョ - pyo</span>,
                     "<span class="hint-emphasis">Pyo</span>ngyang"
-                    🇰🇵🏙
+                    <span class="nowrap">🇰🇵🏙</span>
                     🇰🇵🏙<span class="hint-double-characters-overlap hint-pyo-overlap" data-content="ピョ"></span>
                 </div>
             </div>

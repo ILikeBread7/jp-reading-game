@@ -50,7 +50,7 @@ var $kt = $kt || {};
         [...'ワヲンヴ']
     ];
 
-    const REPS_PER_CHAR = 1;
+    const REPS_PER_CHAR = 5;
 
     const HIRAGANA_LEVELS_RANGE = Object.freeze([1, 10]);
     const KATAKANA_LEVELS_RANGE = Object.freeze([11, 20]);

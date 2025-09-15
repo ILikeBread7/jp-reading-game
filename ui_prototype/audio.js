@@ -19,7 +19,7 @@ var $kt = $kt || {};
                 CONFIRM: { name: '決定ボタンを押す3.ogg', speed: 1.2 },
                 SELECT: { name: '決定ボタンを押す3.ogg' },
                 CANCEL: { name: '決定ボタンを押す3.ogg', speed: 0.8 },
-                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg', volume: 0.3 },
+                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
                 EXP_GROW: { name: '成功音.ogg' },
                 EXP_MAX: { name: '決定ボタンを押す1.ogg' },
                 LEVEL_UP: { name: '決定ボタンを押す4.ogg' }
