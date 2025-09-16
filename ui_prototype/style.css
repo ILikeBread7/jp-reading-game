@@ -286,6 +286,7 @@ summary {
     max-height: calc(100vh - 2em);
     overflow-y: auto;
     padding: 0 0.5em;
+    padding-bottom: 0.25em;
 }
 
 .menu {
