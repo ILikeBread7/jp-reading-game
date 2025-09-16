@@ -1,6 +1,18 @@
 import fs from 'node:fs';
 import * as wanakana from 'wanakana';
 
+const DEBUG = process.argv[2] !== 'prod';
+const CONFIG = DEBUG
+    ? { // debug config
+        indentSize: 2,
+        includeTags: true
+    }
+    : { // prod config
+        indentSize: 0,
+        includeTags: false
+    };
+console.log(DEBUG ? 'Running debug.' : 'Running prod!');
+
 const READ_PATH = '';
 const WRITE_PATH = 'ui_prototype/dicts/';
 
@@ -392,7 +404,7 @@ const KANA_PRIORITY_PREFIX = 'rp';
 const TARGET_ENTRIES_PER_CHAR = 20;
 const MIN_ENTRIES_PER_CHAR = 5;
 
-const JSON_FORMAT_INDENT_SIZE = 2;
+const JSON_FORMAT_INDENT_SIZE = CONFIG.indentSize;
 
 const LEVEL_KANJI = [
     { vocabTag: 'v5', kanjiChars: [...'日一国人年'] },
@@ -623,24 +635,24 @@ fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
     const priorities = createPriorities(entries);
     createLevelTagsFromPriorities(priorities, entries);
 
-    // DEBUG
-    const jlptMismatches = {};
-    jlptMismatchesMap.forEach((value, key) => {
-        if (value !== 1) {
-            jlptMismatches[key] = value;
-        }
-    });
-
-    fs.writeFile(WRITE_PATH + 'jlpt_mismatches.json', JSON.stringify(
-        jlptMismatches,
-        null,
-        2
-    ), () => console.log('JLPT mismatches file written'));
-    // END OF DEBUG
-
-    fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Dict file written!'));
-    fs.writeFile(WRITE_PATH + 'dict_censored.json', JSON.stringify(censoredEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
+    if (DEBUG) {
+        const jlptMismatches = {};
+        jlptMismatchesMap.forEach((value, key) => {
+            if (value !== 1) {
+                jlptMismatches[key] = value;
+            }
+        });
     
+        fs.writeFile(WRITE_PATH + 'jlpt_mismatches.json', JSON.stringify(
+            jlptMismatches,
+            null,
+            2
+        ), () => console.log('JLPT mismatches file written'));
+        
+        fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Dict file written!'));
+        fs.writeFile(WRITE_PATH + 'dict_censored.json', JSON.stringify(censoredEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
+    }
+
     separateIntoTagEntries([ ...entries, ...censoredEntries ])
         .forEach((tagEntries, tag) =>
             fs.writeFile(
@@ -1016,6 +1028,11 @@ function separateIntoTagEntries(entries) {
 
     return entries.reduce((acc, entry) => {
         const tags = entry.tags.length > 0 ? entry.tags : [ NO_TAG ];
+        
+        if (!CONFIG.includeTags) {
+            delete entry.tags;
+        }
+        
         tags.forEach(tag => {
             if (isKanaLevelTag(tag)) {
                 const kanaEntry = { ...entry };
@@ -1023,13 +1040,16 @@ function separateIntoTagEntries(entries) {
                 delete kanaEntry.hint;
                 addToTagMap(kanaEntry, tag, acc);
 
-                if (entry.kanji && entry.tags.length === 1) {
+                // Entry has kanji and
+                // it's only tag is the level tag
+                if (entry.kanji && tags.length === 1) {
                     addToTagMap(entry, NO_TAG, acc);
                 }
             } else {
                 addToTagMap(entry, tag, acc);
             }
         });
+
         return acc;
     }, new Map());
 }
@@ -1041,13 +1061,13 @@ function addToTagMap(entry, tag, map) {
 }
 
 function isKanaLevelTag(tag) {
-    const KANA_LVEL_PREFIX = 'L';
+    const KANA_LEVEL_PREFIX = 'L';
 
-    if (!tag.startsWith(KANA_LVEL_PREFIX)) {
+    if (!tag.startsWith(KANA_LEVEL_PREFIX)) {
         return false;
     }
 
-    const level = Number(tag.substring(KANA_LVEL_PREFIX.length));
+    const level = Number(tag.substring(KANA_LEVEL_PREFIX.length));
     return level <= KANA_GYOUS.length;
 }
 
