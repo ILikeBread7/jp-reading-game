@@ -282,6 +282,12 @@ summary {
     min-width: calc(var(--info-min-width) + var(--bigger-by));
 }
 
+#level-up-hint-content {
+    max-height: calc(100vh - 2em);
+    overflow-y: auto;
+    padding: 0 0.5em;
+}
+
 .menu {
     --bigger-by: -5em;
 }
