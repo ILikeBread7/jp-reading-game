@@ -1251,22 +1251,54 @@ var $kt = $kt || {};
                     🍒<span class="hint-double-characters-overlap" data-content="チェ"></span>
                 </div>
             </div>
+            <div class="column-half-width">
+                <div>
+                    <span class="hint-emphasis">ウィ - uli (wi)</span>,
+                    "<span class="hint-emphasis">Wi</span>ener"
+                    🌭
+                    🌭<span class="hint-double-characters-overlap" data-content="ウィ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">ウェ - ule (we)</span>,
+                    "<span class="hint-emphasis">We</span>ight"
+                    🏋
+                    🏋<span class="hint-double-characters-overlap" data-content="ウェ"></span>
+                </div>
+                <div>
+                    <span class="hint-emphasis">イェ - ile (ye)</span>,
+                    "<span class="hint-emphasis">Ye</span>llow"
+                    🟨
+                    🟨<span class="hint-double-characters-overlap" data-content="イェ"></span>
+                </div>
+            </div>
         </div>
         <div class="hint-explanation">
-            In katakana vowels (アイウエオ) have their small versions (ァィゥェォ),
-            some of which can be combined with テ (te) and デ (de) characters to create new sounds.
+            In katakana vowels (アイウエオ) have small versions (ァィゥェォ)
+            which can be combined with some other characters
+            (usually テ (te), デ (de), チ (chi), ウ (u), イ (i), and フ (fu) which will be shown later).
         </div>
         <div class="hint-explanation">
-            The spellings "teli", "telu", "deli", and "delu" are for disambiguation,
-            as "ti" usually means チ, "tu" is ツ, "di" is ヂ, and "du" is ヅ.
-            They can also be spelled "texi", "texu", "dexi", and "dexu" respectively.
+            This level will focus on ィ (small i), ゥ (small u), and ェ (small e).
         </div>
         <div class="hint-explanation">
-            チェ (che) doesn't need disambiguation bacause there is no other "che" sound
-            in Japanese so it can be spelled as is.
+            The non-literal spellings are for disambiguation.
+            チェ (che) is usually spelled "che" bacause there is no other "che" sound
+            in Japanese.
         </div>
         <div class="hint-explanation">
-            These can also be used in hiragana (ぁぃぅぇぉ) but again are less common.
+            If combined with a small vowel the ウ (u) character is read more like "w".
+            ウィ (uli) and ウェ (ule) can be spelled as "wi" and "we"
+            as there are no "wi" and "we" sounds in modern Japanese
+            but there used to be so the spellings "uli" and "ule" are less ambiguous.
+        </div>
+        <div class="hint-explanation">
+            イ (i) is usually only combined with ェ (small e)
+            where it is read like "y".
+            イェ is read as "ye" and can be spelled as
+            "ye", "ile", or "ixe".
+        </div>
+        <div class="hint-explanation">
+            They can also be used in hiragana (ぁぃぅぇぉ) but are less common.
         </div>`,
 
         /*html*/
@@ -1408,11 +1440,23 @@ var $kt = $kt || {};
                     🌲
                     🌲<span class="hint-double-characters-overlap" data-content="フォ"></span>
                 </div>
+                <div>
+                    <span class="hint-emphasis">ウォ - ulo (wo)</span>,
+                    "<span class="hint-emphasis">Wo</span>rn"
+                    🏚
+                    🏚<span class="hint-double-characters-overlap" data-content="ウォ"></span>
+                </div>
             </div>
         </div>
         <div class="hint-explanation">
             Small vowels (ァィェォ) can be combined with フ (fu) to create "fa", "fi", "fe", and "fo" sounds.
-            They are always spelled the same because these spellings don't exist elsewhere in Japanese so there is no need for any disambiguation.
+            They are usually spelled as is because these spellings don't exist elsewhere in Japanese so there is no need for any disambiguation.
+        </div>
+        <div class="hint-explanation">
+            ウ (u) can also be combined with ォ (small o)
+            similar to other combinations shown in the previous level.
+            This time it cannot be spelled "wo" as there is another
+            character spelled "wo" already.
         </div>`,
 
         /*html*/
@@ -1496,26 +1540,6 @@ var $kt = $kt || {};
             </div>
             <div class="column-half-width">
                 <div>
-                    <span class="hint-emphasis">ウィ - uli (wi)</span>,
-                    "<span class="hint-emphasis">W(U)i</span>ener"
-                    🌭
-                    🌭<span class="hint-double-characters-overlap" data-content="ウィ"></span>
-                </div>
-                <div>
-                    <span class="hint-emphasis">ウェ - ule (we)</span>,
-                    "<span class="hint-emphasis">W(U)e</span>ight"
-                    🏋
-                    🏋<span class="hint-double-characters-overlap" data-content="ウェ"></span>
-                </div>
-                <div>
-                    <span class="hint-emphasis">ウォ - ulo (wo)</span>,
-                    "<span class="hint-emphasis">W(U)o</span>rn"
-                    🏚
-                    🏚<span class="hint-double-characters-overlap" data-content="ウォ"></span>
-                </div>
-            </div>
-            <div class="column-half-width">
-                <div>
                     <span class="hint-emphasis">ヴ - vu</span>,
                     "Sca<span class="hint-emphasis">vu</span>zzo"
                     🇮🇹🏙
@@ -1550,13 +1574,7 @@ var $kt = $kt || {};
                 In katakana ウ (u) can also be used with dakuten to create ヴ (vu).
             </div>
             <div class="hint-explanation">
-                Both ウ (u) and ヴ (vu) can also be combined with small vowels to create
-                ウィ (ui), ウェ (ue), and ウォ (uo) for ウ (u),
-                and all the other "v" sounds for ヴ (vu).
-            </div>
-            <div class="hint-explanation">
-                If combined with a small vowel the ウ (u) character is read more like "w".
-                That's why the examples use words with "w" instead of "u" but when written down it should still be spelled as "u".
+                It can also be combined with small vowels to create all the other "v" sounds.
             </div>
         </div>`,
 
