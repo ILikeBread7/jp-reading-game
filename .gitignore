@@ -4,6 +4,7 @@ node_modules
 wanakana.min.js
 
 jlpt_data/*.doc
+ipa-dict.txt
 
 dict.json
 JMdict*
@@ -13,5 +14,4 @@ dict_vulgar.json
 ui/audio
 ui/particles.min.js
 ui/dicts
-ui/ipa-dict.txt
 
