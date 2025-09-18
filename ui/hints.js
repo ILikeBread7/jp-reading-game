@@ -1589,7 +1589,7 @@ var $kt = $kt || {};
             </div>
             <div class="hint-explanation">
                 I would also love to see your feedback in the comments on the
-                <a target="_blank" href="https://ilikebread7.itch.io/">itch.io</a> page for this game or wherever else you're playing it right now!
+                <a target="_blank" href="https://ilikebread7.itch.io/kantore">itch.io</a> page for this game or wherever else you're playing it right now!
             </div>
             <div class="hint-explanation">Thank you for playing this game and I hope you will check back when new levels are added!</div>
         </div>`
