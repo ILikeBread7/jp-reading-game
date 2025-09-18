@@ -1,7 +1,7 @@
 node_modules
 .vscode/launch.json
 
-wanakana.min.js
+parsers/wanakana.min.js
 
 jlpt_data/*.doc
 ipa-dict.txt
@@ -11,6 +11,4 @@ JMdict*
 jlpt_mismatches.json
 dict_vulgar.json
 
-ui/audio
-ui/particles.min.js
 ui/dicts
