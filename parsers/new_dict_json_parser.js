@@ -14,7 +14,7 @@ const CONFIG = DEBUG
 console.log(DEBUG ? 'Running debug.' : 'Running prod!');
 
 const READ_PATH = '';
-const WRITE_PATH = 'ui_prototype/dicts/';
+const WRITE_PATH = '../ui/dicts/';
 
 const LANGUAGES = new Map([
     ['kor', 'Korean'],

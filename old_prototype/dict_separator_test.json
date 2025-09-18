@@ -1,0 +1,473 @@
+[
+  {
+    "id": 1580120,
+    "kanji": {
+      "keb": "出船"
+    },
+    "kana": {
+      "reb": "でふね"
+    },
+    "sense": [
+      {
+        "pos": [
+          "noun (common) (futsuumeishi)",
+          "noun or participle which takes the aux. verb suru",
+          "intransitive verb"
+        ],
+        "gloss": [
+          "departure of a ship (from a port)",
+          "setting sail"
+        ]
+      },
+      {
+        "stagr": [
+          "でふね",
+          "でぶね"
+        ],
+        "pos": "noun (common) (futsuumeishi)",
+        "xref": "入り船",
+        "s_inf": "also いでぶね",
+        "gloss": [
+          "outgoing ship",
+          "ship leaving port"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1580120,
+    "kanji": {
+      "keb": "出船"
+    },
+    "kana": {
+      "reb": "でぶね"
+    },
+    "sense": [
+      {
+        "pos": [
+          "noun (common) (futsuumeishi)",
+          "noun or participle which takes the aux. verb suru",
+          "intransitive verb"
+        ],
+        "gloss": [
+          "departure of a ship (from a port)",
+          "setting sail"
+        ]
+      },
+      {
+        "stagr": [
+          "でふね",
+          "でぶね"
+        ],
+        "pos": "noun (common) (futsuumeishi)",
+        "xref": "入り船",
+        "s_inf": "also いでぶね",
+        "gloss": [
+          "outgoing ship",
+          "ship leaving port"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1580120,
+    "kanji": {
+      "keb": "出船"
+    },
+    "kana": {
+      "reb": "しゅっせん"
+    },
+    "sense": [
+      {
+        "pos": [
+          "noun (common) (futsuumeishi)",
+          "noun or participle which takes the aux. verb suru",
+          "intransitive verb"
+        ],
+        "gloss": [
+          "departure of a ship (from a port)",
+          "setting sail"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "三",
+      "ke_pri": [
+        "ichi1",
+        "news1",
+        "nf01"
+      ]
+    },
+    "kana": {
+      "reb": "さん",
+      "re_pri": [
+        "ichi1",
+        "news1",
+        "nf01"
+      ]
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "三",
+      "ke_pri": [
+        "ichi1",
+        "news1",
+        "nf01"
+      ]
+    },
+    "kana": {
+      "reb": "み",
+      "re_pri": "ichi1"
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "３"
+    },
+    "kana": {
+      "reb": "さん",
+      "re_pri": [
+        "ichi1",
+        "news1",
+        "nf01"
+      ]
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "３"
+    },
+    "kana": {
+      "reb": "み",
+      "re_pri": "ichi1"
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "参"
+    },
+    "kana": {
+      "reb": "さん",
+      "re_pri": [
+        "ichi1",
+        "news1",
+        "nf01"
+      ]
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "参"
+    },
+    "kana": {
+      "reb": "み",
+      "re_pri": "ichi1"
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "參",
+      "ke_inf": "word containing out-dated kanji or kanji usage"
+    },
+    "kana": {
+      "reb": "さん",
+      "re_pri": [
+        "ichi1",
+        "news1",
+        "nf01"
+      ]
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "參",
+      "ke_inf": "word containing out-dated kanji or kanji usage"
+    },
+    "kana": {
+      "reb": "み",
+      "re_pri": "ichi1"
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "弎",
+      "ke_inf": "word containing out-dated kanji or kanji usage"
+    },
+    "kana": {
+      "reb": "さん",
+      "re_pri": [
+        "ichi1",
+        "news1",
+        "nf01"
+      ]
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1579350,
+    "kanji": {
+      "keb": "弎",
+      "ke_inf": "word containing out-dated kanji or kanji usage"
+    },
+    "kana": {
+      "reb": "み",
+      "re_pri": "ichi1"
+    },
+    "sense": [
+      {
+        "pos": "numeric",
+        "s_inf": "参 is used in legal documents",
+        "gloss": [
+          "three",
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2778650,
+    "kanji": {
+      "keb": "前貼り"
+    },
+    "kana": {
+      "reb": "まえばり",
+      "re_restr": [
+        "前貼り",
+        "前張り",
+        "前張"
+      ]
+    },
+    "sense": [
+      {
+        "pos": [
+          "noun (common) (futsuumeishi)",
+          "noun or participle which takes the aux. verb suru"
+        ],
+        "gloss": "covering private parts (esp. actors during filming)"
+      },
+      {
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "minimal bikini bottom (held only by tiny straps or adhesive tape)"
+      }
+    ]
+  },
+  {
+    "id": 2778650,
+    "kanji": {
+      "keb": "前張り"
+    },
+    "kana": {
+      "reb": "まえばり",
+      "re_restr": [
+        "前貼り",
+        "前張り",
+        "前張"
+      ]
+    },
+    "sense": [
+      {
+        "pos": [
+          "noun (common) (futsuumeishi)",
+          "noun or participle which takes the aux. verb suru"
+        ],
+        "gloss": "covering private parts (esp. actors during filming)"
+      },
+      {
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "minimal bikini bottom (held only by tiny straps or adhesive tape)"
+      },
+      {
+        "stagk": [
+          "前張り",
+          "前張"
+        ],
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "lined hakama that bulge in the front"
+      }
+    ]
+  },
+  {
+    "id": 2778650,
+    "kanji": {
+      "keb": "前張"
+    },
+    "kana": {
+      "reb": "まえばり",
+      "re_restr": [
+        "前貼り",
+        "前張り",
+        "前張"
+      ]
+    },
+    "sense": [
+      {
+        "pos": [
+          "noun (common) (futsuumeishi)",
+          "noun or participle which takes the aux. verb suru"
+        ],
+        "gloss": "covering private parts (esp. actors during filming)"
+      },
+      {
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "minimal bikini bottom (held only by tiny straps or adhesive tape)"
+      },
+      {
+        "stagk": [
+          "前張り",
+          "前張"
+        ],
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "lined hakama that bulge in the front"
+      }
+    ]
+  },
+  {
+    "id": 2778650,
+    "kanji": {
+      "keb": "前バリ"
+    },
+    "kana": {
+      "reb": "まえバリ",
+      "re_restr": "前バリ"
+    },
+    "sense": [
+      {
+        "pos": [
+          "noun (common) (futsuumeishi)",
+          "noun or participle which takes the aux. verb suru"
+        ],
+        "gloss": "covering private parts (esp. actors during filming)"
+      },
+      {
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "minimal bikini bottom (held only by tiny straps or adhesive tape)"
+      }
+    ]
+  },
+  {
+    "id": 1052110,
+    "kana": {
+      "reb": "コンシューマー",
+      "re_pri": "gai1"
+    },
+    "sense": [
+      {
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "consumer"
+      }
+    ]
+  },
+  {
+    "id": 1052110,
+    "kana": {
+      "reb": "コンシューマ"
+    },
+    "sense": [
+      {
+        "pos": "noun (common) (futsuumeishi)",
+        "gloss": "consumer"
+      }
+    ]
+  }
+]
