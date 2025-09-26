@@ -10,6 +10,8 @@ var $kt = $kt || {};
     class KantoreAudio {
 
         constructor() {
+            this._events = new EventTarget();
+            this._eventNames = Object.freeze({ BGM_STARTED: 'BGM_STARTED' });
             this._lastEffectPlayedTime = -EFFECT_COOLDOWN_TIME;
             this._currentBgmTrack = null;
             this._latestBgmIndex = 0;
@@ -26,10 +28,10 @@ var $kt = $kt || {};
             };
 
             this._bgmTracks = $kt.utils.shuffle([
-                { displayName: '虹ヲ駆ル舞1', author: '秦暁1', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
-                // { displayName: '虹ヲ駆ル舞2', author: '秦暁2', name: '虹ヲ駆ル舞_2.ogg', volume: 0.35, speed: 100 },
-                // { displayName: '虹ヲ駆ル舞3', author: '秦暁3', name: '虹ヲ駆ル舞_2.ogg', volume: 0.55, speed: 100 },
-                // { displayName: '虹ヲ駆ル舞4', author: '秦暁4', name: '虹ヲ駆ル舞_2.ogg', volume: 0.65, speed: 100 },
+                { displayName: '虹ヲ駆ル舞1', author: '秦暁1', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45, speed: 100 },
+                { displayName: '虹ヲ駆ル舞2', author: '秦暁2', name: '虹ヲ駆ル舞_2.ogg', volume: 0.35, speed: 100 },
+                { displayName: '虹ヲ駆ル舞3', author: '秦暁3', name: '虹ヲ駆ル舞_2.ogg', volume: 0.55, speed: 100 },
+                { displayName: '虹ヲ駆ル舞4', author: '秦暁4', name: '虹ヲ駆ル舞_2.ogg', volume: 0.65, speed: 100 },
             ]);
 
             [ ...Object.values(this.tracks), ...this._bgmTracks ]
@@ -40,6 +42,14 @@ var $kt = $kt || {};
                 });
             
             this._connectSettings();
+        }
+
+        get events() {
+            return this._events;
+        }
+
+        get eventNames() {
+            return this._eventNames;
         }
 
         preloadAudio() {
@@ -79,6 +89,7 @@ var $kt = $kt || {};
             
             return bgmPromise.then(track => {
                 track.source.addEventListener('ended', this._startNextBgm.bind(this));
+                this._dispatchBgmStartedEvent();
             });
         }
 
@@ -129,6 +140,7 @@ var $kt = $kt || {};
                         }
 
                         source.addEventListener('ended', this._startNextBgm.bind(this));
+                        this._dispatchBgmStartedEvent();
                     }
                 );
         }
@@ -235,6 +247,10 @@ var $kt = $kt || {};
             $kt.uiHelper.connectSettingToListener(EVENTS.SE_VOLUME, this.seVolumeChange.bind(this));
         }
 
+        _dispatchBgmStartedEvent() {
+            this._events.dispatchEvent(new CustomEvent(this._eventNames.BGM_STARTED, { detail: this._currentBgmTrack }));
+        }
+
     }
 
     class AudioPlayer {
@@ -338,16 +354,6 @@ var $kt = $kt || {};
             trackSource.playbackRate.value = speed;
             trackSource.start();
             return { source: trackSource, gain: gainNode.gain };
-        }
-
-        /**
-         * 
-         * @param {AudioBuffer} trackBuffer 
-         * @param {AudioBufferSourceNode} playingTrack 
-         * @returns 
-         */
-        _isSameTrack(trackBuffer, playingTrack) {
-            return playingTrack && playingTrack.buffer === trackBuffer;
         }
 
     }

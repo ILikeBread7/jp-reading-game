@@ -30,6 +30,8 @@ var $kt = $kt || {};
             this._settingsContainer = document.getElementById('settings-container');
             this._settingsButton = document.getElementById('settings-button');
 
+            this._nowPlaying = document.getElementById('settings-now-playing');
+
             this._bgmVolume = document.getElementById('bgm-volume');
             this._seVolume = document.getElementById('se-volume');
             
@@ -56,6 +58,11 @@ var $kt = $kt || {};
 
             this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
             this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
+
+            $kt.audio.events.addEventListener($kt.audio.eventNames.BGM_STARTED, ({ detail }) => {
+                this._nowPlaying.textContent = `Now playing: ${detail.displayName} by ${detail.author}`;
+                this._nowPlaying.classList.remove('hidden');
+            });
         }
 
         _addSubmitButtonOptions() {
