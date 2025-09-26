@@ -668,7 +668,7 @@ var $kt = $kt || {};
             const firstNotLoadedSubdict = this._subdicts.length + 1;
 
             if (currentLastBeatenLevel >= firstNotLoadedSubdict) {
-                const newSubdicts = $kt.dicts.shuffle(
+                const newSubdicts = $kt.utils.shuffle(
                     $kt.dicts.getLevelDicts(firstNotLoadedSubdict, currentLastBeatenLevel)
                 );
                 this._subdicts.push(...newSubdicts);
@@ -735,7 +735,7 @@ var $kt = $kt || {};
             }
 
             // Add dict to be used after all levels are finished
-            const finalDict = new ComplexDict(this.shuffle([...this._levelDicts])); // Copying the array to not modify the original
+            const finalDict = new ComplexDict($kt.utils.shuffle([...this._levelDicts])); // Copying the array to not modify the original
             this._levelDicts.push(finalDict);
             Object.freeze(this._levelDicts);
         }
@@ -744,7 +744,7 @@ var $kt = $kt || {};
             CATEGORIES.forEach(this._addDicts.bind(this));
             
             const globalAllEntry = new ComplexDict(
-                this.shuffle(
+                $kt.utils.shuffle(
                     this._dicts.values()
                         .filter(dict => !dict.isComplex)
                         .toArray()
@@ -784,7 +784,7 @@ var $kt = $kt || {};
                         const dictTags = tags || this._findAllTags(category);
     
                         this._dicts.set(tag, new ComplexDict(
-                            this.shuffle(dictTags).map(tag => this._getOrCreateCategoryDict(tag))
+                            $kt.utils.shuffle(dictTags).map(tag => this._getOrCreateCategoryDict(tag))
                         ));
                     });
     
@@ -800,7 +800,7 @@ var $kt = $kt || {};
                             levelsSubdicts.push(this.getLevelDict(level));
                         }
     
-                        this._dicts.set(tag, new ComplexDict(this.shuffle(levelsSubdicts)));
+                        this._dicts.set(tag, new ComplexDict($kt.utils.shuffle(levelsSubdicts)));
                     });
     
                     category.entries.unshift(...category.complexLevelEntries);
@@ -843,22 +843,7 @@ var $kt = $kt || {};
             LEVELS_CATEGORY.entries.splice(1, 0, entry);
         }
 
-        /**
-         * 
-         * @param {[]} array 
-         * @returns {[]} The same array shuffled in place
-         */
-        shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const randomIndex = Math.floor(Math.random() * (i + 1));
-                
-                const tmp = array[i];
-                array[i] = array[randomIndex];
-                array[randomIndex] = tmp;
-            }
 
-            return array;
-        }
 
     }
 

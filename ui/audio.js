@@ -12,6 +12,7 @@ var $kt = $kt || {};
         constructor() {
             this._lastEffectPlayedTime = -EFFECT_COOLDOWN_TIME;
             this._currentBgmTrack = null;
+            this._latestBgmIndex = 0;
             
             this._player = new AudioPlayer();
             this.tracks = {
@@ -19,46 +20,131 @@ var $kt = $kt || {};
                 CONFIRM: { name: '決定ボタンを押す3.ogg', speed: 1.2 },
                 SELECT: { name: '決定ボタンを押す3.ogg' },
                 CANCEL: { name: '決定ボタンを押す3.ogg', speed: 0.8 },
-                BGM_TRACK: { name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
                 EXP_GROW: { name: '成功音.ogg' },
                 EXP_MAX: { name: '決定ボタンを押す1.ogg' },
                 LEVEL_UP: { name: '決定ボタンを押す4.ogg' }
             };
+
+            this._bgmTracks = $kt.utils.shuffle([
+                { displayName: '虹ヲ駆ル舞1', author: '秦暁1', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
+                // { displayName: '虹ヲ駆ル舞2', author: '秦暁2', name: '虹ヲ駆ル舞_2.ogg', volume: 0.35, speed: 100 },
+                // { displayName: '虹ヲ駆ル舞3', author: '秦暁3', name: '虹ヲ駆ル舞_2.ogg', volume: 0.55, speed: 100 },
+                // { displayName: '虹ヲ駆ル舞4', author: '秦暁4', name: '虹ヲ駆ル舞_2.ogg', volume: 0.65, speed: 100 },
+            ]);
+
+            [ ...Object.values(this.tracks), ...this._bgmTracks ]
+                .forEach(trackData => {
+                    // Setting default parameters when missing
+                    trackData.volume ??= 1;
+                    trackData.speed ??= 1;
+                });
             
             this._connectSettings();
         }
 
         preloadAudio() {
             const tracksPromiseMap = new Map();
-            Object.entries(this.tracks).forEach(([, trackData]) => {
-                // Settings default parameters when missing
-                trackData.volume ??= 1;
-                trackData.speed ??= 1;
+            const trackEntries = Object.values(this.tracks);
 
-                // Preload all audio files
-                trackData.promise = this._getOrCreateTrackPromise(trackData.name, tracksPromiseMap)
-                    .then(buffer => {
-                        trackData.buffer = buffer;
-                        delete trackData.promise;
+            this._preloadTrack(trackEntries[0], tracksPromiseMap);
+            this._preloadTrack(this._bgmTracks[0], tracksPromiseMap);
 
-                        // Has to return buffer so subsequent
-                        // .then calls on this promise can also
-                        // access it
-                        return buffer;
-                    });
+            trackEntries
+                .slice(1)
+                .forEach(trackData => this._preloadTrack(trackData, tracksPromiseMap));
+        }
+
+        _preloadTrack(trackData, tracksPromiseMap) {
+            trackData.promise = this._getOrCreateTrackPromise(trackData.name, tracksPromiseMap)
+                .then(buffer => {
+                    trackData.buffer = buffer;
+                    delete trackData.promise;
+
+                    // Has to return buffer so subsequent
+                    // .then calls on this promise can also
+                    // access it
+                    return buffer;
+                });
+        }
+
+        async startBgms() {
+            this._latestBgmIndex = 0;
+            
+            const loop = false;
+            const bgmPromise = this.playBgm(this._bgmTracks[0], loop);
+            
+            if (this._bgmTracks.length > 1) {
+                this._preloadTrack(this._bgmTracks[1]);
+            }
+            
+            return bgmPromise.then(track => {
+                track.source.addEventListener('ended', this._startNextBgm.bind(this));
             });
+        }
+
+        _startNextBgm() {
+            this._latestBgmIndex++;
+
+            let newBgm = this._bgmTracks[this._latestBgmIndex];
+            // If there is no next bgm reshuffle the bgm list
+            // and restart from the beginning
+            if (!newBgm) {
+                this._latestBgmIndex = 0;
+                const lastBgm = this._bgmTracks[this._bgmTracks.length - 1];
+                $kt.utils.shuffle(this._bgmTracks);
+                
+                if (lastBgm === this._bgmTracks[0] && this._bgmTracks.length > 1) {
+                    const randomIndex = Math.floor(Math.random() * (this._bgmTracks.length - 1)) + 1;
+                    const tmp = this._bgmTracks[0];
+                    this._bgmTracks[0] = this._bgmTracks[randomIndex];
+                    this._bgmTracks[randomIndex] = tmp;
+                }
+                newBgm = this._bgmTracks[0];
+            }
+
+            // If the bgm wasn't loaded in time pick a random
+            // already loaded bgm instead
+            if (!newBgm.buffer) {
+                this._latestBgmIndex--;
+
+                let randomIndex;
+                do {
+                    randomIndex = Math.floor(Math.random() * this._latestBgmIndex);
+                } while (this._latestBgmIndex > 0 && this._currentBgmTrack === this._bgmTracks[randomIndex]);
+                
+                newBgm = this._bgmTracks[randomIndex];
+            }
+
+            const loop = false;
+            this.playBgm(newBgm, loop)
+                .then(({ source }) => {
+                        // Preload the next bgm if not already loaded or loading
+                        const nextIndex = this._latestBgmIndex + 1;
+                        if (
+                            this._bgmTracks[nextIndex]
+                            && !this._bgmTracks[nextIndex].buffer
+                            && !this._bgmTracks[nextIndex].promise
+                        ) {
+                            this._preloadTrack(this._bgmTracks[nextIndex]);
+                        }
+
+                        source.addEventListener('ended', this._startNextBgm.bind(this));
+                    }
+                );
         }
 
         /**
          * 
          * @param { { buffer: Promise<AudioBuffer>, volume: number, speed: number } } track 
+         * @param {boolean} [loop=true] 
          * @param {number} [volume=1] 
          * @param {number} [speed=1] 
+         * @returns {Promise<{source: AudioBufferSourceNode, gain: AudioParam}>}
          */
-        async playBgm(track, volume = 1, speed = 1) {
+        async playBgm(track, loop = true, volume = 1, speed = 1) {
             this._currentBgmTrack = track;
             const playFunc = buffer =>
-                this._player.playBgm(buffer, track.volume * volume, track.speed * speed);
+                this._player.playBgm(buffer, loop, track.volume * volume, track.speed * speed);
             
             const buffer = track.buffer;
             if (buffer) {
@@ -69,13 +155,8 @@ var $kt = $kt || {};
                 }
                 return track.promise.then(buffer => {
                     if (track === this._currentBgmTrack) {
-                        playFunc(buffer);
+                        return playFunc(buffer);
                     }
-
-                    // Has to return buffer so subsequent
-                    // .then calls on this promise can also
-                    // access it
-                    return buffer;
                 });
             }
         }
@@ -118,13 +199,13 @@ var $kt = $kt || {};
         }
 
         _getOrCreateTrackPromise(trackName, tracksPromiseMap) {
-            const promiseFromMap = tracksPromiseMap.get(trackName);
+            const promiseFromMap = tracksPromiseMap && tracksPromiseMap.get(trackName);
             if (promiseFromMap) {
                 return promiseFromMap;
             }
 
             const promise = this._player.loadTrack(trackName);
-            tracksPromiseMap.set(trackName, promise);
+            tracksPromiseMap && tracksPromiseMap.set(trackName, promise);
             return promise;
         }
 
@@ -182,17 +263,14 @@ var $kt = $kt || {};
             return audioBuffer;
         }
 
-        playBgm(track, volume, speed) {
-            if (this._currentBgm !== null && this._isSameTrack(track, this._currentBgm.source)) {
-                return;
-            }
-
+        playBgm(track, loop, volume, speed) {
             if (this._currentBgm !== null) {
                 this._currentBgm.source.stop();
             }
 
-            this._currentBgm = this._playSound(track, true, volume * this._bgmVolume, speed);
+            this._currentBgm = this._playSound(track, loop, volume * this._bgmVolume, speed);
             this._currentBgmBaseVolume = volume;
+            return this._currentBgm;
         }
 
         playEffect(track, volume, speed) {
