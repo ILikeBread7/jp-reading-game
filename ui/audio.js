@@ -29,7 +29,14 @@ var $kt = $kt || {};
             };
 
             this._bgmTracks = $kt.utils.shuffle([
-                { displayName: '虹ヲ駆ル舞', author: '秦暁', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
+                { displayName: '虹ヲ駆ル舞', author: '秦暁', name: '虹ヲ駆ル舞.ogg', volume: 0.45 },
+                { displayName: '和響バースト -Wakyo Burst-', author: 'alaki paca', name: '和響バースト_-Wakyo_Burst-.ogg', volume: 0.4 },
+                { displayName: 'Miyabi break', author: 'マニーラ', name: 'Miyabi_break.ogg', volume: 0.65 },
+                { displayName: 'Acid Fuji', author: 'MFP【Marron Fields Production】', name: 'Acid_Fuji.ogg', volume: 0.4 },
+                { displayName: '86', author: '伊藤ケイスケ', name: '86.ogg', volume: 0.3 },
+                { displayName: '竜宮城', author: '伊藤ケイスケ', name: '竜宮城.ogg', volume: 0.3 },
+                { displayName: 'monstruo', author: '伊藤ケイスケ', name: 'monstruo.ogg', volume: 0.3 },
+                { displayName: 'Rainy', author: '伊藤ケイスケ', name: 'Rainy.ogg', volume: 0.325 }
             ]);
 
             [ ...Object.values(this.tracks), ...this._bgmTracks ]

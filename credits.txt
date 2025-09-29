@@ -24,7 +24,14 @@ SVG
 https://freesvg.org/1545492674 // Daikon
 
 Music
-https://dova-s.jp/bgm/play18489.html // BGM 虹ヲ駆ル舞 written by 秦暁
+https://dova-s.jp/bgm/play18489.html // 虹ヲ駆ル舞 written by 秦暁
+https://dova-s.jp/bgm/play22594.html // 和響バースト -Wakyo Burst-  written by alaki paca
+https://dova-s.jp/bgm/play16275.html // Miyabi break written by マニーラ
+https://dova-s.jp/bgm/play18323.html // Acid Fuji written by MFP【Marron Fields Production】
+https://dova-s.jp/bgm/play14229.html // 86 written by 伊藤ケイスケ
+https://dova-s.jp/bgm/play16515.html // 竜宮城 written by 伊藤ケイスケ
+https://dova-s.jp/bgm/play15587.html // monstruo written by 伊藤ケイスケ
+https://dova-s.jp/bgm/play14374.html // Rainy written by 伊藤ケイスケ
 
 SE
 効果音ラボ https://soundeffect-lab.info/
