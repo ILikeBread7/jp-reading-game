@@ -32,6 +32,8 @@ var $kt = $kt || {};
         _getAllElements() {
             this._loadingDiv = document.getElementById('loading');
             this._fullscreenButton = document.getElementById('fullscreen-button');
+            this._nowPlaying = document.getElementById('now-playing');
+            this._nowPlayingText = document.getElementById('now-playing-text');
         }
 
         _addEventListeners() {
@@ -106,6 +108,19 @@ var $kt = $kt || {};
                 event.stopPropagation();
             });
             document.addEventListener('fullscreenchange', this._toggleFullscreenIcon.bind(this));
+
+            this._nowPlaying.addEventListener('animationend', event => {
+                if (event.target !== this._nowPlaying) {
+                    return;
+                }
+
+                this._nowPlaying.classList.remove('slide-transform');
+            });
+
+            $kt.audio.events.addEventListener($kt.audio.eventNames.BGM_STARTED, ({ detail }) => {
+                this._nowPlayingText.textContent = `${detail.displayName} by ${detail.author}`;
+                this._nowPlaying.classList.add('slide-transform');
+            });
         }
 
         _toggleFullscreenIcon() {

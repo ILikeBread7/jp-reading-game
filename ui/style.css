@@ -14,7 +14,7 @@
     --settings-button-z-index: 2;
     --overlays-z-index: 3;
     --settings-z-index: 4;
-    --fullscreen-button-z-index: 5;
+    --above-ui-z-index: 5;
 
     --info-width: 90%;
     --info-min-width: 21em;
@@ -364,6 +364,38 @@ summary {
     100% {
         visibility: visible;
         opacity: 1;
+    }
+}
+
+#now-playing {
+    position: fixed;
+    top: 4em;
+    left: 0.5em;
+    
+    border: 0.25em solid var(--palette-text-color);
+    border-radius: 0.5em;
+    box-shadow: 0.3em 0.3em 0.3em #000000;
+
+    background-color: var(--palette-secondary-color);
+    padding: 0.125em 0.25em;
+    z-index: var(--above-ui-z-index);
+
+    transform: translateX(-150%);
+}
+
+.slide-transform {
+    animation: slide-transform 7s ease-in-out;
+}
+
+@keyframes slide-transform {
+    25% {
+        transform: initial;
+    }
+    75% {
+        transform: initial;
+    }
+    100% {
+        /* empty, return to non-animation values */
     }
 }
 
@@ -862,7 +894,7 @@ body:not(.game) .game-only {
     position: fixed;
     right: 0px;
     bottom: 0px;
-    z-index: var(--fullscreen-button-z-index);
+    z-index: var(--above-ui-z-index);
 }
 
 @media (max-width: 980px) {
