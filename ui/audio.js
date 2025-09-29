@@ -11,7 +11,7 @@ var $kt = $kt || {};
 
         constructor() {
             this._events = new EventTarget();
-            this._eventNames = Object.freeze({ BGM_STARTED: 'BGM_STARTED' });
+            this._eventNames = Object.freeze({ BGM_STARTED: 'bgmStarted' });
             this._lastEffectPlayedTime = -EFFECT_COOLDOWN_TIME;
             this._currentBgmTrack = null;
             this._latestBgmIndex = 0;
