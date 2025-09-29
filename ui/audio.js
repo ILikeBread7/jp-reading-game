@@ -15,6 +15,7 @@ var $kt = $kt || {};
             this._lastEffectPlayedTime = -EFFECT_COOLDOWN_TIME;
             this._currentBgmTrack = null;
             this._latestBgmIndex = 0;
+            this._lastEventBgmTrack = null;
             
             this._player = new AudioPlayer();
             this.tracks = {
@@ -28,10 +29,7 @@ var $kt = $kt || {};
             };
 
             this._bgmTracks = $kt.utils.shuffle([
-                // { displayName: '虹ヲ駆ル舞', author: '秦暁', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
-                { displayName: '虹ヲ駆ル舞2', author: '秦暁2', name: '虹ヲ駆ル舞_2.ogg', volume: 0.35, speed: 100 },
-                { displayName: '虹ヲ駆ル舞3', author: '秦暁3', name: '虹ヲ駆ル舞_2.ogg', volume: 0.55, speed: 100 },
-                { displayName: '虹ヲ駆ル舞4', author: '秦暁4', name: '虹ヲ駆ル舞_2.ogg', volume: 0.65, speed: 100 },
+                { displayName: '虹ヲ駆ル舞', author: '秦暁', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
             ]);
 
             [ ...Object.values(this.tracks), ...this._bgmTracks ]
@@ -234,6 +232,7 @@ var $kt = $kt || {};
          */
         bgmVolumeChange(newVolume) {
             this._player.bgmVolumeChange(newVolume);
+            this._dispatchBgmStartedEvent();
         }
 
         /**
@@ -250,6 +249,11 @@ var $kt = $kt || {};
         }
 
         _dispatchBgmStartedEvent() {
+            if (this._player.bgmMuted || this._lastEventBgmTrack === this._currentBgmTrack) {
+                return;
+            }
+
+            this._lastEventBgmTrack = this._currentBgmTrack;
             this._events.dispatchEvent(new CustomEvent(this._eventNames.BGM_STARTED, { detail: this._currentBgmTrack }));
         }
 
