@@ -380,7 +380,7 @@ summary {
     padding: 0.125em 0.25em;
     z-index: var(--above-ui-z-index);
 
-    transform: translateX(-150%);
+    transform: translateX(-120%);
 }
 
 .slide-transform {
