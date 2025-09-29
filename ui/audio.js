@@ -28,7 +28,7 @@ var $kt = $kt || {};
             };
 
             this._bgmTracks = $kt.utils.shuffle([
-                { displayName: '虹ヲ駆ル舞1', author: '秦暁1', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45, speed: 100 },
+                // { displayName: '虹ヲ駆ル舞', author: '秦暁', name: '虹ヲ駆ル舞_2.ogg', volume: 0.45 },
                 { displayName: '虹ヲ駆ル舞2', author: '秦暁2', name: '虹ヲ駆ル舞_2.ogg', volume: 0.35, speed: 100 },
                 { displayName: '虹ヲ駆ル舞3', author: '秦暁3', name: '虹ヲ駆ル舞_2.ogg', volume: 0.55, speed: 100 },
                 { displayName: '虹ヲ駆ル舞4', author: '秦暁4', name: '虹ヲ駆ル舞_2.ogg', volume: 0.65, speed: 100 },
@@ -78,6 +78,8 @@ var $kt = $kt || {};
         }
 
         async startBgms() {
+            this._player.suspendMutedAudoContexts();
+
             this._latestBgmIndex = 0;
             
             const loop = false;
@@ -263,8 +265,23 @@ var $kt = $kt || {};
         constructor(bgmVolume = 1, seVolume = 1) {
             this._bgmVolume = bgmVolume;
             this._seVolume = seVolume;
-            this._audioCtx = new AudioContext();
+            this._bgmAudioCtx = new AudioContext();
+            this._seAudioCtx = new AudioContext();
             this._currentBgm = null;
+        }
+
+        suspendMutedAudoContexts() {
+            if (this._bgmVolume <= 0) {
+                this._bgmAudioCtx.suspend();
+            }
+
+            if (this._seVolume <= 0) {
+                this._seAudioCtx.suspend();
+            }
+        }
+
+        get bgmMuted() {
+            return this._bgmVolume <= 0;
         }
 
         /**
@@ -275,7 +292,7 @@ var $kt = $kt || {};
         async loadTrack(trackName) {
             const response = await fetch(`audio/${trackName}`);
             const arrayBuffer = await response.arrayBuffer();
-            const audioBuffer = await this._audioCtx.decodeAudioData(arrayBuffer);
+            const audioBuffer = await this._seAudioCtx.decodeAudioData(arrayBuffer);
             return audioBuffer;
         }
 
@@ -284,7 +301,7 @@ var $kt = $kt || {};
                 this._currentBgm.source.stop();
             }
 
-            this._currentBgm = this._playSound(track, loop, volume * this._bgmVolume, speed);
+            this._currentBgm = this._playSound(track, loop, this._bgmAudioCtx, volume * this._bgmVolume, speed);
             this._currentBgmBaseVolume = volume;
             return this._currentBgm;
         }
@@ -305,9 +322,10 @@ var $kt = $kt || {};
          * @param {number} newVolume in range 0-1
          */
         bgmVolumeChange(newVolume) {
+            this._resumeOrSuspendCtx(this._bgmAudioCtx, newVolume);
             this._bgmVolume = newVolume;
             if (this._currentBgm !== null) {
-                this._currentBgm.gain.value = this._currentBgmBaseVolume * newVolume, this._audioCtx.currentTime;
+                this._currentBgm.gain.value = this._currentBgmBaseVolume * newVolume, this._bgmAudioCtx.currentTime;
             }
         }
 
@@ -316,7 +334,29 @@ var $kt = $kt || {};
          * @param {number} newVolume in range 0-1
          */
         seVolumeChange(newVolume) {
+            this._resumeOrSuspendCtx(this._seAudioCtx, newVolume);
             this._seVolume = newVolume;
+        }
+
+        /**
+         * 
+         * @param {AudioContext} ctx 
+         * @param {number} volume 
+         */
+        _resumeOrSuspendCtx(ctx, volume) {
+            if (volume > 0) {
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+                return;
+            }
+
+            if (volume <= 0) {
+                if (ctx.state === 'running') {
+                    ctx.suspend();
+                }
+                return;
+            }
         }
 
         /**
@@ -329,25 +369,26 @@ var $kt = $kt || {};
          */
         _playVariedPitchSound(track, loop = false, volume = 1, speed = 1) {
             const newSpeed = speed * (0.95 + Math.random() * 0.1);
-            void this._playSound(track, loop, volume, newSpeed);
+            void this._playSound(track, loop, this._seAudioCtx, volume, newSpeed);
         }
 
         /**
          * 
          * @param {AudioBuffer} track 
          * @param {boolean} [loop=false] 
+         * @param {AudioContext} ctx 
          * @param {number} [volume=1] 
          * @param {number} [speed=1] 
          * @returns {{source: AudioBufferSourceNode, gain: AudioParam}}
          */
-        _playSound(track, loop = false, volume = 1, speed = 1) {
+        _playSound(track, loop = false, ctx, volume = 1, speed = 1) {
             const audioBuffer = track;
-            const trackSource = this._audioCtx.createBufferSource();
+            const trackSource = ctx.createBufferSource();
 
-            const gainNode = this._audioCtx.createGain();
+            const gainNode = ctx.createGain();
             trackSource.loop = loop;
             trackSource.buffer = audioBuffer;
-            trackSource.connect(gainNode).connect(this._audioCtx.destination);
+            trackSource.connect(gainNode).connect(ctx.destination);
 
             gainNode.gain.value = volume;
 
