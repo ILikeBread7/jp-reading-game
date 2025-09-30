@@ -378,6 +378,7 @@ summary {
 
     background-color: var(--palette-secondary-color);
     padding: 0.125em 0.25em;
+    max-width: 85vw;
     z-index: var(--above-ui-z-index);
 
     transform: translateX(-120%);
