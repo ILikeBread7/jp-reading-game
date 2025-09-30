@@ -89,12 +89,12 @@ var $kt = $kt || {};
             
             const loop = false;
             const bgmPromise = this.playBgm(this._bgmTracks[0], loop);
-            
-            if (this._bgmTracks.length > 1) {
-                this._preloadTrack(this._bgmTracks[1]);
-            }
-            
+
             return bgmPromise.then(track => {
+                if (this._bgmTracks.length > 1) {
+                    this._preloadTrack(this._bgmTracks[1]);
+                }
+
                 track.source.addEventListener('ended', this._startNextBgm.bind(this));
                 this._dispatchBgmStartedEvent();
             });
