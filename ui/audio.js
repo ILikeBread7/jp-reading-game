@@ -126,9 +126,14 @@ var $kt = $kt || {};
                 this._latestBgmIndex--;
 
                 let randomIndex;
+                let retries = 10;
                 do {
-                    randomIndex = Math.floor(Math.random() * this._latestBgmIndex);
-                } while (this._latestBgmIndex > 0 && this._currentBgmTrack === this._bgmTracks[randomIndex]);
+                    randomIndex = Math.floor(Math.random() * (this._latestBgmIndex + 1));
+                } while (
+                    this._latestBgmIndex > 0
+                    && this._currentBgmTrack === this._bgmTracks[randomIndex]
+                    && retries-- > 0
+                );
                 
                 newBgm = this._bgmTracks[randomIndex];
             }
