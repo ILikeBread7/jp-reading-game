@@ -315,7 +315,7 @@ var $kt = $kt || {};
          */
         _fadeLevelUpTextToLevelUpHint(showHint, duration, delay = '0s') {
             const fadeTextListener = showHint
-                ? this._fadeIn.bind(this, this._levelUpHint, duration, '0s', () => this._levelUpHintContent.focus())
+                ? this._fadeIn.bind(this, this._levelUpHint, duration, '0s', () => this._levelUpHintContent.focus({ focusVisible: false }))
                 : this._closeLevelUpContainer.bind(this, duration);
             
             this._fadeOut(this._levelUpText, duration, delay, fadeTextListener);
