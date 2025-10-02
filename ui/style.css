@@ -898,6 +898,12 @@ body:not(.game) .game-only {
     z-index: var(--above-ui-z-index);
 }
 
+@media (width < 1280px) {
+    #now-playing {
+        top: calc(100vh - 6em);
+    }
+}
+
 @media (max-width: 980px) {
     #level-exp {
         position: relative;
