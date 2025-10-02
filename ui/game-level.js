@@ -129,9 +129,10 @@ var $kt = $kt || {};
         }
 
         formatWrongAnswer(answer) {
+            const hiraganaOptions = { convertLongVowelMark: false };
             return wanakana.isHiragana(this._currentQueston.kana)
-                ? wanakana.toHiragana(answer)
-                : `${wanakana.toKatakana(answer)} (${wanakana.toHiragana(answer)})`;
+                ? wanakana.toHiragana(answer, hiraganaOptions)
+                : `${wanakana.toKatakana(answer)} (${wanakana.toHiragana(answer, hiraganaOptions)})`;
         }
 
         filterDictByRemainingChars(remainingChars) {
