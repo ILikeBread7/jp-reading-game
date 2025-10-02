@@ -724,23 +724,71 @@ function createUniqueHint(entry, entriesMap) {
     if (otherEntries.length > 0) {
         const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === katakana.length && other.kana !== katakana);
         if (sameLengthReadingOthers.length > 0) {
-            const charMatches = [...katakana].map(char => false);
-            sameLengthReadingOthers.forEach(other => {
-                [...other.kana].forEach((char, index) => {
-                    charMatches[index] ||= char === katakana.charAt(index);
-                });
-            });
-
-            const firstUniqueCharIndex = charMatches.indexOf(false);
-            if (firstUniqueCharIndex === -1) {
-                console.warn(`No unique first character found for id: ${entry.id}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
+            const otherKanas = otherEntries.map(entry => wanakana.toKatakana(entry.kana));
+            const mask = generateMask(katakana, otherKanas);
+            if (mask) {
+                entry.hint = [...entry.kana].map((char, index) => mask[index] ? char : MASK_CHAR).join('');
             } else {
-                entry.hint = charMatches.map((value, index) => index === firstUniqueCharIndex ? entry.kana.charAt(index) : MASK_CHAR).join('');
+                console.warn(`No unique first character found for id: ${entry.id}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
             }
         } else {
             entry.hint = [...entry.kana].map(_ => MASK_CHAR).join('');
         }
     }
+}
+
+/**
+ * 
+ * @param {string} word 
+ * @param {[string]} others 
+ * @returns {[boolean]} mask, true if character should be shown, false if masked
+ */
+function generateMask(word, others) {
+    const mask = new Array(word.length).fill(false);
+
+    for (let i = 0; i < mask.length && isAmbiguous(word, others, mask); i++) {
+        let maxDisambiguation = { index: -1, value: 0 };
+
+        for (let j = 0; j < mask.length; j++) {
+            if (mask[j]) {
+                continue;
+            }
+
+            const currentChar = word.charAt(j);
+            const currentDisambiguation = others
+                .filter(other => other.charAt(j) !== currentChar)
+                .length;
+            
+            if (currentDisambiguation > maxDisambiguation.value) {
+                maxDisambiguation.index = j;
+                maxDisambiguation.value = currentDisambiguation;
+            }
+        }
+
+        if (!maxDisambiguation.value) {
+            break;
+        }
+
+        mask[maxDisambiguation.index] = true;
+    }
+
+    // Can't disambiguate, required all characters to be known
+    if (!mask.includes(false)) {
+        return;
+    }
+
+    return mask;
+}
+
+function isAmbiguous(word, others, mask) {
+    const maskedWord = maskWord(word, mask);
+
+    return others.map(other => maskWord(other, mask))
+        .some(maskedOther => maskedOther === maskedWord);
+}
+
+function maskWord(word, mask) {
+    return mask.map((_, index) => mask[index] ? word.charAt(index) : MASK_CHAR).join('');
 }
 
 function createTags(entry, originalEntry) {
