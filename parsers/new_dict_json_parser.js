@@ -521,147 +521,139 @@ LEVEL_CHARS.forEach((chars, index) => {
     });
 });
 
-fs.readFile(READ_PATH + 'JMdict_e.json', 'utf-8', (err, jsonData) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
+const data = JSON.parse(fs.readFileSync(READ_PATH + 'JMdict_e.json', 'utf-8'));
+const dictEntries = data['JMdict']['entry'];
+const entriesMap = new Map();
 
-    const data = JSON.parse(jsonData);
-    const dictEntries = data['JMdict']['entry'];
-    const entriesMap = new Map();
-    const censoredEntriesMap = new Map();
+const SEARCH_ONLY_KANJI = "search-only kanji form";
+const censoredEntries = [];
+const entries = dictEntries.flatMap((entry, index) => {
+    const separatedEntry = [];
 
-    const SEARCH_ONLY_KANJI = "search-only kanji form";
-    const censoredEntries = [];
-    const entries = dictEntries.flatMap((entry, index) => {
-        const separatedEntry = [];
-    
-        elementToArray(entry['k_ele']).forEach((kanji, index, kanjiElements) => {
-            if (kanji && elementToArray(kanji['ke_inf']).includes(SEARCH_ONLY_KANJI)) {
-                // If all kanji are search-only
-                // use only the first one
-                if (index > 0) {
-                    return;
-                }
-                
-                // If there is another kanji in the entry
-                // that is not search-only use that one
-                if (kanjiElements.some(k => !elementToArray(k['ke_inf']).includes(SEARCH_ONLY_KANJI))) {
-                    return;
-                }
-
-                // If the only kanji in the entry is search-only
-                // proceed with kana but no kanji
-                kanji = undefined;
+    elementToArray(entry['k_ele']).forEach((kanji, index, kanjiElements) => {
+        if (kanji && elementToArray(kanji['ke_inf']).includes(SEARCH_ONLY_KANJI)) {
+            // If all kanji are search-only
+            // use only the first one
+            if (index > 0) {
+                return;
+            }
+            
+            // If there is another kanji in the entry
+            // that is not search-only use that one
+            if (kanjiElements.some(k => !elementToArray(k['ke_inf']).includes(SEARCH_ONLY_KANJI))) {
+                return;
             }
 
-            elementToArray(entry['r_ele']).forEach(kana => {
-                if (kanji && kana.re_restr && !elementToArray(kana.re_restr).includes(kanji.keb)) {
-                    return;
-                }
-
-                if (kana.re_inf && !UNUSED_KANA_TERMS_SET.isDisjointFrom(new Set(elementToArray(kana.re_inf).map(term => TERMS_MAPPER.get(term).code)))) {
-                    return;
-                }
-
-                const originalEntry = { kanji, kana };
-    
-                const filteredSenses = elementToArray(entry['sense'])
-                    .filter(sense => !sense.stagr || elementToArray(sense.stagr).includes(kana.reb))
-                    .filter(sense => !sense.stagk || elementToArray(sense.stagk).includes(kanji.keb))
-                    .filter(sense => sInfFilter(kanji, sense['s_inf']))
-                    .map(mapSense);
-    
-                const newEntry = { entSeq: entry['ent_seq'] };
-                if (kanji) {
-                    newEntry.kanji = kanji.keb;
-                }
-                newEntry.kana = kana.reb;
-                newEntry.sense = filteredSenses.map(sense => sense.sense);
-                originalEntry.misc = filteredSenses
-                    .map(sense => sense.originalMisc)
-                    .filter(Boolean);
-
-                newEntry.tags = createTags(newEntry, originalEntry);
-                
-                const filterVulgarSensesFunc = sense => {
-                    return !CENSORED_MISC_TEXTS.isDisjointFrom(new Set(sense.misc || []));
-                };
-
-                const censoredSenses = newEntry.sense
-                    .filter(filterVulgarSensesFunc);
-
-                if (censoredSenses.length > 0) {
-                    const censoredEntry = { ...newEntry };
-                    censoredEntry.sense = censoredSenses;
-                    censoredEntry.tags = newEntry.tags
-                        .filter(tag => CENSORED_MISC_TAGS.has(tag));
-                    censoredEntries.push(censoredEntry);
-
-                    if (kanji) {
-                        censoredEntriesMap.set(kanji.keb, [...(censoredEntriesMap.get(kanji.keb) || []), censoredEntry]);
-                    }
-
-                    if (censoredSenses.length === newEntry.sense.length) {
-                        return;
-                    }
-
-                    newEntry.sense = newEntry.sense
-                        .filter(sense => !filterVulgarSensesFunc(sense));
-                    newEntry.tags = newEntry.tags
-                        .filter(tag => !CENSORED_MISC_TAGS.has(tag));
-                }
-
-                if (kanji) {
-                    entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
-                }
-
-                separatedEntry.push(newEntry);
-            });
-        });
-    
-        // Show progress
-        if (index % 10000 === 0) {
-            console.log(`${Math.floor(100 * index / dictEntries.length)}%, ${index} / ${dictEntries.length}`);
+            // If the only kanji in the entry is search-only
+            // proceed with kana but no kanji
+            kanji = undefined;
         }
 
-        return separatedEntry;
+        elementToArray(entry['r_ele']).forEach(kana => {
+            if (kanji && kana.re_restr && !elementToArray(kana.re_restr).includes(kanji.keb)) {
+                return;
+            }
+
+            if (kana.re_inf && !UNUSED_KANA_TERMS_SET.isDisjointFrom(new Set(elementToArray(kana.re_inf).map(term => TERMS_MAPPER.get(term).code)))) {
+                return;
+            }
+
+            const originalEntry = { kanji, kana };
+
+            const filteredSenses = elementToArray(entry['sense'])
+                .filter(sense => !sense.stagr || elementToArray(sense.stagr).includes(kana.reb))
+                .filter(sense => !sense.stagk || elementToArray(sense.stagk).includes(kanji.keb))
+                .filter(sense => sInfFilter(kanji, sense['s_inf']))
+                .map(mapSense);
+
+            const newEntry = { entSeq: entry['ent_seq'] };
+            if (kanji) {
+                newEntry.kanji = kanji.keb;
+            }
+            newEntry.kana = kana.reb;
+            newEntry.sense = filteredSenses.map(sense => sense.sense);
+            originalEntry.misc = filteredSenses
+                .map(sense => sense.originalMisc)
+                .filter(Boolean);
+
+            newEntry.tags = createTags(newEntry, originalEntry);
+            
+            const filterVulgarSensesFunc = sense => {
+                return !CENSORED_MISC_TEXTS.isDisjointFrom(new Set(sense.misc || []));
+            };
+
+            const censoredSenses = newEntry.sense
+                .filter(filterVulgarSensesFunc);
+
+            if (censoredSenses.length > 0) {
+                const censoredEntry = { ...newEntry };
+                censoredEntry.sense = censoredSenses;
+                censoredEntry.tags = newEntry.tags
+                    .filter(tag => CENSORED_MISC_TAGS.has(tag));
+                censoredEntries.push(censoredEntry);
+
+                if (kanji) {
+                    entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), censoredEntry]);
+                }
+
+                if (censoredSenses.length === newEntry.sense.length) {
+                    return;
+                }
+
+                newEntry.sense = newEntry.sense
+                    .filter(sense => !filterVulgarSensesFunc(sense));
+                newEntry.tags = newEntry.tags
+                    .filter(tag => !CENSORED_MISC_TAGS.has(tag));
+            }
+
+            if (kanji) {
+                entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
+            }
+
+            separatedEntry.push(newEntry);
+        });
     });
 
-    entries.forEach(entry => createUniqueHint(entry, entriesMap));
-    censoredEntries.forEach(entry => createUniqueHint(entry, censoredEntriesMap));
-    
-    const priorities = createPriorities(entries);
-    createLevelTagsFromPriorities(priorities, entries);
-
-    if (DEBUG) {
-        const jlptMismatches = {};
-        jlptMismatchesMap.forEach((value, key) => {
-            if (value !== 1) {
-                jlptMismatches[key] = value;
-            }
-        });
-    
-        fs.writeFile(WRITE_PATH + 'jlpt_mismatches.json', JSON.stringify(
-            jlptMismatches,
-            null,
-            2
-        ), () => console.log('JLPT mismatches file written'));
-        
-        fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Dict file written!'));
-        fs.writeFile(WRITE_PATH + 'dict_censored.json', JSON.stringify(censoredEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
+    // Show progress
+    if (index % 10000 === 0) {
+        console.log(`${Math.floor(100 * index / dictEntries.length)}%, ${index} / ${dictEntries.length}`);
     }
 
-    separateIntoTagEntries([ ...entries, ...censoredEntries ])
-        .forEach((tagEntries, tag) =>
-            fs.writeFile(
-                `${WRITE_PATH}${tag}.json`,
-                JSON.stringify(tagEntries, null, JSON_FORMAT_INDENT_SIZE),
-                () => console.log(`${tag} tag dict file written!`)
-            )
-        );
+    return separatedEntry;
 });
+
+const allEntries = [ ...entries, ...censoredEntries ];
+allEntries.forEach(entry => createUniqueHint(entry, entriesMap));
+
+const priorities = createPriorities(entries);
+createLevelTagsFromPriorities(priorities, entries);
+
+if (DEBUG) {
+    const jlptMismatches = {};
+    jlptMismatchesMap.forEach((value, key) => {
+        if (value !== 1) {
+            jlptMismatches[key] = value;
+        }
+    });
+
+    fs.writeFile(WRITE_PATH + 'jlpt_mismatches.json', JSON.stringify(
+        jlptMismatches,
+        null,
+        2
+    ), () => console.log('JLPT mismatches file written'));
+    
+    fs.writeFile(WRITE_PATH + 'dict.json', JSON.stringify(entries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Dict file written!'));
+    fs.writeFile(WRITE_PATH + 'dict_censored.json', JSON.stringify(censoredEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
+}
+
+separateIntoTagEntries(allEntries)
+    .forEach((tagEntries, tag) =>
+        fs.writeFile(
+            `${WRITE_PATH}${tag}.json`,
+            JSON.stringify(tagEntries, null, JSON_FORMAT_INDENT_SIZE),
+            () => console.log(`${tag} tag dict file written!`)
+        )
+    );
 
 function elementToArray(element) {
     if (Array.isArray(element)) {
@@ -724,16 +716,18 @@ function createUniqueHint(entry, entriesMap) {
         return;
     }
 
+    const katakana = wanakana.toKatakana(entry.kana);
     const otherEntries = entriesMap.get(entry.kanji)
-        .filter(other => other !== entry);
+        .map(other => ({ ...other, kana: wanakana.toKatakana(other.kana) }))
+        .filter(other => katakana !== other.kana);
 
     if (otherEntries.length > 0) {
-        const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === entry.kana.length && other.kana !== entry.kana);
+        const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === katakana.length && other.kana !== katakana);
         if (sameLengthReadingOthers.length > 0) {
-            const charMatches = [...entry.kana].map(char => false);
+            const charMatches = [...katakana].map(char => false);
             sameLengthReadingOthers.forEach(other => {
                 [...other.kana].forEach((char, index) => {
-                    charMatches[index] ||= char === entry.kana.charAt(index);
+                    charMatches[index] ||= char === katakana.charAt(index);
                 });
             });
 
@@ -1035,9 +1029,8 @@ function separateIntoTagEntries(entries) {
         
         tags.forEach(tag => {
             if (isKanaLevelTag(tag)) {
-                const kanaEntry = { ...entry };
+                const kanaEntry = { ...entry, hint: entry.kanji };
                 delete kanaEntry.kanji;
-                delete kanaEntry.hint;
                 addToTagMap(kanaEntry, tag, acc);
 
                 // Entry has kanji and
