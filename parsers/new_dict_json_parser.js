@@ -724,14 +724,18 @@ function createUniqueHint(entry, entriesMap) {
     if (otherEntries.length > 0) {
         const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === katakana.length && other.kana !== katakana);
         if (sameLengthReadingOthers.length > 0) {
-            const otherKanas = otherEntries.map(entry => wanakana.toKatakana(entry.kana));
+            const otherKanas = sameLengthReadingOthers.map(entry => wanakana.toKatakana(entry.kana));
             const mask = generateMask(katakana, otherKanas);
             if (mask) {
                 entry.hint = [...entry.kana].map((char, index) => mask[index] ? char : MASK_CHAR).join('');
             } else {
-                console.warn(`No unique first character found for id: ${entry.id}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
+                console.warn(`No unique hint mask found for id: ${entry.id}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
             }
-        } else {
+        }
+
+        // If mask wasn't generated in the previous step
+        // add a general mask
+        if (!entry.hint) {
             entry.hint = [...entry.kana].map(_ => MASK_CHAR).join('');
         }
     }
@@ -746,6 +750,7 @@ function createUniqueHint(entry, entriesMap) {
 function generateMask(word, others) {
     const mask = new Array(word.length).fill(false);
 
+    const memo = [];
     for (let i = 0; i < mask.length && isAmbiguous(word, others, mask); i++) {
         let maxDisambiguation = { index: -1, value: 0 };
 
@@ -755,7 +760,7 @@ function generateMask(word, others) {
             }
 
             const currentChar = word.charAt(j);
-            const currentDisambiguation = others
+            const currentDisambiguation = memo[j] ??= others
                 .filter(other => other.charAt(j) !== currentChar)
                 .length;
             
