@@ -124,18 +124,7 @@ var $kt = $kt || {};
             // already loaded bgm instead
             if (!newBgm.buffer) {
                 this._latestBgmIndex--;
-
-                let randomIndex;
-                let retries = 10;
-                do {
-                    randomIndex = Math.floor(Math.random() * (this._latestBgmIndex + 1));
-                } while (
-                    this._latestBgmIndex > 0
-                    && this._currentBgmTrack === this._bgmTracks[randomIndex]
-                    && retries-- > 0
-                );
-                
-                newBgm = this._bgmTracks[randomIndex];
+                newBgm = this._getRandomBackupBgm();
             }
 
             const loop = false;
@@ -155,6 +144,18 @@ var $kt = $kt || {};
                         this._dispatchBgmStartedEvent();
                     }
                 );
+        }
+
+        _getRandomBackupBgm() {
+            const noCurrentBgmModifier = this._currentBgmTrack ? 0 : 1;
+            const numberOfEligibleBgms = this._latestBgmIndex + noCurrentBgmModifier;
+
+            const randomBgmIndex = Math.floor(Math.random() * numberOfEligibleBgms);
+            const randomBgm = this._bgmTracks[randomBgmIndex];
+
+            return randomBgm === this._currentBgmTrack
+                ? this._bgmTracks[this._latestBgmIndex]
+                : randomBgm;
         }
 
         /**
