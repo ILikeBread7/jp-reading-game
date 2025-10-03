@@ -1579,6 +1579,33 @@ var $kt = $kt || {};
         </div>`,
 
         /*html*/
+        `<style>
+
+        </style>
+        
+        <div>
+            <span class="hint-emphasis">人</span>,
+            🧍
+            🧍<span class="hint-overlap" data-content="人"></span>
+            Kun-yomi: <span class="hint-emphasis">ひと, -り, -と</span>
+            On-yomi: <span class="hint-emphasis">ジン, ニン</span>
+            <span class="nowrap">Meaning: person</span>
+        </div>
+
+        <div class="hint-explanation">
+            Read the word at the top of the screen and
+            type it into the input below the question
+            using the above hints.
+        </div>
+        <div class="hint-explanation">
+            Press ENTER to confirm your answer.
+        </div>
+        <div class="hint-explanation">
+            Press ENTER with an empty input
+            to get an extra hint but you won't receive any exp.
+        </div>`,
+
+        /*html*/
         `<div class="centered-text">
             <div>Congratulations! You completed all levels prepared up to this point!</div>
             <div class="hint-explanation">

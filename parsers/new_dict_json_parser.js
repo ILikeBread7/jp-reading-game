@@ -407,10 +407,10 @@ const MIN_ENTRIES_PER_CHAR = 5;
 const JSON_FORMAT_INDENT_SIZE = CONFIG.indentSize;
 
 const LEVEL_KANJI = [
-    { vocabTag: 'v5', kanjiChars: [...'日一国人年'] },
-    { vocabTag: 'v5', kanjiChars: [...'大十二本中'] },
+    { vocabTag: 'v5', kanjiChars: [...'人木山日雨'] },
+    // { vocabTag: 'v5', kanjiChars: [...'大十二本中'] },
 
-    { vocabTag: 'v4', kanjiChars: [...'会同事社'] }
+    // { vocabTag: 'v4', kanjiChars: [...'会同事社'] }
 ];
 
 const HIRAGANA = [
