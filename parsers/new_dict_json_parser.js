@@ -725,7 +725,8 @@ function createUniqueHint(entry, entriesMap) {
         const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === katakana.length && other.kana !== katakana);
         if (sameLengthReadingOthers.length > 0) {
             const otherKanas = sameLengthReadingOthers.map(entry => wanakana.toKatakana(entry.kana));
-            const mask = generateMask(katakana, otherKanas);
+            const otherDistinctKanas = [ ...new Set(otherKanas) ];
+            const mask = generateMask(katakana, otherDistinctKanas);
             if (mask) {
                 entry.hint = [...entry.kana].map((char, index) => mask[index] ? char : MASK_CHAR).join('');
             } else {
@@ -750,8 +751,7 @@ function createUniqueHint(entry, entriesMap) {
 function generateMask(word, others) {
     const mask = new Array(word.length).fill(false);
 
-    const memo = [];
-    for (let i = 0; i < mask.length && isAmbiguous(word, others, mask); i++) {
+    for (let i = 0; i < mask.length && others.length > 0; i++) {
         let maxDisambiguation = { index: -1, value: 0 };
 
         for (let j = 0; j < mask.length; j++) {
@@ -760,7 +760,7 @@ function generateMask(word, others) {
             }
 
             const currentChar = word.charAt(j);
-            const currentDisambiguation = memo[j] ??= others
+            const currentDisambiguation = others
                 .filter(other => other.charAt(j) !== currentChar)
                 .length;
             
@@ -775,21 +775,20 @@ function generateMask(word, others) {
         }
 
         mask[maxDisambiguation.index] = true;
+
+        // Keep only the other words that are still ambiguous
+        // (look the same after applying the mask)
+        const maskedWord = maskWord(word, mask);
+        others = others
+            .filter(other => maskedWord === maskWord(other, mask));
     }
 
-    // Can't disambiguate, required all characters to be known
+    // Can't disambiguate, requires all characters to be known
     if (!mask.includes(false)) {
         return;
     }
 
     return mask;
-}
-
-function isAmbiguous(word, others, mask) {
-    const maskedWord = maskWord(word, mask);
-
-    return others.map(other => maskWord(other, mask))
-        .some(maskedOther => maskedOther === maskedWord);
 }
 
 function maskWord(word, mask) {
