@@ -57,6 +57,12 @@ var $kt = $kt || {};
     const HIRAGANA_LEVELS_RANGE = Object.freeze([1, 10]);
     const KATAKANA_LEVELS_RANGE = Object.freeze([11, 20]);
 
+    const LEVEL_RANGES = Object.freeze([
+        HIRAGANA_LEVELS_RANGE,
+        KATAKANA_LEVELS_RANGE,
+        [21, 21], // Kanji first grade
+    ]);
+
     class KantoreLevels {
 
         static getLevelName(level) {
@@ -88,25 +94,33 @@ var $kt = $kt || {};
 
         static _getTotalCharsInRange(start, end) {
             let charsSum = 0;
+            
             for (let level = start; level <= end; level++) {
                 const index = level - 1;
-                charsSum += LEVEL_CHARS[index].length;
+                const currentLevelChars = LEVEL_CHARS[index];
+
+                if (!currentLevelChars) {
+                    break;
+                }
+
+                charsSum += currentLevelChars.length;
             }
             return charsSum;
         }
 
         static _getTotalCharsLevelRange(level) {
-            // Hiragana
-            if (level <=10) {
-                return HIRAGANA_LEVELS_RANGE;
+            const range = LEVEL_RANGES
+                .find(range => level >= range[0] && level <= range[1]);
+
+            if (range) {
+                return range;
             }
 
-            // Katakana
-            if (level <= 20) {
-                return KATAKANA_LEVELS_RANGE;
-            }
-
-            return [21, LEVEL_CHARS.length];
+            // Endgame
+            return [
+                LEVEL_CHARS.length + 1,
+                LEVEL_CHARS.length + 1
+            ];
         }
 
         static get hiraganaLevelsRange() {
