@@ -1584,12 +1584,41 @@ var $kt = $kt || {};
         </style>
         
         <div>
-            <span class="hint-emphasis">人</span>,
-            🧍
-            🧍<span class="hint-overlap" data-content="人"></span>
-            Kun-yomi: <span class="hint-emphasis">ひと, -り, -と</span>
-            On-yomi: <span class="hint-emphasis">ジン, ニン</span>
-            <span class="nowrap">Meaning: person</span>
+            <div>
+                <span class="hint-emphasis">人</span>,
+                Readings:
+                <span class="hint-emphasis">ひと, -り, -と</span>;
+                <span class="hint-emphasis">ジン, ニン</span>
+                Meanings: <span class="hint-emphasis">person</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">木</span>,
+                Readings:
+                <span class="hint-emphasis">き, こ-</span>;
+                <span class="hint-emphasis">ボク, モク</span>
+                Meanings: <span class="hint-emphasis">tree, wood</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">山</span>,
+                Readings:
+                <span class="hint-emphasis">やま</span>;
+                <span class="hint-emphasis">サン, セン</span>
+                Meanings: <span class="hint-emphasis">mountain</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">日</span>,
+                Readings:
+                <span class="hint-emphasis">ひ, -び, -か</span>;
+                <span class="hint-emphasis">ニチ, ジツ</span>
+                Meanings: <span class="hint-emphasis">day, sun, Japan, counter for days</span>
+            </div>
+            <div>
+                <span class="hint-emphasis">雨</span>,
+                Readings:
+                <span class="hint-emphasis">あめ, あま-, -さめ</span>;
+                <span class="hint-emphasis">ウ</span>
+                Meanings: <span class="hint-emphasis">rain</span>
+            </div>
         </div>
 
         <div class="hint-explanation">

@@ -7,8 +7,39 @@ fs.readFile('kanjidic2.xml', 'utf8', (err, data) => {
         return;
     }
 
-    const parser = new XMLParser();
+    const options = {
+        ignoreAttributes: false,
+        attributeNamePrefix: '@_',
+        textNodeName: '#text'
+    };
+
+    const parser = new XMLParser(options);
     const parsedData = parser.parse(data);
+
+    parsedData['kanjidic2']['character'].forEach(character => {
+        const readingMeaning = character['reading_meaning'];
+        if (!readingMeaning) {
+            return;
+        }
+        const rmgroup = readingMeaning['rmgroup'];
+        if (!rmgroup) {
+            return;
+        }
+
+        if (Array.isArray(rmgroup.reading)) {
+            rmgroup.reading = rmgroup.reading.filter(node => {
+                return node['@_r_type'] === 'ja_on' || node['@_r_type'] === 'ja_kun';
+            })
+            .map(node => typeof node === 'string' ? node : node[options.textNodeName]);
+        }
+
+        if (Array.isArray(rmgroup.meaning)) {
+            rmgroup.meaning = rmgroup.meaning.filter(node => {
+                return !node['@_m_lang'];   // no language attribute means English
+            });
+        }
+    });
+
     fs.writeFile('kanjidic2.json', JSON.stringify(parsedData, null, 2), () => {
         console.log('JSON file written!');
     });
