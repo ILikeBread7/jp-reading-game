@@ -722,7 +722,7 @@ function createUniqueHint(entry, entriesMap) {
         .filter(other => katakana !== other.kana);
 
     if (otherEntries.length > 0) {
-        const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === katakana.length && other.kana !== katakana);
+        const sameLengthReadingOthers = otherEntries.filter(other => other.kana.length === katakana.length);
         if (sameLengthReadingOthers.length > 0) {
             const otherKanas = sameLengthReadingOthers.map(entry => wanakana.toKatakana(entry.kana));
             const otherDistinctKanas = [ ...new Set(otherKanas) ];
@@ -730,7 +730,7 @@ function createUniqueHint(entry, entriesMap) {
             if (mask) {
                 entry.hint = [...entry.kana].map((char, index) => mask[index] ? char : MASK_CHAR).join('');
             } else {
-                console.warn(`No unique hint mask found for id: ${entry.id}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
+                console.warn(`No unique hint mask found for id: ${entry.entSeq}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
             }
         }
 
