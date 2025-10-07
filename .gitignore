@@ -11,5 +11,6 @@ JMdict*
 jlpt_mismatches.json
 dict_vulgar.json
 kanjidic2.*
+kanji_data.json
 
 ui/dicts
