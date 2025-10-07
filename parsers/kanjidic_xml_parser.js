@@ -29,8 +29,13 @@ fs.readFile('kanjidic2.xml', 'utf8', (err, data) => {
         if (Array.isArray(rmgroup.reading)) {
             rmgroup.reading = rmgroup.reading.filter(node => {
                 return node['@_r_type'] === 'ja_on' || node['@_r_type'] === 'ja_kun';
-            })
-            .map(node => typeof node === 'string' ? node : node[options.textNodeName]);
+            }).reduce((acc, curr) => {
+                const readingArr = curr['@_r_type'] === 'ja_on'
+                    ? acc.onReadings
+                    : acc.kunReadings;
+                readingArr.push(curr[options.textNodeName]);
+                return acc;
+            }, { kunReadings: [], onReadings: [] });
         }
 
         if (Array.isArray(rmgroup.meaning)) {
@@ -44,5 +49,3 @@ fs.readFile('kanjidic2.xml', 'utf8', (err, data) => {
         console.log('JSON file written!');
     });
 });
-
-
