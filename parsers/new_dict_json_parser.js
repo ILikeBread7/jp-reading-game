@@ -1043,7 +1043,7 @@ function createPriorities(entries) {
         };
 
     const order = [
-        ...[1, 2].map(num => [`ichi${num}`, `spec${num}`, `news${num}`, `gai${num}`]),
+        ...[1, 2].map(num => [`spec${num}`, `ichi${num}`, `news${num}`, `gai${num}`]),
         ...[(() => {
             const result = [];
             for (let i = 1; i <= 48; i++) {
