@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import * as wanakana from 'wanakana';
+import { KANA_CHARS_STRINGS, KANJI_CHARS_STRINGS } from '../ui/level-chars.js';
 
 const DEBUG = process.argv[2] !== 'prod';
 const CONFIG = DEBUG
@@ -408,44 +409,41 @@ const MIN_ENTRIES_PER_CHAR = 15;
 
 const JSON_FORMAT_INDENT_SIZE = CONFIG.indentSize;
 
-const LEVEL_KANJI = [
-    { vocabTag: 'v5', kanjiChars: [...'人木山日雨'] },
-    // { vocabTag: 'v5', kanjiChars: [...'大十二本中'] },
-
-    // { vocabTag: 'v4', kanjiChars: [...'会同事社'] }
-];
+const LEVEL_KANJI = KANJI_CHARS_STRINGS.map(string => [...string]);
 
 const HIRAGANA = [
-    { tag: 'a', chars: 'あいうえお' },
-    { tag: 'm', chars: 'まみむめも' },
-    { tag: 'r', chars: 'らりるれろ' },
-    { tag: 'n', chars: 'なにぬねの' },
-    { tag: 'k', chars: 'かきくけこがぎぐげご' },
-    { tag: 's', chars: 'さしすせそざじずぜぞ' },
-    { tag: 't', chars: 'たちっつてとだぢづでど' },
-    { tag: 'h', chars: 'はひふへほばびぶべぼぱぴぷぺぽ' },
-    { tag: 'y', chars: 'やゆよゃゅょ' },
-    { tag: 'w', chars: 'わをん' }
+    { tag: 'a' },
+    { tag: 'm' },
+    { tag: 'r' },
+    { tag: 'n' },
+    { tag: 'k' },
+    { tag: 's' },
+    { tag: 't' },
+    { tag: 'h' },
+    { tag: 'y' },
+    { tag: 'w' }
 ];
 
 const KATAKANA = [
-    { tag: 'A', chars: 'アイウエオ' },
-    { tag: 'M', chars: 'マミムメモ' },
-    { tag: 'R', chars: 'ラリルレロー' },
-    { tag: 'N', chars: 'ナニヌネノ' },
-    { tag: 'K', chars: 'カキクケコガギグゲゴ' },
-    { tag: 'S', chars: 'サシスセソザジズゼゾ' },
-    { tag: 'T', chars: 'タチッツテトダヂヅデドィゥェ' },
-    { tag: 'H', chars: 'ハヒフヘホバビブベボパピプペポァォ' },
-    { tag: 'Y', chars: 'ヤユヨャュョ' },
-    { tag: 'W', chars: 'ワヲンヴ' }
+    { tag: 'A' },
+    { tag: 'M' },
+    { tag: 'R' },
+    { tag: 'N' },
+    { tag: 'K' },
+    { tag: 'S' },
+    { tag: 'T' },
+    { tag: 'H' },
+    { tag: 'Y' },
+    { tag: 'W' }
 ];
 
-const KANA_GYOUS = [ ...HIRAGANA, ...KATAKANA ];
+const KANA_GYOUS = [ ...HIRAGANA, ...KATAKANA ]
+    .map((entry, index) => entry.chars = [...KANA_CHARS_STRINGS[index]]);
+
 const LEVEL_KANJI_MAP = new Map();
 const KANJI_LEVEL_OFFSET = KANA_GYOUS.length;
 LEVEL_KANJI.forEach((level, index) => {
-    level.kanjiChars.forEach(char => {
+    level.forEach(char => {
         LEVEL_KANJI_MAP.set(char, { levelTag: `L${(KANJI_LEVEL_OFFSET + index + 1).toString().padStart(3, '0')}`, vocabTag: level.vocabTag });
     });
 });
@@ -511,8 +509,8 @@ jlptVocabMap.forEach((value, key) => {
 });
 
 const LEVEL_CHARS = [
-    ...KANA_GYOUS.map(gyou => [...gyou.chars]),
-    ...LEVEL_KANJI.map(level => level.kanjiChars)
+    ...KANA_GYOUS,
+    ...LEVEL_KANJI
 ];
 
 const CHAR_TO_LEVEL = new Map();

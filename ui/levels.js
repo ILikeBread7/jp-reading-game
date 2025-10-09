@@ -1,56 +1,16 @@
 'use strict';
+import { KANA_CHARS, KANJI_CHARS_GRADE1, KANJI_CHARS_STRINGS } from './level-chars.js';
 
-var $kt = $kt || {};
+globalThis.$kt = globalThis.$kt || {};
+const $kt = globalThis.$kt;
 
 (() => {
 
-    const LEVEL_NAMES = [
-        'あ行',
-        'ま行',
-        'ら行',
-        'な行',
-        'か行',
-        'さ行',
-        'た行',
-        'は行',
-        'や行',
-        'わ行',
-        'ア行',
-        'マ行',
-        'ラ行',
-        'ナ行',
-        'カ行',
-        'サ行',
-        'タ行',
-        'ハ行',
-        'ヤ行',
-        'ワ行',
-        '人木山日雨 (1st Grade)'
+    const LEVELS = [
+        KANA_CHARS,
+        KANJI_CHARS_GRADE1
     ];
-
-    const LEVEL_CHARS = [
-        [...'あいうえお'],
-        [...'まみむめも'],
-        [...'らりるれろ'],
-        [...'なにぬねの'],
-        [...'かきくけこがぎぐげご'],
-        [...'さしすせそざじずぜぞ'],
-        [...'たちっつてとだぢづでど'],
-        [...'はひふへほばびぶべぼぱぴぷぺぽ'],
-        [...'やゆよゃゅょ'],
-        [...'わをん'],
-        [...'アイウエオ'],
-        [...'マミムメモ'],
-        [...'ラリルレロー'],
-        [...'ナニヌネノ'],
-        [...'カキクケコガギグゲゴ'],
-        [...'サシスセソザジズゼゾ'],
-        [...'タチッツテトダヂヅデドィゥェ'],
-        [...'ハヒフヘホバビブベボパピプペポァォ'],
-        [...'ヤユヨャュョ'],
-        [...'ワヲンヴ'],
-        [...'人木山日雨']
-    ];
+    const LEVEL_CHARS = LEVELS.flatMap(x => x);
 
     const REPS_PER_CHAR = 5;
 
@@ -66,8 +26,45 @@ var $kt = $kt || {};
     class KantoreLevels {
 
         static getLevelName(level) {
-            const name = LEVEL_NAMES[level - 1] || 'End game';
-            return `Level ${level}: ${name}`;
+            let name;
+
+            const index = level - 1;
+            if (level <= KANA_CHARS.length) {
+                name = `${KANA_CHARS[index][0]}行`;
+            } else {
+                const kanjiLevel = level - KANA_CHARS.length;
+                const grade = this._findGradeForKanjiLevel(kanjiLevel);
+                const gradeName = this._getGradeName(grade);
+                name = `${KANJI_CHARS_STRINGS[kanjiLevel - 1]} (${gradeName})`;
+            }
+
+            return name ? `Level ${level}: ${name}` : 'Endgame';
+        }
+
+        static _findGradeForKanjiLevel(kanjiLevel) {
+            let grade = 1;
+
+            while (LEVELS[grade] && (kanjiLevel -= LEVELS[grade].length) > 0) {
+                grade++;
+            }
+
+            return grade;
+        }
+
+        static _getGradeName(grade) {
+            switch (grade) {
+                case 1: return '1st Grade';
+                case 2: return '2nd Grade';
+                case 3: return '3rd Grade';
+                case 4:
+                case 5:
+                case 6:
+                    return `${grade}th Grade`;
+                case 7: return 'Junior High School';
+                case 8: return 'Jinmeiyou';
+                case 9: return 'Non-standard Kanji';
+                default: return;
+            }
         }
 
         static getCharsWithRepsPerLevel(level) {
