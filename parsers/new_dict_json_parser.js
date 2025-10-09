@@ -1044,11 +1044,11 @@ function isLevelEntryToBeFilteredOut(entry) {
 }
 
 function generateKanaKey(entry) {
-    return entry.kana;
+    return wanakana.toKatakana(entry.kana);
 }
 
 function generateKanjiKey(entry) {
-    return `${entry.kanji || ''}_${entry.kana}`;
+    return `${entry.kanji || ''}_${wanakana.toKatakana(entry.kana)}`;
 }
 
 function createPriorities(entries) {
