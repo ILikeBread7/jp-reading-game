@@ -384,7 +384,7 @@ const CENSORED_MISC_TEXTS = new Set(
 
 const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [
     'Aum Shinrikyo', 'fascism', 'fascist',              // Cult or political
-    'erotic', 'sex position',                           // Sensitive
+    'erotic', 'sex position', 'masturbation',           // Sensitive
     'Judaism', 'Allah', 'Protestant',                   // Religion
     'fotiaoqiang', 'Minerva (goddess)', 'Vulcan (god)'  // Contain characters we don't want to deal with
 ];
@@ -402,7 +402,7 @@ const MASK_CHAR = '・';
 const KANJI_PRIORITY_PREFIX = 'kp';
 const KANA_PRIORITY_PREFIX = 'rp';
 const TARGET_ENTRIES_PER_CHAR = 20;
-const MIN_ENTRIES_PER_CHAR = 5;
+const MIN_ENTRIES_PER_CHAR = 15;
 
 const JSON_FORMAT_INDENT_SIZE = CONFIG.indentSize;
 
@@ -988,7 +988,7 @@ function createLevelTagsFromPriorities(priorities, entries) {
             
             if (charEntries.length < MIN_ENTRIES_PER_CHAR) {
                 console.log(` - Adding all entries, size with priorities only: ${charEntries.length}`);
-                addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys);
+                addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys, MIN_ENTRIES_PER_CHAR);
             }
             console.log(` - Total number of entries: ${charEntries.length}`);
     
@@ -1004,20 +1004,24 @@ function createLevelTagsFromPriorities(priorities, entries) {
     });
 }
 
-function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys) {
-    source.forEach(entry => {
+function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys, maxLength) {
+    for (const entry of source) {
+        if (maxLength !== undefined && destination.length >= maxLength) {
+            break;
+        }
+
         if (isLevelEntryToBeFilteredOut(entry)) {
-            return;
+            continue;
         }
 
         const key = generateKeyFunction(entry);
         if (existingEntryKeys.has(key)) {
-            return;
+            continue;
         }
 
         existingEntryKeys.add(key);
         destination.push(entry);
-    });
+    };
 }
 
 function isLevelEntryToBeFilteredOut(entry) {
