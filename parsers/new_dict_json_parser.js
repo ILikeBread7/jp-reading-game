@@ -384,6 +384,8 @@ const CENSORED_MISC_TEXTS = new Set(
 
 const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [
     'Aum Shinrikyo', 'fascism', 'fascist',              // Cult or political
+    'friendly relations between Japan and Israel',
+    
     'erotic', 'sex position', 'masturbation',           // Sensitive
     'Judaism', 'Allah', 'Protestant',                   // Religion
     'fotiaoqiang', 'Minerva (goddess)', 'Vulcan (god)'  // Contain characters we don't want to deal with
