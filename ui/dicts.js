@@ -92,7 +92,7 @@ var $kt = $kt || {};
     const FREQ_ICHI_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('ichi'));
     const FREQ_SPEC_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('spec'));
     const FREQ_NEWS_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('news'));
-    const filterMostFrequentOnly = tag => !tag.endsWith('2');
+    const filterMostFrequentOnly = tag => !tag.endsWith('2') || tag.includes('spec2');
     
     const mapEntryToTag = entry => entry.tag;
     const FREQ_ALL_TAGS = [
@@ -115,13 +115,13 @@ var $kt = $kt || {};
                     { name: 'All most frequent expressions', tags: [ ...FREQ_GAI_TAGS, ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ].filter(filterMostFrequentOnly), tag: 'freq-other-most' },
                     { name: 'Most frequent foreign words', tags: FREQ_GAI_TAGS.filter(filterMostFrequentOnly), tag: 'freq-gai-most' },
                     { name: 'All frequent foreign words', tags: FREQ_GAI_TAGS, tag: 'freq-gai' },
-                    { name: 'Most frequent other words', tags: [ ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ].filter(filterMostFrequentOnly), tag: 'freq-ichi-spec-news-most' },
                     { name: 'All frequent other words', tags: [ ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ], tag: 'freq-ichi-spec-news' }
                 ]
             }
         ],
         complexEntries: [
-            { name: 'All frequent expressions', tags: FREQ_ALL_TAGS, tag: 'frequency-all' }
+            { name: 'All frequent expressions', tags: FREQ_ALL_TAGS, tag: 'frequency-all' },
+            { name: 'Common words only', tags: [ ...FREQ_ICHI_TAGS, ...FREQ_SPEC_TAGS, ...FREQ_NEWS_TAGS ].filter(filterMostFrequentOnly), tag: 'freq-ichi-spec-news-most' }
         ]
     }
 
