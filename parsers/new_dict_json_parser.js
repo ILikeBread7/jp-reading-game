@@ -731,6 +731,11 @@ function createUniqueHint(entry, entriesMap) {
                 entry.hint = [...entry.kana].map((char, index) => mask[index] ? char : MASK_CHAR).join('');
             } else {
                 console.warn(`No unique hint mask found for id: ${entry.entSeq}, kanji: ${entry.kanji}, kana: ${entry.kana}`);
+                const exceptionHint = generateExceptionHint(entry);
+                if (exceptionHint) {
+                    entry.hint = exceptionHint;
+                    console.warn(`Exception hint mask for id: ${entry.entSeq}, kanji: ${entry.kanji}, kana: ${entry.kana}, hint: ${entry.hint}`);
+                }
             }
         }
 
@@ -740,6 +745,19 @@ function createUniqueHint(entry, entriesMap) {
             entry.hint = [...entry.kana].map(_ => MASK_CHAR).join('');
         }
     }
+}
+
+function generateExceptionHint(entry) {
+    if (entry.kanji === '私') {
+        switch (entry.kana) {
+            case 'わたし':
+            case 'あたし':
+                return entry.kana.charAt(0).padEnd(entry.kana.length, MASK_CHAR);
+            default: return;
+        }
+    }
+
+    return;
 }
 
 /**
@@ -1043,7 +1061,7 @@ function createPriorities(entries) {
         };
 
     const order = [
-        ...[1, 2].map(num => [`ichi${num}`, `spec${num}`, `news${num}`, `gai${num}`]),
+        ...[1, 2].map(num => [`spec${num}`, `ichi${num}`, `news${num}`, `gai${num}`]),
         ...[(() => {
             const result = [];
             for (let i = 1; i <= 48; i++) {
