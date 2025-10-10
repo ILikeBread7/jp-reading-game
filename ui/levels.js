@@ -28,7 +28,7 @@ const $kt = globalThis.$kt;
         ...KANJI_GRADE_6_STRINGS.map(string => `${string} (Grade 6)`),
         ...KANJI_JUNIORHIGH_STRINGS.map(string => `${string} (Junior High)`),
         ...KANJI_JINMEIYO_STRINGS.map(string => `${string} (Jinmeiyou)`),
-        ...KANJI_NONSTANDARD_STRINGS.map(string => `${string} (Non-standard)`),
+        ...KANJI_NONSTANDARD_STRINGS.map(string => `${string} (Hyougai)`),
     ];
 
     const REPS_PER_CHAR = 5;
