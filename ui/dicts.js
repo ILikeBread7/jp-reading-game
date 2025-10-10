@@ -843,8 +843,6 @@ var $kt = $kt || {};
             LEVELS_CATEGORY.entries.splice(1, 0, entry);
         }
 
-
-
     }
 
     $kt.dicts = new KantoreDicts();
