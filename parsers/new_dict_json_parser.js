@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import * as wanakana from 'wanakana';
-import { KANA_CHARS_STRINGS, KANJI_CHARS_STRINGS } from '../ui/level-chars.js';
+import { KANA_STRINGS, LEVEL_CHARS } from '../ui/level-chars.js';
 
 const DEBUG = process.argv[2] !== 'prod';
 const CONFIG = DEBUG
@@ -409,58 +409,6 @@ const MIN_ENTRIES_PER_CHAR = 15;
 
 const JSON_FORMAT_INDENT_SIZE = CONFIG.indentSize;
 
-const LEVEL_KANJI = KANJI_CHARS_STRINGS.map(string => [...string]);
-
-const HIRAGANA = [
-    { tag: 'a' },
-    { tag: 'm' },
-    { tag: 'r' },
-    { tag: 'n' },
-    { tag: 'k' },
-    { tag: 's' },
-    { tag: 't' },
-    { tag: 'h' },
-    { tag: 'y' },
-    { tag: 'w' }
-];
-
-const KATAKANA = [
-    { tag: 'A' },
-    { tag: 'M' },
-    { tag: 'R' },
-    { tag: 'N' },
-    { tag: 'K' },
-    { tag: 'S' },
-    { tag: 'T' },
-    { tag: 'H' },
-    { tag: 'Y' },
-    { tag: 'W' }
-];
-
-const KANA_GYOUS = [ ...HIRAGANA, ...KATAKANA ]
-    .map((entry, index) => entry.chars = [...KANA_CHARS_STRINGS[index]]);
-
-const LEVEL_KANJI_MAP = new Map();
-const KANJI_LEVEL_OFFSET = KANA_GYOUS.length;
-LEVEL_KANJI.forEach((level, index) => {
-    level.forEach(char => {
-        LEVEL_KANJI_MAP.set(char, { levelTag: `L${(KANJI_LEVEL_OFFSET + index + 1).toString().padStart(3, '0')}`, vocabTag: level.vocabTag });
-    });
-});
-
-const HIRAGANA_MAP = new Map();
-const KATAKANA_MAP = new Map();
-[
-    { kana: HIRAGANA, map: HIRAGANA_MAP },
-    { kana: KATAKANA, map: KATAKANA_MAP }
-].forEach(kanaMap => {
-    kanaMap.kana.forEach((entry, index) => {
-        [...entry.chars].forEach(char => {
-            kanaMap.map.set(char, { tag: entry.tag, level: index });
-        });
-    });
-});
-
 const jlptKanjiData = JSON.parse(fs.readFileSync(READ_PATH + 'jlpt_kanji.json', 'utf-8'));
 const jlptVocabData = JSON.parse(fs.readFileSync(READ_PATH + 'jlpt_vocab.json', 'utf-8'));
 
@@ -508,11 +456,6 @@ jlptVocabMap.forEach((value, key) => {
     jlptMismatchesMap.set(key, 0);
 });
 
-const LEVEL_CHARS = [
-    ...KANA_GYOUS,
-    ...LEVEL_KANJI
-];
-
 const CHAR_TO_LEVEL = new Map();
 LEVEL_CHARS.forEach((chars, index) => {
     const level = index + 1;
@@ -525,7 +468,7 @@ const data = JSON.parse(fs.readFileSync(READ_PATH + 'JMdict_e.json', 'utf-8'));
 const dictEntries = data['JMdict']['entry'];
 const entriesMap = new Map();
 
-const SEARCH_ONLY_KANJI = "search-only kanji form";
+const SEARCH_ONLY_KANJI = 'search-only kanji form';
 const censoredEntries = [];
 const entries = dictEntries.flatMap((entry, index) => {
     const separatedEntry = [];
@@ -824,25 +767,6 @@ function createTags(entry, originalEntry) {
     return tags;
 }
 
-function createKanaTags(entry) {
-    return [
-        ...createTagsForKana(entry, HIRAGANA_MAP),
-        ...createTagsForKana(entry, KATAKANA_MAP)
-    ]
-}
-
-function createTagsForKana(entry, kanaMap) {
-    const maxKana = [...entry.kana]
-        .map(char => kanaMap.get(char))
-        .reduce((acc, curr) => (acc && curr) && (curr.level > acc.level ? curr : acc));
-
-    if (maxKana) {
-        return [ maxKana.tag ];
-    }
-
-    return [];
-}
-
 function createJLPTKanjiTags(entry) {
     if (!entry.kanji) {
         return [];
@@ -991,7 +915,10 @@ function createLevelTagsFromPriorities(priorities, entries) {
                 addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys, MIN_ENTRIES_PER_CHAR);
             }
             console.log(` - Total number of entries: ${charEntries.length}`);
-    
+            if (charEntries.length === 0) {
+                console.error(` - No entries for char: ${char}!`);
+            }
+
             const level = CHAR_TO_LEVEL.get(char);
             if (!level) {
                 console.warn('Char with no level!', char);
@@ -1135,7 +1062,7 @@ function isKanaLevelTag(tag) {
     }
 
     const level = Number(tag.substring(KANA_LEVEL_PREFIX.length));
-    return level <= KANA_GYOUS.length;
+    return level <= KANA_STRINGS.length;
 }
 
 // Returns the tags array if applicable

@@ -1,70 +1,62 @@
 'use strict';
-import { KANA_CHARS, KANJI_CHARS_GRADE1, KANJI_CHARS_STRINGS } from './level-chars.js';
+import {
+    LEVEL_CHARS,
+    KANA_STRINGS,
+    KANJI_GRADE_1_STRINGS,
+    KANJI_GRADE_2_STRINGS,
+    KANJI_GRADE_3_STRINGS,
+    KANJI_GRADE_4_STRINGS,
+    KANJI_GRADE_5_STRINGS,
+    KANJI_GRADE_6_STRINGS,
+    KANJI_JUNIORHIGH_STRINGS,
+    KANJI_JINMEIYO_STRINGS,
+    KANJI_NONSTANDARD_STRINGS
+} from './level-chars.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
 (() => {
 
-    const LEVELS = [
-        KANA_CHARS,
-        KANJI_CHARS_GRADE1
+    const LEVEL_NAMES = [
+        ...KANA_STRINGS.map(string => `${string.charAt(0)}行`),
+        ...KANJI_GRADE_1_STRINGS.map(string => `${string} (Grade 1)`),
+        ...KANJI_GRADE_2_STRINGS.map(string => `${string} (Grade 2)`),
+        ...KANJI_GRADE_3_STRINGS.map(string => `${string} (Grade 3)`),
+        ...KANJI_GRADE_4_STRINGS.map(string => `${string} (Grade 4)`),
+        ...KANJI_GRADE_5_STRINGS.map(string => `${string} (Grade 5)`),
+        ...KANJI_GRADE_6_STRINGS.map(string => `${string} (Grade 6)`),
+        ...KANJI_JUNIORHIGH_STRINGS.map(string => `${string} (Junior High School)`),
+        ...KANJI_JINMEIYO_STRINGS.map(string => `${string} (Jinmeiyou)`),
+        ...KANJI_NONSTANDARD_STRINGS.map(string => `${string} (Common non-standard kanji)`),
     ];
-    const LEVEL_CHARS = LEVELS.flatMap(x => x);
 
     const REPS_PER_CHAR = 5;
 
-    const HIRAGANA_LEVELS_RANGE = Object.freeze([1, 10]);
-    const KATAKANA_LEVELS_RANGE = Object.freeze([11, 20]);
+    const HIRAGANA_RANGE_END = Math.floor(KANA_STRINGS.length / 2);
+    const HIRAGANA_LEVELS_RANGE = [1, HIRAGANA_RANGE_END];
+    const KATAKANA_LEVELS_RANGE = [HIRAGANA_RANGE_END + 1, KANA_STRINGS.length];
 
+    let previousRangeEnd = KANA_STRINGS.length;
     const LEVEL_RANGES = Object.freeze([
         HIRAGANA_LEVELS_RANGE,
         KATAKANA_LEVELS_RANGE,
-        [21, 21], // Kanji first grade
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_1_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_2_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_3_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_4_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_5_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_6_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_JUNIORHIGH_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_JINMEIYO_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KANJI_NONSTANDARD_STRINGS.length],
     ]);
 
     class KantoreLevels {
 
         static getLevelName(level) {
-            let name;
-
-            const index = level - 1;
-            if (level <= KANA_CHARS.length) {
-                name = `${KANA_CHARS[index][0]}行`;
-            } else {
-                const kanjiLevel = level - KANA_CHARS.length;
-                const grade = this._findGradeForKanjiLevel(kanjiLevel);
-                const gradeName = this._getGradeName(grade);
-                name = `${KANJI_CHARS_STRINGS[kanjiLevel - 1]} (${gradeName})`;
-            }
-
-            return name ? `Level ${level}: ${name}` : 'Endgame';
-        }
-
-        static _findGradeForKanjiLevel(kanjiLevel) {
-            let grade = 1;
-
-            while (LEVELS[grade] && (kanjiLevel -= LEVELS[grade].length) > 0) {
-                grade++;
-            }
-
-            return grade;
-        }
-
-        static _getGradeName(grade) {
-            switch (grade) {
-                case 1: return '1st Grade';
-                case 2: return '2nd Grade';
-                case 3: return '3rd Grade';
-                case 4:
-                case 5:
-                case 6:
-                    return `${grade}th Grade`;
-                case 7: return 'Junior High School';
-                case 8: return 'Jinmeiyou';
-                case 9: return 'Non-standard Kanji';
-                default: return;
-            }
+            const name = LEVEL_NAMES[level - 1] || 'Endgame';
+            return `Level ${level}: ${name}`;
         }
 
         static getCharsWithRepsPerLevel(level) {
