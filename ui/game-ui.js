@@ -305,7 +305,7 @@ var $kt = $kt || {};
         }
 
         get _currentHintTemplate() {
-            return this._hints[this._currentHintIndex];
+            return this._hints.getHint(this._currentHintIndex);
         }
 
         /**

@@ -228,7 +228,8 @@ var $kt = $kt || {};
         }
         
         _setupLevelCommon() {
-            this._levelName = $kt.levels.getLevelName(this._gameStatus.level);
+            const breakLineKanjiLevels = true;
+            this._levelName = $kt.levels.getLevelName(this._gameStatus.level, breakLineKanjiLevels);
             this._remainingChars = new Set(this._levelChars.keys());
             this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(this._gameStatus.level);
             this._totalCharacters = $kt.levels.getTotalCharsForDisplay(this._gameStatus.level);

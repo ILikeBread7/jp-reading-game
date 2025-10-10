@@ -26,9 +26,9 @@ const $kt = globalThis.$kt;
         ...KANJI_GRADE_4_STRINGS.map(string => `${string} (Grade 4)`),
         ...KANJI_GRADE_5_STRINGS.map(string => `${string} (Grade 5)`),
         ...KANJI_GRADE_6_STRINGS.map(string => `${string} (Grade 6)`),
-        ...KANJI_JUNIORHIGH_STRINGS.map(string => `${string} (Junior High School)`),
+        ...KANJI_JUNIORHIGH_STRINGS.map(string => `${string} (Junior High)`),
         ...KANJI_JINMEIYO_STRINGS.map(string => `${string} (Jinmeiyou)`),
-        ...KANJI_NONSTANDARD_STRINGS.map(string => `${string} (Common non-standard kanji)`),
+        ...KANJI_NONSTANDARD_STRINGS.map(string => `${string} (Non-standard)`),
     ];
 
     const REPS_PER_CHAR = 5;
@@ -54,9 +54,16 @@ const $kt = globalThis.$kt;
 
     class KantoreLevels {
 
-        static getLevelName(level) {
+        /**
+         * 
+         * @param {number} level 
+         * @param {boolean} breakLineKanjiLevels if true there will be a break line instead of a space for kanji levels
+         * @returns 
+         */
+        static getLevelName(level, breakLineKanjiLevels) {
+            const separator = breakLineKanjiLevels && level > KANA_STRINGS.length ? '<br>' : ' ';
             const name = LEVEL_NAMES[level - 1] || 'Endgame';
-            return `Level ${level}: ${name}`;
+            return `Level ${level}:${separator}${name}`;
         }
 
         static getCharsWithRepsPerLevel(level) {

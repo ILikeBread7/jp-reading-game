@@ -1,10 +1,28 @@
 'use strict';
+import { LEVEL_CHARS } from './level-chars.js';
 
-var $kt = $kt || {};
+globalThis.$kt = globalThis.$kt || {};
+const $kt = globalThis.$kt;
 
 (() => {
 
-    $kt.hints = [
+    const ENDGAME_HINT = /*html*/ `
+        <div class="centered-text">
+            <div>Congratulations! You completed all levels prepared up to this point!</div>
+            <div class="hint-explanation">
+                I will be adding more levels in future updates
+                but for now you can try the practice mode or
+                stay in this mode and review all material from
+                all existing levels!
+            </div>
+            <div class="hint-explanation">
+                I would also love to see your feedback in the comments on the
+                <a target="_blank" href="https://ilikebread7.itch.io/kantore">itch.io</a> page for this game or wherever else you're playing it right now!
+            </div>
+            <div class="hint-explanation">Thank you for playing this game and I hope you will check back when new levels are added!</div>
+        </div>`;
+
+    const KANA_HINTS = [
         /*html*/
         `<style>
             .hint-u-shop::before {
@@ -1577,78 +1595,86 @@ var $kt = $kt || {};
                 It can also be combined with small vowels to create all the other "v" sounds.
             </div>
         </div>`,
-
-        /*html*/
-        `<style>
-
-        </style>
-        
-        <div>
-            <div>
-                <span class="hint-emphasis">人</span>,
-                Readings:
-                <span class="hint-emphasis">ひと, -り, -と</span>;
-                <span class="hint-emphasis">ジン, ニン</span>
-                Meanings: <span class="hint-emphasis">person</span>
-            </div>
-            <div>
-                <span class="hint-emphasis">木</span>,
-                Readings:
-                <span class="hint-emphasis">き, こ-</span>;
-                <span class="hint-emphasis">ボク, モク</span>
-                Meanings: <span class="hint-emphasis">tree, wood</span>
-            </div>
-            <div>
-                <span class="hint-emphasis">山</span>,
-                Readings:
-                <span class="hint-emphasis">やま</span>;
-                <span class="hint-emphasis">サン, セン</span>
-                Meanings: <span class="hint-emphasis">mountain</span>
-            </div>
-            <div>
-                <span class="hint-emphasis">日</span>,
-                Readings:
-                <span class="hint-emphasis">ひ, -び, -か</span>;
-                <span class="hint-emphasis">ニチ, ジツ</span>
-                Meanings: <span class="hint-emphasis">day, sun, Japan, counter for days</span>
-            </div>
-            <div>
-                <span class="hint-emphasis">雨</span>,
-                Readings:
-                <span class="hint-emphasis">あめ, あま-, -さめ</span>;
-                <span class="hint-emphasis">ウ</span>
-                Meanings: <span class="hint-emphasis">rain</span>
-            </div>
-        </div>
-
-        <div class="hint-explanation">
-            Read the word at the top of the screen and
-            type it into the input below the question
-            using the above hints.
-        </div>
-        <div class="hint-explanation">
-            Press ENTER to confirm your answer.
-        </div>
-        <div class="hint-explanation">
-            Press ENTER with an empty input
-            to get an extra hint but you won't receive any exp.
-        </div>`,
-
-        /*html*/
-        `<div class="centered-text">
-            <div>Congratulations! You completed all levels prepared up to this point!</div>
-            <div class="hint-explanation">
-                I will be adding more levels in future updates
-                but for now you can try the practice mode or
-                stay in this mode and review all material from
-                all existing levels!
-            </div>
-            <div class="hint-explanation">
-                I would also love to see your feedback in the comments on the
-                <a target="_blank" href="https://ilikebread7.itch.io/kantore">itch.io</a> page for this game or wherever else you're playing it right now!
-            </div>
-            <div class="hint-explanation">Thank you for playing this game and I hope you will check back when new levels are added!</div>
-        </div>`
     ];
+
+    class KantoreHints {
+
+        static get length() {
+            return LEVEL_CHARS.length + 1;
+        }
+
+        static getHint(index) {
+            if (index < KANA_HINTS.length) {
+                return KANA_HINTS[index];
+            }
+
+            if (index < LEVEL_CHARS.length) {
+                return KH.getKanjiHint(LEVEL_CHARS[index]);
+            }
+
+            return ENDGAME_HINT;
+        }
+
+        static getKanjiHint(kanjiChars) {
+            return /*html*/ `
+                <style>
+
+                </style>
+                
+                <div>
+                    <div>
+                        <span class="hint-emphasis">人</span>,
+                        Readings:
+                        <span class="hint-emphasis">ひと, -り, -と</span>;
+                        <span class="hint-emphasis">ジン, ニン</span>
+                        Meanings: <span class="hint-emphasis">person</span>
+                    </div>
+                    <div>
+                        <span class="hint-emphasis">木</span>,
+                        Readings:
+                        <span class="hint-emphasis">き, こ-</span>;
+                        <span class="hint-emphasis">ボク, モク</span>
+                        Meanings: <span class="hint-emphasis">tree, wood</span>
+                    </div>
+                    <div>
+                        <span class="hint-emphasis">山</span>,
+                        Readings:
+                        <span class="hint-emphasis">やま</span>;
+                        <span class="hint-emphasis">サン, セン</span>
+                        Meanings: <span class="hint-emphasis">mountain</span>
+                    </div>
+                    <div>
+                        <span class="hint-emphasis">日</span>,
+                        Readings:
+                        <span class="hint-emphasis">ひ, -び, -か</span>;
+                        <span class="hint-emphasis">ニチ, ジツ</span>
+                        Meanings: <span class="hint-emphasis">day, sun, Japan, counter for days</span>
+                    </div>
+                    <div>
+                        <span class="hint-emphasis">雨</span>,
+                        Readings:
+                        <span class="hint-emphasis">あめ, あま-, -さめ</span>;
+                        <span class="hint-emphasis">ウ</span>
+                        Meanings: <span class="hint-emphasis">rain</span>
+                    </div>
+                </div>
+
+                <div class="hint-explanation">
+                    Read the word at the top of the screen and
+                    type it into the input below the question
+                    using the above hints.
+                </div>
+                <div class="hint-explanation">
+                    Press ENTER to confirm your answer.
+                </div>
+                <div class="hint-explanation">
+                    Press ENTER with an empty input
+                    to get an extra hint but you won't receive any exp.
+                </div>`
+        }
+
+    }
+
+    const KH = $kt.hints = KantoreHints;
 
 })();
