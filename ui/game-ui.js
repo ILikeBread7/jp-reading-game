@@ -5,6 +5,7 @@ var $kt = $kt || {};
 (() => {
 
     const LEVEL_UP_FADE_IN_TIME = 0.5;
+    const SOUND_EFFECT_DELAY = 250;
     const EVENTS = $kt.settings.eventNames;
 
     // KantoreUiHelper has access to private fields
@@ -144,7 +145,10 @@ var $kt = $kt || {};
         showLevelUp(newLevel, showHint) {
             this._isShowingHintOnly = false;
 
-            $kt.audio.playEffect($kt.audio.tracks.LEVEL_UP);
+            setTimeout(
+                () => $kt.audio.playEffect($kt.audio.tracks.LEVEL_UP),
+                SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
+            );
             
             this._showHintOnLevelUp = showHint;
             this._levelUpHintContent.innerHTML = this._currentHintTemplate;
@@ -362,12 +366,15 @@ var $kt = $kt || {};
         _growExpBars(expData) {
             // Exp growing and exp max sounds
             if (expData.some(exp => exp.addedExp > 0)) {
-                $kt.audio.playEffect($kt.audio.tracks.EXP_GROW);
+                setTimeout(
+                    () => $kt.audio.playEffect($kt.audio.tracks.EXP_GROW),
+                    SOUND_EFFECT_DELAY // Time to let the correct ansewr sound effect play
+                );
 
                 if (expData.some(exp => exp.newExpPercentage >= 100)) {
                     setTimeout(
                         () => $kt.audio.playEffect($kt.audio.tracks.EXP_MAX),
-                        750 // Time to let the exp bars grow
+                        SOUND_EFFECT_DELAY * 4 // Time to let the exp bars grow
                     );
                 }
             }
