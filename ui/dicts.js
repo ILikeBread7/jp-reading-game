@@ -92,7 +92,7 @@ var $kt = $kt || {};
     const FREQ_ICHI_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('ichi'));
     const FREQ_SPEC_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('spec'));
     const FREQ_NEWS_TAGS = FREQ_NUMBERS.flatMap(freqTagsFunctionCreator('news'));
-    const filterMostFrequentOnly = tag => !tag.endsWith('2') || tag.includes('spec2');
+    const filterMostFrequentOnly = tag => tag.endsWith('1') || tag.endsWith('spec2');
     
     const mapEntryToTag = entry => entry.tag;
     const FREQ_ALL_TAGS = [
