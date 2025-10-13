@@ -1,4 +1,4 @@
-export const KANA_STRINGS = [
+export const HIRAGANA_STRINGS = [
     'あいうえお',
     'まみむめも',
     'らりるれろ',
@@ -8,7 +8,10 @@ export const KANA_STRINGS = [
     'たちっつてとだぢづでど',
     'はひふへほばびぶべぼぱぴぷぺぽ',
     'やゆよゃゅょ',
-    'わをん',
+    'わをん'
+];
+
+export const KATAKANA_STRINGS = [
     'アイウエオ',
     'マミムメモ',
     'ラリルレロー',
@@ -20,6 +23,11 @@ export const KANA_STRINGS = [
     'ヤユヨャュョ',
     'ワヲンヴ'
 ];
+
+export const KANA_STRINGS = [
+    ...HIRAGANA_STRINGS,
+    ...KATAKANA_STRINGS
+]
 
 export const KANJI_GRADE_1_STRINGS = [
     '人木山日雨',
@@ -63,7 +71,8 @@ export const KANJI_NONSTANDARD_STRINGS = [
 ];
 
 const LEVEL_STRINGS = [
-    KANA_STRINGS,
+    HIRAGANA_STRINGS,
+    KATAKANA_STRINGS,
     KANJI_GRADE_1_STRINGS,
     SPECIAL_STRINGS,
     KANJI_GRADE_2_STRINGS,

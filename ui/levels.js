@@ -2,6 +2,8 @@
 import {
     LEVEL_CHARS,
     KANA_STRINGS,
+    HIRAGANA_STRINGS,
+    KATAKANA_STRINGS,
     KANJI_GRADE_1_STRINGS,
     SPECIAL_STRINGS,
     KANJI_GRADE_2_STRINGS,
@@ -35,15 +37,12 @@ const $kt = globalThis.$kt;
 
     const REPS_PER_CHAR = 5;
 
-    const HIRAGANA_RANGE_END = Math.floor(KANA_STRINGS.length / 2);
-    const HIRAGANA_LEVELS_RANGE = [1, HIRAGANA_RANGE_END];
-    const KATAKANA_LEVELS_RANGE = [HIRAGANA_RANGE_END + 1, KANA_STRINGS.length];
-
-    let previousRangeEnd = KANA_STRINGS.length;
+    let previousRangeEnd = 0;
     const LEVEL_RANGES = Object.freeze([
-        HIRAGANA_LEVELS_RANGE,
-        KATAKANA_LEVELS_RANGE,
+        [previousRangeEnd + 1, previousRangeEnd += HIRAGANA_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += KATAKANA_STRINGS.length],
         [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_1_STRINGS.length],
+        [previousRangeEnd + 1, previousRangeEnd += SPECIAL_STRINGS.length],
         [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_2_STRINGS.length],
         [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_3_STRINGS.length],
         [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_4_STRINGS.length],
@@ -122,11 +121,11 @@ const $kt = globalThis.$kt;
         }
 
         static get hiraganaLevelsRange() {
-            return HIRAGANA_LEVELS_RANGE;
+            return LEVEL_RANGES[0];
         }
 
         static get katakanaanaLevelsRange() {
-            return KATAKANA_LEVELS_RANGE;
+            return LEVEL_RANGES[1];
         }
 
     }
