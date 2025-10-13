@@ -22,6 +22,13 @@ const $kt = globalThis.$kt;
             <div class="hint-explanation">Thank you for playing this game and I hope you will check back when new levels are added!</div>
         </div>`;
 
+    const SPECIAL_HINT = /*html*/ `
+        <div class="centered-text">
+            <div class="hint-explanation">
+                Noma test
+            </div>
+        </div>`;
+
     const KANA_HINTS = [
         /*html*/
         `<style>
@@ -1609,7 +1616,11 @@ const $kt = globalThis.$kt;
             }
 
             if (index < LEVEL_CHARS.length) {
-                return KH.getKanjiHint(LEVEL_CHARS[index]);
+                const chars = LEVEL_CHARS[index];
+                if (chars.includes('々')) {
+                    return SPECIAL_HINT;
+                }
+                return KH.getKanjiHint(chars);
             }
 
             return ENDGAME_HINT;

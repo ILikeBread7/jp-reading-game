@@ -881,6 +881,7 @@ function createFrequencyTags(entry, originalEntry) {
 
 function createLevelTagsFromPriorities(priorities, entries) {
     const acceptableCharsSet = new Set();
+    const noDedupEntSeqChars = new Set(['ヶ', 'ヵ', '箇', '個']);
 
     LEVEL_CHARS.forEach((chars, index, array) => {
         const currentLevel = index + 1;
@@ -889,9 +890,10 @@ function createLevelTagsFromPriorities(priorities, entries) {
 
         chars.forEach(char => {
             console.log(`Creating level tags for: ${char}, Level: ${currentLevel} / ${totalLevels}`);
-    
+            const dedupEntSeq = !noDedupEntSeqChars.has(char);
+
             const existingEntryKeys = new Set();
-            const isKanji = wanakana.isKanji(char);
+            const isKanji = wanakana.isKanji(char) || noDedupEntSeqChars.has(char);
             const [ order, orderEntries, generateKeyFunction ] = isKanji
                 ? [ priorities.orderKanji, priorities.kanjiEntries, generateKanjiKey ]
                 : [ priorities.orderKana, priorities.kanaEntries, generateKanaKey ];
@@ -909,13 +911,13 @@ function createLevelTagsFromPriorities(priorities, entries) {
             ) {
                 const currentOrder = lastPriority = order[i];
                 const charPriorityEntries = (orderEntries.get(currentOrder) || []).filter(charFilter);
-                addAndDeduplicate(charPriorityEntries, charEntries, generateKeyFunction, existingEntryKeys);
+                addAndDeduplicate(charPriorityEntries, charEntries, generateKeyFunction, existingEntryKeys, dedupEntSeq);
             }
             console.log(` - Last priority: ${lastPriority}`);
             
             if (charEntries.length < MIN_ENTRIES_PER_CHAR) {
                 console.log(` - Adding all entries, size with priorities only: ${charEntries.length}`);
-                addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys, MIN_ENTRIES_PER_CHAR);
+                addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys, dedupEntSeq, MIN_ENTRIES_PER_CHAR);
             }
             console.log(` - Total number of entries: ${charEntries.length}`);
             if (charEntries.length === 0) {
@@ -934,13 +936,14 @@ function createLevelTagsFromPriorities(priorities, entries) {
     });
 }
 
-function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys, maxLength) {
+function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys, dedupEntSeq, maxLength) {
     for (const entry of source) {
         if (maxLength !== undefined && destination.length >= maxLength) {
             break;
         }
 
-        if (isLevelEntryToBeFilteredOut(entry)) {
+        const entSeq = entry.entSeq;
+        if (dedupEntSeq && existingEntryKeys.has(entSeq)) {
             continue;
         }
 
@@ -949,7 +952,14 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
             continue;
         }
 
+        if (isLevelEntryToBeFilteredOut(entry)) {
+            continue;
+        }
+
         existingEntryKeys.add(key);
+        if (dedupEntSeq) {
+            existingEntryKeys.add(entSeq);
+        }
         destination.push(entry);
     };
 }

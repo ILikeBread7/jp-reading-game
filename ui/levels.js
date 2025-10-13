@@ -3,6 +3,7 @@ import {
     LEVEL_CHARS,
     KANA_STRINGS,
     KANJI_GRADE_1_STRINGS,
+    SPECIAL_STRINGS,
     KANJI_GRADE_2_STRINGS,
     KANJI_GRADE_3_STRINGS,
     KANJI_GRADE_4_STRINGS,
@@ -21,6 +22,7 @@ const $kt = globalThis.$kt;
     const LEVEL_NAMES = [
         ...KANA_STRINGS.map(string => `${string.charAt(0)}行`),
         ...KANJI_GRADE_1_STRINGS.map(string => `${string} (Grade 1)`),
+        ...SPECIAL_STRINGS.map(string => `${string} (Special)`),
         ...KANJI_GRADE_2_STRINGS.map(string => `${string} (Grade 2)`),
         ...KANJI_GRADE_3_STRINGS.map(string => `${string} (Grade 3)`),
         ...KANJI_GRADE_4_STRINGS.map(string => `${string} (Grade 4)`),

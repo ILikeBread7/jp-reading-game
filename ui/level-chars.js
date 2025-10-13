@@ -22,8 +22,13 @@ export const KANA_STRINGS = [
 ];
 
 export const KANJI_GRADE_1_STRINGS = [
-    '人木山日雨'
+    '人木山日雨',
+    '一月二所数',
 ];
+
+export const SPECIAL_STRINGS = [ 
+    '々ヵヶ'
+]
 
 export const KANJI_GRADE_2_STRINGS = [
     '丸弓工才万'
@@ -60,6 +65,7 @@ export const KANJI_NONSTANDARD_STRINGS = [
 const LEVEL_STRINGS = [
     KANA_STRINGS,
     KANJI_GRADE_1_STRINGS,
+    SPECIAL_STRINGS,
     KANJI_GRADE_2_STRINGS,
     KANJI_GRADE_3_STRINGS,
     KANJI_GRADE_4_STRINGS,
