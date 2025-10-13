@@ -391,7 +391,10 @@ const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [
     'Judaism', 'Allah', 'Protestant',                   // Religion
     'fotiaoqiang', 'Minerva (goddess)', 'Vulcan (god)'  // Contain characters we don't want to deal with
 ];
-const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([ TERMS_TEXT_BY_CODE.get('sens').text ]);
+const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([
+    TERMS_TEXT_BY_CODE.get('sens').text,
+    TERMS_TEXT_BY_CODE.get('obs').text
+]);
 
 const TERMS_TEXT_BY_TEXT = new Map();
 TERMS_TEXT_BY_CODE.forEach((value, key) => TERMS_TEXT_BY_TEXT.set(value.text, { code: value.code, text: value.text }));
@@ -953,8 +956,7 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
 
 function isLevelEntryToBeFilteredOut(entry) {
     return (
-            entry.misc
-            && entry.misc.flatMap(miscs => miscs)
+            entry.sense.flatMap(sense => sense.misc)
                 .some(misc => FILTER_OUT_LEVEL_ENTRY_MISCS.has(misc))
         )
         || entry.sense.flatMap(sense => sense.gloss).some(
