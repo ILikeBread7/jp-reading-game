@@ -556,6 +556,14 @@ const entries = dictEntries.flatMap((entry, index) => {
                 entriesMap.set(kanji.keb, [...(entriesMap.get(kanji.keb) || []), newEntry]);
             }
 
+            const nomable = newEntry.kanji
+                && !newEntry.kanji.includes('々')
+                && kanjiElements
+                    .some(otherKanji => {
+                        return !(elementToArray(otherKanji['ke_inf']).includes(SEARCH_ONLY_KANJI))
+                            && otherKanji.keb.includes('々')
+                    });
+            newEntry.flags = { nomable };
             separatedEntry.push(newEntry);
         });
     });
@@ -942,6 +950,10 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
             break;
         }
 
+        if (entry.nomable && acceptableCharsSet.has('々')) {
+            continue;
+        }
+
         const entSeq = entry.entSeq;
         if (dedupEntSeq && existingEntryKeys.has(entSeq)) {
             continue;
@@ -1038,6 +1050,7 @@ function separateIntoTagEntries(entries) {
         
         if (!CONFIG.includeTags) {
             delete entry.tags;
+            delete entry.flags;
         }
         
         tags.forEach(tag => {
