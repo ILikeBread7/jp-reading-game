@@ -58,19 +58,45 @@ var $kt = $kt || {};
         }
 
         preloadAudio() {
-            const tracksPromiseMap = new Map();
-            const trackEntries = Object.values(this.seTracks);
-
-            this._preloadTrack(trackEntries[0], tracksPromiseMap);
-            this._preloadTrack(this._bgmTracks[0], tracksPromiseMap);
-
-            trackEntries
-                .slice(1)
-                .forEach(trackData => this._preloadTrack(trackData, tracksPromiseMap));
+            this._preloadAllSe();
+            this._preloadBgm(this._bgmTracks[0]);
         }
 
-        _preloadTrack(trackData, tracksPromiseMap) {
-            trackData.promise = this._getOrCreateTrackPromise(trackData.name, tracksPromiseMap)
+        _preloadAllSe() {
+            const seBuffersMap = new Map();
+            const seTracksArray = Object.values(this.seTracks);
+            let seToLoadIndex = 0;
+            const helper = () => {
+                let seToLoad = seTracksArray[seToLoadIndex];
+                if (!seToLoad) {
+                    return;
+                }
+
+                let bufferFromMap;
+                while (seToLoad && (bufferFromMap = seBuffersMap.get(seToLoad.name))) {
+                    seToLoad.buffer = bufferFromMap;
+                    seToLoadIndex++;
+                    seToLoad = seTracksArray[seToLoadIndex];
+                }
+
+                if (!seToLoad) {
+                    return;
+                }
+
+                this._player.loadTrack(seToLoad.name)
+                    .then(buffer => {
+                        seToLoad.buffer = buffer;
+                        seBuffersMap.set(seToLoad.name, buffer);
+                        seToLoadIndex++;
+                        helper();
+                    });
+            };
+
+            helper();
+        }
+
+        _preloadBgm(trackData) {
+            trackData.promise = this._player.loadTrack(trackData.name)
                 .then(buffer => {
                     trackData.buffer = buffer;
                     delete trackData.promise;
@@ -92,7 +118,7 @@ var $kt = $kt || {};
 
             return bgmPromise.then(track => {
                 if (this._bgmTracks.length > 1) {
-                    this._preloadTrack(this._bgmTracks[1]);
+                    this._preloadBgm(this._bgmTracks[1]);
                 }
 
                 track.source.addEventListener('ended', this._startNextBgm.bind(this));
@@ -137,7 +163,7 @@ var $kt = $kt || {};
                             && !this._bgmTracks[nextIndex].buffer
                             && !this._bgmTracks[nextIndex].promise
                         ) {
-                            this._preloadTrack(this._bgmTracks[nextIndex]);
+                            this._preloadBgm(this._bgmTracks[nextIndex]);
                         }
 
                         source.addEventListener('ended', this._startNextBgm.bind(this));
@@ -221,17 +247,6 @@ var $kt = $kt || {};
 
         _isEffectCooldownPeriod() {
             return performance.now() - this._lastEffectPlayedTime < EFFECT_COOLDOWN_TIME;
-        }
-
-        _getOrCreateTrackPromise(trackName, tracksPromiseMap) {
-            const promiseFromMap = tracksPromiseMap && tracksPromiseMap.get(trackName);
-            if (promiseFromMap) {
-                return promiseFromMap;
-            }
-
-            const promise = this._player.loadTrack(trackName);
-            tracksPromiseMap && tracksPromiseMap.set(trackName, promise);
-            return promise;
         }
 
         stopBgm() {
