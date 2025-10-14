@@ -850,7 +850,7 @@ function createJLPTVocabTags(entry, originalEntry) {
 function createCategoryTags(entry, originalEntry) {
     const result = [];
 
-    originalEntry.misc.flatMap(miscs => miscs)
+    originalEntry.misc.flat()
         .map(misc => TERMS_TEXT_BY_TEXT.get(misc).code)
         .forEach(tag => {
             if (!result.includes(tag)) {
@@ -1024,7 +1024,7 @@ function createPriorities(entries) {
             }
             return result;
         })()]
-    ].flatMap(x => x);
+    ].flat();
 
     return {
         orderKanji: order.map(o => `${KANJI_PRIORITY_PREFIX}${o}`),

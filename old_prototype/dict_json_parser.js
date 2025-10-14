@@ -814,7 +814,7 @@ function createPriorities(entries) {
             }
             return result;
         })()]
-    ].flatMap(x => x);
+    ].flat();
 
     return {
         orderKanji: order.map(o => `${KANJI_PRIORITY_PREFIX}${o}`),
