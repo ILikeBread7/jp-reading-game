@@ -65,6 +65,7 @@ var $kt = $kt || {};
         _preloadAllSe() {
             const seBuffersMap = new Map();
             const seTracksArray = Object.values(this.seTracks);
+            
             let seToLoadIndex = 0;
             const helper = () => {
                 let seToLoad = seTracksArray[seToLoadIndex];
