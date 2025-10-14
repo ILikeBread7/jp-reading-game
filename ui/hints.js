@@ -1,4 +1,3 @@
-'use strict';
 import { LEVEL_CHARS } from './level-chars.js';
 import { KANJIDEX_MAP } from './kanjidex.js';
 

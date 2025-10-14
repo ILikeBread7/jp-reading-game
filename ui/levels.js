@@ -1,4 +1,3 @@
-'use strict';
 import {
     LEVEL_CHARS,
     KANA_STRINGS,
