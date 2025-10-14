@@ -396,6 +396,10 @@ const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([
     TERMS_TEXT_BY_CODE.get('obs').text
 ]);
 
+const FILTER_OUT_LEVEL_ENTRY_KANJI_WORDS = new Set([
+    '一〇月', '一一月', '一二月'
+]);
+
 const TERMS_TEXT_BY_TEXT = new Map();
 TERMS_TEXT_BY_CODE.forEach((value, key) => TERMS_TEXT_BY_TEXT.set(value.text, { code: value.code, text: value.text }));
 
@@ -977,21 +981,31 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
 }
 
 function isLevelEntryToBeFilteredOut(entry) {
-    return (
-            entry.sense.flatMap(sense => sense.misc)
-                .some(misc => FILTER_OUT_LEVEL_ENTRY_MISCS.has(misc))
-        )
-        || entry.sense.flatMap(sense => sense.gloss).some(
-            entryGloss => 
-                FILTER_OUT_LEVEL_ENTRY_GLOSSES
-                    .some(
-                        filterOutGloss => (
-                            typeof entryGloss === 'string'
-                                ? entryGloss
-                                : entryGloss.value
-                            ).includes(filterOutGloss)
-                    )
-    );
+    const filterOutKanjiWord = FILTER_OUT_LEVEL_ENTRY_KANJI_WORDS.has(entry.kanji);
+    if (filterOutKanjiWord) {
+        return true;
+    }
+
+    const filterOutMisc = entry.sense.flatMap(sense => sense.misc)
+        .some(misc => FILTER_OUT_LEVEL_ENTRY_MISCS.has(misc));
+
+    if (filterOutMisc) {
+        return true;
+    }
+
+    const filterOutGloss = entry.sense.flatMap(sense => sense.gloss)
+        .some(entryGloss => 
+            FILTER_OUT_LEVEL_ENTRY_GLOSSES
+                .some(
+                    filterOutGloss => (
+                        typeof entryGloss === 'string'
+                            ? entryGloss
+                            : entryGloss.value
+                        ).includes(filterOutGloss)
+                )
+            );
+
+    return filterOutGloss;
 }
 
 function generateKanaKey(entry) {
