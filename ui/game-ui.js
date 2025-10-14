@@ -91,7 +91,7 @@ var $kt = $kt || {};
         }
 
         _closeLevelUpContainerAndPlaySound() {
-            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
+            $kt.audio.playEffect($kt.audio.seTracks.CANCEL);
             this._closeLevelUpContainer();
         }
 
@@ -146,7 +146,7 @@ var $kt = $kt || {};
             this._isShowingHintOnly = false;
 
             setTimeout(
-                () => $kt.audio.playEffect($kt.audio.tracks.LEVEL_UP),
+                () => $kt.audio.playEffect($kt.audio.seTracks.LEVEL_UP),
                 SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
             );
             
@@ -278,20 +278,20 @@ var $kt = $kt || {};
         }
 
         shakeWrongAnswer(answer) {
-            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
+            $kt.audio.playEffect($kt.audio.seTracks.CANCEL);
             this._wrongAnswer.textContent = answer;
             this._wrongAnswer.classList.add('shake');
         }
 
         jumpRightAnswer() {
-            $kt.audio.playEffect($kt.audio.tracks.CORRECT);
+            $kt.audio.playEffect($kt.audio.seTracks.CORRECT);
             this._questionAnswerContainer.classList.add('jump');
             this._wrongAnswer.textContent = '';
             this._answerInput.value = '';
         }
 
         slideQuestionHint(newHint) {
-            $kt.audio.playEffect($kt.audio.tracks.SELECT);
+            $kt.audio.playEffect($kt.audio.seTracks.SELECT);
             this._questionHintElement.classList.add('slide');
             this.showQuestionHint(newHint);
         }
@@ -367,13 +367,13 @@ var $kt = $kt || {};
             // Exp growing and exp max sounds
             if (expData.some(exp => exp.addedExp > 0)) {
                 setTimeout(
-                    () => $kt.audio.playEffect($kt.audio.tracks.EXP_GROW),
+                    () => $kt.audio.playEffect($kt.audio.seTracks.EXP_GROW),
                     SOUND_EFFECT_DELAY // Time to let the correct ansewr sound effect play
                 );
 
                 if (expData.some(exp => exp.newExpPercentage >= 100)) {
                     setTimeout(
-                        () => $kt.audio.playEffect($kt.audio.tracks.EXP_MAX),
+                        () => $kt.audio.playEffect($kt.audio.seTracks.EXP_MAX),
                         SOUND_EFFECT_DELAY * 4 // Time to let the exp bars grow
                     );
                 }

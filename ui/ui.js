@@ -74,12 +74,12 @@ var $kt = $kt || {};
                 const se = (() => {
                     const datasetSe = element.dataset.se;
                     if (datasetSe) {
-                        return $kt.audio.tracks[datasetSe];
+                        return $kt.audio.seTracks[datasetSe];
                     }
 
                     return element.hasAttribute('data-close-button') || element.classList.contains('back-button')
-                        ? $kt.audio.tracks.CANCEL
-                        : $kt.audio.tracks.CONFIRM;
+                        ? $kt.audio.seTracks.CANCEL
+                        : $kt.audio.seTracks.CONFIRM;
                 })();
                 
                 return () => $kt.audio.playEffect(se);

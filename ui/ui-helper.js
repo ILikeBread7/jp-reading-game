@@ -111,7 +111,7 @@ var $kt = $kt || {};
             // on the same checkbox over and over again
             // directly or through a label
             if (!element.parentNode.classList.contains('menu-item-label')) {
-                $kt.audio.playEffectWithCooldown($kt.audio.tracks.SELECT);
+                $kt.audio.playEffectWithCooldown($kt.audio.seTracks.SELECT);
             }
         }
 

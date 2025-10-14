@@ -18,7 +18,7 @@ var $kt = $kt || {};
             this._lastEventBgmTrack = null;
             
             this._player = new AudioPlayer();
-            this.tracks = {
+            this.seTracks = {
                 CORRECT: { name: '決定ボタンを押す3.ogg', speed: 1.5 },
                 CONFIRM: { name: '決定ボタンを押す3.ogg', speed: 1.2 },
                 SELECT: { name: '決定ボタンを押す3.ogg' },
@@ -39,7 +39,7 @@ var $kt = $kt || {};
                 { displayName: 'Rainy', author: '伊藤ケイスケ', name: 'Rainy.ogg', volume: 0.325 }
             ]);
 
-            [ ...Object.values(this.tracks), ...this._bgmTracks ]
+            [ ...Object.values(this.seTracks), ...this._bgmTracks ]
                 .forEach(trackData => {
                     // Setting default parameters when missing
                     trackData.volume ??= 1;
@@ -59,7 +59,7 @@ var $kt = $kt || {};
 
         preloadAudio() {
             const tracksPromiseMap = new Map();
-            const trackEntries = Object.values(this.tracks);
+            const trackEntries = Object.values(this.seTracks);
 
             this._preloadTrack(trackEntries[0], tracksPromiseMap);
             this._preloadTrack(this._bgmTracks[0], tracksPromiseMap);

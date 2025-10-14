@@ -83,7 +83,7 @@ var $kt = $kt || {};
 
         _connectSettings() {
             $kt.uiHelper.connectElementToSetting(EVENTS.BGM_VOLUME, this._bgmVolume);
-            $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => $kt.audio.playEffect($kt.audio.tracks.SELECT));
+            $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => $kt.audio.playEffect($kt.audio.seTracks.SELECT));
             $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_MEANING, this._showMeaning);
             $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_HINT, this._showHint);
             $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_SUBMIT_BUTTON, this._submitButtonSelect);
@@ -92,12 +92,12 @@ var $kt = $kt || {};
 
         _showSettingsAndPlaySound() {
             $kt.uiHelper.showSettings();
-            $kt.audio.playEffect($kt.audio.tracks.CONFIRM);
+            $kt.audio.playEffect($kt.audio.seTracks.CONFIRM);
         }
 
         _hideSettingsAndPlaySound() {
             $kt.uiHelper.hideSettings();
-            $kt.audio.playEffect($kt.audio.tracks.CANCEL);
+            $kt.audio.playEffect($kt.audio.seTracks.CANCEL);
         }
 
     }
