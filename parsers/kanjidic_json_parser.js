@@ -42,6 +42,27 @@ const data = kanjidic['kanjidic2']['character'].map(character => {
 fs.writeFileSync('kanji_data.json', JSON.stringify(data, null, 2));
 console.log('kanji_data.json file written!');
 
+data.forEach(kanjiData => {
+    delete kanjiData.grade;
+    delete kanjiData.freq;
+    if (kanjiData.kunReadings && kanjiData.kunReadings.length === 0) {
+        delete kanjiData.kunReadings;
+    }
+    if (kanjiData.onReadings && kanjiData.onReadings.length === 0) {
+        delete kanjiData.onReadings;
+    }
+});
+
+const kanjidexTextContent = `export const KANJIDEX = ${JSON.stringify(data, null, 4)};
+
+export const KANJIDEX_MAP = KANJIDEX.reduce((acc, entry) => {
+    acc.set(entry.kanji, entry);
+    return acc;
+}, new Map());`;
+
+fs.writeFileSync('../ui/kanjidex.js', kanjidexTextContent);
+console.log('kanjidex.js file written!');
+
 function elementToArray(element) {
     if (Array.isArray(element)) {
         return element;

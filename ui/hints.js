@@ -1,5 +1,6 @@
 'use strict';
 import { LEVEL_CHARS } from './level-chars.js';
+import { KANJIDEX_MAP } from './kanjidex.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -1671,9 +1672,7 @@ const $kt = globalThis.$kt;
                 </div>
 
                 <div class="hint-explanation">
-                    Read the word at the top of the screen and
-                    type it into the input below the question
-                    using the above hints.
+                    ${kanjiChars.map(kanji => JSON.stringify(KANJIDEX_MAP.get(kanji))).join('<br>')};
                 </div>
                 <div class="hint-explanation">
                     Press ENTER to confirm your answer.
