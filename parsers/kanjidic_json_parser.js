@@ -14,7 +14,10 @@ const kanjjiTypeOrder = {
     '会意': 3,
     '形声': 4,
     '会意兼形声': 5,
-    '国字': 6
+    '国字': 6,
+    '漢字検定1.5': 7,
+    '漢字検定1': 8,
+    '漢字検定': 9
 };
 
 const data = kanjidic['kanjidic2']['character'].map(character => {
@@ -42,18 +45,28 @@ const data = kanjidic['kanjidic2']['character'].map(character => {
 fs.writeFileSync('kanji_data.json', JSON.stringify(data, null, 2));
 console.log('kanji_data.json file written!');
 
-data.forEach(kanjiData => {
-    delete kanjiData.grade;
-    delete kanjiData.freq;
-    if (kanjiData.kunReadings && kanjiData.kunReadings.length === 0) {
-        delete kanjiData.kunReadings;
-    }
-    if (kanjiData.onReadings && kanjiData.onReadings.length === 0) {
-        delete kanjiData.onReadings;
-    }
-});
+const kanjidexData = data
+    .filter(entry => entry.type)
+    .map(entry => {
+        delete entry.grade;
+        delete entry.freq;
+        
+        if (entry.kunReadings && entry.kunReadings.length === 0) {
+            delete entry.kunReadings;
+        }
+        if (entry.onReadings && entry.onReadings.length === 0) {
+            delete entry.onReadings;
+        }
 
-const kanjidexTextContent = `export const KANJIDEX = ${JSON.stringify(data, null, 4)};
+        const kanjiKenteiPrefix = '漢字検定';
+        if (entry.type.startsWith(kanjiKenteiPrefix)) {
+            entry.type = kanjiKenteiPrefix;
+        }
+
+        return entry;
+    });
+
+const kanjidexTextContent = `export const KANJIDEX = ${JSON.stringify(kanjidexData, null, 4)};
 
 export const KANJIDEX_MAP = KANJIDEX.reduce((acc, entry) => {
     acc.set(entry.kanji, entry);
