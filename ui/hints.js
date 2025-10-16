@@ -1,10 +1,19 @@
 import { LEVEL_CHARS } from './level-chars.js';
-import { KANJIDEX_MAP } from './kanjidex.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
 (() => {
+
+    let kanjidexMap = null;
+    let kanjidexPromise = fetch('kanjidex.json')
+        .then(response => response.json())
+        .then(kanjidex => {
+            kanjidexMap = kanjidex.reduce((acc, entry) => {
+                acc.set(entry.kanji, entry);
+                return acc;
+            }, new Map());
+        });
 
     const ENDGAME_HINT = /*html*/ `
         <div class="centered-text">
@@ -1610,7 +1619,46 @@ const $kt = globalThis.$kt;
             return LEVEL_CHARS.length + 1;
         }
 
-        static getHint(index) {
+        /**
+         * 
+         * @param {number} index 
+         * @param {(hint: string) => void} callback 
+         */
+        static getHint(index, callback) {
+            const hint = KH._getNonKanjiHint(index);
+            if (hint) {
+                callback(hint);
+                return;
+            }
+
+            const chars = LEVEL_CHARS[index];
+            KH.getKanjiHint(chars, callback);
+        }
+
+        /**
+         * 
+         * @param {string[]} kanjiChars 
+         * @param {(hint: string) => void} callback 
+         */
+        static getKanjiHint(kanjiChars, callback) {
+            if (kanjidexMap) {
+                callback(KH._getKanjiHintSync(kanjiChars));
+                return;
+            }
+
+            $kt.ui.showLoading();
+            kanjidexPromise.then(() => {
+                callback(KH._getKanjiHintSync(kanjiChars));
+                $kt.ui.hideLoading();
+            });
+        }
+
+        /**
+         * 
+         * @param {number} index 
+         * @returns {string|undefined} hint if non-kanji (kana, special or endgame) level, undefined otherwise
+         */
+        static _getNonKanjiHint(index) {
             if (index < KANA_HINTS.length) {
                 return KANA_HINTS[index];
             }
@@ -1620,13 +1668,13 @@ const $kt = globalThis.$kt;
                 if (chars.includes('々')) {
                     return SPECIAL_HINT;
                 }
-                return KH.getKanjiHint(chars);
+                return;
             }
 
             return ENDGAME_HINT;
         }
 
-        static getKanjiHint(kanjiChars) {
+        static _getKanjiHintSync(kanjiChars) {
             return /*html*/ `
                 <style>
 
@@ -1671,7 +1719,7 @@ const $kt = globalThis.$kt;
                 </div>
 
                 <div class="hint-explanation">
-                    ${kanjiChars.map(kanji => JSON.stringify(KANJIDEX_MAP.get(kanji))).join('<br>')};
+                    ${kanjiChars.map(kanji => JSON.stringify(kanjidexMap.get(kanji))).join('<br>')};
                 </div>
                 <div class="hint-explanation">
                     Press ENTER to confirm your answer.

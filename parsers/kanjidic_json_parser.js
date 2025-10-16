@@ -1,5 +1,15 @@
 import fs from 'node:fs';
 
+const DEBUG = process.argv[2] !== 'prod';
+const CONFIG = DEBUG
+    ? { // debug config
+        indentSize: 2
+    }
+    : { // prod config
+        indentSize: 0
+    };
+console.log(DEBUG ? 'Running debug.' : 'Running prod!');
+
 const kanjidic = JSON.parse(fs.readFileSync('kanjidic2.json', 'utf-8'));
 const kanjiTypes = JSON.parse(fs.readFileSync('kanji_types.json', 'utf-8'));
 const kanjiTypeMap = Object.entries(kanjiTypes).reduce((acc, [ type, kanjiString ]) => {
@@ -42,14 +52,17 @@ const data = kanjidic['kanjidic2']['character'].map(character => {
     || (numOrMax(a.freq) - numOrMax(b.freq))
 );
 
-fs.writeFileSync('kanji_data.json', JSON.stringify(data, null, 2));
-console.log('kanji_data.json file written!');
+if (DEBUG) {
+    fs.writeFileSync('kanji_data.json', JSON.stringify(data, null, 2));
+    console.log('kanji_data.json file written!');
+}
 
 const kanjidexData = data
     .filter(entry => entry.type)
     .map(entry => {
         delete entry.grade;
         delete entry.freq;
+        delete entry.type;
         
         if (entry.kunReadings && entry.kunReadings.length === 0) {
             delete entry.kunReadings;
@@ -58,23 +71,12 @@ const kanjidexData = data
             delete entry.onReadings;
         }
 
-        const kanjiKenteiPrefix = '漢字検定';
-        if (entry.type.startsWith(kanjiKenteiPrefix)) {
-            entry.type = kanjiKenteiPrefix;
-        }
-
         return entry;
     });
 
-const kanjidexTextContent = `export const KANJIDEX = ${JSON.stringify(kanjidexData, null, 4)};
-
-export const KANJIDEX_MAP = KANJIDEX.reduce((acc, entry) => {
-    acc.set(entry.kanji, entry);
-    return acc;
-}, new Map());`;
-
-fs.writeFileSync('../ui/kanjidex.js', kanjidexTextContent);
-console.log('kanjidex.js file written!');
+const kanjidexTextContent = JSON.stringify(kanjidexData, null, CONFIG.indentSize);
+fs.writeFileSync('../ui/kanjidex.json', kanjidexTextContent);
+console.log('kanjidex.json file written!');
 
 function elementToArray(element) {
     if (Array.isArray(element)) {

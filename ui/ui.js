@@ -11,6 +11,7 @@ var $kt = $kt || {};
     class KantoreUi {
 
         constructor() {
+            this._loadingLayers = 0;
             this._getAllElements();
             this._addEventListeners();
             this._animateDetails();
@@ -18,11 +19,17 @@ var $kt = $kt || {};
         }
 
         showLoading() {
-            $kt.uiHelper.showOverlayElement(this._loadingDiv);
+            if (this._loadingLayers === 0) {
+                $kt.uiHelper.showOverlayElement(this._loadingDiv);
+            }
+            this._loadingLayers++;
         }
 
         hideLoading() {
-            $kt.uiHelper.hideOverlayElement(this._loadingDiv);
+            this._loadingLayers--;
+            if (this._loadingLayers === 0) {
+                $kt.uiHelper.hideOverlayElement(this._loadingDiv);
+            }
         }
 
         hideStartupLoading() {
