@@ -1617,7 +1617,7 @@ const $kt = globalThis.$kt;
                 return;
             }
 
-            fetch('kanjidex.json')
+            kanjidexPromise = fetch('kanjidex.json')
                 .then(response => response.json())
                 .then(kanjidex => {
                     kanjidexMap = kanjidex.reduce((acc, entry) => {
