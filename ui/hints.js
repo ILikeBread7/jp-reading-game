@@ -6,14 +6,7 @@ const $kt = globalThis.$kt;
 (() => {
 
     let kanjidexMap = null;
-    let kanjidexPromise = fetch('kanjidex.json')
-        .then(response => response.json())
-        .then(kanjidex => {
-            kanjidexMap = kanjidex.reduce((acc, entry) => {
-                acc.set(entry.kanji, entry);
-                return acc;
-            }, new Map());
-        });
+    let kanjidexPromise = null;
 
     const ENDGAME_HINT = /*html*/ `
         <div class="centered-text">
@@ -1617,6 +1610,21 @@ const $kt = globalThis.$kt;
 
         static get length() {
             return LEVEL_CHARS.length + 1;
+        }
+
+        static loadKanjidex() {
+            if (kanjidexMap) {
+                return;
+            }
+
+            fetch('kanjidex.json')
+                .then(response => response.json())
+                .then(kanjidex => {
+                    kanjidexMap = kanjidex.reduce((acc, entry) => {
+                        acc.set(entry.kanji, entry);
+                        return acc;
+                    }, new Map());
+                });
         }
 
         /**

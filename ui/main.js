@@ -31,6 +31,7 @@ var $kt = $kt || {};
     const gamePractice = new $kt.GamePractice(gameLevel);
 
     let game = gameMain;
+    $kt.hints.loadKanjidex();
     $kt.audio.preloadAudio();
 
     events.addEventListener(EVENTS.START, event => {
