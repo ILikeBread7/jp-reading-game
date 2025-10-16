@@ -14,3 +14,4 @@ kanjidic2.*
 kanji_data.json
 
 ui/dicts
+parsers/levels.txt
