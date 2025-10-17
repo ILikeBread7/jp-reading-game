@@ -14,6 +14,19 @@ if (GENERATE_LEVELS) {
 }
 console.log(DEBUG ? 'Running debug.' : 'Running prod!');
 
+const jmdict = JSON.parse(fs.readFileSync('JMdict_e.json', 'utf-8'));
+const kanjiWithWords = new Set();
+for (const entry of jmdict['JMdict']['entry']) {
+    const words = entry['k_ele'] && elementToArray(entry['k_ele']);
+    if (!words) {
+        continue;
+    }
+
+    for (const word of words) {
+        [...word['keb']].forEach(char => kanjiWithWords.add(char));
+    }
+}
+
 const kanjidic = JSON.parse(fs.readFileSync('kanjidic2.json', 'utf-8'));
 const kanjiTypes = JSON.parse(fs.readFileSync('kanji_types.json', 'utf-8'));
 const kanjiTypeMap = Object.entries(kanjiTypes).reduce((acc, [ type, kanjiString ]) => {
@@ -56,7 +69,8 @@ const data = kanjidic['kanjidic2']['character'].map(character => {
     || (numOrMax(a.freq) - numOrMax(b.freq))
 );
 
-const entriesForLevels = data.filter(entry => entry.grade || entry.type)
+const entriesForLevels = data
+    .filter(entry => (entry.grade || entry.type) && kanjiWithWords.has(entry.kanji))
 
 const TARGET_CHARS_PER_LEVEL = 5;
 const MIN_CHARS_PER_LEVEL = TARGET_CHARS_PER_LEVEL - 1;
