@@ -261,7 +261,7 @@ var $kt = $kt || {};
 
         get _isKanjiLevel() {
             return this._levelChars.size > 0
-                && wanakana.isKanji(this._levelChars.keys().next().value);
+                && !wanakana.isKana(this._levelChars.keys().next().value);
         }
 
         _calculateCharExpPercentage(charReps) {

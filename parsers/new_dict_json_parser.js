@@ -788,7 +788,7 @@ function createJLPTKanjiTags(entry) {
     }
 
     const kanjiList = [...entry.kanji]
-        .filter(char => wanakana.isKanji(char));
+        .filter(char => !wanakana.isKana(char));
 
     if (kanjiList.length > 0) {
         const topLevel = kanjiList
@@ -905,7 +905,7 @@ function createLevelTagsFromPriorities(priorities, entries) {
             const dedupEntSeq = !noDedupEntSeqChars.has(char);
 
             const existingEntryKeys = new Set();
-            const isKanji = wanakana.isKanji(char) || noDedupEntSeqChars.has(char);
+            const isKanji = !wanakana.isKana(char) || noDedupEntSeqChars.has(char);
             const [ order, orderEntries, generateKeyFunction ] = isKanji
                 ? [ priorities.orderKanji, priorities.kanjiEntries, generateKanjiKey ]
                 : [ priorities.orderKana, priorities.kanaEntries, generateKanaKey ];
