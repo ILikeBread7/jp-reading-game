@@ -108,16 +108,19 @@ function generateLevels(data) {
 
     const firstOfType = new Set();
 
+    let newGrade = 1;
     for (const entry of data) {
         const kanji = entry.kanji;
 
         // Grades 9 and 10 are both Jinmeiyo
         if (entry.grade !== 10 && entry.grade !== lastGrade) {
-            lastGrade = entry.grade;
+            newGrade = lastGrade = entry.grade;
             if (currentLevel.length > 0) {
-                addLevel(levels, currentLevel);
+                addLevel(levels, currentLevel, newGrade);
+                newGrade = null;
                 currentLevel = [];
             }
+            levels.push([]);
         }
 
         currentLevel.push(kanji);
@@ -128,20 +131,50 @@ function generateLevels(data) {
         }
 
         if (currentLevel.length === TARGET_CHARS_PER_LEVEL) {
-            addLevel(levels, currentLevel);
+            addLevel(levels, currentLevel, newGrade);
+            newGrade = null;
             currentLevel = [];
         }
     }
 
     if (currentLevel.length > 0) {
-        addLevel(levels, currentLevel);
+        addLevel(levels, currentLevel, newGrade);
     }
 
-    fs.writeFileSync('levels.txt', JSON.stringify(levels, null, 2));
+    const levelStrings = levels.map(level => {
+        const kanjiTypeInfo = [];
+        const levelString = level.map(kanji => {
+            const split = kanji.split('|');
+            const kanjiPart = split[0];
+            if (split.length > 1) {
+                const typePart = split.slice(1);
+                kanjiTypeInfo.push(
+                    ...typePart
+                        .map(type => `${type}(${kanjiPart})`)
+                    );
+            }
+            return kanjiPart;
+        }).join('');
+        
+        const typeString = kanjiTypeInfo.length > 0 ? ` ${kanjiTypeInfo.join(', ')}` : '';
+        return levelString + typeString;
+    });
+
+    const levelsTextToSave = JSON.stringify(levelStrings, null, 4)
+        .replaceAll('"', "'")
+        .replaceAll(/'(.{1,5}) (.+)',/g, "'$1', // $2")
+        .replaceAll(/,\n    '',/g, '\n')
+        .replaceAll(/(.*)(( \/\/ )|(, ))(Grade(\d+))\(.\)/g, "    // $5\n$1");
+    fs.writeFileSync('levels.txt', levelsTextToSave);
     console.log('Levels file written!');
 }
 
-function addLevel(levels, level) {
+function addLevel(levels, level, newGrade) {
+    if (newGrade) {
+        level[0] += `|Grade${newGrade}`;
+    }
+
+
     levels.push(level);
 
     for (let i = levels.length - 1; i > 0 && levels[i].length < MIN_CHARS_PER_LEVEL; i--) {
