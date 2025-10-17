@@ -56,10 +56,12 @@ const data = kanjidic['kanjidic2']['character'].map(character => {
     || (numOrMax(a.freq) - numOrMax(b.freq))
 );
 
+const entriesForLevels = data.filter(entry => entry.grade || entry.type)
+
 const TARGET_CHARS_PER_LEVEL = 5;
 const MIN_CHARS_PER_LEVEL = TARGET_CHARS_PER_LEVEL - 1;
 if (GENERATE_LEVELS) {
-    generateLevels(data);
+    generateLevels(entriesForLevels);
     process.exit();
 }
 
@@ -68,8 +70,7 @@ if (DEBUG) {
     console.log('kanji_data.json file written!');
 }
 
-const kanjidexData = data
-    .filter(entry => entry.type)
+const kanjidexData = entriesForLevels
     .map(entry => {
         delete entry.grade;
         delete entry.freq;
