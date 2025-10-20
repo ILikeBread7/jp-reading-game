@@ -37,6 +37,15 @@ var $kt = $kt || {};
             return `${lsource.value} (${lsource.lang})${KT._coa(lsource.wasei) && ' (wasei word)'}`;
         }
 
+        static hintLoading() {
+            return /*html*/`
+                <div class="spinner-container">
+                    <div class="hint-spinner"></div>
+                    Loading<span class="loading-dots">...</span>
+                </div>
+            `;
+        }
+
         /**
          * @param {string} levelName
          * @param {number} totalExp

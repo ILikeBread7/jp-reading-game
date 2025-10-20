@@ -129,7 +129,7 @@ var $kt = $kt || {};
         showHint() {
             this._isShowingHintOnly = true;
 
-            this._getCurrentHintTemplate(hint => this._levelUpHintContent.innerHTML = hint);
+            this._updateHintTemplateOrLoading(this._levelUpHintContent);
             this._prepareLevelUpContainerForHintOnly();
             
             const fadeInTimeCss = `${LEVEL_UP_FADE_IN_TIME}s`;
@@ -151,7 +151,7 @@ var $kt = $kt || {};
             );
             
             this._showHintOnLevelUp = showHint;
-            this._getCurrentHintTemplate(hint => this._levelUpHintContent.innerHTML = hint);
+            this._updateHintTemplateOrLoading(this._levelUpHintContent);
             this._prepareLevelUpContainerForLevelUp();
 
             const charTransitionDelayTime = 0.075;
@@ -595,7 +595,12 @@ var $kt = $kt || {};
 
         _updateHintContent() {
             this._updateHintButtons();
-            this._getCurrentHintTemplate(hint => this._hintContent.innerHTML = hint);
+            this._updateHintTemplateOrLoading(this._hintContent);
+        }
+
+        _updateHintTemplateOrLoading(element) {
+            element.innerHTML = $kt.templates.hintLoading();
+            this._getCurrentHintTemplate(hint => element.innerHTML = hint);
         }
 
         _updateHintButtons() {

@@ -604,17 +604,23 @@ details.closing > summary::before {
     animation: shake 0.5s;
 }
 
-#spinner-container {
+.spinner-container {
     text-align: center;
 }
 
-#spinner {
+.hint-spinner,
+.spinner {
     border: 1em solid rgba(0, 0, 0, 0);
     border-radius: 50%;
     border-left: 1em solid var(--palette-text-color);
     width: 2.5em;
     height: 2.5em;
     animation: spin 1s linear infinite;
+}
+
+.hint-spinner {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes spin {
@@ -627,7 +633,7 @@ details.closing > summary::before {
     }
 }
 
-#loading-dots {
+.loading-dots {
     display: inline-block;
     animation: loading-dots 1s step-end infinite;
     overflow: hidden;

@@ -1654,10 +1654,8 @@ const $kt = globalThis.$kt;
                 return;
             }
 
-            $kt.ui.showLoading();
             kanjidexPromise.then(() => {
                 callback(KH._getKanjiHintSync(kanjiChars));
-                $kt.ui.hideLoading();
             });
         }
 
