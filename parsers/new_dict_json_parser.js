@@ -1053,7 +1053,7 @@ function getTermCodeOrUndefined(term) {
 }
 
 function levelNumberToTag(level) {
-    return `L${level.toString().padStart(3, '0')}`;
+    return `L${level.toString().padStart(4, '0')}`;
 }
 
 function separateIntoTagEntries(entries) {

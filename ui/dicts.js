@@ -728,7 +728,7 @@ var $kt = $kt || {};
             this._levelDicts = [];
 
             for (let i = 1; i <= NUMBER_OF_LEVELS; i++) {
-                const dictName = `L${i.toString().padStart(3, '0')}`;
+                const dictName = `L${i.toString().padStart(4, '0')}`;
                 const dict = new BaseDict(dictName);
                 this._levelDicts.push(dict);
                 this._dicts.set(dictName, dict);
