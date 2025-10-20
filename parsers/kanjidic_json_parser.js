@@ -179,7 +179,8 @@ function generateLevels(data) {
         .replaceAll('"', "'")
         .replaceAll(/'(.{1,6}) (.+)',/g, "'$1', // $2")
         .replaceAll(/,?\n    '',/g, '\n')
-        .replaceAll(/(.*)(( \/\/ )|(, ))(Grade(.+))\(.\)/g, "    // $5\n$1");
+        .replaceAll(/(.*)(( \/\/ )|(, ))(Grade(.+))\(.\)/g, "    // $5\n$1")
+        .replaceAll(/(\[\n)|(\n\])| {4}/g, '');
     fs.writeFileSync('levels.txt', levelsTextToSave);
     console.log('Levels file written!');
 }
