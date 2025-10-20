@@ -127,14 +127,14 @@ function generateLevels(data) {
     for (const entry of data) {
         const kanji = entry.kanji;
 
+        const grade = entry.grade || 'Hyougai';
         // Grades 9 and 10 are both Jinmeiyo
-        if (entry.grade !== 10 && entry.grade !== lastGrade) {
-            newGrade = lastGrade = entry.grade;
+        if (grade !== 10 && grade !== lastGrade) {
             if (currentLevel.length > 0) {
                 addLevel(levels, currentLevel, newGrade);
-                newGrade = null;
                 currentLevel = [];
             }
+            newGrade = lastGrade = grade;
             levels.push([]);
         }
 
@@ -177,9 +177,9 @@ function generateLevels(data) {
 
     const levelsTextToSave = JSON.stringify(levelStrings, null, 4)
         .replaceAll('"', "'")
-        .replaceAll(/'(.{1,5}) (.+)',/g, "'$1', // $2")
-        .replaceAll(/,\n    '',/g, '\n')
-        .replaceAll(/(.*)(( \/\/ )|(, ))(Grade(\d+))\(.\)/g, "    // $5\n$1");
+        .replaceAll(/'(.{1,6}) (.+)',/g, "'$1', // $2")
+        .replaceAll(/,?\n    '',/g, '\n')
+        .replaceAll(/(.*)(( \/\/ )|(, ))(Grade(.+))\(.\)/g, "    // $5\n$1");
     fs.writeFileSync('levels.txt', levelsTextToSave);
     console.log('Levels file written!');
 }
