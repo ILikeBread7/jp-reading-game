@@ -23,6 +23,9 @@ for (const entry of jmdict['JMdict']['entry']) {
     }
 
     for (const word of words) {
+        if (word['ke_inf'] === 'search-only kanji form') {
+            continue;
+        }
         [...word['keb']].forEach(char => kanjiWithWords.add(char));
     }
 }
