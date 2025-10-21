@@ -68,7 +68,7 @@ const data = kanjidic['kanjidic2']['character'].map(character => {
     }
 }).sort((a, b) =>
     (numOrMax(a.grade) - numOrMax(b.grade))
-    || (numOrMax(kanjjiTypeOrder[a.type]) - numOrMax(kanjjiTypeOrder[b.type]))
+    || (a.grade === 1 && (numOrMax(kanjjiTypeOrder[a.type]) - numOrMax(kanjjiTypeOrder[b.type])))
     || (numOrMax(a.freq) - numOrMax(b.freq))
 );
 
