@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import * as wanakana from 'wanakana';
-import { KANA_STRINGS, LEVEL_CHARS } from '../ui/level-chars.js';
+import { KANA_STRINGS, LEVEL_CHARS, KANJI_JINMEIYO_STRINGS, KANJI_NONSTANDARD_STRINGS } from '../ui/level-chars.js';
 
 const DEBUG = process.argv[2] !== 'prod';
 const CONFIG = DEBUG
@@ -391,10 +391,15 @@ const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [
     'Judaism', 'Allah', 'Protestant',                   // Religion
     'fotiaoqiang', 'Minerva (goddess)', 'Vulcan (god)'  // Contain characters we don't want to deal with
 ];
-const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set([
-    TERMS_TEXT_BY_CODE.get('sens').text,
-    TERMS_TEXT_BY_CODE.get('obs').text
+
+const FILTER_OUT_LEVEL_ENTRY_TAGS = new Set([
+    'sens', 'obs'
 ]);
+
+const FILTER_OUT_LEVEL_ENTRY_MISCS = new Set(
+    [...FILTER_OUT_LEVEL_ENTRY_TAGS]
+        .map(tag => TERMS_TEXT_BY_CODE.get(tag).text)
+);
 
 const FILTER_OUT_LEVEL_ENTRY_KANJI_WORDS = new Set([
     '一〇月', '一一月', '一二月'
@@ -584,7 +589,18 @@ const allEntries = [ ...entries, ...censoredEntries ];
 allEntries.forEach(entry => createUniqueHint(entry, entriesMap));
 
 const priorities = createPriorities(entries);
-createLevelTagsFromPriorities(priorities, entries);
+const entriesForLevels = [
+    ...entries,
+
+    // Some unusual kanji only have words with sensitive meanings
+    // they can be shown at later levels
+    ...censoredEntries
+        .filter(
+            entry => entry.tags
+                .some(tag => FILTER_OUT_LEVEL_ENTRY_TAGS.has(tag))
+        )
+];
+createLevelTagsFromPriorities(priorities, entriesForLevels);
 
 if (DEBUG) {
     const jlptMismatches = {};
@@ -898,6 +914,8 @@ function createLevelTagsFromPriorities(priorities, entries) {
     LEVEL_CHARS.forEach((chars, index, array) => {
         const currentLevel = index + 1;
         const totalLevels = array.length;
+        const isEarlyLevel = currentLevel <= totalLevels - KANJI_JINMEIYO_STRINGS.length - KANJI_NONSTANDARD_STRINGS.length;
+
         chars.forEach(char => acceptableCharsSet.add(char));
 
         chars.forEach(char => {
@@ -923,13 +941,13 @@ function createLevelTagsFromPriorities(priorities, entries) {
             ) {
                 const currentOrder = lastPriority = order[i];
                 const charPriorityEntries = (orderEntries.get(currentOrder) || []).filter(charFilter);
-                addAndDeduplicate(charPriorityEntries, charEntries, generateKeyFunction, existingEntryKeys, dedupEntSeq);
+                addAndDeduplicate(charPriorityEntries, charEntries, generateKeyFunction, existingEntryKeys, isEarlyLevel, dedupEntSeq);
             }
             console.log(` - Last priority: ${lastPriority}`);
             
             if (charEntries.length < MIN_ENTRIES_PER_CHAR) {
                 console.log(` - Adding all entries, size with priorities only: ${charEntries.length}`);
-                addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys, dedupEntSeq, MIN_ENTRIES_PER_CHAR);
+                addAndDeduplicate(entries.filter(charFilter), charEntries, generateKeyFunction, existingEntryKeys, isEarlyLevel, dedupEntSeq, MIN_ENTRIES_PER_CHAR);
             }
             console.log(` - Total number of entries: ${charEntries.length}`);
             if (charEntries.length === 0) {
@@ -948,7 +966,7 @@ function createLevelTagsFromPriorities(priorities, entries) {
     });
 }
 
-function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys, dedupEntSeq, maxLength) {
+function addAndDeduplicate(source, destination, generateKeyFunction, existingEntryKeys, isEarlyLevel, dedupEntSeq, maxLength) {
     for (const entry of source) {
         if (maxLength !== undefined && destination.length >= maxLength) {
             break;
@@ -968,7 +986,7 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
             continue;
         }
 
-        if (isLevelEntryToBeFilteredOut(entry)) {
+        if (isLevelEntryToBeFilteredOut(entry, isEarlyLevel)) {
             continue;
         }
 
@@ -980,14 +998,14 @@ function addAndDeduplicate(source, destination, generateKeyFunction, existingEnt
     };
 }
 
-function isLevelEntryToBeFilteredOut(entry) {
+function isLevelEntryToBeFilteredOut(entry, isEarlyLevel) {
     const filterOutKanjiWord = FILTER_OUT_LEVEL_ENTRY_KANJI_WORDS.has(entry.kanji);
     if (filterOutKanjiWord) {
         return true;
     }
 
     const filterOutMisc = entry.sense.flatMap(sense => sense.misc)
-        .some(misc => FILTER_OUT_LEVEL_ENTRY_MISCS.has(misc));
+        .some(misc => isEarlyLevel && FILTER_OUT_LEVEL_ENTRY_MISCS.has(misc));
 
     if (filterOutMisc) {
         return true;
