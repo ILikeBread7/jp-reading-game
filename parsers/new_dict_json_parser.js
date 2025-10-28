@@ -14,6 +14,11 @@ const CONFIG = DEBUG
     };
 console.log(DEBUG ? 'Running debug.' : 'Running prod!');
 
+const DRY = process.argv[2] === 'dry';
+if (DRY) {
+    console.log('Running dry...');
+}
+
 const READ_PATH = '';
 const WRITE_PATH = '../ui/dicts/';
 
@@ -602,7 +607,7 @@ const entriesForLevels = [
 ];
 createLevelTagsFromPriorities(priorities, entriesForLevels);
 
-if (DEBUG) {
+if (DEBUG && !DRY) {
     const jlptMismatches = {};
     jlptMismatchesMap.forEach((value, key) => {
         if (value !== 1) {
@@ -620,14 +625,16 @@ if (DEBUG) {
     fs.writeFile(WRITE_PATH + 'dict_censored.json', JSON.stringify(censoredEntries, null, JSON_FORMAT_INDENT_SIZE), () => console.log('Vulgar dict file written!'));
 }
 
-separateIntoTagEntries(allEntries)
-    .forEach((tagEntries, tag) =>
-        fs.writeFile(
-            `${WRITE_PATH}${tag}.json`,
-            JSON.stringify(tagEntries, null, JSON_FORMAT_INDENT_SIZE),
-            () => console.log(`${tag} tag dict file written!`)
-        )
-    );
+if (!DRY) {
+    separateIntoTagEntries(allEntries)
+        .forEach((tagEntries, tag) =>
+            fs.writeFile(
+                `${WRITE_PATH}${tag}.json`,
+                JSON.stringify(tagEntries, null, JSON_FORMAT_INDENT_SIZE),
+                () => console.log(`${tag} tag dict file written!`)
+            )
+        );
+}
 
 function elementToArray(element) {
     if (Array.isArray(element)) {
