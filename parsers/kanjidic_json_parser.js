@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { LEVEL_CHARS } from '../ui/level-chars.js';
 
 const DEBUG = process.argv[2] !== 'prod';
 const GENERATE_LEVELS = process.argv[2] === 'levels';
@@ -13,22 +14,6 @@ if (GENERATE_LEVELS) {
     console.log('Running generate levels.');
 }
 console.log(DEBUG ? 'Running debug.' : 'Running prod!');
-
-const jmdict = JSON.parse(fs.readFileSync('JMdict_e.json', 'utf-8'));
-const kanjiWithWords = new Set();
-for (const entry of jmdict['JMdict']['entry']) {
-    const words = entry['k_ele'] && elementToArray(entry['k_ele']);
-    if (!words) {
-        continue;
-    }
-
-    for (const word of words) {
-        if (word['ke_inf'] === 'search-only kanji form') {
-            continue;
-        }
-        [...word['keb']].forEach(char => kanjiWithWords.add(char));
-    }
-}
 
 const kanjidic = JSON.parse(fs.readFileSync('kanjidic2.json', 'utf-8'));
 const kanjiTypes = JSON.parse(fs.readFileSync('kanji_types.json', 'utf-8'));
@@ -72,12 +57,26 @@ const data = kanjidic['kanjidic2']['character'].map(character => {
     || (numOrMax(a.freq) - numOrMax(b.freq))
 );
 
-const entriesForLevels = data
-    .filter(entry => (entry.grade || entry.type) && kanjiWithWords.has(entry.kanji))
-
-const TARGET_CHARS_PER_LEVEL = 5;
-const MIN_CHARS_PER_LEVEL = TARGET_CHARS_PER_LEVEL - 1;
 if (GENERATE_LEVELS) {
+    const jmdict = JSON.parse(fs.readFileSync('JMdict_e.json', 'utf-8'));
+    const kanjiWithWords = new Set();
+    for (const entry of jmdict['JMdict']['entry']) {
+        const words = entry['k_ele'] && elementToArray(entry['k_ele']);
+        if (!words) {
+            continue;
+        }
+
+        for (const word of words) {
+            if (word['ke_inf'] === 'search-only kanji form') {
+                continue;
+            }
+            [...word['keb']].forEach(char => kanjiWithWords.add(char));
+        }
+    }
+
+    const entriesForLevels = data
+        .filter(entry => (entry.grade || entry.type) && kanjiWithWords.has(entry.kanji))
+
     generateLevels(entriesForLevels);
     process.exit();
 }
@@ -87,21 +86,22 @@ if (DEBUG) {
     console.log('kanji_data.json file written!');
 }
 
-const kanjidexData = entriesForLevels
-    .map(entry => {
-        delete entry.grade;
-        delete entry.freq;
-        delete entry.type;
-        
-        if (entry.kunReadings && entry.kunReadings.length === 0) {
-            delete entry.kunReadings;
-        }
-        if (entry.onReadings && entry.onReadings.length === 0) {
-            delete entry.onReadings;
-        }
+const levelCharsSet = new Set(LEVEL_CHARS.flat());
+const kanjidexData = data
+    .filter(entry => levelCharsSet.has(entry.kanji));
 
-        return entry;
-    });
+for (const entry of kanjidexData) {
+    delete entry.grade;
+    delete entry.freq;
+    delete entry.type;
+    
+    if (entry.kunReadings && entry.kunReadings.length === 0) {
+        delete entry.kunReadings;
+    }
+    if (entry.onReadings && entry.onReadings.length === 0) {
+        delete entry.onReadings;
+    }
+}
 
 const kanjidexTextContent = JSON.stringify(kanjidexData, null, CONFIG.indentSize);
 fs.writeFileSync('../ui/kanjidex.json', kanjidexTextContent);
@@ -118,6 +118,9 @@ function elementToArray(element) {
 function numOrMax(number) {
     return number ?? Number.MAX_SAFE_INTEGER;
 }
+
+const TARGET_CHARS_PER_LEVEL = 5;
+const MIN_CHARS_PER_LEVEL = TARGET_CHARS_PER_LEVEL - 1;
 
 function generateLevels(data) {
     const levels = [];
