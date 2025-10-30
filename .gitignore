@@ -12,6 +12,7 @@ jlpt_mismatches.json
 dict_vulgar.json
 kanjidic2.*
 kanji_data.json
+kanjidex.json
 
 ui/dicts
 parsers/levels.txt
