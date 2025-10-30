@@ -1682,58 +1682,14 @@ const $kt = globalThis.$kt;
 
         static _getKanjiHintSync(kanjiChars) {
             return /*html*/ `
-                <style>
-
-                </style>
-                
                 <div>
-                    <div>
-                        <span class="hint-emphasis">人</span>,
-                        Readings:
-                        <span class="hint-emphasis">ひと, -り, -と</span>;
-                        <span class="hint-emphasis">ジン, ニン</span>
-                        Meanings: <span class="hint-emphasis">person</span>
-                    </div>
-                    <div>
-                        <span class="hint-emphasis">木</span>,
-                        Readings:
-                        <span class="hint-emphasis">き, こ-</span>;
-                        <span class="hint-emphasis">ボク, モク</span>
-                        Meanings: <span class="hint-emphasis">tree, wood</span>
-                    </div>
-                    <div>
-                        <span class="hint-emphasis">山</span>,
-                        Readings:
-                        <span class="hint-emphasis">やま</span>;
-                        <span class="hint-emphasis">サン, セン</span>
-                        Meanings: <span class="hint-emphasis">mountain</span>
-                    </div>
-                    <div>
-                        <span class="hint-emphasis">日</span>,
-                        Readings:
-                        <span class="hint-emphasis">ひ, -び, -か</span>;
-                        <span class="hint-emphasis">ニチ, ジツ</span>
-                        Meanings: <span class="hint-emphasis">day, sun, Japan, counter for days</span>
-                    </div>
-                    <div>
-                        <span class="hint-emphasis">雨</span>,
-                        Readings:
-                        <span class="hint-emphasis">あめ, あま-, -さめ</span>;
-                        <span class="hint-emphasis">ウ</span>
-                        Meanings: <span class="hint-emphasis">rain</span>
-                    </div>
+                    ${
+                        kanjiChars
+                            .map(kanji => $kt.templates.kanjiHintEntry(kanjidexMap.get(kanji)))
+                            .join('')
+                    }
                 </div>
-
-                <div class="hint-explanation">
-                    ${kanjiChars.map(kanji => JSON.stringify(kanjidexMap.get(kanji))).join('<br>')};
-                </div>
-                <div class="hint-explanation">
-                    Press ENTER to confirm your answer.
-                </div>
-                <div class="hint-explanation">
-                    Press ENTER with an empty input
-                    to get an extra hint but you won't receive any exp.
-                </div>`
+            `
         }
 
     }

@@ -46,6 +46,40 @@ var $kt = $kt || {};
             `;
         }
 
+        static kanjiHintEntry(kanjiData) {
+            const allReadings = [
+                KT._kanjiReadings(kanjiData.kunReadings),
+                KT._kanjiReadings(kanjiData.onReadings)
+            ].filter(Boolean)
+            .join('; ');
+
+            return /*html*/`
+                <div>
+                    <span class="hint-emphasis">${kanjiData.kanji}</span>,
+                    ${
+                        KT._tif(
+                            allReadings.length > 0
+                            && /*html*/ `Readings: ${allReadings}`
+                        )
+                    }
+                    ${
+                        KT._tif(
+                            kanjiData.meaning
+                            && /*html*/ `Meanings: <span class="hint-emphasis">${kanjiData.meaning.join('; ')}</span>`
+                        )
+                    }
+                </div>
+            `;
+        }
+
+        static _kanjiReadings(readings) {
+            if (!readings) {
+                return '';
+            }
+
+            return /*html*/ `<span class="hint-emphasis">${readings.join(', ')}</span>`;
+        }
+
         /**
          * @param {string} levelName
          * @param {number} totalExp
