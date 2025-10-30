@@ -1689,7 +1689,35 @@ const $kt = globalThis.$kt;
                             .join('')
                     }
                 </div>
-            `
+                ${KH._getKanjiHintExplanations(kanjiChars)}
+            `;
+        }
+
+        static _getKanjiHintExplanations(kanjiChars) {
+            const explanations = kanjiChars
+                .flatMap(KH._getKanjiHintExplanationForSingleKanji)
+                .filter(Boolean);
+
+            if (explanations.length === 0) {
+                return '';
+            }
+
+            return explanations
+                .map(explanation => /*html*/ `<div class="hint-explanation">${explanation}</div>`)
+                .join('');
+        }
+
+        static _getKanjiHintExplanationForSingleKanji(kanji) {
+            switch (kanji) {
+                case '日': return [
+                    'Test1',
+                    'Test2'
+                ];
+
+                case '人': return 'test3';
+
+                default: return '';
+            }
         }
 
     }
