@@ -63,7 +63,7 @@ const $kt = globalThis.$kt;
         static getLevelName(level, breakLineKanjiLevels) {
             const separator = breakLineKanjiLevels && level > KANA_STRINGS.length ? '<br>' : ' ';
             const name = LEVEL_NAMES[level - 1] || 'Endgame';
-            return `Level ${level}:${separator}${name}`;
+            return `Level ${level}${separator}${name}`;
         }
 
         static getCharsWithRepsPerLevel(level) {
