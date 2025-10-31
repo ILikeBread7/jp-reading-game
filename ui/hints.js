@@ -1681,6 +1681,11 @@ const $kt = globalThis.$kt;
         }
 
         static _getKanjiHintSync(kanjiChars) {
+            return KH._getKanjiHintsOnly(kanjiChars)
+                + KH._getKanjiHintExplanations(kanjiChars);
+        }
+
+        static _getKanjiHintsOnly(kanjiChars) {
             return /*html*/ `
                 <div>
                     ${
@@ -1689,7 +1694,6 @@ const $kt = globalThis.$kt;
                             .join('')
                     }
                 </div>
-                ${KH._getKanjiHintExplanations(kanjiChars)}
             `;
         }
 
