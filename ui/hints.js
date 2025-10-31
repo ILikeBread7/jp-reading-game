@@ -1773,6 +1773,16 @@ const $kt = globalThis.$kt;
                     'Other types of kanji will be explained as they appear in later levels.'
                 ];
 
+                case '一': return [
+                    `The 一 character is an example of a new type of kanji
+                    called "shiji".`,
+                    `These characters are still supposed to visually represent
+                    their meanings, but because their meanings are usually more abstract
+                    they don't necessarily represent any physical object.`,
+                    `Like in this example the meaning of the kanji 一 is "one",
+                    so it's represented as a single line.`
+                ];
+
                 default: return '';
             }
         }
