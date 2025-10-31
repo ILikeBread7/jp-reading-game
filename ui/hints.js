@@ -1792,7 +1792,39 @@ const $kt = globalThis.$kt;
                     `In this case the kanji for eye 目 and radical for legs 儿
                     are put together to create 見 with the meaning of "see" or "look"
                     (as if giving legs to an eye and sending it at whatever you want to look at).`
-                ]
+                ];
+
+                case '百': return [
+                    `The 百 character the first example of the most common
+                    type of kanji called "keisei".`,
+                    `These characters combine two parts "kei" (shape) and "sei" (sound).`,
+                    `The "shape" part is usually on the left or at the top and hints at
+                    the meaning of the kanji.`,
+                    `The "sound" part hints at the way the kanji is pronunced.`,
+                    `In this example the "shape" is 一 which makes the meaning related to numbers
+                    (the meaning of 百 is one hundred, so a number),
+                    and "sound" is 白 (はく) which relates to the pronunciation of 百 (ひゃく).`,
+                    `For these types of kanji the sound relates to on-yomi only.
+                    It's also not always a perfect match as the sounds have changed over time.`
+                ];
+
+                case '町': return [
+                    `Some characters combine "keisei" (shape and sound) and "kaii" (compound meaning).
+                    One example of it is kanji 町 (town) which combines
+                    田 (rice field) and 丁 (street / ward or tools).`,
+                    `For kaii the 丁 part is supposed to resemble a nail, so putting nails into a rice field
+                    signifies construction which indicates a town.`,
+                    `For keisei 田 (rice field) indicates a plot of land (physical space),
+                    and 丁 is read as ちょう which matches the on-yomi reading of 町 (also ちょう).`
+                ];
+
+                case '匂': return [
+                    `The 匂 character is an example of the last type of kanji
+                    called "kokuji" which are kanji created in Japan,
+                    not borrowed from China.`,
+                    `They have no special characteristics
+                    and are only mentioned for the sake of completeness.`
+                ];
 
                 default: return '';
             }
