@@ -10,10 +10,9 @@ const $kt = globalThis.$kt;
 
     const ENDGAME_HINT = /*html*/ `
         <div class="centered-text">
-            <div>Congratulations! You completed all levels prepared up to this point!</div>
+            <div>Congratulations! You completed all levels!</div>
             <div class="hint-explanation">
-                I will be adding more levels in future updates
-                but for now you can try the practice mode or
+                Now you can try the practice mode or you can
                 stay in this mode and review all material from
                 all existing levels!
             </div>
@@ -21,7 +20,7 @@ const $kt = globalThis.$kt;
                 I would also love to see your feedback in the comments on the
                 <a target="_blank" href="https://ilikebread7.itch.io/kantore">itch.io</a> page for this game or wherever else you're playing it right now!
             </div>
-            <div class="hint-explanation">Thank you for playing this game and I hope you will check back when new levels are added!</div>
+            <div class="hint-explanation">Thank you for playing this game and I hope you had fun and learned something!</div>
         </div>`;
 
     const SPECIAL_HINT = /*html*/ `
