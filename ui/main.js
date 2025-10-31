@@ -33,6 +33,7 @@ var $kt = $kt || {};
     let game = gameMain;
     $kt.hints.loadKanjidex();
     $kt.audio.preloadAudio();
+    $kt.gameUi.setupLevelHints(gameStatus.level);
 
     events.addEventListener(EVENTS.START, event => {
         const TYPES = $kt.enums.GAME_TYPE;
@@ -43,7 +44,6 @@ var $kt = $kt || {};
             case TYPES.MAIN:
                 game = gameMain;
 
-                $kt.gameUi.setupLevelHints(gameStatus.level);
                 gameMain.start();
 
                 if (flags.showHintOnGameStart) {
