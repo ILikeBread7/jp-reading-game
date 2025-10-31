@@ -77,6 +77,11 @@ a {
     color: var(--palette-secondary-text-color);
 }
 
+#kanji-readings-explanations-list {
+    text-align: left;
+    margin-top: 0px;
+}
+
 #hint-select {
     font-size: 0.9em;
 }

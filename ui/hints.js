@@ -1732,28 +1732,32 @@ const $kt = globalThis.$kt;
                 case '日': return [
                     'Hiragana and katakana are done so we can move on to kanji.',
                     'The readings written in hiragana are called kun-yomi, they are related to native Japanese words.',
-                    `Ones written in katakana are called on-yomi, they are readings borrowed from Chinese.
+                    /*html*/`Ones written in katakana are called on-yomi, they are readings borrowed from Chinese.
                     Even though they're written in katakana, the words they're used in will still be written in hiragana.`,
-                    `Ones with a dot (.) in the middle indicate that the reading is split into two parts,
+                    /*html*/`Ones with a dot (.) in the middle indicate that the reading is split into two parts,
                     the first part corresponds to the kanji, and the second part is written in hiragana.
                     For example, kanji 大 and reading <span class="nowrap"><span class="hint-emphasis">おお</span>.きい</span> becomes <span class="hint-emphasis">大</span>きい.`,
-                    `Ones with a dash at the beginning or end are prefixes or suffixes respectively.
+                    /*html*/`Ones with a dash at the beginning or end are prefixes or suffixes respectively.
                     For example, kanji 出 and reading <span class="hint-emphasis">-で</span> in word 日の<span class="hint-emphasis">出</span> becomes ひの<span class="hint-emphasis">で</span>.`,
-                    `Sometimes when a kanji is used in the middle of a word it's first syllable will have a dakuten ゛ (or handakuten ゜) added.
+                    /*html*/`Sometimes when a kanji is used in the middle of a word it's first syllable will have a dakuten ゛ (or handakuten ゜) added.
                     For example: 人人 (ひと<span class="hint-emphasis">び</span>と) - the second character's reading has び instead of ひ.
                     This doesn't always happen, and there are no strict rules to it.
                     Some words even have two versions, one with dakuten and one without.`,
-                    `There's no need to memorize every possible reading.
+                    /*html*/`There's no need to memorize every possible reading.
                     Some of them are used way more often than others so
                     pay attention to what readings you see the most and only try to remember those.`,
-                    `A good (but not perfect) rule of thumb to figure out which reading to use
-                    is:<br>
-                    &nbsp - word consists of only one kanji (<span class="hint-emphasis">人</span> - ひと),
-                    kanji with hiragana (<span class="hint-emphasis nowrap">大きい</span> - おおきい),
-                    multiple kanji with, or separated by, hiragana (<span class="hint-emphasis nowrap">日の出</span> - <span class="nowrap">ひので</span>),
-                    or a single kanji repeated (<span class="hint-emphasis nowrap">人人</span> - <span class="nowrap">ひとびと</span>) - <span class="nowrap">kun-yomi</span><br>
-                    &nbsp - word is a name (person or place) - kun-yomi<br>
-                    &nbsp - word consists of multiple kanji with no hiragana between or after them (<span class="hint-emphasis nowrap">十人</span> - <span class="nowrap">じゅうにん</span>) - on-yomi<br>
+                    /*html*/`A good (but not perfect) way to figure out which reading to use
+                    is:
+                    <ul id="kanji-readings-explanations-list">
+                        <li>
+                            word consists of only one kanji (<span class="hint-emphasis">人</span> - ひと),
+                            kanji with hiragana (<span class="hint-emphasis nowrap">大きい</span> - おおきい),
+                            multiple kanji with, or separated by, hiragana (<span class="hint-emphasis nowrap">日の出</span> - <span class="nowrap">ひので</span>),
+                            or a single kanji repeated (<span class="hint-emphasis nowrap">人人</span> - <span class="nowrap">ひとびと</span>) - <span class="nowrap">kun-yomi</span> (in general if there's any hiragana it's usually kun-yomi)
+                        </li>
+                        <li>word is a name (person or place) - kun-yomi</li>
+                        <li>word consists of multiple kanji with no hiragana between or after them (<span class="hint-emphasis nowrap">十人</span> - <span class="nowrap">じゅうにん</span>) - on-yomi</li>
+                    </ul>
                     There are a lot of exceptions, some words can be read in multiple ways, some words mix kun-yomi with on-yomi, so keep that in mind.`
                 ];
 
