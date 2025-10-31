@@ -1750,8 +1750,8 @@ const $kt = globalThis.$kt;
                     is:<br>
                     &nbsp - word consists of only one kanji (<span class="hint-emphasis">人</span> - ひと),
                     kanji with hiragana (<span class="hint-emphasis nowrap">大きい</span> - おおきい),
-                    multiple kanji separated by hiragana (<span class="hint-emphasis nowrap">日の出</span> - <span class="nowrap">ひので</span>),
-                    or a single kanji repeated (<span class="hint-emphasis nowrap">人人</span> - <span class="nowrap">ひとびと</span>) - kun-yomi<br>
+                    multiple kanji with, or separated by, hiragana (<span class="hint-emphasis nowrap">日の出</span> - <span class="nowrap">ひので</span>),
+                    or a single kanji repeated (<span class="hint-emphasis nowrap">人人</span> - <span class="nowrap">ひとびと</span>) - <span class="nowrap">kun-yomi</span><br>
                     &nbsp - word is a name (person or place) - kun-yomi<br>
                     &nbsp - word consists of multiple kanji with no hiragana between or after them (<span class="hint-emphasis nowrap">十人</span> - <span class="nowrap">じゅうにん</span>) - on-yomi<br>
                     There are a lot of exceptions, some words can be read in multiple ways, some words mix kun-yomi with on-yomi, so keep that in mind.`
