@@ -1783,6 +1783,17 @@ const $kt = globalThis.$kt;
                     so it's represented as a single line.`
                 ];
 
+                case '見': return [
+                    `The 見 character is another type of kanji
+                    called "kaii", which are compound characters.`,
+                    `These characters are created by putting together
+                    two or more other characters that all contribute
+                    to the overall meaning (either by shape or their own actual meaning).`,
+                    `In this case the kanji for eye 目 and radical for legs 儿
+                    are put together to create 見 with the meaning of "see" or "look"
+                    (as if giving legs to an eye and sending it at whatever you want to look at).`
+                ]
+
                 default: return '';
             }
         }
