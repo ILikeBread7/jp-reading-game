@@ -24,10 +24,27 @@ const $kt = globalThis.$kt;
         </div>`;
 
     const SPECIAL_HINT = /*html*/ `
-        <div class="centered-text">
-            <div class="hint-explanation">
-                Noma test
-            </div>
+        <div>
+            <span class="hint-emphasis">々 - kanji repetition mark</span>
+        </div>
+        <div>
+            <span class="hint-emphasis">ヵ - lka (small ka)</span>
+        </div>
+        <div>
+            <span class="hint-emphasis">ヶ - lke (small ke)</span>
+        </div>
+        <div class="hint-explanation">
+            The kanji repetition mark 々 (also called "noma") repeats the previous kanji.
+            For example: 人々 (ひとびと) instead of 人人.
+        </div>
+        <div class="hint-explanation">
+            It's used when there are two of the same kanji next to each other within the same word.
+            It doesn't have to be used but it usually is.
+        </div>
+        <div class="hint-explanation">
+            The ヵ and ヶ are usually read か (ka) and are used for quantities of certain things.
+            For example: 一ヶ月 (いっかげつ) one month.
+            They can be used interchangeably.
         </div>`;
 
     const KANA_HINTS = [
