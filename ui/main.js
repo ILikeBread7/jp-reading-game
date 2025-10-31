@@ -43,7 +43,6 @@ var $kt = $kt || {};
         switch(gameType) {
             case TYPES.MAIN:
                 game = gameMain;
-
                 gameMain.start();
 
                 if (flags.showHintOnGameStart) {
