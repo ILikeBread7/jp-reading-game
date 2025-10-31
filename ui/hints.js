@@ -1800,7 +1800,7 @@ const $kt = globalThis.$kt;
                     `These characters combine two parts "kei" (shape) and "sei" (sound).`,
                     `The "shape" part is usually on the left or at the top and hints at
                     the meaning of the kanji.`,
-                    `The "sound" part hints at the way the kanji is pronunced.`,
+                    `The "sound" part, usually on the right or at the bottom, hints at the way the kanji is pronounced.`,
                     `In this example the "shape" is 一 which makes the meaning related to numbers
                     (the meaning of 百 is one hundred, so a number),
                     and "sound" is 白 (はく) which relates to the pronunciation of 百 (ひゃく).`,
