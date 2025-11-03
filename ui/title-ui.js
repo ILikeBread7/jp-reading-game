@@ -71,12 +71,43 @@ var $kt = $kt || {};
             this._titleSettingsButton = document.getElementById('title-settings-button');
             this._preTitleText = document.getElementById('pre-title-press-start-text');
             this._mainMenu = document.getElementById('main-menu');
+            this._levelSelect = document.getElementById('level-select');
+            this._levelSelectLevels = [...this._levelSelect.getElementsByClassName('level-select-button')];
             this._credits = document.getElementById('credits');
         }
 
         _addEventListeners() {
-            this._titleStartGameMainButton.addEventListener('click', $kt.uiHelper.startGameMain);
+            this._titleStartGameMainButton.addEventListener('click', this._startGameButtonEventListener.bind(this));
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+            
+            this._levelSelectLevels.forEach(button => {
+                const level = Number(button.dataset.level);
+                button.addEventListener('click', () => {
+                    const gameStatus = $kt.persistence.getGameStatus() || {};
+                    gameStatus.level = level;
+                    $kt.persistence.setGameStatus(gameStatus);
+                    $kt.persistence.removeGameQuestion();
+                    $kt.gameUi.setupLevelHints(level);
+
+                    const flags = $kt.persistence.getFlags() || {};
+                    flags.levelSelected = true;
+                    $kt.persistence.setFlags(flags);
+
+                    $kt.uiHelper.startGameMain();
+                });
+            });
+        }
+
+        _startGameButtonEventListener() {
+            const flags = $kt.persistence.getFlags() || {};
+
+            if (flags.levelSelected) {
+                $kt.uiHelper.startGameMain();
+                return;
+            }
+
+            $kt.uiHelper.hideMenu(this._mainMenu);
+            $kt.uiHelper.showMenu(this._levelSelect);
         }
         
         _isPreTitleVisible() {

@@ -785,6 +785,12 @@ body:not(.game) .game-only {
     font-size: var(--title-sub-font-size);
 }
 
+#level-select-text {
+    position: absolute;
+    top: calc(50% + 10.5em);
+    width: 100%;
+}
+
 #title-press-start-text {
     position: absolute;
     top: calc(50% + 4.5em);
@@ -999,5 +1005,9 @@ body:not(.game) .game-only {
 
     #title-press-start-text {
         top: calc(50% + 6.5em);
+    }
+
+    #level-select-text {
+        top: calc(50% + 9.25em);
     }
 }

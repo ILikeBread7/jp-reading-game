@@ -12,11 +12,19 @@ var $kt = $kt || {};
             maxLevelFinished: false
         }, $kt.persistence.getFlags() || {});
 
+    $kt.persistence.addFlagsChangedEventListener(event => {
+        Object.assign(flags, event.detail);
+    });
+
     const gameStatus = Object.assign({
             level: 1,
             totalExp: 0,
             currentLevelExp: 0
         }, $kt.persistence.getGameStatus() || {});
+
+    $kt.persistence.addGameStatusChangedEventListener(event => {
+        Object.assign(gameStatus, event.detail);
+    });
 
     // If there were new levels added in an update
     // since the player last played and finished the game

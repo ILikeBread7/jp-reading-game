@@ -10,6 +10,8 @@ var $kt = $kt || {};
     const GAME_QUESTION_KEY = 'gameQuestion';
     const FLAGS_KEY = 'flags';
 
+    const events = new EventTarget();
+
     class KantorePersistence {
 
         static getSettings() {
@@ -32,6 +34,10 @@ var $kt = $kt || {};
             return this._get(GAME_QUESTION_KEY);
         }
 
+        static addGameStatusChangedEventListener(listener) {
+            this._addChangedEventListener(GAME_STATUS_KEY, listener);
+        }
+
         static removeGameQuestion() {
             this._remove(GAME_QUESTION_KEY);
         }
@@ -48,16 +54,26 @@ var $kt = $kt || {};
             this._set(FLAGS_KEY, value);
         }
 
+        static addFlagsChangedEventListener(listener) {
+            this._addChangedEventListener(FLAGS_KEY, listener);
+        }
+
         static _get(key) {
             return JSON.parse(localStorage.getItem(PERSISTENCE_PREFIX + key));
         }
 
         static _set(key, value) {
-            localStorage.setItem(PERSISTENCE_PREFIX + key, JSON.stringify(value));
+            const storageKey = PERSISTENCE_PREFIX + key;
+            localStorage.setItem(storageKey, JSON.stringify(value));
+            events.dispatchEvent(new CustomEvent(storageKey, { detail: value }));
         }
 
         static _remove(key) {
             localStorage.removeItem(PERSISTENCE_PREFIX + key);
+        }
+
+        static _addChangedEventListener(key, listener) {
+            events.addEventListener(PERSISTENCE_PREFIX + key, listener);
         }
 
     }
