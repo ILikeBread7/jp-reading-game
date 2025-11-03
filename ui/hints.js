@@ -1801,8 +1801,9 @@ const $kt = globalThis.$kt;
                     `The "shape" part is usually on the left or at the top and hints at
                     the meaning of the kanji.`,
                     `The "sound" part, usually on the right or at the bottom, hints at the way the kanji is pronounced.`,
-                    `In this example the "shape" is 一 which makes the meaning related to numbers
-                    (the meaning of 百 is one hundred, so a number),
+                    `In this example the "shape" is 一 (いち meaning "one") which indicates
+                    "beginning", "measurement unit" or just "one"
+                    (the meaning of 百 is one hundred, so including "one"),
                     and "sound" is 白 (はく) which relates to the pronunciation of 百 (ひゃく).`,
                     `For these types of kanji the sound relates to on-yomi only.
                     It's also not always a perfect match as the sounds have changed over time.`
@@ -1814,7 +1815,7 @@ const $kt = globalThis.$kt;
                     田 (rice field) and 丁 (street / ward or tools).`,
                     `For kaii the 丁 part is supposed to resemble a nail, so putting nails into a rice field
                     signifies construction which indicates a town.`,
-                    `For keisei 田 (rice field) indicates a plot of land (physical space),
+                    `For keisei 田 (rice field) indicates agriculture,
                     and 丁 is read as ちょう which matches the on-yomi reading of 町 (also ちょう).`
                 ];
 
