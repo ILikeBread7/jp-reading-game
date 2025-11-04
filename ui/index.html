@@ -13,14 +13,13 @@
         <script defer type="text/javascript" src="persistence.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="settings.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="templates.js?v=0.1.2"></script>
-        <script defer type="module" src="level-chars.js?v=0.1.2"></script>
         <script defer type="module" src="hints.js?v=0.1.2"></script>
         <script defer type="module" src="levels.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="dicts.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="ui-helper.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="audio.js?v=0.1.2"></script>
-        <script defer type="text/javascript" src="title-ui.js?v=0.1.2"></script>
-        <script defer type="text/javascript" src="ui.js?v=0.1.2"></script>
+        <script defer type="module" src="title-ui.js?v=0.1.2"></script>
+        <script defer type="module" src="ui.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="settings-ui.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="game-ui.js?v=0.1.2"></script>
         <script defer type="text/javascript" src="game-level.js?v=0.1.2"></script>
@@ -40,16 +39,15 @@
             Now playing:<br>
             <span id="now-playing-text"><!-- Content created dynamically --></span>
         </div>
-        <div class="overlay-element" id="controls-explanation">
-            <div class="centered" id="controls-explanation-content">
-                <div class="controls-panel" id="controls-explanation-panel">
-                    Controls
+        <div class="overlay-element" id="dialogue">
+            <div class="centered" id="dialogue-content">
+                <div class="controls-panel" id="dialogue-panel">
+                    <span id="dialogue-title"><!-- Content created dynamically --></span>
                     <div class="buttons-panel">
-                        <button class="control-button icon-button" id="controls-explanation-close-button" title="Close" data-close-button><img src="icons/close.svg" alt="Close"/></button>
+                        <button class="control-button icon-button" id="dialogue-close-button" title="Close" data-close-button><img src="icons/close.svg" alt="Close"/></button>
                     </div>
                 </div>
-                test test
-                asdjufreujeujr urguergurhgueieu u iu
+                <div id="dialogue-text"><!-- Content created dynamically --></div>
             </div>
         </div>
         <button class="control-button icon-button ui-button" id="fullscreen-button" title="Fullscreen"><img src="icons/fullscreen.svg" data-exit-icon="icons/fullscreen_exit.svg" alt="Fullscreen"/></button>

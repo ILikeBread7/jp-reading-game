@@ -13,9 +13,8 @@
     --question-z-index: 1;
     --settings-button-z-index: 2;
     --overlays-z-index: 3;
-    --controls-explanation-z-index: 4;
-    --settings-z-index: 5;
-    --above-ui-z-index: 6;
+    --settings-z-index: 4;
+    --above-ui-z-index: 5;
 
     --info-width: 90%;
     --info-min-width: 22em;
@@ -275,11 +274,12 @@ summary {
     position: absolute;
 }
 
-#controls-explanation {
-    z-index: var(--controls-explanation-z-index);
+#dialogue-text {
+    padding: 0.25em;
+    padding-top: initial;
 }
 
-#controls-explanation-content,
+#dialogue-content,
 #level-up-hint {
     --bigger-by: 1.25em;
     border-radius: calc(5 * var(--size-scale));
@@ -555,7 +555,7 @@ details.closing > summary::before {
     }
 }
 
-#controls-explanation-panel,
+#dialogue-panel,
 #level-up-hint-panel {
     text-align: center;
     color: var(--palette-secondary-text-color);

@@ -268,6 +268,35 @@ var $kt = $kt || {};
                 .toLowerCase();
         }
 
+        static controls() {
+            return /*html*/ `
+                <div class="hint-explanation">
+                    Read the word at the top of the screen and
+                    type it into the input below the question
+                    using the hints shown on the screen.
+                </div>
+                <div class="hint-explanation">
+                    Press ENTER to confirm your answer.
+                </div>
+                <div class="hint-explanation">
+                    Press ENTER with an empty input
+                    to get an extra hint but you won't receive any exp.
+                </div>
+                <div>
+                    Navigation:<br>
+                    Arrow keys - navigate menus<br>
+                    ENTER / Left click - confirm<br>
+                    SHIFT - Go back (in menus)<br>
+                    TAB - Open settings<br>
+                </div>
+                <div class="hint-explanation">
+                    You can close this message by pressing ENTER,
+                    clicking the X icon at top-right,
+                    or clicking anywhere outside this mesage box.
+                </div>
+            `;
+        }
+
         /**
          * Function for html templates, if value is falsey returns elseValue
          * @returns value if condition is met, elseValue otherwise
