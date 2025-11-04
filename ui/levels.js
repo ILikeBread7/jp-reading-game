@@ -123,7 +123,7 @@ const $kt = globalThis.$kt;
             return LEVEL_RANGES[0];
         }
 
-        static get katakanaanaLevelsRange() {
+        static get katakanaLevelsRange() {
             return LEVEL_RANGES[1];
         }
 

@@ -7,7 +7,7 @@ var $kt = $kt || {};
     const NUMBER_OF_LEVELS = $kt.levels.maxLevel;
 
     const [ HIRAGANA_LEVELS_START, HIRAGANA_LEVELS_END ] = $kt.levels.hiraganaLevelsRange;
-    const [ KATAKANA_LEVELS_START, KATAKANA_LEVELS_END ] = $kt.levels.katakanaanaLevelsRange;
+    const [ KATAKANA_LEVELS_START, KATAKANA_LEVELS_END ] = $kt.levels.katakanaLevelsRange;
     
     const createLevelEntries = (levelStart, levelEnd, levels = []) => {
         for (let level = levelStart; level <= levelEnd; level++) {
@@ -30,6 +30,11 @@ var $kt = $kt || {};
         complexLevelEntries: [
             { name: 'All katakana levels', tag: 'level-katakana-all', levelStart: KATAKANA_LEVELS_START, levelEnd: KATAKANA_LEVELS_END }
         ]
+    }
+
+    const LEVELS_KANJI_CATEGORY = {
+        name: 'Kanji',
+        entries: createLevelEntries()
     }
 
     const LEVELS_CATEGORY = {
