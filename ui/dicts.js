@@ -8,6 +8,16 @@ var $kt = $kt || {};
 
     const [ HIRAGANA_LEVELS_START, HIRAGANA_LEVELS_END ] = $kt.levels.hiraganaLevelsRange;
     const [ KATAKANA_LEVELS_START, KATAKANA_LEVELS_END ] = $kt.levels.katakanaLevelsRange;
+    const [ KANJI_GRADE_1_START, KANJI_GRADE_1_END ] = $kt.levels.getKanjiLevelsGrade1Range;
+    const [ KANJI_SPECIAL_START, KANJI_SPECIAL_END ] = $kt.levels.getKanjiLevelsSpecialRange;
+    const [ KANJI_GRADE_2_START, KANJI_GRADE_2_END ] = $kt.levels.getKanjiLevelsGrade2Range;
+    const [ KANJI_GRADE_3_START, KANJI_GRADE_3_END ] = $kt.levels.getKanjiLevelsGrade3Range;
+    const [ KANJI_GRADE_4_START, KANJI_GRADE_4_END ] = $kt.levels.getKanjiLevelsGrade4Range;
+    const [ KANJI_GRADE_5_START, KANJI_GRADE_5_END ] = $kt.levels.getKanjiLevelsGrade5Range;
+    const [ KANJI_GRADE_6_START, KANJI_GRADE_6_END ] = $kt.levels.getKanjiLevelsGrade6Range;
+    const [ KANJI_GRADE_JUNIOR_HIGH_START, KANJI_GRADE_JUNIOR_HIGH_END ] = $kt.levels.getKanjiLevelsJunioHighRange;
+    const [ KANJI_GRADE_JINMEIYO_START, KANJI_GRADE_JINMEIYO_END ] = $kt.levels.getKanjiLevelsJinmeiyoRange;
+    const [ KANJI_GRADE_HYOUGAI_START, KANJI_GRADE_HYOUGAI_END ] = $kt.levels.getKanjiLevelsHyougaiRange;
     
     const createLevelEntries = (levelStart, levelEnd, levels = []) => {
         for (let level = levelStart; level <= levelEnd; level++) {
@@ -34,14 +44,29 @@ var $kt = $kt || {};
 
     const LEVELS_KANJI_CATEGORY = {
         name: 'Kanji',
-        entries: createLevelEntries()
+        entries: [],
+        complexLevelEntries: [
+            { name: 'All kanji levels', tag: 'level-kanji-all', levelStart: KANJI_GRADE_1_START, levelEnd: KANJI_GRADE_HYOUGAI_END },
+            { name: 'Grade 1', tag: 'level-kanji-grade-1', levelStart: KANJI_GRADE_1_START, levelEnd: KANJI_GRADE_1_END },
+            { name: 'Special', tag: 'level-kanji-special', levelStart: KANJI_SPECIAL_START, levelEnd: KANJI_SPECIAL_END },
+            { name: 'Grade 2', tag: 'level-kanji-grade-2', levelStart: KANJI_GRADE_2_START, levelEnd: KANJI_GRADE_2_END },
+            { name: 'Grade 3', tag: 'level-kanji-grade-3', levelStart: KANJI_GRADE_3_START, levelEnd: KANJI_GRADE_3_END },
+            { name: 'Grade 4', tag: 'level-kanji-grade-4', levelStart: KANJI_GRADE_4_START, levelEnd: KANJI_GRADE_4_END },
+            { name: 'Grade 5', tag: 'level-kanji-grade-5', levelStart: KANJI_GRADE_5_START, levelEnd: KANJI_GRADE_5_END },
+            { name: 'Grade 6', tag: 'level-kanji-grade-6', levelStart: KANJI_GRADE_6_START, levelEnd: KANJI_GRADE_6_END },
+            { name: 'All elementary', tag: 'level-kanji-elementary', levelStart: KANJI_GRADE_1_START, levelEnd: KANJI_GRADE_6_END },
+            { name: 'Junior High', tag: 'level-kanji-junior-high', levelStart: KANJI_GRADE_JUNIOR_HIGH_START, levelEnd: KANJI_GRADE_JUNIOR_HIGH_END },
+            { name: 'Jinmeiyo', tag: 'level-kanji-jinmeiyo', levelStart: KANJI_GRADE_JINMEIYO_START, levelEnd: KANJI_GRADE_JINMEIYO_END },
+            { name: 'Hyougai', tag: 'level-kanji-hyougai', levelStart: KANJI_GRADE_HYOUGAI_START, levelEnd: KANJI_GRADE_HYOUGAI_END },
+        ]
     }
 
     const LEVELS_CATEGORY = {
         name: 'Main game mode levels', entries: [
             { name: 'All levels', level: NUMBER_OF_LEVELS + 1 },
             LEVELS_HIRAGANA_CATEGORY,
-            LEVELS_KATAKANA_CATEGORY
+            LEVELS_KATAKANA_CATEGORY,
+            LEVELS_KANJI_CATEGORY
         ]
     }
 

@@ -127,6 +127,46 @@ const $kt = globalThis.$kt;
             return LEVEL_RANGES[1];
         }
 
+        static get getKanjiLevelsGrade1Range() {
+            return LEVEL_RANGES[2];
+        }
+
+        static get getKanjiLevelsSpecialRange() {
+            return LEVEL_RANGES[3];
+        }
+
+        static get getKanjiLevelsGrade2Range() {
+            return LEVEL_RANGES[4];
+        }
+
+        static get getKanjiLevelsGrade3Range() {
+            return LEVEL_RANGES[5];
+        }
+
+        static get getKanjiLevelsGrade4Range() {
+            return LEVEL_RANGES[6];
+        }
+
+        static get getKanjiLevelsGrade5Range() {
+            return LEVEL_RANGES[7];
+        }
+
+        static get getKanjiLevelsGrade6Range() {
+            return LEVEL_RANGES[8];
+        }
+
+        static get getKanjiLevelsJunioHighRange() {
+            return LEVEL_RANGES[9];
+        }
+
+        static get getKanjiLevelsJinmeiyoRange() {
+            return LEVEL_RANGES[10];
+        }
+
+        static get getKanjiLevelsHyougaiRange() {
+            return LEVEL_RANGES[11];
+        }
+
     }
 
     $kt.levels = KantoreLevels;
