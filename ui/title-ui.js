@@ -1,4 +1,4 @@
-import { dialogue } from './dialogue-ui.js?v=0.1.2';
+import { dialogue } from './dialogue-ui.js?v=0.2.0';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;

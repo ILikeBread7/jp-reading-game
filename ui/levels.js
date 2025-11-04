@@ -13,7 +13,7 @@ import {
     KANJI_JUNIORHIGH_STRINGS,
     KANJI_JINMEIYO_STRINGS,
     KANJI_NONSTANDARD_STRINGS
-} from './level-chars.js?v=0.1.2';
+} from './level-chars.js?v=0.2.0';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
