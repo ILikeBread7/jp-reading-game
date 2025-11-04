@@ -15,8 +15,12 @@ var $kt = $kt || {};
             this._getAllMenuElements();
         }
 
-        enterListener() {
-            return this._handlePreTitle();
+        enterListener(event) {
+            const result = this._eventListener();
+            if (result) {
+                event.stopPropagation();
+            }
+            return result;
         }
 
         keyListener(key) {
@@ -27,8 +31,13 @@ var $kt = $kt || {};
             return false;
         }
 
-        clickListener() {
-            return this._handlePreTitle();
+        clickListener(target) {
+            return this._eventListener(target);
+        }
+
+        _eventListener(target) {
+            return this._handlePreTitle()
+                || this._handleControlsExplanation(target);
         }
 
         startTitleScene() {
@@ -55,6 +64,22 @@ var $kt = $kt || {};
             return false;
         }
 
+        _handleControlsExplanation(target) {
+            if (!this._isControlsExplanationVisible()) {
+                return false;
+            }
+
+            if (
+                !target
+                || !this._controlsExplanationContent.contains(target)
+                || this._controlsExplanationCloseButton.contains(target)
+            ) {
+                this._hideControlsExplanation();
+            }
+
+            return true;
+        }
+
         _handleCreditsScrolling(key) {
             if (
                 key.startsWith('Page')
@@ -71,9 +96,15 @@ var $kt = $kt || {};
             this._titleSettingsButton = document.getElementById('title-settings-button');
             this._preTitleText = document.getElementById('pre-title-press-start-text');
             this._mainMenu = document.getElementById('main-menu');
-            this._levelSelect = document.getElementById('level-select');
-            this._levelSelectLevels = [...this._levelSelect.getElementsByClassName('level-select-button')];
             this._credits = document.getElementById('credits');
+
+            this._controlsExplanation = document.getElementById('controls-explanation');
+            this._controlsExplanationContent = document.getElementById('controls-explanation-content');
+            this._controlsExplanationCloseButton = document.getElementById('controls-explanation-close-button');
+
+            this._levelSelect = document.getElementById('level-select');
+            this._createKeepProgressLevelSelectOption();
+            this._levelSelectLevels = [...this._levelSelect.getElementsByClassName('level-select-button')];
         }
 
         _addEventListeners() {
@@ -81,19 +112,26 @@ var $kt = $kt || {};
             this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
             
             this._levelSelectLevels.forEach(button => {
-                const level = Number(button.dataset.level);
-                button.addEventListener('click', () => {
+                button.addEventListener('click', event => {
+                    // event.stopPropagation();
+                    const level = Number(button.dataset.level);
+
                     const gameStatus = $kt.persistence.getGameStatus() || {};
-                    gameStatus.level = level;
-                    $kt.persistence.setGameStatus(gameStatus);
-                    $kt.persistence.removeGameQuestion();
-                    $kt.gameUi.setupLevelHints(level);
+                    if (level !== 0 && gameStatus.level !== level) {
+                        gameStatus.level = level;
+                        gameStatus.gaveUp = false;
+                        $kt.persistence.setGameStatus(gameStatus);
+                        $kt.persistence.removeGameQuestion();
+                        $kt.gameUi.setupLevelHints(level);
+                    }
 
                     const flags = $kt.persistence.getFlags() || {};
                     flags.levelSelected = true;
                     $kt.persistence.setFlags(flags);
 
-                    $kt.uiHelper.startGameMain();
+                    $kt.uiHelper.hideMenu(this._levelSelect);
+                    $kt.uiHelper.showOverlayElement(this._controlsExplanation);
+                    // $kt.uiHelper.startGameMain();
                 });
             });
         }
@@ -101,17 +139,34 @@ var $kt = $kt || {};
         _startGameButtonEventListener() {
             const flags = $kt.persistence.getFlags() || {};
 
-            if (flags.levelSelected) {
-                $kt.uiHelper.startGameMain();
-                return;
-            }
+            // if (flags.levelSelected) {
+            //     $kt.uiHelper.startGameMain();
+            //     return;
+            // }
 
             $kt.uiHelper.hideMenu(this._mainMenu);
             $kt.uiHelper.showMenu(this._levelSelect);
         }
         
+        _createKeepProgressLevelSelectOption() {
+            const persistedGameStatus = $kt.persistence.getGameStatus();
+            if (!persistedGameStatus) {
+                return;
+            }
+
+            const level = persistedGameStatus.level || 1;
+            this._levelSelect.insertAdjacentHTML(
+                'afterbegin',
+                /*html*/ `<button class="menu-item menu-button level-select-button" id="level-select-keep-progress" data-level="0">Keep current progress - Level ${level}</button>`
+            );
+        }
+
         _isPreTitleVisible() {
             return this._preTitleText.checkVisibility();
+        }
+
+        _isControlsExplanationVisible() {
+            return this._controlsExplanation.checkVisibility({ visibilityProperty: true });
         }
 
         _isCreditsVisible() {
@@ -123,6 +178,11 @@ var $kt = $kt || {};
             $kt.uiHelper.showMenu(this._mainMenu);
             $kt.audio.playEffect($kt.audio.seTracks.CONFIRM);
             $kt.audio.startBgms();
+        }
+
+        _hideControlsExplanation() {
+            this._controlsExplanation.classList.add('hidden');
+            $kt.audio.playEffect($kt.audio.seTracks.CONFIRM);
         }
 
         _createCategoryMenus() {
