@@ -4,6 +4,7 @@ const $kt = globalThis.$kt;
 class KantoreDialogue {
 
     constructor() {
+        this._closeListener = null;
         this._getAllElements();
         this._addEventListeners();
     }
@@ -52,21 +53,30 @@ class KantoreDialogue {
     show(title, text, closeListener) {
         this._title.innerHTML = title;
         this._text.innerHTML = text;
-
-        this._closeListener = () => {
-            if (closeListener) {
-                closeListener();
-            }
-            delete this._closeListener;
-        };
-
+        this._closeListener = closeListener;
         $kt.uiHelper.showOverlayElement(this._dialogue);
     }
 
     close() {
+        if (!this.isVisible()) {
+            return;
+        }
+
         $kt.uiHelper.hideOverlayElement(this._dialogue);
         $kt.audio.playEffect($kt.audio.seTracks.CONFIRM);
-        this._closeListener();
+        if (this._closeListener) {
+            this._closeListener();
+            this._closeListener = null;
+        }
+    }
+
+    forceClose() {
+        if (!this.isVisible()) {
+            return;
+        }
+        
+        $kt.uiHelper.hideOverlayElement(this._dialogue);
+        this._closeListener = null;
     }
 
     isVisible() {
