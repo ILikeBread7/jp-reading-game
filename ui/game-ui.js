@@ -4,6 +4,8 @@ var $kt = $kt || {};
 
 (() => {
 
+    const FADE_IN_ANIMATION_LENGTH = 400;
+    const LEVEL_UP_ANIMATION_LENGTH = 3000;
     const LEVEL_UP_FADE_IN_TIME = 0.5;
     const SOUND_EFFECT_DELAY = 250;
     const EVENTS = $kt.settings.eventNames;
@@ -193,6 +195,8 @@ var $kt = $kt || {};
             this._updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData);
             this._moveLevelExpDivAbove();
 
+            this._moveLevelExpDivBelowWithTimeout(LEVEL_UP_ANIMATION_LENGTH);
+
             // Force reflow to correctly apply
             // the growing exp bars transitions
             void this._levelExpDiv.offsetWidth;
@@ -235,8 +239,7 @@ var $kt = $kt || {};
             this.showArcadeData(levelName, currentAnswers, totalQuestions, oldExpPercentage);
             this._moveLevelExpDivAbove();
 
-            // Move the exp div back down after the same time as the fade-in-out animation takes
-            setTimeout(this._moveLevelExpDivBackDown.bind(this), 4000);
+            this._moveLevelExpDivBelowWithTimeout(FADE_IN_ANIMATION_LENGTH);
 
             // Force reflow to correctly apply
             // the growing exp bars transitions
@@ -275,6 +278,10 @@ var $kt = $kt || {};
 
         _moveLevelExpDivBackDown() {
             this._levelExpDiv.style.removeProperty('z-index');
+        }
+
+        _moveLevelExpDivBelowWithTimeout(time) {
+            setTimeout(this._moveLevelExpDivBackDown.bind(this), time);
         }
 
         shakeWrongAnswer(answer) {
