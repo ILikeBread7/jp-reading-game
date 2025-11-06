@@ -1,100 +1,97 @@
-'use strict';
+import { dialogue } from './dialogue-ui.js?v=0.2.0';
 
-var $kt = $kt || {};
+globalThis.$kt = globalThis.$kt || {};
+const $kt = globalThis.$kt;
 
-(() => {
+const EVENTS = $kt.gameUi.eventNames;
+const events = $kt.gameUi.events;
 
-    const EVENTS = $kt.gameUi.eventNames;
-    const events = $kt.gameUi.events;
+const flags = Object.assign({
+        showHintOnGameStart: true,
+        maxLevelFinished: false
+    }, $kt.persistence.getFlags() || {});
 
-    const flags = Object.assign({
-            showHintOnGameStart: true,
-            maxLevelFinished: false
-        }, $kt.persistence.getFlags() || {});
+$kt.persistence.addFlagsChangedEventListener(event => {
+    Object.assign(flags, event.detail);
+});
 
-    $kt.persistence.addFlagsChangedEventListener(event => {
-        Object.assign(flags, event.detail);
-    });
+const gameStatus = Object.assign({
+        level: 1,
+        totalExp: 0,
+        currentLevelExp: 0
+    }, $kt.persistence.getGameStatus() || {});
 
-    const gameStatus = Object.assign({
-            level: 1,
-            totalExp: 0,
-            currentLevelExp: 0
-        }, $kt.persistence.getGameStatus() || {});
+$kt.persistence.addGameStatusChangedEventListener(event => {
+    Object.assign(gameStatus, event.detail);
+});
 
-    $kt.persistence.addGameStatusChangedEventListener(event => {
-        Object.assign(gameStatus, event.detail);
-    });
+// If there were new levels added in an update
+// since the player last played and finished the game
+if (flags.maxLevelFinished && gameStatus.level <= $kt.levels.maxLevel) {
+    $kt.persistence.removeGameQuestion();
+    flags.maxLevelFinished = false;
+    $kt.persistence.setFlags(flags);
+}
 
-    // If there were new levels added in an update
-    // since the player last played and finished the game
-    if (flags.maxLevelFinished && gameStatus.level <= $kt.levels.maxLevel) {
-        $kt.persistence.removeGameQuestion();
-        flags.maxLevelFinished = false;
-        $kt.persistence.setFlags(flags);
+const gameLevel = new $kt.GameLevel();
+const gameMain = new $kt.GameMain(gameLevel, gameStatus);
+const gamePractice = new $kt.GamePractice(gameLevel);
+
+let game = gameMain;
+$kt.hints.loadKanjidex();
+$kt.audio.preloadAudio();
+$kt.gameUi.setupLevelHints(gameStatus.level);
+
+events.addEventListener(EVENTS.START, event => {
+    const TYPES = $kt.enums.GAME_TYPE;
+    const detail = event.detail;
+    const gameType = detail.gameType;
+
+    switch(gameType) {
+        case TYPES.MAIN:
+            game = gameMain;
+            gameMain.start();
+
+            if (flags.showHintOnGameStart) {
+                // Needs the timeout to work
+                setTimeout(() => {
+                    $kt.gameUi.showHint();
+                    flags.showHintOnGameStart = false;
+                    $kt.persistence.setFlags(flags);
+                }, 0);
+            }
+        break;
+        case TYPES.PRACTICE: {
+            game = gamePractice;
+            const { categoryName, dict } = detail;
+            gamePractice.start(categoryName, dict);
+        } break;
     }
 
-    const gameLevel = new $kt.GameLevel();
-    const gameMain = new $kt.GameMain(gameLevel, gameStatus);
-    const gamePractice = new $kt.GamePractice(gameLevel);
+});
 
-    let game = gameMain;
-    $kt.hints.loadKanjidex();
-    $kt.audio.preloadAudio();
-    $kt.gameUi.setupLevelHints(gameStatus.level);
+events.addEventListener(EVENTS.ANSWER, event => {
+    const answer = event.detail.answer;
+    game.answer(answer);
+});
 
-    events.addEventListener(EVENTS.START, event => {
-        const TYPES = $kt.enums.GAME_TYPE;
-        const detail = event.detail;
-        const gameType = detail.gameType;
+events.addEventListener(EVENTS.LEVEL_UP_BEFORE, event => {
+    const newLevel = event.detail.newLevel;
+    if (newLevel > $kt.levels.maxLevel) {
+        flags.maxLevelFinished = true;
+    }
+    flags.showHintOnGameStart = true;
+    $kt.persistence.setFlags(flags);
+});
 
-        switch(gameType) {
-            case TYPES.MAIN:
-                game = gameMain;
-                gameMain.start();
+events.addEventListener(EVENTS.LEVEL_UP_AFTER, () => {
+    game.startNewLevel();
+    flags.showHintOnGameStart = false;
+    $kt.persistence.setFlags(flags);
+});
 
-                if (flags.showHintOnGameStart) {
-                    // Needs the timeout to work
-                    setTimeout(() => {
-                        $kt.gameUi.showHint();
-                        flags.showHintOnGameStart = false;
-                        $kt.persistence.setFlags(flags);
-                    }, 0);
-                }
-            break;
-            case TYPES.PRACTICE: {
-                game = gamePractice;
-                const { categoryName, dict } = detail;
-                gamePractice.start(categoryName, dict);
-            } break;
-        }
+events.addEventListener(EVENTS.BACK_TO_TITLE, () => {
+    game.stopLoadingDict();
+});
 
-    });
-
-    events.addEventListener(EVENTS.ANSWER, event => {
-        const answer = event.detail.answer;
-        game.answer(answer);
-    });
-
-    events.addEventListener(EVENTS.LEVEL_UP_BEFORE, event => {
-        const newLevel = event.detail.newLevel;
-        if (newLevel > $kt.levels.maxLevel) {
-            flags.maxLevelFinished = true;
-        }
-        flags.showHintOnGameStart = true;
-        $kt.persistence.setFlags(flags);
-    });
-
-    events.addEventListener(EVENTS.LEVEL_UP_AFTER, () => {
-        game.startNewLevel();
-        flags.showHintOnGameStart = false;
-        $kt.persistence.setFlags(flags);
-    });
-
-    events.addEventListener(EVENTS.BACK_TO_TITLE, () => {
-        game.stopLoadingDict();
-    });
-
-    $kt.ui.hideStartupLoading();
-
-})();
+$kt.ui.hideStartupLoading();
