@@ -1,4 +1,4 @@
-import { LEVEL_CHARS } from './level-chars.js?v=0.2.0';
+import { LEVEL_CHARS } from './level-chars.js?v=0.2.1';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
