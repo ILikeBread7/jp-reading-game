@@ -924,6 +924,28 @@ body:not(.game) .game-only {
     z-index: var(--above-ui-z-index);
 }
 
+#time-bar {
+    --full-width: 50vw;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: var(--full-width);
+    height: 1em;
+
+    background: linear-gradient(to right, hsl(100, 100%, 45%), hsl(100, 100%, 25%), hsl(100, 100%, 45%));
+    background-size: var(--full-width);
+    background-position: center;
+
+    animation: time-bar-shrink 5s linear forwards;
+}
+
+@keyframes time-bar-shrink {
+    100% {
+        width: 0;
+        filter: hue-rotate(-100deg);
+    }
+}
+
 @media (width < 1280px) {
     #now-playing {
         top: calc(100vh - 6em);

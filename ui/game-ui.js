@@ -450,6 +450,8 @@ var $kt = $kt || {};
 
             this._hintDetails = document.getElementById('hint');
             this._meaningDetails = document.getElementById('meaning');
+
+            this._timeBar = document.getElementById('time-bar');
         }
 
         _addEventListeners() {
@@ -629,6 +631,22 @@ var $kt = $kt || {};
             }
 
             return false;
+        }
+
+        startTimeBar() {
+            this._timeBar.style.animation = 'none';
+            void this._timeBar.offsetWidth;
+            this._timeBar.style.animation = '';
+            this._timeBar.style['animation-play-state'] = 'running';
+            this._timeBar.classList.remove('hidden');
+        }
+
+        hideTimeBar() {
+            this._timeBar.classList.add('hidden');
+        }
+
+        pauseTimeBar() {
+            this._timeBar.style['animation-play-state'] = 'paused';
         }
 
         _isLevelUpVisible() {

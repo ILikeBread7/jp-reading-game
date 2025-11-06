@@ -23,6 +23,7 @@ var $kt = $kt || {};
             this._dict = dict;
             this._correctAnswersNumber = 0;
             this._categoryLabel = `Practice: ${categoryName}`;
+            $kt.gameUi.hideTimeBar();
             this._showPracticeData();
             this._gameLevel.start(dict);
             this._gameLevel.askQuestion();

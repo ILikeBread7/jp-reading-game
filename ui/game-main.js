@@ -51,6 +51,7 @@ var $kt = $kt || {};
                         .length;
             }
 
+            $kt.gameUi.hideTimeBar();
             this._showCurrentLevelData();
             this._askFirstQuestion();
 
