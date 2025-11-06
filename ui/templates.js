@@ -77,7 +77,7 @@ var $kt = $kt || {};
                 return '';
             }
 
-            return /*html*/ `<span class="hint-emphasis">${readings.join(', ')}</span>`;
+            return /*html*/ `<span class="hint-emphasis">${readings.map(reading => /*html*/ `<span class="nowrap">${reading}</span>`).join(', ')}</span>`;
         }
 
         /**
