@@ -16,9 +16,9 @@
     --settings-z-index: 4;
     --above-ui-z-index: 5;
 
-    --info-width: 90%;
-    --info-min-width: 22em;
+    --info-width: 90vw;
     --info-max-width: 33em;
+    --info-min-width: 21em;
 
     --palette-main-color: #123456;
     --palette-secondary-color: #476288;
@@ -288,14 +288,16 @@ summary {
 }
 
 .menu,
+#dialogue-content,
 #level-up-hint {
     width: calc(var(--info-width) + var(--bigger-by));
-    max-width: calc(var(--info-max-width) + var(--bigger-by));
-    min-width: calc(var(--info-min-width) + var(--bigger-by));
+    max-width: var(--info-max-width);
+    min-width: var(--info-min-width);
 }
 
+#dialogue-text,
 #level-up-hint-content {
-    max-height: calc(100vh - 2em);
+    max-height: calc(90vh - 1em);
     overflow-y: auto;
     padding: 0 0.5em;
     padding-bottom: 0.25em;
@@ -992,18 +994,18 @@ body:not(.game) .game-only {
 }
 
 @media (max-height: 525px) {
-    .scrollable-container {
-        margin-top: 10vh;
-    }
-
     #pre-title-press-start-text {
         top: calc(50% + 2em);
+    }
+
+    #level-select-text {
+        top: calc(50% + 7.5em);
     }
 }
 
 @media (max-height: 400px) {
     .scrollable-container {
-        margin-top: 15vh;
+        margin-top: -5vh;
     }
 
     #main-menu {
@@ -1015,6 +1017,6 @@ body:not(.game) .game-only {
     }
 
     #level-select-text {
-        top: calc(50% + 9.25em);
+        top: calc(50% + 5em);
     }
 }
