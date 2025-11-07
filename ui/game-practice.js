@@ -1,7 +1,5 @@
 import { KantoreGameBase } from './game-base.js';
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+import { gameUi } from './game-ui.js';
 
 export class KantoreGamePractice extends KantoreGameBase {
 
@@ -22,7 +20,7 @@ export class KantoreGamePractice extends KantoreGameBase {
         this._dict = dict;
         this._correctAnswersNumber = 0;
         this._categoryLabel = `Practice: ${categoryName}`;
-        $kt.gameUi.hideTimeBar();
+        gameUi.hideTimeBar();
         this._showPracticeData();
         this._gameLevel.start(dict);
         this._gameLevel.askQuestion();
@@ -35,7 +33,7 @@ export class KantoreGamePractice extends KantoreGameBase {
         }
 
         if (this._gameLevel.answerMatches(answer)) {
-            $kt.gameUi.jumpRightAnswer();
+            gameUi.jumpRightAnswer();
             if (!this._gameLevel.gaveUp) {
                 this._correctAnswersNumber++;
                 this._showPracticeData();
@@ -47,7 +45,7 @@ export class KantoreGamePractice extends KantoreGameBase {
     }
 
     _showPracticeData() {
-        $kt.gameUi.showPracticeData(
+        gameUi.showPracticeData(
             this._categoryLabel,
             this._correctAnswersNumber
         );

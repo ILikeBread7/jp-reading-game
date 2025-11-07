@@ -1,4 +1,6 @@
 import { dialogue } from './dialogue-ui.js';
+import { dicts } from './dicts.js';
+import { gameUi } from './game-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -87,13 +89,13 @@ class KantoreTitleUi {
 
                 const gameStatus = $kt.persistence.getGameStatus() || {};
                 if (level !== 0 && gameStatus.level !== level) {
-                    $kt.dicts.getLevelDict(level).preload();
+                    dicts.getLevelDict(level).preload();
                     gameStatus.level = level;
                     gameStatus.currentLevelExp = 0;
                     gameStatus.gaveUp = false;
                     $kt.persistence.setGameStatus(gameStatus);
                     $kt.persistence.removeGameQuestion();
-                    $kt.gameUi.setupLevelHints(level);
+                    gameUi.setupLevelHints(level);
                 }
 
                 const flags = $kt.persistence.getFlags() || {};
@@ -152,7 +154,7 @@ class KantoreTitleUi {
 
     _createCategoryMenus() {
         const container = this._titleScene;
-        const categories = $kt.dicts.categories;
+        const categories = dicts.categories;
 
         container.insertAdjacentHTML(
             'beforeend',
@@ -163,8 +165,8 @@ class KantoreTitleUi {
             .forEach(button => button.addEventListener('click', () => {
                 const categoryName = button.textContent;
                 const dict = button.dataset.levelDict
-                    ? $kt.dicts.getLevelDict(Number(button.dataset.levelDict))
-                    : $kt.dicts.getCategoryDict(button.dataset.tagDict);
+                    ? dicts.getLevelDict(Number(button.dataset.levelDict))
+                    : dicts.getCategoryDict(button.dataset.tagDict);
 
                 $kt.uiHelper.startGamePractice(categoryName, dict);
             }));

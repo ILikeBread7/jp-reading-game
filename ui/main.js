@@ -1,12 +1,17 @@
+import { dicts } from './dicts.js';
+import { KantoreGameArcade } from './game-arcade.js';
 import { KantoreGameLevel } from './game-level.js';
 import { KantoreGameMain } from './game-main.js';
 import { KantoreGamePractice } from './game-practice.js';
+import { gameUi } from './game-ui.js';
+
+gameUi.initialize();
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
-const EVENTS = $kt.gameUi.eventNames;
-const events = $kt.gameUi.events;
+const EVENTS = gameUi.eventNames;
+const events = gameUi.events;
 
 const flags = Object.assign({
         showHintOnGameStart: true,
@@ -38,11 +43,12 @@ if (flags.maxLevelFinished && gameStatus.level <= $kt.levels.maxLevel) {
 const gameLevel = new KantoreGameLevel();
 const gameMain = new KantoreGameMain(gameLevel, gameStatus);
 const gamePractice = new KantoreGamePractice(gameLevel);
+const gameArcade = new KantoreGameArcade(gameLevel);
 
 let game = gameMain;
 $kt.hints.loadKanjidex();
 $kt.audio.preloadAudio();
-$kt.gameUi.setupLevelHints(gameStatus.level);
+gameUi.setupLevelHints(gameStatus.level);
 
 events.addEventListener(EVENTS.START, event => {
     const TYPES = $kt.enums.GAME_TYPE;
@@ -57,13 +63,16 @@ events.addEventListener(EVENTS.START, event => {
             if (flags.showHintOnGameStart) {
                 // Needs the timeout to work
                 setTimeout(() => {
-                    $kt.gameUi.showHint();
+                    gameUi.showHint();
                     flags.showHintOnGameStart = false;
                     $kt.persistence.setFlags(flags);
                 }, 0);
             }
         break;
         case TYPES.PRACTICE: {
+            game = gameArcade;
+            gameArcade.start('Test', dicts.getLevelDict(21));
+            return
             game = gamePractice;
             const { categoryName, dict } = detail;
             gamePractice.start(categoryName, dict);

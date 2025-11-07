@@ -1,4 +1,5 @@
 import { dialogue } from './dialogue-ui.js';
+import { gameUi } from './game-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -28,7 +29,7 @@ class KantoreUiHelper {
                 element.ontransitionend = null;
             };
         } else {
-            $kt.gameUi._answerInput.blur();
+            gameUi._answerInput.blur();
         }
     }
 
@@ -99,7 +100,7 @@ class KantoreUiHelper {
                 $kt.titleUi.startTitleScene();
             }
         } else {
-            $kt.gameUi.focusAnswerInput();
+            gameUi.focusAnswerInput();
         }
     }
 
@@ -123,14 +124,14 @@ class KantoreUiHelper {
     }
 
     static startGameMain() {
-        $kt.gameUi.startGame($kt.enums.GAME_TYPE.MAIN);
+        gameUi.startGame($kt.enums.GAME_TYPE.MAIN);
         document.body.classList.add(
             'game', 'game-main'
         );
     }
 
     static startGamePractice(categoryName, dict) {
-        $kt.gameUi.startGame($kt.enums.GAME_TYPE.PRACTICE, categoryName, dict);
+        gameUi.startGame($kt.enums.GAME_TYPE.PRACTICE, categoryName, dict);
         document.body.classList.add(
             'game', 'game-practice'
         );
@@ -158,7 +159,7 @@ class KantoreUiHelper {
                 $kt.settingsUi._settingsDiv.ontransitionend = null;
             }
         };
-        $kt.gameUi.dispatchBackToTitleEvent();
+        gameUi.dispatchBackToTitleEvent();
     }
 
     static showMenu(menuElement) {
@@ -244,7 +245,7 @@ class KantoreUiHelper {
 
     static initializeHintSelects(initialHintsNumber) {
         $kt.settingsUi._hintSelect.innerHTML = '';
-        $kt.gameUi._hintSelect.innerHTML = '';
+        gameUi._hintSelect.innerHTML = '';
         const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
         for (let hintIndex = 0; hintIndex < maxHints; hintIndex++) {
             $kt.uiHelper.addNewHintToSelects(hintIndex);
@@ -253,7 +254,7 @@ class KantoreUiHelper {
 
     static addNewHintToSelects(newHintIndex) {
         this._addNewHintToSelect($kt.settingsUi._hintSelect, newHintIndex);
-        this._addNewHintToSelect($kt.gameUi._hintSelect, newHintIndex);
+        this._addNewHintToSelect(gameUi._hintSelect, newHintIndex);
     }
 
     static _addNewHintToSelect(select ,newHintIndex) {

@@ -1,5 +1,4 @@
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+import { gameUi } from './game-ui.js';
 
 export class KantoreGameBase {
 
@@ -22,13 +21,13 @@ export class KantoreGameBase {
     }
 
     _giveUp() {
-        $kt.gameUi.slideQuestionHint(this._gameLevel.questionHint);
+        gameUi.slideQuestionHint(this._gameLevel.questionHint);
         this._gameLevel.giveUp();
     }
 
     _wrongAnswer(answer) {
         const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
-        $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
+        gameUi.shakeWrongAnswer(formattedWrongAnswer);
     }
 
 }

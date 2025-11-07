@@ -1,3 +1,5 @@
+import { gameUi } from './game-ui.js';
+
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
@@ -146,7 +148,7 @@ export class KantoreGameLevel {
     }
 
     _askExistingQuestion(question) {
-        $kt.gameUi.showQuestion(question);
+        gameUi.showQuestion(question);
         this._currentQueston = question;
     }
 

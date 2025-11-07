@@ -1,4 +1,6 @@
 import { KantoreGameBase } from './game-base.js';
+import { dicts } from './dicts.js';
+import { gameUi } from './game-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -20,7 +22,7 @@ export class KantoreGameMain extends KantoreGameBase {
     constructor(gameLevel, gameStatus) {
         super(gameLevel);
         this._gameStatus = gameStatus;
-        $kt.dicts.getLevelDict(this._gameStatus.level).preload();
+        dicts.getLevelDict(this._gameStatus.level).preload();
     }
 
     start() {
@@ -50,12 +52,12 @@ export class KantoreGameMain extends KantoreGameBase {
                     .length;
         }
 
-        $kt.gameUi.hideTimeBar();
+        gameUi.hideTimeBar();
         this._showCurrentLevelData();
         this._askFirstQuestion();
 
         if (this._gameStatus.gaveUp) {
-            $kt.gameUi.showQuestionHint(this._gameLevel.questionHint);
+            gameUi.showQuestionHint(this._gameLevel.questionHint);
             this._gameLevel.giveUp();
         }
     }
@@ -73,7 +75,7 @@ export class KantoreGameMain extends KantoreGameBase {
         }
 
         if (this._gameLevel.answerMatches(answer)) {
-            $kt.gameUi.jumpRightAnswer();
+            gameUi.jumpRightAnswer();
             const leveledUp = this._updateScore();
             if (leveledUp) {
                 this._levelUp();
@@ -117,7 +119,7 @@ export class KantoreGameMain extends KantoreGameBase {
     }
 
     _showCurrentLevelData() {
-        $kt.gameUi.showLevelData(
+        gameUi.showLevelData(
             this._levelName,
             this._gameStatus.totalExp,
             this._gameStatus.currentLevelExp,
@@ -166,7 +168,7 @@ export class KantoreGameMain extends KantoreGameBase {
             }
         });
 
-        $kt.gameUi.showLevelExp(
+        gameUi.showLevelExp(
             this._levelName,
             this._gameStatus.totalExp,
             this._gameStatus.currentLevelExp,
@@ -198,8 +200,8 @@ export class KantoreGameMain extends KantoreGameBase {
         this._gameStatus.level++;
         $kt.persistence.removeGameQuestion();
         this._setupNewLevel();
-        const hintAdded = $kt.gameUi.addNewHint();
-        $kt.gameUi.showLevelUp(this._gameStatus.level, hintAdded);
+        const hintAdded = gameUi.addNewHint();
+        gameUi.showLevelUp(this._gameStatus.level, hintAdded);
     }
 
     _setupNewLevel() {
@@ -241,13 +243,13 @@ export class KantoreGameMain extends KantoreGameBase {
                 , 0
             ) * this._expPerChar;
 
-        this._dict = $kt.dicts.getLevelDict(this._gameStatus.level);
+        this._dict = dicts.getLevelDict(this._gameStatus.level);
         
         // Properly load current level dict
         const dictPromise = this._dict.load();
         
         // Preload the next level's dict if it exists
-        const nextLevelDict = $kt.dicts.getLevelDict(this._gameStatus.level + 1);
+        const nextLevelDict = dicts.getLevelDict(this._gameStatus.level + 1);
         if (nextLevelDict) {
             dictPromise.then(() => nextLevelDict.preload());
         }

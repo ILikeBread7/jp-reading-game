@@ -1,4 +1,5 @@
 import { dialogue } from './dialogue-ui.js';
+import { gameUi } from './game-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -183,7 +184,7 @@ class KantoreUi {
             return;
         }
 
-        if ($kt.gameUi.enterListener(event)) {
+        if (gameUi.enterListener(event)) {
             return;
         }
     }
@@ -240,7 +241,7 @@ class KantoreUi {
             return;
         }
 
-        if ($kt.gameUi.keyListener(key)) {
+        if (gameUi.keyListener(key)) {
             return;
         }
     }
@@ -302,7 +303,7 @@ class KantoreUi {
             return;
         }
 
-        if ($kt.gameUi.clickListener(target)) {
+        if (gameUi.clickListener(target)) {
             return;
         }
 
