@@ -904,6 +904,10 @@ body:not(.game) .game-only {
     padding: 0.7em;
 }
 
+#settings-container {
+    max-height: 100vh;
+}
+
 #practice-data-container {
     text-align: right;
 }
