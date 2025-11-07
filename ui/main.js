@@ -1,3 +1,7 @@
+import { KantoreGameLevel } from './game-level.js?v=0.2.2';
+import { KantoreGameMain } from './game-main.js?v=0.2.2';
+import { KantoreGamePractice } from './game-practice.js?v=0.2.2';
+
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
@@ -31,9 +35,9 @@ if (flags.maxLevelFinished && gameStatus.level <= $kt.levels.maxLevel) {
     $kt.persistence.setFlags(flags);
 }
 
-const gameLevel = new $kt.GameLevel();
-const gameMain = new $kt.GameMain(gameLevel, gameStatus);
-const gamePractice = new $kt.GamePractice(gameLevel);
+const gameLevel = new KantoreGameLevel();
+const gameMain = new KantoreGameMain(gameLevel, gameStatus);
+const gamePractice = new KantoreGamePractice(gameLevel);
 
 let game = gameMain;
 $kt.hints.loadKanjidex();

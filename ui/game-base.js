@@ -1,41 +1,34 @@
-'use strict';
+globalThis.$kt = globalThis.$kt || {};
+const $kt = globalThis.$kt;
 
-var $kt = $kt || {};
+export class KantoreGameBase {
 
-(() => {
-
-    class KantoreGameBase {
-
-        /**
-         * 
-         * @param {KantoreGameLevel} gameLevel 
-         */
-        constructor(gameLevel) {
-            this._gameLevel = gameLevel;
-        }
-
-        stopLoadingDict() {
-            if (this._dict.isComplex) {
-                this._dict.stopLoading();
-            }
-        }
-
-        startNewLevel() {
-            // Empty, to be overriden by extending classes
-        }
-
-        _giveUp() {
-            $kt.gameUi.slideQuestionHint(this._gameLevel.questionHint);
-            this._gameLevel.giveUp();
-        }
-
-        _wrongAnswer(answer) {
-            const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
-            $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
-        }
-
+    /**
+     * 
+     * @param {KantoreGameLevel} gameLevel 
+     */
+    constructor(gameLevel) {
+        this._gameLevel = gameLevel;
     }
 
-    $kt.GameBase = KantoreGameBase;
+    stopLoadingDict() {
+        if (this._dict.isComplex) {
+            this._dict.stopLoading();
+        }
+    }
 
-})();
+    startNewLevel() {
+        // Empty, to be overriden by extending classes
+    }
+
+    _giveUp() {
+        $kt.gameUi.slideQuestionHint(this._gameLevel.questionHint);
+        this._gameLevel.giveUp();
+    }
+
+    _wrongAnswer(answer) {
+        const formattedWrongAnswer = this._gameLevel.formatWrongAnswer(answer);
+        $kt.gameUi.shakeWrongAnswer(formattedWrongAnswer);
+    }
+
+}
