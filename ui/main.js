@@ -1,6 +1,6 @@
-import { KantoreGameLevel } from './game-level.js?v=0.2.2';
-import { KantoreGameMain } from './game-main.js?v=0.2.2';
-import { KantoreGamePractice } from './game-practice.js?v=0.2.2';
+import { KantoreGameLevel } from './game-level.js';
+import { KantoreGameMain } from './game-main.js';
+import { KantoreGamePractice } from './game-practice.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;

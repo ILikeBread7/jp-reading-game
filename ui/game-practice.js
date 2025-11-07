@@ -1,4 +1,4 @@
-import { KantoreGameBase } from './game-base.js?v=0.2.2';
+import { KantoreGameBase } from './game-base.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
