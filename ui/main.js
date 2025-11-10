@@ -70,12 +70,14 @@ events.addEventListener(EVENTS.START, event => {
             }
         break;
         case TYPES.PRACTICE: {
-            game = gameArcade;
-            gameArcade.start('Test', dicts.getLevelDict(21));
-            return
-            game = gamePractice;
             const { categoryName, dict } = detail;
-            gamePractice.start(categoryName, dict);
+            game = gameArcade;
+            gameArcade.start(categoryName, dict);
+            break;
+
+            // game = gamePractice;
+            // const { categoryName, dict } = detail;
+            // gamePractice.start(categoryName, dict);
         } break;
     }
 

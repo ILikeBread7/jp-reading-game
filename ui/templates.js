@@ -170,12 +170,14 @@ var $kt = $kt || {};
         /**
          * 
          * @param {string} levelName 
+         * @param {number} lives 
+         * @param {boolean} shakeLives 
          * @param {number} currentAnswers 
          * @param {number} totalQuestions 
          * @param {number} [currentAnswersPercentage=currentAnswers * 100 / totalQuestions] 
          * @returns 
          */
-        static arcadeData(levelName, currentAnswers, totalQuestions, currentAnswersPercentage = currentAnswers * 100 / totalQuestions) {
+        static arcadeData(levelName, lives, shakeLives, currentAnswers, totalQuestions, currentAnswersPercentage = currentAnswers * 100 / totalQuestions) {
             return /*html*/`
                 <div id="level-name">
                     ${levelName}
@@ -187,6 +189,9 @@ var $kt = $kt || {};
                     <div class="level-exp-container" id="level-current-level-exp-container">
                         <div class="level-exp-content" id="level-current-level-exp-content" style="width:${currentAnswersPercentage}%;"></div>
                     </div>
+                </div>
+                <div class="${KT._tif(shakeLives) && `shake`} ${KT._tif(lives === 0) && `empty-lives`}" id="arcade-lives">
+                    Lives: <span class="lives">${Array(lives).fill('機').join('')}</span>
                 </div>
             `;
         }

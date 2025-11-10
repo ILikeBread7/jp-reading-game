@@ -19,8 +19,9 @@ export class KantoreGameArcade extends KantoreGameBase {
     start(diffucyltyName, dict) {
         this._dict = dict;
         this._correctAnswersNumber = 0;
+        this._lives = 3;
         this._categoryLabel = `Arcade: ${diffucyltyName}`;
-        this._showArcadeData();
+        this._showArcadeDataCorrectAnswer();
         this._gameLevel.start(dict);
         this._askQuestion();
     }
@@ -35,7 +36,7 @@ export class KantoreGameArcade extends KantoreGameBase {
             gameUi.jumpRightAnswer();
             if (!this._gameLevel.gaveUp) {
                 this._correctAnswersNumber++;
-                this._showArcadeData();
+                this._showArcadeDataCorrectAnswer();
             }
             this._askQuestion();
         } else {
@@ -48,9 +49,35 @@ export class KantoreGameArcade extends KantoreGameBase {
         gameUi.startTimeBar();
     }
 
-    _showArcadeData() {
+    _giveUp() {
+        if (this._gameLevel.gaveUp) {
+            super._giveUp();
+            return;
+        }
+
+        if (this._lives > 0) {
+            super._giveUp();
+            this._lives--;
+        }
+
+        this._showArcadeDataGaveUp();
+    }
+
+    _showArcadeDataCorrectAnswer() {
+        const shakeLives = false;
+        this._showArcadeData(shakeLives);
+    }
+
+    _showArcadeDataGaveUp() {
+        const shakeLives = true;
+        this._showArcadeData(shakeLives);
+    }
+
+    _showArcadeData(shakeLives) {
         gameUi.showArcadeData(
             this._categoryLabel,
+            this._lives,
+            shakeLives,
             this._correctAnswersNumber,
             15
         );

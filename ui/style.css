@@ -98,6 +98,8 @@ a {
     margin-top: 0.5em;
 }
 
+.lives,
+.empty-lives,
 .hint-emphasis {
     color: var(--palette-secondary-text-color);
 }
@@ -941,6 +943,10 @@ body:not(.game) .game-only {
     background-position: center;
 
     animation: time-bar-shrink 5s linear forwards;
+}
+
+#arcade-lives {
+    position: relative;
 }
 
 @keyframes time-bar-shrink {

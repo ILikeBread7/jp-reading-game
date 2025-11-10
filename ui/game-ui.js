@@ -216,13 +216,15 @@ class KantoreGameUi {
     /**
      * 
      * @param {string} levelName 
+     * @param {number} lives 
+     * @param {boolean} shakeLives 
      * @param {number} currentAnswers 
      * @param {number} totalQuestions 
      * @param {number?} oldExpPercentage
      * @returns 
      */
-    showArcadeData(levelName, currentAnswers, totalQuestions, oldExpPercentage) {
-        this._levelExpDiv.innerHTML = $kt.templates.arcadeData(levelName, currentAnswers, totalQuestions, oldExpPercentage);
+    showArcadeData(levelName, lives, shakeLives, currentAnswers, totalQuestions, oldExpPercentage) {
+        this._levelExpDiv.innerHTML = $kt.templates.arcadeData(levelName, lives, shakeLives, currentAnswers, totalQuestions, oldExpPercentage);
     }
 
     /**
