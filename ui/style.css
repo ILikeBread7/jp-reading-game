@@ -293,7 +293,7 @@ summary {
 #dialogue-content,
 #level-up-hint {
     width: calc(var(--info-width) + var(--bigger-by));
-    max-width: var(--info-max-width);
+    max-width: calc(var(--info-max-width) + var(--bigger-by));
     min-width: var(--info-min-width);
 }
 
