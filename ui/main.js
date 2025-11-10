@@ -1,4 +1,3 @@
-import { dicts } from './dicts.js';
 import { KantoreGameArcade } from './game-arcade.js';
 import { KantoreGameLevel } from './game-level.js';
 import { KantoreGameMain } from './game-main.js';

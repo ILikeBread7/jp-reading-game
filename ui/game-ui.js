@@ -129,7 +129,7 @@ class KantoreGameUi {
     }
 
     showHint() {
-        this._isShowingHintOnly = true;
+        this._shouldDispatchLevelUpEvent = false;
 
         this._updateHintTemplateOrLoading(this._levelUpHintContent);
         this._prepareLevelUpContainerForHintOnly();
@@ -145,29 +145,46 @@ class KantoreGameUi {
      * @param {boolean} showHint true if hint should be shown, false otherwise
      */
     showLevelUp(newLevel, showHint) {
-        this._isShowingHintOnly = false;
-
-        setTimeout(
-            () => $kt.audio.playEffect($kt.audio.seTracks.LEVEL_UP),
-            SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
-        );
+        this._shouldDispatchLevelUpEvent = true;
         
         this._showHintOnLevelUp = showHint;
         this._updateHintTemplateOrLoading(this._levelUpHintContent);
         this._prepareLevelUpContainerForLevelUp();
 
+        const totalTextTransitionTime = this._showLevelUpContainer(this._levelUpTextChars);
+        this._fadeLevelUpTextToLevelUpHint(showHint, '0.35s', `${totalTextTransitionTime}s`);
+
+        this._dispatchEvent(this._eventNames.LEVEL_UP_BEFORE, { newLevel });
+    }
+
+    showGameClear() {
+        this._shouldDispatchLevelUpEvent = false;
+        this._prepareLevelUpContainerForGameClear();
+        this._showLevelUpContainer(this._gameClearTextChars);
+    }
+
+    /**
+     * 
+     * @param {[HTMLElement]} textChars 
+     * @returns {number} Total transition time for the text
+     */
+    _showLevelUpContainer(textChars) {
+        setTimeout(
+            () => $kt.audio.playEffect($kt.audio.seTracks.LEVEL_UP),
+            SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
+        );
+
         const charTransitionDelayTime = 0.075;
         const charTransitionTime = 0.325;
-        const totalTextTransitionTime = charTransitionDelayTime * (this._levelUpTextChars.length - 1) + charTransitionTime * 2;
+        const totalTextTransitionTime = charTransitionDelayTime * (textChars.length - 1) + charTransitionTime * 2;
 
         const fadeInTimeCss = `${LEVEL_UP_FADE_IN_TIME}s`;
         this._fadeIn(this._levelUpContainer, fadeInTimeCss, '0s');
-        this._textJumpByChar(this._levelUpTextChars, '-0.5em', `${charTransitionTime}s`, charTransitionDelayTime);
+        this._textJumpByChar(textChars, '-0.5em', `${charTransitionTime}s`, charTransitionDelayTime);
 
-        this._fadeLevelUpTextToLevelUpHint(showHint, '0.35s', `${totalTextTransitionTime}s`);
         this._answerInput.blur();
 
-        this._dispatchEvent(this._eventNames.LEVEL_UP_BEFORE, { newLevel });
+        return totalTextTransitionTime;
     }
 
     /**
@@ -253,11 +270,19 @@ class KantoreGameUi {
     _prepareLevelUpContainerForHintOnly() {
         this._levelUpText.style.display = 'none';
         this._levelUpHint.classList.remove('fade-hidden');
+        this._gameClearText.style.display = 'none';
     }
 
     _prepareLevelUpContainerForLevelUp() {
         this._levelUpText.style.removeProperty('display');
         this._levelUpHint.classList.add('fade-hidden');
+        this._gameClearText.style.display = 'none';
+    }
+
+    _prepareLevelUpContainerForGameClear() {
+        this._levelUpText.style.display = 'none';
+        this._levelUpHint.classList.add('fade-hidden');
+        this._gameClearText.style.removeProperty('display');
     }
 
     _forceCloseLevelUpText() {
@@ -676,10 +701,12 @@ class KantoreGameUi {
             this._removeTransition(this._levelUpText);
             this._removeTransition(this._levelUpHint);
             this._levelUpTextChars.forEach(this._removeTransition.bind(this));
+            this._removeTransition(this._gameClearText);
+            this._gameClearTextChars.forEach(this._removeTransition.bind(this));
             this._moveLevelExpDivBackDown();
         });
 
-        if (!this._isShowingHintOnly) {
+        if (this._shouldDispatchLevelUpEvent) {
             this._dispatchEvent(this._eventNames.LEVEL_UP_AFTER);
         }
 
