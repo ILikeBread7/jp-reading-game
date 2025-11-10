@@ -1,3 +1,4 @@
+import { KantoreGameLevel } from './game-level.js';
 import { gameUi } from './game-ui.js';
 
 export class KantoreGameBase {
