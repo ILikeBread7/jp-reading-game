@@ -930,6 +930,30 @@ body:not(.game) .game-only {
     z-index: var(--above-ui-z-index);
 }
 
+#arcade-lives {
+    position: relative;
+}
+
+#arcade-press-to-continue-text{
+    text-align: center;
+}
+
+#arcade-press-to-continue-text-span{
+    position: relative;
+    top: 6em;
+    opacity: 0;
+    animation: fade-in 0.5s linear 1s forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 #time-bar {
     --full-width: 50vw;
 
@@ -943,10 +967,6 @@ body:not(.game) .game-only {
     background-position: center;
 
     animation: time-bar-shrink 5s linear forwards;
-}
-
-#arcade-lives {
-    position: relative;
 }
 
 @keyframes time-bar-shrink {

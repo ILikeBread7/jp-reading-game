@@ -287,31 +287,23 @@ class KantoreGameUi {
     }
 
     _prepareLevelUpContainerForHintOnly() {
-        this._levelUpText.style.display = 'none';
         this._levelUpHint.classList.remove('fade-hidden');
-        this._gameClearText.style.display = 'none';
-        this._gameOverText.style.display = 'none';
+        this._displayAnnouncmentText();
     }
 
     _prepareLevelUpContainerForLevelUp() {
-        this._levelUpText.style.removeProperty('display');
         this._levelUpHint.classList.add('fade-hidden');
-        this._gameClearText.style.display = 'none';
-        this._gameOverText.style.display = 'none';
+        this._displayAnnouncmentText(this._levelUpText);
     }
 
     _prepareLevelUpContainerForGameClear() {
-        this._levelUpText.style.display = 'none';
         this._levelUpHint.classList.add('fade-hidden');
-        this._gameClearText.style.removeProperty('display');
-        this._gameOverText.style.display = 'none';
+        this._displayAnnouncmentText(this._gameClearText, this._arcadePressToContinueText);
     }
 
     _prepareLevelUpContainerForGameOver() {
-        this._levelUpText.style.display = 'none';
         this._levelUpHint.classList.add('fade-hidden');
-        this._gameClearText.style.display = 'none';
-        this._gameOverText.style.removeProperty('display');
+        this._displayAnnouncmentText(this._gameOverText, this._arcadePressToContinueText)
     }
 
     _forceCloseLevelUpText() {
@@ -491,6 +483,7 @@ class KantoreGameUi {
         this._gameClearText = document.getElementById('game-clear-text');
         this._gameClearTextChars = [...document.getElementsByClassName('game-clear-text-char')];
         this._gameOverText = document.getElementById('game-over-text');
+        this._arcadePressToContinueText = document.getElementById('arcade-press-to-continue-text');
 
         this._levelUpHint = document.getElementById('level-up-hint');
         this._levelUpHintContent = document.getElementById('level-up-hint-content');
@@ -608,15 +601,16 @@ class KantoreGameUi {
         $kt.uiHelper.switchToScene(this._gameScene);
         this._moveLevelExpDivBackDown();
         this._removeLevelUpTransitions();
-        this._displayAnnouncmentText(this._levelUpText);
         this.focusAnswerInput();
         this._dispatchEvent(this._eventNames.START, { gameType, categoryName, dict });
     }
 
-    _displayAnnouncmentText(textElement) {
+    _displayAnnouncmentText(...textElements) {
         [...document.getElementsByClassName('announcment-text')]
             .forEach(text => text.style.display = 'none');
-        textElement.style.removeProperty('display');
+        for (const textElement of textElements) {
+            textElement.style.removeProperty('display');
+        }
     }
     
     _removeLevelUpTransitions() {
