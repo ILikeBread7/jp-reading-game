@@ -1,6 +1,7 @@
 import { dialogue } from './dialogue-ui.js';
 import { KantoreGameBase } from './game-base.js';
 import { gameUi } from './game-ui.js';
+import { audio } from './audio.js';
 
 export class KantoreGameArcade extends KantoreGameBase {
 
@@ -88,6 +89,10 @@ export class KantoreGameArcade extends KantoreGameBase {
         if (this._lives > 0) {
             super._giveUp();
             this._lives--;
+        } else {
+            // Effect won't be played if super._giveUp
+            // isn't called, so play it manually
+            audio.playEffect(audio.seTracks.CANCEL);
         }
 
         this._showArcadeDataGaveUp();
