@@ -234,28 +234,39 @@ class KantoreGameUi {
      * 
      * @param {string} levelName 
      * @param {number} lives 
-     * @param {boolean} shakeLives 
+     * @param {boolean} answerIsCorrect 
      * @param {number} currentAnswers 
      * @param {number} totalQuestions 
      * @param {number?} oldExpPercentage
      * @returns 
      */
-    showArcadeData(levelName, lives, shakeLives, currentAnswers, totalQuestions, oldExpPercentage) {
-        this._levelExpDiv.innerHTML = $kt.templates.arcadeData(levelName, lives, shakeLives, currentAnswers, totalQuestions, oldExpPercentage);
+    showArcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions, oldExpPercentage) {
+        this._levelExpDiv.innerHTML = $kt.templates.arcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions, oldExpPercentage);
     }
 
     /**
      * 
      * @param {string} levelName 
+     * @param {number} lives 
+     * @param {boolean} answerIsCorrect 
      * @param {number} currentAnswers 
      * @param {number} totalQuestions 
      * @returns 
      */
-    showArcadeExp(levelName, currentAnswers, totalQuestions) {
-        const oldExpPercentage = Math.max(0, (currentAnswers - 1) * 100 / totalQuestions);
+    showArcadeExp(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions) {
+        const oldExpPercentage = answerIsCorrect
+            ? (Math.max(0, (currentAnswers - 1) * 100 / totalQuestions))
+            : undefined;    // undefined to use the default value
         const newExpPercentage = currentAnswers * 100 / totalQuestions;
 
-        this.showArcadeData(levelName, currentAnswers, totalQuestions, oldExpPercentage);
+        this.showArcadeData(
+            levelName,
+            lives,
+            answerIsCorrect,
+            currentAnswers,
+            totalQuestions,
+            oldExpPercentage
+        );
         this._moveLevelExpDivAbove();
 
         this._moveLevelExpDivBelowWithTimeout(FADE_IN_ANIMATION_LENGTH);

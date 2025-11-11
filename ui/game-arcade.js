@@ -94,20 +94,20 @@ export class KantoreGameArcade extends KantoreGameBase {
     }
 
     _showArcadeDataCorrectAnswer() {
-        const shakeLives = false;
-        this._showArcadeData(shakeLives);
+        const answerIsCorrect = true;
+        this._showArcadeData(answerIsCorrect);
     }
 
     _showArcadeDataGaveUp() {
-        const shakeLives = true;
-        this._showArcadeData(shakeLives);
+        const answerIsCorrect = false;
+        this._showArcadeData(answerIsCorrect);
     }
 
-    _showArcadeData(shakeLives) {
-        gameUi.showArcadeData(
+    _showArcadeData(answerIsCorrect) {
+        gameUi.showArcadeExp(
             this._categoryLabel,
             this._lives,
-            shakeLives,
+            answerIsCorrect,
             this._correctAnswersNumber,
             this._totalQuestions,
         );
