@@ -1,3 +1,5 @@
+import { audio } from './audio.js';
+
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
@@ -63,7 +65,7 @@ class KantoreDialogue {
         }
 
         $kt.uiHelper.hideOverlayElement(this._dialogue);
-        $kt.audio.playEffect($kt.audio.seTracks.CONFIRM);
+        audio.playEffect(audio.seTracks.CONFIRM);
         if (this._closeListener) {
             this._closeListener();
             this._closeListener = null;

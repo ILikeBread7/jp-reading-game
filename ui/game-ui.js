@@ -1,3 +1,5 @@
+import { audio } from './audio.js';
+
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
@@ -93,7 +95,7 @@ class KantoreGameUi {
     }
 
     _closeLevelUpContainerAndPlaySound() {
-        $kt.audio.playEffect($kt.audio.seTracks.CANCEL);
+        audio.playEffect(audio.seTracks.CANCEL);
         this._closeLevelUpContainer();
     }
 
@@ -170,7 +172,7 @@ class KantoreGameUi {
      */
     _showLevelUpContainer(textChars) {
         setTimeout(
-            () => $kt.audio.playEffect($kt.audio.seTracks.LEVEL_UP),
+            () => audio.playEffect(audio.seTracks.LEVEL_UP),
             SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
         );
 
@@ -323,20 +325,20 @@ class KantoreGameUi {
     }
 
     shakeWrongAnswer(answer) {
-        $kt.audio.playEffect($kt.audio.seTracks.CANCEL);
+        audio.playEffect(audio.seTracks.CANCEL);
         this._wrongAnswer.textContent = answer;
         this._wrongAnswer.classList.add('shake');
     }
 
     jumpRightAnswer() {
-        $kt.audio.playEffect($kt.audio.seTracks.CORRECT);
+        audio.playEffect(audio.seTracks.CORRECT);
         this._questionAnswerContainer.classList.add('jump');
         this._wrongAnswer.textContent = '';
         this._answerInput.value = '';
     }
 
     slideQuestionHint(newHint) {
-        $kt.audio.playEffect($kt.audio.seTracks.SELECT);
+        audio.playEffect(audio.seTracks.SELECT);
         this._questionHintElement.classList.add('slide');
         this.showQuestionHint(newHint);
     }
@@ -416,13 +418,13 @@ class KantoreGameUi {
         // Exp growing and exp max sounds
         if (expData.some(exp => exp.addedExp > 0)) {
             setTimeout(
-                () => $kt.audio.playEffect($kt.audio.seTracks.EXP_GROW),
+                () => audio.playEffect(audio.seTracks.EXP_GROW),
                 SOUND_EFFECT_DELAY // Time to let the correct ansewr sound effect play
             );
 
             if (expData.some(exp => exp.newExpPercentage >= 100)) {
                 setTimeout(
-                    () => $kt.audio.playEffect($kt.audio.seTracks.EXP_MAX),
+                    () => audio.playEffect(audio.seTracks.EXP_MAX),
                     SOUND_EFFECT_DELAY * 4 // Time to let the exp bars grow
                 );
             }

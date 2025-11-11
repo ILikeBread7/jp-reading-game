@@ -1,5 +1,6 @@
 import { dialogue } from './dialogue-ui.js';
 import { gameUi } from './game-ui.js';
+import { audio } from './audio.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -81,15 +82,15 @@ class KantoreUi {
             const se = (() => {
                 const datasetSe = element.dataset.se;
                 if (datasetSe) {
-                    return $kt.audio.seTracks[datasetSe];
+                    return audio.seTracks[datasetSe];
                 }
 
                 return element.hasAttribute('data-close-button') || element.classList.contains('back-button')
-                    ? $kt.audio.seTracks.CANCEL
-                    : $kt.audio.seTracks.CONFIRM;
+                    ? audio.seTracks.CANCEL
+                    : audio.seTracks.CONFIRM;
             })();
             
-            return () => $kt.audio.playEffect(se);
+            return () => audio.playEffect(se);
         }
 
         [
@@ -124,7 +125,7 @@ class KantoreUi {
             this._nowPlaying.classList.remove('slide-transform');
         });
 
-        $kt.audio.events.addEventListener($kt.audio.eventNames.BGM_STARTED, ({ detail }) => {
+        audio.events.addEventListener(audio.eventNames.BGM_STARTED, ({ detail }) => {
             this._nowPlayingText.textContent = `${detail.displayName} by ${detail.author}`;
             this._nowPlaying.classList.add('slide-transform');
         });

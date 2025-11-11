@@ -3,8 +3,10 @@ import { KantoreGameLevel } from './game-level.js';
 import { KantoreGameMain } from './game-main.js';
 import { KantoreGamePractice } from './game-practice.js';
 import { gameUi } from './game-ui.js';
+import { audio } from './audio.js';
 
 gameUi.initialize();
+audio.initialize();
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -46,7 +48,7 @@ const gameArcade = new KantoreGameArcade(gameLevel);
 
 let game = gameMain;
 $kt.hints.loadKanjidex();
-$kt.audio.preloadAudio();
+audio.preloadAudio();
 gameUi.setupLevelHints(gameStatus.level);
 
 events.addEventListener(EVENTS.START, event => {

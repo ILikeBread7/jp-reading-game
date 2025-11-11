@@ -1,5 +1,6 @@
 import { dialogue } from './dialogue-ui.js';
 import { gameUi } from './game-ui.js';
+import { audio } from './audio.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -111,7 +112,7 @@ class KantoreUiHelper {
         // on the same checkbox over and over again
         // directly or through a label
         if (!element.parentNode.classList.contains('menu-item-label')) {
-            $kt.audio.playEffectWithCooldown($kt.audio.seTracks.SELECT);
+            audio.playEffectWithCooldown(audio.seTracks.SELECT);
         }
     }
 

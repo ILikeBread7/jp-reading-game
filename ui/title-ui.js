@@ -1,6 +1,7 @@
 import { dialogue } from './dialogue-ui.js';
 import { dicts } from './dicts.js';
 import { gameUi } from './game-ui.js';
+import { audio } from './audio.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -148,8 +149,8 @@ class KantoreTitleUi {
     _hidePreTitle() {
         this._preTitleText.classList.add('hidden');
         $kt.uiHelper.showMenu(this._mainMenu);
-        $kt.audio.playEffect($kt.audio.seTracks.CONFIRM);
-        $kt.audio.startBgms();
+        audio.playEffect(audio.seTracks.CONFIRM);
+        audio.startBgms();
     }
 
     _createCategoryMenus() {
