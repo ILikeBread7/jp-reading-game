@@ -966,7 +966,7 @@ body:not(.game) .game-only {
     background-size: var(--full-width);
     background-position: center;
 
-    animation: time-bar-shrink 5s linear forwards;
+    animation: time-bar-shrink 30s linear forwards;
 }
 
 @keyframes time-bar-shrink {

@@ -3,6 +3,8 @@ import { KantoreGameBase } from './game-base.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 
+const SOUND_EFFECT_DELAY = 500;
+
 export class KantoreGameArcade extends KantoreGameBase {
 
     /**
@@ -31,7 +33,8 @@ export class KantoreGameArcade extends KantoreGameBase {
         this._correctAnswersNumber = 0;
         this._totalQuestions = 15;
         this._questionsBeforeBreak = 5;
-        this._lives = 3;
+        this._maxLives = 3;
+        this._lives = this._maxLives;
         this._categoryLabel = `Arcade: ${diffucyltyName}`;
         this._showArcadeDataCorrectAnswer();
         this._gameLevel.start(dict);
@@ -64,7 +67,12 @@ export class KantoreGameArcade extends KantoreGameBase {
             return;
         }
 
-        if (this._correctAnswersNumber > 0 && this._correctAnswersNumber % this._questionsBeforeBreak === 0) {
+        if (!this._gameLevel.gaveUp && this._correctAnswersNumber > 0 && this._correctAnswersNumber % this._questionsBeforeBreak === 0) {
+            setTimeout(
+                () => audio.playEffect(audio.seTracks.EXP_MAX),
+                SOUND_EFFECT_DELAY // Time to let the correct ansewr sound effect play
+            );
+
             dialogue.show(
                 'Have a little break!',
                 /*html*/ `
@@ -74,8 +82,14 @@ export class KantoreGameArcade extends KantoreGameBase {
                     <br>
                     You can take a little breather now and continue
                     whenever you're ready.
+                    <br>
+                    You also recover one extra life for 5 correct answers!
                 </div>`,
-                this._askQuestion.bind(this)
+                () => {
+                    this._lives = Math.min(this._lives + 1, this._maxLives);
+                    this._showArcadeDataGaveUp();
+                    this._askQuestion();
+                }
             )
             return;
         }

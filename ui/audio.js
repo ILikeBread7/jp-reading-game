@@ -22,7 +22,8 @@ class KantoreAudio {
             CANCEL: { name: '決定ボタンを押す3.ogg', speed: 0.8 },
             EXP_GROW: { name: '成功音.ogg' },
             EXP_MAX: { name: '決定ボタンを押す1.ogg' },
-            LEVEL_UP: { name: '決定ボタンを押す4.ogg' }
+            LEVEL_UP: { name: '決定ボタンを押す4.ogg' },
+            GAME_OVER: { name: '決定ボタンを押す4.ogg', speed: 0.5 },
         };
 
         this._bgmTracks = $kt.utils.shuffle([

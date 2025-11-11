@@ -87,6 +87,7 @@ class KantoreGameUi {
         }
 
         if (this._isGameClearOrGameOverVisible()) {
+            audio.playEffect(audio.seTracks.CANCEL);
             $kt.uiHelper.backToTitle();
             return true;
         }
@@ -169,6 +170,7 @@ class KantoreGameUi {
         this._shouldDispatchLevelUpEvent = false;
         this._prepareLevelUpContainerForGameOver();
         this._showLevelUpContainer();
+        audio.playEffect(audio.seTracks.GAME_OVER);
     }
 
     /**
@@ -177,10 +179,12 @@ class KantoreGameUi {
      * @returns {number} Total transition time for the text
      */
     _showLevelUpContainer(textChars = []) {
-        setTimeout(
-            () => audio.playEffect(audio.seTracks.LEVEL_UP),
-            SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
-        );
+        if (textChars.length > 0) {
+            setTimeout(
+                () => audio.playEffect(audio.seTracks.LEVEL_UP),
+                SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
+            );
+        }
 
         const charTransitionDelayTime = 0.075;
         const charTransitionTime = 0.325;
@@ -283,7 +287,7 @@ class KantoreGameUi {
         // the growing exp bars transitions
         void this._levelExpDiv.offsetWidth;
         
-        this._growExpBars([{ oldExpPercentage, newExpPercentage }]);
+        this._growExpBars([{ oldExpPercentage, newExpPercentage, addedExp: newExpPercentage - oldExpPercentage }]);
     }
 
     _prepareLevelUpContainerForHintOnly() {
