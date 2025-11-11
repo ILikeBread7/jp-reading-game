@@ -165,12 +165,18 @@ class KantoreGameUi {
         this._showLevelUpContainer(this._gameClearTextChars);
     }
 
+    showGameOver() {
+        this._shouldDispatchLevelUpEvent = false;
+        this._prepareLevelUpContainerForGameOver();
+        this._showLevelUpContainer();
+    }
+
     /**
      * 
-     * @param {[HTMLElement]} textChars 
+     * @param {[HTMLElement]} [textChars] 
      * @returns {number} Total transition time for the text
      */
-    _showLevelUpContainer(textChars) {
+    _showLevelUpContainer(textChars = []) {
         setTimeout(
             () => audio.playEffect(audio.seTracks.LEVEL_UP),
             SOUND_EFFECT_DELAY * 2 // Time to let the correct answer sound play + exp growth sound start
@@ -284,18 +290,28 @@ class KantoreGameUi {
         this._levelUpText.style.display = 'none';
         this._levelUpHint.classList.remove('fade-hidden');
         this._gameClearText.style.display = 'none';
+        this._gameOverText.style.display = 'none';
     }
 
     _prepareLevelUpContainerForLevelUp() {
         this._levelUpText.style.removeProperty('display');
         this._levelUpHint.classList.add('fade-hidden');
         this._gameClearText.style.display = 'none';
+        this._gameOverText.style.display = 'none';
     }
 
     _prepareLevelUpContainerForGameClear() {
         this._levelUpText.style.display = 'none';
         this._levelUpHint.classList.add('fade-hidden');
         this._gameClearText.style.removeProperty('display');
+        this._gameOverText.style.display = 'none';
+    }
+
+    _prepareLevelUpContainerForGameOver() {
+        this._levelUpText.style.display = 'none';
+        this._levelUpHint.classList.add('fade-hidden');
+        this._gameClearText.style.display = 'none';
+        this._gameOverText.style.removeProperty('display');
     }
 
     _forceCloseLevelUpText() {
@@ -451,7 +467,8 @@ class KantoreGameUi {
             ANSWER: 'answer',
             LEVEL_UP_BEFORE: 'levelUpBefore',
             LEVEL_UP_AFTER: 'levelUpAfter',
-            BACK_TO_TITLE: 'backToTitle'
+            BACK_TO_TITLE: 'backToTitle',
+            TIME_UP: 'timeUp'
         });
     }
 
@@ -537,6 +554,10 @@ class KantoreGameUi {
 
         this._hintLastButton.addEventListener('click', () => 
             this.selectHint(this._hints.length - 1)
+        );
+
+        this._timeBar.addEventListener('animationend', () => 
+            this._events.dispatchEvent(new CustomEvent(this._eventNames.TIME_UP))
         );
     }
 

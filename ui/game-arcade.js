@@ -11,6 +11,14 @@ export class KantoreGameArcade extends KantoreGameBase {
      */
     constructor(gameLevel) {
         super(gameLevel);
+        this._addEventListeners();
+    }
+
+    _addEventListeners() {
+        gameUi.events.addEventListener(
+            gameUi.eventNames.TIME_UP,
+            gameUi.showGameOver.bind(gameUi)
+        );
     }
 
     /**
@@ -87,6 +95,7 @@ export class KantoreGameArcade extends KantoreGameBase {
         }
 
         if (this._lives > 0) {
+            gameUi.pauseTimeBar();
             super._giveUp();
             this._lives--;
         } else {
