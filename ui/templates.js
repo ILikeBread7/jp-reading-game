@@ -191,7 +191,7 @@ var $kt = $kt || {};
                     </div>
                 </div>
                 <div class="${KT._tif(!answerIsCorrect) && `shake`} ${KT._tif(lives === 0) && `empty-lives`}" id="arcade-lives">
-                    Lives: <span class="lives">${Array(lives).fill('機').join('')}</span>
+                    Lives: <span class="lives">${Array(lives).fill('命').join('')}</span>
                 </div>
             `;
         }
