@@ -2,6 +2,7 @@ import { dialogue } from './dialogue-ui.js';
 import { dicts } from './dicts.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
+import { GAME_TYPE } from './enums.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -11,7 +12,7 @@ const $kt = globalThis.$kt;
 class KantoreTitleUi {
 
     constructor() {
-        this._menuGameType - $kt.enums.GAME_TYPE.MAIN;
+        this._menuGameType - GAME_TYPE.MAIN;
         this._getAllElements();
         this._addEventListeners();
         this._createCategoryMenus();
@@ -128,11 +129,11 @@ class KantoreTitleUi {
         });
 
         this._arcadeCategoriesButton.addEventListener('click', () => {
-            this._menuGameType = $kt.enums.GAME_TYPE.ARCADE;
+            this._menuGameType = GAME_TYPE.ARCADE;
         });
 
         this._practiceCategoriesButton.addEventListener('click', () => {
-            this._menuGameType = $kt.enums.GAME_TYPE.PRACTICE;
+            this._menuGameType = GAME_TYPE.PRACTICE;
         });
     };
 
@@ -192,7 +193,7 @@ class KantoreTitleUi {
                     ? dicts.getLevelDict(Number(button.dataset.levelDict))
                     : dicts.getCategoryDict(button.dataset.tagDict);
 
-                if (this._menuGameType === $kt.enums.GAME_TYPE.ARCADE) {
+                if (this._menuGameType === GAME_TYPE.ARCADE) {
                     this._startArcadeMode(categoryName, dict);
                 } else {
                     $kt.uiHelper.startGamePractice(categoryName, dict);
@@ -212,7 +213,7 @@ class KantoreTitleUi {
         this._categoriesBackButton.addEventListener('click', () => {
             $kt.uiHelper.hideMenu(this._categoriesMenu);
 
-            if (this._menuGameType === $kt.enums.GAME_TYPE.ARCADE) {
+            if (this._menuGameType === GAME_TYPE.ARCADE) {
                 $kt.uiHelper.showMenu(this._arcadeMenu);
                 return;
             }

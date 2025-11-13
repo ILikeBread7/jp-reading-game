@@ -1,21 +1,17 @@
-'use strict';
+export const SUBMIT_BUTTON_VISIBILITY = Object.freeze({
+    AUTO: 1,
+    NEVER: 2,
+    ALWAYS: 3
+});
 
-var $kt = $kt || {};
+export const GAME_TYPE = Object.freeze({
+    MAIN: 1,
+    PRACTICE: 2,
+    ARCADE: 3
+});
 
-(() => {
-
-    $kt.enums ||= {};
-
-    $kt.enums.SUBMIT_BUTTON = Object.freeze({
-        AUTO: 1,
-        NEVER: 2,
-        ALWAYS: 3
-    });
-
-    $kt.enums.GAME_TYPE = Object.freeze({
-        MAIN: 1,
-        PRACTICE: 2,
-        ARCADE: 3
-    });
-
-})();
+export const LIVES_ANIMATION_TYPE = Object.freeze({
+    NONE: 1,
+    SHAKE: 2,
+    JUMP: 3
+});

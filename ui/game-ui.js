@@ -1,4 +1,5 @@
 import { audio } from './audio.js';
+import { GAME_TYPE, LIVES_ANIMATION_TYPE } from './enums.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -260,13 +261,14 @@ class KantoreGameUi {
      * 
      * @param {string} levelName 
      * @param {number} lives 
-     * @param {boolean} answerIsCorrect 
+     * @param {LIVES_ANIMATION_TYPE} livesAnimationType 
      * @param {number} currentAnswers 
      * @param {number} totalQuestions 
+     * @param {boolean} addExp
      * @returns 
      */
-    showArcadeExp(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions) {
-        const oldExpPercentage = answerIsCorrect
+    showArcadeExp(levelName, lives, livesAnimationType, currentAnswers, totalQuestions, addedExp) {
+        const oldExpPercentage = addedExp
             ? (Math.max(0, (currentAnswers - 1) * 100 / totalQuestions))
             : undefined;    // undefined to use the default value
         const newExpPercentage = currentAnswers * 100 / totalQuestions;
@@ -274,7 +276,7 @@ class KantoreGameUi {
         this.showArcadeData(
             levelName,
             lives,
-            answerIsCorrect,
+            livesAnimationType,
             currentAnswers,
             totalQuestions,
             oldExpPercentage
@@ -597,7 +599,7 @@ class KantoreGameUi {
 
     /**
      * 
-     * @param {$kt.enums.GAME_TYPE} gameType 
+     * @param {GAME_TYPE} gameType 
      * @param {string | undefined} categoryName 
      * @param {BaseDict | ComplexDict | undefined} dict 
      */

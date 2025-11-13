@@ -1,6 +1,7 @@
 import { dialogue } from './dialogue-ui.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
+import { GAME_TYPE, SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -125,21 +126,21 @@ class KantoreUiHelper {
     }
 
     static startGameMain() {
-        gameUi.startGame($kt.enums.GAME_TYPE.MAIN);
+        gameUi.startGame(GAME_TYPE.MAIN);
         document.body.classList.add(
             'game', 'game-main'
         );
     }
 
     static startGamePractice(categoryName, dict) {
-        gameUi.startGame($kt.enums.GAME_TYPE.PRACTICE, categoryName, dict);
+        gameUi.startGame(GAME_TYPE.PRACTICE, categoryName, dict);
         document.body.classList.add(
             'game', 'game-practice'
         );
     }
 
     static startGameArcade(categoryName, dict) {
-        gameUi.startGame($kt.enums.GAME_TYPE.ARCADE, categoryName, dict);
+        gameUi.startGame(GAME_TYPE.ARCADE, categoryName, dict);
         document.body.classList.add(
             'game', 'game-arcade'
         );
@@ -227,7 +228,7 @@ class KantoreUiHelper {
 
     /**
      * 
-     * @param {$kt.enums.SUBMIT_BUTTON} visibility 
+     * @param {SUBMIT_BUTTON} visibility 
      */
     static adjustMobileOnlyElementsVisibility(visibility) {
         const adjustVisibilityFunction = $kt.uiHelper._createAdjustVisibilityFunction(visibility);
@@ -237,16 +238,15 @@ class KantoreUiHelper {
 
     /**
      * 
-     * @param {$kt.enums.SUBMIT_BUTTON} visibility 
+     * @param {SUBMIT_BUTTON} visibility 
      */
     static _createAdjustVisibilityFunction(visibility) {
-        const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
         switch (visibility) {
-            case AUTO:
+            case SUBMIT_BUTTON_VISIBILITY.AUTO:
                 return element => element.style.removeProperty('display');
-            case NEVER:
+            case SUBMIT_BUTTON_VISIBILITY.NEVER:
                 return element => element.style.display = 'none';
-            case ALWAYS:
+            case SUBMIT_BUTTON_VISIBILITY.ALWAYS:
                 return element => element.style.display = 'initial';
         }
     }

@@ -1,4 +1,5 @@
 import { audio } from './audio.js';
+import { SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -65,11 +66,10 @@ class KantoreSettingsUi {
     }
 
     _addSubmitButtonOptions() {
-        const { AUTO, NEVER, ALWAYS } = $kt.enums.SUBMIT_BUTTON;
         [
-            { value: AUTO, text: 'Auto' },
-            { value: NEVER, text: 'Always hide' },
-            { value: ALWAYS, text: 'Always show' }
+            { value: SUBMIT_BUTTON_VISIBILITY.AUTO, text: 'Auto' },
+            { value: SUBMIT_BUTTON_VISIBILITY.NEVER, text: 'Always hide' },
+            { value: SUBMIT_BUTTON_VISIBILITY.ALWAYS, text: 'Always show' }
         ].forEach(({ value, text }) => this._addOptionToSelect(this._submitButtonSelect, value, text));
     }
 

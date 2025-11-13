@@ -2,6 +2,7 @@ import { dialogue } from './dialogue-ui.js';
 import { KantoreGameBase } from './game-base.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
+import { LIVES_ANIMATION_TYPE } from './enums.js';
 
 const SOUND_EFFECT_DELAY = 500;
 
@@ -87,7 +88,7 @@ export class KantoreGameArcade extends KantoreGameBase {
                 </div>`,
                 () => {
                     this._lives = Math.min(this._lives + 1, this._maxLives);
-                    this._showArcadeDataGaveUp();
+                    this._showArcadeDataAddedLife();
                     this._askQuestion();
                 }
             )
@@ -122,22 +123,28 @@ export class KantoreGameArcade extends KantoreGameBase {
     }
 
     _showArcadeDataCorrectAnswer() {
-        const answerIsCorrect = true;
-        this._showArcadeData(answerIsCorrect);
+        const addExp = true;
+        this._showArcadeData(LIVES_ANIMATION_TYPE.NONE, addExp);
     }
 
     _showArcadeDataGaveUp() {
-        const answerIsCorrect = false;
-        this._showArcadeData(answerIsCorrect);
+        const addExp = false;
+        this._showArcadeData(LIVES_ANIMATION_TYPE.SHAKE, addExp);
     }
 
-    _showArcadeData(answerIsCorrect) {
+    _showArcadeDataAddedLife() {
+        const addExp = false;
+        this._showArcadeData(LIVES_ANIMATION_TYPE.JUMP, addExp);
+    }
+
+    _showArcadeData(livesAnimationType, addExp) {
         gameUi.showArcadeExp(
             this._categoryLabel,
             this._lives,
-            answerIsCorrect,
+            livesAnimationType,
             this._correctAnswersNumber,
             this._totalQuestions,
+            addExp
         );
     }
 

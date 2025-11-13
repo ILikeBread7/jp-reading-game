@@ -4,6 +4,7 @@ import { KantoreGameMain } from './game-main.js';
 import { KantoreGamePractice } from './game-practice.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
+import { GAME_TYPE } from './enums.js';
 
 gameUi.initialize();
 audio.initialize();
@@ -52,12 +53,11 @@ audio.preloadAudio();
 gameUi.setupLevelHints(gameStatus.level);
 
 events.addEventListener(EVENTS.START, event => {
-    const TYPES = $kt.enums.GAME_TYPE;
     const detail = event.detail;
     const gameType = detail.gameType;
 
     switch(gameType) {
-        case TYPES.MAIN:
+        case GAME_TYPE.MAIN:
             game = gameMain;
             gameMain.start();
 
@@ -70,12 +70,12 @@ events.addEventListener(EVENTS.START, event => {
                 }, 0);
             }
         break;
-        case TYPES.PRACTICE: {
+        case GAME_TYPE.PRACTICE: {
             game = gamePractice;
             const { categoryName, dict } = detail;
             gamePractice.start(categoryName, dict);
         } break;
-        case TYPES.ARCADE: {
+        case GAME_TYPE.ARCADE: {
             game = gameArcade;
             const { categoryName, dict } = detail;
             gameArcade.start(categoryName, dict);
