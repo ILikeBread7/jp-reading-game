@@ -121,7 +121,9 @@ class KantoreTitleUi {
 
         this._arcadeDifficultyButtons.forEach(button => {
             button.addEventListener('click', () => {
-                $kt.uiHelper.startGameArcade(button.textContent, dicts.getCategoryDict(button.dataset.dict));
+                const categoryName = button.textContent;
+                const dict = dicts.getCategoryDict(button.dataset.dict);
+                this._startArcadeMode(categoryName, dict);
             });
         });
 
@@ -191,7 +193,7 @@ class KantoreTitleUi {
                     : dicts.getCategoryDict(button.dataset.tagDict);
 
                 if (this._menuGameType === $kt.enums.GAME_TYPE.ARCADE) {
-                    $kt.uiHelper.startGameArcade(categoryName, dict);
+                    this._startArcadeMode(categoryName, dict);
                 } else {
                     $kt.uiHelper.startGamePractice(categoryName, dict);
                 }
@@ -234,6 +236,14 @@ class KantoreTitleUi {
         };
 
         levelsMenuButton.addEventListener('click', showMenuListener);
+    }
+
+    _startArcadeMode(categoryName, dict) {
+        dialogue.show(
+            'Arcade mode',
+            $kt.templates.arcadeModeExplanation(),
+            () => $kt.uiHelper.startGameArcade(categoryName, dict)
+        );
     }
 }
 

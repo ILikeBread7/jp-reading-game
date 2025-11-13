@@ -302,6 +302,33 @@ var $kt = $kt || {};
             `;
         }
 
+        static arcadeModeExplanation() {
+            return /*html*/ `
+                <div class="hint-explanation">
+                    Answer 15 questions to beat arcade mode!
+                </div>
+                <div class="hint-explanation">
+                    If you don't know the answer
+                    you can skip a question by submitting
+                    an empty answer
+                    (press ENTER with an empty input box).
+                </div>
+                <div class="hint-explanation">
+                    That will cost you a life
+                    (indicated with the <span class="lives">命</span>
+                    kanji on the right side of the screen),
+                    but if you don't answer (or skip) in time
+                    the game will end even if you still have lives remaining.
+                </div>
+                <div class="hint-explanation">
+                    Every 5 correct answers you replenish one life.
+                </div>
+                <div class="hint-explanation">
+                    Good luck and have fun!
+                </div>
+            `;
+        }
+
         /**
          * Function for html templates, if value is falsey returns elseValue
          * @returns value if condition is met, elseValue otherwise
