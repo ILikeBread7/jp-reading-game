@@ -71,14 +71,14 @@ events.addEventListener(EVENTS.START, event => {
             }
         break;
         case TYPES.PRACTICE: {
+            game = gamePractice;
             const { categoryName, dict } = detail;
+            gamePractice.start(categoryName, dict);
+        } break;
+        case TYPES.ARCADE: {
             game = gameArcade;
+            const { categoryName, dict } = detail;
             gameArcade.start(categoryName, dict);
-            break;
-
-            // game = gamePractice;
-            // const { categoryName, dict } = detail;
-            // gamePractice.start(categoryName, dict);
         } break;
     }
 

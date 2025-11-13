@@ -110,11 +110,22 @@
 
             <div class="centered menu hidden" id="main-menu" data-no-back-button>
                 <button class="menu-item menu-button" id="start-game-main-button">Start the game</button>
+                <button class="menu-item menu-button menu-destination-button" id="start-game-arcade-button" data-destination="arcade-menu">Arcade mode</button>
                 <button class="menu-item menu-button menu-destination-button" id="start-game-practice-button" data-destination="category-main-categories-container">Practice mode</button>
                 <button class="menu-item menu-button" id="title-settings-button">Settings</button>
                 <button class="menu-item menu-button menu-destination-button" id="credits-button" data-destination="credits-container">Credits</button>
             </div>
             <div class="blink centered-text hidden for-main-menu" id="title-press-start-text">Click the start button or press ENTER to start</div>
+
+            <div class="centered menu scrollable scrollable-container hidden" id="arcade-menu">
+                <button class="menu-item menu-button arcade-difficulty-button" id="arcade-button-easy" data-dict="arcade-easy">Easy</button>
+                <button class="menu-item menu-button arcade-difficulty-button" id="arcade-button-normal" data-dict="arcade-normal">Normal</button>
+                <button class="menu-item menu-button arcade-difficulty-button" id="arcade-button-hard" data-dict="arcade-hard">Hard</button>
+                <button class="menu-item menu-button arcade-difficulty-button" id="arcade-button-very-hard" data-dict="arcade-very-hard">Very hard</button>
+                <button class="menu-item menu-button arcade-difficulty-button" id="arcade-button-extremely-hard" data-dict="arcade-extremely-hard">Extremely hard</button>
+                <button class="menu-item menu-button menu-destination-button" id="arcade-categories-button" data-destination="category-main-categories-container">Categories</button>
+                <button class="menu-item menu-button menu-destination-button back-button" id="level-select-back-button" data-destination="main-menu">Go back</button>
+            </div>
 
             <div class="centered menu hidden scrollable-container" id="credits-container" data-default-item="credits-back-button">
                 <div class="scrollable" id="credits">

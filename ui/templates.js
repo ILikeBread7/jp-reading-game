@@ -211,7 +211,7 @@ var $kt = $kt || {};
 
         static categoriesMenu(categories) {
             const category = { name: 'Categories', entries: categories };
-            const parentMenuId = 'main-menu';
+            const parentMenuId = '';    // empty for the first element
             const parentCategoryCssName = 'main';
             return KT._categoryMenu(category, parentMenuId, parentCategoryCssName);
         }
@@ -226,7 +226,7 @@ var $kt = $kt || {};
             return /*html*/`
                 <div class="centered menu hidden scrollable scrollable-container" id="${categoryId}">
                     ${entries.map(entry => KT._entryButton(entry, categoryCssName)).join('')}
-                    <button class="menu-item menu-button menu-destination-button back-button" id="category-${categoryCssName}-back-button" data-destination="${parentMenuId}">Go back</button>
+                    <button class="menu-item menu-button ${parentMenuId && `menu-destination-button`} back-button" id="category-${categoryCssName}-back-button" ${parentMenuId && `data-destination="${parentMenuId}"`}>Go back</button>
                 </div>
             ` + entries.map(entry => KT._categoryMenu(entry, categoryId, categoryCssName)).join('');
         }

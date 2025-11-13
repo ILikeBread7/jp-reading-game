@@ -11,10 +11,12 @@ const $kt = globalThis.$kt;
 class KantoreTitleUi {
 
     constructor() {
+        this._menuGameType - $kt.enums.GAME_TYPE.MAIN;
         this._getAllElements();
         this._addEventListeners();
         this._createCategoryMenus();
-        this._getAllMenuElements();
+        this._getAllMenuAndArcadeCategoryElements();
+        this._addCategoriesBackButtonEventListeners();
     }
 
     enterListener() {
@@ -78,6 +80,11 @@ class KantoreTitleUi {
         this._levelSelect = document.getElementById('level-select');
         this._createKeepProgressLevelSelectOption();
         this._levelSelectLevels = [...this._levelSelect.getElementsByClassName('level-select-button')];
+
+        this._arcadeMenu = document.getElementById('arcade-menu');
+        this._arcadeDifficultyButtons = [...this._arcadeMenu.getElementsByClassName('arcade-difficulty-button')];
+        this._arcadeCategoriesButton = document.getElementById('arcade-categories-button');
+        this._practiceCategoriesButton = document.getElementById('start-game-practice-button');
     }
 
     _addEventListeners() {
@@ -111,7 +118,21 @@ class KantoreTitleUi {
                 );
             });
         });
-    }
+
+        this._arcadeDifficultyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                $kt.uiHelper.startGameArcade(button.textContent, dicts.getCategoryDict(button.dataset.dict));
+            });
+        });
+
+        this._arcadeCategoriesButton.addEventListener('click', () => {
+            this._menuGameType = $kt.enums.GAME_TYPE.ARCADE;
+        });
+
+        this._practiceCategoriesButton.addEventListener('click', () => {
+            this._menuGameType = $kt.enums.GAME_TYPE.PRACTICE;
+        });
+    };
 
     _startGameButtonEventListener() {
         const flags = $kt.persistence.getFlags() || {};
@@ -169,14 +190,33 @@ class KantoreTitleUi {
                     ? dicts.getLevelDict(Number(button.dataset.levelDict))
                     : dicts.getCategoryDict(button.dataset.tagDict);
 
-                $kt.uiHelper.startGamePractice(categoryName, dict);
+                if (this._menuGameType === $kt.enums.GAME_TYPE.ARCADE) {
+                    $kt.uiHelper.startGameArcade(categoryName, dict);
+                } else {
+                    $kt.uiHelper.startGamePractice(categoryName, dict);
+                }
             }));
 
         this._disableCategoryMenuElements();
     }
 
-    _getAllMenuElements() {
+    _getAllMenuAndArcadeCategoryElements() {
         this._menuElements = [...this._titleScene.getElementsByClassName('menu')];
+        this._categoriesBackButton = document.getElementById('category-main-categories-back-button');
+        this._categoriesMenu = document.getElementById('category-main-categories-container');
+    }
+
+    _addCategoriesBackButtonEventListeners() {
+        this._categoriesBackButton.addEventListener('click', () => {
+            $kt.uiHelper.hideMenu(this._categoriesMenu);
+
+            if (this._menuGameType === $kt.enums.GAME_TYPE.ARCADE) {
+                $kt.uiHelper.showMenu(this._arcadeMenu);
+                return;
+            }
+
+            $kt.uiHelper.showMenu(this._mainMenu);
+        });
     }
 
     _disableCategoryMenuElements() {

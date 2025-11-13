@@ -138,6 +138,13 @@ class KantoreUiHelper {
         );
     }
 
+    static startGameArcade(categoryName, dict) {
+        gameUi.startGame($kt.enums.GAME_TYPE.ARCADE, categoryName, dict);
+        document.body.classList.add(
+            'game', 'game-arcade'
+        );
+    }
+
     static _removeGameModeClasses() {
         document.body.removeAttribute('class');
     }

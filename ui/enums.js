@@ -14,7 +14,8 @@ var $kt = $kt || {};
 
     $kt.enums.GAME_TYPE = Object.freeze({
         MAIN: 1,
-        PRACTICE: 2
+        PRACTICE: 2,
+        ARCADE: 3
     });
 
 })();

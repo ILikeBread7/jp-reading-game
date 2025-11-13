@@ -722,6 +722,7 @@ class KantoreDicts {
         this._dicts = new Map();
         this._createLevelDicts();
         this._createCategoryDicts();
+        this._createArcadeDicts();
         Object.freeze(this._dicts);
     }
 
@@ -837,6 +838,16 @@ class KantoreDicts {
 
         addDictsInner(category);
     };
+
+    _createArcadeDicts() {
+        this._dicts.set('arcade-easy', new ComplexDict(
+            $kt.utils.shuffle(this.getLevelDicts(HIRAGANA_LEVELS_START, KATAKANA_LEVELS_END))
+        ));
+        this._dicts.set('arcade-normal', this._dicts.get('level-kanji-elementary'));
+        this._dicts.set('arcade-hard', this._dicts.get('level-kanji-junior-high'));
+        this._dicts.set('arcade-very-hard', this._dicts.get('level-kanji-jinmeiyo'));
+        this._dicts.set('arcade-extremely-hard', this._dicts.get('level-kanji-hyougai'));
+    }
 
     _findAllTags(entry) {
         const findAllTagsInner = entry => {
