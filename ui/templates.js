@@ -324,6 +324,9 @@ class KantoreTemplates {
                 Answer 15 questions to beat arcade mode!
             </div>
             <div class="hint-explanation">
+                You have 60 seconds per question.
+            </div>
+            <div class="hint-explanation">
                 If you don't know the answer
                 you can skip a question by submitting
                 an empty answer
@@ -338,6 +341,11 @@ class KantoreTemplates {
             </div>
             <div class="hint-explanation">
                 Every 5 correct answers you replenish one life.
+            </div>
+            <div class="hint-explanation">
+                To start close this message be pressing ENTER,
+                clicking the X icon in the top-right corner,
+                or clicking anywhere outside of this message box.
             </div>
             <div class="hint-explanation">
                 Good luck and have fun!
