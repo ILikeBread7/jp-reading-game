@@ -12,7 +12,7 @@ const $kt = globalThis.$kt;
 class KantoreTitleUi {
 
     constructor() {
-        this._menuGameType - GAME_TYPE.MAIN;
+        this._menuGameType = GAME_TYPE.MAIN;
         this._getAllElements();
         this._addEventListeners();
         this._createCategoryMenus();
@@ -240,6 +240,7 @@ class KantoreTitleUi {
     }
 
     _startArcadeMode(categoryName, dict) {
+        dict.preload();
         dialogue.show(
             'Arcade mode',
             $kt.templates.arcadeModeExplanation(),
