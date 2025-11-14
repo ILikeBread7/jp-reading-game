@@ -196,6 +196,21 @@ class KantoreUi {
         if (key === 'Tab') {
             $kt.settingsUi.tabEventListener();
             event.preventDefault();
+            return;
+        }
+
+        if (this._isLoadingVisible()) {
+            event.preventDefault();
+            return;
+        }
+
+        if (
+            key !== 'Enter'
+            && dialogue.isVisible()
+            && !$kt.uiHelper.isSettingsVisible()
+        ) {
+            event.preventDefault();
+            return;
         }
 
         if (this._isMenuItemFocused()) {
@@ -235,10 +250,6 @@ class KantoreUi {
                 event.preventDefault();
             }
 
-            return;
-        }
-
-        if (this._isLoadingVisible()) {
             return;
         }
 
