@@ -64,6 +64,9 @@ const LEVELS_CATEGORY = {
         LEVELS_HIRAGANA_CATEGORY,
         LEVELS_KATAKANA_CATEGORY,
         LEVELS_KANJI_CATEGORY
+    ],
+    complexLevelEntries: [
+        { name: 'Hiragana and katakana', tag: 'levels-kana-all', levelStart: HIRAGANA_LEVELS_START, levelEnd: KATAKANA_LEVELS_END }
     ]
 }
 
@@ -840,9 +843,15 @@ class KantoreDicts {
     };
 
     _createArcadeDicts() {
+        this._dicts.set('arcade-hiragana', this._dicts.get('level-hiragana-all'));
+        this._dicts.set('arcade-katakana', this._dicts.get('level-katakana-all'));
+        this._dicts.set('arcade-kana', this._dicts.get('levels-kana-all'));
+        this._dicts.set('arcade-very-easy', this._dicts.get('level-kanji-grade-1'));
+        
         this._dicts.set('arcade-easy', new ComplexDict(
-            $kt.utils.shuffle(this.getLevelDicts(HIRAGANA_LEVELS_START, KATAKANA_LEVELS_END))
+            $kt.utils.shuffle(this.getLevelDicts(KANJI_GRADE_1_START, KANJI_GRADE_3_END))
         ));
+
         this._dicts.set('arcade-normal', this._dicts.get('level-kanji-elementary'));
         this._dicts.set('arcade-hard', this._dicts.get('level-kanji-junior-high'));
         this._dicts.set('arcade-very-hard', this._dicts.get('level-kanji-jinmeiyo'));
