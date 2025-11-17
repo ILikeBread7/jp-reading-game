@@ -10,10 +10,12 @@ import { GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
 import { KantoreHints } from './hints.js';
 import { KantoreLevels } from './levels.js';
+import { titleUi } from './title-ui.js';
 
 audio.initialize();
 ui.initialize();
 settingsUi.initialize();
+titleUi.initialize();
 gameUi.initialize();
 
 const EVENTS = gameUi.eventNames;

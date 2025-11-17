@@ -12,6 +12,10 @@ import { KantoreTemplates } from './templates.js';
 class KantoreTitleUi {
 
     constructor() {
+
+    }
+
+    initialize() {
         this._menuGameType = GAME_TYPE.MAIN;
         this._getAllElements();
         this._addEventListeners();
