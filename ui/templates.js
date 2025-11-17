@@ -1,9 +1,6 @@
 import { LIVES_ANIMATION_TYPE } from './enums.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
-
-class KantoreTemplates {
+export class KantoreTemplates {
 
     /**
      * 
@@ -377,4 +374,4 @@ class KantoreTemplates {
 
 }
 
-const KT = $kt.templates = KantoreTemplates;
+const KT = KantoreTemplates;

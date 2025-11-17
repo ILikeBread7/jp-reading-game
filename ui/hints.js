@@ -1,7 +1,5 @@
 import { LEVEL_CHARS } from './level-chars.js';
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+import { KantoreTemplates } from './templates.js';
 
 let kanjidexMap = null;
 let kanjidexPromise = null;
@@ -1704,7 +1702,7 @@ export class KantoreHints {
             <div>
                 ${
                     kanjiChars
-                        .map(kanji => $kt.templates.kanjiHintEntry(kanjidexMap.get(kanji)))
+                        .map(kanji => KantoreTemplates.kanjiHintEntry(kanjidexMap.get(kanji)))
                         .join('')
                 }
             </div>

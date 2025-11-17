@@ -2,10 +2,8 @@ import { audio } from './audio.js';
 import { GAME_TYPE, LIVES_ANIMATION_TYPE } from './enums.js';
 import { KantoreUiHelper } from './ui-helper.js';
 import { KantoreHints } from './hints.js';
+import { KantoreTemplates } from './templates.js';
 import { settings } from './settings.js';
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
 
 const FADE_IN_ANIMATION_LENGTH = 400;
 const LEVEL_UP_ANIMATION_LENGTH = 3000;
@@ -129,7 +127,7 @@ class KantoreGameUi {
     showQuestion(question) {
         this._questionKanjiElement.textContent = question.kanji || question.kana;
         this._questionHintElement.textContent = question.hint || '';
-        this._meaningContentElement.innerHTML = $kt.templates.questionMeaning(question.sense);
+        this._meaningContentElement.innerHTML = KantoreTemplates.questionMeaning(question.sense);
         this._wrongAnswer.textContent = '';
         this._answerInput.value = '';
         this.focusAnswerInput();
@@ -212,7 +210,7 @@ class KantoreGameUi {
      * @param {number} totalCharacters 
      */
     showLevelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters) {
-        this._levelExpDiv.innerHTML = $kt.templates.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters);
+        this._levelExpDiv.innerHTML = KantoreTemplates.levelData(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters);
     }
 
     /**
@@ -243,7 +241,7 @@ class KantoreGameUi {
      * @param {number} totalCorrectAnswers 
      */
     showPracticeData(levelName, totalCorrectAnswers) {
-        this._levelExpDiv.innerHTML = $kt.templates.practiceData(levelName, totalCorrectAnswers);
+        this._levelExpDiv.innerHTML = KantoreTemplates.practiceData(levelName, totalCorrectAnswers);
     }
 
     /**
@@ -257,7 +255,7 @@ class KantoreGameUi {
      * @returns 
      */
     showArcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions, oldExpPercentage) {
-        this._levelExpDiv.innerHTML = $kt.templates.arcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions, oldExpPercentage);
+        this._levelExpDiv.innerHTML = KantoreTemplates.arcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions, oldExpPercentage);
     }
 
     /**
@@ -415,7 +413,7 @@ class KantoreGameUi {
      * @param { [ { char?: string, oldExpPercentage: number, newExpPercentage?: number, addedExp?: number } ] } expData 
      */
     _updateLevelExpDiv(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData) {
-        this._levelExpDiv.innerHTML = $kt.templates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData);
+        this._levelExpDiv.innerHTML = KantoreTemplates.levelExp(levelName, totalExp, currentLevelExp, toNextLevelExp, maxedCharacters, totalCharacters, expData);
         const levelExpTmpBars = document.getElementById('level-exp-tmp-bars');
         levelExpTmpBars.onanimationend = event => {
             if (event.target === levelExpTmpBars) {
@@ -667,7 +665,7 @@ class KantoreGameUi {
     }
 
     _updateHintTemplateOrLoading(element) {
-        element.innerHTML = $kt.templates.hintLoading();
+        element.innerHTML = KantoreTemplates.hintLoading();
         this._getCurrentHintTemplate(hint => element.innerHTML = hint);
     }
 

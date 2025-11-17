@@ -5,9 +5,7 @@ import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
 import { KantoreUiHelper } from './ui-helper.js';
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+import { KantoreTemplates } from './templates.js';
 
 // KantoreUiHelper has access to private fields
 // of this class (friend class)
@@ -116,7 +114,7 @@ class KantoreTitleUi {
                 KantoreUiHelper.hideMenu(this._levelSelect);
                 dialogue.show(
                     'Controls',
-                    $kt.templates.controls(),
+                    KantoreTemplates.controls(),
                     KantoreUiHelper.startGameMain
                 );
             });
@@ -185,7 +183,7 @@ class KantoreTitleUi {
 
         container.insertAdjacentHTML(
             'beforeend',
-            $kt.templates.categoriesMenu(categories)
+            KantoreTemplates.categoriesMenu(categories)
         );
 
         [...this._titleScene.getElementsByClassName('category-entry-button')]
@@ -245,7 +243,7 @@ class KantoreTitleUi {
         dict.preload();
         dialogue.show(
             'Arcade mode',
-            $kt.templates.arcadeModeExplanation(),
+            KantoreTemplates.arcadeModeExplanation(),
             () => KantoreUiHelper.startGameArcade(categoryName, dict)
         );
     }

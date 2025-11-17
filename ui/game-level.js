@@ -1,9 +1,6 @@
 import { ui } from './ui.js';
 import { gameUi } from './game-ui.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
-
 export class KantoreGameLevel {
 
     constructor() {
