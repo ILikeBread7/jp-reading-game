@@ -1,11 +1,12 @@
 import { audio } from './audio.js';
 import { SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 import { KantoreUiHelper } from './ui-helper.js';
+import { settings } from './settings.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
-const EVENTS = $kt.settings.eventNames;
+const EVENTS = settings.eventNames;
 
 // KantoreUiHelper has access to private fields
 // of this class (friend class)

@@ -1,9 +1,6 @@
 import { SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 import { KantorePersistence } from './persistence.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
-
 class KantoreSettings {
 
     constructor() {
@@ -86,4 +83,4 @@ class KantoreSettings {
 
 }
 
-$kt.settings = new KantoreSettings();
+export const settings = new KantoreSettings();

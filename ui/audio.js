@@ -1,10 +1,8 @@
 import { KantoreUtils } from './utils.js';
 import { KantoreUiHelper } from './ui-helper.js';
+import { settings } from './settings.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
-
-const EVENTS = $kt.settings.eventNames;
+const EVENTS = settings.eventNames;
 const EFFECT_COOLDOWN_TIME = 50;
 
 class KantoreAudio {

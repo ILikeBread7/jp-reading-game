@@ -1,6 +1,7 @@
 import { audio } from './audio.js';
 import { GAME_TYPE, LIVES_ANIMATION_TYPE } from './enums.js';
 import { KantoreUiHelper } from './ui-helper.js';
+import { settings } from './settings.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -9,7 +10,7 @@ const FADE_IN_ANIMATION_LENGTH = 400;
 const LEVEL_UP_ANIMATION_LENGTH = 3000;
 const LEVEL_UP_FADE_IN_TIME = 0.5;
 const SOUND_EFFECT_DELAY = 250;
-const EVENTS = $kt.settings.eventNames;
+const EVENTS = settings.eventNames;
 
 // KantoreUiHelper has access to private fields
 // of this class (friend class)
@@ -639,7 +640,7 @@ class KantoreGameUi {
 
         this._currentHintIndex = this._latestUnlockedHintIndex = Math.min(level, this._hints.length) - 1;
         KantoreUiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
-        $kt.settings.currentHintIndex = this._currentHintIndex;
+        settings.currentHintIndex = this._currentHintIndex;
         
         this._showHintOnLevelUp = false;
         this._updateHintContent();
@@ -647,7 +648,7 @@ class KantoreGameUi {
 
     selectHint(newHintIndex) {
         this._selectHintNoUpdateSettings(newHintIndex);
-        $kt.settings.currentHintIndex = this._currentHintIndex;
+        settings.currentHintIndex = this._currentHintIndex;
     }
 
     _selectHintNoUpdateSettings(newHintIndex) {

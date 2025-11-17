@@ -332,7 +332,7 @@ class KantoreUi {
 
                 summary.addEventListener('click', event => {
                     event.preventDefault();
-                    $kt.settings[details.dataset.settingName] = !details.open;
+                    settings[details.dataset.settingName] = !details.open;
                 })
 
                 details.addEventListener('animationend', event => {

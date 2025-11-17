@@ -2,6 +2,7 @@ import { dialogue } from './dialogue-ui.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE, SUBMIT_BUTTON_VISIBILITY } from './enums.js';
+import { settings } from './settings.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -46,13 +47,13 @@ export class KantoreUiHelper {
      * @param {(value) => {}} settingChangedListener 
      */
     static connectSettingToListener(settingName, settingChangedListener) {
-        settingChangedListener($kt.settings[settingName]);
-        $kt.settings.events.addEventListener(settingName, event => settingChangedListener(event.detail.value));
+        settingChangedListener(settings[settingName]);
+        settings.events.addEventListener(settingName, event => settingChangedListener(event.detail.value));
     }
 
     /**
      * 
-     * @param {$kt.settings.eventNames} settingName 
+     * @param {settings.eventNames} settingName 
      * @param {HTMLElement} element 
      * @param {() => {}?} elementAdditionalListener optional
      */
@@ -61,11 +62,11 @@ export class KantoreUiHelper {
             element.type === 'checkbox'
                 ? [
                     value => element.checked = value,
-                    () => $kt.settings[settingName] = element.checked
+                    () => settings[settingName] = element.checked
                 ]
                 : [
                     value => element.value = value,
-                    () => $kt.settings[settingName] = Number(element.value)
+                    () => settings[settingName] = Number(element.value)
                 ];
         
         KantoreUiHelper.connectSettingToListener(settingName, settingChangedListener);
@@ -77,12 +78,12 @@ export class KantoreUiHelper {
 
     static setshowMeaningSetting(newValue) {
         $kt.settingsUi._showMeaning.checked = newValue;
-        $kt.settings.showMeaning = newValue;
+        settings.showMeaning = newValue;
     }
 
     static setshowHintSetting(newValue) {
         $kt.settingsUi._showHint.checked = newValue;
-        $kt.settings.showHint = newValue;
+        settings.showHint = newValue;
     }
 
     static isSettingsVisible() {
