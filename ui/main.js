@@ -5,6 +5,7 @@ import { KantoreGamePractice } from './game-practice.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
+import { KantorePersistence } from './persistence.js';
 
 gameUi.initialize();
 audio.initialize();
@@ -18,9 +19,9 @@ const events = gameUi.events;
 const flags = Object.assign({
         showHintOnGameStart: true,
         maxLevelFinished: false
-    }, $kt.persistence.getFlags() || {});
+    }, KantorePersistence.getFlags() || {});
 
-$kt.persistence.addFlagsChangedEventListener(event => {
+KantorePersistence.addFlagsChangedEventListener(event => {
     Object.assign(flags, event.detail);
 });
 
@@ -28,18 +29,18 @@ const gameStatus = Object.assign({
         level: 1,
         totalExp: 0,
         currentLevelExp: 0
-    }, $kt.persistence.getGameStatus() || {});
+    }, KantorePersistence.getGameStatus() || {});
 
-$kt.persistence.addGameStatusChangedEventListener(event => {
+KantorePersistence.addGameStatusChangedEventListener(event => {
     Object.assign(gameStatus, event.detail);
 });
 
 // If there were new levels added in an update
 // since the player last played and finished the game
 if (flags.maxLevelFinished && gameStatus.level <= $kt.levels.maxLevel) {
-    $kt.persistence.removeGameQuestion();
+    KantorePersistence.removeGameQuestion();
     flags.maxLevelFinished = false;
-    $kt.persistence.setFlags(flags);
+    KantorePersistence.setFlags(flags);
 }
 
 const gameLevel = new KantoreGameLevel();
@@ -66,7 +67,7 @@ events.addEventListener(EVENTS.START, event => {
                 setTimeout(() => {
                     gameUi.showHint();
                     flags.showHintOnGameStart = false;
-                    $kt.persistence.setFlags(flags);
+                    KantorePersistence.setFlags(flags);
                 }, 0);
             }
         break;
@@ -95,13 +96,13 @@ events.addEventListener(EVENTS.LEVEL_UP_BEFORE, event => {
         flags.maxLevelFinished = true;
     }
     flags.showHintOnGameStart = true;
-    $kt.persistence.setFlags(flags);
+    KantorePersistence.setFlags(flags);
 });
 
 events.addEventListener(EVENTS.LEVEL_UP_AFTER, () => {
     game.startNewLevel();
     flags.showHintOnGameStart = false;
-    $kt.persistence.setFlags(flags);
+    KantorePersistence.setFlags(flags);
 });
 
 events.addEventListener(EVENTS.BACK_TO_TITLE, () => {

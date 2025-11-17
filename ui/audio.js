@@ -1,3 +1,5 @@
+import { KantoreUtils } from './utils.js';
+
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
@@ -26,7 +28,7 @@ class KantoreAudio {
             GAME_OVER: { name: '決定ボタンを押す4.ogg', speed: 0.5 },
         };
 
-        this._bgmTracks = $kt.utils.shuffle([
+        this._bgmTracks = KantoreUtils.shuffle([
             { displayName: '虹ヲ駆ル舞', author: '秦暁', name: '虹ヲ駆ル舞.ogg', volume: 0.45 },
             { displayName: '和響バースト -Wakyo Burst-', author: 'alaki paca', name: '和響バースト_-Wakyo_Burst-.ogg', volume: 0.4 },
             { displayName: 'Miyabi break', author: 'マニーラ', name: 'Miyabi_break.ogg', volume: 0.65 },
@@ -136,7 +138,7 @@ class KantoreAudio {
         if (!newBgm) {
             this._latestBgmIndex = 0;
             const lastBgm = this._bgmTracks[this._bgmTracks.length - 1];
-            $kt.utils.shuffle(this._bgmTracks);
+            KantoreUtils.shuffle(this._bgmTracks);
             
             if (lastBgm === this._bgmTracks[0] && this._bgmTracks.length > 1) {
                 const randomIndex = Math.floor(Math.random() * (this._bgmTracks.length - 1)) + 1;

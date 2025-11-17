@@ -3,6 +3,7 @@ import { dicts } from './dicts.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
+import { KantorePersistence } from './persistence.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -96,20 +97,20 @@ class KantoreTitleUi {
             button.addEventListener('click', () => {
                 const level = Number(button.dataset.level);
 
-                const gameStatus = $kt.persistence.getGameStatus() || {};
+                const gameStatus = KantorePersistence.getGameStatus() || {};
                 if (level !== 0 && gameStatus.level !== level) {
                     dicts.getLevelDict(level).preload();
                     gameStatus.level = level;
                     gameStatus.currentLevelExp = 0;
                     gameStatus.gaveUp = false;
-                    $kt.persistence.setGameStatus(gameStatus);
-                    $kt.persistence.removeGameQuestion();
+                    KantorePersistence.setGameStatus(gameStatus);
+                    KantorePersistence.removeGameQuestion();
                     gameUi.setupLevelHints(level);
                 }
 
-                const flags = $kt.persistence.getFlags() || {};
+                const flags = KantorePersistence.getFlags() || {};
                 flags.levelSelected = true;
-                $kt.persistence.setFlags(flags);
+                KantorePersistence.setFlags(flags);
 
                 $kt.uiHelper.hideMenu(this._levelSelect);
                 dialogue.show(
@@ -138,7 +139,7 @@ class KantoreTitleUi {
     };
 
     _startGameButtonEventListener() {
-        const flags = $kt.persistence.getFlags() || {};
+        const flags = KantorePersistence.getFlags() || {};
 
         if (flags.levelSelected) {
             $kt.uiHelper.startGameMain();
@@ -150,7 +151,7 @@ class KantoreTitleUi {
     }
     
     _createKeepProgressLevelSelectOption() {
-        const persistedGameStatus = $kt.persistence.getGameStatus();
+        const persistedGameStatus = KantorePersistence.getGameStatus();
         if (!persistedGameStatus) {
             return;
         }
@@ -227,7 +228,7 @@ class KantoreTitleUi {
         const levelsMenuButton = document.getElementById('category-main-categories-main-game-mode-levels-entry-main-game-mode-levels-button');
         
         const showMenuListener = () => {
-            const gameStatus = $kt.persistence.getGameStatus();
+            const gameStatus = KantorePersistence.getGameStatus();
             const disabled = !gameStatus || gameStatus.level <= 1;
             beatenLevelsButton.disabled = disabled;
 

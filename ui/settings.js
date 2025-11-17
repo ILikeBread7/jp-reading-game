@@ -1,4 +1,5 @@
 import { SUBMIT_BUTTON_VISIBILITY } from './enums.js';
+import { KantorePersistence } from './persistence.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -12,7 +13,7 @@ class KantoreSettings {
                 showMeaning: true,
                 showHint: true,
                 showSubmitButton: SUBMIT_BUTTON_VISIBILITY.AUTO
-            }, $kt.persistence.getSettings() || {});
+            }, KantorePersistence.getSettings() || {});
 
         this._createSettingsPropertyAccessors();
         this._createEvents();
@@ -72,7 +73,7 @@ class KantoreSettings {
     }
 
     _saveSettings() {
-        $kt.persistence.setSettings(this._settings);
+        KantorePersistence.setSettings(this._settings);
     }
 
     _fromCamelCaseToConstCase(name) {

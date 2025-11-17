@@ -1,6 +1,7 @@
 import { KantoreGameBase } from './game-base.js';
 import { dicts } from './dicts.js';
 import { gameUi } from './game-ui.js';
+import { KantorePersistence } from './persistence.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -89,7 +90,7 @@ export class KantoreGameMain extends KantoreGameBase {
     }
 
     _askFirstQuestion() {
-        const savedQuestion = $kt.persistence.getGameQuestion();
+        const savedQuestion = KantorePersistence.getGameQuestion();
         const questionPromise = this._gameLevel.askFirstQuestion(savedQuestion);
         this._saveQuestion(questionPromise);
     }
@@ -105,7 +106,7 @@ export class KantoreGameMain extends KantoreGameBase {
         }
 
         questionPromise
-            .then(question => $kt.persistence.setGameQuestion(question));
+            .then(question => KantorePersistence.setGameQuestion(question));
     }
 
     _saveGameStatus() {
@@ -115,7 +116,7 @@ export class KantoreGameMain extends KantoreGameBase {
             })
             .toArray();
         this._gameStatus.gaveUp = this._gameLevel.gaveUp;
-        $kt.persistence.setGameStatus(this._gameStatus);
+        KantorePersistence.setGameStatus(this._gameStatus);
     }
 
     _showCurrentLevelData() {
@@ -198,7 +199,7 @@ export class KantoreGameMain extends KantoreGameBase {
 
     _levelUp() {
         this._gameStatus.level++;
-        $kt.persistence.removeGameQuestion();
+        KantorePersistence.removeGameQuestion();
         this._setupNewLevel();
         const hintAdded = gameUi.addNewHint();
         gameUi.showLevelUp(this._gameStatus.level, hintAdded);

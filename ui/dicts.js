@@ -1,3 +1,6 @@
+import { KantoreUtils } from './utils.js';
+import { KantorePersistence } from './persistence.js';
+
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
 
@@ -698,7 +701,7 @@ class BeatenLevelsDict extends ComplexDict {
         const firstNotLoadedSubdict = this._subdicts.length + 1;
 
         if (currentLastBeatenLevel >= firstNotLoadedSubdict) {
-            const newSubdicts = $kt.utils.shuffle(
+            const newSubdicts = KantoreUtils.shuffle(
                 dicts.getLevelDicts(firstNotLoadedSubdict, currentLastBeatenLevel)
             );
             this._subdicts.push(...newSubdicts);
@@ -709,7 +712,7 @@ class BeatenLevelsDict extends ComplexDict {
     }
 
     _getCurrentLevel() {
-        const gameStatus = $kt.persistence.getGameStatus();
+        const gameStatus = KantorePersistence.getGameStatus();
         if (gameStatus) {
             return gameStatus.level;
         }
@@ -766,7 +769,7 @@ class KantoreDicts {
         }
 
         // Add dict to be used after all levels are finished
-        const finalDict = new ComplexDict($kt.utils.shuffle([...this._levelDicts])); // Copying the array to not modify the original
+        const finalDict = new ComplexDict(KantoreUtils.shuffle([...this._levelDicts])); // Copying the array to not modify the original
         this._levelDicts.push(finalDict);
         Object.freeze(this._levelDicts);
     }
@@ -775,7 +778,7 @@ class KantoreDicts {
         CATEGORIES.forEach(this._addDicts.bind(this));
         
         const globalAllEntry = new ComplexDict(
-            $kt.utils.shuffle(
+            KantoreUtils.shuffle(
                 this._dicts.values()
                     .filter(dict => !dict.isComplex)
                     .toArray()
@@ -815,7 +818,7 @@ class KantoreDicts {
                     const dictTags = tags || this._findAllTags(category);
 
                     this._dicts.set(tag, new ComplexDict(
-                        $kt.utils.shuffle(dictTags).map(tag => this._getOrCreateCategoryDict(tag))
+                        KantoreUtils.shuffle(dictTags).map(tag => this._getOrCreateCategoryDict(tag))
                     ));
                 });
 
@@ -831,7 +834,7 @@ class KantoreDicts {
                         levelsSubdicts.push(this.getLevelDict(level));
                     }
 
-                    this._dicts.set(tag, new ComplexDict($kt.utils.shuffle(levelsSubdicts)));
+                    this._dicts.set(tag, new ComplexDict(KantoreUtils.shuffle(levelsSubdicts)));
                 });
 
                 category.entries.unshift(...category.complexLevelEntries);
@@ -849,7 +852,7 @@ class KantoreDicts {
         this._dicts.set('arcade-very-easy', this._dicts.get('level-kanji-grade-1'));
         
         this._dicts.set('arcade-easy', new ComplexDict(
-            $kt.utils.shuffle(this.getLevelDicts(KANJI_GRADE_1_START, KANJI_GRADE_3_END))
+            KantoreUtils.shuffle(this.getLevelDicts(KANJI_GRADE_1_START, KANJI_GRADE_3_END))
         ));
 
         this._dicts.set('arcade-normal', this._dicts.get('level-kanji-elementary'));
