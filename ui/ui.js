@@ -1,6 +1,7 @@
 import { dialogue } from './dialogue-ui.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
+import { KantoreUiHelper } from './ui-helper.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -21,7 +22,7 @@ class KantoreUi {
 
     showLoading() {
         if (this._loadingLayers === 0) {
-            $kt.uiHelper.showOverlayElement(this._loadingDiv);
+            KantoreUiHelper.showOverlayElement(this._loadingDiv);
         }
         this._loadingLayers++;
     }
@@ -29,7 +30,7 @@ class KantoreUi {
     hideLoading() {
         this._loadingLayers--;
         if (this._loadingLayers === 0) {
-            $kt.uiHelper.hideOverlayElement(this._loadingDiv);
+            KantoreUiHelper.hideOverlayElement(this._loadingDiv);
         }
     }
 
@@ -55,7 +56,7 @@ class KantoreUi {
             ...document.getElementsByClassName('menu-item'),
             ...document.getElementsByClassName('menu-item-label')
         ].forEach(element => {
-            element.addEventListener('mouseenter', () => $kt.uiHelper.focusSelectedMenuItem(element));
+            element.addEventListener('mouseenter', () => KantoreUiHelper.focusSelectedMenuItem(element));
             
             if (element.tagName === 'SELECT') {
                 element.addEventListener('keypress', event => {
@@ -107,12 +108,12 @@ class KantoreUi {
         [...document.getElementsByClassName('menu-destination-button')]
             .forEach(button => button.addEventListener('click', () => {
                 const destination = document.getElementById(button.dataset.destination);
-                $kt.uiHelper.hideMenu(button.parentNode);
-                $kt.uiHelper.showMenu(destination);
+                KantoreUiHelper.hideMenu(button.parentNode);
+                KantoreUiHelper.showMenu(destination);
             }));
 
         this._fullscreenButton.addEventListener('click', event => {
-            $kt.uiHelper.toggleFullscreen();
+            KantoreUiHelper.toggleFullscreen();
             event.stopPropagation();
         });
         document.addEventListener('fullscreenchange', this._toggleFullscreenIcon.bind(this));
@@ -164,7 +165,7 @@ class KantoreUi {
         setTimeout(() => {
             if (this._elementToReactivate) {
                 if (!document.activeElement || !document.activeElement.classList.contains('menu-item')) {
-                    $kt.uiHelper.focusMenuItem(this._elementToReactivate);
+                    KantoreUiHelper.focusMenuItem(this._elementToReactivate);
                 }
                 this._elementToReactivate.classList.remove('to-refocus');
                 this._elementToReactivate = null;
@@ -207,7 +208,7 @@ class KantoreUi {
         if (
             key !== 'Enter'
             && dialogue.isVisible()
-            && !$kt.uiHelper.isSettingsVisible()
+            && !KantoreUiHelper.isSettingsVisible()
         ) {
             event.preventDefault();
             return;
@@ -243,10 +244,10 @@ class KantoreUi {
             }
 
             if (key === 'ArrowUp') {
-                $kt.uiHelper.focusSelectedMenuItem(this._findPreviousMenuItem(document.activeElement));
+                KantoreUiHelper.focusSelectedMenuItem(this._findPreviousMenuItem(document.activeElement));
                 event.preventDefault();
             } else if (key === 'ArrowDown') {
-                $kt.uiHelper.focusSelectedMenuItem(this._findNextMenuItem(document.activeElement));
+                KantoreUiHelper.focusSelectedMenuItem(this._findNextMenuItem(document.activeElement));
                 event.preventDefault();
             }
 
@@ -301,7 +302,7 @@ class KantoreUi {
     }
     
     _documentClickEventListener(event) {
-        if ($kt.uiHelper.isSettingsVisible()) {
+        if (KantoreUiHelper.isSettingsVisible()) {
             return;
         }
 
@@ -311,7 +312,7 @@ class KantoreUi {
             return;
         }
         
-        if ($kt.uiHelper.isSettingsButton(target)) {
+        if (KantoreUiHelper.isSettingsButton(target)) {
             return;
         }
 

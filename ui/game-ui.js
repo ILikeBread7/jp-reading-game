@@ -1,5 +1,6 @@
 import { audio } from './audio.js';
 import { GAME_TYPE, LIVES_ANIMATION_TYPE } from './enums.js';
+import { KantoreUiHelper } from './ui-helper.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -89,7 +90,7 @@ class KantoreGameUi {
 
         if (this._isGameClearOrGameOverVisible()) {
             audio.playEffect(audio.seTracks.CANCEL);
-            $kt.uiHelper.backToTitle();
+            KantoreUiHelper.backToTitle();
             return true;
         }
 
@@ -569,9 +570,9 @@ class KantoreGameUi {
                 details.open = value;
             }
         }
-        $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
-        $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
-        $kt.uiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, newHintIndex => {
+        KantoreUiHelper.connectSettingToListener(EVENTS.SHOW_MEANING, openCloseDetails.bind(this, this._meaningDetails));
+        KantoreUiHelper.connectSettingToListener(EVENTS.SHOW_HINT, openCloseDetails.bind(this, this._hintDetails));
+        KantoreUiHelper.connectSettingToListener(EVENTS.CURRENT_HINT_INDEX, newHintIndex => {
             // Skip setting the new hint while connecting the setting
             // it will be set when starting the game
             if (newHintIndex === undefined) {
@@ -581,7 +582,7 @@ class KantoreGameUi {
             this._selectHintNoUpdateSettings(newHintIndex);
             this._hintSelect.value = this._currentHintIndex;
         });
-        $kt.uiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, $kt.uiHelper.adjustMobileOnlyElementsVisibility);
+        KantoreUiHelper.connectSettingToListener(EVENTS.SHOW_SUBMIT_BUTTON, KantoreUiHelper.adjustMobileOnlyElementsVisibility);
     }
 
     _answerInputEnterEventListener(event) {
@@ -604,7 +605,7 @@ class KantoreGameUi {
      * @param {BaseDict | ComplexDict | undefined} dict 
      */
     startGame(gameType, categoryName, dict) {
-        $kt.uiHelper.switchToScene(this._gameScene);
+        KantoreUiHelper.switchToScene(this._gameScene);
         this._moveLevelExpDivBackDown();
         this._removeLevelUpTransitions();
         this.focusAnswerInput();
@@ -637,7 +638,7 @@ class KantoreGameUi {
         this._hints = $kt.hints;
 
         this._currentHintIndex = this._latestUnlockedHintIndex = Math.min(level, this._hints.length) - 1;
-        $kt.uiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
+        KantoreUiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
         $kt.settings.currentHintIndex = this._currentHintIndex;
         
         this._showHintOnLevelUp = false;
@@ -686,7 +687,7 @@ class KantoreGameUi {
         const newHintIndex = Math.min(this._latestUnlockedHintIndex + 1, this._hints.length - 1);
         if (newHintIndex > this._latestUnlockedHintIndex) {
             this._latestUnlockedHintIndex = newHintIndex;
-            $kt.uiHelper.addNewHintToSelects(newHintIndex);
+            KantoreUiHelper.addNewHintToSelects(newHintIndex);
             this.selectHint(newHintIndex);
             return true;
         }

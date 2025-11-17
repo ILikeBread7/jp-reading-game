@@ -1,4 +1,5 @@
 import { KantoreUtils } from './utils.js';
+import { KantoreUiHelper } from './ui-helper.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -275,8 +276,8 @@ class KantoreAudio {
     }
 
     _connectSettings() {
-        $kt.uiHelper.connectSettingToListener(EVENTS.BGM_VOLUME, this.bgmVolumeChange.bind(this));
-        $kt.uiHelper.connectSettingToListener(EVENTS.SE_VOLUME, this.seVolumeChange.bind(this));
+        KantoreUiHelper.connectSettingToListener(EVENTS.BGM_VOLUME, this.bgmVolumeChange.bind(this));
+        KantoreUiHelper.connectSettingToListener(EVENTS.SE_VOLUME, this.seVolumeChange.bind(this));
     }
 
     _dispatchBgmStartedEvent() {

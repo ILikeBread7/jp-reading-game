@@ -4,6 +4,7 @@ import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
+import { KantoreUiHelper } from './ui-helper.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -46,7 +47,7 @@ class KantoreTitleUi {
             .find(menu => menu.checkVisibility())
             || this._mainMenu;
 
-        $kt.uiHelper.showMenu(menuToShow);
+        KantoreUiHelper.showMenu(menuToShow);
     }
 
     /**
@@ -67,7 +68,7 @@ class KantoreTitleUi {
             || key === 'ArrowUp'
             || key === 'ArrowDown'
         ) {
-            $kt.uiHelper.focusTemporarily(this._credits);
+            KantoreUiHelper.focusTemporarily(this._credits);
         }
     }
 
@@ -91,7 +92,7 @@ class KantoreTitleUi {
 
     _addEventListeners() {
         this._titleStartGameMainButton.addEventListener('click', this._startGameButtonEventListener.bind(this));
-        this._titleSettingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+        this._titleSettingsButton.addEventListener('click', KantoreUiHelper.showSettings);
         
         this._levelSelectLevels.forEach(button => {
             button.addEventListener('click', () => {
@@ -112,11 +113,11 @@ class KantoreTitleUi {
                 flags.levelSelected = true;
                 KantorePersistence.setFlags(flags);
 
-                $kt.uiHelper.hideMenu(this._levelSelect);
+                KantoreUiHelper.hideMenu(this._levelSelect);
                 dialogue.show(
                     'Controls',
                     $kt.templates.controls(),
-                    $kt.uiHelper.startGameMain
+                    KantoreUiHelper.startGameMain
                 );
             });
         });
@@ -142,12 +143,12 @@ class KantoreTitleUi {
         const flags = KantorePersistence.getFlags() || {};
 
         if (flags.levelSelected) {
-            $kt.uiHelper.startGameMain();
+            KantoreUiHelper.startGameMain();
             return;
         }
 
-        $kt.uiHelper.hideMenu(this._mainMenu);
-        $kt.uiHelper.showMenu(this._levelSelect);
+        KantoreUiHelper.hideMenu(this._mainMenu);
+        KantoreUiHelper.showMenu(this._levelSelect);
     }
     
     _createKeepProgressLevelSelectOption() {
@@ -173,7 +174,7 @@ class KantoreTitleUi {
 
     _hidePreTitle() {
         this._preTitleText.classList.add('hidden');
-        $kt.uiHelper.showMenu(this._mainMenu);
+        KantoreUiHelper.showMenu(this._mainMenu);
         audio.playEffect(audio.seTracks.CONFIRM);
         audio.startBgms();
     }
@@ -197,7 +198,7 @@ class KantoreTitleUi {
                 if (this._menuGameType === GAME_TYPE.ARCADE) {
                     this._startArcadeMode(categoryName, dict);
                 } else {
-                    $kt.uiHelper.startGamePractice(categoryName, dict);
+                    KantoreUiHelper.startGamePractice(categoryName, dict);
                 }
             }));
 
@@ -212,14 +213,14 @@ class KantoreTitleUi {
 
     _addCategoriesBackButtonEventListeners() {
         this._categoriesBackButton.addEventListener('click', () => {
-            $kt.uiHelper.hideMenu(this._categoriesMenu);
+            KantoreUiHelper.hideMenu(this._categoriesMenu);
 
             if (this._menuGameType === GAME_TYPE.ARCADE) {
-                $kt.uiHelper.showMenu(this._arcadeMenu);
+                KantoreUiHelper.showMenu(this._arcadeMenu);
                 return;
             }
 
-            $kt.uiHelper.showMenu(this._mainMenu);
+            KantoreUiHelper.showMenu(this._mainMenu);
         });
     }
 
@@ -245,7 +246,7 @@ class KantoreTitleUi {
         dialogue.show(
             'Arcade mode',
             $kt.templates.arcadeModeExplanation(),
-            () => $kt.uiHelper.startGameArcade(categoryName, dict)
+            () => KantoreUiHelper.startGameArcade(categoryName, dict)
         );
     }
 }

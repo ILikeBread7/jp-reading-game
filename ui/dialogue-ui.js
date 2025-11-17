@@ -1,7 +1,5 @@
 import { audio } from './audio.js';
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+import { KantoreUiHelper } from './ui-helper.js';
 
 class KantoreDialogue {
 
@@ -56,7 +54,7 @@ class KantoreDialogue {
         this._title.innerHTML = title;
         this._text.innerHTML = text;
         this._closeListener = closeListener;
-        $kt.uiHelper.showOverlayElement(this._dialogue);
+        KantoreUiHelper.showOverlayElement(this._dialogue);
     }
 
     close() {
@@ -64,7 +62,7 @@ class KantoreDialogue {
             return;
         }
 
-        $kt.uiHelper.hideOverlayElement(this._dialogue);
+        KantoreUiHelper.hideOverlayElement(this._dialogue);
         audio.playEffect(audio.seTracks.CONFIRM);
         if (this._closeListener) {
             this._closeListener();
@@ -77,7 +75,7 @@ class KantoreDialogue {
             return;
         }
         
-        $kt.uiHelper.hideOverlayElement(this._dialogue);
+        KantoreUiHelper.hideOverlayElement(this._dialogue);
         this._closeListener = null;
     }
 

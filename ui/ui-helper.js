@@ -10,7 +10,7 @@ const $kt = globalThis.$kt;
 // KantoreUi, KantoreSettingsUi, KantoreGameUi and KantoreTitleUi
 // to facilitate communication
 // between them (friend class)
-class KantoreUiHelper {
+export class KantoreUiHelper {
 
     /**
      * 
@@ -27,7 +27,7 @@ class KantoreUiHelper {
                 if (event.target !== element) {
                     return;
                 }
-                $kt.uiHelper.showMenu(firstChildElement);
+                KantoreUiHelper.showMenu(firstChildElement);
                 element.ontransitionend = null;
             };
         } else {
@@ -68,7 +68,7 @@ class KantoreUiHelper {
                     () => $kt.settings[settingName] = Number(element.value)
                 ];
         
-        $kt.uiHelper.connectSettingToListener(settingName, settingChangedListener);
+        KantoreUiHelper.connectSettingToListener(settingName, settingChangedListener);
         element.addEventListener('change', elementChangedListener);
         if (elementAdditionalListener) {
             element.addEventListener('change', elementAdditionalListener);
@@ -90,14 +90,14 @@ class KantoreUiHelper {
     }
 
     static showSettings() {
-        $kt.uiHelper.showOverlayElement($kt.settingsUi._settingsDiv);
+        KantoreUiHelper.showOverlayElement($kt.settingsUi._settingsDiv);
     }
 
     static hideSettings() {
-        $kt.uiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
+        KantoreUiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
         if ($kt.titleUi._titleScene.checkVisibility()) {
             if ($kt.titleUi._credits.checkVisibility()) {
-                $kt.uiHelper.showMenu($kt.titleUi._credits.parentNode);
+                KantoreUiHelper.showMenu($kt.titleUi._credits.parentNode);
             } else {
                 $kt.titleUi.startTitleScene();
             }
@@ -107,7 +107,7 @@ class KantoreUiHelper {
     }
 
     static focusSelectedMenuItem(element) {
-        $kt.uiHelper.focusMenuItem(element);
+        KantoreUiHelper.focusMenuItem(element);
 
         // This prevents multiple sounds from focusing
         // on the same checkbox over and over again
@@ -118,7 +118,7 @@ class KantoreUiHelper {
     }
 
     static focusDefaultMenuItem(element) {
-        $kt.uiHelper.focusMenuItem(element);
+        KantoreUiHelper.focusMenuItem(element);
     }
 
     static focusMenuItem(element) {
@@ -151,17 +151,17 @@ class KantoreUiHelper {
     }
 
     static switchToScene(scene) {
-        $kt.uiHelper._removeGameModeClasses();
+        KantoreUiHelper._removeGameModeClasses();
         const scenes = [...document.getElementsByClassName('scene-container')];
         scenes.forEach(scene => scene.style.display = 'none');
         scene.style.display = 'initial';
-        $kt.uiHelper.setSceneClass(scene.dataset.sceneClass, scenes.map(scene => scene.dataset.sceneClass));
+        KantoreUiHelper.setSceneClass(scene.dataset.sceneClass, scenes.map(scene => scene.dataset.sceneClass));
     }
 
     static backToTitle() {
         dialogue.forceClose();
-        $kt.uiHelper.switchToScene($kt.titleUi._titleScene);
-        $kt.uiHelper.hideSettings();
+        KantoreUiHelper.switchToScene($kt.titleUi._titleScene);
+        KantoreUiHelper.hideSettings();
         $kt.settingsUi._settingsDiv.ontransitionend = event => {
             if (event.target === $kt.settingsUi._settingsDiv) {
                 $kt.titleUi.startTitleScene();
@@ -181,7 +181,7 @@ class KantoreUiHelper {
         if (!dataset.defaultItem) {
             const firstItem = menuElement.getElementsByClassName('menu-item')[0];
             dataset.defaultItem = firstItem.id;
-            $kt.uiHelper.focusDefaultMenuItem(firstItem);
+            KantoreUiHelper.focusDefaultMenuItem(firstItem);
             return;
         }
 
@@ -190,7 +190,7 @@ class KantoreUiHelper {
             const defaultItem = document.getElementById(dataset.defaultItem);
             itemToFocus = defaultItem;
         }
-        $kt.uiHelper.focusDefaultMenuItem(itemToFocus);
+        KantoreUiHelper.focusDefaultMenuItem(itemToFocus);
     }
 
     static hideMenu(menuElement) {
@@ -231,7 +231,7 @@ class KantoreUiHelper {
      * @param {SUBMIT_BUTTON} visibility 
      */
     static adjustMobileOnlyElementsVisibility(visibility) {
-        const adjustVisibilityFunction = $kt.uiHelper._createAdjustVisibilityFunction(visibility);
+        const adjustVisibilityFunction = KantoreUiHelper._createAdjustVisibilityFunction(visibility);
         [...document.getElementsByClassName('mobile-only')]
             .forEach(adjustVisibilityFunction);
     }
@@ -256,7 +256,7 @@ class KantoreUiHelper {
         gameUi._hintSelect.innerHTML = '';
         const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
         for (let hintIndex = 0; hintIndex < maxHints; hintIndex++) {
-            $kt.uiHelper.addNewHintToSelects(hintIndex);
+            KantoreUiHelper.addNewHintToSelects(hintIndex);
         }
     }
 
@@ -273,5 +273,3 @@ class KantoreUiHelper {
     }
 
 }
-
-$kt.uiHelper = KantoreUiHelper;

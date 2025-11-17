@@ -1,5 +1,6 @@
 import { audio } from './audio.js';
 import { SUBMIT_BUTTON_VISIBILITY } from './enums.js';
+import { KantoreUiHelper } from './ui-helper.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -18,7 +19,7 @@ class KantoreSettingsUi {
     }
 
     tabEventListener() {
-        if ($kt.uiHelper.isSettingsVisible()) {
+        if (KantoreUiHelper.isSettingsVisible()) {
             this._hideSettingsAndPlaySound();
         } else {
             this._showSettingsAndPlaySound();
@@ -46,18 +47,18 @@ class KantoreSettingsUi {
     }
 
     _addEventListeners() {
-        this._settingsButton.addEventListener('click', $kt.uiHelper.showSettings);
+        this._settingsButton.addEventListener('click', KantoreUiHelper.showSettings);
         this._settingsDiv.addEventListener('click', e => {
             if (!this._settingsContainer.contains(e.target)) {
                 this._hideSettingsAndPlaySound();
             }
         });
 
-        this._fullscreen.addEventListener('change', $kt.uiHelper.toggleFullscreen);
+        this._fullscreen.addEventListener('change', KantoreUiHelper.toggleFullscreen);
         document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
 
-        this._backToMenu.addEventListener('click', $kt.uiHelper.backToTitle);
-        this._returnToGame.addEventListener('click', $kt.uiHelper.hideSettings);
+        this._backToMenu.addEventListener('click', KantoreUiHelper.backToTitle);
+        this._returnToGame.addEventListener('click', KantoreUiHelper.hideSettings);
 
         audio.events.addEventListener(audio.eventNames.BGM_STARTED, ({ detail }) => {
             this._nowPlaying.textContent = `Now playing: ${detail.displayName} by ${detail.author}`;
@@ -81,21 +82,21 @@ class KantoreSettingsUi {
     }
 
     _connectSettings() {
-        $kt.uiHelper.connectElementToSetting(EVENTS.BGM_VOLUME, this._bgmVolume);
-        $kt.uiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => audio.playEffect(audio.seTracks.SELECT));
-        $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_MEANING, this._showMeaning);
-        $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_HINT, this._showHint);
-        $kt.uiHelper.connectElementToSetting(EVENTS.SHOW_SUBMIT_BUTTON, this._submitButtonSelect);
-        $kt.uiHelper.connectElementToSetting(EVENTS.CURRENT_HINT_INDEX, this._hintSelect);
+        KantoreUiHelper.connectElementToSetting(EVENTS.BGM_VOLUME, this._bgmVolume);
+        KantoreUiHelper.connectElementToSetting(EVENTS.SE_VOLUME, this._seVolume, () => audio.playEffect(audio.seTracks.SELECT));
+        KantoreUiHelper.connectElementToSetting(EVENTS.SHOW_MEANING, this._showMeaning);
+        KantoreUiHelper.connectElementToSetting(EVENTS.SHOW_HINT, this._showHint);
+        KantoreUiHelper.connectElementToSetting(EVENTS.SHOW_SUBMIT_BUTTON, this._submitButtonSelect);
+        KantoreUiHelper.connectElementToSetting(EVENTS.CURRENT_HINT_INDEX, this._hintSelect);
     }
 
     _showSettingsAndPlaySound() {
-        $kt.uiHelper.showSettings();
+        KantoreUiHelper.showSettings();
         audio.playEffect(audio.seTracks.CONFIRM);
     }
 
     _hideSettingsAndPlaySound() {
-        $kt.uiHelper.hideSettings();
+        KantoreUiHelper.hideSettings();
         audio.playEffect(audio.seTracks.CANCEL);
     }
 
