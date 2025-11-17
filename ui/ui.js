@@ -336,7 +336,7 @@ class KantoreUi {
                 summary.addEventListener('click', event => {
                     event.preventDefault();
                     settings[details.dataset.settingName] = !details.open;
-                })
+                });
 
                 details.addEventListener('animationend', event => {
                     if (event.animationName === 'close') {
