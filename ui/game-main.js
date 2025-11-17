@@ -2,9 +2,7 @@ import { KantoreGameBase } from './game-base.js';
 import { dicts } from './dicts.js';
 import { gameUi } from './game-ui.js';
 import { KantorePersistence } from './persistence.js';
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+import { KantoreLevels } from './levels.js';
 
 const EXP_PER_KANA = 10;
 const EXP_PER_KANJI = 20;
@@ -226,16 +224,16 @@ export class KantoreGameMain extends KantoreGameBase {
     }
 
     _setupLevelChars() {
-        this._levelChars = $kt.levels.getCharsWithRepsPerLevel(this._gameStatus.level);
+        this._levelChars = KantoreLevels.getCharsWithRepsPerLevel(this._gameStatus.level);
         this._levelChars.forEach((reps, char, map) => map.set(char, { targetReps: reps, remainingReps: reps }));
     }
     
     _setupLevelCommon() {
         const breakLineKanjiLevels = true;
-        this._levelName = $kt.levels.getLevelName(this._gameStatus.level, breakLineKanjiLevels);
+        this._levelName = KantoreLevels.getLevelName(this._gameStatus.level, breakLineKanjiLevels);
         this._remainingChars = new Set(this._levelChars.keys());
-        this._maxedCharacters = $kt.levels.getTotalCharsUntilLevel(this._gameStatus.level);
-        this._totalCharacters = $kt.levels.getTotalCharsForDisplay(this._gameStatus.level);
+        this._maxedCharacters = KantoreLevels.getTotalCharsUntilLevel(this._gameStatus.level);
+        this._totalCharacters = KantoreLevels.getTotalCharsForDisplay(this._gameStatus.level);
 
         this._setupExpPerChar();
         this._toNextLevelExp = this._levelChars.values()

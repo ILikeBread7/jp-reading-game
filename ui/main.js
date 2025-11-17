@@ -2,21 +2,19 @@ import { KantoreGameArcade } from './game-arcade.js';
 import { KantoreGameLevel } from './game-level.js';
 import { KantoreGameMain } from './game-main.js';
 import { KantoreGamePractice } from './game-practice.js';
+import { ui } from './ui.js';
 import { gameUi } from './game-ui.js';
 import { settingsUi } from './settings-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
 import { KantoreHints } from './hints.js';
-import { ui } from './ui.js';
+import { KantoreLevels } from './levels.js';
 
 audio.initialize();
 ui.initialize();
 settingsUi.initialize();
 gameUi.initialize();
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
 
 const EVENTS = gameUi.eventNames;
 const events = gameUi.events;
@@ -42,7 +40,7 @@ KantorePersistence.addGameStatusChangedEventListener(event => {
 
 // If there were new levels added in an update
 // since the player last played and finished the game
-if (flags.maxLevelFinished && gameStatus.level <= $kt.levels.maxLevel) {
+if (flags.maxLevelFinished && gameStatus.level <= KantoreLevels.maxLevel) {
     KantorePersistence.removeGameQuestion();
     flags.maxLevelFinished = false;
     KantorePersistence.setFlags(flags);
@@ -97,7 +95,7 @@ events.addEventListener(EVENTS.ANSWER, event => {
 
 events.addEventListener(EVENTS.LEVEL_UP_BEFORE, event => {
     const newLevel = event.detail.newLevel;
-    if (newLevel > $kt.levels.maxLevel) {
+    if (newLevel > KantoreLevels.maxLevel) {
         flags.maxLevelFinished = true;
     }
     flags.showHintOnGameStart = true;

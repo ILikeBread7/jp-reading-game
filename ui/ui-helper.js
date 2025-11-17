@@ -6,10 +6,8 @@ import { settings } from './settings.js';
 import { settingsUi } from './settings-ui.js';
 import { titleUi } from './title-ui.js';
 import { ui } from './ui.js';
+import { KantoreLevels } from './levels.js';
 import { KantoreHints } from './hints.js';
-
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
 
 // Has access to private fields of
 // KantoreUi, KantoreSettingsUi, KantoreGameUi and KantoreTitleUi
@@ -273,7 +271,7 @@ export class KantoreUiHelper {
     static _addNewHintToSelect(select ,newHintIndex) {
         const option = document.createElement('option');
         option.value = newHintIndex;
-        option.text = $kt.levels.getLevelName(newHintIndex + 1);
+        option.text = KantoreLevels.getLevelName(newHintIndex + 1);
         select.add(option, 0);
     }
 

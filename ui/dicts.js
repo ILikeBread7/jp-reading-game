@@ -1,27 +1,25 @@
 import { KantoreUtils } from './utils.js';
 import { KantorePersistence } from './persistence.js';
+import { KantoreLevels } from './levels.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+const NUMBER_OF_LEVELS = KantoreLevels.maxLevel;
 
-const NUMBER_OF_LEVELS = $kt.levels.maxLevel;
-
-const [ HIRAGANA_LEVELS_START, HIRAGANA_LEVELS_END ] = $kt.levels.hiraganaLevelsRange;
-const [ KATAKANA_LEVELS_START, KATAKANA_LEVELS_END ] = $kt.levels.katakanaLevelsRange;
-const [ KANJI_GRADE_1_START, KANJI_GRADE_1_END ] = $kt.levels.getKanjiLevelsGrade1Range;
-const [ KANJI_SPECIAL_START, KANJI_SPECIAL_END ] = $kt.levels.getKanjiLevelsSpecialRange;
-const [ KANJI_GRADE_2_START, KANJI_GRADE_2_END ] = $kt.levels.getKanjiLevelsGrade2Range;
-const [ KANJI_GRADE_3_START, KANJI_GRADE_3_END ] = $kt.levels.getKanjiLevelsGrade3Range;
-const [ KANJI_GRADE_4_START, KANJI_GRADE_4_END ] = $kt.levels.getKanjiLevelsGrade4Range;
-const [ KANJI_GRADE_5_START, KANJI_GRADE_5_END ] = $kt.levels.getKanjiLevelsGrade5Range;
-const [ KANJI_GRADE_6_START, KANJI_GRADE_6_END ] = $kt.levels.getKanjiLevelsGrade6Range;
-const [ KANJI_GRADE_JUNIOR_HIGH_START, KANJI_GRADE_JUNIOR_HIGH_END ] = $kt.levels.getKanjiLevelsJunioHighRange;
-const [ KANJI_GRADE_JINMEIYO_START, KANJI_GRADE_JINMEIYO_END ] = $kt.levels.getKanjiLevelsJinmeiyoRange;
-const [ KANJI_GRADE_HYOUGAI_START, KANJI_GRADE_HYOUGAI_END ] = $kt.levels.getKanjiLevelsHyougaiRange;
+const [ HIRAGANA_LEVELS_START, HIRAGANA_LEVELS_END ] = KantoreLevels.hiraganaLevelsRange;
+const [ KATAKANA_LEVELS_START, KATAKANA_LEVELS_END ] = KantoreLevels.katakanaLevelsRange;
+const [ KANJI_GRADE_1_START, KANJI_GRADE_1_END ] = KantoreLevels.getKanjiLevelsGrade1Range;
+const [ KANJI_SPECIAL_START, KANJI_SPECIAL_END ] = KantoreLevels.getKanjiLevelsSpecialRange;
+const [ KANJI_GRADE_2_START, KANJI_GRADE_2_END ] = KantoreLevels.getKanjiLevelsGrade2Range;
+const [ KANJI_GRADE_3_START, KANJI_GRADE_3_END ] = KantoreLevels.getKanjiLevelsGrade3Range;
+const [ KANJI_GRADE_4_START, KANJI_GRADE_4_END ] = KantoreLevels.getKanjiLevelsGrade4Range;
+const [ KANJI_GRADE_5_START, KANJI_GRADE_5_END ] = KantoreLevels.getKanjiLevelsGrade5Range;
+const [ KANJI_GRADE_6_START, KANJI_GRADE_6_END ] = KantoreLevels.getKanjiLevelsGrade6Range;
+const [ KANJI_GRADE_JUNIOR_HIGH_START, KANJI_GRADE_JUNIOR_HIGH_END ] = KantoreLevels.getKanjiLevelsJunioHighRange;
+const [ KANJI_GRADE_JINMEIYO_START, KANJI_GRADE_JINMEIYO_END ] = KantoreLevels.getKanjiLevelsJinmeiyoRange;
+const [ KANJI_GRADE_HYOUGAI_START, KANJI_GRADE_HYOUGAI_END ] = KantoreLevels.getKanjiLevelsHyougaiRange;
 
 const createLevelEntries = (levelStart, levelEnd, levels = []) => {
     for (let level = levelStart; level <= levelEnd; level++) {
-        levels.push({ name: $kt.levels.getLevelName(level), level });
+        levels.push({ name: KantoreLevels.getLevelName(level), level });
     }
     return levels;
 };

@@ -15,160 +15,151 @@ import {
     KANJI_NONSTANDARD_STRINGS
 } from './level-chars.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
+const LEVEL_NAMES = [
+    ...KANA_STRINGS.map(string => `${string.charAt(0)}行`),
+    ...KANJI_GRADE_1_STRINGS.map(string => `${string} (Grade 1)`),
+    ...SPECIAL_STRINGS.map(string => `${string} (Special)`),
+    ...KANJI_GRADE_2_STRINGS.map(string => `${string} (Grade 2)`),
+    ...KANJI_GRADE_3_STRINGS.map(string => `${string} (Grade 3)`),
+    ...KANJI_GRADE_4_STRINGS.map(string => `${string} (Grade 4)`),
+    ...KANJI_GRADE_5_STRINGS.map(string => `${string} (Grade 5)`),
+    ...KANJI_GRADE_6_STRINGS.map(string => `${string} (Grade 6)`),
+    ...KANJI_JUNIORHIGH_STRINGS.map(string => `${string} (Junior High)`),
+    ...KANJI_JINMEIYO_STRINGS.map(string => `${string} (Jinmeiyou)`),
+    ...KANJI_NONSTANDARD_STRINGS.map(string => `${string} (Hyougai)`),
+];
 
-(() => {
+const REPS_PER_CHAR = 5;
 
-    const LEVEL_NAMES = [
-        ...KANA_STRINGS.map(string => `${string.charAt(0)}行`),
-        ...KANJI_GRADE_1_STRINGS.map(string => `${string} (Grade 1)`),
-        ...SPECIAL_STRINGS.map(string => `${string} (Special)`),
-        ...KANJI_GRADE_2_STRINGS.map(string => `${string} (Grade 2)`),
-        ...KANJI_GRADE_3_STRINGS.map(string => `${string} (Grade 3)`),
-        ...KANJI_GRADE_4_STRINGS.map(string => `${string} (Grade 4)`),
-        ...KANJI_GRADE_5_STRINGS.map(string => `${string} (Grade 5)`),
-        ...KANJI_GRADE_6_STRINGS.map(string => `${string} (Grade 6)`),
-        ...KANJI_JUNIORHIGH_STRINGS.map(string => `${string} (Junior High)`),
-        ...KANJI_JINMEIYO_STRINGS.map(string => `${string} (Jinmeiyou)`),
-        ...KANJI_NONSTANDARD_STRINGS.map(string => `${string} (Hyougai)`),
-    ];
+let previousRangeEnd = 0;
+const LEVEL_RANGES = Object.freeze([
+    [previousRangeEnd + 1, previousRangeEnd += HIRAGANA_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KATAKANA_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_1_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += SPECIAL_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_2_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_3_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_4_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_5_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_6_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_JUNIORHIGH_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_JINMEIYO_STRINGS.length],
+    [previousRangeEnd + 1, previousRangeEnd += KANJI_NONSTANDARD_STRINGS.length],
+]);
 
-    const REPS_PER_CHAR = 5;
+export class KantoreLevels {
 
-    let previousRangeEnd = 0;
-    const LEVEL_RANGES = Object.freeze([
-        [previousRangeEnd + 1, previousRangeEnd += HIRAGANA_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KATAKANA_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_1_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += SPECIAL_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_2_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_3_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_4_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_5_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_GRADE_6_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_JUNIORHIGH_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_JINMEIYO_STRINGS.length],
-        [previousRangeEnd + 1, previousRangeEnd += KANJI_NONSTANDARD_STRINGS.length],
-    ]);
-
-    class KantoreLevels {
-
-        /**
-         * 
-         * @param {number} level 
-         * @param {boolean} breakLineKanjiLevels if true there will be a break line instead of a space for kanji levels
-         * @returns 
-         */
-        static getLevelName(level, breakLineKanjiLevels) {
-            const separator = breakLineKanjiLevels && level > KANA_STRINGS.length ? '<br>' : ' ';
-            const name = LEVEL_NAMES[level - 1] || 'Endgame';
-            return `Level ${level}${separator}${name}`;
-        }
-
-        static getCharsWithRepsPerLevel(level) {
-            return new Map(
-                (LEVEL_CHARS[level - 1] || [])
-                    .map(char => [ char, REPS_PER_CHAR ])
-            );
-        }
-
-        static get maxLevel() {
-            return LEVEL_CHARS.length;
-        }
-
-        static getTotalCharsForDisplay(level) {
-            const [ start, end ] = KantoreLevels._getTotalCharsLevelRange(level);
-            return KantoreLevels._getTotalCharsInRange(start, end);
-        }
-
-        static getTotalCharsUntilLevel(level) {
-            const [ start, ] = KantoreLevels._getTotalCharsLevelRange(level);
-            const end = level - 1;
-            return KantoreLevels._getTotalCharsInRange(start, end);
-        }
-
-        static _getTotalCharsInRange(start, end) {
-            let charsSum = 0;
-            
-            for (let level = start; level <= end; level++) {
-                const index = level - 1;
-                const currentLevelChars = LEVEL_CHARS[index];
-
-                if (!currentLevelChars) {
-                    break;
-                }
-
-                charsSum += currentLevelChars.length;
-            }
-            return charsSum;
-        }
-
-        static _getTotalCharsLevelRange(level) {
-            const range = LEVEL_RANGES
-                .find(range => level >= range[0] && level <= range[1]);
-
-            if (range) {
-                return range;
-            }
-
-            // Endgame
-            return [
-                LEVEL_CHARS.length + 1,
-                LEVEL_CHARS.length + 1
-            ];
-        }
-
-        static get hiraganaLevelsRange() {
-            return LEVEL_RANGES[0];
-        }
-
-        static get katakanaLevelsRange() {
-            return LEVEL_RANGES[1];
-        }
-
-        static get getKanjiLevelsGrade1Range() {
-            return LEVEL_RANGES[2];
-        }
-
-        static get getKanjiLevelsSpecialRange() {
-            return LEVEL_RANGES[3];
-        }
-
-        static get getKanjiLevelsGrade2Range() {
-            return LEVEL_RANGES[4];
-        }
-
-        static get getKanjiLevelsGrade3Range() {
-            return LEVEL_RANGES[5];
-        }
-
-        static get getKanjiLevelsGrade4Range() {
-            return LEVEL_RANGES[6];
-        }
-
-        static get getKanjiLevelsGrade5Range() {
-            return LEVEL_RANGES[7];
-        }
-
-        static get getKanjiLevelsGrade6Range() {
-            return LEVEL_RANGES[8];
-        }
-
-        static get getKanjiLevelsJunioHighRange() {
-            return LEVEL_RANGES[9];
-        }
-
-        static get getKanjiLevelsJinmeiyoRange() {
-            return LEVEL_RANGES[10];
-        }
-
-        static get getKanjiLevelsHyougaiRange() {
-            return LEVEL_RANGES[11];
-        }
-
+    /**
+     * 
+     * @param {number} level 
+     * @param {boolean} breakLineKanjiLevels if true there will be a break line instead of a space for kanji levels
+     * @returns 
+     */
+    static getLevelName(level, breakLineKanjiLevels) {
+        const separator = breakLineKanjiLevels && level > KANA_STRINGS.length ? '<br>' : ' ';
+        const name = LEVEL_NAMES[level - 1] || 'Endgame';
+        return `Level ${level}${separator}${name}`;
     }
 
-    $kt.levels = KantoreLevels;
+    static getCharsWithRepsPerLevel(level) {
+        return new Map(
+            (LEVEL_CHARS[level - 1] || [])
+                .map(char => [ char, REPS_PER_CHAR ])
+        );
+    }
 
-})();
+    static get maxLevel() {
+        return LEVEL_CHARS.length;
+    }
+
+    static getTotalCharsForDisplay(level) {
+        const [ start, end ] = KantoreLevels._getTotalCharsLevelRange(level);
+        return KantoreLevels._getTotalCharsInRange(start, end);
+    }
+
+    static getTotalCharsUntilLevel(level) {
+        const [ start, ] = KantoreLevels._getTotalCharsLevelRange(level);
+        const end = level - 1;
+        return KantoreLevels._getTotalCharsInRange(start, end);
+    }
+
+    static _getTotalCharsInRange(start, end) {
+        let charsSum = 0;
+        
+        for (let level = start; level <= end; level++) {
+            const index = level - 1;
+            const currentLevelChars = LEVEL_CHARS[index];
+
+            if (!currentLevelChars) {
+                break;
+            }
+
+            charsSum += currentLevelChars.length;
+        }
+        return charsSum;
+    }
+
+    static _getTotalCharsLevelRange(level) {
+        const range = LEVEL_RANGES
+            .find(range => level >= range[0] && level <= range[1]);
+
+        if (range) {
+            return range;
+        }
+
+        // Endgame
+        return [
+            LEVEL_CHARS.length + 1,
+            LEVEL_CHARS.length + 1
+        ];
+    }
+
+    static get hiraganaLevelsRange() {
+        return LEVEL_RANGES[0];
+    }
+
+    static get katakanaLevelsRange() {
+        return LEVEL_RANGES[1];
+    }
+
+    static get getKanjiLevelsGrade1Range() {
+        return LEVEL_RANGES[2];
+    }
+
+    static get getKanjiLevelsSpecialRange() {
+        return LEVEL_RANGES[3];
+    }
+
+    static get getKanjiLevelsGrade2Range() {
+        return LEVEL_RANGES[4];
+    }
+
+    static get getKanjiLevelsGrade3Range() {
+        return LEVEL_RANGES[5];
+    }
+
+    static get getKanjiLevelsGrade4Range() {
+        return LEVEL_RANGES[6];
+    }
+
+    static get getKanjiLevelsGrade5Range() {
+        return LEVEL_RANGES[7];
+    }
+
+    static get getKanjiLevelsGrade6Range() {
+        return LEVEL_RANGES[8];
+    }
+
+    static get getKanjiLevelsJunioHighRange() {
+        return LEVEL_RANGES[9];
+    }
+
+    static get getKanjiLevelsJinmeiyoRange() {
+        return LEVEL_RANGES[10];
+    }
+
+    static get getKanjiLevelsHyougaiRange() {
+        return LEVEL_RANGES[11];
+    }
+
+}
