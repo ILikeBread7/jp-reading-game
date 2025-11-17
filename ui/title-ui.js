@@ -41,7 +41,7 @@ class KantoreTitleUi {
     }
 
     startTitleScene() {
-        if (this._isPreTitleVisible()) {
+        if (this._isPreTitleVisible() || dialogue.isVisible()) {
             return;
         }
 
@@ -245,6 +245,14 @@ class KantoreTitleUi {
 
     _startArcadeMode(categoryName, dict) {
         dict.preload();
+
+        // Prevent underlying menu button
+        // from being "clicked" on enter
+        const focusedItem = document.activeElement;
+        if (focusedItem) {
+            focusedItem.blur();
+        }
+
         dialogue.show(
             'Arcade mode',
             KantoreTemplates.arcadeModeExplanation(),
