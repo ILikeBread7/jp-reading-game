@@ -3,9 +3,6 @@ import { SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 import { KantoreUiHelper } from './ui-helper.js';
 import { settings } from './settings.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
-
 const EVENTS = settings.eventNames;
 
 // KantoreUiHelper has access to private fields
@@ -13,6 +10,10 @@ const EVENTS = settings.eventNames;
 class KantoreSettingsUi {
 
     constructor() {
+
+    }
+
+    initialize() {
         this._getAllElements();
         this._addEventListeners();
         this._addSubmitButtonOptions();
@@ -103,4 +104,4 @@ class KantoreSettingsUi {
 
 }
 
-$kt.settingsUi = new KantoreSettingsUi();
+export const settingsUi = new KantoreSettingsUi();

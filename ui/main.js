@@ -3,12 +3,14 @@ import { KantoreGameLevel } from './game-level.js';
 import { KantoreGameMain } from './game-main.js';
 import { KantoreGamePractice } from './game-practice.js';
 import { gameUi } from './game-ui.js';
+import { settingsUi } from './settings-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
 
-gameUi.initialize();
 audio.initialize();
+settingsUi.initialize();
+gameUi.initialize();
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;

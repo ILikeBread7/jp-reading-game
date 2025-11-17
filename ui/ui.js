@@ -2,6 +2,7 @@ import { dialogue } from './dialogue-ui.js';
 import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 import { KantoreUiHelper } from './ui-helper.js';
+import { settingsUi } from './settings-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -195,7 +196,7 @@ class KantoreUi {
         const key = event.key;
 
         if (key === 'Tab') {
-            $kt.settingsUi.tabEventListener();
+            settingsUi.tabEventListener();
             event.preventDefault();
             return;
         }

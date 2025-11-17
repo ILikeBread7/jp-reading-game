@@ -3,6 +3,7 @@ import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE, SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 import { settings } from './settings.js';
+import { settingsUi } from './settings-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -77,25 +78,25 @@ export class KantoreUiHelper {
     }
 
     static setshowMeaningSetting(newValue) {
-        $kt.settingsUi._showMeaning.checked = newValue;
+        settingsUi._showMeaning.checked = newValue;
         settings.showMeaning = newValue;
     }
 
     static setshowHintSetting(newValue) {
-        $kt.settingsUi._showHint.checked = newValue;
+        settingsUi._showHint.checked = newValue;
         settings.showHint = newValue;
     }
 
     static isSettingsVisible() {
-        return $kt.settingsUi._settingsDiv.checkVisibility({ visibilityProperty: true });
+        return settingsUi._settingsDiv.checkVisibility({ visibilityProperty: true });
     }
 
     static showSettings() {
-        KantoreUiHelper.showOverlayElement($kt.settingsUi._settingsDiv);
+        KantoreUiHelper.showOverlayElement(settingsUi._settingsDiv);
     }
 
     static hideSettings() {
-        KantoreUiHelper.hideOverlayElement($kt.settingsUi._settingsDiv);
+        KantoreUiHelper.hideOverlayElement(settingsUi._settingsDiv);
         if ($kt.titleUi._titleScene.checkVisibility()) {
             if ($kt.titleUi._credits.checkVisibility()) {
                 KantoreUiHelper.showMenu($kt.titleUi._credits.parentNode);
@@ -163,10 +164,10 @@ export class KantoreUiHelper {
         dialogue.forceClose();
         KantoreUiHelper.switchToScene($kt.titleUi._titleScene);
         KantoreUiHelper.hideSettings();
-        $kt.settingsUi._settingsDiv.ontransitionend = event => {
-            if (event.target === $kt.settingsUi._settingsDiv) {
+        settingsUi._settingsDiv.ontransitionend = event => {
+            if (event.target === settingsUi._settingsDiv) {
                 $kt.titleUi.startTitleScene();
-                $kt.settingsUi._settingsDiv.ontransitionend = null;
+                settingsUi._settingsDiv.ontransitionend = null;
             }
         };
         gameUi.dispatchBackToTitleEvent();
@@ -212,7 +213,7 @@ export class KantoreUiHelper {
     }
 
     static isSettingsButton(element) {
-        return $kt.settingsUi._settingsButton.contains(element);
+        return settingsUi._settingsButton.contains(element);
     }
 
     static focusTemporarily(element) {
@@ -253,7 +254,7 @@ export class KantoreUiHelper {
     }
 
     static initializeHintSelects(initialHintsNumber) {
-        $kt.settingsUi._hintSelect.innerHTML = '';
+        settingsUi._hintSelect.innerHTML = '';
         gameUi._hintSelect.innerHTML = '';
         const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
         for (let hintIndex = 0; hintIndex < maxHints; hintIndex++) {
@@ -262,7 +263,7 @@ export class KantoreUiHelper {
     }
 
     static addNewHintToSelects(newHintIndex) {
-        this._addNewHintToSelect($kt.settingsUi._hintSelect, newHintIndex);
+        this._addNewHintToSelect(settingsUi._hintSelect, newHintIndex);
         this._addNewHintToSelect(gameUi._hintSelect, newHintIndex);
     }
 
