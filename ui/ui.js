@@ -4,6 +4,7 @@ import { audio } from './audio.js';
 import { KantoreUiHelper } from './ui-helper.js';
 import { settingsUi } from './settings-ui.js';
 import { titleUi } from './title-ui.js';
+import { settings } from './settings.js';
 
 const REFOCUS_TIME = 10;
 
