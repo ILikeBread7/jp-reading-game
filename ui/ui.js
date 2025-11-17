@@ -5,9 +5,6 @@ import { KantoreUiHelper } from './ui-helper.js';
 import { settingsUi } from './settings-ui.js';
 import { titleUi } from './title-ui.js';
 
-globalThis.$kt = globalThis.$kt || {};
-const $kt = globalThis.$kt;
-
 const REFOCUS_TIME = 10;
 
 // KantoreUiHelper has access to private fields
@@ -15,6 +12,10 @@ const REFOCUS_TIME = 10;
 class KantoreUi {
 
     constructor() {
+
+    }
+
+    initialize() {
         this._loadingLayers = 0;
         this._getAllElements();
         this._addEventListeners();
@@ -366,4 +367,4 @@ class KantoreUi {
 
 }
 
-$kt.ui = new KantoreUi();
+export const ui = new KantoreUi();

@@ -1,3 +1,4 @@
+import { ui } from './ui.js';
 import { gameUi } from './game-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
@@ -32,11 +33,11 @@ export class KantoreGameLevel {
             return Promise.resolve()
                 .then(() => question);
         } else {
-            $kt.ui.showLoading();
+            ui.showLoading();
             return this._dict.load()
                 .then(() => {
                     const question = this._askNewQuestion();
-                    $kt.ui.hideLoading();
+                    ui.hideLoading();
                     return question;
                 })
         }

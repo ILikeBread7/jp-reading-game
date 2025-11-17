@@ -7,8 +7,10 @@ import { settingsUi } from './settings-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
+import { ui } from './ui.js';
 
 audio.initialize();
+ui.initialize();
 settingsUi.initialize();
 gameUi.initialize();
 
@@ -111,4 +113,4 @@ events.addEventListener(EVENTS.BACK_TO_TITLE, () => {
     game.stopLoadingDict();
 });
 
-$kt.ui.hideStartupLoading();
+ui.hideStartupLoading();

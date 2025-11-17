@@ -5,6 +5,7 @@ import { GAME_TYPE, SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 import { settings } from './settings.js';
 import { settingsUi } from './settings-ui.js';
 import { titleUi } from './title-ui.js';
+import { ui } from './ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -218,7 +219,7 @@ export class KantoreUiHelper {
     }
 
     static focusTemporarily(element) {
-        return $kt.ui.focusTemporarily(element);
+        return ui.focusTemporarily(element);
     }
 
     static toggleFullscreen() {
