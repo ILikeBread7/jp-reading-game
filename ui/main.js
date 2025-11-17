@@ -13,10 +13,10 @@ import { KantoreLevels } from './levels.js';
 import { titleUi } from './title-ui.js';
 
 audio.initialize();
-ui.initialize();
 settingsUi.initialize();
 titleUi.initialize();
 gameUi.initialize();
+ui.initialize();
 
 const EVENTS = gameUi.eventNames;
 const events = gameUi.events;
