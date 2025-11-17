@@ -3,6 +3,7 @@ import { gameUi } from './game-ui.js';
 import { audio } from './audio.js';
 import { KantoreUiHelper } from './ui-helper.js';
 import { settingsUi } from './settings-ui.js';
+import { titleUi } from './title-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -183,7 +184,7 @@ class KantoreUi {
             return;
         }
 
-        if ($kt.titleUi.enterListener(event)) {
+        if (titleUi.enterListener(event)) {
             return;
         }
 
@@ -240,7 +241,7 @@ class KantoreUi {
                 }
             }
 
-            if ($kt.titleUi.keyListener(key)) {
+            if (titleUi.keyListener(key)) {
                 return;
             }
 
@@ -321,7 +322,7 @@ class KantoreUi {
             return;
         }
 
-        if ($kt.titleUi.clickListener()) {
+        if (titleUi.clickListener()) {
             return;
         }
     }

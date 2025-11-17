@@ -251,4 +251,4 @@ class KantoreTitleUi {
     }
 }
 
-$kt.titleUi = new KantoreTitleUi();
+export const titleUi = new KantoreTitleUi();

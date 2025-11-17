@@ -4,6 +4,7 @@ import { audio } from './audio.js';
 import { GAME_TYPE, SUBMIT_BUTTON_VISIBILITY } from './enums.js';
 import { settings } from './settings.js';
 import { settingsUi } from './settings-ui.js';
+import { titleUi } from './title-ui.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -97,11 +98,11 @@ export class KantoreUiHelper {
 
     static hideSettings() {
         KantoreUiHelper.hideOverlayElement(settingsUi._settingsDiv);
-        if ($kt.titleUi._titleScene.checkVisibility()) {
-            if ($kt.titleUi._credits.checkVisibility()) {
-                KantoreUiHelper.showMenu($kt.titleUi._credits.parentNode);
+        if (titleUi._titleScene.checkVisibility()) {
+            if (titleUi._credits.checkVisibility()) {
+                KantoreUiHelper.showMenu(titleUi._credits.parentNode);
             } else {
-                $kt.titleUi.startTitleScene();
+                titleUi.startTitleScene();
             }
         } else {
             gameUi.focusAnswerInput();
@@ -162,11 +163,11 @@ export class KantoreUiHelper {
 
     static backToTitle() {
         dialogue.forceClose();
-        KantoreUiHelper.switchToScene($kt.titleUi._titleScene);
+        KantoreUiHelper.switchToScene(titleUi._titleScene);
         KantoreUiHelper.hideSettings();
         settingsUi._settingsDiv.ontransitionend = event => {
             if (event.target === settingsUi._settingsDiv) {
-                $kt.titleUi.startTitleScene();
+                titleUi.startTitleScene();
                 settingsUi._settingsDiv.ontransitionend = null;
             }
         };
