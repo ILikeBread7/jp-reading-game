@@ -6,6 +6,7 @@ import { settings } from './settings.js';
 import { settingsUi } from './settings-ui.js';
 import { titleUi } from './title-ui.js';
 import { ui } from './ui.js';
+import { KantoreHints } from './hints.js';
 
 globalThis.$kt = globalThis.$kt || {};
 const $kt = globalThis.$kt;
@@ -258,7 +259,7 @@ export class KantoreUiHelper {
     static initializeHintSelects(initialHintsNumber) {
         settingsUi._hintSelect.innerHTML = '';
         gameUi._hintSelect.innerHTML = '';
-        const maxHints = Math.min(initialHintsNumber, $kt.hints.length);
+        const maxHints = Math.min(initialHintsNumber, KantoreHints.length);
         for (let hintIndex = 0; hintIndex < maxHints; hintIndex++) {
             KantoreUiHelper.addNewHintToSelects(hintIndex);
         }

@@ -7,6 +7,7 @@ import { settingsUi } from './settings-ui.js';
 import { audio } from './audio.js';
 import { GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
+import { KantoreHints } from './hints.js';
 import { ui } from './ui.js';
 
 audio.initialize();
@@ -53,7 +54,7 @@ const gamePractice = new KantoreGamePractice(gameLevel);
 const gameArcade = new KantoreGameArcade(gameLevel);
 
 let game = gameMain;
-$kt.hints.loadKanjidex();
+KantoreHints.loadKanjidex();
 audio.preloadAudio();
 gameUi.setupLevelHints(gameStatus.level);
 

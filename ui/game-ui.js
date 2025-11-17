@@ -1,6 +1,7 @@
 import { audio } from './audio.js';
 import { GAME_TYPE, LIVES_ANIMATION_TYPE } from './enums.js';
 import { KantoreUiHelper } from './ui-helper.js';
+import { KantoreHints } from './hints.js';
 import { settings } from './settings.js';
 
 globalThis.$kt = globalThis.$kt || {};
@@ -631,12 +632,7 @@ class KantoreGameUi {
     }
 
     setupLevelHints(level) {
-        if (!$kt.hints) {
-            console.error('The "hints.js" file must be included before the "ui.js" file.')
-            return;
-        }
-
-        this._hints = $kt.hints;
+        this._hints = KantoreHints;
 
         this._currentHintIndex = this._latestUnlockedHintIndex = Math.min(level, this._hints.length) - 1;
         KantoreUiHelper.initializeHintSelects(this._latestUnlockedHintIndex + 1);
