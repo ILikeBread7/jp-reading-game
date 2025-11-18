@@ -57,6 +57,31 @@ class KantoreDialogue {
         KantoreUiHelper.showOverlayElement(this._dialogue);
     }
 
+    /**
+     * 
+     * @param {string} title 
+     * @param {string[]} texts 
+     * @param {() => void} closeListener 
+     */
+    showSequence(title, texts, closeListener) {
+        let index = 0;
+
+        const helper = () => {
+            this.show(
+                title,
+                texts[index],
+                index === texts.length - 1
+                    ? closeListener
+                    : microTaskedHelper
+            );
+
+            index++;
+        }
+        const microTaskedHelper = () => queueMicrotask(helper);
+
+        helper();
+    }
+
     close() {
         if (!this.isVisible()) {
             return;
