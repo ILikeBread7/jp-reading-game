@@ -11,11 +11,13 @@ import { KantorePersistence } from './persistence.js';
 import { KantoreHints } from './hints.js';
 import { KantoreLevels } from './levels.js';
 import { titleUi } from './title-ui.js';
+import { storyModeUi } from './story-mode-ui.js';
 
 audio.initialize();
 settingsUi.initialize();
 titleUi.initialize();
 gameUi.initialize();
+storyModeUi.initialize();
 ui.initialize();
 
 const EVENTS = gameUi.eventNames;

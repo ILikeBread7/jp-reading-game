@@ -350,6 +350,24 @@ export class KantoreTemplates {
         `;
     }
 
+    static storyModeMenu(menuId, parentMenuId, entries) {
+        return /*html*/ `
+            <div class="centered menu hidden scrollable scrollable-container" id="${menuId}">
+                ${entries.map(entry => KT._storyModeEntryButton(menuId, entry)).join('')}
+                <button class="menu-item menu-button ${parentMenuId && `menu-destination-button`} back-button" id="${menuId}-back-button" ${parentMenuId && `data-destination="${parentMenuId}"`}>Go back</button>
+            </div>
+        `;
+    }
+
+    static _storyModeEntryButton(menuId, entry) {
+        const buttonCssName = KT._cssName(entry.name);
+        const destinationMenuId = `${menuId}-${buttonCssName}`;
+
+        return /*html*/`
+            <button class="menu-item menu-button menu-destination-button" id="${menuId}-entry-${buttonCssName}-button" data-destination="${destinationMenuId}">${entry.name}</button>
+        `;
+    }
+
     /**
      * Function for html templates, if value is falsey returns elseValue
      * @returns value if condition is met, elseValue otherwise
