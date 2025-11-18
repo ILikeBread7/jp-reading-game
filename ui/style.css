@@ -804,7 +804,7 @@ body:not(.game) .game-only {
 
 #title-press-start-text {
     position: absolute;
-    top: calc(50% + 5em);
+    top: calc(50% + 6em);
     width: 100%;
 }
 
@@ -1052,23 +1052,5 @@ body:not(.game) .game-only {
 
     #level-select-text {
         top: calc(50% + 7.5em);
-    }
-}
-
-@media (max-height: 400px) {
-    .scrollable-container {
-        margin-top: -5vh;
-    }
-
-    #main-menu {
-        margin-top: 10vh;
-    }
-
-    #title-press-start-text {
-        top: calc(50% + 7em);
-    }
-
-    #level-select-text {
-        top: calc(50% + 5em);
     }
 }
