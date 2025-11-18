@@ -9,6 +9,9 @@ import { ui } from './ui.js';
 import { KantoreLevels } from './levels.js';
 import { KantoreHints } from './hints.js';
 
+const MENU_SHOWN_EVENT_NAME = 'menuShown';
+const events = new EventTarget();
+
 // Has access to private fields of
 // KantoreUi, KantoreSettingsUi, KantoreGameUi and KantoreTitleUi
 // to facilitate communication
@@ -178,6 +181,8 @@ export class KantoreUiHelper {
         menuElement.classList.remove('hidden');
         [...document.getElementsByClassName('for-' + menuElement.id)]
             .forEach(element => element.classList.remove('hidden'));
+
+        KantoreUiHelper._dispatchMenuShownEvent(menuElement);
         
         const dataset = menuElement.dataset;
 
@@ -194,6 +199,21 @@ export class KantoreUiHelper {
             itemToFocus = defaultItem;
         }
         KantoreUiHelper.focusDefaultMenuItem(itemToFocus);
+    }
+
+    static addMenuShownEventListener(menuElement, listener) {
+        events.addEventListener(
+            KantoreUiHelper._createMenuElementEventName(menuElement),
+            listener
+        );
+    }
+
+    static _dispatchMenuShownEvent(menuElement) {
+        events.dispatchEvent(new CustomEvent(KantoreUiHelper._createMenuElementEventName(menuElement)));
+    }
+
+    static _createMenuElementEventName(menuElement) {
+        return `${MENU_SHOWN_EVENT_NAME}_${menuElement.id}`;
     }
 
     static hideMenu(menuElement) {
