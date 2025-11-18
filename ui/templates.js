@@ -353,18 +353,39 @@ export class KantoreTemplates {
     static storyModeMenu(menuId, parentMenuId, entries) {
         return /*html*/ `
             <div class="centered menu hidden scrollable scrollable-container" id="${menuId}">
-                ${entries.map(entry => KT._storyModeEntryButton(menuId, entry)).join('')}
-                <button class="menu-item menu-button ${parentMenuId && `menu-destination-button`} back-button" id="${menuId}-back-button" ${parentMenuId && `data-destination="${parentMenuId}"`}>Go back</button>
+                ${entries.map(entry => KT._storyModeHubEntryButton(menuId, entry)).join('')}
+                <button class="menu-item menu-button menu-destination-button back-button" id="${menuId}-back-button" data-destination="${parentMenuId}">Go back</button>
             </div>
-        `;
+        ` + entries.map(hubEntry => {
+                const submenuHtmlId = `${menuId}-${KT._cssName(hubEntry.name)}`;
+                return /*html*/ `
+                    <div class="centered menu hidden scrollable scrollable-container" id="${submenuHtmlId}">
+                        ${
+                            hubEntry
+                                .entries
+                                .map(levelEntry => KT._storyModeLevelEntryButton(submenuHtmlId, levelEntry))
+                                .join('')
+                        }
+                        <button class="menu-item menu-button menu-destination-button back-button" id="${submenuHtmlId}-back-button" data-destination="${menuId}">Go back</button>
+                    </div>
+                `;
+            }).join('');
     }
 
-    static _storyModeEntryButton(menuId, entry) {
+    static _storyModeHubEntryButton(menuId, entry) {
         const buttonCssName = KT._cssName(entry.name);
         const destinationMenuId = `${menuId}-${buttonCssName}`;
 
         return /*html*/`
-            <button class="menu-item menu-button menu-destination-button" id="${menuId}-entry-${buttonCssName}-button" data-destination="${destinationMenuId}">${entry.name}</button>
+            <button class="menu-item menu-button menu-destination-button story-entry-button" id="${menuId}-entry-${buttonCssName}-button" data-destination="${destinationMenuId}">${entry.name}</button>
+        `;
+    }
+
+    static _storyModeLevelEntryButton(menuId, entry) {
+        const buttonCssName = KT._cssName(entry.name);
+
+        return /*html*/`
+            <button class="menu-item menu-button" id="${menuId}-entry-${buttonCssName}-button">${entry.name}</button>
         `;
     }
 
