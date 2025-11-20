@@ -385,7 +385,7 @@ export class KantoreTemplates {
         const buttonCssName = KT._cssName(entry.name);
 
         return /*html*/`
-            <button class="menu-item menu-button" id="${menuId}-entry-${buttonCssName}-button">${entry.name}</button>
+            <button class="menu-item menu-button story-mode-entry-button" id="${menuId}-entry-${buttonCssName}-button">${entry.name}</button>
         `;
     }
 

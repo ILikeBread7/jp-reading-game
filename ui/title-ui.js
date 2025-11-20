@@ -245,14 +245,6 @@ class KantoreTitleUi {
 
     _startArcadeMode(categoryName, dict) {
         dict.preload();
-
-        // Prevent underlying menu button
-        // from being "clicked" on enter
-        const focusedItem = document.activeElement;
-        if (focusedItem) {
-            focusedItem.blur();
-        }
-
         dialogue.show(
             'Arcade mode',
             KantoreTemplates.arcadeModeExplanation(),
