@@ -29,7 +29,10 @@
                         <button class="control-button icon-button" id="dialogue-close-button" title="Close" data-close-button><img src="icons/close.svg" alt="Close"/></button>
                     </div>
                 </div>
-                <div id="dialogue-text"><!-- Content created dynamically --></div>
+                <div id="dialogue-text-content">
+                    <div id="dialogue-text"><!-- Content created dynamically --></div>
+                    <button class="hidden" id="dialogue-next-button" data-text-next="Next" data-text-close="Close" tabindex="-1"></button>
+                </div>
             </div>
         </div>
         <button class="control-button icon-button ui-button" id="fullscreen-button" title="Fullscreen"><img src="icons/fullscreen.svg" data-exit-icon="icons/fullscreen_exit.svg" alt="Fullscreen"/></button>

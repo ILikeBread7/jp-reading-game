@@ -297,7 +297,7 @@ summary {
     min-width: var(--info-min-width);
 }
 
-#dialogue-text,
+#dialogue-text-content,
 #level-up-hint-content {
     max-height: calc(90vh - 1em);
     overflow-y: auto;
@@ -685,6 +685,7 @@ details.closing > summary::before {
     margin-top: 0.5em;
 }
 
+#dialogue-next-button,
 select,
 #answer-submit-button,
 .menu-button {
@@ -694,6 +695,7 @@ select,
     height: 1.75em;
 }
 
+#dialogue-next-button:hover,
 select:hover,
 #answer-submit-button:hover,
 .menu-button:hover {
@@ -727,11 +729,16 @@ button.menu-item {
     border-style: outset;
 }
 
+#dialogue-next-button,
 .menu-item.to-refocus,
 .menu-item:focus {
     z-index: 1;
     outline: none;
     animation: menu-item-focus 0.25s alternate infinite;
+}
+
+#dialogue-next-button {
+    width: 100%;
 }
 
 .menu-item:disabled {

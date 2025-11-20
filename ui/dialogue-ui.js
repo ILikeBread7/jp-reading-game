@@ -15,10 +15,13 @@ class KantoreDialogue {
         this._content = document.getElementById('dialogue-content');
         this._text = document.getElementById('dialogue-text');
         this._closeButton = document.getElementById('dialogue-close-button');
+        this._nextButton = document.getElementById('dialogue-next-button');
     }
 
     _addEventListeners() {
-        this._closeButton.addEventListener('click', this.close.bind(this));
+        const closeFunction = this.close.bind(this);
+        this._closeButton.addEventListener('click', closeFunction);
+        this._nextButton.addEventListener('click', closeFunction);
     }
 
     enterListener() {
@@ -51,10 +54,8 @@ class KantoreDialogue {
      * @param {() => void} closeListener 
      */
     show(title, text, closeListener) {
-        this._title.innerHTML = title;
-        this._text.innerHTML = text;
-        this._closeListener = closeListener;
-        KantoreUiHelper.showOverlayElement(this._dialogue);
+        this._nextButton.classList.add('hidden');
+        this._showIndividual(title, text, closeListener);
     }
 
     /**
@@ -64,13 +65,22 @@ class KantoreDialogue {
      * @param {() => void} closeListener 
      */
     showSequence(title, texts, closeListener) {
+        this._nextButton.textContent = this._nextButton.dataset.textNext;
+        this._nextButton.classList.remove('hidden');
+
         let index = 0;
 
         const helper = () => {
-            this.show(
+            const isLast = index === texts.length - 1;
+
+            if (isLast) {
+                this._nextButton.textContent = this._nextButton.dataset.textClose;
+            }
+
+            this._showIndividual(
                 title,
                 texts[index],
-                index === texts.length - 1
+                isLast
                     ? closeListener
                     : microTaskedHelper
             );
@@ -80,6 +90,19 @@ class KantoreDialogue {
         const microTaskedHelper = () => queueMicrotask(helper);
 
         helper();
+    }
+
+    /**
+     * 
+     * @param {string} title 
+     * @param {string} text 
+     * @param {() => void} closeListener 
+     */
+    _showIndividual(title, text, closeListener) {
+        this._title.innerHTML = title;
+        this._text.innerHTML = text;
+        this._closeListener = closeListener;
+        KantoreUiHelper.showOverlayElement(this._dialogue);
     }
 
     close() {
