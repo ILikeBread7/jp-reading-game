@@ -739,8 +739,26 @@ class KantoreDicts {
         return this._levelDicts[level - 1];
     }
 
+    /**
+     * 
+     * @param {number} startLevel 
+     * @param {number} endLevel 
+     * @returns 
+     */
     getLevelDicts(startLevel, endLevel) {
         return this._levelDicts.slice(startLevel - 1, endLevel);
+    }
+
+    /**
+     * 
+     * @param {number} startLevel 
+     * @param {number} endLevel 
+     * @returns 
+     */
+    createComplexLevelDict(startLevel, endLevel) {
+        return new ComplexDict(
+            KantoreUtils.shuffle(this.getLevelDicts(startLevel, endLevel))
+        );
     }
 
     /**

@@ -49,7 +49,17 @@ class KantoreStoryModeUi {
                     dict: dicts.getLevelDict(1),
                     totalQuestions: 5
                 },
-                { name: `もり - Forest (${KantoreLevels.getLevelName(4)})` },
+                {
+                    name: `もり - Forest (${KantoreLevels.getLevelName(4)})`,
+                    beforeText: [
+                        'Before test forest 1', 'Before test forest 2', 'Before test forest 3'
+                    ],
+                    afterText: [
+                        'After test forest 1', 'After test forest 2', 'After test forest 3'
+                    ],
+                    dict: dicts.createComplexLevelDict(2, 4),
+                    totalQuestions: 10
+                },
                 { name: `いけ - Pond (${KantoreLevels.getLevelName(7)})` },
                 { name: `どうくつ - Cave (${KantoreLevels.getLevelName(10)})` },
                 { name: `ないてるこ - Crying child (${KantoreLevels.getLevelName(10)})` },
