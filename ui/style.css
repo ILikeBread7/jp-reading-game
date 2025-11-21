@@ -739,6 +739,7 @@ button.menu-item {
 
 #dialogue-next-button {
     width: 100%;
+    margin: 0.5em 0px;
 }
 
 .menu-item:disabled {
