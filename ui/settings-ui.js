@@ -44,6 +44,7 @@ class KantoreSettingsUi {
         this._hintSelect = document.getElementById('settings-hint-select');
         this._submitButtonSelect = document.getElementById('settings-submit-button-select');
 
+        this._backToStory = document.getElementById('back-to-story-menu-button');
         this._backToMenu = document.getElementById('back-to-main-menu-button');
         this._returnToGame = document.getElementById('return-to-game-button');
     }
@@ -59,6 +60,7 @@ class KantoreSettingsUi {
         this._fullscreen.addEventListener('change', KantoreUiHelper.toggleFullscreen);
         document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
 
+        this._backToStory.addEventListener('click', KantoreUiHelper.backToStoryMenu);
         this._backToMenu.addEventListener('click', KantoreUiHelper.backToTitle);
         this._returnToGame.addEventListener('click', KantoreUiHelper.hideSettings);
 

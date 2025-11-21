@@ -20,6 +20,11 @@ class KantoreStoryModeUi {
     }
 
     showStoryModeMenu() {
+        const visibleMenu = this._allMenus.find(menu => menu.checkVisibility());
+        if (visibleMenu) {
+            this._lastVisibleMenu = visibleMenu;
+        }
+
         if (this._lastVisibleMenu) {
             KantoreUiHelper.showMenu(this._lastVisibleMenu);
         }
@@ -32,6 +37,10 @@ class KantoreStoryModeUi {
         if (visibleMenu) {
             KantoreUiHelper.hideMenu(visibleMenu);
         }
+    }
+
+    isVisible() {
+        return this._allMenus.some(menu => menu.checkVisibility());
     }
 
     _createMenus() {

@@ -768,6 +768,7 @@ button.menu-item {
     color: #000000;
 }
 
+body:not(.game-story) .game-story-only,
 body:not(.game-main) .game-main-only,
 body:not(.game) .game-only {
     display: none;

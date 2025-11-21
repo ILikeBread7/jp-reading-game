@@ -8,6 +8,7 @@ import { titleUi } from './title-ui.js';
 import { ui } from './ui.js';
 import { KantoreLevels } from './levels.js';
 import { KantoreHints } from './hints.js';
+import { KantoreTemplates } from './templates.js';
 import { storyModeUi } from './story-mode-ui.js';
 
 const MENU_SHOWN_EVENT_NAME = 'menuShown';
@@ -102,6 +103,11 @@ export class KantoreUiHelper {
 
     static hideSettings() {
         KantoreUiHelper.hideOverlayElement(settingsUi._settingsDiv);
+        if (storyModeUi.isVisible()) {
+            KantoreUiHelper.showStoryModeMenu();
+            return;
+        }
+        
         if (titleUi._titleScene.checkVisibility()) {
             if (titleUi._credits.checkVisibility()) {
                 KantoreUiHelper.showMenu(titleUi._credits.parentNode);
@@ -202,6 +208,12 @@ export class KantoreUiHelper {
 
     static showStoryModeMenu() {
         storyModeUi.showStoryModeMenu();
+    }
+
+    static backToStoryMenu() {
+        KantoreUiHelper.hideOverlayElement(settingsUi._settingsDiv);
+        KantoreUiHelper.showTitleScene();
+        KantoreUiHelper.showStoryModeMenu();
     }
 
     static showMenu(menuElement) {
