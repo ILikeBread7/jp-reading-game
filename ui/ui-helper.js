@@ -153,8 +153,19 @@ export class KantoreUiHelper {
         );
     }
 
-    static startGameStory(levelName, dict, storyEntryData) {
-        gameUi.startGame(GAME_TYPE.ARCADE, categoryName, dict, storyEntryData);
+    /**
+     * 
+     * @param { { name: string, dict: BaseDict | ComplexDict, totalQuestions: number, afterText: string[] } } storyEntry 
+     */
+    static startGameStory(storyEntry) {
+        gameUi.startGame(
+            GAME_TYPE.STORY,
+            storyEntry.name,
+            storyEntry.dict,
+            storyEntry.totalQuestions,
+            () => dialogue.showSequence(storyEntry.name, storyEntry.afterText, KantoreUiHelper.showStoryModeMenu),
+            () => dialogue.show('Oh, no...', KantoreTemplates.storyModeFailureText(), KantoreUiHelper.showStoryModeMenu)
+        );
         document.body.classList.add(
             'game', 'game-story'
         );

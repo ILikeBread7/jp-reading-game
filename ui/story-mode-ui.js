@@ -1,6 +1,5 @@
 import { dialogue } from './dialogue-ui.js';
 import { dicts } from './dicts.js';
-import { gameUi } from './game-ui.js';
 import { KantoreLevels } from './levels.js';
 import { KantoreTemplates } from './templates.js';
 import { KantoreUiHelper } from './ui-helper.js';
@@ -106,10 +105,11 @@ class KantoreStoryModeUi {
         this._storyModeEntryButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
                 const level = this._levels[index];
+                level.dict.preload();
                 dialogue.showSequence(
                     level.name,
                     level.beforeText,
-                    () => gameUi.startStoryGame(level)
+                    () => KantoreUiHelper.startGameStory(level)
                 );
             });
         });

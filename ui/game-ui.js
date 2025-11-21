@@ -4,7 +4,6 @@ import { KantoreUiHelper } from './ui-helper.js';
 import { KantoreHints } from './hints.js';
 import { KantoreTemplates } from './templates.js';
 import { settings } from './settings.js';
-import { dialogue } from './dialogue-ui.js';
 
 const FADE_IN_ANIMATION_LENGTH = 400;
 const LEVEL_UP_ANIMATION_LENGTH = 3000;
@@ -622,21 +621,6 @@ class KantoreGameUi {
         this._removeLevelUpTransitions();
         this.focusAnswerInput();
         this._dispatchEvent(this._eventNames.START, { gameType, categoryName, dict, totalQuestions, successListener, failureListener });
-    }
-
-    /**
-     * 
-     * @param { { name: string, dict: BaseDict | ComplexDict, totalQuestions: number, afterText: string[] } } storyEntry 
-     */
-    startStoryGame(storyEntry) {
-        this.startGame(
-            GAME_TYPE.STORY,
-            storyEntry.name,
-            storyEntry.dict,
-            storyEntry.totalQuestions,
-            () => dialogue.showSequence(storyEntry.name, storyEntry.afterText, KantoreUiHelper.showStoryModeMenu),
-            () => dialogue.show('Oh, no...', KantoreTemplates.storyModeFailureText(), KantoreUiHelper.showStoryModeMenu)
-        );
     }
 
     _displayAnnouncmentText(...textElements) {
