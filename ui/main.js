@@ -2,16 +2,18 @@ import { KantoreGameArcade } from './game-arcade.js';
 import { KantoreGameLevel } from './game-level.js';
 import { KantoreGameMain } from './game-main.js';
 import { KantoreGamePractice } from './game-practice.js';
+import { KantoreGameStory } from './game-story.js';
 import { ui } from './ui.js';
 import { gameUi } from './game-ui.js';
 import { settingsUi } from './settings-ui.js';
 import { audio } from './audio.js';
-import { GAME_TYPE } from './enums.js';
+import { GAME_FINISHED_STATE, GAME_TYPE } from './enums.js';
 import { KantorePersistence } from './persistence.js';
 import { KantoreHints } from './hints.js';
 import { KantoreLevels } from './levels.js';
 import { titleUi } from './title-ui.js';
 import { storyModeUi } from './story-mode-ui.js';
+import { KantoreUiHelper } from './ui-helper.js';
 
 audio.initialize();
 settingsUi.initialize();
@@ -54,6 +56,7 @@ const gameLevel = new KantoreGameLevel();
 const gameMain = new KantoreGameMain(gameLevel, gameStatus);
 const gamePractice = new KantoreGamePractice(gameLevel);
 const gameArcade = new KantoreGameArcade(gameLevel);
+const gameStory = new KantoreGameStory(gameLevel);
 
 let game = gameMain;
 KantoreHints.loadKanjidex();
@@ -88,6 +91,12 @@ events.addEventListener(EVENTS.START, event => {
             const { categoryName, dict } = detail;
             gameArcade.start(categoryName, dict);
         } break;
+        case GAME_TYPE.STORY: {
+            storyModeUi.hideStoryModeMenu();
+            game = gameStory;
+            const { categoryName: levelName, dict, totalQuestions, successListener, failureListener } = detail;
+            gameStory.start(levelName, dict, totalQuestions, successListener, failureListener);
+        } break;
     }
 
 });
@@ -112,8 +121,30 @@ events.addEventListener(EVENTS.LEVEL_UP_AFTER, () => {
     KantorePersistence.setFlags(flags);
 });
 
-events.addEventListener(EVENTS.BACK_TO_TITLE, () => {
-    game.stopLoadingDict();
+events.addEventListener(EVENTS.BACK_TO_TITLE, gameFinishedListener);
+
+events.addEventListener(EVENTS.GAME_FINISHED, ( { detail } ) => {
+    gameFinishedListener();
+
+    if (game === gameArcade) {
+        KantoreUiHelper.backToTitle();
+        return;
+    }
+
+    KantoreUiHelper.showTitleScene();
+    switch (detail) {
+        case GAME_FINISHED_STATE.CLEAR:
+            gameStory.runSuccessListener();
+        break;
+        case GAME_FINISHED_STATE.FAILURE:
+            gameStory.runFailureListener();
+        break;
+    }
+
 });
 
 ui.hideStartupLoading();
+
+function gameFinishedListener() {
+    game.stopLoadingDict();
+}

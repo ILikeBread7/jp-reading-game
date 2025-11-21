@@ -1,9 +1,10 @@
 import { audio } from './audio.js';
-import { GAME_TYPE, LIVES_ANIMATION_TYPE } from './enums.js';
+import { GAME_FINISHED_STATE, GAME_TYPE, LIVES_ANIMATION_TYPE } from './enums.js';
 import { KantoreUiHelper } from './ui-helper.js';
 import { KantoreHints } from './hints.js';
 import { KantoreTemplates } from './templates.js';
 import { settings } from './settings.js';
+import { dialogue } from './dialogue-ui.js';
 
 const FADE_IN_ANIMATION_LENGTH = 400;
 const LEVEL_UP_ANIMATION_LENGTH = 3000;
@@ -90,7 +91,14 @@ class KantoreGameUi {
 
         if (this._isGameClearOrGameOverVisible()) {
             audio.playEffect(audio.seTracks.CANCEL);
-            KantoreUiHelper.backToTitle();
+            this._events.dispatchEvent(new CustomEvent(
+                this._eventNames.GAME_FINISHED,
+                {
+                    detail: this._gameClearText.checkVisibility()
+                        ? GAME_FINISHED_STATE.CLEAR
+                        : GAME_FINISHED_STATE.FAILURE
+                }
+            ));
             return true;
         }
 
@@ -467,7 +475,8 @@ class KantoreGameUi {
             LEVEL_UP_BEFORE: 'levelUpBefore',
             LEVEL_UP_AFTER: 'levelUpAfter',
             BACK_TO_TITLE: 'backToTitle',
-            TIME_UP: 'timeUp'
+            TIME_UP: 'timeUp',
+            GAME_FINISHED: 'gameFinished'
         });
     }
 
@@ -603,13 +612,31 @@ class KantoreGameUi {
      * @param {GAME_TYPE} gameType 
      * @param {string | undefined} categoryName 
      * @param {BaseDict | ComplexDict | undefined} dict 
+     * @param {number} [totalQuestions]
+     * @param {() => void} [successListener]
+     * @param {() => void} [failureListener]
      */
-    startGame(gameType, categoryName, dict) {
+    startGame(gameType, categoryName, dict, totalQuestions, successListener, failureListener) {
         KantoreUiHelper.switchToScene(this._gameScene);
         this._moveLevelExpDivBackDown();
         this._removeLevelUpTransitions();
         this.focusAnswerInput();
-        this._dispatchEvent(this._eventNames.START, { gameType, categoryName, dict });
+        this._dispatchEvent(this._eventNames.START, { gameType, categoryName, dict, totalQuestions, successListener, failureListener });
+    }
+
+    /**
+     * 
+     * @param { { name: string, dict: BaseDict | ComplexDict, totalQuestions: number, afterText: string[] } } storyEntry 
+     */
+    startStoryGame(storyEntry) {
+        this.startGame(
+            GAME_TYPE.STORY,
+            storyEntry.name,
+            storyEntry.dict,
+            storyEntry.totalQuestions,
+            () => dialogue.showSequence(storyEntry.name, storyEntry.afterText, KantoreUiHelper.showStoryModeMenu),
+            () => dialogue.show('Oh, no...', KantoreTemplates.storyModeFailureText(), KantoreUiHelper.showStoryModeMenu)
+        );
     }
 
     _displayAnnouncmentText(...textElements) {

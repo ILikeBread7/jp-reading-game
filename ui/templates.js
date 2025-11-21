@@ -352,14 +352,14 @@ export class KantoreTemplates {
 
     static storyModeMenu(menuId, parentMenuId, entries) {
         return /*html*/ `
-            <div class="centered menu hidden scrollable scrollable-container" id="${menuId}">
+            <div class="centered menu hidden scrollable scrollable-container story-menu" id="${menuId}">
                 ${entries.map(entry => KT._storyModeHubEntryButton(menuId, entry)).join('')}
                 <button class="menu-item menu-button menu-destination-button back-button" id="${menuId}-back-button" data-destination="${parentMenuId}">Go back</button>
             </div>
         ` + entries.map(hubEntry => {
                 const submenuHtmlId = `${menuId}-${KT._cssName(hubEntry.name)}`;
                 return /*html*/ `
-                    <div class="centered menu hidden scrollable scrollable-container" id="${submenuHtmlId}">
+                    <div class="centered menu hidden scrollable scrollable-container story-menu" id="${submenuHtmlId}">
                         ${
                             hubEntry
                                 .entries
@@ -387,6 +387,14 @@ export class KantoreTemplates {
         return /*html*/`
             <button class="menu-item menu-button story-mode-entry-button" id="${menuId}-entry-${buttonCssName}-button">${entry.name}</button>
         `;
+    }
+
+    static storyModeFailureText() {
+        return /*html*/ `<div class="centered-text">
+            You can try again,
+            study up in the learning mode,
+            or get a refresher in practice mode.
+        </div>`;
     }
 
     /**

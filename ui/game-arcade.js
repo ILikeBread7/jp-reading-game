@@ -30,15 +30,23 @@ export class KantoreGameArcade extends KantoreGameBase {
      * @param {BaseDict | ComplexDict} dict 
      */
     start(diffucyltyName, dict) {
+        this._setupProperties(dict);
+        this._totalQuestions = 15;
+        this._categoryLabel = `Arcade: ${diffucyltyName}`;
+        this._startQuestions();
+    }
+
+    _setupProperties(dict) {
         this._dict = dict;
         this._correctAnswersNumber = 0;
-        this._totalQuestions = 15;
         this._questionsBeforeBreak = 5;
         this._maxLives = 3;
         this._lives = this._maxLives;
-        this._categoryLabel = `Arcade: ${diffucyltyName}`;
-        this._showArcadeDataCorrectAnswer();
-        this._gameLevel.start(dict);
+    }
+
+    _startQuestions() {
+        this._showDataCorrectAnswer();
+        this._gameLevel.start(this._dict);
         this._askQuestion();
     }
 
@@ -52,7 +60,7 @@ export class KantoreGameArcade extends KantoreGameBase {
             gameUi.jumpRightAnswer();
             if (!this._gameLevel.gaveUp) {
                 this._correctAnswersNumber++;
-                this._showArcadeDataCorrectAnswer();
+                this._showDataCorrectAnswer();
             }
             this._askQuestionOrBreakOrFinish();
         } else {
@@ -88,7 +96,7 @@ export class KantoreGameArcade extends KantoreGameBase {
                 </div>`,
                 () => {
                     this._lives = Math.min(this._lives + 1, this._maxLives);
-                    this._showArcadeDataAddedLife();
+                    this._showDataAddedLife();
                     this._askQuestion();
                 }
             )
@@ -119,25 +127,25 @@ export class KantoreGameArcade extends KantoreGameBase {
             audio.playEffect(audio.seTracks.CANCEL);
         }
 
-        this._showArcadeDataGaveUp();
+        this._showDataGaveUp();
     }
 
-    _showArcadeDataCorrectAnswer() {
+    _showDataCorrectAnswer() {
         const addExp = true;
-        this._showArcadeData(LIVES_ANIMATION_TYPE.NONE, addExp);
+        this._showData(LIVES_ANIMATION_TYPE.NONE, addExp);
     }
 
-    _showArcadeDataGaveUp() {
+    _showDataGaveUp() {
         const addExp = false;
-        this._showArcadeData(LIVES_ANIMATION_TYPE.SHAKE, addExp);
+        this._showData(LIVES_ANIMATION_TYPE.SHAKE, addExp);
     }
 
-    _showArcadeDataAddedLife() {
+    _showDataAddedLife() {
         const addExp = false;
-        this._showArcadeData(LIVES_ANIMATION_TYPE.JUMP, addExp);
+        this._showData(LIVES_ANIMATION_TYPE.JUMP, addExp);
     }
 
-    _showArcadeData(livesAnimationType, addExp) {
+    _showData(livesAnimationType, addExp) {
         gameUi.showArcadeExp(
             this._categoryLabel,
             this._lives,

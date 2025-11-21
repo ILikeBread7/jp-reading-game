@@ -1,4 +1,6 @@
 import { dialogue } from './dialogue-ui.js';
+import { dicts } from './dicts.js';
+import { gameUi } from './game-ui.js';
 import { KantoreLevels } from './levels.js';
 import { KantoreTemplates } from './templates.js';
 import { KantoreUiHelper } from './ui-helper.js';
@@ -12,9 +14,25 @@ class KantoreStoryModeUi {
     }
 
     initialize() {
+        this._lastVisibleMenu = null;
         this._createMenus();
         this._getMenuElements();
         this._addEventListeners();
+    }
+
+    showStoryModeMenu() {
+        if (this._lastVisibleMenu) {
+            KantoreUiHelper.showMenu(this._lastVisibleMenu);
+        }
+    }
+
+    hideStoryModeMenu() {
+        const visibleMenu = this._allMenus.find(menu => menu.checkVisibility());
+        this._lastVisibleMenu = visibleMenu;
+
+        if (visibleMenu) {
+            KantoreUiHelper.hideMenu(visibleMenu);
+        }
     }
 
     _createMenus() {
@@ -27,7 +45,9 @@ class KantoreStoryModeUi {
                     ],
                     afterText: [
                         'After test 1', 'After test 2'
-                    ]
+                    ],
+                    dict: dicts.getLevelDict(1),
+                    totalQuestions: 5
                 },
                 { name: `もり - Forest (${KantoreLevels.getLevelName(4)})` },
                 { name: `いけ - Pond (${KantoreLevels.getLevelName(7)})` },
@@ -57,6 +77,7 @@ class KantoreStoryModeUi {
         this._hubMenu = document.getElementById(HUB_MENU_ID);
         this._hubMenuEntryButtons = [...this._hubMenu.getElementsByClassName('story-entry-button')];
         this._storyModeEntryButtons = [...document.getElementsByClassName('story-mode-entry-button')];
+        this._allMenus = [...document.getElementsByClassName('story-menu')];
     }
 
     _addEventListeners() {
@@ -75,19 +96,11 @@ class KantoreStoryModeUi {
         this._storyModeEntryButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
                 const level = this._levels[index];
-
                 dialogue.showSequence(
                     level.name,
                     level.beforeText,
-                    () => {
-                        console.log(`Start story mode level ${level.name}`)
-                        queueMicrotask(() => dialogue.showSequence(
-                            level.name,
-                            level.afterText,
-                            () => console.log(`End story mode level ${level.name}`)
-                        ))
-                    }
-                )
+                    () => gameUi.startStoryGame(level)
+                );
             });
         });
     }

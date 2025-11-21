@@ -8,6 +8,7 @@ import { titleUi } from './title-ui.js';
 import { ui } from './ui.js';
 import { KantoreLevels } from './levels.js';
 import { KantoreHints } from './hints.js';
+import { storyModeUi } from './story-mode-ui.js';
 
 const MENU_SHOWN_EVENT_NAME = 'menuShown';
 const events = new EventTarget();
@@ -152,6 +153,13 @@ export class KantoreUiHelper {
         );
     }
 
+    static startGameStory(levelName, dict, storyEntryData) {
+        gameUi.startGame(GAME_TYPE.ARCADE, categoryName, dict, storyEntryData);
+        document.body.classList.add(
+            'game', 'game-story'
+        );
+    }
+
     static _removeGameModeClasses() {
         document.body.removeAttribute('class');
     }
@@ -166,7 +174,7 @@ export class KantoreUiHelper {
 
     static backToTitle() {
         dialogue.forceClose();
-        KantoreUiHelper.switchToScene(titleUi._titleScene);
+        KantoreUiHelper.showTitleScene();
         KantoreUiHelper.hideSettings();
         settingsUi._settingsDiv.ontransitionend = event => {
             if (event.target === settingsUi._settingsDiv) {
@@ -175,6 +183,14 @@ export class KantoreUiHelper {
             }
         };
         gameUi.dispatchBackToTitleEvent();
+    }
+
+    static showTitleScene() {
+        KantoreUiHelper.switchToScene(titleUi._titleScene);
+    }
+
+    static showStoryModeMenu() {
+        storyModeUi.showStoryModeMenu();
     }
 
     static showMenu(menuElement) {
