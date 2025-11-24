@@ -24,6 +24,7 @@
     --palette-secondary-color: #476288;
     --palette-text-color: #ddf2ff;
     --palette-secondary-text-color: #dca11d;
+    --palette-secondary-text-color-brighter: #fab521;
     --palette-text-bleak-color: #bccdd8;
 
     --palette-text-color-filter:
@@ -952,6 +953,27 @@ body:not(.game) .game-only {
     top: 6em;
     opacity: 0;
     animation: fade-in 0.5s linear 1s forwards;
+}
+
+.popover {
+    color: var(--palette-secondary-text-color);
+    transition-duration: var(--default-transition-time);
+    transition-property: color;
+}
+
+.popover:hover {
+    color: var(--palette-secondary-text-color-brighter);
+}
+
+.popover.active::before,
+.popover:hover::before {
+    content: attr(data-content);
+    color: var(--palette-text-color);
+    position: fixed;
+    margin-top: -2.5em;
+    padding: 0.5em;
+    background-color: var(--palette-text-bleak-color);
+    border-radius: 0.25em;
 }
 
 @keyframes fade-in {

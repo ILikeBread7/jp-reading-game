@@ -1,10 +1,13 @@
 import { audio } from './audio.js';
 import { KantoreUiHelper } from './ui-helper.js';
 
+const ACTIVE_CLASS_NAME = 'active';
+
 class KantoreDialogue {
 
     constructor() {
         this._closeListener = null;
+        this._popovers = null;
         this._getAllElements();
         this._addEventListeners();
     }
@@ -30,6 +33,31 @@ class KantoreDialogue {
 
     clickListener(target) {
         return this._eventListener(target);
+    }
+
+    keyListener(key) {
+        if (key !== 'Shift' || !this.isVisible()) {
+            return false;
+        }
+
+        const popovers = this._popovers;
+        if (!popovers || popovers.length === 0) {
+            return true;
+        }
+
+        const currentActiveIndex = popovers
+            .findIndex(popover => popover.classList.contains(ACTIVE_CLASS_NAME));
+        if (currentActiveIndex >= 0) {
+            const current = popovers[currentActiveIndex];
+            current.classList.remove(ACTIVE_CLASS_NAME);
+        }
+
+        const next = popovers[currentActiveIndex + 1];
+        if (next) {
+            next.classList.add(ACTIVE_CLASS_NAME);
+        }
+
+        return true;
     }
 
     _eventListener(target) {
@@ -110,6 +138,27 @@ class KantoreDialogue {
         this._text.innerHTML = text;
         this._closeListener = closeListener;
         KantoreUiHelper.showOverlayElement(this._dialogue);
+        this._addPopoverClickListeners();
+    }
+
+    _addPopoverClickListeners() {
+        const popovers = [...this._text.getElementsByClassName('popover')];
+        this._popovers = popovers;
+
+        const clickListener = event => {
+            const target = event.target;
+            popovers.forEach(popover => {
+                if (target === popover) {
+                    popover.classList.toggle(ACTIVE_CLASS_NAME);
+                } else {
+                    popover.classList.remove(ACTIVE_CLASS_NAME)
+                }
+            });
+        };
+
+        popovers.forEach(popover => {
+            popover.addEventListener('click', clickListener);
+        });
     }
 
     close() {
@@ -123,6 +172,7 @@ class KantoreDialogue {
             this._closeListener();
             this._closeListener = null;
         }
+        this._popovers = null;
     }
 
     forceClose() {

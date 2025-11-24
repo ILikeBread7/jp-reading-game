@@ -209,6 +209,10 @@ class KantoreUi {
             return;
         }
 
+        if (dialogue.keyListener(key)) {
+            return;
+        }
+
         if (
             key !== 'Enter'
             && dialogue.isVisible()

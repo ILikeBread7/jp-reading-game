@@ -49,6 +49,12 @@ class KantoreStoryModeUi {
                 {
                     name: `おじいさん - Old man (${KantoreLevels.getLevelName(1)})`,
                     beforeText: [
+                        /*html*/ `
+                            Test <span class="popover" data-content="Test">test</span> after<br>
+                            Test <span class="popover" data-content="Test">test</span> after<br>
+                            Test <span class="popover" data-content="Test">test</span> after<br>
+                            Test <span class="popover" data-content="Test">test</span> after<br>
+                            `,
                         'Before test 1', 'Before test 2'
                     ],
                     afterText: [
