@@ -10,6 +10,7 @@ import { KantoreLevels } from './levels.js';
 import { KantoreHints } from './hints.js';
 import { KantoreTemplates } from './templates.js';
 import { storyModeUi } from './story-mode-ui.js';
+import { KantoreUtils } from './utils.js';
 
 const MENU_SHOWN_EVENT_NAME = 'menuShown';
 const events = new EventTarget();
@@ -169,7 +170,7 @@ export class KantoreUiHelper {
             storyEntry.name,
             storyEntry.dict,
             storyEntry.totalQuestions,
-            () => dialogue.showSequence(storyEntry.name, storyEntry.afterText, KantoreUiHelper.showStoryModeMenu),
+            () => dialogue.showSequence(storyEntry.name, storyEntry.afterText.map(KantoreUtils.formatDialogueText), KantoreUiHelper.showStoryModeMenu),
             () => dialogue.show('Oh, no...', KantoreTemplates.storyModeFailureText(), KantoreUiHelper.showStoryModeMenu)
         );
         document.body.classList.add(

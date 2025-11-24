@@ -3,6 +3,7 @@ import { dicts } from './dicts.js';
 import { KantoreLevels } from './levels.js';
 import { KantoreTemplates } from './templates.js';
 import { KantoreUiHelper } from './ui-helper.js';
+import { KantoreUtils } from './utils.js';
 
 const HUB_MENU_ID = 'story-mode-menu';
 
@@ -49,16 +50,46 @@ class KantoreStoryModeUi {
                 {
                     name: `おじいさん - Old man (${KantoreLevels.getLevelName(1)})`,
                     beforeText: [
-                        /*html*/ `
-                            Test <span class="popover" data-content="Test">test</span> after<br>
-                            Test <span class="popover" data-content="Test">test</span> after<br>
-                            Test <span class="popover" data-content="Test">test</span> after<br>
-                            Test <span class="popover" data-content="Test">test</span> after<br>
-                            `,
-                        'Before test 1', 'Before test 2'
+                        `
+                            You wake up in a field.
+
+                            You look around and see a small hut in the distance with smoke coming out of its chimney.
+                            Looking closer you notice an old man peeking through a window inside the hut.
+
+                            He notices you, sprints towards the door, flings it open, and rushes in your direction.
+                        `,
+                        `
+                            “Another one of you!” he exclaims with excitement.
+
+                            “I know you’re confused and don’t remember how you got here, but listen, this is important if you want to survive here.” he continues.
+                        `,
+                        `
+                            “This is a world where words run around everywhere. Most of them are harmless but some of them can be vicious and will attack you at sight.
+
+                            Some outlaws even capture and use them to attack people.
+
+                            In order to protect yourself you need to be able to read those words.
+                            If you figure out the correct spelling of a word it can’t harm you.”
+                        `,
+                        `
+                            The old man notices your bewilderment and points to a group of words surrounded by a fence in the hut’s backyard.
+
+                            “It will make more sense in practice. Here, try sparring against some of the words I’ve captured. That should help you prepare yourself for future battles.” he says while leading you inside the fence.
+                        `,
+                        `
+                            “One last thing, you have 60 seconds to figure out how to read each word.
+
+                            If you can’t do it you can skip a word up to 3 times during a single battle by submitting an empty answer.
+
+                            If you don’t answer or skip within the time limit, you lose.”
+
+                            As he finishes talking the words jump at you, and the battle starts.
+                        `
                     ],
                     afterText: [
-                        'After test 1', 'After test 2'
+                        `After test 1
+                        
+                        Test 1`, 'After test 2'
                     ],
                     dict: dicts.getLevelDict(1),
                     totalQuestions: 5
@@ -123,7 +154,7 @@ class KantoreStoryModeUi {
                 level.dict.preload();
                 dialogue.showSequence(
                     level.name,
-                    level.beforeText,
+                    level.beforeText.map(KantoreUtils.formatDialogueText),
                     () => KantoreUiHelper.startGameStory(level)
                 );
             });

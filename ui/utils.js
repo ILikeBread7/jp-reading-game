@@ -17,4 +17,7 @@ export class KantoreUtils {
         return array;
     }
 
+    static formatDialogueText(text) {
+        return text.trim().replaceAll('\n', '<br>');
+    }
 }
