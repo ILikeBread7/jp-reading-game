@@ -36,10 +36,22 @@ class KantoreDialogue {
     }
 
     keyListener(key) {
-        if (key !== 'Shift' || !this.isVisible()) {
+        if (!this.isVisible()) {
             return false;
         }
 
+        switch (key) {
+            case 'Shift':
+                return this._shiftListener();
+            case ' ':   // Space
+                this.close();
+                return true;
+        }
+
+        return false;
+    }
+
+    _shiftListener() {
         const popovers = this._popovers;
         if (!popovers || popovers.length === 0) {
             return true;
