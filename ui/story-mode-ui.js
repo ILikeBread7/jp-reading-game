@@ -53,8 +53,8 @@ class KantoreStoryModeUi {
                         `
                             You wake up in a field.
 
-                            You look around and see a small hut in the distance with smoke coming out of its chimney.
-                            Looking closer you notice an old man peeking through a window inside the hut.
+                            You look around and see a small hut in the distance with smoke coming out of its chimney and a fence around its backyard.
+                            Looking closer you notice an old man peeking through a window from inside the hut.
 
                             He notices you, sprints towards the door, flings it open, and rushes in your direction.
                         `,
@@ -72,7 +72,7 @@ class KantoreStoryModeUi {
                             If you figure out the correct spelling of a word it can’t harm you.”
                         `,
                         `
-                            The old man notices your bewilderment and points to a group of words surrounded by a fence in the hut’s backyard.
+                            The old man notices your bewilderment and points to a group of words surrounded by the fence in the hut’s backyard.
 
                             “It will make more sense in practice. Here, try sparring against some of the words I’ve captured. That should help you prepare yourself for future battles.” he says while leading you inside the fence.
                         `,
