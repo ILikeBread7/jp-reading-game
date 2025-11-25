@@ -95,7 +95,10 @@ class KantoreUi {
                     : audio.seTracks.CONFIRM;
             })();
             
-            return () => audio.playEffect(se);
+            return event => {
+                event.stopPropagation();
+                audio.playEffect(se);
+            };
         }
 
         [
@@ -110,7 +113,7 @@ class KantoreUi {
             .forEach(element => element.addEventListener('change', menuItemPressedListenerCreator(element)));
         
         [...document.getElementsByClassName('menu-destination-button')]
-            .forEach(button => button.addEventListener('click', () => {
+            .forEach(button => button.addEventListener('click', event => {
                 const destination = document.getElementById(button.dataset.destination);
                 KantoreUiHelper.hideMenu(button.parentNode);
                 KantoreUiHelper.showMenu(destination);

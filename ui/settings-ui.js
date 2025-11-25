@@ -44,9 +44,12 @@ class KantoreSettingsUi {
         this._hintSelect = document.getElementById('settings-hint-select');
         this._submitButtonSelect = document.getElementById('settings-submit-button-select');
 
-        this._backToStory = document.getElementById('back-to-story-menu-button');
-        this._backToMenu = document.getElementById('back-to-main-menu-button');
         this._returnToGame = document.getElementById('return-to-game-button');
+        this._backToMenuYesButton = document.getElementById('settings-back-to-menu-yes');
+        this._backToStoryYesButton = document.getElementById('settings-back-to-story-yes');
+
+        this._backToMenuMenu = document.getElementById('settings-back-to-menu-sure-menu');
+        this._backToStoryMenu = document.getElementById('settings-back-to-story-sure-menu');
     }
 
     _addEventListeners() {
@@ -60,9 +63,9 @@ class KantoreSettingsUi {
         this._fullscreen.addEventListener('change', KantoreUiHelper.toggleFullscreen);
         document.addEventListener('fullscreenchange', () => this._fullscreen.checked = !!document.fullscreenElement);
 
-        this._backToStory.addEventListener('click', KantoreUiHelper.backToStoryMenu);
-        this._backToMenu.addEventListener('click', KantoreUiHelper.backToTitle);
         this._returnToGame.addEventListener('click', KantoreUiHelper.hideSettings);
+        this._backToMenuYesButton.addEventListener('click', KantoreUiHelper.backToTitle);
+        this._backToStoryYesButton.addEventListener('click', KantoreUiHelper.backToStoryMenu);
 
         audio.events.addEventListener(audio.eventNames.BGM_STARTED, ({ detail }) => {
             this._nowPlaying.textContent = `Now playing: ${detail.displayName} by ${detail.author}`;

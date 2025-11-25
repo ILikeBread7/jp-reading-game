@@ -99,6 +99,8 @@ export class KantoreUiHelper {
     }
 
     static showSettings() {
+        settingsUi._backToMenuMenu.classList.add('hidden');
+        settingsUi._backToStoryMenu.classList.add('hidden');
         KantoreUiHelper.showOverlayElement(settingsUi._settingsDiv);
     }
 
@@ -233,7 +235,7 @@ export class KantoreUiHelper {
             return;
         }
 
-        let itemToFocus = document.getElementById(dataset.lastUsedItem || dataset.defaultItem);
+        let itemToFocus = document.getElementById((!menuElement.hasAttribute('data-no-last-used') && dataset.lastUsedItem) || dataset.defaultItem);
         if (!itemToFocus.checkVisibility()) {
             const defaultItem = document.getElementById(dataset.defaultItem);
             itemToFocus = defaultItem;

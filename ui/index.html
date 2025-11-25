@@ -63,9 +63,19 @@
                 
                 <div class="menu-spacer"></div>
                 
-                <button class="menu-item menu-button game-story-only" id="back-to-story-menu-button">Back to story mode menu</button>
-                <button class="menu-item menu-button game-only" id="back-to-main-menu-button">Back to main menu</button>
+                <button class="menu-item menu-button game-story-only menu-destination-button" id="back-to-story-menu-button" data-destination="settings-back-to-story-sure-menu">Back to story mode menu</button>
+                <button class="menu-item menu-button game-only menu-destination-button" id="back-to-main-menu-button" data-destination="settings-back-to-menu-sure-menu">Back to main menu</button>
                 <button class="menu-item menu-button back-button" id="return-to-game-button">Return to the game</button>
+            </div>
+            <div class="centered menu scrollable hidden" id="settings-back-to-menu-sure-menu" data-default-item="settings-back-to-menu-no" data-no-last-used>
+                <button class="menu-item menu-button" id="settings-back-to-menu-yes">Yes</button>
+                <button class="menu-item menu-button back-button menu-destination-button" id="settings-back-to-menu-no" data-destination="settings-container">No</button>
+                <span class="centered-text">Are you sure you want to return to the main menu?</span>
+            </div>
+            <div class="centered menu scrollable hidden" id="settings-back-to-story-sure-menu" data-default-item="settings-back-to-story-no" data-no-last-used>
+                <button class="menu-item menu-button" id="settings-back-to-story-yes">Yes</button>
+                <button class="menu-item menu-button back-button menu-destination-button" id="settings-back-to-story-no" data-destination="settings-container">No</button>
+                <span class="centered-text">Are you sure you want to return to the story mode menu?</span>
             </div>
         </div>
         <div id="particles-js"></div>
