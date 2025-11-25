@@ -87,9 +87,33 @@ class KantoreStoryModeUi {
                         `
                     ],
                     afterText: [
-                        `After test 1
-                        
-                        Test 1`, 'After test 2'
+                        `
+                            After a not so fierce battle the old man taps your shoulder and says
+
+                            “Great job! With battle skills like that you have nothing to worry about going forward!
+
+                            But just in case you end up struggling against some future opponent, remember that you can train in either Learning mode or Practice mode.”
+                        `,
+                        `
+                            “The level you see in the parenthesis on the menu option and in the title of this dialogue message is the recommended Learning mode level to have beaten before challenging this part of the story.”
+                        `,
+                        `
+                            “Now that you’re fully prepared you might want to begin your adventure!
+
+                            A good start would be to go to the closest village!
+                            You’re in luck because it’s not far from here, just past that forest.” he says while pointing.
+                        `,
+                        `
+                            “There’s a pond on the way there where you can take a short break.
+
+                            There’s also a big mountain right before the village.
+                            Don’t try to climb it or go around; there’s a cave going straight through it, like a tunnel. Go through there.”
+                        `,
+                        `
+                            “That’s all, now, on your way! Good luck!” he pats your back a few times while merrily laughing and returns to his hut.
+
+                            You don’t really have anything better to do so you reluctantly decide to follow his instructions and head towards the forest.
+                        `,
                     ],
                     dict: dicts.getLevelDict(1),
                     totalQuestions: 5
