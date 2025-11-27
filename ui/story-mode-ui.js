@@ -18,6 +18,12 @@ class KantoreStoryModeUi {
         this._createMenus();
         this._getMenuElements();
         this._addEventListeners();
+
+        const level = this._levels[1];
+        dialogue.showSequence(
+            level.name,
+            level.afterText.map(KantoreUtils.formatDialogueText)
+        );
     }
 
     showStoryModeMenu() {
@@ -121,10 +127,26 @@ class KantoreStoryModeUi {
                 {
                     name: `もり - Forest (${KantoreLevels.getLevelName(4)})`,
                     beforeText: [
-                        'Before test forest 1', 'Before test forest 2', 'Before test forest 3'
+                        `
+                            You walk on a trail through the forest.
+                            
+                            There are trees and bushes all over, the birds are chirping, animals are frolicking, and sunshine is coming through the leaves overhead.
+                            
+                            The scenery feels peaceful and idyllic.
+                        `,
+                        `
+                            Suddenly you notice subtle rustling in the nearby bushes.
+                            
+                            You don’t pay it much attention at first, thinking it’s probably some small harmless animals messing around.
+                        `,
+                        `
+                            Until you get jumped by words emerging from all around.
+                        `
                     ],
                     afterText: [
-                        'After test forest 1', 'After test forest 2', 'After test forest 3'
+                       `
+                            You come up victorious from your first real battle and continue with your journey through the forest.
+                       `
                     ],
                     dict: dicts.createComplexLevelDict(2, 4),
                     totalQuestions: 10
