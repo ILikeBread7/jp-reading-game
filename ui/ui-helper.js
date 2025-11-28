@@ -163,16 +163,18 @@ export class KantoreUiHelper {
     }
 
     /**
-     * 
-     * @param { { name: string, dict: BaseDict | ComplexDict, totalQuestions: number, afterText: string[] } } storyEntry 
+     * @param { { level: number, name: string, dict: BaseDict | ComplexDict, totalQuestions: number, afterText: string[] } } levelData 
      */
-    static startGameStory(storyEntry) {
+    static startGameStory(levelData) {
         gameUi.startGame(
             GAME_TYPE.STORY,
-            storyEntry.name,
-            storyEntry.dict,
-            storyEntry.totalQuestions,
-            () => dialogue.showSequence(storyEntry.name, storyEntry.afterText.map(KantoreUtils.formatDialogueText), KantoreUiHelper.showStoryModeMenu),
+            levelData.name,
+            levelData.dict,
+            levelData.totalQuestions,
+            () => {
+                storyModeUi.levelBeaten(levelData);
+                dialogue.showSequence(levelData.name, levelData.afterText.map(KantoreUtils.formatDialogueText), KantoreUiHelper.showStoryModeMenu);
+            },
             () => dialogue.show('Oh, no...', KantoreTemplates.storyModeFailureText(), KantoreUiHelper.showStoryModeMenu)
         );
         document.body.classList.add(

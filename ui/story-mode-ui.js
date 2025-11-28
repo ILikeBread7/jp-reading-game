@@ -18,8 +18,8 @@ class KantoreStoryModeUi {
     initialize() {
         this._lastVisibleMenu = null;
         this._progress = Object.assign({
-            lastClearedLevel: 3,
-            lastClearedStage: 1
+            lastClearedLevel: 0,
+            lastClearedStage: 0
         }, KantorePersistence.getStoryProgress() || {});
 
         this._createMenus();
@@ -55,6 +55,30 @@ class KantoreStoryModeUi {
 
     isVisible() {
         return this._allMenus.some(menu => menu.checkVisibility());
+    }
+
+    levelBeaten(levelData) {
+        const stage = levelData.stage;
+        if (stage < this._progress.lastClearedStage) {
+            return;
+        }
+
+        const level = levelData.level;
+        if (level <= this._progress.lastClearedLevel) {
+            return;
+        }
+
+        const levelIndex = levelData.index;
+        const nextLevelData = this._levels[levelIndex + 1];
+        
+        if (!nextLevelData || nextLevelData.stage > levelData.stage) {
+            this._progress.lastClearedStage++;
+            this._progress.lastClearedLevel = 0;
+        } else {
+            this._progress.lastClearedLevel++;
+        }
+
+        KantorePersistence.setStoryProgress(this._progress);
     }
 
     _createMenus() {
@@ -156,7 +180,7 @@ class KantoreStoryModeUi {
                        `
                     ],
                     dict: dicts.createComplexLevelDict(2, 4),
-                    totalQuestions: 10
+                    totalQuestions: 5
                 },
                 { name: `いけ - Pond (${KantoreLevels.getLevelName(7)})` },
                 { name: `どうくつ - Cave (${KantoreLevels.getLevelName(10)})` },
@@ -178,7 +202,17 @@ class KantoreStoryModeUi {
         const menuHtml = KantoreTemplates.storyModeMenu(HUB_MENU_ID, parentMenuId, hubMenu);
         document.body.insertAdjacentHTML('beforeend', menuHtml);
 
-        this._levels = hubMenu.flatMap(menu => menu.entries);
+        this._levels = hubMenu.flatMap((menu, menuIndex) => {
+            const stage = menuIndex + 1;
+
+            menu.entries.forEach((entry, entryIndex) => {
+                entry.level = entryIndex + 1;
+                entry.stage = stage;
+            });
+
+            return menu.entries;
+        });
+        this._levels.forEach((level, index) => level.index = index);
     }
 
     _getMenuElements() {
