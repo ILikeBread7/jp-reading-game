@@ -3,6 +3,7 @@ const SETTINGS_KEY = 'settings';
 const GAME_STATUS_KEY = 'gameStatus';
 const GAME_QUESTION_KEY = 'gameQuestion';
 const FLAGS_KEY = 'flags';
+const STORY_PROGRESS_KEY = 'storyProgress';
 
 const events = new EventTarget();
 
@@ -46,6 +47,14 @@ export class KantorePersistence {
 
     static setFlags(value) {
         this._set(FLAGS_KEY, value);
+    }
+
+    static getStoryProgress() {
+        return this._get(STORY_PROGRESS_KEY);
+    }
+
+    static setStoryProgress(value) {
+        return this._set(STORY_PROGRESS_KEY, value);
     }
 
     static addFlagsChangedEventListener(listener) {

@@ -825,6 +825,10 @@ body:not(.game) .game-only {
     transform: translateY(-50%);
 }
 
+.cleared {
+    color: var(--palette-secondary-text-color);
+}
+
 .centered-text {
     width: 100%;
     text-align: center;

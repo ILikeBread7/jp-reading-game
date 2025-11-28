@@ -1,11 +1,13 @@
 import { dialogue } from './dialogue-ui.js';
 import { dicts } from './dicts.js';
 import { KantoreLevels } from './levels.js';
+import { KantorePersistence } from './persistence.js';
 import { KantoreTemplates } from './templates.js';
 import { KantoreUiHelper } from './ui-helper.js';
 import { KantoreUtils } from './utils.js';
 
 const HUB_MENU_ID = 'story-mode-menu';
+const SUBMENU_ENTRY_BUTTON_CLASS = 'story-mode-entry-button';
 
 class KantoreStoryModeUi {
 
@@ -15,15 +17,20 @@ class KantoreStoryModeUi {
 
     initialize() {
         this._lastVisibleMenu = null;
+        this._progress = Object.assign({
+            lastClearedLevel: 3,
+            lastClearedStage: 1
+        }, KantorePersistence.getStoryProgress() || {});
+
         this._createMenus();
         this._getMenuElements();
         this._addEventListeners();
 
-        const level = this._levels[1];
-        dialogue.showSequence(
-            level.name,
-            level.afterText.map(KantoreUtils.formatDialogueText)
-        );
+        // const level = this._levels[1];
+        // dialogue.showSequence(
+        //     level.name,
+        //     level.afterText.map(KantoreUtils.formatDialogueText)
+        // );
     }
 
     showStoryModeMenu() {
@@ -177,21 +184,48 @@ class KantoreStoryModeUi {
     _getMenuElements() {
         this._hubMenu = document.getElementById(HUB_MENU_ID);
         this._hubMenuEntryButtons = [...this._hubMenu.getElementsByClassName('story-entry-button')];
-        this._storyModeEntryButtons = [...document.getElementsByClassName('story-mode-entry-button')];
+        this._storyModeEntryButtons = [...document.getElementsByClassName(SUBMENU_ENTRY_BUTTON_CLASS)];
         this._allMenus = [...document.getElementsByClassName('story-menu')];
     }
 
     _addEventListeners() {
-        KantoreUiHelper.addMenuShownEventListener(this._hubMenu, () => {
-            this._hubMenuEntryButtons.forEach((button, index) => {
-                if (index % 2 === 1) {
-                    button.disabled = true;
-                }
+        const hiddenClass = 'hidden';
+        const clearedClass = 'cleared';
 
-                if (index % 3 === 1) {
-                    button.classList.add('hidden');
+        const menuEventListener = (buttons, lastCleared) => {
+            buttons.forEach((button, index) => {
+                const level = index + 1;
+
+                if (level <= lastCleared + 1) {
+                    button.classList.remove(hiddenClass);
+                    if (level <= lastCleared) {
+                        button.classList.add(clearedClass);
+                    }
+                } else {
+                    button.classList.add(hiddenClass);
                 }
             });
+        }
+
+        KantoreUiHelper.addMenuShownEventListener(
+            this._hubMenu,
+            () => menuEventListener(this._hubMenuEntryButtons, this._progress.lastClearedStage)
+        );
+
+        // All except hub menu
+        this._allMenus.slice(1).forEach((menu, index) => {
+            const buttons = [...menu.getElementsByClassName(SUBMENU_ENTRY_BUTTON_CLASS)];
+            
+            KantoreUiHelper.addMenuShownEventListener(
+                menu,
+                () => {
+                    const level = index + 1;
+                    const lastClearedLevel = this._progress.lastClearedStage >= level
+                        ? Number.MAX_SAFE_INTEGER   // If the stage is cleared all levels in it are cleared
+                        : this._progress.lastClearedLevel;
+                    menuEventListener(buttons, lastClearedLevel);
+                }
+            );
         });
 
         this._storyModeEntryButtons.forEach((button, index) => {
