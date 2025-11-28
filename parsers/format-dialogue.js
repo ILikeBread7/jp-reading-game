@@ -3,7 +3,7 @@ import { stdin, stdout } from 'node:process';
 
 function format(fullText) {
     return fullText.trim().split('\n\n\n\n')
-        .map(text => '                        `\n                            ' + text.replaceAll('\n', '\n                            ') + '\n                        `').join(',\n')
+        .map(text => '                        `\n                            ' + text.replaceAll('\n', '\n                            ') + '\n                        `').join(',\n');
 }
 
 let debounceTimeout = null;
