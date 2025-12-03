@@ -5,7 +5,7 @@ function format(fullText) {
     return fullText
         .trim()
         .replaceAll(
-            /\[([^\x00-\x7F]+)\|([a-z|A-Z|,|;|\(\|\)|\-|\\s]*)\]/g,
+            /\[(.+?)\|(.+?)\]/g,
             `<span class="popover" data-content="$2">$1</span>`
         )
         .split('\n\n\n\n')
