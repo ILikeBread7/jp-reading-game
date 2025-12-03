@@ -2,7 +2,13 @@ import * as readline from 'node:readline';
 import { stdin, stdout } from 'node:process';
 
 function format(fullText) {
-    return fullText.trim().split('\n\n\n\n')
+    return fullText
+        .trim()
+        .replaceAll(
+            /\[([^\x00-\x7F]+)\|([a-z|A-Z|,|;|\(\|\)|\-|\\s]*)\]/g,
+            `<span class="popover" data-content="$2">$1</span>`
+        )
+        .split('\n\n\n\n')
         .map(text => '                        `\n                            ' + text.replaceAll('\n', '\n                            ') + '\n                        `').join(',\n');
 }
 
