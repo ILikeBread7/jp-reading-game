@@ -172,8 +172,8 @@ export class KantoreUiHelper {
             levelData.dict,
             levelData.totalQuestions,
             () => {
-                storyModeUi.levelBeaten(levelData);
-                dialogue.showSequence(levelData.name, levelData.afterText.map(KantoreUtils.formatDialogueText), KantoreUiHelper.showStoryModeMenu);
+                const newLevelBeaten = storyModeUi.levelBeaten(levelData);
+                dialogue.showSequence(levelData.name, levelData.afterText.map(KantoreUtils.formatDialogueText), () => KantoreUiHelper.showStoryModeMenu(newLevelBeaten));
             },
             () => dialogue.show('Oh, no...', KantoreTemplates.storyModeFailureText(), KantoreUiHelper.showStoryModeMenu)
         );
@@ -211,8 +211,12 @@ export class KantoreUiHelper {
         KantoreUiHelper.switchToScene(titleUi._titleScene);
     }
 
-    static showStoryModeMenu() {
-        storyModeUi.showStoryModeMenu();
+    /**
+     * 
+     * @param {boolean} [focusNextEntry] if true focus will move onto the next menu item
+     */
+    static showStoryModeMenu(focusNextEntry) {
+        storyModeUi.showStoryModeMenu(focusNextEntry);
     }
 
     static backToStoryMenu() {

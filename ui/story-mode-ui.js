@@ -33,7 +33,11 @@ class KantoreStoryModeUi {
         // );
     }
 
-    showStoryModeMenu() {
+    /**
+     * 
+     * @param {boolean} [focusNextEntry] if true focus will move onto the next menu item
+     */
+    showStoryModeMenu(focusNextEntry) {
         const visibleMenu = this._allMenus.find(menu => menu.checkVisibility());
         if (visibleMenu) {
             this._lastVisibleMenu = visibleMenu;
@@ -41,6 +45,12 @@ class KantoreStoryModeUi {
 
         if (this._lastVisibleMenu) {
             KantoreUiHelper.showMenu(this._lastVisibleMenu);
+        }
+
+        if (focusNextEntry) {
+            const currentEntryId = this._lastVisibleMenu.dataset.lastUsedItem;
+            const currentEntry = document.getElementById(currentEntryId);
+            currentEntry.nextElementSibling.focus();
         }
     }
 
@@ -57,15 +67,20 @@ class KantoreStoryModeUi {
         return this._allMenus.some(menu => menu.checkVisibility());
     }
 
+    /**
+     * 
+     * @param {*} levelData 
+     * @returns {boolean} True if a new level was beaten, false otherwise
+     */
     levelBeaten(levelData) {
         const stage = levelData.stage;
         if (stage < this._progress.lastClearedStage) {
-            return;
+            return false;
         }
 
         const level = levelData.level;
         if (level <= this._progress.lastClearedLevel) {
-            return;
+            return false;
         }
 
         const levelIndex = levelData.index;
@@ -79,14 +94,15 @@ class KantoreStoryModeUi {
         }
 
         KantorePersistence.setStoryProgress(this._progress);
+        return true;
     }
 
     _createMenus() {
         const hubMenu = [
-            { name: 'Hiragana', entries: [
+            { name: 'Field - そうげん', entries: [
                 {
-                    name: `おじいさん - Old man (${KantoreLevels.getLevelName(1)})`,
-                    beforeText: [
+                    name: `おじいさん - Old man 1`,
+                    text: [
                         `
                             You wake up in a field.
 
@@ -122,8 +138,23 @@ class KantoreStoryModeUi {
 
                             As he finishes talking the words jump at you, and the battle starts.
                         `
+                    ]
+                },
+                {
+                    name: `おじいさん - Old man 2 (${KantoreLevels.getLevelName(1)})`,
+                    dict: dicts.getLevelDict(1),
+                    beforeText: [
+                        `The words attack you, but you decide to hold your ground.`
                     ],
                     afterText: [
+                        `The words run away towards the edges of the fenced area.
+                        It seems like they've lost all will to fight.`
+                    ],
+                    totalQuestions: 5
+                },
+                {
+                    name: `おじいさん - Old man 3`,
+                    text: [
                         `
                             After a not so fierce battle the old man taps your shoulder and says
 
@@ -132,32 +163,26 @@ class KantoreStoryModeUi {
                             But just in case you end up struggling against some future opponent, remember that you can train in either Learning mode or Practice mode.”
                         `,
                         `
-                            “The level you see in the parenthesis on the menu option and in the title of this dialogue message is the recommended Learning mode level to have beaten before challenging this part of the story.”
+                            “The levels you see in the parenthesis on the menu options are the recommended Learning mode levels to have beaten before challenging that part of the story.”
                         `,
                         `
                             “Now that you’re fully prepared you might want to begin your adventure!
 
                             A good start would be to go to the closest village!
                             You’re in luck because it’s not far from here, just past that forest.” he says while pointing.
-                        `,
-                        `
-                            “There’s a pond on the way there where you can take a short break.
 
-                            There’s also a big mountain right before the village.
-                            Don’t try to climb it or go around; there’s a cave going straight through it, like a tunnel. Go through there.”
+                            “There’s also a pond on the way there where you can take a short break.”
                         `,
                         `
                             “That’s all, now, on your way! Good luck!” he pats your back a few times while merrily laughing and returns to his hut.
 
                             You don’t really have anything better to do so you reluctantly decide to follow his instructions and head towards the forest.
-                        `,
-                    ],
-                    dict: dicts.getLevelDict(1),
-                    totalQuestions: 5
+                        `
+                    ]
                 },
                 {
-                    name: `もり - Forest (${KantoreLevels.getLevelName(4)})`,
-                    beforeText: [
+                    name: `もり - Forest 1`,
+                    text: [
                         `
                             You walk on a trail through the forest.
                             
@@ -173,11 +198,15 @@ class KantoreStoryModeUi {
                         `
                             Until you get jumped by words emerging from all around.
                         `
+                    ]
+                },
+                {
+                    name: `もり - Forest 2 (${KantoreLevels.getLevelName(4)})`,
+                    beforeText: [
+                        `You are taken by surprise, but still decide to fight back against the words.`
                     ],
                     afterText: [
-                       `
-                            You come up victorious from your first real battle and continue with your journey through the forest.
-                       `
+                       `The words scramble away after your first real battle and you continue with your journey through the forest.`
                     ],
                     dict: dicts.createComplexLevelDict(2, 4),
                     totalQuestions: 5
@@ -262,16 +291,38 @@ class KantoreStoryModeUi {
             );
         });
 
-        this._storyModeEntryButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                const level = this._levels[index];
-                level.dict.preload();
+        const createTextEntryEventListener = levelData => {
+            return () => {
                 dialogue.showSequence(
-                    level.name,
-                    level.beforeText.map(KantoreUtils.formatDialogueText),
-                    () => KantoreUiHelper.startGameStory(level)
+                    levelData.name,
+                    levelData.text.map(KantoreUtils.formatDialogueText),
+                    () => {
+                        const newLevelBeaten = this.levelBeaten(levelData);
+                        KantoreUiHelper.showStoryModeMenu(newLevelBeaten);
+                    }
                 );
-            });
+            };
+        };
+        
+        const createBattleEntryEventListener = levelData => {
+            return () => {
+                levelData.dict.preload();
+                dialogue.showSequence(
+                    levelData.name,
+                    levelData.beforeText.map(KantoreUtils.formatDialogueText),
+                    () => KantoreUiHelper.startGameStory(levelData)
+                );
+            };
+        };
+
+        this._storyModeEntryButtons.forEach((button, index) => {
+            const level = this._levels[index];
+
+            const listener = level.dict
+                ? createBattleEntryEventListener(level)
+                : createTextEntryEventListener(level);
+
+            button.addEventListener('click', listener);
         });
     }
 
