@@ -1,4 +1,5 @@
 import { LIVES_ANIMATION_TYPE } from './enums.js';
+import { KantoreUtils } from './utils.js';
 
 export class KantoreTemplates {
 
@@ -170,24 +171,20 @@ export class KantoreTemplates {
      * @param {LIVES_ANIMATION_TYPE} livesAnimationType 
      * @param {number} currentAnswers 
      * @param {number} totalQuestions 
-     * @param {number} [currentAnswersPercentage=currentAnswers * 100 / totalQuestions] 
      * @returns 
      */
-    static arcadeData(levelName, lives, livesAnimationType, currentAnswers, totalQuestions, currentAnswersPercentage = currentAnswers * 100 / totalQuestions) {
+    static arcadeData(levelName, lives, livesAnimationType, currentAnswers, totalQuestions) {
         return /*html*/`
             <div id="level-name">
                 ${levelName}
             </div>
-            <div id="level-next-level">
-                Correct answers: ${currentAnswers} / ${totalQuestions}
-            </div>
-            <div id="level-exp-bars">
-                <div class="level-exp-container" id="level-current-level-exp-container">
-                    <div class="level-exp-content" id="level-current-level-exp-content" style="width:${currentAnswersPercentage}%;"></div>
-                </div>
-            </div>
             <div class="${KT._mapLivesAnimationTypeToCssClass(livesAnimationType)} ${KT._tif(lives === 0) && `empty-lives`}" id="arcade-lives">
                 Lives: <span class="lives">${Array(lives).fill('命').join('')}</span>
+            </div>
+            <div class="question-cells-container">
+                ${[...KantoreUtils.range(1, totalQuestions)].map(value => {
+                    return /*html*/`<div class="question-cell ${this._tif(value === currentAnswers + 1) && 'active'} ${this._tif(value <= currentAnswers) && 'filled'}">${value}</div>`;
+                }).join('')}
             </div>
         `;
     }

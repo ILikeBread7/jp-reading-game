@@ -131,28 +131,24 @@ export class KantoreGameArcade extends KantoreGameBase {
     }
 
     _showDataCorrectAnswer() {
-        const addExp = true;
-        this._showData(LIVES_ANIMATION_TYPE.NONE, addExp);
+        this._showData(LIVES_ANIMATION_TYPE.NONE);
     }
 
     _showDataGaveUp() {
-        const addExp = false;
-        this._showData(LIVES_ANIMATION_TYPE.SHAKE, addExp);
+        this._showData(LIVES_ANIMATION_TYPE.SHAKE);
     }
 
     _showDataAddedLife() {
-        const addExp = false;
-        this._showData(LIVES_ANIMATION_TYPE.JUMP, addExp);
+        this._showData(LIVES_ANIMATION_TYPE.JUMP);
     }
 
-    _showData(livesAnimationType, addExp) {
-        gameUi.showArcadeExp(
+    _showData(livesAnimationType) {
+        gameUi.showArcadeData(
             this._categoryLabel,
             this._lives,
             livesAnimationType,
             this._correctAnswersNumber,
-            this._totalQuestions,
-            addExp
+            this._totalQuestions
         );
     }
 

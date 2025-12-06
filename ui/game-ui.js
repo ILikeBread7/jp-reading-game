@@ -258,46 +258,10 @@ class KantoreGameUi {
      * @param {boolean} answerIsCorrect 
      * @param {number} currentAnswers 
      * @param {number} totalQuestions 
-     * @param {number?} oldExpPercentage
      * @returns 
      */
-    showArcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions, oldExpPercentage) {
-        this._levelExpDiv.innerHTML = KantoreTemplates.arcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions, oldExpPercentage);
-    }
-
-    /**
-     * 
-     * @param {string} levelName 
-     * @param {number} lives 
-     * @param {LIVES_ANIMATION_TYPE} livesAnimationType 
-     * @param {number} currentAnswers 
-     * @param {number} totalQuestions 
-     * @param {boolean} addExp
-     * @returns 
-     */
-    showArcadeExp(levelName, lives, livesAnimationType, currentAnswers, totalQuestions, addedExp) {
-        const oldExpPercentage = addedExp
-            ? (Math.max(0, (currentAnswers - 1) * 100 / totalQuestions))
-            : undefined;    // undefined to use the default value
-        const newExpPercentage = currentAnswers * 100 / totalQuestions;
-
-        this.showArcadeData(
-            levelName,
-            lives,
-            livesAnimationType,
-            currentAnswers,
-            totalQuestions,
-            oldExpPercentage
-        );
-        this._moveLevelExpDivAbove();
-
-        this._moveLevelExpDivBelowWithTimeout(FADE_IN_ANIMATION_LENGTH);
-
-        // Force reflow to correctly apply
-        // the growing exp bars transitions
-        void this._levelExpDiv.offsetWidth;
-        
-        this._growExpBars([{ oldExpPercentage, newExpPercentage, addedExp: newExpPercentage - oldExpPercentage }]);
+    showArcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions) {
+        this._levelExpDiv.innerHTML = KantoreTemplates.arcadeData(levelName, lives, answerIsCorrect, currentAnswers, totalQuestions);
     }
 
     _prepareLevelUpContainerForHintOnly() {

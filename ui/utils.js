@@ -20,4 +20,15 @@ export class KantoreUtils {
     static formatDialogueText(text) {
         return text.trim().replaceAll('\n', '<br>');
     }
+
+    /**
+     * 
+     * @param {number} start 
+     * @param {number} end 
+     */
+    static* range(start, end) {
+        for (let i = start; i <= end; i++) {
+            yield i;
+        }
+    }
 }

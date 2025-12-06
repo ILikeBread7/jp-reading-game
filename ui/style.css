@@ -145,12 +145,16 @@ button, input {
 .level-exp-container {
     width: 5.8em;
     height: 0.65em;
+    margin-bottom: calc(5 * var(--size-scale));
+}
+
+.question-cell,
+.level-exp-container {
     background: #000000;
     border: calc(5 * var(--size-scale)) ridge #000000;
     border-top-left-radius: calc(5 * var(--size-scale));
     border-bottom-right-radius: calc(5 * var(--size-scale));
     box-shadow: calc(3 * var(--size-scale)) calc(3 * var(--size-scale)) calc(3 * var(--size-scale)) #000000;
-    margin-bottom: calc(5 * var(--size-scale));
 }
 
 #level-current-level-exp-content {
@@ -160,6 +164,61 @@ button, input {
 .level-exp-content {
     height: 100%;
     background: linear-gradient(90deg, #00ffea, #00ccbb);
+}
+
+.question-cells-container {
+    width: 10em;
+}
+
+.question-cell {
+    display: inline-block;
+    width: 20%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.question-cell.filled {
+    background: linear-gradient(90deg, hsl(100, 100%, 40%), hsl(100, 100%, 30%));
+}
+
+.question-cell.active {
+    --blinking-color: var(--palette-text-bleak-color);
+    --animation-duration: 0.5s;
+    animation: blinking var(--animation-duration) alternate infinite;
+}
+
+@keyframes blinking {
+    0% {
+        background: #000000;
+    }
+    100% {
+        background: var(--blinking-color);
+    }
+}
+
+.question-cell:nth-of-type(5n) {
+    --blinking-color: hsl(55, 100%, 40%);
+    --gradient-color: hsl(55, 100%, 30%);
+
+    &.active {
+        --animation-duration: 0.35s;
+    }
+}
+
+.question-cell:last-of-type {
+    --blinking-color: hsl(12, 100%, 40%);
+    --gradient-color: hsl(12, 100%, 30%);
+
+    &.active {
+        --animation-duration: 0.25s;
+    }
+}
+
+.question-cell:last-of-type,
+.question-cell:nth-of-type(5n) {
+    &.filled {
+        background: linear-gradient(90deg, var(--blinking-color), var(--gradient-color));
+    }
 }
 
 #question {
