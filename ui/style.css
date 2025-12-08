@@ -21,13 +21,6 @@
     --info-max-width: 33em;
     --info-min-width: 21em;
 
-    --palette-main-color: #123456;
-    --palette-secondary-color: #476288;
-    --palette-text-color: #ddf2ff;
-    --palette-secondary-text-color: #dca11d;
-    --palette-secondary-text-color-brighter: #fab521;
-    --palette-text-bleak-color: #bccdd8;
-
     --palette-text-color-filter:
         invert(90%) sepia(9%) saturate(676%) hue-rotate(180deg) brightness(102%) contrast(101%)
         drop-shadow(var(--size-scale) 0px 0px #000000)
@@ -37,6 +30,16 @@
 
     /* This variable will be changes with javascript */
     --icon-brightness: 100%;
+}
+
+:root,
+.default-colors {
+    --palette-main-color: #123456;
+    --palette-secondary-color: #476288;
+    --palette-text-color: #ddf2ff;
+    --palette-secondary-text-color: #dca11d;
+    --palette-secondary-text-color-brighter: #fab521;
+    --palette-text-bleak-color: #bccdd8;
 }
 
 @font-face {
@@ -63,6 +66,14 @@ body {
     paint-order: stroke fill;
 
     width: 100%;
+}
+
+.test,
+body[data-style='test'] {
+    --palette-main-color: hsl(350, 65%, 20%);
+    --palette-secondary-color: hsl(355, 31.4%, 40.6%);
+    --palette-secondary-text-color: hsl(46, 77%, 49%);
+    --palette-secondary-text-color-brighter: hsl(46, 95.6%, 55.5%);
 }
 
 button, select {

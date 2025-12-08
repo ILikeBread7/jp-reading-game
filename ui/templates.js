@@ -363,7 +363,7 @@ export class KantoreTemplates {
                                 .map(levelEntry => KT._storyModeLevelEntryButton(submenuHtmlId, levelEntry))
                                 .join('')
                         }
-                        <button class="menu-item menu-button menu-destination-button back-button" id="${submenuHtmlId}-back-button" data-destination="${menuId}">Go back</button>
+                        <button class="menu-item menu-button menu-destination-button back-button default-colors" id="${submenuHtmlId}-back-button" data-destination="${menuId}">Go back</button>
                     </div>
                 `;
             }).join('');
@@ -382,7 +382,7 @@ export class KantoreTemplates {
         const buttonCssName = KT._cssName(entry.name);
 
         return /*html*/`
-            <button class="menu-item menu-button story-mode-entry-button" id="${menuId}-entry-${buttonCssName}-button">${entry.name}</button>
+            <button class="menu-item menu-button story-mode-entry-button ${this._tif(entry.style, 'default-colors')}" id="${menuId}-entry-${buttonCssName}-button">${entry.name}</button>
         `;
     }
 

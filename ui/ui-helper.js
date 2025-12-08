@@ -198,6 +198,7 @@ export class KantoreUiHelper {
         dialogue.forceClose();
         KantoreUiHelper.showTitleScene();
         KantoreUiHelper.hideSettings();
+        KantoreUiHelper.resetBodyStyle();
         settingsUi._settingsDiv.ontransitionend = event => {
             if (event.target === settingsUi._settingsDiv) {
                 titleUi.startTitleScene();
@@ -209,6 +210,10 @@ export class KantoreUiHelper {
 
     static showTitleScene() {
         KantoreUiHelper.switchToScene(titleUi._titleScene);
+    }
+
+    static resetBodyStyle() {
+        document.body.removeAttribute('data-style');
     }
 
     /**

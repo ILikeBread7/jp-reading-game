@@ -102,6 +102,7 @@ class KantoreStoryModeUi {
             { name: 'Field - そうげん', entries: [
                 {
                     name: `おじいさん - Old man 1`,
+                    style: 'test',
                     text: [
                         `
                             You wake up in a field.
@@ -143,6 +144,7 @@ class KantoreStoryModeUi {
                 {
                     name: `おじいさん - Old man 2 (${KantoreLevels.getLevelName(1)})`,
                     dict: dicts.getLevelDict(1),
+                    style: 'test',
                     beforeText: [
                         `The words attack you, but you decide to hold your ground.`
                     ],
@@ -287,12 +289,14 @@ class KantoreStoryModeUi {
                         ? Number.MAX_SAFE_INTEGER   // If the stage is cleared all levels in it are cleared
                         : this._progress.lastClearedLevel;
                     menuEventListener(buttons, lastClearedLevel);
+                    KantoreUiHelper.resetBodyStyle();
                 }
             );
         });
 
         const createTextEntryEventListener = levelData => {
             return () => {
+                this._setBodyStyle(levelData.style);
                 dialogue.showSequence(
                     levelData.name,
                     levelData.text.map(KantoreUtils.formatDialogueText),
@@ -306,6 +310,7 @@ class KantoreStoryModeUi {
         
         const createBattleEntryEventListener = levelData => {
             return () => {
+                this._setBodyStyle(levelData.style);
                 levelData.dict.preload();
                 dialogue.showSequence(
                     levelData.name,
@@ -324,6 +329,14 @@ class KantoreStoryModeUi {
 
             button.addEventListener('click', listener);
         });
+    }
+
+    _setBodyStyle(style) {
+        if (style) {
+            document.body.dataset.style = style;
+        } else {
+            KantoreUiHelper.resetBodyStyle();
+        }
     }
 
 }
