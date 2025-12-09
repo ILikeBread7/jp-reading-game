@@ -102,7 +102,7 @@ class KantoreStoryModeUi {
             { name: 'Field - そうげん', entries: [
                 {
                     name: `おじいさん - Old man 1`,
-                    style: 'test',
+                    skin: 'test',
                     text: [
                         `
                             You wake up in a field.
@@ -144,7 +144,7 @@ class KantoreStoryModeUi {
                 {
                     name: `おじいさん - Old man 2 (${KantoreLevels.getLevelName(1)})`,
                     dict: dicts.getLevelDict(1),
-                    style: 'test',
+                    skin: 'test',
                     beforeText: [
                         `The words attack you, but you decide to hold your ground.`
                     ],
@@ -289,14 +289,14 @@ class KantoreStoryModeUi {
                         ? Number.MAX_SAFE_INTEGER   // If the stage is cleared all levels in it are cleared
                         : this._progress.lastClearedLevel;
                     menuEventListener(buttons, lastClearedLevel);
-                    KantoreUiHelper.resetBodyStyle();
+                    KantoreUiHelper.resetBodySkin();
                 }
             );
         });
 
         const createTextEntryEventListener = levelData => {
             return () => {
-                this._setBodyStyle(levelData.style);
+                this._setBodySkin(levelData.skin);
                 dialogue.showSequence(
                     levelData.name,
                     levelData.text.map(KantoreUtils.formatDialogueText),
@@ -310,7 +310,7 @@ class KantoreStoryModeUi {
         
         const createBattleEntryEventListener = levelData => {
             return () => {
-                this._setBodyStyle(levelData.style);
+                this._setBodySkin(levelData.skin);
                 levelData.dict.preload();
                 dialogue.showSequence(
                     levelData.name,
@@ -331,11 +331,11 @@ class KantoreStoryModeUi {
         });
     }
 
-    _setBodyStyle(style) {
-        if (style) {
-            document.body.dataset.style = style;
+    _setBodySkin(skin) {
+        if (skin) {
+            document.body.dataset.skin = skin;
         } else {
-            KantoreUiHelper.resetBodyStyle();
+            KantoreUiHelper.resetBodySkin();
         }
     }
 

@@ -69,7 +69,7 @@ body {
 }
 
 .test,
-body[data-style='test'] {
+body[data-skin='test'] {
     --palette-main-color: hsl(350, 65%, 20%);
     --palette-secondary-color: hsl(355, 31.4%, 40.6%);
     --palette-secondary-text-color: hsl(46, 77%, 49%);
