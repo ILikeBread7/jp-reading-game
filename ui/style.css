@@ -167,9 +167,17 @@ button, input {
 .level-exp-container {
     background: #000000;
     border: calc(3 * var(--size-scale)) ridge #000000;
-    border-top-left-radius: calc(3 * var(--size-scale));
-    border-bottom-right-radius: calc(3 * var(--size-scale));
     box-shadow: calc(3 * var(--size-scale)) calc(3 * var(--size-scale)) calc(3 * var(--size-scale)) #000000;
+}
+
+.level-exp-container,
+.question-cell:first-of-type {
+    border-top-left-radius: calc(3 * var(--size-scale));
+}
+
+.level-exp-container,
+.question-cell:last-of-type {
+    border-bottom-right-radius: calc(3 * var(--size-scale));
 }
 
 #level-current-level-exp-content {
