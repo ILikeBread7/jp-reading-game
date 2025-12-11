@@ -20,7 +20,10 @@ export class KantoreGameArcade extends KantoreGameBase {
     _addEventListeners() {
         gameUi.events.addEventListener(
             gameUi.eventNames.TIME_UP,
-            gameUi.showGameOver.bind(gameUi)
+            () => {
+                gameUi.showGameOver();
+                gameUi.slideQuestionHint(this._gameLevel.questionHint);
+            }
         );
     }
 
