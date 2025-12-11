@@ -17,6 +17,7 @@ class KantoreDialogue {
         this._title = document.getElementById('dialogue-title');
         this._content = document.getElementById('dialogue-content');
         this._text = document.getElementById('dialogue-text');
+        this._textContent = document.getElementById('dialogue-text-content');
         this._closeButton = document.getElementById('dialogue-close-button');
         this._nextButton = document.getElementById('dialogue-next-button');
     }
@@ -25,6 +26,11 @@ class KantoreDialogue {
         const closeFunction = this.close.bind(this);
         this._closeButton.addEventListener('click', closeFunction);
         this._nextButton.addEventListener('click', closeFunction);
+        this._textContent.addEventListener('scroll', this._repositionPopoversOnScroll.bind(this));
+        window.addEventListener('resize', () => {
+            this._positionPopovers();
+            this._repositionPopoversOnScroll();
+        });
     }
 
     enterListener() {
@@ -85,6 +91,18 @@ class KantoreDialogue {
         }
 
         return true;
+    }
+
+    _repositionPopoversOnScroll() {
+        const popovers = this._popovers;
+        if (!popovers || popovers === 0) {
+            return;
+        }
+
+        const top = this._textContent.scrollTop;
+        popovers.forEach(popover => {
+            popover.style.setProperty('--top-offset', `${-top}px`);
+        });
     }
 
     /**
@@ -170,6 +188,23 @@ class KantoreDialogue {
 
         popovers.forEach(popover => {
             popover.addEventListener('click', clickListener);
+        });
+        this._positionPopovers();
+    }
+
+    _positionPopovers() {
+        const popovers = this._popovers;
+        if (!popovers || popovers.length === 0) {
+            return;
+        }
+
+        const containerWidth = this._text.clientWidth;
+        popovers.forEach(popover => {
+            const popoverStyle = getComputedStyle(popover, '::before');
+            const rightBound = parseFloat(popoverStyle.width) + parseFloat(popoverStyle.left);
+            if (rightBound > containerWidth) {
+                popover.style.setProperty('--left-offset', `calc(-${rightBound - containerWidth}px - 0.75em)`);
+            }
         });
     }
 
