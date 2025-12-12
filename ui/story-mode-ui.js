@@ -45,12 +45,12 @@ class KantoreStoryModeUi {
 
         if (this._lastVisibleMenu) {
             KantoreUiHelper.showMenu(this._lastVisibleMenu);
-        }
 
-        if (focusNextEntry) {
-            const currentEntryId = this._lastVisibleMenu.dataset.lastUsedItem;
-            const currentEntry = document.getElementById(currentEntryId);
-            currentEntry.nextElementSibling.focus();
+            if (focusNextEntry) {
+                const currentEntryId = this._lastVisibleMenu.dataset.lastUsedItem;
+                const currentEntry = document.getElementById(currentEntryId);
+                currentEntry.nextElementSibling.focus();
+            }
         }
     }
 

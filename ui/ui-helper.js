@@ -106,6 +106,11 @@ export class KantoreUiHelper {
 
     static hideSettings() {
         KantoreUiHelper.hideOverlayElement(settingsUi._settingsDiv);
+        if (dialogue.isVisible()) {
+            dialogue.focus();
+            return;
+        }
+        
         if (storyModeUi.isVisible()) {
             KantoreUiHelper.showStoryModeMenu();
             return;

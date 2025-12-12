@@ -212,16 +212,7 @@ class KantoreUi {
             return;
         }
 
-        if (dialogue.keyListener(key)) {
-            return;
-        }
-
-        if (
-            key !== 'Enter'
-            && dialogue.isVisible()
-            && !KantoreUiHelper.isSettingsVisible()
-        ) {
-            event.preventDefault();
+        if (!KantoreUiHelper.isSettingsVisible() && dialogue.keyListener(key)) {
             return;
         }
 

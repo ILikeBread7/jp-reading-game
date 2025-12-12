@@ -2,6 +2,7 @@ import { audio } from './audio.js';
 import { KantoreUiHelper } from './ui-helper.js';
 
 const ACTIVE_CLASS_NAME = 'active';
+const FOCUS_TIMEOUT = 100;
 
 class KantoreDialogue {
 
@@ -169,6 +170,7 @@ class KantoreDialogue {
         this._closeListener = closeListener;
         KantoreUiHelper.showOverlayElement(this._dialogue);
         this._addPopoverClickListeners();
+        setTimeout(this.focus.bind(this), FOCUS_TIMEOUT);
     }
 
     _addPopoverClickListeners() {
@@ -229,10 +231,15 @@ class KantoreDialogue {
         
         KantoreUiHelper.hideOverlayElement(this._dialogue);
         this._closeListener = null;
+        this._popovers = null;
     }
 
     isVisible() {
         return this._dialogue.checkVisibility({ visibilityProperty: true });
+    }
+
+    focus() {
+        this._textContent.focus({ focusVisible: false });
     }
 
 }
