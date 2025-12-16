@@ -73,12 +73,12 @@ events.addEventListener(EVENTS.START, event => {
             gameMain.start();
 
             if (flags.showHintOnGameStart) {
-                // Needs the timeout to work
-                setTimeout(() => {
+                // Needs the microtask to work
+                queueMicrotask(() => {
                     gameUi.showHint();
                     flags.showHintOnGameStart = false;
                     KantorePersistence.setFlags(flags);
-                }, 0);
+                });
             }
         break;
         case GAME_TYPE.PRACTICE: {
