@@ -27,8 +27,7 @@ class KantoreStoryModeUi {
         this._addEventListeners();
 
         // const level = this._levels[1];
-        // if (level.beforeText || level.afterText) dialogue.showSequence(level.name,(level.beforeText || level.afterText).map(KantoreUtils.formatDialogueText), level.beforeText && level.afterText ? () => dialogue.showSequence(level.name,level.afterText.map(KantoreUtils.formatDialogueText)) : null);
-        // if (level.text) dialogue.showSequence(level.name,level.text.map(KantoreUtils.formatDialogueText));
+        // dialogue.showSequence(level.name, [level.beforeText, level.text, level.afterText].filter(Boolean).flat().map(KantoreUtils.formatDialogueText));
     }
 
     /**
