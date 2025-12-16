@@ -1,15 +1,40 @@
+Intro
 Field
-Old man
-Before
-You wake up in a field.
+Mysterious man
+“Ugh… Hey, don’t just appear all of a sudden!”
+You hear an annoyed voice from behind. You turn around and see a man glaring at you.
 
-You look around and see a small hut in the distance with smoke coming out of its chimney and a fence around its backyard.
+“You’re supposed to report when you use the-”
+Suddenly, he stops, his face turns pale, and his eyes become wide open.
+
+
+
+“How did you get here?! Crap!” he screams before turning around and taking off towards nearby woods.
+
+You are so stunned by the interaction that by the time you think about following him, he’s already out of sight.
+
+
+
+You didn’t recognize him, but he surely seemed to know you.
+
+You try to remember who he might be, but then you realize something even stranger.
+
+You have no memories prior to this moment.
+
+
+
+Among the confusion, you decide to look around.
+
+It looks like you are in a field.
+
+There's a small hut in the distance with smoke coming out of its chimney and a fence around its backyard.
 Looking closer you notice an old man peeking through a window from inside the hut.
 
 He notices you, sprints towards the door, flings it open, and rushes in your direction.
 
 
 
+Old man 1
 “Another one of you!” he exclaims with excitement.
 
 “I know you’re confused and don’t remember how you got here, but listen, this is important if you want to survive here.” he continues.
@@ -40,7 +65,7 @@ As he finishes talking the words jump at you, and the battle starts.
 
 
 
-Battle
+Fenced words (battle)
 The words attack you, but you decide to hold your ground.
 
 
@@ -48,7 +73,7 @@ The words attack you, but you decide to hold your ground.
 The words run away towards the edges of the fenced area.
 It seems like they've lost all will to fight.
 
-After
+Old man 2
 After a not so fierce battle the old man taps your shoulder and says
 
 “Great job! With battle skills like that you have nothing to worry about going forward!
@@ -68,12 +93,17 @@ You’re in luck because it’s not far from here, just past that forest.” he 
 
 “That’s all, now, on your way! Good luck!” he pats your back a few times while merrily laughing and returns to his hut.
 
-You don’t really have anything better to do so you reluctantly decide to follow his instructions and head towards the forest.
+You’re no less confused than before, but you need to get going.
+The sun is starting to go down and you need a safe place to stay before the night sets in.
 
 
+
+You don’t really have any better idea on what to do, so you shrug, and reluctantly decide to follow the old man’s instructions, and head towards the forest.
+
+That is also the direction the mysterious man went, so maybe you can meet him again, and find out more about yourself.
 
 Forest
-Before
+Forest 1
 You walk on a trail through the forest.
 
 There are trees and bushes all over, the birds are chirping, animals are frolicking, and sunshine is coming through the leaves overhead.
@@ -82,29 +112,34 @@ The scenery feels peaceful and idyllic.
 
 
 
-Suddenly you notice subtle rustling in the nearby bushes.
+You keep looking around, hoping to find the mysterious man, but you don’t see anyone.
 
-You don’t pay it much attention at first, thinking it’s probably some small harmless animals messing around.
+Suddenly, you notice subtle rustling in the nearby bushes.
+
+You decide to check it out, thinking maybe it’s him.
 
 
+
+You walk up to the bushes, and a word jumps out from them.
+You’re disappointed and decide to walk away.
 
 Until you get jumped by words emerging from all around.
 
 
 
-Battle
+Forest 2 (battle)
 You are taken by surprise, but still decide to fight back against the words.
 
 
 
 The words scramble away after your first real battle and you continue with your journey through the forest.
 
-After
+Forest 3
 You come up victorious from your first real battle and continue with your journey through the forest.
 
 
 Pond
-Before
+Pond 1
 After walking for a little bit longer you come across the pond the old man told you about.
 
 The water is calm, on the opposite side of the pond there’s a small deer eating berries from a nearby bush, and a plethora of other animals feeding themselves and quenching their thirst.
@@ -121,7 +156,7 @@ After a few moments you hear a voice from behind you.
 
 “What are you doing?”
 
-You turn around and see a young lady looking at you with a puzzled expression, as if you were a village idiot fooling around as they often do.
+You turn around and see a young lady, wearing a sporty outfit, looking at you with a puzzled expression, as if you were a village idiot.
 
 “That’s dangerous, you know? Sitting alone. Not paying attention to your surroundings.”
 
@@ -130,7 +165,14 @@ She pauses for a moment, probably waiting for a response, but after noticing you
 “Anyway, we shouldn’t stay here for too long or feral words will come and-” before she finishes speaking a group of words jumps out of the pond.
 
 “Watch out!” she shouts as the words leap at you.
-After
+
+Pond 2 (battle)
+You get ambushed by the words and fight back together with the lady.
+
+
+
+Together, you beat all the words that emerge from the pond.
+Pond 3
 After the fight you explain the situation to the lady.
 
 “Oh, okay. Yeah, I guess if you just came from our world you might not know. No place is safe, no matter how thoroughly you check your surroundings the words can still be hiding somewhere, in the water, on top of trees or even underground!” she explains vigorously.
@@ -138,8 +180,8 @@ After the fight you explain the situation to the lady.
 That’s valuable information, but one part especially catches your attention so you decide to ask about it.
 
 “Oh, right, I haven’t told you yet. Yes, I also come from the same world. I ended up here not long before you.
-Damn that old geezer, he also told you to take a break near the pond?
-I almost died because of him. Don’t listen to his advice, I don’t know what he’s trying to do but it doesn’t seem to be trying to help us.” she says with a pouting face.
+Damn that old geezer, he also told you to rest near the pond?
+I almost died because of him. Don’t listen to his advice, I don’t know what he’s trying to do but it doesn’t seem to be helping us.” she says with a pouting face.
 
 “Apparently you’re not supposed to travel long distances alone.
 If you need to take a break along the way, you should bring a companion so you can alternate keeping watch while the other person is resting.
@@ -150,17 +192,13 @@ That’s why I wasn’t able to leave the village up ahead, where I’m staying.
 
 
 On the way to the village
-On the way to the village you realize you haven’t introduced yourself yet, so you decide to do it now.
+“Oh, right. I forgot to introduce myself! I’m Harumi, nice to meet you!” your new companion says, introducing herself.
 
-“Oh, right. I forgot to introduce myself too, sorry!
-I’m [Haru], nice to meet you!” she responds while apologetically smiling.
-
-When you ask about her memories from before coming to this world she shrugs her shoulders and answers.
-“No, I also don’t remember anything, just like you.”
+“Or, at least that’s what everyone calls me in the village; I don’t remember my real name, or anything at all, just like you.” she adds while apologetically smiling.
 
 
 
-After a short conversation [Haru] turns to you, starts waving her hands energetically, and says with excitement.
+After a short conversation Harumi turns to you, starts waving her hands energetically, and says with excitement.
 
 “Oh, I forgot to tell you about one more cool thing! Here, see this.”
 
@@ -171,31 +209,32 @@ She grins and puts her finger up before continuing.
 “Sky is blue.
 [そら|sky] is [あおい|blue].”
 
-“You see, in this world when people talk sometimes the words they say turn into another language.” she says proudly, as if she was the one who discovered it.
+“You see, in this world when people talk sometimes the words they say turn into Japanese!” she [いう|says] proudly, as if she was the one who discovered it.
 
 “Also, you can still see the meanings of those words if you try hard enough!” (Hover over them, click on them, or press shift. Press shift repeatedly to cycle through them.)
 
 
 
-“ I learned this from grandma! I mean, an old lady who owns the inn I’m staying at in the village!
+“I learned this from grandma! I mean, an old lady who owns the inn I’m staying at in the village!
 Cool, isn’t it?” she looks at you with sparkling eyes, supposedly seeking approval.
 
-“Hey, look! A squirrel!” before you can answer she excitedly runs up to a nearby tree while pointing at the rodent in the branches.
+“Hey, look! A squirrel!” before you can answer [かのじょ|she] excitedly runs up to a nearby tree while pointing at the rodent in the branches.
 
-Despite some distractions the two of you continue on your way, and not before long arrive at the village’s gate.
+Despite some distractions, the two of you continue on your way, and not before long arrive at the village’s gate.
 
 
 Village
 Gate
 Before
-The village is surrounded by a wooden palisade the height of about two meters.
-Most crucially there’s also a closed gate leading inside the village, around which a sizable group of words has gathered.
+The village is surrounded by a wooden palisade the height of about two meters (about seven feet).
+
+More crucially, there’s also a closed gate leading inside the [むら|village], around which a sizable group of words has gathered.
 
 
 
-“Sometimes words flock around the gate but this number is a little much. Usually there’s only a few.” [Haru] says.
+“Sometimes words flock around the gate but this number is a little much. Usually there’s only a few.” Harumi says.
 
-“Anyway, they won’t open the gate if there are words around; let’s beat’em up!
+“Anyway, they won’t open the [もん|gate] if there are words around; let’s beat’em up!
 You attack from the left side, I take the right!” she continues, and eagerly rushes into combat before you have time to answer.
 
 You follow her lead and join the fight.
@@ -203,37 +242,38 @@ You follow her lead and join the fight.
 
 
 Battle
-The words seem focused on [Haru] as you circle around them and strike them from behind.
+The words seem focused on Harumi as you circle around them and strike them from behind.
 
 
 
-You and [Haru] defeat the majority of the words gathered by the village’s palisade, while the remaining ones run away.
+You and Harumi defeat the majority of the words gathered by the village’s palisade, while the remaining ones run away.
 
 
 
 After
-“Seems like it’s all cleaned up!” [Haru] exclaims proudly before facing towards the gate.
+“Seems like it’s all cleaned up!” Harumi exclaims proudly before facing towards the gate.
 
-“Hey! There are no more words around the gate! You can open it now!” she shouts, but there’s no response.
+“Hey! There are no more words around the [もん|gate]! You can open it now!” she shouts, but there’s no response.
 
-“Weird, there should be some guards near the gate to open it when there’s no danger anymore.” she says with a perplexed face when the gate doesn’t open after a moment.
+“Weird, there should be some guards near the [もん|gate] to [あける|open (something)] it when there’s no danger anymore.” [かのじょ|she] says with a perplexed face when the [もん|gate] still doesn’t [あく|open (itself)] after a moment.
 
-“I’ll take a look. Stay here.” she says before swiftly climbing the wall and peeking into the other side.
+“I’ll take a look. Stay here.” [かのじょ|she] continues before swiftly climbing the wall and peeking into the other side.
 
 
 
 “Oh, no!” she shouts and immediately hops over the fortification, into the village.
 
-After a short moment the gate opens and you see a terrible scene.
+After a short moment the [もん|gate] [あく|opens (itself)] and you see a terrible scene.
 
-The whole village is filled with words and people fighting them.
+The whole [むら|village] is filled with words and people fighting them.
 
-Some people have proper equipment, like swords and shields, these are probably the guards, but some are only armed with improvised weapons, like pitchforks.
+Some defenders have proper equipment, like swords and shields, these are probably the guards, but some are only armed with improvised weapons, like pitchforks.
 
 Everyone else is either desperately running towards the closest building, or already barricaded inside.
 
 
-“Come on, we need to help!” you hear [Haru]’s voice before you notice her plunge into battle.
+
+“Come on, we need to help!” you hear Harumi’s voice before you notice her plunge into battle.
 
 You rush inside to support the villagers.
 
@@ -250,7 +290,7 @@ The battle is over. All words have been either defeated, or repelled away from t
 
 
 After
-After things have calmed down Haru comes towards one of the guards and asks.
+After things have calmed down Harumi comes towards one of the guards and asks.
 “What happened here? Where did all those words come from?”
 
 “We don’t know, they just suddenly appeared inside the village.” the guard answers.
@@ -259,10 +299,11 @@ After things have calmed down Haru comes towards one of the guards and asks.
 
 
 
-You wonder if they could come from underground, as warned by Haru before, but one of the guards responds.
+You ask if they could’ve come from underground, as warned by Harumi before, but one of the guards responds.
+
 “No chance. The palisade is buried deep underground, deeper than any word can dig. This was a deliberate attack!”
 
-“But who would do something like this?” Haru asks with a frown.
+“But who would do something like this?” Harumi asks with a frown.
 
 
 
@@ -276,11 +317,11 @@ Before
 Looking in the direction the cry is coming from, and you see a little girl bawling her eyes out.
 You approach her and ask what's wrong.
 
-“Someone stole my… Waaah!!!” while still crying, she points at a man running away just past the village’s gate.
+“Someone stole my… Waaah!!!” while still [ないてる|crying], she points at a man running away just past the village gate.
 
 
 
-You start chasing the man, eventually catching up to him, and he immediately attacks you.
+You start chasing the man, eventually almost catching up to him but he immediately attacks you.
 
 
 
@@ -294,19 +335,20 @@ You manage to beat all the words, but lost track of the man
 
 
 After
-When you were too busy fighting words to notice, Haru sprinted past you, caught up with the man, and apprehended him.
+When you were too busy fighting words to notice, Harumi sprinted past you, caught up with the man, and apprehended him.
 
 Apparently the words he sent out at you were his last ones.
 
 
 
-“Wait, it’s you?! How did you get all the way here? To this world?” he asks nervously, looking at you.
+“It’s you again?!” he asks nervously after seeing you.
+You realize that this is the man you were looking for.
 
-“Do you know him?” Haru asks you, visibly confused.
+“Do you know him?” Harumi asks you, visibly confused.
 
-You shake your head, having no recollection of the man.
+You explain your first encounter with the [おとこ|man] to her.
 
-“Playing stupid, huh? Whatever, not like I care.” he says.
+“Playing stupid, huh? Whatever, not like I care.” the [おとこ|man] rebukes, not believing in your memory loss.
 
 
 
@@ -317,30 +359,232 @@ Then you bring him back to the village.
 
 
 After 2?
-“Better watch your back from now on! We, the Fukushuu-dan, will never forget this!” he says when you hand him over to the guards.
+“Better watch your back from now on! We, the Aku no Soshiki, will never forget this!” he yells when you hand him over to the guards.
 
-You don’t know who the “Fukushuu-dan” is, but you don’t think it’s important right now, so you return to the little girl.
+You don’t know who the “Aku no Soshiki” is, but it doesn't seem important right now.
+You return to the little girl.
 
 
 
 “That’s my treasure map!” she says as her face lights up.
-“This is the last thing my grandpa left me.” she continues.
+“This is the last thing my grandpa left me.” [かのじょ|she] continues.
 
-You return the map to her and she looks at it for a moment, looks back at you, and says.
-“Do you think you can find this treasure? If you promise to split it with me, you can borrow my map!”
+You return the [ちず|map] [かのじょへ|to her (へ - grammar particle read as “e”)] and [かのじょ|she] looks at it for a moment, looks back at you, and continues.
+
+“Do you think you can find this [たから|treasure]? If you promise to split it with me, you can borrow my [ちず|map]!”
 
 
 
-You think about it for a moment when Haru interjects.
-“We should take it. This could lead us to the Fukushuu-dan, and if they still want this map, they will probably come looking for us to get it back.”
+You think about it for a moment when Harumi interjects.
+“We should take it!
 
-“That guy seemed to know you from our world, so maybe other members also do? If we track them down we could learn about our pasts, and maybe even how to go back.” she continues excitedly.
+That man we caught, he said he was from some organization? The ‘Aku no Soshiki’ or whatnot?
 
-“We lost our memories from before coming here, but maybe not everyone does?” she finished her though.
+If they still want this [ちず|map] they will probably come looking for us to get it back.”
+
+
+
+“That guy seemed to know you from our world, so maybe other members also do? If we meet them we could learn about our pasts, and maybe even how to go back to our world!” she continues excitedly.
+
+“We lost our memories from before coming here, but maybe not everyone does?” [かのじょ|she] finishes [かのじょの|her] thought.
 
 
 
 You agree, and decide to accept the deal, much to the little girl’s content.
 
-You receive the map, say your goodbyes, and finally begin your journey following the map’s guidance with the goal of tracking down the “Fukushuu-dan”.
+You receive the [ちず|map], and decide to prepare for your upcoming journey following the [ちずの|map’s] guidance with the goal of tracking down the “Aku no Soshiki”.
 
+
+
+After 3? Gathering information
+In order to gather more information, you ask the little girl if she knows what kind of treasure the map is leading to, but neither she, nor her parents seem to know.
+
+[かのじょの|Her] mother only tells you that the grandpa, who left the map, would often be away from home for months at a time for work, but no one really knows what he was doing then, or what kind of work [かれ|he] was performing. They don’t know where [かれ|he] got the [ちず|map] from, either.
+
+
+
+You also try talking to the captured Aku no Soshiki member, but he stubbornly remains silent.
+
+Because of that, you decide to ask the villagers what they know about the group, and [あなた|you] find out it’s a criminal organization who uses captured words to commit their crimes.
+
+Unfortunately, apparently not much is known about their motives or whereabouts.
+
+
+
+After 4? Leaving the village
+Having collected all the information you could, you and Harumi gather necessary supplies for the journey, and leave the village the next morning.
+
+
+
+“Okay, let’s see, according to the map the first place we need to aim for is…” Harumi says while checking the [ちず|map].
+
+“The Chiropteran... C-Cave?” she stumbles over her words for a moment, looking quite distraught.
+
+
+
+Cave?
+Before 1?
+You arrive at the cave’s entrance, and Harumi is visibly anxious. 
+She’s been acting strange the entire way to the cave, but she got even worse after actually reaching it. Right now, she’s standing behind your back and trembling with fear.
+
+You ask her what’s wrong, but she just answers.
+“N-Nothing, come on, let’s go.” and pushes your back.
+
+You’re a little concerned about her, but if she doesn’t want to tell you what’s going on, there’s not much you can do, so you pull out a torch, and enter the cave, with Harumi following closely behind.
+
+
+
+The cave is dark, lit only by the light of your torch. There are water droplets dripping from the ceiling, resonating every time they reach the floor.
+
+Suddenly, a swarm of bats flies overhead.
+“Aaaa!” Harumi shrieks, cowers in fear, and covers her head.
+
+You got startled. Not by the bats, but by Harumi’s scream.
+Once you realize what happened, you turn around and ask her what’s wrong.
+
+
+
+“N-Nothing…. I… I just don’t like bats…” she responds with a shaking voice and tears in her eyes.
+“L-Let’s go, I don’t want to stay here for too long…” she adds as she stands up and starts pushing you forward.
+
+It doesn’t seem like she wants to talk about it any further, so you decide to just keep going and get out of this cave as soon as possible.
+
+
+
+Before 2?
+“Finally, we’re almost out!” Harumi exclaims as you notice the exit, and finally see some natural light for a change.
+
+Thankfully, she seems completely relieved of the fear that accompanied her all the way through the cave.
+
+“At least we didn’t get attacked by any words this time!” she continues, with a big smile on her face.
+
+Then you hear a little squishy sound.
+
+
+
+“Huh? I think I stepped on something…" says Harumi, and the attention of both of you gets directed towards what’s under her feet.
+
+“Wah?!” she recoils after seeing what she has just stepped on.
+
+It was a word.
+
+
+
+Battle
+The word seems to have called for reinforcements, as other words suddenly appear and attack you.
+
+
+
+You and Harumi beat most of them, as the rest run away in all directions.
+
+
+
+Sometime later at a camp?
+Before
+“Wake up!”
+While sleeping, you suddenly hear Harumi’s voice.
+“We’re about to get attacked!”
+
+
+
+You open your eyes and find yourself surrounded by words.
+Thankfully, Harumi was keeping watch when it was your turn to sleep.
+
+You jolt awake, and prepare to battle before the words attack.
+
+
+
+Battle
+You stand back to back with Harumi as the words attack you from every direction.
+
+
+
+You repel the attack for long enough that the words lose interest and leave.
+
+
+
+After
+That was a tough one, but you managed to pull through.
+
+“Aaaa!” Harumi shrieks.
+Just as you thought it was over, you prepare for another attack.
+
+
+
+… But it never comes?
+
+You look at Harumi and see her cowering in fear and covering her head.
+
+“Eek, eek!” you hear from above.
+There’s a bat flying overhead.
+
+You shoo the bat away, and tell her it’s gone.
+
+
+
+“T-Thanks…” she slowly stands up, still shivering a little.
+
+You find her fear of bats really unusual; she seems to be perfectly fine with most other things, like bugs or snakes, and quite fearless in the face of danger, like criminals or words.
+You decide to ask her about it.
+
+
+
+“W-Well, it’s just… When I was little I went to a cave, and a bat got stuck in my hair. I ran home crying and screaming with the bat flailing around on my head the entire time. My parents had to cut my hair to remove it because they couldn’t untangle it. It was horrible!” she answers, getting even more visibly shaken, seemingly due to her remembering a painful memory.
+
+
+
+Something feels off, though. Hasn’t she also lost her memory? How can she remember that? Has she regained it? You ask her about that.
+
+“Oh, right, how do I remember that? Hmm…” she says, seemingly even more confused than you, and starts thinking.
+
+“No, that’s all I can remember. I guess the memory comes back in parts, not all at once.” she continues.
+
+“Can you remember anything?” she asks back.
+
+
+
+You think about it, but no, your past is still as much of a mystery to you as it was before, so you shake your head.
+
+“Well, at least we know it comes back eventually. I just wish it would start with more happy memories. Why is the only thing I remember, that?!” the more she talks, the more she pouts, as if being upset at the memory recovery process, if that’s even a thing.
+
+Anyway, as the danger is no more, you decide to go back to sleep.
+
+
+
+Right after the main story? Post game start?
+After the final battle with [villain], the Aku no Soshiki, having lost its leader, disbanded.
+That doesn’t mean, however, that there is nothing left to do; you still need to go back to your original world.
+
+Having studied a bunch of documents found at Aku no Soshiki’s hideout, you strongly suspect that the portal to the other world is located on [island].
+
+
+
+In order to get there you need to take a ship from the port in [some village/city].
+For that reason you and Harumi are back at an inn near the port. It’s the last evening before your planned departure, waiting for the ship to be ready.
+
+The two of you sit at a table, and Harumi is playing with her new pet.
+
+
+
+She’s smiling while looking at her pet bat chewing on a berry.
+
+You’re astounded, just a few days ago she was terrified of them, and now she has one as a pet? You decide to ask her about it.
+
+
+
+“Well, I am still scared of bats, but I felt sorry for this one. He was laying on the ground with a broken wing, just outside the [final cave], so I decided to take care of him.” she answers while gently patting the bat’s head.
+
+“And, this one isn’t so bad. If you look closely, he’s actually kinda cute!”
+
+“I wanted to release him back where he came from after he recovered, but he didn’t seem to want to leave, so I guess I’m just going to keep him.”
+
+
+
+“I called him Batbat!” she exclaims proudly.
+
+Harumi has many qualities, naming sense apparently not being one of them.
+
+
+
+After a short conversation you decide to call it a day and go to sleep.
+You do need to get up early tomorrow to board the ship, after all.
