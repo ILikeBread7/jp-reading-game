@@ -394,6 +394,15 @@ export class KantoreTemplates {
         </div>`;
     }
 
+    static storyToBeContinuedText() {
+        return /*html*/ `<div class="centered-text">
+            This is it for now, but
+            the story will continue in future updates.<br>
+            <br>
+            Thanks for playing!
+        </div>`;
+    }
+
     /**
      * Function for html templates, if value is falsey returns elseValue
      * @returns value if condition is met, elseValue otherwise

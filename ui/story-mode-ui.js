@@ -8,6 +8,7 @@ import { KantoreUtils } from './utils.js';
 
 const HUB_MENU_ID = 'story-mode-menu';
 const SUBMENU_ENTRY_BUTTON_CLASS = 'story-mode-entry-button';
+const TO_BE_CONTINUED_STRING = 'To be continued...';
 
 class KantoreStoryModeUi {
 
@@ -71,7 +72,7 @@ class KantoreStoryModeUi {
      */
     levelBeaten(levelData) {
         const stage = levelData.stage;
-        if (stage < this._progress.lastClearedStage) {
+        if (stage <= this._progress.lastClearedStage) {
             return false;
         }
 
@@ -214,16 +215,17 @@ class KantoreStoryModeUi {
                 { name: `どうくつ - Cave (${KantoreLevels.getLevelName(10)})` },
                 { name: `ないてるこ - Crying child (${KantoreLevels.getLevelName(10)})` },
             ] },
-            { name: 'Katakana', entries: [] },
-            { name: 'Grade 1', entries: [] },
-            { name: 'Grade 2', entries: [] },
-            { name: 'Grade 3', entries: [] },
-            { name: 'Grade 4', entries: [] },
-            { name: 'Grade 5', entries: [] },
-            { name: 'Grade 6', entries: [] },
-            { name: 'Junior High', entries: [] },
-            { name: 'Jinmeiyo (postgame)', entries: [] },
-            { name: 'Hyougai (postgame)', entries: [] },
+            { name: TO_BE_CONTINUED_STRING, entries: [] },
+            // { name: 'Katakana', entries: [] },
+            // { name: 'Grade 1', entries: [] },
+            // { name: 'Grade 2', entries: [] },
+            // { name: 'Grade 3', entries: [] },
+            // { name: 'Grade 4', entries: [] },
+            // { name: 'Grade 5', entries: [] },
+            // { name: 'Grade 6', entries: [] },
+            // { name: 'Junior High', entries: [] },
+            // { name: 'Jinmeiyo (postgame)', entries: [] },
+            // { name: 'Hyougai (postgame)', entries: [] },
         ];
 
         const parentMenuId = 'main-menu';
@@ -274,8 +276,8 @@ class KantoreStoryModeUi {
             () => menuEventListener(this._hubMenuEntryButtons, this._progress.lastClearedStage)
         );
 
-        // All except hub menu
-        this._allMenus.slice(1).forEach((menu, index) => {
+        // All except hub menu and the "To be continued" menu
+        this._allMenus.slice(1, this._allMenus.length - 1).forEach((menu, index) => {
             const buttons = [...menu.getElementsByClassName(SUBMENU_ENTRY_BUTTON_CLASS)];
             
             KantoreUiHelper.addMenuShownEventListener(
@@ -287,6 +289,18 @@ class KantoreStoryModeUi {
                         : this._progress.lastClearedLevel;
                     menuEventListener(buttons, lastClearedLevel);
                     KantoreUiHelper.resetBodySkin();
+                }
+            );
+        });
+
+        const toBeContinuedMenu = this._allMenus[this._allMenus.length - 1];
+        KantoreUiHelper.addMenuShownEventListener(toBeContinuedMenu, () => {
+            dialogue.show(
+                TO_BE_CONTINUED_STRING,
+                KantoreTemplates.storyToBeContinuedText(),
+                () => {
+                    KantoreUiHelper.hideMenu(toBeContinuedMenu);
+                    KantoreUiHelper.showMenu(this._hubMenu);
                 }
             );
         });

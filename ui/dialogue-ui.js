@@ -160,10 +160,13 @@ class KantoreDialogue {
     _showIndividual(title, text, closeListener) {
         // Prevent underlying menu button
         // from being "clicked" on enter
-        const focusedItem = document.activeElement;
-        if (focusedItem) {
-            focusedItem.blur();
-        }
+        // sometimes doesn't work without microtask
+        queueMicrotask(() => {
+            const focusedItem = document.activeElement;
+            if (focusedItem) {
+                focusedItem.blur();
+            }
+        });
 
         this._title.innerHTML = title;
         this._text.innerHTML = text;
