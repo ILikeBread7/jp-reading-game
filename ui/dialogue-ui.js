@@ -170,6 +170,7 @@ class KantoreDialogue {
         this._closeListener = closeListener;
         KantoreUiHelper.showOverlayElement(this._dialogue);
         this._addPopoverClickListeners();
+        this._textContent.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         setTimeout(this.focus.bind(this), FOCUS_TIMEOUT);
     }
 
