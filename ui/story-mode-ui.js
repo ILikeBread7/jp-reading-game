@@ -99,7 +99,7 @@ class KantoreStoryModeUi {
             { name: 'Field - そうげん', entries: [
                 {
                     name: `おじいさん - Old man 1`,
-                    skin: 'test',
+                    skin: 'harumi',
                     text: [
                         `
                             You wake up in a field.
@@ -141,7 +141,7 @@ class KantoreStoryModeUi {
                 {
                     name: `おじいさん - Old man 2 (${KantoreLevels.getLevelName(1)})`,
                     dict: dicts.getLevelDict(1),
-                    skin: 'test',
+                    skin: 'harumi',
                     beforeText: [
                         `The words attack you, but you decide to hold your ground.`
                     ],
