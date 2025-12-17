@@ -2,6 +2,15 @@ import * as readline from 'node:readline';
 import { stdin, stdout } from 'node:process';
 
 function format(fullText) {
+    // 4 space indent
+    const indentSize = 4;
+
+    // 7 indent levels
+    const indent = ' '.repeat(7 * indentSize);
+
+    // 8 indent levels
+    const innerIndent = ' '.repeat(8 * indentSize);
+
     return fullText
         .trim()
         .replaceAll(
@@ -9,7 +18,7 @@ function format(fullText) {
             `<span class="popover" data-content="$2">$1</span>`
         )
         .split('\n\n\n\n')
-        .map(text => '                        `\n                            ' + text.replaceAll('\n', '\n                            ') + '\n                        `').join(',\n');
+        .map(text => `${indent}\`\n${innerIndent}` + text.replaceAll('\n', `\n${innerIndent}`) + `\n${indent}\``).join(',\n');
 }
 
 let debounceTimeout = null;

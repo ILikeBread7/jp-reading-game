@@ -96,12 +96,6 @@ You’re in luck because it’s not far from here, just past that forest.” he 
 You’re no less confused than before, but you need to get going.
 The sun is starting to go down and you need a safe place to stay before the night sets in.
 
-
-
-You don’t really have any better idea on what to do, so you shrug, and reluctantly decide to follow the old man’s instructions, and head towards the forest.
-
-That is also the direction the mysterious man went, so maybe you can meet him again, and find out more about yourself.
-
 Forest
 Forest 1
 You walk on a trail through the forest.
@@ -132,10 +126,7 @@ You are taken by surprise, but still decide to fight back against the words.
 
 
 
-The words scramble away after your first real battle and you continue with your journey through the forest.
-
-Forest 3
-You come up victorious from your first real battle and continue with your journey through the forest.
+You come up victorious from your first real battle, and, as the words scramble away, you continue with your journey through the forest.
 
 
 Pond
@@ -160,7 +151,7 @@ You turn around and see a young lady, wearing a sporty outfit, looking at you wi
 
 “That’s dangerous, you know? Sitting alone. Not paying attention to your surroundings.”
 
-She pauses for a moment, probably waiting for a response, but after noticing your consternation continues anyway.
+She pauses for a moment, probably waiting for a response, but, after noticing your consternation, continues talking.
 
 “Anyway, we shouldn’t stay here for too long or feral words will come and-” before she finishes speaking a group of words jumps out of the pond.
 
@@ -178,6 +169,8 @@ After the fight you explain the situation to the lady.
 “Oh, okay. Yeah, I guess if you just came from our world you might not know. No place is safe, no matter how thoroughly you check your surroundings the words can still be hiding somewhere, in the water, on top of trees or even underground!” she explains vigorously.
 
 That’s valuable information, but one part especially catches your attention so you decide to ask about it.
+
+
 
 “Oh, right, I haven’t told you yet. Yes, I also come from the same world. I ended up here not long before you.
 Damn that old geezer, he also told you to rest near the pond?
@@ -330,7 +323,7 @@ The man sends out a big group of words in your direction to avoid getting caught
 
 
 
-You manage to beat all the words, but lost track of the man
+You manage to beat all the words, but lose track of the man.
 
 
 
@@ -358,12 +351,13 @@ You search him for stolen goods and retrieve an old map.
 Then you bring him back to the village.
 
 
-After 2?
+
 “Better watch your back from now on! We, the Aku no Soshiki, will never forget this!” he yells when you hand him over to the guards.
 
 You don’t know who the “Aku no Soshiki” is, but it doesn't seem important right now.
 You return to the little girl.
 
+After 2?
 
 
 “That’s my treasure map!” she says as her face lights up.
@@ -411,10 +405,7 @@ Unfortunately, apparently not much is known about their motives or whereabouts.
 
 
 
-After 4? Leaving the village
 Having collected all the information you could, you and Harumi gather necessary supplies for the journey, and leave the village the next morning.
-
-
 
 “Okay, let’s see, according to the map the first place we need to aim for is…” Harumi says while checking the [ちず|map].
 
