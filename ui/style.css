@@ -1050,6 +1050,8 @@ body:not(.game) .game-only {
     color: var(--palette-secondary-text-color);
     transition-duration: var(--transition-time);
     transition-property: color;
+
+    white-space: nowrap;
 }
 
 .popover:hover {

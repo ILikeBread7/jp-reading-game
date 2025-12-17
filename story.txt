@@ -1,7 +1,7 @@
 Intro
 Field
 Mysterious man
-“Ugh… Hey, don’t just appear all of a sudden!”
+“Ugh... Hey, don’t just appear all of a sudden!”
 You hear an annoyed voice from behind. You turn around and see a man glaring at you.
 
 “You’re supposed to report when you use the-”
@@ -307,10 +307,10 @@ Suddenly, you hear a child start crying.
 
 Crying child
 Before
-Looking in the direction the cry is coming from, and you see a little girl bawling her eyes out.
+Looking in the direction the cry is coming from, you see a little girl bawling her eyes out.
 You approach her and ask what's wrong.
 
-“Someone stole my… Waaah!!!” while still [ないてる|crying], she points at a man running away just past the village gate.
+“Someone stole my... Waaah!!!” while still [ないてる|crying], she points at a man running away just past the village gate.
 
 
 
@@ -405,9 +405,9 @@ Unfortunately, apparently not much is known about their motives or whereabouts.
 
 
 
-Having collected all the information you could, you and Harumi gather necessary supplies for the journey, and leave the village the next morning.
+Having collected all the information you could, [あなた|you] and Harumi gather necessary supplies for the journey, and leave the village the next morning.
 
-“Okay, let’s see, according to the map the first place we need to aim for is…” Harumi says while checking the [ちず|map].
+“Okay, let’s see, according to the map the first place we need to aim for is...” Harumi says while checking the [ちず|map].
 
 “The Chiropteran... C-Cave?” she stumbles over her words for a moment, looking quite distraught.
 
@@ -435,8 +435,8 @@ Once you realize what happened, you turn around and ask her what’s wrong.
 
 
 
-“N-Nothing…. I… I just don’t like bats…” she responds with a shaking voice and tears in her eyes.
-“L-Let’s go, I don’t want to stay here for too long…” she adds as she stands up and starts pushing you forward.
+“N-Nothing.... I... I just don’t like bats...” she responds with a shaking voice and tears in her eyes.
+“L-Let’s go, I don’t want to stay here for too long...” she adds as she stands up and starts pushing you forward.
 
 It doesn’t seem like she wants to talk about it any further, so you decide to just keep going and get out of this cave as soon as possible.
 
@@ -453,7 +453,7 @@ Then you hear a little squishy sound.
 
 
 
-“Huh? I think I stepped on something…" says Harumi, and the attention of both of you gets directed towards what’s under her feet.
+“Huh? I think I stepped on something..." says Harumi, and the attention of both of you gets directed towards what’s under her feet.
 
 “Wah?!” she recoils after seeing what she has just stepped on.
 
@@ -502,7 +502,7 @@ Just as you thought it was over, you prepare for another attack.
 
 
 
-… But it never comes?
+... But it never comes?
 
 You look at Harumi and see her cowering in fear and covering her head.
 
@@ -513,20 +513,20 @@ You shoo the bat away, and tell her it’s gone.
 
 
 
-“T-Thanks…” she slowly stands up, still shivering a little.
+“T-Thanks...” she slowly stands up, still shivering a little.
 
 You find her fear of bats really unusual; she seems to be perfectly fine with most other things, like bugs or snakes, and quite fearless in the face of danger, like criminals or words.
 You decide to ask her about it.
 
 
 
-“W-Well, it’s just… When I was little I went to a cave, and a bat got stuck in my hair. I ran home crying and screaming with the bat flailing around on my head the entire time. My parents had to cut my hair to remove it because they couldn’t untangle it. It was horrible!” she answers, getting even more visibly shaken, seemingly due to her remembering a painful memory.
+“W-Well, it’s just... When I was little I went to a cave, and a bat got stuck in my hair. I ran home crying and screaming with the bat flailing around on my head the entire time. My parents had to cut my hair to remove it because they couldn’t untangle it. It was horrible!” she answers, getting even more visibly shaken, seemingly due to her remembering a painful memory.
 
 
 
 Something feels off, though. Hasn’t she also lost her memory? How can she remember that? Has she regained it? You ask her about that.
 
-“Oh, right, how do I remember that? Hmm…” she says, seemingly even more confused than you, and starts thinking.
+“Oh, right, how do I remember that? Hmm...” she says, seemingly even more confused than you, and starts thinking.
 
 “No, that’s all I can remember. I guess the memory comes back in parts, not all at once.” she continues.
 

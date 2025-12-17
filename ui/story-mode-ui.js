@@ -104,7 +104,7 @@ class KantoreStoryModeUi {
                         name: `ふしぎなおとこ - Mysterious man`,
                         text: [
                             `
-                                Ugh… Hey, don’t just appear all of a sudden!”
+                                Ugh... Hey, don’t just appear all of a sudden!”
                                 You hear an annoyed voice from behind. You turn around and see a man glaring at you.
                                 
                                 “You’re supposed to report when you use the-”
@@ -460,10 +460,10 @@ class KantoreStoryModeUi {
                         name: `ないてるこ - Crying child 1`,
                         text: [
                             `
-                                Looking in the direction the cry is coming from, and you see a little girl bawling her eyes out.
+                                Looking in the direction the cry is coming from, you see a little girl bawling her eyes out.
                                 You approach her and ask what's wrong.
                                 
-                                “Someone stole my… Waaah!!!” while still <span class="popover" data-content="crying">ないてる</span>, she points at a man running away just past the village gate.
+                                “Someone stole my... Waaah!!!” while still <span class="popover" data-content="crying">ないてる</span>, she points at a man running away just past the village gate.
                             `,
                             `
                                 You start chasing the man, eventually almost catching up to him but he immediately attacks you.
@@ -564,9 +564,9 @@ class KantoreStoryModeUi {
                                 Unfortunately, apparently not much is known about their motives or whereabouts.
                             `,
                             `
-                                Having collected all the information you could, you and Harumi gather necessary supplies for the journey, and leave the village the next morning.
+                                Having collected all the information you could, <span class="popover" data-content="you">あなた</span> and Harumi gather necessary supplies for the journey, and leave the village the next morning.
                                 
-                                “Okay, let’s see, according to the map the first place we need to aim for is…” Harumi says while checking the <span class="popover" data-content="map">ちず</span>.
+                                “Okay, let’s see, according to the map the first place we need to aim for is...” Harumi says while checking the <span class="popover" data-content="map">ちず</span>.
                                 
                                 “The Chiropteran... C-Cave?” she stumbles over her words for a moment, looking quite distraught.
                             `
