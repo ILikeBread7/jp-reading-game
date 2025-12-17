@@ -392,8 +392,8 @@ const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [
     'Aum Shinrikyo', 'fascism', 'fascist',              // Cult or political
     'friendly relations between Japan and Israel',
     
-    'erotic', 'sex position', 'masturbation',           // Sensitive
-    'Judaism', 'Allah', 'Protestant',                   // Religion
+    'erotic', 'pornographic', 'sex position', 'masturbation', // Sensitive
+    'Judaism', 'Allah', 'Protestant', 'Catholic',       // Religion
     'fotiaoqiang', 'Minerva (goddess)', 'Vulcan (god)'  // Contain characters we don't want to deal with
 ];
 
