@@ -369,7 +369,7 @@ You return to the little girl.
 “That’s my treasure map!” she says as her face lights up.
 “This is the last thing my grandpa left me.” [かのじょ|she] continues.
 
-You return the [ちず|map] [かのじょへ|to her (へ - grammar particle read as “e”)] and [かのじょ|she] looks at it for a moment, looks back at you, and continues.
+You return the [ちず|map] [かのじょ へ|to her (へ - grammar particle read as “e”)] and [かのじょ|she] looks at it for a moment, looks back at you, and continues.
 
 “Do you think you can find this [たから|treasure]? If you promise to split it with me, you can borrow my [ちず|map]!”
 
@@ -386,20 +386,20 @@ If they still want this [ちず|map] they will probably come looking for us to g
 
 “That guy seemed to know you from our world, so maybe other members also do? If we meet them we could learn about our pasts, and maybe even how to go back to our world!” she continues excitedly.
 
-“We lost our memories from before coming here, but maybe not everyone does?” [かのじょ|she] finishes [かのじょの|her] thought.
+“We lost our memories from before coming here, but maybe not everyone does?” [かのじょ|she] finishes [かのじょ の|her] thought.
 
 
 
 You agree, and decide to accept the deal, much to the little girl’s content.
 
-You receive the [ちず|map], and decide to prepare for your upcoming journey following the [ちずの|map’s] guidance with the goal of tracking down the “Aku no Soshiki”.
+You receive the [ちず|map], and decide to prepare for your upcoming journey following the [ちず の|map’s] guidance with the goal of tracking down the “Aku no Soshiki”.
 
 
 
 After 3? Gathering information
 In order to gather more information, you ask the little girl if she knows what kind of treasure the map is leading to, but neither she, nor her parents seem to know.
 
-[かのじょの|Her] mother only tells you that the grandpa, who left the map, would often be away from home for months at a time for work, but no one really knows what he was doing then, or what kind of work [かれ|he] was performing. They don’t know where [かれ|he] got the [ちず|map] from, either.
+[かのじょ の|Her] mother only tells you that the grandpa, who left the map, would often be away from home for months at a time for work, but no one really knows what he was doing then, or what kind of work [かれ|he] was performing. They don’t know where [かれ|he] got the [ちず|map] from, either.
 
 
 
