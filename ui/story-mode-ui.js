@@ -370,8 +370,8 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `もん - Gate 2 (${KantoreLevels.getLevelName(12)})`,
-                        dict: dicts.createComplexLevelDict(11, 12),
+                        name: `もん - Gate 2 (${KantoreLevels.getLevelName(11)})`,
+                        dict: dicts.getLevelDict(11),
                         totalQuestions: 5,
                         beforeText: [
                             `
