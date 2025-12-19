@@ -175,16 +175,20 @@ export class KantoreTemplates {
      */
     static arcadeData(levelName, lives, livesAnimationType, currentAnswers, totalQuestions) {
         return /*html*/`
-            <div id="level-name">
-                ${levelName}
-            </div>
-            <div class="${KT._mapLivesAnimationTypeToCssClass(livesAnimationType)} ${KT._tif(lives === 0) && `empty-lives`}" id="arcade-lives">
-                Lives: <span class="lives">${Array(lives).fill('命').join('')}</span>
-            </div>
-            <div class="question-cells-container">
-                ${[...KantoreUtils.range(1, totalQuestions)].map(value => {
-                    return /*html*/`<div class="question-cell ${this._tif(value === currentAnswers + 1) && 'active'} ${this._tif(value <= currentAnswers) && 'filled'}">${value}</div>`;
-                }).join('')}
+            <div id="arcade-data-container">
+                <div id="level-name">
+                    ${levelName}
+                </div>
+                <div id="level-exp-data">
+                    <div class="question-cells-container">
+                        ${[...KantoreUtils.range(1, totalQuestions)].map(value => {
+                            return /*html*/`<div class="question-cell ${this._tif(value === currentAnswers + 1) && 'active'} ${this._tif(value <= currentAnswers) && 'filled'}">${value}</div>`;
+                        }).join('')}
+                    </div>
+                    <div class="${KT._mapLivesAnimationTypeToCssClass(livesAnimationType)} ${KT._tif(lives === 0) && `empty-lives`}" id="arcade-lives">
+                        Lives: <span class="lives">${Array(lives).fill('命').join('')}</span>
+                    </div>
+                </div>
             </div>
         `;
     }

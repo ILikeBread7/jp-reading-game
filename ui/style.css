@@ -150,11 +150,13 @@ button, input {
 
 #level-exp {
     max-width: 12em;
-}
-
-#level-exp {
     position: absolute;
     right: 20px; /* standard scrollbar width */
+}
+
+#level-exp-data {
+    text-align: left;
+    display: inline-block;
 }
 
 .level-exp-container {
@@ -1007,6 +1009,7 @@ body:not(.game) .game-only {
     max-height: 100vh;
 }
 
+#arcade-data-container,
 #practice-data-container {
     text-align: right;
 }
