@@ -480,9 +480,11 @@ After
 “[First City], our next destination! If we keep going we should make it by sunset.” she says with a bright smile.
 
 “Come on, let’s keep going. I want to get away from this cave as soon as possible.” she continues, nudging you forwards, and the two of you resume your journey with a new destination.
-First city
+First city Akamachi
 Arrival
-You arrive in the city. This time, thankfully, with no issues at the gate.
+You arrive in Akamachi city. This time, thankfully, with no issues at the gate.
+
+The city is surrounded by a brick wall, all buildings in the vicinity are also built with brick, all of them red. Most of the roofs around are also red. According to the map, the city’s name apparently means “Red City”. The origin of the name seems quite obvious looking at your surroundings.
 
 “We’re finally here. Okay, let’s find an inn before the sun comes down.” Harumi says while stretching.
 
@@ -506,7 +508,7 @@ You nod in agreement, and together you start looking for an inn, when suddenly.
 
 “Aaaaa!” you hear a piercing scream coming from the nearby square.
 
-Harumi immediately rushes towards there, with you following closely behind, and when there, you find a woman, terrified, lying on the ground, seemingly the source of the scream, surrounded by words.
+Harumi immediately rushes towards there, with you following closely behind, and when there, you find a woman, terrified, lying on the ground, seemingly the source of the scream, surrounded by words, with everyone around in panic.
 
 
 
@@ -569,7 +571,7 @@ You apprehend the woman, and ask why she tried to steal the map.
 
 “Because the boss told me to, duh.” she answers.
 
-It became apparent she’s a member of Aku no Soshiki, but she doesn’t seem to know much of anything about you, the map, or the organization. It seems she’s just a low level grunt.
+It became clear that she is, in fact, a member of Aku no Soshiki, but she doesn’t seem to know much of anything about you, the map, or the organization. It seems she’s just a low level grunt.
 
 
 
@@ -592,7 +594,7 @@ Unfortunately, as soon as you leave the city, you are approached by three suspic
 Suspicious men 1
 “I’ll be straight to the point. Give me the map, and no one will get hurt.” one of the men says.
 
-“I didn’t want to do this, but what can I do after she failed.” he continues, seemingly referring to the woman who tried to rob you earlier.
+“I didn’t want to do this, but what can I do after she failed.” he continues, seemingly referring to the woman who tried to rob you earlier. As expected, these men also seem to be connected to Aku no Soshiki.
 
 “Why do you want this map so badly anyway?” Harumi asks him.
 
@@ -629,15 +631,15 @@ The two underlings manage to escape, but Harumi successfully captures the man yo
 
 “Oh come on...” he laments his capture.
 
-“Now tell me, do you know me or this person?” she asks him, motioning at you.
+“Now tell me, do you know either of us?” she asks him, motioning at you.
 
 
 
 “So, you really did lose your memory, huh?” he answers, smirking.
 
-“Answer!” she doesn’t back down.
+“I’m the one asking questions here!” she doesn’t back down, and slightly twists the man’s arm.
 
-“Ugh... Okay, okay. I don’t know you, girl, but the other one is an agent, like, law enforcement, or something, who was tracking us down back in the other world. That’s all I know, I don’t know your name or anything.” he reveals, visibly in pain after Harumi squeezed his arm a little harder.
+“Ugh... Okay, okay. I don’t know you, girl, but the other one is an agent, like, law enforcement, or something, who was tracking us down back in the other world. That’s all I know, I don’t know your names or why you’re here or anything.” he reveals, visibly in pain.
 
 
 
@@ -651,9 +653,191 @@ He doesn’t seem to know much more, and vehemently refuses to tell you the loca
 
 “Turns out you’re in law enforcement, agent! Maybe you’re on a secret mission?” Harumi says, laughing and nudging you with her elbow. You’re not any less surprised than her.
 
-“Anyway, now we can finally move one to the next destination. Let’s see...” she checks the map again after all is said and done.
+“I wonder if there’s a connection between both of us coming here... Hey, maybe I’m an agent too?! Wouldn’t that be cool?” she adds cheerfully.
 
-“Our next destination is... the nearby... swamp?”
+
+
+“Anyway, now we can finally move one to the next destination. Let’s see...” Harumi checks the map again after all is said and done.
+
+“Our next destination is the... nearby swamp?”
+
+
+
+Swamp
+Swamp 1
+After leaving the [First City] you arrive at your next destination, a nearby swamp.
+
+According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic swamp gas filling the air making staying here for too long highly hazardous, or even deadly. If you’re going to go through this place, you need to do it quickly.
+
+
+
+“Hey, look! A snake!” Harumi exclaimed happily, smiling from ear to ear, running towards and pointing at a snake that’s slithering on the ground.
+
+You would never expect anyone to have as much fun at a swamp as Harumi seems to have right now. She’s excitedly running around, finding snakes, frogs, dragonflies, and all sorts of other creatures.
+
+As you’re about to tell her to be careful about where she’s walking, the place not being particularly safe to run around mindlessly, what you expected to happen, happens.
+
+
+
+“Uaa!” Harumi cries out as she falls into a bog, with water all the way up to her waist.
+
+“I-I think I’m stuck...” she says apologetically, being unable to free herself despite all attempts to twist her body and reach one of the nearby plants to try to pull herself out.
+
+
+
+“Oh no!” she yells out, noticing a terrible situation.
+
+Both of you became surrounded by words, and she cannot move.
+
+
+
+Battle 1
+The words strike and you fight back, with Harumi being unable to help this time, still being stuck in the bog.
+
+
+
+You fight valiantly, protecting not only yourself, but also immobilized Harumi, and manage to repel the assault.
+
+
+
+Swamp 2
+After the battle you help pull Harumi out of the bog and tell her to be more careful.
+
+“Sorry... and thanks.” she responds with remorse.
+
+Then, a moment later, her face lights up looking in the distance.
+
+
+
+“Look! Is that a ghost?!” she exclaims pointing the other way.
+
+You look, and see a floating light in the distance, probably just a will-o'-wisp.
+
+“Let’s go! I want to see a ghost!” she says full of excitement, as she takes off in the direction of the light. All remorse from the recent situation seemingly completely gone.
+
+At least the direction the light comes from, and your planned route, match up, so going to check it out isn’t going to incur any delays.
+
+
+
+Swamp 3
+Despite a few minor incursions along the way, you manage to reach the supposed location of the “ghost”.
+
+“This smell... is killing me...” Harumi laments, covering her nose, and you can’t help but do the same.
+
+
+
+The source of the smell, and most likely the “ghost” is a giant bog emitting immeasurable amounts of gas. The surrounding area is completely filled with its foul odor.
+
+You point out that the “ghost” was most likely just a will-o’-wisp caused by the gas spontaneously igniting, causing Harumi’s visible disappointment.
+
+“Well, I wish I could’ve seen a ghost, but will-o’-wisp are pretty cool too, I guess.” she seems to get over it pretty quickly.
+
+Suddenly, she trips and almost falls to the ground.
+
+
+
+You ask if she’s okay, and at the same time, you start feeling what probably caused her to trip.
+
+“I feel... a little dizzy...” she mutters, putting her hand or her head.
+
+You feel it too, it’s probably all the toxic gas getting to both of you.
+
+
+
+You decide to hurry, as it doesn’t seem safe to stay in the swamp for much longer.
+
+“Oh no, this isn't the best time for this...” Harumi says, when, unfortunately, a group of words comes at you from all directions.
+
+
+
+Battle 2
+The words attack as both of you are weakened by the toxic gas.
+
+
+
+Somehow, you manage to repel the attack.
+
+
+
+Swamp 4
+“That was tough; let’s go- huh?” Harumi stops mid-sentence, noticing something.
+
+“Look, over there! Someone’s on the ground!” she adds, pointing at a person lying without movement, not far away.
+
+
+
+You run up to the person, and notice they’re also surrounded by words.
+
+“Oh, come on. Do they always attack people at their weakest?” Harumi utters.
+
+But there’s no time for divagation, in order to help the unconscious person you need to fight the words again.
+
+
+
+Battle 3
+You attack the words surrounding the unconscious person.
+
+
+
+After beating most of the words, the rest scatters in all directions.
+
+
+
+Swamp 5
+“The map sure didn’t lie about there being a ton of words in here...” Harumi says tiredly after scraping a victory against the words, as both of you run up to the downed person.
+
+Coming closer you realize it’s a man, still breathing, but completely unconscious.
+
+“What’s this?” Harumi says while holding up a piece of cloth she found on the man.
+
+
+
+“It has an emblem on it... it says ‘Aku no Soshiki’!” she adds astounded.
+
+He was probably lying here in ambush waiting for you, trying to steal the treasure map again. You discuss if it’s even safe to help him, fearing it might be another one of their ploys, remembering the situation in Akamachi.
+
+
+
+“I-I guess it could, but, what if it isn’t? Sure, they’re criminals, but I still don’t want them to die...” Harumi responds.
+
+“We need to bring him out of the swamp, he might not make it otherwise!” she adds.
+
+After a little deliberation you decide that it is the right thing to do after all, so you agree and the two of you start carrying the man together.
+
+You also shouldn't stay in the swamp much longer, already being affected by the gas yourselves, and helping the man is probably faster than trying to convince Harumi to leave him here.
+
+
+
+Swamp 6
+“This is tough... Why is he so heavy..." Harumi mutters while carrying the man.
+
+You tell her to keep going for just a little more, you can already see the swamp getting thinner and thinner, indicating you’re close to leaving it.
+
+“Okay, okay... Oh, come on, it’s these things again?!” she says after noticing another problem.
+
+
+
+“They really seem to wait for the most vulnerable moment to attack, huh.” she adds.
+
+You can’t help but agree, when you see a big group of words creeping up on you.
+
+You put the man down for a moment to engage the words.
+
+
+
+Battle 4
+Both of you brace for the attack, having to not only defend yourselves, but also the unconscious man behind you.
+
+
+
+You manage to defeat most of the words, the rest running away as usual.
+
+
+
+Swamp 7
+“I hope this is the last time, I really need a break.” Harumi says, seeming completely exhausted from the battle, the toxic gas, and carrying the man.
+
+Thankfully, after leaving the swamp both of you feel significantly better, and manage to keep going without much further trouble, eventually reaching the closest village.
 
 
 Sometime later at a camp?
