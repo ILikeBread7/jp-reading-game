@@ -477,7 +477,7 @@ After
 
 
 
-“[First City], our next destination! If we keep going we should make it by sunset.” she says with a bright smile.
+“Akamachi city, our next destination! If we keep going we should make it by sunset.” she says with a bright smile.
 
 “Come on, let’s keep going. I want to get away from this cave as soon as possible.” she continues, nudging you forwards, and the two of you resume your journey with a new destination.
 First city Akamachi
@@ -665,7 +665,7 @@ He doesn’t seem to know much more, and vehemently refuses to tell you the loca
 
 Swamp
 Swamp 1
-After leaving the [First City] you arrive at your next destination, a nearby swamp.
+After leaving Akamachi city you arrive at your next destination, a nearby swamp.
 
 According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic swamp gas filling the air making staying here for too long highly hazardous, or even deadly. If you’re going to go through this place, you need to do it quickly.
 
@@ -794,7 +794,7 @@ Coming closer you realize it’s a man, still breathing, but completely unconsci
 
 “It has an emblem on it... it says ‘Aku no Soshiki’!” she adds astounded.
 
-He was probably lying here in ambush waiting for you, trying to steal the treasure map again. You discuss if it’s even safe to help him, fearing it might be another one of their ploys, remembering the situation in Akamachi.
+He was probably lying here in ambush waiting for you, trying to steal the treasure map again. You discuss if it’s even safe to help him, fearing it might be another one of their ploys, remembering the situation in Akamachi city.
 
 
 
