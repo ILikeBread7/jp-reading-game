@@ -667,7 +667,9 @@ Swamp
 Swamp 1
 After leaving Akamachi city you arrive at your next destination, a nearby swamp.
 
-According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic swamp gas filling the air making staying here for too long highly hazardous, or even deadly. If you’re going to go through this place, you need to do it quickly.
+According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic swamp gas filling the air making staying here for too long highly hazardous, or even deadly. On top of that, the sulfuric smell is nearly unbearable.
+
+If you’re going to go through this place, you need to do it quickly.
 
 
 
@@ -839,6 +841,182 @@ Swamp 7
 
 Thankfully, after leaving the swamp both of you feel significantly better, and manage to keep going without much further trouble, eventually reaching the closest village.
 
+
+
+Second Village
+Doctor
+The village is surrounded by a palisade, similar to the one in the previous village. This village is a little bit bigger, and has its own doctor living there, so you immediately bring the man you were carrying to him.
+
+“This doesn’t look well.” says the village doctor.
+“He received an enormous dose of toxic gas, how long has he been in that swamp?” he continues with an inquiry.
+
+
+
+“We don’t know, we found him lying there, unconscious.” Harumi responds.
+“Will he be okay?” she asks, frowning.
+
+“I can’t say for sure. There is some medicine that could help, but, unfortunately, we’re out of it right now, and in order to make more I need a particular plant that’s... a little hard to get a hold of.” he responds while shrugging.
+
+
+
+“Where is that plant? Maybe we could go get it for you?” Harumi continues to ask.
+
+“It grows right past an old cemetery, that’s not too far from here. The problem is, the cemetery is overflowing with words, and there’s no way of getting the plant without going through there. You can’t even go around, because it’s all surrounded by mountains that would take weeks to cross.” the doctor responds, not believing anyone would want to take up the task.
+
+You and Harumi look at each other, and after a moment of deliberation, nod in agreement.
+You’re not in a hurry anyway, as finding the treasure doesn’t seem particularly time-sensitive, and maybe you can even find out something new from the Aku no Soshiki member after he wakes up.
+
+
+
+“We’ll go find the plant, we’re not scared of a few words!” Harumi says confidently.
+
+“Are you sure? There’s really a lot, even more than at the swamp.” the doctor warns.
+
+“We’ll be fine, and in the worst-case scenario, we can just run!” she responds with a grin.
+
+
+
+After the conversation, the doctor reluctantly agrees to tell you the exact location and appearance of the plant.
+
+Harumi wants to depart immediately, but you and the doctor, still being worried for your safety, convince her that both of you should take a rest at the village first, and go the next morning.
+
+
+
+Departure
+The next morning you depart from the village, heading for the cemetery.
+
+Not before long do you realize that the doctor wasn’t kidding when he said the place was overflowing with words. You didn’t even make it to the graveyard yet, as you encounter a sizable group of words.
+
+“It’ll be a long day, I guess.” Harumi says with a strained laugh.
+
+
+
+Battle 1
+The words leap at you after a short face-off.
+
+
+
+After a quick battle, the words disperse.
+
+
+
+Cemetery entrance
+After a few short and uneventful encounters you make it to the graveyard.
+
+“According to the doctor, we need to go all the way through the cemetery, and the plant should be growing in a field right past it.” Harumi says, making sure you’re on the same page.
+
+You nod and take a few steps forward, but then...
+“Wah!” you hear Harumi shriek.
+
+
+
+
+You turn around, and see Harumi on the ground, after a word apparently tackled her.
+
+Not only that, even more words emerge from behind tombstones, from all directions.
+
+Harumi quickly gets up and takes a fighting stance, but you’re already surrounded.
+
+
+
+Battle 2
+You take on the words being back to back with Harumi.
+
+
+
+You fight your way through the words, eventually repelling all of them.
+
+
+
+
+Cemetery on the way
+“Whew... Let’s... let’s keep going.” Harumi utters after a difficult encounter.
+
+“We shouldn’t be that far away, the cemetery isn’t supposed to be too big.” she continues trying to uplift both of your moods.
+
+
+
+After continuing to walk for a few minutes, another strange incident happens.
+
+“Whoa, look over there!” Harumi exclaims, pointing ahead.
+
+“It’s a zombie!” she continues with sparkling eyes.
+
+
+
+You look in the direction she pointed towards, and you see a grave from which the ground is being expelled upwards, as if someone was trying to dig their way to the surface from below.
+
+Both of you keep watching with anticipation, as the digging continues, waiting to see a zombie or whatever it is that’s digging its way to the surface.
+
+
+
+After a while, a big lump of soil shoots up, and something emerges.
+
+“Oh... It wasn’t a zombie.” Harumi reacts with disappointment.
+
+
+
+It was just another word.
+
+And it’s coming your way.
+
+And there’s more coming from the same place.
+
+
+
+Battle 3
+You brace for the impact of all the words emerging from underground and coming at you.
+
+
+
+You manage to repel the attack.
+
+
+
+Cemetery exit
+After the attack, you keep walking for a few minutes and finally see the exit.
+
+“Hey, look, the field is right ahead!” Harumi exclaims, running towards it.
+
+You quickly follow her, and arrive at the field.
+
+The field is filled with grass and various flowers of all colors. It isn’t too big, all of it fits within eyeshot, as there is a cliff surrounding it from the opposite side of the cemetery, creating a clear boundary.
+
+
+
+“Let’s see, according to the doctor’s description, we’re looking for a blue flower.” Harumi says while scanning the area.
+
+“Blue flower, blue flower...” she keeps mumbling while searching.
+
+You look for it too, and a few minutes later you find a blue flower and show it to her.
+
+
+
+“Yeah, I think that’s the one! Good job!” Harumi confirms, giving you a thumbs-up.
+
+“Now, let’s go back before-” she suddenly stops, looking behind you.
+
+You look there as well, and see what you already expected.
+
+
+
+“Well, coming here and finding the flower is only half the trip, I guess.” Harumi says with a forced smile as a group of words approaches you from the direction of the cemetery.
+
+“Let’s beat’em up and get out of this place!” she continues reassuringly.
+
+
+
+Battle 4
+The words attack you, with your back against a cliff, this will be a hard battle.
+
+
+
+You successfully defend yourselves, and the words return where they came from.
+
+
+
+Return to the village
+After a few more encounters on the way, you return to the village with the flower.
 
 Sometime later at a camp?
 Before
