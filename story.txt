@@ -415,30 +415,29 @@ Having collected all the information you could, [あなた|you] and Harumi gathe
 
 Cave?
 Before 1?
-You arrive at the cave’s entrance, and Harumi is visibly anxious. 
+You arrive at the cave’s entrance, and notice Harumi being visibly anxious. 
 She’s been acting strange the entire way to the cave, but she got even worse after actually reaching it. Right now, she’s standing behind your back and trembling with fear.
 
-You ask her what’s wrong, but she just answers.
-“N-Nothing, come on, let’s go.” and pushes your back.
+You ask her what’s wrong, but [かのじょ|she] just answers “N-Nothing, come on, let’s go.” and pushes your back.
 
-You’re a little concerned about her, but if she doesn’t want to tell you what’s going on, there’s not much you can do, so you pull out a torch, and enter the cave, with Harumi following closely behind.
-
+You’re a little concerned about her, but if [かのじょ|she] doesn’t want to tell you what’s going on, there’s not much you can do, so you pull out a torch, and enter the [どうくつ|cave], with Harumi following closely behind.
 
 
-The cave is dark, lit only by the light of your torch. There are water droplets dripping from the ceiling, resonating every time they reach the floor.
+
+The [どうくつ|cave] is dark, lit only by the light of your torch. There are water droplets dripping from the ceiling, resonating every time they reach the floor.
 
 Suddenly, a swarm of bats flies overhead.
-“Aaaa!” Harumi shrieks, cowers in fear, and covers her head.
+“Aaaa!” Harumi shrieks, cowers in fear, and covers [かのじょ の|her] head.
 
-You got startled. Not by the bats, but by Harumi’s scream.
+You got startled. Not by the [コウモリ|bats], but by Harumi’s scream.
 Once you realize what happened, you turn around and ask her what’s wrong.
 
 
 
-“N-Nothing.... I... I just don’t like bats...” she responds with a shaking voice and tears in her eyes.
-“L-Let’s go, I don’t want to stay here for too long...” she adds as she stands up and starts pushing you forward.
+“N-Nothing.... I... I just don’t like [コウモリ|bats]...” [かのじょ|she] responds with a shaking voice and tears in [かのじょ の|her] eyes.
+“L-Let’s go, I don’t want to stay here for too long...” [かのじょ|she] adds as [かのじょ|she] stands up and starts pushing you forward.
 
-It doesn’t seem like she wants to talk about it any further, so you decide to just keep going and get out of this cave as soon as possible.
+It doesn’t seem like [かのじょ|she] wants to talk about it any further, so you decide to just keep going and get out of this [どうくつ|cave] as soon as possible.
 
 
 
@@ -447,15 +446,15 @@ Before 2?
 
 Thankfully, she seems completely relieved of the fear that accompanied her all the way through the cave.
 
-“At least we didn’t get attacked by any words this time!” she continues, with a big smile on her face.
+“At least we didn’t get attacked by any words this time!” [かのじょ|she] continues, with a big smile on [かのじょ の|her] face.
 
-Then you hear a little squishy sound.
+Then, you hear a little squishy sound.
 
 
 
-“Huh? I think I stepped on something..." says Harumi, and the attention of both of you gets directed towards what’s under her feet.
+“Huh? I think I stepped on something..." says Harumi, and the attention of both of you gets directed towards what’s under [かのじょ の|her] feet.
 
-“Wah?!” she recoils after seeing what she has just stepped on.
+“Wah?!” [かのじょ|she] recoils after seeing what [かのじょ|she] has just [ふんだ|stepped] on.
 
 It was a word.
 
@@ -477,14 +476,14 @@ After
 
 
 
-“Akamachi city, our next destination! If we keep going we should make it by sunset.” she says with a bright smile.
+“Akamachi city, our next destination! If we keep going [わたしたち|we] should make it by sunset.” she says with a bright smile.
 
-“Come on, let’s keep going. I want to get away from this cave as soon as possible.” she continues, nudging you forwards, and the two of you resume your journey with a new destination.
+“Come on, let’s keep going. I want to get away from this cave as soon as possible.” [かのじょ|she] continues, nudging you forwards, and the two of you resume your journey with a new destination.
 First city Akamachi
 Arrival
 You arrive in Akamachi city. This time, thankfully, with no issues at the gate.
 
-The city is surrounded by a brick wall, all buildings in the vicinity are also built with brick, all of them red. Most of the roofs around are also red. According to the map, the city’s name apparently means “Red City”. The origin of the name seems quite obvious looking at your surroundings.
+The [まち|city] is surrounded by a brick wall, all buildings in the vicinity are also built with [れんが|brick], all of them [あかい|red]. Most of the roofs around are also [あかい|red]. According to the map, the city’s name apparently means “[あかい|Red] [まち|City]”. The origin of the name seems quite obvious looking at your surroundings.
 
 “We’re finally here. Okay, let’s find an inn before the sun comes down.” Harumi says while stretching.
 
@@ -492,32 +491,32 @@ The city is surrounded by a brick wall, all buildings in the vicinity are also b
 
 “Hm?” a moment later, she starts looking around in all directions.
 
-You wonder what’s wrong, but then it hits you too.
+You wonder what’s wrong, but then it hits [あなた|you] too.
 
-You’re being watched.
+[あなたたち|you (plural)] are being watched.
 
 
 
-You lock eyes with Harumi, both of you with stern expressions.
+[あなた|You] lock eyes with Harumi, both of you with stern expressions.
 
 “Let’s go.” she says.
 
-You nod in agreement, and together you start looking for an inn, when suddenly.
+[あなた|You] nod in agreement, and together [あなたたち|you (plural)] start looking for an inn, when suddenly.
 
 
 
-“Aaaaa!” you hear a piercing scream coming from the nearby square.
+“Aaaaa!” [あなた|you] hear a piercing scream coming from the nearby square.
 
-Harumi immediately rushes towards there, with you following closely behind, and when there, you find a woman, terrified, lying on the ground, seemingly the source of the scream, surrounded by words, with everyone around in panic.
+Harumi immediately rushes towards there, with [あなた|you] following closely behind, and when there, [あなた|you] find a woman, terrified, lying on the ground, seemingly the source of the [ひめい|scream], surrounded by words, with everyone around in panic.
 
 
 
 Distressed woman 1
-“Help!” she shouts as soon as she notices you.
+“Help!” she shouts as soon as [かのじょ|she] notices you.
 
-“You two, please, help!” she continues to shout while looking straight at you, and reaching her hand in your direction.
+“You two, please, [たすけて|help]!” [かのじょ|she] continues to shout while looking straight at [あなたたち|you (plural)], and reaching [かのじょ の|her] hand in [あなたたち の|your (plural)] direction.
 
-“Don’t worry, everything will be fine!” Harumi responds as she plunges into combat, with you following shortly after.
+“Don’t worry, everything will be fine!” Harumi responds as [かのじょ|she] plunges into combat, with you following shortly after.
 
 
 
@@ -531,29 +530,29 @@ Most of the words run away soon after the first few are defeated.
 
 
 Distressed woman 2
-“Oh, thank you! What would I have done if it wasn’t for you.” the woman says while approaching Harumi with open arms.
+“Oh, thank you! What would I have done if it wasn’t for [あなたたち|you (plural)].” the woman says while approaching Harumi with open arms.
 
-“No problem, it’s- h-huh?” as Harumi responds, the woman suddenly hugs her.
+“No problem, it’s- h-huh?” as Harumi responds, the [女|(おんな) woman] suddenly hugs [かのじょ を|her (as object of a verb) (を - grammar particle read as “o”)].
 
 
 
-“Thank you so much once again, now, farewell, my heroes.” the woman says after letting go of Harumi, who’s just standing there with a blank expression.
+“Thank you so much once again, now, farewell, my heroes.” the [女|(おんな) woman] says after letting go of Harumi, who’s just standing there with a blank expression.
 
-As the woman walks away, Harumi, seemingly having noticed something wrong, pats her pockets. Then, she points at the woman and shouts.
-“Hey, she stole the map!”
+As the [女|(おんな) woman] walks away, Harumi, seemingly having noticed something wrong, pats her pockets. Then, [かのじょ|she] points at the [女|(おんな) woman] and shouts.
+“Hey, [かのじょ|she] stole the map!”
 
 
 
 Distressed woman 3
 The woman starts running away, and you and Harumi chase after her.
 
-Unfortunately for her, as she enters a long alley, you two split up, Harumi going around, and together, you cut off her path, you from behind, and Harumi from ahead.
+Unfortunately for her, as she enters a long alley, you two split up, Harumi going around, and together, [あなたたち|you (plural)] cut off [かのじょ の|her] path, you from behind, and Harumi from ahead.
 
 
 
-“Tch! How pesky of you.” the woman says after she notices she has no way to escape.
+“Tch! How pesky of [かのじょ の|her].” the woman says after she notices [かのじょ|she] has no way to escape.
 
-“Take this!” she continues while sending out words to fight you.
+“Take this!” [かのじょ|she] continues while sending out words to fight you.
 
 
 
@@ -569,42 +568,42 @@ You beat your half of the words, with Harumi also beating hers.
 Distressed woman 4
 You apprehend the woman, and ask why she tried to steal the map.
 
-“Because the boss told me to, duh.” she answers.
+“Because the boss told me to, duh.” [かのじょ|she] answers.
 
-It became clear that she is, in fact, a member of Aku no Soshiki, but she doesn’t seem to know much of anything about you, the map, or the organization. It seems she’s just a low level grunt.
+It became clear that [かのじょ|she] is, in fact, a member of Aku no Soshiki, but [かのじょ|she] doesn’t seem to know much of anything about you, the map, or the organization. It seems [かのじょ|she] is just a low level grunt.
 
 
 
-After being unable to extract any more valuable information from her you hand her over to the guards and start looking for an inn.
+After being unable to extract any more valuable information from her, you hand [かのじょ を|her (as object of a verb) (を - grammar particle read as “o”)] over to the guards and start looking for an inn.
 
 Unfortunately, even after the woman is arrested, you still have a feeling of being watched.
 
 
 
-You manage to find a place to stay for the night, you eat dinner, and being cautious about your experience in the city so far, you make sure to properly lock the door to your room.
+You manage to find a place to stay for the night, [あなたたち|you (plural)] eat dinner, and being cautious about [あなたたち の|your (plural)] experience in the city so far, you make sure to properly lock the door to your room.
 
-Thankfully, the night passes without an incident, and early in the morning you arrive at the city gate.
+Thankfully, the night passes without an incident, and in the early morning [あなたたち|you (plural)] arrive at the city gate.
 
 
 
-Unfortunately, as soon as you leave the city, you are approached by three suspicious looking men.
+Unfortunately, as soon as [あなたたち|you (plural)] leave the city, [あなたたち|you (plural)] are approached by three suspicious looking men.
 
 
 
 Suspicious men 1
 “I’ll be straight to the point. Give me the map, and no one will get hurt.” one of the men says.
 
-“I didn’t want to do this, but what can I do after she failed.” he continues, seemingly referring to the woman who tried to rob you earlier. As expected, these men also seem to be connected to Aku no Soshiki.
+“I didn’t want to do this, but what can I do after she failed.” he continues, seemingly referring to the woman who tried to rob you earlier. As expected, these [男たち|(おとこたち) men] also seem to be connected to Aku no Soshiki.
 
 “Why do you want this map so badly anyway?” Harumi asks him.
 
-“That’s none of your business, now, give it to me, or you will regret it.” he responds.
+“That’s none of your business, now, give it to me, or [あなたたち|you (plural)] will regret it.” [かれ|he] responds.
 
 
 
-“Make me.” she says before mockingly sticking out her tongue.
+“Make me.” she [こたえる|responds] before mockingly sticking out [かのじょ の|her] tongue.
 
-“I didn’t want to resort to these kinds of measures, but you leave me no choice.” he says while all three of them send out words to fight you.
+“I didn’t want to resort to these kinds of measures, but you leave me no choice.” [かれ|he] [こたえる|responds] while all three of them send out words to fight [あなたたち|you (plural)].
 
 
 
@@ -618,78 +617,78 @@ After a tough battle you manage to beat all of the words sent out.
 
 
 Suspicious men 2
-“W-What? Y-You, you won?” the man says in disbelief.
-All three of them seem completely shocked at your performance.
+“W-What? Y-You, [あなたたち|you (plural)] won?” the man says in disbelief.
+All three of them seem completely shocked at [あなたたち の|your (plural)] performance.
 
-“Damn, skedaddle!” he says before they all start running away.
+“Damn, skedaddle!” he [いう|says] before they all start running away.
 
 “Not so fast!” Harumi shouts before giving chase.
 
 
 
-The two underlings manage to escape, but Harumi successfully captures the man you were talking to the entire time.
+The two underlings manage to escape, but Harumi successfully captures the [男|(おとこ) man] you were talking to the entire time.
 
-“Oh come on...” he laments his capture.
+“Oh come on...” he laments [かれ の|his] capture.
 
 “Now tell me, do you know either of us?” she asks him, motioning at you.
 
 
 
-“So, you really did lose your memory, huh?” he answers, smirking.
+“So, you really did lose [あなた の|your] memory, huh?” [かれ|he] answers, smirking.
 
-“I’m the one asking questions here!” she doesn’t back down, and slightly twists the man’s arm.
+“I’m the one asking questions here!” she doesn’t back down, and slightly twists the [男の|(おとこの) man’s] arm.
 
-“Ugh... Okay, okay. I don’t know you, girl, but the other one is an agent, like, law enforcement, or something, who was tracking us down back in the other world. That’s all I know, I don’t know your names or why you’re here or anything.” he reveals, visibly in pain.
-
-
-
-“Why does your boss want the map?” she continues the questioning.
-
-“I don’t know, he just says it’s top priority.” he answers without revealing much.
+“Ugh... Okay, okay. I don’t know you, girl, but the other one is an agent, like, law enforcement, or something, who was tracking us down back in the other world. That’s all I know, [わたし|I] don’t know your names or why you’re here or anything.” [かれ|he] reveals, visibly in pain.
 
 
 
-He doesn’t seem to know much more, and vehemently refuses to tell you the location of their hideout, so Harumi finishes her questioning, and hands him over to the guards.
+“Why does [あなた の|your] boss want the map?” [かのじょ|she] continues the questioning.
 
-“Turns out you’re in law enforcement, agent! Maybe you’re on a secret mission?” Harumi says, laughing and nudging you with her elbow. You’re not any less surprised than her.
-
-“I wonder if there’s a connection between both of us coming here... Hey, maybe I’m an agent too?! Wouldn’t that be cool?” she adds cheerfully.
+“[わたし|I] don’t know, [かれ|he] just [いう|says] it’s top priority.” [かれ|he] answers without revealing much.
 
 
 
-“Anyway, now we can finally move one to the next destination. Let’s see...” Harumi checks the map again after all is said and done.
+[かれ|He] doesn’t seem to know much more, and vehemently refuses to tell [あなたたち|you (plural)] the location of their hideout, so Harumi finishes [かのじょ の|her] questioning, and hands [かれ を|him (as object of a verb) (を - grammar particle read as “o”)] over to the guards.
 
-“Our next destination is the... nearby swamp?”
+“Turns out [あなた|you] are in law enforcement, agent! Maybe [あなた|you] are on a secret mission?” Harumi [いう|says], laughing and nudging you with [かのじょ の|her] elbow. You’re not any less surprised than her.
+
+“I wonder if there’s a connection between both of [わたしたち|us] coming here... Hey, maybe [わたし|I] am an agent too?! Wouldn’t that be cool?” [かのじょ|she] adds, cheerfully.
+
+
+
+“Anyway, now [わたしたち|we] can finally move on to the next destination. Let’s see...” Harumi checks the map again after all is said and done.
+
+“Our [つぎ の|next] [もくてきち|destination] is the... nearby swamp?”
 
 
 
 Swamp
 Swamp 1
-After leaving Akamachi city you arrive at your next destination, a nearby swamp.
+After leaving Akamachi city you arrive at [あなたたち の|your (plural)] next destination, a nearby swamp.
 
 According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic swamp gas filling the air making staying here for too long highly hazardous, or even deadly. On top of that, the sulfuric smell is nearly unbearable.
 
-If you’re going to go through this place, you need to do it quickly.
+If [あなたたち の|your (plural)] are going to go through this place, [あなたたち の|your (plural)] need to do it quickly.
 
 
 
-“Hey, look! A snake!” Harumi exclaimed happily, smiling from ear to ear, running towards and pointing at a snake that’s slithering on the ground.
+“Hey, look! A snake!” Harumi exclaims happily, smiling from ear to ear, seemingly with no care in the world, running towards and pointing at a [へび|snake] that’s slithering on the ground.
 
-You would never expect anyone to have as much fun at a swamp as Harumi seems to have right now. She’s excitedly running around, finding snakes, frogs, dragonflies, and all sorts of other creatures.
+[あなた|You] would never expect anyone to have as much fun at a [ぬま|swamp] as Harumi seems to have right now. [かのじょ|She] is excitedly running around, finding [へび|snakes], frogs, dragonflies, and all sorts of other creatures.
 
-As you’re about to tell her to be careful about where she’s walking, the place not being particularly safe to run around mindlessly, what you expected to happen, happens.
-
-
-
-“Uaa!” Harumi cries out as she falls into a bog, with water all the way up to her waist.
-
-“I-I think I’m stuck...” she says apologetically, being unable to free herself despite all attempts to twist her body and reach one of the nearby plants to try to pull herself out.
+As [あなた|you] are about to tell her to be careful about where [かのじょ|she] is walking, the place not being particularly safe to run around mindlessly, what [あなた|you] expected to happen, [おこる|happens].
 
 
 
-“Oh no!” she yells out, noticing a terrible situation.
+“Uaa!” Harumi cries out as [かのじょ|she] falls into a bog, with water all the way up to [かのじょ の|her] waist.
 
-Both of you became surrounded by words, and she cannot move.
+“I-[わたし|I] think [わたし|I] am stuck...” [かのじょ|she] says apologetically, being unable to free herself despite all attempts to twist [かのじょ の|her] body and reach one of the nearby plants to try to pull herself out.
+
+
+
+“Oh no!” suddenly, [かのじょ|she] yells out, noticing a terrible situation.
+
+Both of you became surrounded by words, and [かのじょ|she] cannot move.
 
 
 
@@ -861,7 +860,7 @@ The village is surrounded by a palisade, similar to the one in the previous vill
 
 “Where is that plant? Maybe we could go get it for you?” Harumi continues to ask.
 
-“It grows right past an old cemetery, that’s not too far from here. The problem is, the cemetery is overflowing with words, and there’s no way of getting the plant without going through there. You can’t even go around, because it’s all surrounded by mountains that would take weeks to cross.” the doctor responds, not believing anyone would want to take up the task.
+“It grows right past an old cemetery, that’s not too far from here. The problem is, the cemetery is overflowing with words, and there’s no way of getting the plant without going through there. You can’t even go around, because it’s all surrounded by mountains that would take days to cross, and he might not survive for that long.” the doctor responds, not believing anyone would want to take up the task.
 
 You and Harumi look at each other, and after a moment of deliberation, nod in agreement.
 You’re not in a hurry anyway, as finding the treasure doesn’t seem particularly time-sensitive, and maybe you can even find out something new from the Aku no Soshiki member after he wakes up.
@@ -902,6 +901,10 @@ After a quick battle, the words disperse.
 
 Cemetery entrance
 After a few short and uneventful encounters you make it to the graveyard.
+
+There is a rusted fence surrounding it. You can’t see a gate leading inside, but it’s not needed, as the fence has plenty of gaps big enough to go through. There are plenty of tombstones, all covered in moss, and the ground is covered with thick grass. Any footpaths that might have once been here were already taken over by nature a long time ago. It seems like no one visits here anymore.
+
+
 
 “According to the doctor, we need to go all the way through the cemetery, and the plant should be growing in a field right past it.” Harumi says, making sure you’re on the same page.
 
@@ -980,7 +983,7 @@ After the attack, you keep walking for a few minutes and finally see the exit.
 
 You quickly follow her, and arrive at the field.
 
-The field is filled with grass and various flowers of all colors. It isn’t too big, all of it fits within eyeshot, as there is a cliff surrounding it from the opposite side of the cemetery, creating a clear boundary.
+The field is filled with grass and various flowers of all colors. It isn’t too big, all of it fits within eyeshot, as there is a cliff wall surrounding it from the opposite side of the cemetery, creating a clear boundary.
 
 
 
@@ -1018,6 +1021,78 @@ You successfully defend yourselves, and the words return where they came from.
 Return to the village
 After a few more encounters on the way, you return to the village with the flower.
 
+The doctor prepares the medicine using it, and administers it to the patient.
+
+
+
+All that is left to do now, is to wait, so as the sun starts to set you decide to go to stay at the village for the night, and hope that all goes well, and the unconscious Aku no Soshiki member wakes up by tomorrow.
+
+
+
+Morning at the village 1
+“Good news; he seems to be improving!” says the doctor.
+
+After waking up in the morning, you decided to go check up on the man and went to see the doctor.
+
+“Is he awake? Can he talk?” Harumi asks, being both relieved, and hopeful that you might learn some new information from the man.
+
+
+
+“He did wake up, but he’s still very weak. I wouldn’t recommend talking to him right now; I’d suggest you wait until tomorrow if you want to question him.” the doctor responds.
+
+Suddenly, a loud, dull noise is heard outside.
+“Aaaa! Help!” a shriek follows.
+
+“What’s happening? Let’s take a look.” Harumi says before storming out the door.
+
+
+
+Once outside, you see a group of words has made its way into the village. Some people are running away inside buildings, some are standing still, thunderstruck by the situation.
+
+“How did they get in here? Anyway, let’s clean this up!” Harumi says, not hiding her surprise.
+
+
+
+Battle 5
+You and Harumi charge at the words that made their way into the village.
+
+
+
+The words scatter midway through the battle.
+
+
+
+Morning 2
+“They... didn’t seem particularly vicious, didn’t they?” Harumi says with consternation.
+
+The words fled when they still had a big numbers advantage. While they do often flee when their numbers get low, they usually put up more of a fight before that happens.
+
+“He’s gone?!”
+Suddenly, you hear the doctor’s voice from back inside.
+
+
+
+Both of you turn around and run inside, finding an empty bed where the Aku no Soshiki member was resting.
+
+“He ran away?” Harumi asks in confusion.
+
+“He was still very weak, he couldn’t have gone far alone.” the doctor responds in a similar manner.
+
+Then, looking out a window, you notice a peculiar scene, and point everyone’s attention towards it.
+
+
+
+There’s another man, supposedly another Aku no Soshiki member, carrying the ill individual while running away.
+
+“So the attack was a diversion created to retrieve him? I guess now it makes sense why the words gave up so quickly. And we didn’t get to ask him anything yet!” Harumi says dejectedly.
+
+“But, at least he seems fine, so there's that!” she continues, trying to find a silver lining.
+
+
+
+After the whole situation unraveled, there doesn’t seem to be anything more to do in this village, so you and Harumi decide to head for the next destination.
+
+“According to the map our next destination is... well, it’s a little far, but there seems to be a small village on the way, so let’s aim for it first so we can take a break there!” Harumi happily exclaims while checking the map.
 Sometime later at a camp?
 Before
 “Wake up!”
