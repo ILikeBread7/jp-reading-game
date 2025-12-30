@@ -205,11 +205,23 @@ class KantoreDialogue {
         }
 
         const containerWidth = this._text.clientWidth;
+
+        const OFFSET_PROPERTY = '--left-offset';
         popovers.forEach(popover => {
             const popoverStyle = getComputedStyle(popover, '::before');
-            const rightBound = parseFloat(popoverStyle.width) + parseFloat(popoverStyle.left);
+            const popoverWidth = parseFloat(popoverStyle.width);
+            const rightBound = popoverWidth + parseFloat(popoverStyle.left);
+            const margin = parseFloat(popoverStyle.fontSize) * 0.75;    // 0.75em
+
             if (rightBound > containerWidth) {
-                popover.style.setProperty('--left-offset', `calc(-${rightBound - containerWidth}px - 0.75em)`);
+                const offsetPx = -(rightBound - containerWidth);
+                const offsetValue = popoverWidth >= containerWidth - margin * 2
+                    ? `${offsetPx}px`
+                    : `${offsetPx - margin}px`;
+
+                popover.style.setProperty(OFFSET_PROPERTY, offsetValue);
+            } else {
+                popover.style.removeProperty(OFFSET_PROPERTY);
             }
         });
     }
