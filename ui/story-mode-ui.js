@@ -95,6 +95,7 @@ class KantoreStoryModeUi {
     _createMenus() {
         const grade1Range = new StageRange(KantoreLevels.getKanjiLevelsGrade1Range, 4);
         const grade2Range = new StageRange(KantoreLevels.getKanjiLevelsGrade2Range, 4);
+        const grade3Range = new StageRange(KantoreLevels.getKanjiLevelsGrade3Range, 5);
 
         const hubMenu = [
             {
@@ -590,7 +591,7 @@ class KantoreStoryModeUi {
                                 Once you realize what happened, you turn around and ask her what’s wrong.
                             `,
                             `
-                                “N-Nothing.... I... I just don’t like <span class="popover" data-content="bats">コウモリ</span>...” <span class="popover" data-content="she">かのじょ</span> responds with a shaking voice and tears in <span class="popover" data-content="her">かのじょ の</span> eyes.
+                                “N-Nothing.... I... <span class="popover" data-content="I">わたし</span> just don’t like <span class="popover" data-content="bats">コウモリ</span>...” <span class="popover" data-content="she">かのじょ</span> responds with a shaking voice and tears in <span class="popover" data-content="her">かのじょ の</span> eyes.
                                 “L-Let’s go, I don’t want to stay here for too long...” <span class="popover" data-content="she">かのじょ</span> adds as <span class="popover" data-content="she">かのじょ</span> stands up and starts pushing you forward.
                                 
                                 It doesn’t seem like <span class="popover" data-content="she">かのじょ</span> wants to talk about it any further, so you decide to just keep going and get out of this <span class="popover" data-content="cave">どうくつ</span> as soon as possible.
@@ -733,7 +734,7 @@ class KantoreStoryModeUi {
                                 Unfortunately for her, as she enters a long alley, you two split up, Harumi going around, and together, <span class="popover" data-content="you (plural)">あなたたち</span> cut off <span class="popover" data-content="her">かのじょ の</span> path, you from behind, and Harumi from ahead.
                             `,
                             `
-                                “Tch! How pesky of <span class="popover" data-content="her">かのじょ の</span>.” the woman says after she notices <span class="popover" data-content="she">かのじょ</span> has no way to escape.
+                                “Tch! How pesky of her.” the woman says after she notices <span class="popover" data-content="she">かのじょ</span> has no way to escape.
                                 
                                 “Take this!” <span class="popover" data-content="she">かのじょ</span> continues while sending out words to fight you.
                             `
@@ -912,6 +913,492 @@ class KantoreStoryModeUi {
                         afterText: [
                             `
                                 You fight valiantly, protecting not only yourself, but also immobilized Harumi, and manage to repel the assault.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぬま - Swamp 3',
+                        text: [
+                            `
+                                After the battle you help pull Harumi out of the bog and tell her to be more careful.
+                                
+                                “Sorry... and thanks.” she responds with remorse.
+                                
+                                Then, a moment later, her face lights up looking somewhere behind you.
+                            `,
+                            `
+                                “Look! Is that a ghost?!” she exclaims pointing that way.
+                                
+                                You look there, and see a floating light in the distance, probably just a will-o'-wisp.
+                                
+                                “Let’s go! I want to see the <span class="popover" data-content="ghost">ゆうれい</span>!” she says full of excitement, as she takes off in the direction of the light. All remorse from the recent situation seemingly completely gone.
+                                
+                                At least the direction the <span class="popover" data-content="light">あかり</span> comes from, and your planned route, match up, so going to check it out isn’t going to incur any delays.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぬま - Swamp 4',
+                        text: [
+                            `
+                                Despite a few minor incursions along the way, you manage to reach the supposed location of the “ghost”.
+                                
+                                “This smell... is killing me...” Harumi laments, covering her nose, and you can’t help but do the same.
+                            `,
+                            `
+                                The source of the smell, and most likely the “ghost” is a giant bog emitting immeasurable amounts of gas. The surrounding area is completely filled with its foul odor.
+                                
+                                You point out that the “<span class="popover" data-content="ghost">ゆうれい</span>” was most likely just a will-o’-wisp caused by the gas spontaneously igniting, causing Harumi’s visible disappointment.
+                                
+                                “Well, I wish I could’ve seen a <span class="popover" data-content="ghost">ゆうれい</span>, but will-o’-wisps are pretty cool too, I guess.” she seems to get over it pretty quickly.
+                                
+                                Suddenly, she trips and almost falls to the ground.
+                            `,
+                            `
+                                You ask if she’s okay, and at the same time, you start feeling what probably caused her indisposition.
+                                
+                                “I feel... a little dizzy...” she mutters, putting her hand or <span class="popover" data-content="her">かのじょ の</span> head.
+                                
+                                You feel it too, it’s probably all the <span class="popover" data-content="toxic gas">ゆうどくガス</span> getting to both of you.
+                            `,
+                            `
+                                You decide to hurry, as it doesn’t seem safe to stay in the <span class="popover" data-content="swamp">ぬま</span> for much longer.
+                                
+                                “Oh no, this isn't the best time for this...” Harumi says, when, unfortunately, a group of words comes at you from all directions.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぬま - Swamp 5',
+                            range: grade2Range,
+                            index: 1
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                The words attack as both of you are weakened by the toxic gas.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Somehow, you manage to repel the attack.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぬま - Swamp 6',
+                        text: [
+                            `
+                                “That was tough; let’s go- huh?” Harumi stops mid-sentence, noticing something.
+                                
+                                “Look, over there! Someone’s on the ground!” <span class="popover" data-content="she">かのじょ</span> adds, pointing at a person lying without movement, not far away.
+                            `,
+                            `
+                                You run up to the <span class="popover" data-content="(ひと) person">人</span>, and notice they’re also surrounded bywords.
+                                
+                                “Oh, come on. Do they always attack <span class="popover" data-content="(ひとびと) people">人々</span> at their weakest?” Harumi utters.
+                                
+                                But there’s no time for divagation, in order to help the unconscious <span class="popover" data-content="(ひと) person">人</span> you need to fight the <span class="popover" data-content="words">ことば</span> again.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぬま - Swamp 7',
+                            range: grade2Range,
+                            index: 2
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You attack the words surrounding the unconscious person.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                After beating most of the words, the rest scatters in all directions.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぬま - Swamp 8',
+                        text: [
+                            `
+                                “The map sure didn’t lie about there being a ton of words in here...” Harumi says tiredly after scraping victory against the <span class="popover" data-content="words">ことば</span>, as both of you run up to the downed person.
+                                
+                                Coming closer you realize it’s a man, still breathing, but completely unconscious.
+                                
+                                “What’s this?” Harumi says while holding up a piece of cloth she found on the <span class="popover" data-content="(おとこ) man">男</span>.
+                            `,
+                            `
+                                “It has an emblem on it... it says ‘Aku no Soshiki’!” <span class="popover" data-content="she">かのじょ</span> adds astounded.
+                                
+                                He was probably lying here in ambush waiting for you, trying to steal the treasure map again. <span class="popover" data-content="You (plural)">あなたたち</span> discuss if it’s even safe to help <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span>, fearing it might be another one of their ploys, remembering the situation in Akamachi city.
+                            `,
+                            `
+                                “I-<span class="popover" data-content="I">わたし</span> guess it could be, but, what if it isn’t? Sure, they’re criminals, but <span class="popover" data-content="I">わたし</span> still don’t want them to die...” Harumi responds.
+                                
+                                “We need to bring him out of the <span class="popover" data-content="swamp">ぬま</span>, <span class="popover" data-content="he">かれ</span> might not make it otherwise!” <span class="popover" data-content="she">かのじょ</span> adds.
+                                
+                                After a little deliberation you decide that it is the right thing to do after all, so you agree and the two of you start carrying the <span class="popover" data-content="(おとこ) man">男</span> together, lending him on shoulder each.
+                                
+                                You also shouldn't stay in the <span class="popover" data-content="swamp">ぬま</span> much longer, already being affected by the gas yourselves, and helping the <span class="popover" data-content="(おとこ) man">男</span> is probably faster than trying to convince Harumi to leave <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span> here.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぬま - Swamp 9',
+                        text: [
+                            `
+                                “This is tough... Why is he so heavy..." Harumi mutters while carrying the man.
+                                
+                                You tell her to keep going for just a little more, you can already see the <span class="popover" data-content="swamp">ぬま</span> getting thinner and thinner, indicating you’re close to leaving it.
+                                
+                                “Okay, okay... Oh, come on, it’s these things again?!” she says after noticing another problem.
+                            `,
+                            `
+                                “They really seem to wait for the most vulnerable moment to attack, huh.” <span class="popover" data-content="she">かのじょ</span> adds.
+                                
+                                You can’t help but agree, when <span class="popover" data-content="you">あなた</span> see a big group of words creeping up on <span class="popover" data-content="you">あなた</span>.
+                                
+                                You put the <span class="popover" data-content="(おとこ) man">男</span> down for a moment to engage the <span class="popover" data-content="words">ことば</span>.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぬま - Swamp 10',
+                            range: grade2Range,
+                            index: 3
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                Both of you brace for the attack, having to not only defend yourselves, but also the unconscious man behind you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to defeat most of the words, the rest running away as usual.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぬま - Swamp 11',
+                        text: [
+                            `
+                                “I hope this is the last time; I really need a break.” Harumi says, seeming completely exhausted from the battle, the toxic gas, and carrying the man.
+                                
+                                Thankfully, after leaving the <span class="popover" data-content="swamp">ぬま</span> both of you feel significantly better, and manage to keep going without much further trouble, eventually reaching the closest village.
+                            `
+                        ]
+                    },
+                ]
+            },
+            {
+                name: 'ぬまちかくの村 - Village near swamp',
+                entries: [
+                    {
+                        name: '村のいしゃ - Village doctor',
+                        text: [
+                            `
+                                The <span class="popover" data-content="(むら) village">村</span> is surrounded by a palisade, similar to the one in the previous <span class="popover" data-content="(むら) village">村</span>. This <span class="popover" data-content="(むら) village">村</span> is a little bit bigger, and has its own doctor living there, so you immediately bring the man you were carrying to him.
+                                
+                                “This doesn’t look well.” says the <span class="popover" data-content="(むら の) village (village‘s)">村の</span> doctor.
+                                “He received an enormous dose of toxic gas; how long has <span class="popover" data-content="he">かれ</span> been in that swamp?” <span class="popover" data-content="he">かれ</span> continues with an inquiry.
+                            `,
+                            `
+                                “We don’t know, we found <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span> lying there, unconscious.” Harumi responds.
+                                “Will <span class="popover" data-content="he">かれ</span> be okay?” she asks, frowning.
+                                
+                                “I can’t say for sure. There is some medicine that could help, but, unfortunately, we’re out of it right now, and in order to make more I need a particular plant that’s... a little hard to get a hold of.” <span class="popover" data-content="he">かれ</span> responds while shrugging.
+                            `,
+                            `
+                                “Where does that <span class="popover" data-content="plant">しょくぶつ</span> grow? Maybe we could go get it for you?” Harumi continues to ask.
+                                
+                                “It <span class="popover" data-content="(はえる) grows (out of something, e.g. ground)">生える</span> right past an old cemetery that’s not too far from here. The problem is, the <span class="popover" data-content="cemetery">ぼち</span> is overflowing with words, and there’s no way of getting the <span class="popover" data-content="plant">しょくぶつ</span> without going through there. You can’t even go around, because it’s all surrounded by mountains that would take days to cross, and he might not survive for that long.” the doctor responds, not believing anyone would want to take up the task.
+                                
+                                You and Harumi look at each other, and after a moment of deliberation, nod in agreement.
+                                You’re not in a hurry anyway, as finding the treasure doesn’t seem particularly time-sensitive, and maybe you can even find out something new from the Aku no Soshiki member after <span class="popover" data-content="he">かれ</span> wakes up.
+                            `,
+                            `
+                                “We’ll go find the <span class="popover" data-content="plant">しょくぶつ</span>, we’re not scared of a few <span class="popover" data-content="words">ことば</span>!” Harumi says confidently.
+                                
+                                “Are you sure? There’s really a lot, even more than at the swamp.” the doctor warns.
+                                
+                                “We’ll be fine, and in the worst-case scenario, we can just run!” she responds with a grin.
+                            `,
+                            `
+                                After the conversation, the doctor reluctantly agrees to tell you the exact location and appearance of the <span class="popover" data-content="plant">しょくぶつ</span>.
+                                
+                                Harumi wants to depart immediately, but you and the doctor, still being worried for your safety, convince <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> that both of you should take a rest at the <span class="popover" data-content="(むら) village">村</span> first, and go the next morning.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぼちへの道 - On the way to the cemetery',
+                        text: [
+                            `
+                                The next morning you depart from the <span class="popover" data-content="(むら) village">村</span>, heading for the cemetery.
+                                
+                                Not before long do you realize that the doctor wasn’t kidding when <span class="popover" data-content="he">かれ</span> said the place was overflowing with words. You haven’t even made it to the <span class="popover" data-content="cemetery">ぼち</span> yet, as you encounter a sizable group of <span class="popover" data-content="words">ことば</span>.
+                                
+                                “It’ll be a long day, I guess.” Harumi says with a strained laugh.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぼち前 - Before cemetery',
+                            range: grade3Range,
+                            index: 0
+                        }),
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                The words leap at you after a short face-off.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                After a quick battle, the words disperse.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぼち - Cemetery 1',
+                        text: [
+                            `
+                                After a few short and uneventful encounters you make it to the <span class="popover" data-content="cemetery">ぼち</span>.
+                                
+                                There is a rusted fence surrounding it. You can’t see a gate leading inside, but it’s not needed, as the fence has plenty of gaps big enough to go through. There are plenty of tombstones, all covered in moss, and the ground is covered with thick grass. Any footpaths that might have once been here were already taken over by nature a long time ago. It seems like no one visits here anymore.
+                            `,
+                            `
+                                “According to the doctor, we need to go all the way through the <span class="popover" data-content="cemetery">ぼち</span>, and the plant should be growing in a field right past it.” Harumi says, making sure you’re on the same page.
+                                
+                                You nod and take a few steps forward, but then...
+                                “Wah!” you hear Harumi shriek.
+                            `,
+                            `
+                                
+                                You turn around, and see Harumi on the ground, after a word apparently tackled her.
+                                
+                                Not only that, even more <span class="popover" data-content="words">ことば</span> emerge from behind tombstones, from all directions.
+                                
+                                Harumi quickly gets up and takes a fighting stance, but you’re already surrounded.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぼち - Cemetery 2',
+                            range: grade3Range,
+                            index: 1
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You take on the words being back to back with Harumi.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You fight your way through the words, eventually repelling all of them.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぼち - Cemetery 3',
+                        text: [
+                            `
+                                
+                                “Whew... Let’s... let’s keep going.” Harumi utters after a difficult encounter.
+                                
+                                “We shouldn’t be that far away, the <span class="popover" data-content="cemetery">ぼち</span> isn’t supposed to be too big.” she continues trying to uplift both of your moods.
+                            `,
+                            `
+                                After continuing to walk for a few minutes, another strange incident happens.
+                                
+                                “Whoa, look over there!” Harumi exclaims, pointing ahead.
+                                
+                                “It’s a zombie!” she continues with sparkling eyes.
+                            `,
+                            `
+                                You look in the direction <span class="popover" data-content="she">かのじょ</span> pointed towards, and you see a grave from which ground is shooting up, as if someone was trying to dig their way to the surface from below.
+                                
+                                Both of you keep watching with anticipation, as the digging continues, waiting to see a <span class="popover" data-content="zombie">ゾンビ</span> or whatever it is that’s digging its way <span class="popover" data-content="(うえ へ) up (literally “to up”) (へ read as “e”)">上へ</span>.
+                            `,
+                            `
+                                After a while, a big lump of soil shoots <span class="popover" data-content="(うえ へ) up (literally “to up”) (へ read as “e”)">上へ</span>, and something emerges.
+                                
+                                “Oh... It wasn’t a <span class="popover" data-content="zombie">ゾンビ</span>.” Harumi reacts with disappointment.
+                            `,
+                            `
+                                It was just another word.
+                                
+                                And it’s coming your way.
+                                
+                                <span class="popover" data-content="And">そして</span> there’s more <span class="popover" data-content="(きている) coming">来ている</span> from the same place.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぼち - Cemetery 4',
+                            range: grade3Range,
+                            index: 2
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You brace for the impact of all the words emerging from underground and coming at you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to repel the attack.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ぼち - Cemetery 4',
+                        text: [
+                            `
+                                After the attack, you keep walking for a few minutes and finally see the <span class="popover" data-content="(でぐち) exit">出口</span>.
+                                
+                                “Hey, look, the field is right ahead!” Harumi exclaims, running towards it.
+                                
+                                You quickly follow her, and arrive at the <span class="popover" data-content="(そうげん) field">草原</span>.
+                                
+                                The <span class="popover" data-content="(そうげん) field">草原</span> is filled with grass and various flowers of all colors. It isn’t too big, all of it fits within eyeshot, as there is a cliff wall surrounding it from the opposite side of the <span class="popover" data-content="cemetery">ぼち</span>, creating a clear boundary.
+                            `,
+                            `
+                                “Let’s see, according to the doctor’s description, we’re looking for a blue flower.” Harumi says while scanning the area.
+                                
+                                “Blue flower, <span class="popover" data-content="(あおい) blue">青い</span> <span class="popover" data-content="(はな) flower">花</span>...” she keeps mumbling while searching.
+                                
+                                You look for it too, and a few minutes later you find a <span class="popover" data-content="(あおい) blue">青い</span> <span class="popover" data-content="(はな) flower">花</span> and show it <span class="popover" data-content="to her (へ read as “e”)">かのじょ へ</span>.
+                            `,
+                            `
+                                “Yeah, I think that’s the one! Good job!” Harumi confirms, giving you a thumbs-up.
+                                
+                                “Now, let’s go back before-” she suddenly stops, looking behind you.
+                                
+                                You look there as well, and see what you already expected.
+                            `,
+                            `
+                                “Well, coming here and finding the <span class="popover" data-content="(はな) flower">花</span> is only half the trip, I guess.” Harumi says with a forced smile as a group of words approaches you from the direction of the <span class="popover" data-content="cemetery">ぼち</span>.
+                                
+                                “Let’s beat’em up and get out of this place!” <span class="popover" data-content="she">かのじょ</span> continues reassuringly.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぼち - Cemetery 5',
+                            range: grade3Range,
+                            index: 3
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                The words attack you, with your back against a cliff, this will be a hard battle.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You successfully defend yourselves, and the words return where they came from.
+                            `
+                        ]
+                    },
+                    {
+                        name: '村 - Village 1',
+                        text: [
+                            `
+                                After a few more encounters on the way, you return to the <span class="popover" data-content="(むら) village">村</span> with the flower.
+                                
+                                The doctor prepares the medicine using it, and administers it to the patient.
+                            `,
+                            `
+                                All that is left to do now, is to wait, so as the sun starts to set you decide to stay at the <span class="popover" data-content="(むら) village">村</span> for the <span class="popover" data-content="(よる) night">夜</span>, and hope that all goes well, and the unconscious Aku no Soshiki member wakes up by tomorrow.
+                            `
+                        ]
+                    },
+                    {
+                        name: '村 - Village 2',
+                        text: [
+                            `
+                                “Good news; he seems to be improving!” says the doctor.
+                                
+                                After waking up in the <span class="popover" data-content="(あさ) morning">朝</span>, you decided to go check up on the man and went to see the doctor.
+                                
+                                “Is he awake? Can he talk?” Harumi asks, being both relieved, and hopeful that you might learn some new information from the man.
+                            `,
+                            `
+                                “He did wake up, but he’s still very weak. I wouldn’t recommend talking to him right now; I’d suggest you wait until tomorrow if you want to question him.” the doctor responds.
+                                
+                                Suddenly, a loud, dull noise is heard outside.
+                                “Aaaa! Help!” a shriek follows.
+                                
+                                “What’s happening? Let’s take a look.” Harumi says before storming out the door.
+                            `,
+                            `
+                                Once outside, you see a group of words has made its way into the <span class="popover" data-content="(むら) village">村</span>. Some people are running away inside buildings, some are standing still, thunderstruck by the situation.
+                                
+                                “How did they get in here? Anyway, let’s clean this up!” Harumi exclaims, not hiding her surprise.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: '村 - Village 3',
+                            range: grade3Range,
+                            index: 4
+                        }),
+                        totalQuestions: 15,
+                        beforeText: [
+                            `
+                                You and Harumi charge at the words that made their way into the village.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                The words scatter midway through the battle.
+                            `
+                        ]
+                    },
+                    {
+                        name: '村 - Village 4',
+                        text: [
+                            `
+                                “They... didn’t seem particularly vicious, did they?” Harumi says with consternation.
+                                
+                                The words fled when they still had a big numbers advantage. While they do often <span class="popover" data-content="flee">にげる</span> when their numbers get low, they usually put up more of a fight before that happens.
+                                
+                                “He’s gone?!”
+                                Suddenly, you hear the doctor’s voice from back inside.
+                            `,
+                            `
+                                Both of you turn around and run inside, finding an empty bed where the Aku no Soshiki member was resting.
+                                
+                                “<span class="popover" data-content="He">かれ</span> ran away?” Harumi <span class="popover" data-content="(きく) asks">聞く</span> in confusion.
+                                
+                                “<span class="popover" data-content="He">かれ</span> was still very weak, <span class="popover" data-content="he">かれ</span> couldn’t have gone far alone.” the doctor <span class="popover" data-content="(こたえる) responds">答える</span> in a similar manner.
+                                
+                                Then, looking out a window, you notice a peculiar scene, and point everyone’s attention towards it.
+                            `,
+                            `
+                                There’s another man, supposedly another Aku no Soshiki member, carrying the ill individual while <span class="popover" data-content="running away">にげている</span>.
+                                
+                                “So the attack was a diversion created to retrieve him? I guess now it makes sense why the words gave up so quickly. And we didn’t get to <span class="popover" data-content="(きく) ask">聞く</span> him anything yet!” Harumi says dejectedly.
+                                
+                                “But, at least he seems fine, so there's that!” she <span class="popover" data-content="continues">つづける</span>, trying to find a silver lining.
+                            `,
+                            `
+                                After the whole situation unraveled, there doesn’t seem to be anything more to do in this <span class="popover" data-content="(むら) village">村</span>, so you and Harumi decide to head for the next destination.
+                                
+                                “According to the map our next destination is... well, it’s a little far, but there seems to be a small <span class="popover" data-content="(むら) village">村</span> on the way, so let’s aim for it first so we can take a break there!” Harumi happily exclaims while checking the map.
                             `
                         ]
                     },
