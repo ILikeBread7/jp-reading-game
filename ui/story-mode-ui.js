@@ -93,12 +93,14 @@ class KantoreStoryModeUi {
     }
 
     _createMenus() {
+        const grade1Range = new StageRange(KantoreLevels.getKanjiLevelsGrade1Range, 4);
+
         const hubMenu = [
             {
                 name: 'そうげん - Field',
                 entries: [
                     {
-                        name: `ふしぎなおとこ - Mysterious man`,
+                        name: 'ふしぎなおとこ - Mysterious man',
                         text: [
                             `
                                 Ugh... Hey, don’t just appear all of a sudden!”
@@ -164,7 +166,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `Fence - へい (${KantoreLevels.getLevelName(1)})`,
+                        name: 'Fence - へい (${KantoreLevels.getLevelName(1)})',
                         dict: dicts.getLevelDict(1),
                         totalQuestions: 5,
                         beforeText: [
@@ -180,7 +182,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `おじいさん - Old man 2`,
+                        name: 'おじいさん - Old man 2',
                         text: [
                             `
                                 After a not so fierce battle the old man taps your shoulder and says
@@ -206,7 +208,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `もり - Forest 1`,
+                        name: 'もり - Forest 1',
                         text: [
                             `
                                 You walk on a trail through the forest.
@@ -231,7 +233,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `もり - Forest 2 (${KantoreLevels.getLevelName(4)})`,
+                        name: 'もり - Forest 2 (${KantoreLevels.getLevelName(4)})',
                         dict: dicts.createComplexLevelDict(2, 4),
                         totalQuestions: 10,
                         beforeText: [
@@ -246,7 +248,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `いけ - Pond 1`,
+                        name: 'いけ - Pond 1',
                         text: [
                             `
                                 After walking for a little bit longer you come across the pond the old man told you about.
@@ -276,7 +278,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `いけ - Pond 2 (${KantoreLevels.getLevelName(10)})`,
+                        name: 'いけ - Pond 2 (${KantoreLevels.getLevelName(10)})',
                         dict: dicts.createComplexLevelDict(5, 10),
                         totalQuestions: 15,
                         beforeText: [
@@ -291,7 +293,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `いけ - Pond 3`,
+                        name: 'いけ - Pond 3',
                         text: [
                             `
                                 After the fight you explain the situation to the lady.
@@ -314,7 +316,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `みちのとちゅう - On the way`,
+                        name: 'みちのとちゅう - On the way',
                         text: [
                             `
                                 “Oh, right. I forgot to introduce myself! I’m Harumi, nice to meet you!” your new companion says, introducing herself.
@@ -352,7 +354,7 @@ class KantoreStoryModeUi {
                 name: 'むら - Village',
                 entries: [
                     {
-                        name: `もん - Gate 1`,
+                        name: 'もん - Gate 1',
                         text: [
                             `
                                 The village is surrounded by a wooden palisade the height of about two meters (about seven feet).
@@ -370,7 +372,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `もん - Gate 2 (${KantoreLevels.getLevelName(11)})`,
+                        name: 'もん - Gate 2 (${KantoreLevels.getLevelName(11)})',
                         dict: dicts.getLevelDict(11),
                         totalQuestions: 5,
                         beforeText: [
@@ -385,7 +387,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `もん - Gate 3`,
+                        name: 'もん - Gate 3',
                         text: [
                             `
                                 “Seems like it’s all cleaned up!” Harumi exclaims proudly before facing towards the gate.
@@ -415,7 +417,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `むら - Village 1 (${KantoreLevels.getLevelName(14)})`,
+                        name: 'むら - Village 1 (${KantoreLevels.getLevelName(14)})',
                         dict: dicts.createComplexLevelDict(12, 14),
                         totalQuestions: 10,
                         beforeText: [
@@ -430,7 +432,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `むら - Village 2`,
+                        name: 'むら - Village 2',
                         text: [
                             `
                                 After things have calmed down Harumi comes towards one of the guards and asks.
@@ -454,7 +456,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `ないてるこ - Crying child 1`,
+                        name: 'ないてるこ - Crying child 1',
                         text: [
                             `
                                 Looking in the direction the cry is coming from, you see a little girl bawling her eyes out.
@@ -468,7 +470,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `どろぼう - Thief 1 (${KantoreLevels.getLevelName(20)})`,
+                        name: 'どろぼう - Thief 1 (${KantoreLevels.getLevelName(20)})',
                         dict: dicts.createComplexLevelDict(15, 20),
                         totalQuestions: 15,
                         beforeText: [
@@ -483,7 +485,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `どろぼう - Thief 2`,
+                        name: 'どろぼう - Thief 2',
                         text: [
                             `
                                 When you were too busy fighting words to notice, Harumi sprinted past you, caught up with the man, and apprehended him.
@@ -515,7 +517,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `ないてるこ - Crying child 2`,
+                        name: 'ないてるこ - Crying child 2',
                         text: [
                             `
                                 “That’s my treasure map!” she says as her face lights up.
@@ -546,7 +548,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: `むらをたつ - Leaving the village`,
+                        name: 'むらをたつ - Leaving the village',
                         text: [
                             `
                                 In order to gather more information, you ask the little girl if she knows what kind of treasure the map is leading to, but neither she, nor her parents seem to know.
@@ -566,6 +568,281 @@ class KantoreStoryModeUi {
                                 “Okay, let’s see, according to the map the first place we need to aim for is...” Harumi says while checking the <span class="popover" data-content="map">ちず</span>.
                                 
                                 “The Chiropteran... C-Cave?” she stumbles over her words for a moment, looking quite distraught.
+                            `
+                        ]
+                    },
+                ]
+            },
+            {
+                name: 'たびがはじまる - Journey begins',
+                entries: [
+                    {
+                        name: 'どうくつ - Cave 1',
+                        text: [
+                            `
+                                The <span class="popover" data-content="cave">どうくつ</span> is dark, lit only by the light of your torch. There are water droplets dripping from the ceiling, resonating every time they reach the floor.
+                                
+                                Suddenly, a swarm of bats flies overhead.
+                                “Aaaa!” Harumi shrieks, cowers in fear, and covers <span class="popover" data-content="her">かのじょ の</span> head.
+                                
+                                You got startled. Not by the <span class="popover" data-content="bats">コウモリ</span>, but by Harumi’s scream.
+                                Once you realize what happened, you turn around and ask her what’s wrong.
+                            `,
+                            `
+                                “N-Nothing.... I... I just don’t like <span class="popover" data-content="bats">コウモリ</span>...” <span class="popover" data-content="she">かのじょ</span> responds with a shaking voice and tears in <span class="popover" data-content="her">かのじょ の</span> eyes.
+                                “L-Let’s go, I don’t want to stay here for too long...” <span class="popover" data-content="she">かのじょ</span> adds as <span class="popover" data-content="she">かのじょ</span> stands up and starts pushing you forward.
+                                
+                                It doesn’t seem like <span class="popover" data-content="she">かのじょ</span> wants to talk about it any further, so you decide to just keep going and get out of this <span class="popover" data-content="cave">どうくつ</span> as soon as possible.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'どうくつ - Cave 2',
+                        text: [
+                            `
+                                “Finally, we’re almost out!” Harumi exclaims as you notice the exit, and finally see some natural light for a change.
+                                
+                                Thankfully, she seems completely relieved of the fear that accompanied her all the way through the cave.
+                                
+                                “At least we didn’t get attacked by any words this time!” <span class="popover" data-content="she">かのじょ</span> continues, with a big smile on <span class="popover" data-content="her">かのじょ の</span> face.
+                                
+                                Then, you hear a little squishy sound.
+                            `,
+                            `
+                                “Huh? I think I stepped on something..." says Harumi, and the attention of both of you gets directed towards what’s under <span class="popover" data-content="her">かのじょ の</span> feet.
+                                
+                                “Wah?!” <span class="popover" data-content="she">かのじょ</span> recoils after seeing what <span class="popover" data-content="she">かのじょ</span> has just <span class="popover" data-content="stepped">ふんだ</span> on.
+                                
+                                It was a word.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment('どうくつ - Cave 3', grade1Range, 0),
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                The word seems to have called for reinforcements, as other words suddenly appear and attack you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You and Harumi beat most of them, as the rest run away in all directions.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'どうくつ - Cave 4',
+                        text: [
+                            `
+                                “Whew, good riddance.” Harumi says with her hands on her hips, seemingly relieved after the battle.
+                                
+                                “Let’s see, by now we should be... Oh, there! You can see it!” she starts speaking while checking the map, and then pointing ahead right after.
+                            `,
+                            `
+                                “Akamachi city, our next destination! If we keep going <span class="popover" data-content="we">わたしたち</span> should make it by sunset.” she says with a bright smile.
+                                
+                                “Come on, let’s keep going. I want to get away from this cave as soon as possible.” <span class="popover" data-content="she">かのじょ</span> continues, nudging you forwards, and the two of you resume your journey with a new destination.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'あかまち - Akamachi 1',
+                        text: [
+                            `
+                                
+                                You arrive in Akamachi city. This time, thankfully, with no issues at the gate.
+                                
+                                The <span class="popover" data-content="city">まち</span> is surrounded by a brick wall, all buildings in the vicinity are also built with <span class="popover" data-content="brick">れんが</span>, all of them <span class="popover" data-content="red">あかい</span>. Most of the roofs around are also <span class="popover" data-content="red">あかい</span>. According to the map, the city’s name apparently means “<span class="popover" data-content="Red">あかい</span> <span class="popover" data-content="City">まち</span>”. The origin of the name seems quite obvious looking at your surroundings.
+                                
+                                “We’re finally here. Okay, let’s find an inn before the sun comes down.” Harumi says while stretching.
+                            `,
+                            `
+                                “Hm?” a moment later, she starts looking around in all directions.
+                                
+                                You wonder what’s wrong, but then it hits <span class="popover" data-content="you">あなた</span> too.
+                                
+                                <span class="popover" data-content="you (plural)">あなたたち</span> are being watched.
+                            `,
+                            `
+                                <span class="popover" data-content="You">あなた</span> lock eyes with Harumi, both of you with stern expressions.
+                                
+                                “Let’s go.” she says.
+                                
+                                <span class="popover" data-content="You">あなた</span> nod in agreement, and together <span class="popover" data-content="you (plural)">あなたたち</span> start looking for an inn, when suddenly.
+                            `,
+                            `
+                                “Aaaaa!” <span class="popover" data-content="you">あなた</span> hear a piercing scream coming from the nearby square.
+                                
+                                Harumi immediately rushes towards there, with <span class="popover" data-content="you">あなた</span> following closely behind, and when there, <span class="popover" data-content="you">あなた</span> find a woman, terrified, lying on the ground, seemingly the source of the <span class="popover" data-content="scream">ひめい</span>, surrounded by words, with everyone around in panic.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'うれいてるおんな - Distressed woman 1',
+                        text: [
+                            `
+                                “Help!” she shouts as soon as <span class="popover" data-content="she">かのじょ</span> notices you.
+                                
+                                “You two, please, <span class="popover" data-content="help">たすけて</span>!” <span class="popover" data-content="she">かのじょ</span> continues to shout while looking straight at <span class="popover" data-content="you (plural)">あなたたち</span>, and reaching <span class="popover" data-content="her">かのじょ の</span> hand in <span class="popover" data-content="your (plural)">あなたたち の</span> direction.
+                                
+                                “Don’t worry, everything will be fine!” Harumi responds as <span class="popover" data-content="she">かのじょ</span> plunges into combat, with you following shortly after.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment('ひろばのことば - Words in city square', grade1Range, 1),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You and Harumi attack the words surrounding the distressed woman.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Most of the words run away soon after the first few are defeated.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'うれいてるおんな - Distressed woman 2',
+                        text: [
+                            `
+                                “Oh, thank you! What would I have done if it wasn’t for <span class="popover" data-content="you (plural)">あなたたち</span>.” the woman says while approaching Harumi with open arms.
+                                
+                                “No problem, it’s- h-huh?” as Harumi responds, the <span class="popover" data-content="(おんな) woman">女</span> suddenly hugs <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span>.
+                            `,
+                            `
+                                “Thank you so much once again, now, farewell, my heroes.” the <span class="popover" data-content="(おんな) woman">女</span> says after letting go of Harumi, who’s just standing there with a blank expression.
+                                
+                                As the <span class="popover" data-content="(おんな) woman">女</span> walks away, Harumi, seemingly having noticed something wrong, pats her pockets. Then, <span class="popover" data-content="she">かのじょ</span> points at the <span class="popover" data-content="(おんな) woman">女</span> and shouts.
+                                “Hey, <span class="popover" data-content="she">かのじょ</span> stole the map!”
+                            `,
+                            `
+                                The woman starts running away, and you and Harumi chase after her.
+                                
+                                Unfortunately for her, as she enters a long alley, you two split up, Harumi going around, and together, <span class="popover" data-content="you (plural)">あなたたち</span> cut off <span class="popover" data-content="her">かのじょ の</span> path, you from behind, and Harumi from ahead.
+                            `,
+                            `
+                                “Tch! How pesky of <span class="popover" data-content="her">かのじょ の</span>.” the woman says after she notices <span class="popover" data-content="she">かのじょ</span> has no way to escape.
+                                
+                                “Take this!” <span class="popover" data-content="she">かのじょ</span> continues while sending out words to fight you.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment('うれいてるおんな - Distressed woman 3', grade1Range, 2),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You get attacked by the words the woman sent out.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You beat your half of the words, with Harumi also beating hers.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'うれいてるおんな - Distressed woman 4',
+                        text: [
+                            `
+                                You apprehend the woman, and ask why she tried to steal the map.
+                                
+                                “Because the boss told me to, duh.” <span class="popover" data-content="she">かのじょ</span> answers.
+                                
+                                It became clear that <span class="popover" data-content="she">かのじょ</span> is, in fact, a member of Aku no Soshiki, but <span class="popover" data-content="she">かのじょ</span> doesn’t seem to know much of anything about you, the map, or the organization. It seems <span class="popover" data-content="she">かのじょ</span> is just a low level grunt.
+                            `,
+                            `
+                                After being unable to extract any more valuable information from her, you hand <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> over to the guards and start looking for an inn.
+                                
+                                Unfortunately, even after the woman is arrested, you still have a feeling of being watched.
+                            `,
+                            `
+                                You manage to find a place to stay for the night, <span class="popover" data-content="you (plural)">あなたたち</span> eat dinner, and being cautious about <span class="popover" data-content="your (plural)">あなたたち の</span> experience in the city so far, you make sure to properly lock the door to your room.
+                                
+                                Thankfully, the night passes without an incident, and in the early morning <span class="popover" data-content="you (plural)">あなたたち</span> arrive at the city gate.
+                            `,
+                            `
+                                Unfortunately, as soon as <span class="popover" data-content="you (plural)">あなたたち</span> leave the city, <span class="popover" data-content="you (plural)">あなたたち</span> are approached by three suspicious looking men.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'あやしい男たち - Suspicious men 1',
+                        text: [
+                            `
+                                “I’ll be straight to the point. Give me the map, and no one will get hurt.” one of the men says.
+                                
+                                “I didn’t want to do this, but what can I do after she failed.” he continues, seemingly referring to the woman who tried to rob you earlier. As expected, these <span class="popover" data-content="(おとこたち) men">男たち</span> also seem to be connected to Aku no Soshiki.
+                                
+                                “Why do you want this map so badly anyway?” Harumi asks him.
+                                
+                                “That’s none of your business, now, give it to me, or <span class="popover" data-content="you (plural)">あなたたち</span> will regret it.” <span class="popover" data-content="he">かれ</span> responds.
+                            `,
+                            `
+                                “Make me.” she <span class="popover" data-content="responds">こたえる</span> before mockingly sticking out <span class="popover" data-content="her">かのじょ の</span> tongue.
+                                
+                                “I didn’t want to resort to these kinds of measures, but you leave me no choice.” <span class="popover" data-content="he">かれ</span> <span class="popover" data-content="responds">こたえる</span> while all three of them send out words to fight <span class="popover" data-content="you (plural)">あなたたち</span>.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment('あやしい男たち - Suspicious men 2', grade1Range, 3),
+                        totalQuestions: 15,
+                        beforeText: [
+                            `
+                                You and Harumi get attacked by the words sent out by the suspicious men.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                After a tough battle you manage to beat all of the words sent out.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'あやしい男たち - Suspicious men 3',
+                        text: [
+                            `
+                                “W-What? Y-You, <span class="popover" data-content="you (plural)">あなたたち</span> won?” the man says in disbelief.
+                                All three of them seem completely shocked at <span class="popover" data-content="your (plural)">あなたたち の</span> performance.
+                                
+                                “Damn, skedaddle!” he <span class="popover" data-content="says">いう</span> before they all start running away.
+                                
+                                “Not so fast!” Harumi shouts before giving chase.
+                            `,
+                            `
+                                The two underlings manage to escape, but Harumi successfully captures the <span class="popover" data-content="(おとこ) man">男</span> you were talking to the entire time.
+                                
+                                “Oh come on...” he laments <span class="popover" data-content="his">かれ の</span> capture.
+                                
+                                “Now tell me, do you know either of us?” she asks him, motioning at you.
+                            `,
+                            `
+                                “So, you really did lose <span class="popover" data-content="your">あなた の</span> memory, huh?” <span class="popover" data-content="he">かれ</span> answers, smirking.
+                                
+                                “I’m the one asking questions here!” she doesn’t back down, and slightly twists the <span class="popover" data-content="(おとこの) man’s">男の</span> arm.
+                                
+                                “Ugh... Okay, okay. I don’t know you, girl, but the other one is an agent, like, law enforcement, or something, who was tracking us down back in the other world. That’s all I know, <span class="popover" data-content="I">わたし</span> don’t know your names or why you’re here or anything.” <span class="popover" data-content="he">かれ</span> reveals, visibly in pain.
+                            `,
+                            `
+                                “Why does <span class="popover" data-content="your">あなた の</span> boss want the map?” <span class="popover" data-content="she">かのじょ</span> continues the questioning.
+                                
+                                “<span class="popover" data-content="I">わたし</span> don’t know, <span class="popover" data-content="he">かれ</span> just <span class="popover" data-content="says">いう</span> it’s top priority.” <span class="popover" data-content="he">かれ</span> answers without revealing much.
+                            `,
+                            `
+                                <span class="popover" data-content="He">かれ</span> doesn’t seem to know much more, and vehemently refuses to tell <span class="popover" data-content="you (plural)">あなたたち</span> the location of their hideout, so Harumi finishes <span class="popover" data-content="her">かのじょ の</span> questioning, and hands <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span> over to the guards.
+                                
+                                “Turns out <span class="popover" data-content="you">あなた</span> are in law enforcement, agent! Maybe <span class="popover" data-content="you">あなた</span> are on a secret mission?” Harumi <span class="popover" data-content="says">いう</span>, laughing and nudging you with <span class="popover" data-content="her">かのじょ の</span> elbow. You’re not any less surprised than her.
+                                
+                                “I wonder if there’s a connection between both of <span class="popover" data-content="us">わたしたち</span> coming here... Hey, maybe <span class="popover" data-content="I">わたし</span> am an agent too?! Wouldn’t that be cool?” <span class="popover" data-content="she">かのじょ</span> adds, cheerfully.
+                            `,
+                            `
+                                “Anyway, now <span class="popover" data-content="we">わたしたち</span> can finally move on to the next destination. Let’s see...” Harumi checks the map again after all is said and done.
+                                
+                                “Our <span class="popover" data-content="next">つぎ の</span> <span class="popover" data-content="destination">もくてきち</span> is the... nearby swamp?”
                             `
                         ]
                     },
@@ -696,6 +973,55 @@ class KantoreStoryModeUi {
         }
     }
 
+}
+
+class StageRange {
+    
+    /**
+     * 
+     * @param {[number]} range 
+     * @param {number} battleLevelsNumber 
+     */
+    constructor(range, battleLevelsNumber) {
+        this._range = range;
+        this._battleLevelsNumber = battleLevelsNumber;
+        this._levelIncrement = Math.floor((range[1] - range[0] + 1) / battleLevelsNumber);
+        this._ranges = [...KantoreUtils.range(0, battleLevelsNumber - 1)]
+            .map(index => this._calculateForIndex(index));
+    }
+
+    /**
+     * 
+     * @param {number} index 
+     * @returns {{ start: number, end: number }}
+     */
+    getForIndex(index) {
+        return this._ranges[index];
+    }
+
+    _calculateForIndex(index) {
+        return {
+            start : this._range[0] + this._levelIncrement * index,
+            end: index < this._battleLevelsNumber - 1
+                ? this._range[0] + this._levelIncrement * (index + 1) - 1
+                : this._range[1]    // if last use end of range
+        };
+    }
+
+}
+
+/**
+ * 
+ * @param {string} name 
+ * @param {[{ start: number, end: number }]} range 
+ * @param {number} index 
+ * @returns {{ name: string, dict: ComplexDict }}
+ */
+function storyFragment(name, range, index) {
+    return {
+        name: `${name} (${KantoreLevels.getLevelName(range.getForIndex(index).start)})`,
+        dict: dicts.createComplexLevelDict(range.getForIndex(index).start, range.getForIndex(index).end)
+    }
 }
 
 export const storyModeUi = new KantoreStoryModeUi();
