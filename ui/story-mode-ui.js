@@ -166,7 +166,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'Fence - へい (${KantoreLevels.getLevelName(1)})',
+                        name: 'Fence - へい (Level 1)',
                         dict: dicts.getLevelDict(1),
                         totalQuestions: 5,
                         beforeText: [
@@ -233,7 +233,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'もり - Forest 2 (${KantoreLevels.getLevelName(4)})',
+                        name: 'もり - Forest 2 (Level 4)',
                         dict: dicts.createComplexLevelDict(2, 4),
                         totalQuestions: 10,
                         beforeText: [
@@ -278,7 +278,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'いけ - Pond 2 (${KantoreLevels.getLevelName(10)})',
+                        name: 'いけ - Pond 2 (Level 10)',
                         dict: dicts.createComplexLevelDict(5, 10),
                         totalQuestions: 15,
                         beforeText: [
@@ -372,7 +372,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'もん - Gate 2 (${KantoreLevels.getLevelName(11)})',
+                        name: 'もん - Gate 2 (Level 11)',
                         dict: dicts.getLevelDict(11),
                         totalQuestions: 5,
                         beforeText: [
@@ -417,7 +417,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'むら - Village 1 (${KantoreLevels.getLevelName(14)})',
+                        name: 'むら - Village 1 (Level 14)',
                         dict: dicts.createComplexLevelDict(12, 14),
                         totalQuestions: 10,
                         beforeText: [
@@ -470,7 +470,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'どろぼう - Thief 1 (${KantoreLevels.getLevelName(20)})',
+                        name: 'どろぼう - Thief 1 (Level 20)',
                         dict: dicts.createComplexLevelDict(15, 20),
                         totalQuestions: 15,
                         beforeText: [
@@ -679,7 +679,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'うれいてるおんな - Distressed woman 1',
+                        name: '女 - Woman 1',
                         text: [
                             `
                                 “Help!” she shouts as soon as <span class="popover" data-content="she">かのじょ</span> notices you.
@@ -691,7 +691,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment('ひろばのことば - Words in city square', grade1Range, 1),
+                        ...storyFragment('ひろば - City square', grade1Range, 1),
                         totalQuestions: 10,
                         beforeText: [
                             `
@@ -705,7 +705,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'うれいてるおんな - Distressed woman 2',
+                        name: '女 - Woman 2',
                         text: [
                             `
                                 “Oh, thank you! What would I have done if it wasn’t for <span class="popover" data-content="you (plural)">あなたたち</span>.” the woman says while approaching Harumi with open arms.
@@ -731,7 +731,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment('うれいてるおんな - Distressed woman 3', grade1Range, 2),
+                        ...storyFragment('女 - Woman 3', grade1Range, 2),
                         totalQuestions: 10,
                         beforeText: [
                             `
@@ -745,7 +745,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'うれいてるおんな - Distressed woman 4',
+                        name: '女 - Woman 4',
                         text: [
                             `
                                 You apprehend the woman, and ask why she tried to steal the map.
@@ -770,7 +770,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'あやしい男たち - Suspicious men 1',
+                        name: '男たち - Men 1',
                         text: [
                             `
                                 “I’ll be straight to the point. Give me the map, and no one will get hurt.” one of the men says.
@@ -789,7 +789,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment('あやしい男たち - Suspicious men 2', grade1Range, 3),
+                        ...storyFragment('男たち - Men 2', grade1Range, 3),
                         totalQuestions: 15,
                         beforeText: [
                             `
@@ -803,7 +803,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'あやしい男たち - Suspicious men 3',
+                        name: '男たち - Men 3',
                         text: [
                             `
                                 “W-What? Y-You, <span class="popover" data-content="you (plural)">あなたたち</span> won?” the man says in disbelief.
@@ -1019,7 +1019,7 @@ class StageRange {
  */
 function storyFragment(name, range, index) {
     return {
-        name: `${name} (${KantoreLevels.getLevelName(range.getForIndex(index).start)})`,
+        name: `${name} (Level ${range.getForIndex(index).start})`,
         dict: dicts.createComplexLevelDict(range.getForIndex(index).start, range.getForIndex(index).end)
     }
 }
