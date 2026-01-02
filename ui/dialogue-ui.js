@@ -216,8 +216,8 @@ class KantoreDialogue {
             if (rightBound > containerWidth) {
                 const offsetPx = -(rightBound - containerWidth);
                 const offsetValue = popoverWidth >= containerWidth - margin * 2
-                    ? `${offsetPx}px`
-                    : `${offsetPx - margin}px`;
+                    ? `${Math.trunc(offsetPx)}px`
+                    : `${Math.trunc(offsetPx - margin)}px`;
 
                 popover.style.setProperty(OFFSET_PROPERTY, offsetValue);
             } else {
