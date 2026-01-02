@@ -94,6 +94,7 @@ class KantoreStoryModeUi {
 
     _createMenus() {
         const grade1Range = new StageRange(KantoreLevels.getKanjiLevelsGrade1Range, 4);
+        const grade2Range = new StageRange(KantoreLevels.getKanjiLevelsGrade2Range, 4);
 
         const hubMenu = [
             {
@@ -618,7 +619,11 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment('どうくつ - Cave 3', grade1Range, 0),
+                        ...storyFragment({
+                            name: 'どうくつ - Cave 3',
+                            range: grade1Range,
+                            index: 0
+                        }),
                         totalQuestions: 5,
                         beforeText: [
                             `
@@ -691,7 +696,11 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment('ひろば - City square', grade1Range, 1),
+                        ...storyFragment({
+                            name: 'ひろば - City square',
+                            range: grade1Range,
+                            index: 1
+                        }),
                         totalQuestions: 10,
                         beforeText: [
                             `
@@ -731,7 +740,11 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment('女 - Woman 3', grade1Range, 2),
+                        ...storyFragment({
+                            name: '女 - Woman 3',
+                            range: grade1Range,
+                            index: 2
+                        }),
                         totalQuestions: 10,
                         beforeText: [
                             `
@@ -789,7 +802,11 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment('男たち - Men 2', grade1Range, 3),
+                        ...storyFragment({
+                            name: '男たち - Men 2',
+                            range: grade1Range,
+                            index: 3
+                        }),
                         totalQuestions: 15,
                         beforeText: [
                             `
@@ -843,6 +860,58 @@ class KantoreStoryModeUi {
                                 “Anyway, now <span class="popover" data-content="we">わたしたち</span> can finally move on to the next destination. Let’s see...” Harumi checks the map again after all is said and done.
                                 
                                 “Our <span class="popover" data-content="next">つぎ の</span> <span class="popover" data-content="destination">もくてきち</span> is the... nearby swamp?”
+                            `
+                        ]
+                    },
+                ]
+            },
+            { 
+                name: 'ぬま - Swamp',
+                entries: [
+                    {
+                        name: 'ぬま - Swamp 1',
+                        text: [
+                            `
+                                After leaving Akamachi city you arrive at <span class="popover" data-content="your (plural)">あなたたち の</span> next destination, a nearby <span class="popover" data-content="swamp">ぬま</span>.
+                                
+                                According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic <span class="popover" data-content="swamp">ぬま</span> gas filling the air making staying here for too long highly hazardous, or even deadly. On top of that, the sulfuric smell is nearly unbearable.
+                                
+                                If <span class="popover" data-content="your (plural)">あなたたち の</span> are going to go through this place, <span class="popover" data-content="your (plural)">あなたたち の</span> need to do it quickly.
+                            `,
+                            `
+                                “Hey, look! A snake!” Harumi exclaims happily, smiling from ear to ear, seemingly with no care in the world, running towards and pointing at a <span class="popover" data-content="snake">へび</span> that’s slithering on the ground.
+                                
+                                <span class="popover" data-content="You">あなた</span> would never expect anyone to have as much fun at a <span class="popover" data-content="swamp">ぬま</span> as Harumi seems to have right now. <span class="popover" data-content="She">かのじょ</span> is excitedly running around, finding <span class="popover" data-content="snakes">へび</span>, frogs, dragonflies, and all sorts of other creatures.
+                                
+                                As <span class="popover" data-content="you">あなた</span> are about to tell her to be careful about where <span class="popover" data-content="she">かのじょ</span> is walking, the place not being particularly safe to run around mindlessly, what <span class="popover" data-content="you">あなた</span> expected to happen, <span class="popover" data-content="happens">おこる</span>.
+                            `,
+                            `
+                                “Uaa!” Harumi cries out as <span class="popover" data-content="she">かのじょ</span> falls into a bog, with water all the way up to <span class="popover" data-content="her">かのじょ の</span> waist.
+                                
+                                “I-<span class="popover" data-content="I">わたし</span> think <span class="popover" data-content="I">わたし</span> am stuck...” <span class="popover" data-content="she">かのじょ</span> says apologetically, being unable to free herself despite all attempts to twist <span class="popover" data-content="her">かのじょ の</span> body and reach one of the nearby plants to try to pull herself out.
+                            `,
+                            `
+                                “Oh no!” suddenly, <span class="popover" data-content="she">かのじょ</span> yells out, noticing a terrible situation.
+                                
+                                Both of you became surrounded by words, and <span class="popover" data-content="she">かのじょ</span> cannot move.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyFragment({
+                            name: 'ぬま - Swamp 2',
+                            range: grade2Range,
+                            index: 0
+                        }),
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                The words strike and you fight back, with Harumi being unable to help this time, still being stuck in the bog.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You fight valiantly, protecting not only yourself, but also immobilized Harumi, and manage to repel the assault.
                             `
                         ]
                     },
@@ -1012,14 +1081,12 @@ class StageRange {
 
 /**
  * 
- * @param {string} name 
- * @param {[{ start: number, end: number }]} range 
- * @param {number} index 
+ * @param {{ name: string, range: [number], index: number }}
  * @returns {{ name: string, dict: ComplexDict }}
  */
-function storyFragment(name, range, index) {
+function storyFragment({name, range, index}) {
     return {
-        name: `${name} (Level ${range.getForIndex(index).start})`,
+        name: `${name} (Level ${range.getForIndex(index).end})`,
         dict: dicts.createComplexLevelDict(range.getForIndex(index).start, range.getForIndex(index).end)
     }
 }
