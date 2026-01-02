@@ -521,7 +521,7 @@ class KantoreStoryModeUi {
                                 “That’s my treasure map!” she says as her face lights up.
                                 “This is the last thing my grandpa left me.” <span class="popover" data-content="she">かのじょ</span> continues.
                                 
-                                You return the <span class="popover" data-content="map">ちず</span> <span class="popover" data-content="to her (へ - grammar particle read as “e”)">かのじょ へ</span> and <span class="popover" data-content="she">かのじょ</span> looks at it for a moment, looks back at you, and continues.
+                                You return the <span class="popover" data-content="map">ちず</span> <span class="popover" data-content="to her (へ read as “e”)">かのじょ へ</span> and <span class="popover" data-content="she">かのじょ</span> looks at it for a moment, looks back at you, and continues.
                                 
                                 “Do you think you can find this <span class="popover" data-content="treasure">たから</span>? If you promise to split it with me, you can borrow my <span class="popover" data-content="map">ちず</span>!”
                             `,
