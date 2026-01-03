@@ -620,7 +620,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'どうくつ - Cave 3',
                             range: grade1Range,
                             index: 0
@@ -697,7 +697,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ひろば - City square',
                             range: grade1Range,
                             index: 1
@@ -741,7 +741,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: '女 - Woman 3',
                             range: grade1Range,
                             index: 2
@@ -803,7 +803,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: '男たち - Men 2',
                             range: grade1Range,
                             index: 3
@@ -899,7 +899,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぬま - Swamp 2',
                             range: grade2Range,
                             index: 0
@@ -969,7 +969,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぬま - Swamp 5',
                             range: grade2Range,
                             index: 1
@@ -1004,7 +1004,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぬま - Swamp 7',
                             range: grade2Range,
                             index: 2
@@ -1067,7 +1067,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぬま - Swamp 10',
                             range: grade2Range,
                             index: 3
@@ -1149,7 +1149,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぼち前 - Before cemetery',
                             range: grade3Range,
                             index: 0
@@ -1191,7 +1191,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぼち - Cemetery 2',
                             range: grade3Range,
                             index: 1
@@ -1244,7 +1244,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぼち - Cemetery 4',
                             range: grade3Range,
                             index: 2
@@ -1295,7 +1295,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: 'ぼち - Cemetery 5',
                             range: grade3Range,
                             index: 3
@@ -1351,7 +1351,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        ...storyFragment({
+                        ...storyBattleFragment({
                             name: '村 - Village 3',
                             range: grade3Range,
                             index: 4
@@ -1542,8 +1542,6 @@ class StageRange {
         this._range = range;
         this._battleLevelsNumber = battleLevelsNumber;
         this._levelIncrement = Math.floor((range[1] - range[0] + 1) / battleLevelsNumber);
-        this._ranges = [...KantoreUtils.range(0, battleLevelsNumber - 1)]
-            .map(index => this._calculateForIndex(index));
     }
 
     /**
@@ -1552,10 +1550,6 @@ class StageRange {
      * @returns {{ start: number, end: number }}
      */
     getForIndex(index) {
-        return this._ranges[index];
-    }
-
-    _calculateForIndex(index) {
         return {
             start : this._range[0] + this._levelIncrement * index,
             end: index < this._battleLevelsNumber - 1
@@ -1568,14 +1562,16 @@ class StageRange {
 
 /**
  * 
- * @param {{ name: string, range: [number], index: number }}
+ * @param {{ name: string, range: StageRange, index: number }}
  * @returns {{ name: string, dict: ComplexDict }}
  */
-function storyFragment({name, range, index}) {
+function storyBattleFragment({name, range, index}) {
+    const levelsRange = range.getForIndex(index);
+    
     return {
-        name: `${name} (Level ${range.getForIndex(index).end})`,
-        dict: dicts.createComplexLevelDict(range.getForIndex(index).start, range.getForIndex(index).end)
-    }
+        name: `${name} (Level ${levelsRange.end})`,
+        dict: dicts.createComplexLevelDict(levelsRange.start, levelsRange.end)
+    };
 }
 
 export const storyModeUi = new KantoreStoryModeUi();
