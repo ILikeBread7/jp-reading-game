@@ -718,7 +718,7 @@ class KantoreStoryModeUi {
                         name: '女 - Woman 2',
                         text: [
                             `
-                                “Oh, thank you! What would I have done if it wasn’t for <span class="popover" data-content="you (plural)">あなたたち</span>?” the woman says while approaching Harumi with open arms.
+                                “Oh, thank you! What would I have done if it wasn’t for <span class="popover" data-content="you (plural)">あなたたち</span>?” the <span class="popover" data-content="(おんな) woman">女</span> says while approaching Harumi with open arms.
                                 
                                 “No problem, it’s- h-huh?” as Harumi responds, the <span class="popover" data-content="(おんな) woman">女</span> suddenly hugs <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span>.
                             `,
@@ -729,12 +729,12 @@ class KantoreStoryModeUi {
                                 “Hey, <span class="popover" data-content="she">かのじょ</span> stole the map!”
                             `,
                             `
-                                The woman starts running away, and you and Harumi chase after her.
+                                The <span class="popover" data-content="(おんな) woman">女</span> starts running away, and you and Harumi chase after her.
                                 
                                 Unfortunately for her, as she enters a long alley, you two split up, Harumi going around, and together, <span class="popover" data-content="you (plural)">あなたたち</span> cut off <span class="popover" data-content="her">かのじょ の</span> path, you from behind, and Harumi from ahead.
                             `,
                             `
-                                “Tch! How pesky of her.” the woman says after she notices <span class="popover" data-content="she">かのじょ</span> has no way to escape.
+                                “Tch! How pesky of <span class="popover" data-content="you (plural)">あなたたち</span>.” the <span class="popover" data-content="(おんな) woman">女</span> says after <span class="popover" data-content="she">かのじょ</span> notices <span class="popover" data-content="she">かのじょ</span> has no way to escape.
                                 
                                 “Take this!” <span class="popover" data-content="she">かのじょ</span> continues while sending out words to fight you.
                             `
@@ -762,7 +762,7 @@ class KantoreStoryModeUi {
                         name: '女 - Woman 4',
                         text: [
                             `
-                                You apprehend the woman, and ask why she tried to steal the map.
+                                You apprehend the <span class="popover" data-content="(おんな) woman">女</span>, and ask why she tried to steal the map.
                                 
                                 “Because the boss told me to, duh.” <span class="popover" data-content="she">かのじょ</span> answers.
                                 
@@ -771,7 +771,7 @@ class KantoreStoryModeUi {
                             `
                                 After being unable to extract any more valuable information from her, you hand <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> over to the guards and start looking for an inn.
                                 
-                                Unfortunately, even after the woman is arrested, you still have a feeling of being watched.
+                                Unfortunately, even after the <span class="popover" data-content="(おんな) woman">女</span> is arrested, you still have a feeling of being watched.
                             `,
                             `
                                 You manage to find a place to stay for the night, <span class="popover" data-content="you (plural)">あなたたち</span> eat dinner, and being cautious about <span class="popover" data-content="your (plural)">あなたたち の</span> experience in the city so far, you make sure to properly lock the door to your room.
@@ -877,7 +877,7 @@ class KantoreStoryModeUi {
                                 
                                 According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic <span class="popover" data-content="swamp">ぬま</span> gas filling the air making staying here for too long highly hazardous, or even deadly. On top of that, the sulfuric smell is nearly unbearable.
                                 
-                                If <span class="popover" data-content="your (plural)">あなたたち の</span> are going to go through this place, <span class="popover" data-content="your (plural)">あなたたち の</span> need to do it quickly.
+                                If <span class="popover" data-content="you (plural)">あなたたち</span> are going to go through this place, <span class="popover" data-content="you (plural)">あなたたち</span> need to do it quickly.
                             `,
                             `
                                 “Hey, look! A snake!” Harumi exclaims happily, smiling from ear to ear, seemingly with no care in the world, running towards and pointing at a <span class="popover" data-content="snake">へび</span> that’s slithering on the ground.
@@ -933,7 +933,7 @@ class KantoreStoryModeUi {
                                 
                                 “Let’s go! I want to see the <span class="popover" data-content="ghost">ゆうれい</span>!” she says full of excitement, as she takes off in the direction of the light. All remorse from the recent situation seemingly completely gone.
                                 
-                                At least the direction the <span class="popover" data-content="light">あかり</span> comes from, and your planned route, match up, so going to check it out isn’t going to incur any delays.
+                                At least the direction the <span class="popover" data-content="light">あかり</span> is coming from matches with your planned route, so going to check it out isn’t going to incur any additional delays.
                             `
                         ]
                     },
@@ -946,13 +946,13 @@ class KantoreStoryModeUi {
                                 “This smell... is killing me...” Harumi laments, covering her nose, and you can’t help but do the same.
                             `,
                             `
-                                The source of the smell, and most likely the “ghost” is a giant bog emitting immeasurable amounts of gas. The surrounding area is completely filled with its foul odor.
+                                The source of the smell, and most likely the “ghost” is a giant bog, emitting immeasurable amounts of gas. The surrounding area is completely filled with its foul odor.
                                 
                                 You point out that the “<span class="popover" data-content="ghost">ゆうれい</span>” was most likely just a will-o’-wisp caused by the gas spontaneously igniting, causing Harumi’s visible disappointment.
                                 
                                 “Well, I wish I could’ve seen a <span class="popover" data-content="ghost">ゆうれい</span>, but will-o’-wisps are pretty cool too, I guess.” she seems to get over it pretty quickly.
                                 
-                                Suddenly, she trips and almost falls to the ground.
+                                Suddenly, she stumbles and almost falls to the ground.
                             `,
                             `
                                 You ask if she’s okay, and at the same time, you start feeling what probably caused her indisposition.
@@ -995,7 +995,7 @@ class KantoreStoryModeUi {
                                 “Look, over there! Someone’s on the ground!” <span class="popover" data-content="she">かのじょ</span> adds, pointing at a person lying without movement, not far away.
                             `,
                             `
-                                You run up to the <span class="popover" data-content="(ひと) person">人</span>, and notice they’re also surrounded bywords.
+                                You run up to the <span class="popover" data-content="(ひと) person">人</span>, and notice they’re also surrounded by words.
                                 
                                 “Oh, come on. Do they always attack <span class="popover" data-content="(ひとびと) people">人々</span> at their weakest?” Harumi utters.
                                 
@@ -1034,14 +1034,14 @@ class KantoreStoryModeUi {
                             `
                                 “It has an emblem on it... it says ‘Aku no Soshiki’!” <span class="popover" data-content="she">かのじょ</span> adds astounded.
                                 
-                                He was probably lying here in ambush waiting for you, trying to steal the treasure map again. <span class="popover" data-content="You (plural)">あなたたち</span> discuss if it’s even safe to help <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span>, fearing it might be another one of their ploys, remembering the situation in Akamachi city.
+                                He was probably lying here in ambush, waiting for us, trying to steal the treasure map again. <span class="popover" data-content="You (plural)">あなたたち</span> discuss if it’s even safe to help <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span>, fearing it might be another one of their ploys, remembering the situation in Akamachi city.
                             `,
                             `
                                 “I-<span class="popover" data-content="I">わたし</span> guess it could be, but, what if it isn’t? Sure, they’re criminals, but <span class="popover" data-content="I">わたし</span> still don’t want them to die...” Harumi responds.
                                 
                                 “We need to bring him out of the <span class="popover" data-content="swamp">ぬま</span>, <span class="popover" data-content="he">かれ</span> might not make it otherwise!” <span class="popover" data-content="she">かのじょ</span> adds.
                                 
-                                After a little deliberation you decide that it is the right thing to do after all, so you agree and the two of you start carrying the <span class="popover" data-content="(おとこ) man">男</span> together, lending him on shoulder each.
+                                After a little deliberation you decide that it is the right thing to do after all, so you agree and the two of you start carrying the <span class="popover" data-content="(おとこ) man">男</span> together, lending him one shoulder each.
                                 
                                 You also shouldn't stay in the <span class="popover" data-content="swamp">ぬま</span> much longer, already being affected by the gas yourselves, and helping the <span class="popover" data-content="(おとこ) man">男</span> is probably faster than trying to convince Harumi to leave <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span> here.
                             `
@@ -1060,7 +1060,7 @@ class KantoreStoryModeUi {
                             `
                                 “They really seem to wait for the most vulnerable moment to attack, huh.” <span class="popover" data-content="she">かのじょ</span> adds.
                                 
-                                You can’t help but agree, when <span class="popover" data-content="you">あなた</span> see a big group of words creeping up on <span class="popover" data-content="you">あなた</span>.
+                                You can’t help but agree, when <span class="popover" data-content="you">あなた</span> notice a big group of words creeping up on <span class="popover" data-content="you (plural)">あなたたち</span>.
                                 
                                 You put the <span class="popover" data-content="(おとこ) man">男</span> down for a moment to engage the <span class="popover" data-content="words">ことば</span>.
                             `
@@ -1103,9 +1103,9 @@ class KantoreStoryModeUi {
                         name: '村のいしゃ - Village doctor',
                         text: [
                             `
-                                The <span class="popover" data-content="(むら) village">村</span> is surrounded by a palisade, similar to the one in the previous <span class="popover" data-content="(むら) village">村</span>. This <span class="popover" data-content="(むら) village">村</span> is a little bit bigger, and has its own doctor living there, so you immediately bring the man you were carrying to him.
+                                The <span class="popover" data-content="(むら) village">村</span> is surrounded by a palisade, similar to the one in the previous <span class="popover" data-content="(むら) village">村</span>. This <span class="popover" data-content="(むら) village">村</span> is a little bit bigger, and has its own <span class="popover" data-content="doctor">いしゃ</span> living there, so you immediately bring the man you were carrying to him.
                                 
-                                “This doesn’t look well.” says the <span class="popover" data-content="(むら の) village (village‘s)">村の</span> doctor.
+                                “This doesn’t look well.” says the <span class="popover" data-content="(むら の) village (village‘s)">村の</span> <span class="popover" data-content="doctor">いしゃ</span>.
                                 “He received an enormous dose of toxic gas; how long has <span class="popover" data-content="he">かれ</span> been in that swamp?” <span class="popover" data-content="he">かれ</span> continues with an inquiry.
                             `,
                             `
@@ -1117,22 +1117,23 @@ class KantoreStoryModeUi {
                             `
                                 “Where does that <span class="popover" data-content="plant">しょくぶつ</span> grow? Maybe we could go get it for you?” Harumi continues to ask.
                                 
-                                “It <span class="popover" data-content="(はえる) grows (out of something, e.g. ground)">生える</span> right past an old cemetery that’s not too far from here. The problem is, the <span class="popover" data-content="cemetery">ぼち</span> is overflowing with words, and there’s no way of getting the <span class="popover" data-content="plant">しょくぶつ</span> without going through there. You can’t even go around, because it’s all surrounded by mountains that would take days to cross, and he might not survive for that long.” the doctor responds, not believing anyone would want to take up the task.
+                                “It <span class="popover" data-content="(はえる) grows (out of something, e.g. ground)">生える</span> right past an old cemetery that’s not too far from here. The problem is, the <span class="popover" data-content="cemetery">ぼち</span> is overflowing with words, and there’s no way of getting the <span class="popover" data-content="plant">しょくぶつ</span> without going through there. You can’t even go around, because it’s all surrounded by mountains that would take days to cross, and he might not survive for that long.” the <span class="popover" data-content="doctor">いしゃ</span> responds, not believing anyone would want to take up the task.
                                 
                                 You and Harumi look at each other, and after a moment of deliberation, nod in agreement.
+                                
                                 You’re not in a hurry anyway, as finding the treasure doesn’t seem particularly time-sensitive, and maybe you can even find out something new from the Aku no Soshiki member after <span class="popover" data-content="he">かれ</span> wakes up.
                             `,
                             `
                                 “We’ll go find the <span class="popover" data-content="plant">しょくぶつ</span>, we’re not scared of a few <span class="popover" data-content="words">ことば</span>!” Harumi says confidently.
                                 
-                                “Are you sure? There’s really a lot, even more than at the swamp.” the doctor warns.
+                                “Are you sure? There’s really a lot, even more than at the swamp.” the <span class="popover" data-content="doctor">いしゃ</span> warns.
                                 
                                 “We’ll be fine, and in the worst-case scenario, we can just run!” she responds with a grin.
                             `,
                             `
-                                After the conversation, the doctor reluctantly agrees to tell you the exact location and appearance of the <span class="popover" data-content="plant">しょくぶつ</span>.
+                                After the conversation, the <span class="popover" data-content="doctor">いしゃ</span> reluctantly agrees to tell you the exact location and appearance of the <span class="popover" data-content="plant">しょくぶつ</span>.
                                 
-                                Harumi wants to depart immediately, but you and the doctor, still being worried for your safety, convince <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> that both of you should take a rest at the <span class="popover" data-content="(むら) village">村</span> first, and go the next morning.
+                                Harumi wants to depart immediately, but you and the <span class="popover" data-content="doctor">いしゃ</span>, still being worried for your safety, convince <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> that both of you should take a rest at the <span class="popover" data-content="(むら) village">村</span> first, and go the next morning.
                             `
                         ]
                     },
