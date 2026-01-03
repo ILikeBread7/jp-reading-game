@@ -718,7 +718,7 @@ class KantoreStoryModeUi {
                         name: '女 - Woman 2',
                         text: [
                             `
-                                “Oh, thank you! What would I have done if it wasn’t for <span class="popover" data-content="you (plural)">あなたたち</span>.” the woman says while approaching Harumi with open arms.
+                                “Oh, thank you! What would I have done if it wasn’t for <span class="popover" data-content="you (plural)">あなたたち</span>?” the woman says while approaching Harumi with open arms.
                                 
                                 “No problem, it’s- h-huh?” as Harumi responds, the <span class="popover" data-content="(おんな) woman">女</span> suddenly hugs <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span>.
                             `,
