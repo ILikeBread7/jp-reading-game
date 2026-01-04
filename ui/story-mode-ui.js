@@ -582,6 +582,15 @@ class KantoreStoryModeUi {
                         name: 'どうくつ - Cave 1',
                         text: [
                             `
+                                You arrive at the <span class="popover" data-content="cave’s">どうくつ の</span> entrance, and notice Harumi being visibly anxious.
+                                
+                                She’s been acting strange the entire way to the <span class="popover" data-content="cave">どうくつ</span>, but she got even worse after actually reaching it. Right now, she’s standing behind your back and trembling with fear.
+                                
+                                You ask her what’s wrong, but <span class="popover" data-content="she">かのじょ</span> just answers “N-Nothing, come on, let’s go.” and pushes your back.
+                                
+                                You’re a little concerned about her, but if <span class="popover" data-content="she">かのじょ</span> doesn’t want to tell you what’s going on, there’s not much you can do, so you pull out a torch, and enter the <span class="popover" data-content="cave">どうくつ</span>, with Harumi following closely behind.
+                            `,
+                            `
                                 The <span class="popover" data-content="cave">どうくつ</span> is dark, lit only by the light of your torch. There are water droplets dripping from the ceiling, resonating every time they reach the floor.
                                 
                                 Suddenly, a swarm of bats flies overhead.
