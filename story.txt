@@ -415,8 +415,9 @@ Having collected all the information you could, [あなた|you] and Harumi gathe
 
 Cave?
 Before 1?
-You arrive at the cave’s entrance, and notice Harumi being visibly anxious. 
-She’s been acting strange the entire way to the cave, but she got even worse after actually reaching it. Right now, she’s standing behind your back and trembling with fear.
+You arrive at the [どうくつ の|cave’s] entrance, and notice Harumi being visibly anxious.
+
+She’s been acting strange the entire way to the [どうくつ|cave], but she got even worse after actually reaching it. Right now, she’s standing behind your back and trembling with fear.
 
 You ask her what’s wrong, but [かのじょ|she] just answers “N-Nothing, come on, let’s go.” and pushes your back.
 
@@ -434,7 +435,7 @@ Once you realize what happened, you turn around and ask her what’s wrong.
 
 
 
-“N-Nothing.... I... I just don’t like [コウモリ|bats]...” [かのじょ|she] responds with a shaking voice and tears in [かのじょ の|her] eyes.
+“N-Nothing.... I... [わたし|I] just don’t like [コウモリ|bats]...” [かのじょ|she] responds with a shaking voice and tears in [かのじょ の|her] eyes.
 “L-Let’s go, I don’t want to stay here for too long...” [かのじょ|she] adds as [かのじょ|she] stands up and starts pushing you forward.
 
 It doesn’t seem like [かのじょ|she] wants to talk about it any further, so you decide to just keep going and get out of this [どうくつ|cave] as soon as possible.
@@ -530,7 +531,7 @@ Most of the words run away soon after the first few are defeated.
 
 
 Distressed woman 2
-“Oh, thank you! What would I have done if it wasn’t for [あなたたち|you (plural)].” the woman says while approaching Harumi with open arms.
+“Oh, thank you! What would I have done if it wasn’t for [あなたたち|you (plural)]?” the [女|(おんな) woman] says while approaching Harumi with open arms.
 
 “No problem, it’s- h-huh?” as Harumi responds, the [女|(おんな) woman] suddenly hugs [かのじょ を|her (as object of a verb) (を read as “o”)].
 
@@ -543,14 +544,13 @@ As the [女|(おんな) woman] walks away, Harumi, seemingly having noticed some
 
 
 
-Distressed woman 3
-The woman starts running away, and you and Harumi chase after her.
+The [女|(おんな) woman] starts running away, and you and Harumi chase after her.
 
 Unfortunately for her, as she enters a long alley, you two split up, Harumi going around, and together, [あなたたち|you (plural)] cut off [かのじょ の|her] path, you from behind, and Harumi from ahead.
 
 
 
-“Tch! How pesky of [かのじょ の|her].” the woman says after she notices [かのじょ|she] has no way to escape.
+“Tch! How pesky of [あなたたち|you (plural)].” the [女|(おんな) woman] says after [かのじょ|she] notices [かのじょ|she] has no way to escape.
 
 “Take this!” [かのじょ|she] continues while sending out words to fight you.
 
@@ -566,7 +566,7 @@ You beat your half of the words, with Harumi also beating hers.
 
 
 Distressed woman 4
-You apprehend the woman, and ask why she tried to steal the map.
+You apprehend the [女|(おんな) woman], and ask why she tried to steal the map.
 
 “Because the boss told me to, duh.” [かのじょ|she] answers.
 
@@ -576,7 +576,7 @@ It became clear that [かのじょ|she] is, in fact, a member of Aku no Soshiki,
 
 After being unable to extract any more valuable information from her, you hand [かのじょ を|her (as object of a verb) (を read as “o”)] over to the guards and start looking for an inn.
 
-Unfortunately, even after the woman is arrested, you still have a feeling of being watched.
+Unfortunately, even after the [女|(おんな) woman] is arrested, you still have a feeling of being watched.
 
 
 
@@ -668,7 +668,7 @@ After leaving Akamachi city you arrive at [あなたたち の|your (plural)] ne
 
 According to the map, this place is extremely dangerous, not only is it filled to the brim with words, but also there’s toxic [ぬま|swamp] gas filling the air making staying here for too long highly hazardous, or even deadly. On top of that, the sulfuric smell is nearly unbearable.
 
-If [あなたたち の|your (plural)] are going to go through this place, [あなたたち の|your (plural)] need to do it quickly.
+If [あなたたち|you (plural)] are going to go through this place, [あなたたち|you (plural)] need to do it quickly.
 
 
 
@@ -716,7 +716,7 @@ You look there, and see a floating light in the distance, probably just a will-o
 
 “Let’s go! I want to see the [ゆうれい|ghost]!” she says full of excitement, as she takes off in the direction of the light. All remorse from the recent situation seemingly completely gone.
 
-At least the direction the [あかり|light] comes from, and your planned route, match up, so going to check it out isn’t going to incur any delays.
+At least the direction the [あかり|light] is coming from matches with your planned route, so going to check it out isn’t going to incur any additional delays.
 
 
 
@@ -727,13 +727,13 @@ Despite a few minor incursions along the way, you manage to reach the supposed l
 
 
 
-The source of the smell, and most likely the “ghost” is a giant bog emitting immeasurable amounts of gas. The surrounding area is completely filled with its foul odor.
+The source of the smell, and most likely the “ghost” is a giant bog, emitting immeasurable amounts of gas. The surrounding area is completely filled with its foul odor.
 
 You point out that the “[ゆうれい|ghost]” was most likely just a will-o’-wisp caused by the gas spontaneously igniting, causing Harumi’s visible disappointment.
 
 “Well, I wish I could’ve seen a [ゆうれい|ghost], but will-o’-wisps are pretty cool too, I guess.” she seems to get over it pretty quickly.
 
-Suddenly, she trips and almost falls to the ground.
+Suddenly, she stumbles and almost falls to the ground.
 
 
 
@@ -767,7 +767,7 @@ Swamp 4
 
 
 
-You run up to the [人|(ひと) person], and notice they’re also surrounded bywords.
+You run up to the [人|(ひと) person], and notice they’re also surrounded by words.
 
 “Oh, come on. Do they always attack [人々|(ひとびと) people] at their weakest?” Harumi utters.
 
@@ -795,7 +795,7 @@ Coming closer you realize it’s a man, still breathing, but completely unconsci
 
 “It has an emblem on it... it says ‘Aku no Soshiki’!” [かのじょ|she] adds astounded.
 
-He was probably lying here in ambush waiting for you, trying to steal the treasure map again. [あなたたち|You (plural)] discuss if it’s even safe to help [かれ を|him (as object of a verb) (を read as “o”)], fearing it might be another one of their ploys, remembering the situation in Akamachi city.
+He was probably lying here in ambush, waiting for us, trying to steal the treasure map again. [あなたたち|You (plural)] discuss if it’s even safe to help [かれ を|him (as object of a verb) (を read as “o”)], fearing it might be another one of their ploys, remembering the situation in Akamachi city.
 
 
 
@@ -803,7 +803,7 @@ He was probably lying here in ambush waiting for you, trying to steal the treasu
 
 “We need to bring him out of the [ぬま|swamp], [かれ|he] might not make it otherwise!” [かのじょ|she] adds.
 
-After a little deliberation you decide that it is the right thing to do after all, so you agree and the two of you start carrying the [男|(おとこ) man] together.
+After a little deliberation you decide that it is the right thing to do after all, so you agree and the two of you start carrying the [男|(おとこ) man] together, lending him one shoulder each.
 
 You also shouldn't stay in the [ぬま|swamp] much longer, already being affected by the gas yourselves, and helping the [男|(おとこ) man] is probably faster than trying to convince Harumi to leave [かれ を|him (as object of a verb) (を read as “o”)] here.
 
@@ -820,7 +820,7 @@ You tell her to keep going for just a little more, you can already see the [ぬ�
 
 “They really seem to wait for the most vulnerable moment to attack, huh.” [かのじょ|she] adds.
 
-You can’t help but agree, when [あなた|you] see a big group of words creeping up on [あなた|you].
+You can’t help but agree, when [あなた|you] notice a big group of words creeping up on [あなたたち|you (plural)].
 
 You put the [男|(おとこ) man] down for a moment to engage the [ことば|words].
 
@@ -844,9 +844,9 @@ Thankfully, after leaving the [ぬま|swamp] both of you feel significantly bett
 
 Second Village
 Doctor
-The [村|(むら) village] is surrounded by a palisade, similar to the one in the previous [村|(むら) village]. This [村|(むら) village] is a little bit bigger, and has its own doctor living there, so you immediately bring the man you were carrying to him.
+The [村|(むら) village] is surrounded by a palisade, similar to the one in the previous [村|(むら) village]. This [村|(むら) village] is a little bit bigger, and has its own [いしゃ|doctor] living there, so you immediately bring the man you were carrying to him.
 
-“This doesn’t look well.” says the [村の|(むら の) village (village‘s)] doctor.
+“This doesn’t look well.” says the [村の|(むら の) village (village‘s)] [いしゃ|doctor].
 “He received an enormous dose of toxic gas; how long has [かれ|he] been in that swamp?” [かれ|he] continues with an inquiry.
 
 
@@ -860,24 +860,25 @@ The [村|(むら) village] is surrounded by a palisade, similar to the one in th
 
 “Where does that [しょくぶつ|plant] grow? Maybe we could go get it for you?” Harumi continues to ask.
 
-“It [生える|(はえる) grows (out of something, e.g. ground)] right past an old cemetery that’s not too far from here. The problem is, the [ぼち|cemetery] is overflowing with words, and there’s no way of getting the [しょくぶつ|plant] without going through there. You can’t even go around, because it’s all surrounded by mountains that would take days to cross, and he might not survive for that long.” the doctor responds, not believing anyone would want to take up the task.
+“It [生える|(はえる) grows (out of something, e.g. ground)] right past an old cemetery that’s not too far from here. The problem is, the [ぼち|cemetery] is overflowing with words, and there’s no way of getting the [しょくぶつ|plant] without going through there. You can’t even go around, because it’s all surrounded by mountains that would take days to cross, and he might not survive for that long.” the [いしゃ|doctor] responds, not believing anyone would want to take up the task.
 
 You and Harumi look at each other, and after a moment of deliberation, nod in agreement.
+
 You’re not in a hurry anyway, as finding the treasure doesn’t seem particularly time-sensitive, and maybe you can even find out something new from the Aku no Soshiki member after [かれ|he] wakes up.
 
 
 
 “We’ll go find the [しょくぶつ|plant], we’re not scared of a few [ことば|words]!” Harumi says confidently.
 
-“Are you sure? There’s really a lot, even more than at the swamp.” the doctor warns.
+“Are you sure? There’s really a lot, even more than at the swamp.” the [いしゃ|doctor] warns.
 
 “We’ll be fine, and in the worst-case scenario, we can just run!” she responds with a grin.
 
 
 
-After the conversation, the doctor reluctantly agrees to tell you the exact location and appearance of the [しょくぶつ|plant].
+After the conversation, the [いしゃ|doctor] reluctantly agrees to tell you the exact location and appearance of the [しょくぶつ|plant].
 
-Harumi wants to depart immediately, but you and the doctor, still being worried for your safety, convince [かのじょ を|her (as object of a verb) (を read as “o”)] that both of you should take a rest at the [村|(むら) village] first, and go the next morning.
+Harumi wants to depart immediately, but you and the [いしゃ|doctor], still being worried for your safety, convince [かのじょ を|her (as object of a verb) (を read as “o”)] that both of you should take a rest at the [村|(むら) village] first, and go the next morning.
 
 
 
