@@ -98,7 +98,6 @@ events.addEventListener(EVENTS.START, event => {
             gameStory.start(levelName, dict, totalQuestions, successListener, failureListener);
         } break;
     }
-
 });
 
 events.addEventListener(EVENTS.ANSWER, event => {
@@ -140,7 +139,6 @@ events.addEventListener(EVENTS.GAME_FINISHED, ( { detail } ) => {
             gameStory.runFailureListener();
         break;
     }
-
 });
 
 ui.hideStartupLoading();
