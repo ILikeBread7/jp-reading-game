@@ -1094,8 +1094,8 @@ There’s another man, supposedly another Aku no Soshiki member, carrying the il
 After the whole situation unraveled, there doesn’t seem to be anything more to do in this [村|(むら) village], so you and Harumi decide to head for the next destination.
 
 “According to the map our next destination is... well, it’s a little far, but there seems to be a small [村|(むら) village] on the way, so let’s aim for it first so we can take a break there!” Harumi happily exclaims while checking the map.
-Sometime later at a camp?
-After getting kicked out?
+Sometime later at a camp
+After getting kicked out
 “We’re left with almost nothing.” says Harumi after checking your supplies, right after you left the village.
 
 “I was hoping we could stay, and resupply at the village, but I guess we need to go foraging now. We could run out of supplies before we reach the next city, otherwise.” she continues.
@@ -1223,9 +1223,9 @@ Anyway, as the danger is no more, and Harumi seems to have calmed down, you deci
 
 
 
-Treasure caves
+Treasure Mountain caves
 Entrance Forest
-As you venture through the forest, you arrive at the entrance to the cave system which, according to the map, is supposed to be hiding the treasure.
+As you venture through the mountain forest, you arrive at the entrance to the cave system, which, according to the map, is supposed to be hiding the treasure.
 
 You are surrounded by lush vegetation, and the entrance to the cave in front of you is covered in moss. The inside of the cave itself looks completely dark.
 
@@ -1400,16 +1400,16 @@ You thank her, and accept the stick.
 
 
 
-“Maybe it won’t be too bad... Maybe there will be no bats-” she tries to reassure herself before getting cut off.
-“Eek!” by a cry of a bat flying out of the cave.
-“Wah!” she shrieks and cowers.
+“Maybe it won’t be too bad... Maybe there will be no-”
+“Eek!” 
+“Wah!” she tries to reassure herself before getting cut off by the cry of a bat flying out of the cave, causing her to shriek and cower.
 
 “Oh...” she weeps before reluctantly making her way into the cave.
 
 
 
 (Harumi) Cave
-“Why is this happening to me?” Harumi says, slowly walking through the cave, tears in her eyes, covering her head, desperately trying not to look at the bats flying overhead.
+“Why is this happening to me?” Harumi says, slowly walking through the cave, her mind filled with dread, tears in her eyes, covering her head, desperately trying not to look at the bats flying overhead.
 
 “Eek!” a bat cries.
 
@@ -1419,7 +1419,7 @@ You thank her, and accept the stick.
 
 She understands that at this point, not only is she going to have a tough time making it out of this cave, she’s also progressing too slowly to catch up with [boss].
 
-“When you’re feeling down, move your body! That’s what grandma used to say! I’ll just run and keep running until I’m out of this place! And I’m going to catch up with them in no time! Feeding two chickens with one lasagna! Or something.” Harumi cheers herself up with a misremembered adage, gaining new determination.
+“When you’re feeling down, move your body! That’s what grandma used to say! I’ll just run and keep running until I’m out of this place! And I’m going to catch up with them in no time! [一石二鳥|(いっせきにちょう) two birds one stone]!” Harumi cheers herself up, gaining new determination.
 
 She starts running, still scared, still covering her head, but determined to see everything through to the end.
 
@@ -1503,6 +1503,115 @@ Harumi somehow manages to beat the words despite the terrain disadvantage.
 “What? We’re supposed to slow you down, so we do!” one of them rebukes.
 
 
+
+(What am I supposed to do now? They can just keep pushing me down forever...) Harumi thinks, trying to figure out a solution.
+
+Then, footsteps can be heard, slowly approaching from behind. Noticing that, Harumi turns around.
+
+“Nice timing! It’s about time I needed some help!” she says with a cheeky smile.
+
+
+
+Reunited
+You make your way through the caves, using the stick she gave you as a cane.
+
+Thankfully, you don’t get attacked on the way, thanks to Herumi clearing the way ahead of you.
+
+Before long, you notice Harumi struggling below a small cliff, with two Aku no Soshiki members standing on top of it, slowing her down.
+
+
+
+You lock eyes with her, and after a quick nod, she starts climbing the cliff again.
+
+“Not so fast- Ugh!” one of the goons says, before being interrupted by your attack.
+
+You’re standing at the foot of the cliff, fending off their attacks with your stick, allowing Harumi to climb all the way up.
+
+
+
+“Ah, damn! Let’s go; we probably bought enough time anyway.” one of them says before they take off, going further inside the cave.
+
+“Hey, stop! Oh...” Harumi shouts and almost starts chasing them, before quickly turning around and noticing you struggling to scale the cliff with your injured ankle.
+
+“Here, let me help you.” she extends her hand towards you, trying to help you up the cliff.
+
+“Wah!” but then, something falls from the ceiling, and lands on her head.
+
+
+
+She lets go of you, resulting in you falling back down. Fortunately at least, the fall didn’t seem to worsen your injury.
+
+“Aaa! Get off me! O-Oh...” she throws the thing off her head, and realizes it was a word.
+
+After that, more rogue words appear, surrounding you.
+
+“Oh, not now! We don’t have time for this!” she cries out.
+
+
+
+Cliff Rogue Words Battle 7
+The words attack both of you, Harumi on top of the cliff, and you at the bottom.
+
+
+
+Both of you manage to defeat most of the words, before the rest of them disperses.
+
+
+
+Boss encounter
+After the battle, Harumi helps you up the cliff, this time with no further obstacles.
+
+“Let’s go!” she says quickly, before taking off into the same direction the Aku no Soshiki members ran towards, with you slowly following behind.
+
+Not before long, you find yourself in a cave chamber, with the three men trying to pry open a chest sitting at the far end of it. That seems to be the treasure.
+
+
+
+“Not so fast!” Harumi shouts and sprints towards them.
+
+“I’m going to throw that line right back at you!” [boss] responds, sending out a huge group of words at you.
+
+
+
+Boss Battle 8
+The words attack you and don’t let you get too close to [boss].
+
+
+
+After a long battle, you manage to defeat all the words.
+
+
+
+Treasure
+Despite defeating all the words, it seems like you were too late.
+
+The treasure chest is already open, and [boss] is rummaging through it.
+
+“We can still stop-” Harumi says before being suddenly cut off.
+
+“What is this?” he says after pulling out a piece of paper from inside the chest.
+
+
+
+“‘The real treasure is the kanji we learned along the way.‘ Oh, come on!” he reads it aloud, and furiously tosses the note.
+
+“We’re leaving! This was a huge waste of time!” he says with a temper, also tossing the original treasure map on the ground.
+
+
+
+“H-Huh? What was that all about?” Harumi reacts in disbelief.
+
+The whole situation being so surreal none of you even think of following them.
+
+You walk up to the chest and look inside as well, and there really is nothing more to be found, other than the one piece of paper with the aforementioned message written on it.
+
+“Well, at least they didn’t obtain any dangerous weapons.” Harumi says with a shrug and a puzzled expression.
+
+While you can’t help but agree with her, there is still one big issue left on your mind.
+
+
+
+How can you possibly split this treasure with the little girl who lent you the map in the first place?
 
 
 
