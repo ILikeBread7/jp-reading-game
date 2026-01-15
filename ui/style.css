@@ -805,12 +805,14 @@ input[type='range']:hover {
     accent-color: var(--palette-main-color);
 }
 
+#dialogue-next-button,
 select,
 button.menu-item {
     border-color: var(--palette-text-color);
     border-width: 0.125rem;
 }
 
+#dialogue-next-button,
 button.menu-item {
     border-style: outset;
 }
