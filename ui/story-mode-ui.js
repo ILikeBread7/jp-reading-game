@@ -168,7 +168,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'Fence - へい (Level 1)',
+                        name: 'へい - Fence (Level 1)',
                         dict: dicts.getLevelDict(1),
                         totalQuestions: 5,
                         beforeText: [
