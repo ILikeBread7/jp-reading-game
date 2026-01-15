@@ -1099,19 +1099,19 @@ After the whole situation unraveled, there doesn’t seem to be anything more to
 
 Losing and retrieving map
 Hostage Village 1
-After a day of walking, you finally see the village above the horizon.
+After a day of walking, you finally see the [村|(むら) village] above the horizon.
 
 “Finally! I’m so tired; we've been walking all day. H-Huh? What’s that?" Harumi exclaims, noticing something concerning a moment later.
 
-“There are words all around the gate. And the gate is... open?!” she continues, flabbergasted at what she sees.
+“There are words all around the gate. And the gate is... open?!” she continues, flabbergasted at what [かのじょ|she] sees.
 
 
 
-“Let’s hurry; they might need our help!” Harumi says as she takes off towards there, without even waiting for your response.
+“Let’s hurry; they might need our help!” Harumi [言う|(いう) says] as [かのじょ|she] takes off towards there, without even waiting for your response.
 
 You follow right after, and quickly arrive at the gate.
 
-“Huh? Why aren’t they attacking?” Harumi says, dumbfounded at the situation.
+“Huh? Why aren’t they attacking?” Harumi [かのじょ|she], dumbfounded at the situation.
 
 The words seem to notice you, but don’t attack. Usually they either run away or lunge at you the moment they realize they’ve been spotted.
 
@@ -1133,21 +1133,21 @@ You defeat a few of the words before the rest runs away, inside the village.
 
 
 Hostage Village 2
-You chase the words, and enter the village, where you’re taken aback by what you see.
+You chase the words, and enter the [村|(むら) village], where you’re taken aback by what you see.
 
 The whole place is filled to the brim with words. Fortunately, they aren’t attacking anyone. Unfortunately, they don’t seem to be the only problem here.
 
 There are a lot of people, seemingly Aku no Soshiki members, taking all the villagers hostage.
 
-The village isn’t too big, there’s only about twenty villagers around, but the number of assailants is more than double of that. Some hostages have knives pointed at their throats.
+The [村|(むら) village] isn’t too big, there’s only about twenty villagers around, but the number of assailants is more than double of that. Some hostages have knives pointed at their throats.
 
 
 
 “What is going on here? There’s so many of them...” Harumi says after looking around and seeing the hopeless situation.
 
-“This doesn’t look good... But we can’t leave them like this...” she continues without much hope.
+“This doesn’t look good... But we can’t leave them like this...” [かのじょ|she] continues without much hope.
 
-“Let’s do what we can do, and try to take care of the words at least.” she concludes before striking at a nearby word, with you following her lead soon after.
+“Let’s do what we can do, and try to take care of the words at least.” [かのじょ|she] concludes before striking at a nearby word, with you following [かのじょ の|her] lead soon after.
 
 
 
@@ -1161,7 +1161,7 @@ There are so many words around that you barely make a difference in their number
 
 
 Hostage Village 3
-“Well, well, well. We’ve been waiting for you!” the presumed leader of the operation comes outside from one of the houses, after noticing the commotion, and says.
+“Well, well, well. We’ve been waiting for you!” says the presumed leader of the operation coming outside from one of the houses after noticing the commotion.
 
 “What’s going on in here?” Harumi asks.
 
@@ -1169,29 +1169,29 @@ Hostage Village 3
 
 
 
-“Are you serious?” she asks in response.
+“Are you serious?” [かのじょ|she] [聞く|(きく) asks] in response.
 
-“Dead serious.” he responds, sticking a knife to a nearby child’s throat, causing it to squirm.
+“Dead serious.” [かれ|he] [答える|(こたえる) responds], sticking a knife to a nearby child’s throat, causing it to squirm.
 
-“You can’t beat us this time, not with this numbers advantage. And even if you try, you know what happens.” he continues with a sleazy smile.
+“You can’t beat us this time, not with this numbers advantage. And even if [あなた達|(あなたたち) you (plural)] try, [あなた達|(あなたたち) you (plural)] know what happens.” he continues with a sleazy smile.
 
-You know he’s right. You’re already completely exhausted from the combat, and you barely even made a dent in the number of words around. Not even mentioning all the Aku no Soshiki members who outnumber you by an order of magnitude.
+[あなた|you] know [かれ|he] is right. [あなた達|(あなたたち) You (plural)] are already completely exhausted from the combat, and [あなた達|(あなたたち) you (plural)] barely even made a dent in the number of [言葉|(ことば) words] around. Not even mentioning all the Aku no Soshiki members who outnumber [あなた達|(あなたたち) you (plural)] by an order of magnitude.
 
 
 
 “Okay, okay. There.” Harumi acquiesces, and presents the map to the man.
 
-“Let’s see... Yup, looks like the real deal! All right, guys, we’re leaving!” he snatches the map from her hand, takes a quick glance, and, after confirming the authenticity of it, the assailants all prepare to leave the village together.
+“Let’s see... Yup, looks like the real deal! All right, guys, we’re leaving!” [かれ|he] snatches the [地図|(ちず) map] from [かのじょ の|her] hand, takes a quick glance, and, after confirming the authenticity of it, the assailants all prepare to leave the village together.
 
 
 
-“Oops, I almost forgot. Take this!” he says before turning back to you, and releasing another batch of words inside the village.
+“Oops, I almost forgot. Take this!” [かれ|he] says before turning back to [あなた達|(あなたたち) you (plural)], and releasing another batch of [言葉|(ことば) words] inside the [村|(むら) village].
 
-“Hey, what’s that all about? You have the map already, leave us alone!” Harumi rebukes with a frown and puffy cheeks.
+“Hey, what’s that all about? [あなた|You] have the [地図|(ちず) map] already, leave us alone!” Harumi rebukes with a frown and puffy cheeks.
 
-“I can't let you follow us; we need something to slow you down! See you never!” he responds before leaving the village with all the other captors, only leaving behind the words he just sent out.
+“I can't let [あなた達|(あなたたち) you (plural)] follow us; we need something to slow [あなた達|(あなたたち) you (plural)] down! See you never!” [かれ|he] [答える|(こたえる) responds] before leaving the [村|(むら) village] with all the other captors, only leaving behind the [言葉|(ことば) words] [かれ|he] had just sent out.
 
-Both of you are extremely tired, but rest needs to come later, as the words attack you.
+Both of [あなた達|(あなたたち) you (plural)] are extremely tired, but rest needs to come later, as the [言葉|(ことば) words] attack you.
 
 
 
@@ -1207,48 +1207,48 @@ Despite being hopelessly exhausted, you manage to beat all the words.
 Hostage Village 4
 “Is everyone all right?” Harumi asks, looking around at all the villagers who had just suffered the attack.
 
-“It’s all your fault!” someone shouts at you.
+“It’s all your fault!” someone shouts at [あなた達|(あなたたち) you (plural)].
 
-“H-Huh? W-We didn’t do anything. We just tried to help...” Harumi responds with dismay.
-
-
-
-“Please, just... leave.” an old man, presumably the village elder, says after approaching you.
-
-“We were only attacked because of you. If you never came here none of this would’ve happened. No one wants you here now. Please, just leave.” he repeats his plea.
-
-Without saying another word, both of you leave the village feeling completely dejected.
+“H-Huh? W-We didn’t do anything. [わたし達|(わたしたち) we] just tried to help...” Harumi responds with dismay.
 
 
 
+“Please, just... leave.” an old man, presumably the village elder, says after approaching [あなた達|(あなたたち) you (plural)].
+
+“We were only attacked because of [あなた達|(あなたたち) you (plural)]. If you never came here none of this would’ve happened. No one wants [あなた達|(あなたたち) you (plural)] here now. Please, just leave.” he repeats his plea.
+
+Without saying another word, both of [あなた達|(あなたたち) you (plural)] [出ていく|(でていく) leave] the village feeling completely dejected.
 
 
-Sometime later at a camp
+
+
+
+Sometime later at a camp 野営
 After getting kicked out
-“We’re left with almost nothing.” says Harumi after checking your supplies, right after you left the village.
+“We’re left with almost nothing.” Harumi says after checking your supplies, right after you left the village.
 
-“I was hoping we could stay, and resupply at the village, but I guess we need to go foraging now. We could run out of supplies before we reach the next city, otherwise.” she continues.
-
-
-
-“We need to be quick, too. Now that we got kicked out, we’ll have to sleep outside, so we need time to set up camp before it gets dark. Let’s go to the forest, there’s no time to waste.” she continues.
-
-You nod, and both of you go to the forest to find anything edible.
+“I was hoping we could stay, and resupply at the [村|(むら) village], but I guess we need to go foraging now. We could run out of supplies before we reach the next city otherwise.” she continues.
 
 
 
-Foraging 1
-“So, what do you think we should do now?” Harumi asks, while picking berries in the forest.
+“We need to be quick, too. Now that [わたし達|(わたしたち) we] got kicked out, [わたし達|(わたしたち) we] will have to sleep outside, so we need time to set up [野営|(やえい) camp] before it gets dark. Let’s go to the forest, there’s no time to waste.” [かのじょ|she] [続ける|(つづける) continues].
 
-“We lost the map, and, while I do remember our next destination, Minatomachi city, I don’t know where to go from there. And besides, I don’t want to put any more people in danger...” she continues dejectedly.
-
-“Maybe... we should just... stop?” she asks for your opinion.
+You nod, and both of [あなた達|(あなたたち) you (plural)] [行く|(いく) go] to the [森|(もり) forest] to look for anything edible.
 
 
 
-You don’t know what to do either, you don’t want to quit, but it’s going to be hard to continue without the map.
+Foraging 1 森で食料採集
+“So, what do you think we should do now?” Harumi asks, while picking berries.
 
-“Well, we can’t stay here, that’s for sure. For now, I guess, we should head towards Minatomachi. We can decide what to do after that.” Harumi says in low spirits.
+“We lost the map, and, while I do remember our next destination, Minatomachi city, [わたし|I] don’t know where to go from there. And besides, [わたし|I] don’t want to put any more people in danger...” [かのじょ|she] continues dejectedly.
+
+“Maybe... we should just... stop?” [かのじょ|she] asks for your opinion.
+
+
+
+You don’t know what to do either, [あなた|you] don’t want to quit, but it’s going to be hard to [続ける|(つづける) continue] without the [地図|(ちず) map].
+
+“Well, [わたし達|(わたしたち) we] can’t stay here, that’s for sure. For now, I guess, [わたし達|(わたしたち) we] should head towards Minatomachi. [わたし達|(わたしたち) We] can decide what to do after that.” Harumi [言う|(いう) says] in low spirits.
 
 Suddenly, you hear a rustle in the bushes.
 
@@ -1256,7 +1256,7 @@ Suddenly, you hear a rustle in the bushes.
 
 A group of words comes out from them.
 
-“Well, here we go again.” Harumi utters before the words leap at you both.
+“Well, here we go again.” Harumi utters before the [言葉|(ことば) words] leap at you both.
 
 
 
@@ -1269,26 +1269,26 @@ You manage to beat most of the words, and drive away the rest.
 
 
 
-Foraging 2
+Foraging 2 森で食料採集
 “Whew, at least these weren’t too strong... Let’s keep looking, we still need to find more food.” Harumi says after the fight.
 
-You keep foraging in the forest for a little more, and, after gathering enough food, leave the forest, set up camp at a nearby field, eat dinner, and go to sleep.
+You keep [食料採集|(しょくりょうさいしゅう) foraging] in the [森|(もり) forest] for a little more, and, after [採集|(さいしゅう) gathering] enough [食料|(しょくりょう) food], leave the [森|(もり) forest], set up camp at a nearby field, eat dinner, and go to sleep.
 
 
 
-Middle of the night
+Middle of the night 夜中
 “Wake up!”
 
-While sleeping, you suddenly hear Harumi’s voice. You were taking turns sleeping and keeping watch throughout the night.
+While sleeping, you suddenly hear Harumi’s voice. You were taking turns sleeping and keeping watch throughout the [夜|(よる) night].
 
 “We’re about to get attacked!”
 
 
 
 You open your eyes and find yourself surrounded by words.
-Thankfully, Harumi was keeping watch when it was your turn to sleep.
+Thankfully, Harumi was keeping watch when it was your turn to [眠る|(ねむる) sleep].
 
-You jolt awake, and prepare to battle before the words attack.
+[あなた|You] jolt awake, and prepare to battle before the [言葉|(ことば) words] attack.
 
 
 
@@ -1302,143 +1302,144 @@ You repel the attack for long enough that the words lose interest and leave.
 
 
 After
-That was a tough one, but you managed to pull through.
+The battle was tough, but you managed to pull through.
 
-“Aaaa!” Harumi shrieks.
-Just as you thought it was over, you prepare for another attack.
+When suddenly, “Aaaa!” Harumi shrieks.
+Just as [あなた|you] thought it was over, [あなた|you] prepare for another attack.
 
 
 
 ... But it never comes?
 
-You look at Harumi and see her cowering in fear and covering her head.
+[あなた|You] look at Harumi and see her cowering in fear and covering [かのじょ の|her] head.
 
-“Eek, eek!” you hear from above.
+“Eek, eek!” [あなた|you] hear from above.
 There’s a bat flying overhead.
 
-You shoo the bat away, and tell her it’s gone.
+[あなた|You] shoo the bat away, and tell her it’s gone.
 
 
 
 “T-Thanks...” she slowly stands up, still shivering a little.
 
-You find her fear of bats really unusual; she seems to be perfectly fine with most other things, like bugs or snakes, and quite fearless in the face of danger, like criminals or words.
-You decide to ask her about it.
+You find [かのじょ の|her] fear of [コウモリ|bats] really unusual; [かのじょ|she] seems to be perfectly fine with most other things, like bugs or snakes, and quite fearless in the face of danger, like criminals or words.
+
+[あなた|You] decide to ask her about it.
 
 
 
-“W-Well, it’s... it’s nothing really... It’s just... When I was little I went to a cave, and a bat got stuck in my hair. I ran home crying and screaming with the bat flailing around on my head the entire time.” Harumi responds with a sad look.
+“W-Well, it’s... it’s nothing really... It’s just... When I was little [わたし|I] went to a cave, and a [コウモリ|bat] got stuck in my hair. I ran home crying and screaming with the [コウモリ|bat] flailing around on my head the entire time.” Harumi responds with a sad look.
 
-“My parents had to cut my hair to remove it because it got stuck so badly they couldn’t untangle it. It was horrible!” she continues, getting even more visibly shaken because of the painful memory.
+“My parents had to cut my [かみ|hair] to remove it because it got stuck so badly they couldn’t untangle it. It was horrible!” [かのじょ|she] [続ける|(つづける) continues], getting even more visibly shaken because of the painful memory.
 
-“I know it’s nothing that scary. It probably even seems funny to others, but I ended up being terrified of bats and caves ever since...” she adds, seemingly embarrassed about her experience.
-
-
-
-Something feels off, though. Hasn’t she also lost her memory? How can she remember that? Has she regained it? You ask her about that.
-
-“Oh, right, how do I remember that? Hmm...” she says, seemingly even more confused than you, and starts thinking.
-
-“No, that’s all I can remember. I guess the memory comes back in parts, not all at once.” she continues.
-
-“Can you remember anything now?” she asks back.
+“[わたし|I] know it’s nothing that scary. It probably might even seem funny to others, but [わたし|I] ended up being terrified of [コウモリ|bats] and [どうくつ|caves] ever since...” [かのじょ|she] adds, seemingly embarrassed about [かのじょ の|her] experience.
 
 
 
-You think about it, but no, your past is still as much of a mystery to you as it was before, so you shake your head.
+Something feels off, though. Hasn’t [かのじょ|she] also lost her memory? How can [かのじょ|she] remember that? Has [かのじょ|she] regained it? [あなた|You] ask her about that.
 
-“Well, at least we know it comes back eventually. I just wish it would start with more happy memories. Why is the only thing I remember, that?!” the more she talks, the more she pouts, as if being upset at the memory recovery process, if that’s even a thing.
+“Oh, right, how do I [覚えている|(おぼえている) remember] that? Hmm...” [かのじょ|she] says, seemingly even more confused than [あなた|you], and starts thinking.
 
-Anyway, as the danger is no more, and Harumi seems to have calmed down, you decide to go back to sleep.
+“No, that’s all [わたし|I] can [覚えている|(おぼえている) remember]. [わたし|I] guess the memory comes back in parts, not all at once.” [かのじょ|she] [続ける|(つづける) continues].
+
+“Can you remember anything now?” [かのじょ|she] asks back.
+
+
+
+You think about it, but no, [あなた の|your] past is still as much of a mystery to [あなた|you] as it was before, so [あなた|you] shake your head.
+
+“Well, at least [わたし達|(わたしたち) we] know it comes back eventually. [わたし|I] just wish it would start with more happy [きおく|memories]. Why is the only thing I [覚えている|(おぼえている) remember], that?!” the more she talks, the more she pouts, as if being upset at the [きおく|memory] recovery process, if that’s even a thing.
+
+Anyway, as the danger is no more, and Harumi seems to have calmed down, [あなた|you] decide to go back to sleep.
 
 
 
 港町 - Minatomachi - Port City
-After breaking camp in the morning and half a day more of walking, you arrive at Minatomachi.
+After breaking camp in the morning, and half a day more of walking, you arrive at Minatomachi.
 
-The city is located by the sea. The most prominent feature of the city is a port, where plenty of ships come in and out, bringing in exotic goods from all over the world, and exporting fine local items around the globe.
+The [町|(まち) city] is located by the sea. The most prominent feature of the [町|(まち) city] is a [港|(みなと) port], where plenty of ships come in and out, bringing in exotic goods from all over the world, and exporting fine local items around the globe.
 
-Most buildings are built from white stone, same as the wall around the city, and have blue roofs. The sunlight is strong, the sound of waves and seagull cries can be heard in the background. A slight breeze blows and carries the fresh saline smell of the sea.
+Most buildings are built from white stone, same as the wall around the [町|(まち) city], and have blue roofs. The sunlight is strong, the sound of waves and seagull cries can be heard in the background. A slight breeze blows and carries the fresh saline smell of the [海|(うみ) sea].
 
 
 
 “We’re finally here! Let’s find a place to stay for now; I’m so tired after all that happened lately...” Harumi says while shielding her eyes from the strong sunlight.
 
-You agree, and together, you find an inn where you can stay for the night.
+You agree, and together, [あなた達|(あなたたち) you (plural)] find an inn where you can stay for the night.
 
 
 
-Inn’s tavern
-You and Harumi are eating dinner at a tavern located on the bottom floor of the inn you’re staying at.
+Inn’s tavern 宿屋の酒場
+You and Harumi are eating dinner at a [酒場|(さかば) tavern] located on the bottom floor of the [宿屋|(やどや) inn] [あなた達|(あなたたち) you (plural)] are staying at.
 
-“So, what do we do from now on? We lost the map, our only lead for finding Aku no Soshiki, and a way to go back home.” Harumi asks while you’re still eating.
+“So, what do we do from now on? We lost the map, our only lead for finding Aku no Soshiki and a way to go back home.” Harumi asks while [あなた達|(あなたたち) you (plural)] are still eating.
 
-You don’t have a good answer to that question either, so both of you sit there for a moment in silence.
+[あなた|You] don’t have a good answer to that question either, so both of [あなた達|(あなたたち) you (plural)] sit there for a moment in silence.
 
-“Excuse me.” when all of a sudden, someone approaches you.
-
-
-
-You turn around, and see two men, wearing hoods, but their faces aren’t covered. You quickly recognize one of them.
-
-“It’s you again!” Harumi jolts up from her seat, and exclaims.
-
-He’s the Aku no Soshiki member you helped at the swamp a few days ago.
+“Excuse me.” when all of a sudden, someone approaches [あなた達|(あなたたち) you (plural)].
 
 
 
-“Please, keep it quiet. We’re here incognito, and we don’t want to attract unnecessary attention.” he says while motioning to the side. You look around and see everyone else in the tavern looking in your direction.
+[あなた|You] turn around, and see two men, wearing hoods, but their faces aren’t covered. [あなた|You] quickly recognize one of them.
+
+“It’s [あなた|you] again!” Harumi exclaims after jolting up from her seat.
+
+He’s the Aku no Soshiki member [あなた達|(あなたたち) you (plural)] helped at the swamp a few days ago.
+
+
+
+“Please, keep it quiet. We’re here incognito, and [わたし達|(わたしたち) we] don’t want to attract unnecessary attention.” he says while motioning to the side. You look around and see everyone else in the [酒場|(さかば) tavern] looking in [あなた達の|(あなたたちの) your (plural)] direction.
 
 “S-Sorry...” Harumi apologizes and sits back down, visibly embarrassed about her behavior.
 
-“We came to thank you for helping me out there, and to give you this.” he sits down at the opposite side of the table from you, and gives you a piece of paper.
+“[わたし達|(わたしたち) We] came to thank you for helping me out back then, and to give you this.” [かれ|he] sits down at the opposite side of the table from [あなた|you], and gives [あなた|you] a piece of paper.
 
-“It’s the-! It’s the map...” Harumi almost shouts as she sees what you were given, stopping herself and switching to a quieter tone midsentence.
+“It’s the-! It’s the map...” Harumi almost shouts as [かのじょ|she] sees what [あなた|you] were given, stopping herself and switching to a quieter tone midsentence.
 
 
 
 “A copy of it. I snuck into the boss' room and made a copy.” the man responds.
 
-“Thanks, but is it really okay for you to do this? Won’t you get in trouble for this?” Harumi asks with concern in her voice.
+“Thanks, but is it really okay for [あなた|you] to do this? Won’t [あなた|you] get in trouble for this?” Harumi asks with concern in her voice.
 
-“Well, maybe. But we really wanted to thank you, and this is the best thing we could come up with. We’ll also answer any questions you might have, to the best of our ability at least. We’re not privy to all the secrets of the organization after all.” he responds.
+“Well, maybe. But [わたし達|(わたしたち) we] really wanted to thank [あなた|you], and this is the best thing [わたし達|(わたしたち) we] could come up with. [わたし達|(わたしたち) We] can also answer any questions you might have, to the best of our ability at least. [わたし達|(わたしたち) We] are not privy to all the secrets of the organization after all.” [かれ|he] [答える|(こたえる) responds].
 
-“That’s really nice, but we don’t even know if we still want to keep following that treasure. After what just happened in that village.” she says in low spirits.
+“That’s really nice, but [わたし達|(わたしたち) we] don’t even know if [わたし達|(わたしたち) we] still want to keep following that treasure. After what just happened in that village...” [かのじょ|she] [言う|(いう) says] in low spirits.
 
-“That’s up to you, we just wanted to give you back what’s yours.” he responds again.
-
-
-
-“What’s the treasure anyway? Why does your boss want it so badly?” Harumi asks.
-
-“We don’t know for sure what it is, and the boss most likely doesn’t know for sure either, but from what we gathered, the map was left by a retired army scientist, who worked on developing new weapons for the military.” he responds
-
-“The boss believes he left behind a weapon that’s so powerful, even the military deemed it too dangerous and abandoned its development. He also believes the weapon can help him subjugate entire countries.” he continues.
-
-“W-What? We need to stop him! Who knows what he could do with that thing?” Harumi says before turning her face towards you.
+“That’s up to [あなた達|(あなたたち) you (plural)], [わたし達|(わたしたち) we] just wanted to give [あなた達|(あなたたち) you (plural)] back what’s [あなた達の|(あなたたちの) yours (plural)].” he [答える|(こたえる) responds] again.
 
 
 
-After that, you ask them a few more questions and find out that:
+“What’s the [たから|treasure] anyway? Why does [あなた達の|(あなたたちの) your (plural)] [ボス|boss] want it so badly?” Harumi [聞く|(きく) asks].
+
+“[わたし達|(わたしたち) We] don’t know for sure what it is, and the [ボス|boss] most likely [知らない|(しらない) doesn’t know] for sure either, but from what we gathered, the [地図|(ちず) map] was left by a retired army scientist, who worked on developing new weapons for the military.” [かれ|he] [答える|(こたえる) responds]
+
+“The [ボス|boss] believes [かれ|he] left behind a [ぶき|weapon] that’s so powerful, even the military deemed it too dangerous and abandoned its development. [かれ|He] also [信じている|(しんじている) believes] the [ぶき|weapon] can help him subjugate entire countries.” [かれ|he] continues.
+
+“W-What? [わたし達|(わたしたち) We] need to stop [かれ を|him (as object of a verb) (を read as “o”)]! Who knows what [かれ|he] could do with that thing?” Harumi [言う|(いう) says] before turning [かのじょ の|her] face towards [あなた|you].
+
+
+
+After that, [あなた達|(あなたたち) you (plural)] [聞く|(きく) ask] them a few more questions and find out that:
 The organization’s hideout is located on an island that’s not too far from here, called Ajitojima.
-In the hideout there is a portal that can be used to go back to your world.
-You most likely came to this world through a damaged portal that was seized by law enforcement back in your world, and the reason you lost your memory is probably due to the portal’s malfunction.
+In the [アジト|hideout] there is a portal that can be used to go back to your world.
+You most likely came to this [世界|(せかい) world] through a damaged [てんいもん|portal] that was seized by law enforcement back in [あなた達の|(あなたたちの) your (plural)] [世界|(せかい) world], and the reason [あなた達|(あなたたち) you (plural)] lost your memory is probably due to the [てんいもん の|portal’s] malfunction.
 
-You also ask other questions, including about your identities, but they don’t seem to know much more than you already do.
-
-
-
-“Thanks a lot! That’s basically everything we needed to know!” Harumi says with gratitude and a smile after the long conversation.
-
-“You’re more than welcome. Now, we should go before we get found out. Goodbye.” he says before standing up, and both of them leave the tavern.
-
-“Great! I mean, not great, but at least now we know what to do!” Harumi turns to you and says right after they leave.
+[あなた達|(あなたたち) You (plural)] also [聞く|(きく) ask] other [しつもん|questions], including about [あなた達の|(あなたたちの) your (plural)] identities, but [かれ ら|they (masculine)] don’t seem to [知る|(しる) know] much more than [あなた達|(あなたたち) you (plural)] already do.
 
 
 
-“Let’s see... According to the map the treasure is located on Takaranoyama mountain, which is not too far from here!” she continues while looking at the map.
+“Thanks a lot! That’s basically everything [わたし達|(わたしたち) we] needed to [知る|(しる) know]!” Harumi [言う|(いう) says] with gratitude and a smile.
 
-“We don’t have much time; we need to get there before Aku no Soshiki. Let’s go to sleep early today, so we can go as soon as sunrise!” she adds with newfound energy, which is an improvement over the mood she was in before, but might be counterproductive to the goal of falling asleep early this evening.
+“[あなた達|(あなたたち) You (plural)] are more than welcome. Now, [わたし達|(わたしたち) we] should go before [わたし達|(わたしたち) we] get found out. Goodbye.” [かれ|he] [言う|(いう) says] before standing up, and both of [かれ ら|them (masculine)] leave the [酒場|(さかば) tavern].
+
+“Great! [わたし|I] mean, not great, but at least now [わたし達|(わたしたち) we] know what to do!” Harumi turns to [あなた|you] and [言う|(いう) says] right after [かれ ら|they (masculine)] [出る|(でる) leave].
+
+
+
+“Let’s see... According to the [地図|(ちず) map] the [たから|treasure] is located on Takaranoyama mountain, which is not too far from here!” [かのじょ|she] continues while looking at the [地図|(ちず) map].
+
+“[わたし達|(わたしたち) We] don’t have much time; [わたし達|(わたしたち) we] need to get there before Aku no Soshiki. Let’s go to sleep early today, so [わたし達|(わたしたち) we] can [行く|(いく) go] as soon as sunrise!” [かのじょ|she] adds with newfound energy, which is an improvement over the mood [かのじょ|she] was in before, but might be counterproductive to the goal of falling asleep [早く|(はやく) early] this evening.
 
 
 
