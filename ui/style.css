@@ -1048,6 +1048,7 @@ body:not(.game) .game-only {
 }
 
 .popover {
+    --top-offset: 0px;
     --left-offset: 0px;
 
     --transition-time: var(--buttons-transition-time);
@@ -1067,8 +1068,11 @@ body:not(.game) .game-only {
     color: var(--palette-text-color);
     position: fixed;
     transform: translateY(-100%);
-    white-space: pre;
+    white-space: pre-wrap;
+    width: max-content;
+    max-width: calc(100% - 0.95em);
     margin-left: var(--left-offset);
+    margin-top: var(--top-offset);
     padding: 0.5em;
     background-color: var(--palette-text-bleak-color);
     border-radius: 0.25em;
