@@ -1171,7 +1171,7 @@ Hostage Village 3
 
 “Are you serious?” [かのじょ|she] [聞く|(きく) asks] in response.
 
-“Dead serious.” [かれ|he] [答える|(こたえる) responds], sticking a knife to a nearby child’s throat, causing it to squirm.
+“Dead serious.” [かれ|he] [答える|(こたえる) responds], sticking a knife to a nearby child’s throat, “Ugh-”, and causing it to squirm.
 
 “You can’t beat us this time, not with this numbers advantage. And even if [あなた達|(あなたたち) you (plural)] try, [あなた達|(あなたたち) you (plural)] know what happens.” he continues with a sleazy smile.
 
@@ -1444,30 +1444,30 @@ You most likely came to this [世界|(せかい) world] through a damaged [て�
 
 
 Takaranoyama 宝の山 Treasure Mountain caves
-Entrance Forest
+Entrance Forest 山林 Mountain Forest
 In the early morning, you arrive at Takaranoyama.
 
-The mountain is covered by a deep forest, and has a whole cave system inside of it, with entrances to the caves scattered all around.
+The [山|(やま) mountain] is covered by thick [林|(はやし) woods], and has a whole cave system inside of it, with entrances to the [どうくつ|caves] scattered all around.
 
-According to the map, the quickest way to the treasure leads through a combination of navigating through the forest, and taking a few shortcuts through some of the caves.
+According to the map, the quickest way to the treasure leads through a combination of navigating through the [林|(はやし) woods], and taking a few shortcuts through some of the [どうくつ|caves].
 
-The treasure is supposedly located in one of the caves, deep inside the mountain.
+The [たから|treasure] is supposedly located in one of the [どうくつ|caves], deep inside the [山|(やま) mountain].
 
 
 
-As you venture through the mountain forest, you arrive at the entrance to the first cave.
+As you venture through the [山林|(さんりん) mountain forest], you arrive at the entrance to the first [どうくつ|cave].
 
-You are surrounded by lush vegetation, and the entrance to the cave in front of you is covered in moss. The inside of the cave itself looks completely dark.
+You are surrounded by lush vegetation, and the [入口|(いりぐち) entrance] to the [どうくつ|cave] in front of you is covered in moss. The inside of the [どうくつ|cave] itself looks completely dark.
 
 Harumi seems intimidated by it, cowering in fear.
 
 
 
-Before entering the cave you decide to pull out a torch, but when you’re occupied with it, you hear Harumi shriek “Waah! O-Oh...”, followed by a sigh of relief.
+Before entering the [どうくつ|cave] you decide to pull out a torch, but when you’re occupied with it, you hear Harumi shriek “Waah! O-Oh...”, followed by a sigh of relief.
 
 “Nevermind, it wasn’t a bat, just a word.” she says with an awkward smile.
 
-You see a word creep up on you from behind, and a lot more hiding in the bushes nearby.
+You see a [言葉|(ことば) word] creep up on you from behind, and a lot more hiding in the bushes nearby.
 
 
 
@@ -1480,23 +1480,23 @@ You beat most of the words and the rest run away.
 
 
 
-Entering the cave
-“That wasn’t so bad! Ah... oh...” Harumi happily says after the battle, suddenly remembering there’s still a cave in front of you halfway through her remark.
+Entering the cave どうくつへ入る
+“That wasn’t so bad! Ah... oh...” Harumi happily says after the battle, suddenly remembering there’s still a [どうくつ|cave] in front of you halfway through her remark.
 
-There isn’t much time to waste, as Aku no Soshiki is most likely already looking for the treasure inside, so after quickly cheering Harumi up, the two of you enter the cave, with Harumi staying closely behind you.
+There isn’t much time to waste, as Aku no Soshiki is most likely already looking for the treasure inside, so after quickly cheering Harumi up, the two of you enter the [どうくつ|cave], with Harumi staying closely behind [あなた|you].
 
 
 
 Walking through the cave
-As you make your way through the cave, suddenly, something falls from the ceiling.
+As you make your way through the [どうくつ|cave], suddenly, something falls from the ceiling.
 
 “Aaaa! H-Huh?!” Harumi shrieks at first, but her fear is quickly replaced with confusion.
 
+
+
 The thing that fell from the ceiling was a word.
 
-
-
-You hold up your torch and look up, and there’s a huge number of words stuck to the ceiling.
+You hold up your torch and look up, and there’s a huge number of [言葉|(ことば) words] stuck to the ceiling.
 
 “I didn’t know they could do that; that’s cool!” Harumi exclaims after seeing the scene.
 
@@ -1513,7 +1513,7 @@ You manage to beat all the words that fell, as the ones still on the ceiling don
 
 
 Cave exit
-You exit the first cave, there’s still a few more to go, but for now, you’re back in the forest.
+You exit the first [どうくつ|cave], there’s still a few more to go, but for now, you’re back in the forest.
 
 “Okay, at least one is over!” Harumi says with a little bit of relief.
 
@@ -1523,7 +1523,7 @@ You exit the first cave, there’s still a few more to go, but for now, you’re
 
 “I thought we might bump into them along the way." Harumi reacts, as she notices the two men, presumably Aku no Soshiki members, standing in front of you.
 
-“Take that!” one of them says while sending out words to attack you.
+“Take that!” one of them says while sending out words to attack [あなた達|(あなたたち) you (plural)].
 
 
 
@@ -1539,50 +1539,50 @@ You beat all of the words sent out.
 Aku no Soshiki goons after
 “Damn, run! We have to let the boss know they’re here!” one of the men says to the other, before they run further ahead.
 
-Normally you would chase after them, and try to capture them, but there doesn’t seem to be much time for that right now.
+Normally you would give chase and try to capture them, but there doesn’t seem to be much time for that right now.
 
 
 
-“The boss? Their boss is here too?” Harumi says, visibly surprised.
+“‘The boss’? Their [ボス|boss] is here too?” Harumi says, visibly surprised.
 
-“Maybe this is our chance to capture him!” she continues, excitedly throwing fists into the air, full of fighting spirit.
+“Maybe this is our chance to capture him!” she continues, full of fighting spirit, excitedly throwing fists into the air.
 
-“Let’s go! There’s no time to wa-... Oh...” she adds, full of enthusiasm in the beginning, which quickly fades after she sees what’s in front of you.
+“Let’s go! There’s no time to wa-... Oh...” [かのじょ|she] adds, full of enthusiasm in the beginning, quickly fading after [かのじょ|she] sees what’s in front of you two.
 
 
 
-“Another cave...” Harumi says dejectedly.
+“Another [どうくつ|cave]...” Harumi says dejectedly.
 
 
 
 Boss
 After a few more caves and bat encounters, you find another patch of the forest.
 
-“Well, that was a close one, but at least there don’t seem to be too many more caves ahead!” Harumi says with a little bit of relief.
+“Well, that was tough, but at least there don’t seem to be too many more [どうくつ|caves] ahead!” Harumi says with a little bit of relief.
 
 “Ah, I’ve been waiting for you two!” suddenly, you hear a voice.
 
 
 
-You look ahead, and see an imposing looking man, surrounded by two underlings.
+You look ahead, and see an imposing looking man with two underlings by his side.
 
-“I’m Akuto, the leader of Aku no Soshiki. It’s my pleasure to finally meet you both.” he continues.
+“I’m Akuto, the leader of Aku no Soshiki. It’s my pleasure to finally meet [あなた達|(あなたたち) you (plural)] both.” he continues.
 
-“We won’t let you get that weapon!” Harumi responds with determination.
-
-
-
-“Now, now; just hear me out. Don’t you think the people in power only care for their own interests, not of those of the people they’re supposed to be serving?” Akuto starts his villain monologue.
-
-“We, the Aku no Soshiki, want to change that. Don’t you agree with our sentiment? You could join us!” he continues
+“We won’t let you get that weapon!” Harumi responds, holding up her fist with determination.
 
 
 
-“The weapon would greatly help- H-Hey, what are you doing? Stop it! Ouch!” he covers his face after being suddenly interrupted by Harumi, who picks up nearby rocks, and starts throwing them at him.
+“Now, now; just hear me out. Don’t you think that people in power only care for their own interests, not those of the [人々|(ひとびと) people] they’re supposed to be serving?” Akuto starts his villain monologue.
 
-“Get lost!” Harumi says while pulling down her eyelid, and sticking out her tongue in contempt.
+“We, the Aku no Soshiki, want to change that. Don’t you agree with our sentiment? You could join us!” [かれ|he] continues.
 
-“Ugh, damn you pesky little... Take that!” he and his underlings send out words at you and run further into the direction of the treasure.
+
+
+“The weapon would greatly help- H-Hey, what are you doing? Stop it! Ouch!” [かれ|he] covers [かれ の|his] face after being suddenly interrupted by Harumi, who picks up nearby rocks and starts throwing them at him.
+
+“Get lost!” Harumi says while pulling down her eyelid and sticking out her tongue in contempt.
+
+“Ugh, damn you pesky little... Take that!” [かれ|he] and [かれ の|his] underlings send out words at you and run further into the direction of the treasure.
 
 
 
@@ -1600,41 +1600,47 @@ After battle boss
 
 “Ugh...” suddenly, she gasps, seeing what’s in front of her.
 
-“Another cave...” she adds.
+“Another [どうくつ|cave]...” [かのじょ|she] adds.
 
 
 
-You decide to walk in front of her to lead the way through the cave, as always, but then you feel a sharp pain in your ankle and fall to the ground.
+You decide to walk in front of her to lead the way through the [どうくつ|cave], as always, but then you feel a sharp pain in your ankle and fall to the ground.
 
 “Hey, what’s wrong? Oh, there was one left.” Harumi reacts to your fall, and, looking behind, you notice a single word, now running away, that must’ve hit you the moment before.
 
-“Are you ok?” she asks with concern.
+“Are you ok?” [かのじょ|she] asks with concern.
 
 
 
 You say you’re fine and try to stand up, but when you do so your face distorts with pain. You don’t think you can walk too well with this injury.
 
-You tell Harumi she will need to go chase Akuto alone, as you would only be slowing her down.
+[あなた|You] tell Harumi she will need to go chase Akuto alone, as [あなた|you] would only be slowing [かのじょ を|her (as object of a verb) (を read as “o”)] down. That means she will need to enter the next [どうくつ|cave] alone.
 
-“I wouldn’t want to leave you here, but we really are in a hurry this time...” she responds.
+“W-What?! Me, [ひとり|alone]?! In a [どうくつ|cave]?!” she reacts, expectedly flustered given her fears.
 
 
 
-“Umm... Wait a second... Here, take this!” she hesitates for a moment while looking for something, before handing you a stick.
+[あなた|You] try to convince [かのじょ を|her (as object of a verb) (を read as “o”)], explaining that there really is no time, and, after a few moments, [かのじょ|she] eventually obliges.
 
-“Maybe this will help you walk, even if slowly? You won’t be as defenseless either!” she adds.
+“I understand the situation, but still, [わたし|I] wouldn’t want to leave [あなた|you] here all by yourself...” [かのじょ|she] says, concerned about [あなた|you], while preparing to enter the [どうくつ|cave] [一人で|(ひとりで) alone (do something alone)].
 
-You thank her, and accept the stick.
 
-“Okay, I’m going after- Oh...” Harumi says before realizing she will have to go through the next cave alone.
+
+“Umm... Wait a second... Here, take this!” [かのじょ|she] hesitates for a moment while looking for something, before handing you a stick [かのじょ|she] just found lying under a nearby tree.
+
+“Maybe this will help [あなた|you] walk, even if slowly? [あなた|You] won’t be as defenseless either!” [かのじょ|she] [加える|(くわえる) adds].
+
+[あなた|You] thank her and accept the stick.
+
+“Okay, I’m going after- Oh...” Harumi says, seemingly having forgotten for a moment that she’s about to have to face her fears soon.
 
 
 
 “Maybe it won’t be too bad... Maybe there will be no-”
 “Eek!” 
-“Wah!” she tries to reassure herself before getting cut off by the cry of a bat flying out of the cave, causing her to shriek and cower.
+“Wah!” [かのじょ|she] tries to reassure herself before getting cut off by the cry of a bat flying out of the [どうくつ|cave], causing her to shriek and cower.
 
-“Oh...” she weeps before reluctantly making her way into the cave.
+“Oh...” [かのじょ|she] weeps before reluctantly making her way into the [どうくつ|cave].
 
 
 
@@ -1649,7 +1655,7 @@ You thank her, and accept the stick.
 
 She understands that at this point, not only is she going to have a tough time making it out of this cave, she’s also progressing too slowly to catch up with Akuto.
 
-“When you’re feeling down, move your body! That’s what grandma used to say! I’ll just run and keep running until I’m out of this place! And I’m going to catch up with them in no time! [一石二鳥|(いっせきにちょう)\rkilling two birds with one stone\r(literally “one stone, two birds”)]!” Harumi cheers herself up, gaining new determination.
+“When you’re feeling down, move your body! That’s what grandma used to say! I’ll just run and keep running until I’m out of this place! And I’m going to catch up with them in no time! [一石二鳥|(いっせきにちょう) killing two birds with one stone (literally “one stone, two birds”)]!” Harumi cheers herself up, gaining new determination.
 
 She starts running, still scared, still covering her head, but determined to see everything through to the end.
 
