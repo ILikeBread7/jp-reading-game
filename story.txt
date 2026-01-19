@@ -1111,7 +1111,7 @@ After a day of walking, you finally see the [村|(むら) village] above the hor
 
 You follow right after, and quickly arrive at the gate.
 
-“Huh? Why aren’t they attacking?” Harumi [かのじょ|she], dumbfounded at the situation.
+“Huh? Why aren’t they attacking?” Harumi [言う|(いう) says], dumbfounded at the situation.
 
 The words seem to notice you, but don’t attack. Usually they either run away or lunge at you the moment they realize they’ve been spotted.
 
@@ -1128,7 +1128,7 @@ You attack the words surrounding the open village gate.
 
 
 
-You defeat a few of the words before the rest runs away, inside the village.
+You defeat a few of the words before the rest runs away inside the village.
 
 
 
@@ -1175,11 +1175,11 @@ Hostage Village 3
 
 “You can’t beat us this time, not with this numbers advantage. And even if [あなた達|(あなたたち) you (plural)] try, [あなた達|(あなたたち) you (plural)] know what happens.” he continues with a sleazy smile.
 
-[あなた|you] know [かれ|he] is right. [あなた達|(あなたたち) You (plural)] are already completely exhausted from the combat, and [あなた達|(あなたたち) you (plural)] barely even made a dent in the number of [言葉|(ことば) words] around. Not even mentioning all the Aku no Soshiki members who outnumber [あなた達|(あなたたち) you (plural)] by an order of magnitude.
+[あなた|You] know [かれ|he] is right. [あなた達|(あなたたち) You (plural)] are already completely exhausted from the combat, and [あなた達|(あなたたち) you (plural)] barely even made a dent in the number of [言葉|(ことば) words] around. Not even mentioning all the Aku no Soshiki members who outnumber [あなた達|(あなたたち) you (plural)] by an order of magnitude.
 
 
 
-“Okay, okay. There.” Harumi acquiesces, and presents the map to the man.
+“Okay, okay. There.” Harumi acquiesces and presents the map to the man.
 
 “Let’s see... Yup, looks like the real deal! All right, guys, we’re leaving!” [かれ|he] snatches the [地図|(ちず) map] from [かのじょ の|her] hand, takes a quick glance, and, after confirming the authenticity of it, the assailants all prepare to leave the village together.
 
@@ -1200,7 +1200,7 @@ You are attacked by words surrounding you from all directions, trying to slow yo
 
 
 
-Despite being hopelessly exhausted, you manage to beat all the words.
+Despite being hopelessly exhausted you manage to beat all the words.
 
 
 
@@ -1238,7 +1238,7 @@ You nod, and both of [あなた達|(あなたたち) you (plural)] [行く|(い�
 
 
 Foraging 1 森で食料採集
-“So, what do you think we should do now?” Harumi asks, while picking berries.
+“So, what do you think we should do now?” Harumi asks while picking berries.
 
 “We lost the map, and, while I do remember our next destination, Minatomachi city, [わたし|I] don’t know where to go from there. And besides, [わたし|I] don’t want to put any more people in danger...” [かのじょ|she] continues dejectedly.
 
@@ -1416,7 +1416,7 @@ He’s the Aku no Soshiki member [あなた達|(あなたたち) you (plural)] h
 
 “The [ボス|boss] believes [かれ|he] left behind a [ぶき|weapon] that’s so powerful, even the military deemed it too dangerous and abandoned its development. [かれ|He] also [信じている|(しんじている) believes] the [ぶき|weapon] can help him subjugate entire countries.” [かれ|he] continues.
 
-“W-What? [わたし達|(わたしたち) We] need to stop [かれ を|him (as object of a verb) (を read as “o”)]! Who knows what [かれ|he] could do with that thing?” Harumi [言う|(いう) says] before turning [かのじょ の|her] face towards [あなた|you].
+“W-What?! [わたし達|(わたしたち) We] need to stop [かれ を|him (as object of a verb) (を read as “o”)]! Who knows what [かれ|he] could do with that thing?!” Harumi [言う|(いう) says] before turning [かのじょ の|her] face towards [あなた|you].
 
 
 
@@ -1539,8 +1539,6 @@ You beat all of the words sent out.
 Aku no Soshiki goons after
 “Damn, run! We have to let the boss know they’re here!” one of the men says to the other, before they run further ahead.
 
-Normally you would give chase and try to capture them, but there doesn’t seem to be much time for that right now.
-
 
 
 “‘The boss’? Their [ボス|boss] is here too?” Harumi says, visibly surprised.
@@ -1612,7 +1610,7 @@ You decide to walk in front of her to lead the way through the [どうくつ|cav
 
 
 
-You say you’re fine and try to stand up, but when you do so your face distorts with pain. You don’t think you can walk too well with this injury.
+You say you’re fine and try to stand up, but when you do, your face distorts with pain. You don’t think you can walk too well with this injury.
 
 [あなた|You] tell Harumi she will need to go chase Akuto alone, as [あなた|you] would only be slowing [かのじょ を|her (as object of a verb) (を read as “o”)] down. That means she will need to enter the next [どうくつ|cave] alone.
 
@@ -1769,7 +1767,7 @@ You’re standing at the foot of the [がけ|cliff], fending off their attacks w
 
 “Hey, stop! Oh...” Harumi shouts and almost starts chasing them, before quickly turning around and noticing you, struggling to scale the [がけ|cliff] with your injured ankle.
 
-“Here, let me help you.” [かのじょ|she] extends her hand towards [あなた|you]、 trying to help you up the [がけ|cliff].
+“Here, let me help you.” [かのじょ|she] extends her hand towards [あなた|you], trying to help you up the [がけ|cliff].
 
 “Wah!” but then, something falls from the ceiling, and lands on [かのじょ の|her] head.
 

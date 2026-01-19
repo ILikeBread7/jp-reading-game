@@ -1435,7 +1435,7 @@ class KantoreStoryModeUi {
                                 
                                 You follow right after, and quickly arrive at the gate.
                                 
-                                “Huh? Why aren’t they attacking?” Harumi <span class="popover" data-content="she">かのじょ</span>, dumbfounded at the situation.
+                                “Huh? Why aren’t they attacking?” Harumi <span class="popover" data-content="(いう) says">言う</span>, dumbfounded at the situation.
                                 
                                 The words seem to notice you, but don’t attack. Usually they either run away or lunge at you the moment they realize they’ve been spotted.
                             `,
@@ -1460,7 +1460,7 @@ class KantoreStoryModeUi {
                         ],
                         afterText: [
                             `
-                                You defeat a few of the words before the rest runs away, inside the village.
+                                You defeat a few of the words before the rest runs away inside the village.
                             `
                         ]
                     },
@@ -1520,10 +1520,10 @@ class KantoreStoryModeUi {
                                 
                                 “You can’t beat us this time, not with this numbers advantage. And even if <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> try, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> know what happens.” he continues with a sleazy smile.
                                 
-                                <span class="popover" data-content="you">あなた</span> know <span class="popover" data-content="he">かれ</span> is right. <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> are already completely exhausted from the combat, and <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> barely even made a dent in the number of <span class="popover" data-content="(ことば) words">言葉</span> around. Not even mentioning all the Aku no Soshiki members who outnumber <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> by an order of magnitude.
+                                <span class="popover" data-content="You">あなた</span> know <span class="popover" data-content="he">かれ</span> is right. <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> are already completely exhausted from the combat, and <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> barely even made a dent in the number of <span class="popover" data-content="(ことば) words">言葉</span> around. Not even mentioning all the Aku no Soshiki members who outnumber <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> by an order of magnitude.
                             `,
                             `
-                                “Okay, okay. There.” Harumi acquiesces, and presents the map to the man.
+                                “Okay, okay. There.” Harumi acquiesces and presents the map to the man.
                                 
                                 “Let’s see... Yup, looks like the real deal! All right, guys, we’re leaving!” <span class="popover" data-content="he">かれ</span> snatches the <span class="popover" data-content="(ちず) map">地図</span> from <span class="popover" data-content="her">かのじょ の</span> hand, takes a quick glance, and, after confirming the authenticity of it, the assailants all prepare to leave the village together.
                             `,
@@ -1552,7 +1552,7 @@ class KantoreStoryModeUi {
                         ],
                         afterText: [
                             `
-                                Despite being hopelessly exhausted, you manage to beat all the words.
+                                Despite being hopelessly exhausted you manage to beat all the words.
                             `
                         ]
                     },
@@ -1594,7 +1594,7 @@ class KantoreStoryModeUi {
                         name: '森で食料採集 - Foraging in the forest 1',
                         text: [
                             `
-                                “So, what do you think we should do now?” Harumi asks, while picking berries.
+                                “So, what do you think we should do now?” Harumi asks while picking berries.
                                 
                                 “We lost the map, and, while I do remember our next destination, Minatomachi city, <span class="popover" data-content="I">わたし</span> don’t know where to go from there. And besides, <span class="popover" data-content="I">わたし</span> don’t want to put any more people in danger...” <span class="popover" data-content="she">かのじょ</span> continues dejectedly.
                                 
@@ -1792,13 +1792,14 @@ class KantoreStoryModeUi {
                                 
                                 “The <span class="popover" data-content="boss">ボス</span> believes <span class="popover" data-content="he">かれ</span> left behind a <span class="popover" data-content="weapon">ぶき</span> that’s so powerful, even the military deemed it too dangerous and abandoned its development. <span class="popover" data-content="He">かれ</span> also <span class="popover" data-content="(しんじている) believes">信じている</span> the <span class="popover" data-content="weapon">ぶき</span> can help him subjugate entire countries.” <span class="popover" data-content="he">かれ</span> continues.
                                 
-                                “W-What? <span class="popover" data-content="(わたしたち) We">わたし達</span> need to stop <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span>! Who knows what <span class="popover" data-content="he">かれ</span> could do with that thing?” Harumi <span class="popover" data-content="(いう) says">言う</span> before turning <span class="popover" data-content="her">かのじょ の</span> face towards <span class="popover" data-content="you">あなた</span>.
+                                “W-What?! <span class="popover" data-content="(わたしたち) We">わたし達</span> need to stop <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span>! Who knows what <span class="popover" data-content="he">かれ</span> could do with that thing?!” Harumi <span class="popover" data-content="(いう) says">言う</span> before turning <span class="popover" data-content="her">かのじょ の</span> face towards <span class="popover" data-content="you">あなた</span>.
                             `,
                             `
                                 After that, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> <span class="popover" data-content="(きく) ask">聞く</span> them a few more questions and find out that:
-                                The organization’s hideout is located on an island that’s not too far from here, called Ajitojima.
-                                In the <span class="popover" data-content="hideout">アジト</span> there is a portal that can be used to go back to your world.
-                                You most likely came to this <span class="popover" data-content="(せかい) world">世界</span> through a damaged <span class="popover" data-content="portal">てんいもん</span> that was seized by law enforcement back in <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> <span class="popover" data-content="(せかい) world">世界</span>, and the reason <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> lost your memory is probably due to the <span class="popover" data-content="portal’s">てんいもん の</span> malfunction.
+                                
+                                &nbsp;- The organization’s hideout is located on an island that’s not too far from here, called Ajitojima.
+                                &nbsp;- In the <span class="popover" data-content="hideout">アジト</span> there is a portal that can be used to go back to your world.
+                                &nbsp;- You most likely came to this <span class="popover" data-content="(せかい) world">世界</span> through a damaged <span class="popover" data-content="portal">てんいもん</span> that was seized by law enforcement back in <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> <span class="popover" data-content="(せかい) world">世界</span>, and the reason <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> lost your memory is probably due to the <span class="popover" data-content="portal’s">てんいもん の</span> malfunction.
                                 
                                 <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> also <span class="popover" data-content="(きく) ask">聞く</span> other <span class="popover" data-content="questions">しつもん</span>, including about <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> identities, but <span class="popover" data-content="they (masculine)">かれ ら</span> don’t seem to <span class="popover" data-content="(しる) know">知る</span> much more than <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> already do.
                             `,
@@ -1816,6 +1817,509 @@ class KantoreStoryModeUi {
                             `
                         ]
                     },
+                ]
+            },
+            {
+                name: '宝の山 - Takaranoyama',
+                entries: [
+                    {
+                        name: '山林 - Mountain forest 1',
+                        text: [
+                            `
+                                In the early morning, you arrive at Takaranoyama.
+                                
+                                The <span class="popover" data-content="(やま) mountain">山</span> is covered by thick <span class="popover" data-content="(はやし) woods">林</span>, and has a whole cave system inside of it, with entrances to the <span class="popover" data-content="caves">どうくつ</span> scattered all around.
+                                
+                                According to the map, the quickest way to the treasure leads through a combination of navigating through the <span class="popover" data-content="(はやし) woods">林</span>, and taking a few shortcuts through some of the <span class="popover" data-content="caves">どうくつ</span>.
+                                
+                                The <span class="popover" data-content="treasure">たから</span> is supposedly located in one of the <span class="popover" data-content="caves">どうくつ</span>, deep inside the <span class="popover" data-content="(やま) mountain">山</span>.
+                            `,
+                            `
+                                As you venture through the <span class="popover" data-content="(さんりん) mountain forest">山林</span>, you arrive at the entrance to the first <span class="popover" data-content="cave">どうくつ</span>.
+                                
+                                You are surrounded by lush vegetation, and the <span class="popover" data-content="(いりぐち) entrance">入口</span> to the <span class="popover" data-content="cave">どうくつ</span> in front of you is covered in moss. The inside of the <span class="popover" data-content="cave">どうくつ</span> itself looks completely dark.
+                                
+                                Harumi seems intimidated by it, cowering in fear.
+                            `,
+                            `
+                                Before entering the <span class="popover" data-content="cave">どうくつ</span> you decide to pull out a torch, but when you’re occupied with it, you hear Harumi shriek “Waah! O-Oh...”, followed by a sigh of relief.
+                                
+                                “Nevermind, it wasn’t a bat, just a word.” she says with an awkward smile.
+                                
+                                You see a <span class="popover" data-content="(ことば) word">言葉</span> creep up on you from behind, and a lot more hiding in the bushes nearby.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '山林 - Mountain forest 2',
+                            range: grade5Range,
+                            index: 0
+                        }),
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                When the words notice you noticing them, they lunge at you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You beat most of the words and the rest run away.
+                            `
+                        ]
+                    },
+                    {
+                        name: '洞窟(どうくつ)へ入る - Entering the cave',
+                        text: [
+                            `
+                                “That wasn’t so bad! Ah... oh...” Harumi happily says after the battle, suddenly remembering there’s still a <span class="popover" data-content="cave">どうくつ</span> in front of you halfway through her remark.
+                                
+                                There isn’t much time to waste, as Aku no Soshiki is most likely already looking for the treasure inside, so after quickly cheering Harumi up, the two of you enter the <span class="popover" data-content="cave">どうくつ</span>, with Harumi staying closely behind <span class="popover" data-content="you">あなた</span>.
+                            `
+                        ]
+                    },
+                    {
+                        name: '洞窟 (どうくつ) - Cave 1',
+                        text: [
+                            `
+                                As you make your way through the <span class="popover" data-content="cave">どうくつ</span>, suddenly, something falls from the ceiling.
+                                
+                                “Aaaa! H-Huh?!” Harumi shrieks at first, but her fear is quickly replaced with confusion.
+                            `,
+                            `
+                                The thing that fell from the ceiling was a word.
+                                
+                                You hold up your torch and look up, and there’s a huge number of <span class="popover" data-content="(ことば) words">言葉</span> stuck to the ceiling.
+                                
+                                “I didn’t know they could do that; that’s cool!” Harumi exclaims after seeing the scene.
+                                
+                                But there’s no time for being impressed, as they all fall down to the ground, and attack you.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '洞窟 (どうくつ) - Cave 2',
+                            range: grade5Range,
+                            index: 1
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You fight the words, as more and more keep falling from the ceiling and attacking you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to beat all the words that fell, as the ones still on the ceiling don’t seem inclined to join the fight anymore.
+                            `
+                        ]
+                    },
+                    {
+                        name: '洞窟(どうくつ)を出る - Exiting the cave',
+                        text: [
+                            `
+                                You exit the first <span class="popover" data-content="cave">どうくつ</span>, there’s still a few more to go, but for now, you’re back in the forest.
+                                
+                                “Okay, at least one is over!” Harumi says with a little bit of relief.
+                                
+                                “Hey, what are you doing here?!” suddenly, you hear someone’s voice from a little up ahead.
+                            `,
+                            `
+                                “I thought we might bump into them along the way." Harumi reacts, as she notices the two men, presumably Aku no Soshiki members, standing in front of you.
+                                
+                                “Take that!” one of them says while sending out words to attack <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '下っ端 (したっぱ) - Goons 1',
+                            range: grade5Range,
+                            index: 2
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You get attacked by the sent out words.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You beat all of the words sent out.
+                            `
+                        ]
+                    },
+                    {
+                        name: '下っ端 (したっぱ) - Goons 2',
+                        text: [
+                            `
+                                “Damn, run! We have to let the boss know they’re here!” one of the men says to the other, before they run further ahead.
+                            `,
+                            `
+                                “‘The boss’? Their <span class="popover" data-content="boss">ボス</span> is here too?” Harumi says, visibly surprised.
+                                
+                                “Maybe this is our chance to capture him!” she continues, full of fighting spirit, excitedly throwing fists into the air.
+                                
+                                “Let’s go! There’s no time to wa-... Oh...” <span class="popover" data-content="she">かのじょ</span> adds, full of enthusiasm in the beginning, quickly fading after <span class="popover" data-content="she">かのじょ</span> sees what’s in front of you two.
+                            `,
+                            `
+                                “Another <span class="popover" data-content="cave">どうくつ</span>...” Harumi says dejectedly.
+                            `
+                        ]
+                    },
+                    {
+                        name: "組織(そしき)のボス - Organization's Boss",
+                        text: [
+                            `
+                                After a few more caves and bat encounters, you find another patch of the forest.
+                                
+                                “Well, that was tough, but at least there don’t seem to be too many more <span class="popover" data-content="caves">どうくつ</span> ahead!” Harumi says with a little bit of relief.
+                                
+                                “Ah, I’ve been waiting for you two!” suddenly, you hear a voice.
+                            `,
+                            `
+                                You look ahead, and see an imposing looking man with two underlings by his side.
+                                
+                                “I’m Akuto, the leader of Aku no Soshiki. It’s my pleasure to finally meet <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> both.” he continues.
+                                
+                                “We won’t let you get that weapon!” Harumi responds, holding up her fist with determination.
+                            `,
+                            `
+                                “Now, now; just hear me out. Don’t you think that people in power only care for their own interests, not those of the <span class="popover" data-content="(ひとびと) people">人々</span> they’re supposed to be serving?” Akuto starts his villain monologue.
+                                
+                                “We, the Aku no Soshiki, want to change that. Don’t you agree with our sentiment? You could join us!” <span class="popover" data-content="he">かれ</span> continues.
+                            `,
+                            `
+                                “The weapon would greatly help- H-Hey, what are you doing? Stop it! Ouch!” <span class="popover" data-content="he">かれ</span> covers <span class="popover" data-content="his">かれ の</span> face after being suddenly interrupted by Harumi, who picks up nearby rocks and starts throwing them at him.
+                                
+                                “Get lost!” Harumi says while pulling down her eyelid and sticking out her tongue in contempt.
+                                
+                                “Ugh, damn you pesky little... Take that!” <span class="popover" data-content="he">かれ</span> and <span class="popover" data-content="his">かれ の</span> underlings send out words at you and run further into the direction of the treasure.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'アクト - Akuto 1',
+                            range: grade5Range,
+                            index: 3
+                        }),
+                        totalQuestions: 15,
+                        beforeText: [
+                            `
+                                The words Akuto and his goons sent out attack you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to beat all of the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'また洞窟(どうくつ) - Another cave',
+                        text: [
+                            `
+                                “Whew, okay, I think it’s all cleaned up. Let’s go, we have to get to the treasure before them!” Harumi says after the battle.
+                                
+                                “Ugh...” suddenly, she gasps, seeing what’s in front of her.
+                                
+                                “Another <span class="popover" data-content="cave">どうくつ</span>...” <span class="popover" data-content="she">かのじょ</span> adds.
+                            `,
+                            `
+                                You decide to walk in front of her to lead the way through the <span class="popover" data-content="cave">どうくつ</span>, as always, but then you feel a sharp pain in your ankle and fall to the ground.
+                                
+                                “Hey, what’s wrong? Oh, there was one left.” Harumi reacts to your fall, and, looking behind, you notice a single word, now running away, that must’ve hit you the moment before.
+                                
+                                “Are you ok?” <span class="popover" data-content="she">かのじょ</span> asks with concern.
+                            `,
+                            `
+                                You say you’re fine and try to stand up, but when you do, your face distorts with pain. You don’t think you can walk too well with this injury.
+                                
+                                <span class="popover" data-content="You">あなた</span> tell Harumi she will need to go chase Akuto alone, as <span class="popover" data-content="you">あなた</span> would only be slowing <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> down. That means she will need to enter the next <span class="popover" data-content="cave">どうくつ</span> alone.
+                                
+                                “W-What?! Me, <span class="popover" data-content="alone">ひとり</span>?! In a <span class="popover" data-content="cave">どうくつ</span>?!” she reacts, expectedly flustered given her fears.
+                            `,
+                            `
+                                <span class="popover" data-content="You">あなた</span> try to convince <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span>, explaining that there really is no time, and, after a few moments, <span class="popover" data-content="she">かのじょ</span> eventually obliges.
+                                
+                                “I understand the situation, but still, <span class="popover" data-content="I">わたし</span> wouldn’t want to leave <span class="popover" data-content="you">あなた</span> here all by yourself...” <span class="popover" data-content="she">かのじょ</span> says, concerned about <span class="popover" data-content="you">あなた</span>, while preparing to enter the <span class="popover" data-content="cave">どうくつ</span> <span class="popover" data-content="(ひとりで) alone (do something alone)">一人で</span>.
+                            `,
+                            `
+                                “Umm... Wait a second... Here, take this!” <span class="popover" data-content="she">かのじょ</span> hesitates for a moment while looking for something, before handing you a stick <span class="popover" data-content="she">かのじょ</span> just found lying under a nearby tree.
+                                
+                                “Maybe this will help <span class="popover" data-content="you">あなた</span> walk, even if slowly? <span class="popover" data-content="You">あなた</span> won’t be as defenseless either!” <span class="popover" data-content="she">かのじょ</span> <span class="popover" data-content="(くわえる) adds">加える</span>.
+                                
+                                <span class="popover" data-content="You">あなた</span> thank her and accept the stick.
+                                
+                                “Okay, I’m going after- Oh...” Harumi says, seemingly having forgotten for a moment that she’s about to have to face her fears soon.
+                            `,
+                            `
+                                “Maybe it won’t be too bad... Maybe there will be no-”
+                                “Eek!”
+                                “Wah!” <span class="popover" data-content="she">かのじょ</span> tries to reassure herself before getting cut off by the cry of a bat flying out of the <span class="popover" data-content="cave">どうくつ</span>, causing her to shriek and cower.
+                                
+                                “Oh...” <span class="popover" data-content="she">かのじょ</span> weeps before reluctantly making her way into the <span class="popover" data-content="cave">どうくつ</span>.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ハルミが洞窟(どうくつ)に - Harumi in a cave',
+                        skin: 'harumi',
+                        text: [
+                            `
+                                “Why is this happening to me?” Harumi says, slowly making her way through the <span class="popover" data-content="cave">どうくつ</span>, her mind filled with dread, tears in her eyes, covering her head, desperately trying not to look at the bats flying overhead.
+                                
+                                “Eek!” a <span class="popover" data-content="bat">コウモリ</span> cries.
+                                
+                                “Wah!” she shrieks, <span class="popover" data-content="her">かのじょ の</span> heart is pounding, and <span class="popover" data-content="she">かのじょ</span> is on the verge of tears.
+                            `,
+                            `
+                                If things continue to go like this, not only is <span class="popover" data-content="she">かのじょ</span> going to have a tough time making it out of this <span class="popover" data-content="cave">どうくつ</span>, the slow pace will also make her struggle to catch up with Akuto.
+                                
+                                “When you’re feeling down, exercise! That’s what grandma always says! I’ll just run and keep running until <span class="popover" data-content="I">わたし</span> am out of this place! And <span class="popover" data-content="I">わたし</span> am going to catch up with them in no time! <span class="popover" data-content="(いっせきにちょう) killing two birds with one stone (literally “one stone, two birds”)">一石二鳥</span>!” Harumi cheers herself up, gaining new determination.
+                                
+                                <span class="popover" data-content="She">かのじょ</span> starts running, still scared, still covering <span class="popover" data-content="her">かのじょ の</span> head, but determined to see everything through to the end.
+                            `,
+                            `
+                                “Wah!” suddenly, something falls on <span class="popover" data-content="her">かのじょ の</span> arm, the one she used to cover <span class="popover" data-content="her">かのじょ の</span> <span class="popover" data-content="(あたま) head">頭</span>.
+                                
+                                At first, <span class="popover" data-content="she">かのじょ</span> is afraid it might be a <span class="popover" data-content="bat">コウモリ</span> and throws it to the ground.
+                                
+                                “Oh, it’s just you.” <span class="popover" data-content="she">かのじょ</span> says with relief, seeing it’s just a word.
+                            `,
+                            `
+                                More of the <span class="popover" data-content="(ことば) words">言葉</span> start falling from the ceiling, blocking <span class="popover" data-content="her">かのじょ の</span> way.
+                                
+                                “I don’t have time for this; bring it on!” <span class="popover" data-content="she">かのじょ</span> <span class="popover" data-content="(いう) says">言う</span> before charging at them.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '洞窟 (どうくつ) - Cave 3',
+                            range: grade6Range,
+                            index: 0
+                        }),
+                        skin: 'harumi',
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                Harumi attacks the words blocking her way.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Harumi defeats enough of the words to make a way ahead.
+                            `
+                        ]
+                    },
+                    {
+                        name: '息抜き (Ikinuki) - Short break',
+                        skin: 'harumi',
+                        text: [
+                            `
+                                “Finally! The exit!” Harumi exclaims after a long run through the <span class="popover" data-content="cave">どうくつ</span>.
+                                
+                                Between the running and the words falling from the ceiling, she even mostly forgot about the bats, and just rushed forward until the exit.
+                                
+                                “Huh, huh... Okay, let’s see, now I need to go over... there! Ah... not again...” still wheezing from the run, Harumi checks the map and finds where to go next, that being another <span class="popover" data-content="cave">どうくつ</span>.
+                            `,
+                            `
+                                “I just... need to catch my breath.” <span class="popover" data-content="she">かのじょ</span> stops for a moment, not only to rest, but also to gather the courage to enter another <span class="popover" data-content="cave">どうくつ</span> after just having exited one.
+                                
+                                “Okay, let’s go!” not before long, <span class="popover" data-content="she">かのじょ</span> takes off into the next <span class="popover" data-content="cave">どうくつ</span>, still anxious, but at least having figured out a way of dealing with <span class="popover" data-content="her">かのじょ の</span> fear, and having some confidence from the previous experience.
+                            `
+                        ]
+                    },
+                    {
+                        name: '洞窟(どうくつ)内の崖(がけ) - Cave cliff',
+                        skin: 'harumi',
+                        text: [
+                            `
+                                “Huh... huh... H-Huh? Hey! You up there! Stop!” Harumi runs through the <span class="popover" data-content="cave">どうくつ</span> as fast as she can, gasping for air, when <span class="popover" data-content="she">かのじょ</span> notices Akuto with his underlings.
+                                
+                                They’re standing atop a small <span class="popover" data-content="cliff">がけ</span>, maybe two meters (about seven feet) tall.
+                            `,
+                            `
+                                “It’s you again?” Akuto says when he notices <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span>.
+                                
+                                “I’m not going to let you get that thing!” Harumi <span class="popover" data-content="(いう) says">言う</span> as <span class="popover" data-content="she">かのじょ</span> starts to climb the <span class="popover" data-content="cliff">がけ</span>.
+                                
+                                “I see you’re alone. I guess my little backup plan worked as expected.” Akuto exclaims, all but admitting that the word attacking you from behind and injuring you was all a part of <span class="popover" data-content="his">かれ の</span> plan.
+                            `,
+                            `
+                                “You, two! Slow <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> down as I grab the treasure!” <span class="popover" data-content="he">かれ</span> says before proceeding forward, leaving the two of his underlings behind.
+                                
+                                “Yes, sir!” they respond before turning to Harumi and sending words her way.
+                                
+                                “Ugh... Let’s make this quick, I don’t have time for this.” Harumi groans, as <span class="popover" data-content="she">かのじょ</span> gets attacked by a <span class="popover" data-content="(ことば) word">言葉</span> while trying to scale the <span class="popover" data-content="cliff">がけ</span>, falling back down, and landing on her buttocks.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '崖(がけ)の戦い - Cliff battle 1',
+                            range: grade6Range,
+                            index: 1
+                        }),
+                        skin: 'harumi',
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                Harumi quickly gets up and fights the words, attacking from above, sent out by the Aku no Soshiki goons.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Harumi somehow manages to beat the words despite the terrain disadvantage.
+                            `
+                        ]
+                    },
+                    {
+                        name: '崖(がけ)の戦いの後 - After cliff battle',
+                        skin: 'harumi',
+                        text: [
+                            `
+                                “Now, get out of the way- H-Hey!” after the battle, Harumi again tries to climb the <span class="popover" data-content="cliff">がけ</span>, but before she can reach the top of it, the Aku no Soshiki members push <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> back down.
+                                
+                                “Oh, come on!” <span class="popover" data-content="she">かのじょ</span> laments in disbelief, not expecting them to be that petty.
+                                
+                                “What? We’re supposed to slow you down, so we do!” one of them rebukes.
+                            `,
+                            `
+                                (What am I supposed to do now? They can just keep pushing me <span class="popover" data-content="(したへ) down (literally “to down (へ read as “e”)">下へ</span> forever...) Harumi thinks, trying to figure out a solution.
+                                
+                                Then, the sound of footsteps enters <span class="popover" data-content="her">かのじょ の</span> ears, slowly approaching from behind. Noticing that, Harumi turns around.
+                                
+                                “Nice timing! It’s about time I needed some help!” <span class="popover" data-content="she">かのじょ</span> says with a cheeky smile.
+                            `
+                        ]
+                    },
+                    {
+                        name: '再開 - Reunion',
+                        text: [
+                            `
+                                You make your way through the caves, using the stick Harumi gave you as a cane.
+                                
+                                Thankfully, you don’t get attacked on the way, thanks to her clearing the way ahead of you.
+                                
+                                Before long, you notice Harumi struggling below a small cliff, with two Aku no Soshiki members standing on top of it, slowing <span class="popover" data-content="her (as object of a verb) (を read as “o”)">かのじょ を</span> down.
+                            `,
+                            `
+                                You lock eyes with her, and after a quick nod, <span class="popover" data-content="she">かのじょ</span> starts climbing the <span class="popover" data-content="cliff">がけ</span> again.
+                                
+                                “Not so fast- Ugh!” one of the goons says, before being interrupted by your attack.
+                                
+                                You’re standing at the foot of the <span class="popover" data-content="cliff">がけ</span>, fending off their attacks with your stick, allowing Harumi to climb all the way <span class="popover" data-content="(うえ へ) up (literally “to up”) (へ read as “e”)">上へ</span>.
+                            `,
+                            `
+                                “Ah, damn! Let’s go; we probably bought enough time anyway.” one of them <span class="popover" data-content="(いう) says">言う</span> before they take off, going further inside the cave.
+                                
+                                “Hey, stop! Oh...” Harumi shouts and almost starts chasing them, before quickly turning around and noticing you, struggling to scale the <span class="popover" data-content="cliff">がけ</span> with your injured ankle.
+                                
+                                “Here, let me help you.” <span class="popover" data-content="she">かのじょ</span> extends her hand towards <span class="popover" data-content="you">あなた</span>, trying to help you up the <span class="popover" data-content="cliff">がけ</span>.
+                                
+                                “Wah!” but then, something falls from the ceiling, and lands on <span class="popover" data-content="her">かのじょ の</span> head.
+                            `,
+                            `
+                                She lets go of <span class="popover" data-content="you">あなた</span>, resulting in <span class="popover" data-content="you">あなた</span> falling back <span class="popover" data-content="(したへ) down (literally “to down (へ read as “e”)">下へ</span>. Fortunately at least, the fall didn’t seem to worsen <span class="popover" data-content="your">あなた の</span> <span class="popover" data-content="injury">けが</span>.
+                                
+                                “Aaa! Get off me! O-Oh...” she throws the thing off <span class="popover" data-content="her">かのじょ の</span> head, and realizes it was a word.
+                                
+                                After that, more rogue <span class="popover" data-content="(ことば) words">言葉</span> appear, surrounding <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                                
+                                “Oh, not now! We don’t have time for this!” <span class="popover" data-content="she">かのじょ</span> cries out.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '崖(がけ)の戦い - Cliff battle 2',
+                            range: grade6Range,
+                            index: 2
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                The words attack both of you, Harumi on top of the cliff, and you at the bottom.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Both of you manage to defeat most of the words, before the rest of them disperses.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'アクト - Akuto 2',
+                        text: [
+                            `
+                                After the battle, Harumi helps you up the cliff, this time with no further obstacles.
+                                
+                                “Let’s go!” she says quickly, before taking off into the same direction the Aku no Soshiki members ran towards, with you slowly following behind.
+                                
+                                Not before long, you find yourself in a cave chamber, with the three men trying to pry open a chest sitting at the far end of it. That seems to be the treasure.
+                            `,
+                            `
+                                “Not so fast!” Harumi shouts and sprints towards them.
+                                
+                                “I’m going to throw that line right back at you!” Akuto responds, sending out a huge group of words.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'アクト - Akuto 3',
+                            range: grade6Range,
+                            index: 3
+                        }),
+                        totalQuestions: 15,
+                        beforeText: [
+                            `
+                                The words attack you and don’t let you get too close to Akuto.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                After a long battle, you manage to defeat all the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'お宝 - Treasure',
+                        text: [
+                            `
+                                Despite defeating all the words, it seems like you were too late.
+                                
+                                The treasure chest is already open, and Akuto is rummaging through it.
+                                
+                                “We can still stop-” Harumi says before being suddenly cut off.
+                                
+                                “What is this?!” Akuto shouts after pulling out a piece of paper from inside the chest.
+                            `,
+                            `
+                                “Oh, come on... We’re leaving! This was a huge waste of time!” he says with a temper after a moment of looking at the paper, and furiously tosses both it and the original treasure map on the ground.
+                                
+                                “H-Huh? What was that all about?” Harumi reacts in disbelief.
+                                
+                                The whole situation is so surreal none of you even think of following them.
+                            `,
+                            `
+                                You pick up the <span class="popover" data-content="(かみ) paper">紙</span> and read “The real treasure is the kanji we learned along the way.”
+                                
+                                You also walk up to the chest and look inside, and there really is nothing more to be found other than the one piece of <span class="popover" data-content="(かみ) paper">紙</span> with the aforementioned message written on it.
+                                
+                                “Well, at least they didn’t obtain any dangerous weapons.” Harumi <span class="popover" data-content="(いう) says">言う</span> with a shrug and a puzzled expression.
+                                
+                                While you can’t help but agree with her, there is still one more big issue left on <span class="popover" data-content="your">あなた の</span> mind.
+                            `,
+                            `
+                                How can <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> possibly split this treasure with the little girl who lent you the <span class="popover" data-content="(ちず) map">地図</span> in the first place?
+                            `
+                        ]
+                    }
                 ]
             },
             { name: TO_BE_CONTINUED_STRING, entries: [] }
