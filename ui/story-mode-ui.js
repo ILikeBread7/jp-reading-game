@@ -96,6 +96,9 @@ class KantoreStoryModeUi {
         const grade1Range = new StageRange(KantoreLevels.getKanjiLevelsGrade1Range, 4);
         const grade2Range = new StageRange(KantoreLevels.getKanjiLevelsGrade2Range, 4);
         const grade3Range = new StageRange(KantoreLevels.getKanjiLevelsGrade3Range, 5);
+        const grade4Range = new StageRange(KantoreLevels.getKanjiLevelsGrade4Range, 5);
+        const grade5Range = new StageRange(KantoreLevels.getKanjiLevelsGrade5Range, 4);
+        const grade6Range = new StageRange(KantoreLevels.getKanjiLevelsGrade6Range, 4);
 
         const hubMenu = [
             {
@@ -1409,6 +1412,320 @@ class KantoreStoryModeUi {
                                 After the whole situation unraveled, there doesn’t seem to be anything more to do in this <span class="popover" data-content="(むら) village">村</span>, so you and Harumi decide to head for the next destination.
                                 
                                 “According to the map our next destination is... well, it’s a little far, but there seems to be a small <span class="popover" data-content="(むら) village">村</span> on the way, so let’s aim for it first so we can take a break there!” Harumi happily exclaims while checking the map.
+                            `
+                        ]
+                    },
+                ]
+            },
+            {
+                name: '問題発生 - Trouble ensues',
+                entries: [
+                    {
+                        name: '村の門 - Village gate 1',
+                        text: [
+                            `
+                                After a day of walking, you finally see the <span class="popover" data-content="(むら) village">村</span> above the horizon.
+                                
+                                “Finally! I’m so tired; we've been walking all day. H-Huh? What’s that?" Harumi exclaims, noticing something concerning a moment later.
+                                
+                                “There are words all around the gate. And the gate is... open?!” she continues, flabbergasted at what <span class="popover" data-content="she">かのじょ</span> sees.
+                            `,
+                            `
+                                “Let’s hurry; they might need our help!” Harumi <span class="popover" data-content="(いう) says">言う</span> as <span class="popover" data-content="she">かのじょ</span> takes off towards there, without even waiting for your response.
+                                
+                                You follow right after, and quickly arrive at the gate.
+                                
+                                “Huh? Why aren’t they attacking?” Harumi <span class="popover" data-content="she">かのじょ</span>, dumbfounded at the situation.
+                                
+                                The words seem to notice you, but don’t attack. Usually they either run away or lunge at you the moment they realize they’ve been spotted.
+                            `,
+                            `
+                                “Anyway, we can’t just leave them here; let’s clean this up!” Harumi tells you, and charges at the nearest word.
+                                
+                                Soon after, you do the same.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '村の門 - Village gate 2',
+                            range: grade4Range,
+                            index: 0
+                        }),
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                You attack the words surrounding the open village gate.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You defeat a few of the words before the rest runs away, inside the village.
+                            `
+                        ]
+                    },
+                    {
+                        name: '村内 - Inside the village 1',
+                        text: [
+                            `
+                                You chase the words, and enter the <span class="popover" data-content="(むら) village">村</span>, where you’re taken aback by what you see.
+                                
+                                The whole place is filled to the brim with words. Fortunately, they aren’t attacking anyone. Unfortunately, they don’t seem to be the only problem here.
+                                
+                                There are a lot of people, seemingly Aku no Soshiki members, taking all the villagers hostage.
+                                
+                                The <span class="popover" data-content="(むら) village">村</span> isn’t too big, there’s only about twenty villagers around, but the number of assailants is more than double of that. Some hostages have knives pointed at their throats.
+                            `,
+                            `
+                                “What is going on here? There’s so many of them...” Harumi says after looking around and seeing the hopeless situation.
+                                
+                                “This doesn’t look good... But we can’t leave them like this...” <span class="popover" data-content="she">かのじょ</span> continues without much hope.
+                                
+                                “Let’s do what we can do, and try to take care of the words at least.” <span class="popover" data-content="she">かのじょ</span> concludes before striking at a nearby word, with you following <span class="popover" data-content="her">かのじょ の</span> lead soon after.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '村内 - Inside the village 2',
+                            range: grade4Range,
+                            index: 1
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You and Harumi attack the words inside the village.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                There are so many words around that you barely make a difference in their numbers before getting too exhausted to continue.
+                            `
+                        ]
+                    },
+                    {
+                        name: '村内 - Inside the village 3',
+                        text: [
+                            `
+                                “Well, well, well. We’ve been waiting for you!” says the presumed leader of the operation coming outside from one of the houses after noticing the commotion.
+                                
+                                “What’s going on in here?” Harumi asks.
+                                
+                                “Give me the map, and no one gets hurt.” he responds.
+                            `,
+                            `
+                                “Are you serious?” <span class="popover" data-content="she">かのじょ</span> <span class="popover" data-content="(きく) asks">聞く</span> in response.
+                                
+                                “Dead serious.” <span class="popover" data-content="he">かれ</span> <span class="popover" data-content="(こたえる) responds">答える</span>, sticking a knife to a nearby child’s throat, “Ugh-”, and causing it to squirm.
+                                
+                                “You can’t beat us this time, not with this numbers advantage. And even if <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> try, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> know what happens.” he continues with a sleazy smile.
+                                
+                                <span class="popover" data-content="you">あなた</span> know <span class="popover" data-content="he">かれ</span> is right. <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> are already completely exhausted from the combat, and <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> barely even made a dent in the number of <span class="popover" data-content="(ことば) words">言葉</span> around. Not even mentioning all the Aku no Soshiki members who outnumber <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> by an order of magnitude.
+                            `,
+                            `
+                                “Okay, okay. There.” Harumi acquiesces, and presents the map to the man.
+                                
+                                “Let’s see... Yup, looks like the real deal! All right, guys, we’re leaving!” <span class="popover" data-content="he">かれ</span> snatches the <span class="popover" data-content="(ちず) map">地図</span> from <span class="popover" data-content="her">かのじょ の</span> hand, takes a quick glance, and, after confirming the authenticity of it, the assailants all prepare to leave the village together.
+                            `,
+                            `
+                                “Oops, I almost forgot. Take this!” <span class="popover" data-content="he">かれ</span> says before turning back to <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, and releasing another batch of <span class="popover" data-content="(ことば) words">言葉</span> inside the <span class="popover" data-content="(むら) village">村</span>.
+                                
+                                “Hey, what’s that all about? <span class="popover" data-content="You">あなた</span> have the <span class="popover" data-content="(ちず) map">地図</span> already, leave us alone!” Harumi rebukes with a frown and puffy cheeks.
+                                
+                                “I can't let <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> follow us; we need something to slow <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> down! See you never!” <span class="popover" data-content="he">かれ</span> <span class="popover" data-content="(こたえる) responds">答える</span> before leaving the <span class="popover" data-content="(むら) village">村</span> with all the other captors, only leaving behind the <span class="popover" data-content="(ことば) words">言葉</span> <span class="popover" data-content="he">かれ</span> had just sent out.
+                                
+                                Both of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> are extremely tired, but rest needs to come later, as the <span class="popover" data-content="(ことば) words">言葉</span> attack you.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '村内 - Inside the village 4',
+                            range: grade4Range,
+                            index: 2
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                You are attacked by words surrounding you from all directions, trying to slow you down and prevent you from following the Aku no Soshiki members.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Despite being hopelessly exhausted, you manage to beat all the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: '村内 - Inside the village 5',
+                        text: [
+                            `
+                                “Is everyone all right?” Harumi asks, looking around at all the villagers who had just suffered the attack.
+                                
+                                “It’s all your fault!” someone shouts at <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                                
+                                “H-Huh? W-We didn’t do anything. <span class="popover" data-content="(わたしたち) we">わたし達</span> just tried to help...” Harumi responds with dismay.
+                            `,
+                            `
+                                “Please, just... leave.” an old man, presumably the village elder, says after approaching <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                                
+                                “We were only attacked because of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>. If you never came here none of this would’ve happened. No one wants <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> here now. Please, just leave.” he repeats his plea.
+                                
+                                Without saying another word, both of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> <span class="popover" data-content="(でていく) leave">出ていく</span> the village feeling completely dejected.
+                            `
+                        ]
+                    },
+                    {
+                        name: '村を追われて - Kicked out of the village',
+                        text: [
+                            `
+                                “We’re left with almost nothing.” Harumi says after checking your supplies, right after you left the village.
+                                
+                                “I was hoping we could stay, and resupply at the <span class="popover" data-content="(むら) village">村</span>, but I guess we need to go foraging now. We could run out of supplies before we reach the next city otherwise.” she continues.
+                            `,
+                            `
+                                “We need to be quick, too. Now that <span class="popover" data-content="(わたしたち) we">わたし達</span> got kicked out, <span class="popover" data-content="(わたしたち) we">わたし達</span> will have to sleep outside, so we need time to set up <span class="popover" data-content="(やえい) camp">野営</span> before it gets dark. Let’s go to the forest, there’s no time to waste.” <span class="popover" data-content="she">かのじょ</span> <span class="popover" data-content="(つづける) continues">続ける</span>.
+                                
+                                You nod, and both of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> <span class="popover" data-content="(いく) go">行く</span> to the <span class="popover" data-content="(もり) forest">森</span> to look for anything edible.
+                            `
+                        ]
+                    },
+                    {
+                        name: '森で食料採集 - Foraging in the forest 1',
+                        text: [
+                            `
+                                “So, what do you think we should do now?” Harumi asks, while picking berries.
+                                
+                                “We lost the map, and, while I do remember our next destination, Minatomachi city, <span class="popover" data-content="I">わたし</span> don’t know where to go from there. And besides, <span class="popover" data-content="I">わたし</span> don’t want to put any more people in danger...” <span class="popover" data-content="she">かのじょ</span> continues dejectedly.
+                                
+                                “Maybe... we should just... stop?” <span class="popover" data-content="she">かのじょ</span> asks for your opinion.
+                            `,
+                            `
+                                You don’t know what to do either, <span class="popover" data-content="you">あなた</span> don’t want to quit, but it’s going to be hard to <span class="popover" data-content="(つづける) continue">続ける</span> without the <span class="popover" data-content="(ちず) map">地図</span>.
+                                
+                                “Well, <span class="popover" data-content="(わたしたち) we">わたし達</span> can’t stay here, that’s for sure. For now, I guess, <span class="popover" data-content="(わたしたち) we">わたし達</span> should head towards Minatomachi. <span class="popover" data-content="(わたしたち) We">わたし達</span> can decide what to do after that.” Harumi <span class="popover" data-content="(いう) says">言う</span> in low spirits.
+                                
+                                Suddenly, you hear a rustle in the bushes.
+                            `,
+                            `
+                                A group of words comes out from them.
+                                
+                                “Well, here we go again.” Harumi utters before the <span class="popover" data-content="(ことば) words">言葉</span> leap at you both.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '森の言葉 - Forest words',
+                            range: grade4Range,
+                            index: 3
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                The words attack, and you stand your ground.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to beat most of the words, and drive away the rest.
+                            `
+                        ]
+                    },
+                    {
+                        name: '森で食料採集 - Foraging in the forest 2',
+                        text: [
+                            `
+                                “Whew, at least these weren’t too strong... Let’s keep looking, we still need to find more food.” Harumi says after the fight.
+                                
+                                You keep <span class="popover" data-content="(しょくりょうさいしゅう) foraging">食料採集</span> in the <span class="popover" data-content="(もり) forest">森</span> for a little more, and, after <span class="popover" data-content="(さいしゅう) gathering">採集</span> enough <span class="popover" data-content="(しょくりょう) food">食料</span>, leave the <span class="popover" data-content="(もり) forest">森</span>, set up camp at a nearby field, eat dinner, and go to sleep.
+                            `
+                        ]
+                    },
+                    {
+                        name: '夜中 - Middle of the night 1',
+                        text: [
+                            `
+                                “Wake up!”
+                                
+                                While sleeping, you suddenly hear Harumi’s voice. You were taking turns sleeping and keeping watch throughout the <span class="popover" data-content="(よる) night">夜</span>.
+                                
+                                “We’re about to get attacked!”
+                            `,
+                            `
+                                You open your eyes and find yourself surrounded by words.
+                                Thankfully, Harumi was keeping watch when it was your turn to <span class="popover" data-content="(ねむる) sleep">眠る</span>.
+                                
+                                <span class="popover" data-content="You">あなた</span> jolt awake, and prepare to battle before the <span class="popover" data-content="(ことば) words">言葉</span> attack.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '夜襲 (やしゅう) - Night attack',
+                            range: grade4Range,
+                            index: 4
+                        }),
+                        totalQuestions: 15,
+                        beforeText: [
+                            `
+                                You stand back to back with Harumi as the words attack you from every direction.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You repel the attack for long enough that the words lose interest and leave.
+                            `
+                        ]
+                    },
+                    {
+                        name: '夜中 - Middle of the night 2',
+                        text: [
+                            `
+                                The battle was tough, but you managed to pull through.
+                                
+                                When suddenly, “Aaaa!” Harumi shrieks.
+                                Just as <span class="popover" data-content="you">あなた</span> thought it was over, <span class="popover" data-content="you">あなた</span> prepare for another attack.
+                            `,
+                            `
+                                ... But it never comes?
+                                
+                                <span class="popover" data-content="You">あなた</span> look at Harumi and see her cowering in fear and covering <span class="popover" data-content="her">かのじょ の</span> head.
+                                
+                                “Eek, eek!” <span class="popover" data-content="you">あなた</span> hear from above.
+                                There’s a bat flying overhead.
+                                
+                                <span class="popover" data-content="You">あなた</span> shoo the bat away, and tell her it’s gone.
+                            `,
+                            `
+                                “T-Thanks...” she slowly stands up, still shivering a little.
+                                
+                                You find <span class="popover" data-content="her">かのじょ の</span> fear of <span class="popover" data-content="bats">コウモリ</span> really unusual; <span class="popover" data-content="she">かのじょ</span> seems to be perfectly fine with most other things, like bugs or snakes, and quite fearless in the face of danger, like criminals or words.
+                                
+                                <span class="popover" data-content="You">あなた</span> decide to ask her about it.
+                            `,
+                            `
+                                “W-Well, it’s... it’s nothing really... It’s just... When I was little <span class="popover" data-content="I">わたし</span> went to a cave, and a <span class="popover" data-content="bat">コウモリ</span> got stuck in my hair. I ran home crying and screaming with the <span class="popover" data-content="bat">コウモリ</span> flailing around on my head the entire time.” Harumi responds with a sad look.
+                                
+                                “My parents had to cut my <span class="popover" data-content="hair">かみ</span> to remove it because it got stuck so badly they couldn’t untangle it. It was horrible!” <span class="popover" data-content="she">かのじょ</span> <span class="popover" data-content="(つづける) continues">続ける</span>, getting even more visibly shaken because of the painful memory.
+                                
+                                “<span class="popover" data-content="I">わたし</span> know it’s nothing that scary. It probably might even seem funny to others, but <span class="popover" data-content="I">わたし</span> ended up being terrified of <span class="popover" data-content="bats">コウモリ</span> and <span class="popover" data-content="caves">どうくつ</span> ever since...” <span class="popover" data-content="she">かのじょ</span> adds, seemingly embarrassed about <span class="popover" data-content="her">かのじょ の</span> experience.
+                            `,
+                            `
+                                Something feels off, though. Hasn’t <span class="popover" data-content="she">かのじょ</span> also lost her memory? How can <span class="popover" data-content="she">かのじょ</span> remember that? Has <span class="popover" data-content="she">かのじょ</span> regained it? <span class="popover" data-content="You">あなた</span> ask her about that.
+                                
+                                “Oh, right, how do I <span class="popover" data-content="(おぼえている) remember">覚えている</span> that? Hmm...” <span class="popover" data-content="she">かのじょ</span> says, seemingly even more confused than <span class="popover" data-content="you">あなた</span>, and starts thinking.
+                                
+                                “No, that’s all <span class="popover" data-content="I">わたし</span> can <span class="popover" data-content="(おぼえている) remember">覚えている</span>. <span class="popover" data-content="I">わたし</span> guess the memory comes back in parts, not all at once.” <span class="popover" data-content="she">かのじょ</span> <span class="popover" data-content="(つづける) continues">続ける</span>.
+                                
+                                “Can you remember anything now?” <span class="popover" data-content="she">かのじょ</span> asks back.
+                            `,
+                            `
+                                You think about it, but no, <span class="popover" data-content="your">あなた の</span> past is still as much of a mystery to <span class="popover" data-content="you">あなた</span> as it was before, so <span class="popover" data-content="you">あなた</span> shake your head.
+                                
+                                “Well, at least <span class="popover" data-content="(わたしたち) we">わたし達</span> know it comes back eventually. <span class="popover" data-content="I">わたし</span> just wish it would start with more happy <span class="popover" data-content="memories">きおく</span>. Why is the only thing I <span class="popover" data-content="(おぼえている) remember">覚えている</span>, that?!” the more she talks, the more she pouts, as if being upset at the <span class="popover" data-content="memory">きおく</span> recovery process, if that’s even a thing.
+                                
+                                Anyway, as the danger is no more, and Harumi seems to have calmed down, <span class="popover" data-content="you">あなた</span> decide to go back to sleep.
                             `
                         ]
                     },
