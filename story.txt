@@ -1412,7 +1412,7 @@ He’s the Aku no Soshiki member [あなた達|(あなたたち) you (plural)] h
 
 “What’s the [たから|treasure] anyway? Why does [あなた達の|(あなたたちの) your (plural)] [ボス|boss] want it so badly?” Harumi [聞く|(きく) asks].
 
-“[わたし達|(わたしたち) We] don’t know for sure what it is, and the [ボス|boss] most likely [知らない|(しらない) doesn’t know] for sure either, but from what we gathered, the [地図|(ちず) map] was left by a retired army scientist, who worked on developing new weapons for the military.” [かれ|he] [答える|(こたえる) responds]
+“[わたし達|(わたしたち) We] don’t know for sure what it is, and the [ボス|boss] most likely [知らない|(しらない) doesn’t know] for sure either, but from what we gathered, the [地図|(ちず) map] was left by a retired army scientist, who worked on developing new weapons for the military.” [かれ|he] [答える|(こたえる) responds].
 
 “The [ボス|boss] believes [かれ|he] left behind a [ぶき|weapon] that’s so powerful, even the military deemed it too dangerous and abandoned its development. [かれ|He] also [信じている|(しんじている) believes] the [ぶき|weapon] can help him subjugate entire countries.” [かれ|he] continues.
 
@@ -1637,7 +1637,7 @@ You say you’re fine and try to stand up, but when you do so your face distorts
 
 
 “Maybe it won’t be too bad... Maybe there will be no-”
-“Eek!” 
+“Eek!”
 “Wah!” [かのじょ|she] tries to reassure herself before getting cut off by the cry of a bat flying out of the [どうくつ|cave], causing her to shriek and cower.
 
 “Oh...” [かのじょ|she] weeps before reluctantly making her way into the [どうくつ|cave].
