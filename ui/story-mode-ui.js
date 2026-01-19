@@ -1729,6 +1729,93 @@ class KantoreStoryModeUi {
                             `
                         ]
                     },
+                    {
+                        name: '港町 - Minatomachi',
+                        text: [
+                            `
+                                After breaking camp in the morning, and half a day more of walking, you arrive at Minatomachi.
+                                
+                                The <span class="popover" data-content="(まち) city">町</span> is located by the sea. The most prominent feature of the <span class="popover" data-content="(まち) city">町</span> is a <span class="popover" data-content="(みなと) port">港</span>, where plenty of ships come in and out, bringing in exotic goods from all over the world, and exporting fine local items around the globe.
+                                
+                                Most buildings are built from white stone, same as the wall around the <span class="popover" data-content="(まち) city">町</span>, and have blue roofs. The sunlight is strong, the sound of waves and seagull cries can be heard in the background. A slight breeze blows and carries the fresh saline smell of the <span class="popover" data-content="(うみ) sea">海</span>.
+                            `,
+                            `
+                                “We’re finally here! Let’s find a place to stay for now; I’m so tired after all that happened lately...” Harumi says while shielding her eyes from the strong sunlight.
+                                
+                                You agree, and together, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> find an inn where you can stay for the night.
+                            `
+                        ]
+                    },
+                    {
+                        name: "宿屋の酒場 - Inn's tavern",
+                        text: [
+                            `
+                                You and Harumi are eating dinner at a <span class="popover" data-content="(さかば) tavern">酒場</span> located on the bottom floor of the <span class="popover" data-content="(やどや) inn">宿屋</span> <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> are staying at.
+                                
+                                “So, what do we do from now on? We lost the map, our only lead for finding Aku no Soshiki and a way to go back home.” Harumi asks while <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> are still eating.
+                                
+                                <span class="popover" data-content="You">あなた</span> don’t have a good answer to that question either, so both of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> sit there for a moment in silence.
+                                
+                                “Excuse me.” when all of a sudden, someone approaches <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                            `,
+                            `
+                                <span class="popover" data-content="You">あなた</span> turn around, and see two men, wearing hoods, but their faces aren’t covered. <span class="popover" data-content="You">あなた</span> quickly recognize one of them.
+                                
+                                “It’s <span class="popover" data-content="you">あなた</span> again!” Harumi exclaims after jolting up from her seat.
+                                
+                                He’s the Aku no Soshiki member <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> helped at the swamp a few days ago.
+                            `,
+                            `
+                                “Please, keep it quiet. We’re here incognito, and <span class="popover" data-content="(わたしたち) we">わたし達</span> don’t want to attract unnecessary attention.” he says while motioning to the side. You look around and see everyone else in the <span class="popover" data-content="(さかば) tavern">酒場</span> looking in <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> direction.
+                                
+                                “S-Sorry...” Harumi apologizes and sits back down, visibly embarrassed about her behavior.
+                                
+                                “<span class="popover" data-content="(わたしたち) We">わたし達</span> came to thank you for helping me out back then, and to give you this.” <span class="popover" data-content="he">かれ</span> sits down at the opposite side of the table from <span class="popover" data-content="you">あなた</span>, and gives <span class="popover" data-content="you">あなた</span> a piece of paper.
+                                
+                                “It’s the-! It’s the map...” Harumi almost shouts as <span class="popover" data-content="she">かのじょ</span> sees what <span class="popover" data-content="you">あなた</span> were given, stopping herself and switching to a quieter tone midsentence.
+                            `,
+                            `
+                                “A copy of it. I snuck into the boss' room and made a copy.” the man responds.
+                                
+                                “Thanks, but is it really okay for <span class="popover" data-content="you">あなた</span> to do this? Won’t <span class="popover" data-content="you">あなた</span> get in trouble for this?” Harumi asks with concern in her voice.
+                                
+                                “Well, maybe. But <span class="popover" data-content="(わたしたち) we">わたし達</span> really wanted to thank <span class="popover" data-content="you">あなた</span>, and this is the best thing <span class="popover" data-content="(わたしたち) we">わたし達</span> could come up with. <span class="popover" data-content="(わたしたち) We">わたし達</span> can also answer any questions you might have, to the best of our ability at least. <span class="popover" data-content="(わたしたち) We">わたし達</span> are not privy to all the secrets of the organization after all.” <span class="popover" data-content="he">かれ</span> <span class="popover" data-content="(こたえる) responds">答える</span>.
+                                
+                                “That’s really nice, but <span class="popover" data-content="(わたしたち) we">わたし達</span> don’t even know if <span class="popover" data-content="(わたしたち) we">わたし達</span> still want to keep following that treasure. After what just happened in that village...” <span class="popover" data-content="she">かのじょ</span> <span class="popover" data-content="(いう) says">言う</span> in low spirits.
+                                
+                                “That’s up to <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, <span class="popover" data-content="(わたしたち) we">わたし達</span> just wanted to give <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> back what’s <span class="popover" data-content="(あなたたちの) yours (plural)">あなた達の</span>.” he <span class="popover" data-content="(こたえる) responds">答える</span> again.
+                            `,
+                            `
+                                “What’s the <span class="popover" data-content="treasure">たから</span> anyway? Why does <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> <span class="popover" data-content="boss">ボス</span> want it so badly?” Harumi <span class="popover" data-content="(きく) asks">聞く</span>.
+                                
+                                “<span class="popover" data-content="(わたしたち) We">わたし達</span> don’t know for sure what it is, and the <span class="popover" data-content="boss">ボス</span> most likely <span class="popover" data-content="(しらない) doesn’t know">知らない</span> for sure either, but from what we gathered, the <span class="popover" data-content="(ちず) map">地図</span> was left by a retired army scientist, who worked on developing new weapons for the military.” <span class="popover" data-content="he">かれ</span> <span class="popover" data-content="(こたえる) responds">答える</span>.
+                                
+                                “The <span class="popover" data-content="boss">ボス</span> believes <span class="popover" data-content="he">かれ</span> left behind a <span class="popover" data-content="weapon">ぶき</span> that’s so powerful, even the military deemed it too dangerous and abandoned its development. <span class="popover" data-content="He">かれ</span> also <span class="popover" data-content="(しんじている) believes">信じている</span> the <span class="popover" data-content="weapon">ぶき</span> can help him subjugate entire countries.” <span class="popover" data-content="he">かれ</span> continues.
+                                
+                                “W-What? <span class="popover" data-content="(わたしたち) We">わたし達</span> need to stop <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span>! Who knows what <span class="popover" data-content="he">かれ</span> could do with that thing?” Harumi <span class="popover" data-content="(いう) says">言う</span> before turning <span class="popover" data-content="her">かのじょ の</span> face towards <span class="popover" data-content="you">あなた</span>.
+                            `,
+                            `
+                                After that, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> <span class="popover" data-content="(きく) ask">聞く</span> them a few more questions and find out that:
+                                The organization’s hideout is located on an island that’s not too far from here, called Ajitojima.
+                                In the <span class="popover" data-content="hideout">アジト</span> there is a portal that can be used to go back to your world.
+                                You most likely came to this <span class="popover" data-content="(せかい) world">世界</span> through a damaged <span class="popover" data-content="portal">てんいもん</span> that was seized by law enforcement back in <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> <span class="popover" data-content="(せかい) world">世界</span>, and the reason <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> lost your memory is probably due to the <span class="popover" data-content="portal’s">てんいもん の</span> malfunction.
+                                
+                                <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> also <span class="popover" data-content="(きく) ask">聞く</span> other <span class="popover" data-content="questions">しつもん</span>, including about <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> identities, but <span class="popover" data-content="they (masculine)">かれ ら</span> don’t seem to <span class="popover" data-content="(しる) know">知る</span> much more than <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> already do.
+                            `,
+                            `
+                                “Thanks a lot! That’s basically everything <span class="popover" data-content="(わたしたち) we">わたし達</span> needed to <span class="popover" data-content="(しる) know">知る</span>!” Harumi <span class="popover" data-content="(いう) says">言う</span> with gratitude and a smile.
+                                
+                                “<span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> are more than welcome. Now, <span class="popover" data-content="(わたしたち) we">わたし達</span> should go before <span class="popover" data-content="(わたしたち) we">わたし達</span> get found out. Goodbye.” <span class="popover" data-content="he">かれ</span> <span class="popover" data-content="(いう) says">言う</span> before standing up, and both of <span class="popover" data-content="them (masculine)">かれ ら</span> leave the <span class="popover" data-content="(さかば) tavern">酒場</span>.
+                                
+                                “Great! <span class="popover" data-content="I">わたし</span> mean, not great, but at least now <span class="popover" data-content="(わたしたち) we">わたし達</span> know what to do!” Harumi turns to <span class="popover" data-content="you">あなた</span> and <span class="popover" data-content="(いう) says">言う</span> right after <span class="popover" data-content="they (masculine)">かれ ら</span> <span class="popover" data-content="(でる) leave">出る</span>.
+                            `,
+                            `
+                                “Let’s see... According to the <span class="popover" data-content="(ちず) map">地図</span> the <span class="popover" data-content="treasure">たから</span> is located on Takaranoyama mountain, which is not too far from here!” <span class="popover" data-content="she">かのじょ</span> continues while looking at the <span class="popover" data-content="(ちず) map">地図</span>.
+                                
+                                “<span class="popover" data-content="(わたしたち) We">わたし達</span> don’t have much time; <span class="popover" data-content="(わたしたち) we">わたし達</span> need to get there before Aku no Soshiki. Let’s go to sleep early today, so <span class="popover" data-content="(わたしたち) we">わたし達</span> can <span class="popover" data-content="(いく) go">行く</span> as soon as sunrise!” <span class="popover" data-content="she">かのじょ</span> adds with newfound energy, which is an improvement over the mood <span class="popover" data-content="she">かのじょ</span> was in before, but might be counterproductive to the goal of falling asleep <span class="popover" data-content="(はやく) early">早く</span> this evening.
+                            `
+                        ]
+                    },
                 ]
             },
             { name: TO_BE_CONTINUED_STRING, entries: [] }
