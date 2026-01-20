@@ -2116,7 +2116,7 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: '息抜き (Ikinuki) - Short break',
+                        name: '息抜き (いきぬき) - Short break',
                         skin: 'harumi',
                         text: [
                             `
