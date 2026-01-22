@@ -1820,7 +1820,7 @@ class KantoreStoryModeUi {
                 ]
             },
             {
-                name: '宝の山 - Takaranoyama',
+                name: '宝(たから)の山 - Takaranoyama',
                 entries: [
                     {
                         name: '山林 - Mountain forest 1',
