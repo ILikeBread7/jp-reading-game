@@ -1851,16 +1851,16 @@ How can [あなた達の|(あなたたちの) your (plural)] possibly split this
 
 
 
-Right after the main story? Post game start?
-After the final battle with Akuto, the Aku no Soshiki, having lost its leader, disbanded.
-That doesn’t mean, however, that there is nothing left to do; you still need to go back to your original world.
+To Ajitojima
+After leaving Takarajima, and after your ankle injury healed, you and Harumi went back to the village where you first got the map, explained the situation to the little girl, and returned the original map to her.
 
-Having studied a bunch of documents found at Aku no Soshiki’s hideout, you strongly suspect that the portal to the other world is located on Ajitojima.
+You expected her to be upset about the treasure, or lack thereof, but she just said “Oh, that’s exactly what grandpa would do!”. Apparently he was known among his family for practical jokes like that.
 
+After that, the only thing left for you to do, is to return to your own world. That will require you to find a portal in Aku no Soshiki’s hideout on Ajitojima.
 
 
 In order to get there you need to take a ship from the port in Minatomachi.
-For that reason you and Harumi are back at an inn near the port. It’s the last evening before your planned departure, waiting for the ship to be ready.
+For that reason you and Harumi are back at an inn in the city. It’s the last evening before your planned departure.
 
 The two of you sit at a table, and Harumi is playing with her new pet.
 
@@ -1888,3 +1888,319 @@ Harumi has many qualities, naming sense apparently not being one of them.
 
 After a short conversation you decide to call it a day and go to sleep.
 You do need to get up early tomorrow to board the ship, after all.
+
+
+
+Arrival
+It took a few hours of travel by ship, but you have finally arrived in Ajitojima. After thanking the captain and leaving the ship, the ship continues on its way, while you find yourself in a jungle.
+
+Your surroundings are crowded with vegetation of all colors, the birds, and other animals can be heard all around, and the sun is barely visible through all the leaves, vines, and branches sprawling overhead.
+
+“We should have asked for a map of this place; I have no idea where to go...” Harumi says upon seeing the surroundings.
+
+
+
+Fortunately, there is an unpaved footpath leading through the jungle. You realize it must lead somewhere, so, having no better idea of where to go, you decide to follow it.
+
+“Eek, eek, eek!” suddenly, Batbat, who is sitting on Harumi’s shoulder, starts crying while looking in a certain direction.
+
+“What’s wrong, Batbat? Is there something over- Oh, I see...” after noticing the bat’s behavior, Harumi notices a group of words creeping up on you from the bushes.
+
+As soon as they realize they were noticed, they jump out and attack you. Fortunately, though, thanks to Batbat’s warning, you at least avoid getting caught off guard.
+
+
+
+Battle 1 Jungle 1
+The words attack you, but, having lost the element of surprise, some of them ran away before the battle even started.
+
+
+
+You quickly repel the rest of the words.
+
+
+
+Jungle 2
+“Thanks, Batbat!” Harumi says to her small companion with a smile.
+“Eek!” Batbat responds happily.
+
+Thanks to Batbat, the battle went way more smoothly than it could have, and you continue on your way through the jungle.
+
+After some more walking, and a few more encounters, you find yourself at a village.
+
+
+
+Jungle Village 1
+“I did not expect there to be a village in a place like this.” Harumi says with a perplexed expression.
+
+The village is pretty small, there’s a few houses, but you can only see about five people walking outside. The houses, and the village wall, are all built of wood, and the roofs are made from big leaves.
+
+Soon after you arrive, an old man approaches you.
+
+
+
+“Welcome to our humble village, travellers. What brings you here? We don’t get a lot of visitors here, you know.” he greets you.
+
+“We’re looking for Aku no Soshiki’s hideout. Do you know where it is?” Harumi asks.
+
+“The hideout? Well, yes, but it’s deep inside the jungle. You shouldn’t go there alone, you’d just get lost, but we’d be happy to provide a guide for you if need be. Why do you want to go there, anyway?” he helpfully replies.
+
+“We want to use the portal they have to go back to our world.” Harumi answers.
+
+
+
+“I see, I see. Does Akuto know about this?” he asks, surprisingly knowing the organization’s boss’ name.
+
+“N-No? Why would he? We’re tracking them down, trying to foil their plans as much as possible. We’ll probably need to take over the portal by force, even if just temporarily.” Harumi answers, puzzled about the man’s reaction.
+
+“W-What?! Oh, you’re the ones! Get out of here! Go back on the goddamn ship that brought you here, and never come back!” he yells at you and leaves.
+
+“H-Huh?!” Harumi can’t hide her bewilderment.
+
+
+
+You look at each other in astonishment, and after a moment, Harumi says “I don’t understand. Don’t they want Aku no Soshiki gone from this island?”. The situation is just as confusing to you, as it is to her.
+
+
+
+“Gah, uh, well, that was close.” suddenly, a group of three young people, two men and a woman, rush into the village, all heavily bruised and out of breath.
+
+“What’s the commotion?!” the man from earlier comes back and asks them.
+
+“Well, we were foraging when some words attacked us, fortunately we managed to-” one of the men stops mid-answer after looking back at his companions.
+
+“Where’s Kiyo? She was with us the entire time...” he continues.
+
+“Oh, no! She must’ve fallen behind!” the woman says with a frown while putting her hand over her mouth.
+
+
+
+“You mean she’s all alone out there?! With words?! We have to go save her!” the old man says.
+
+“Right, chief, but who will go? We can lead the way, but we’re all worn out. If we get attacked again, I don’t think we’ll be able to do much more than run away again, if even that much.” the young man responds.
+
+“She's my daughter! I will go myself- Ugh... ugh...” the chief shouts before falling into a coughing fit.
+
+He surely doesn’t seem ready to go into the jungle, let alone take on feral words.
+
+
+
+“We can go!” Harumi says, after hearing the conversation.
+
+“Y-You? W-Well... I wouldn't like to ask you that, but there doesn’t seem to be much of a choice right now...” the chief says.
+
+“Would you do that for us?” he asks.
+
+“Sure! We can’t just leave someone out there like that!” she responds.
+
+A few moments later you step back into the jungle, following the lead of the two men of the group.
+
+
+
+Rescuing Kiyo 1
+“This is the place where we were foraging.” one of the men, who are guiding you, says.
+
+“I can’t see her anywhere, though. She was nowhere on the way here, either...” the other man adds.
+
+“Let’s look around some more, maybe she’s close.” the first man responds.
+
+
+
+After a few moments of looking around, “Hey, there’s someone over there, in the bushes!” Harumi says after finally noticing something.
+
+“Kiyo!” the two men say simultaneously, confirming it’s who you’re looking for.
+
+You run up to her, but then a big group of words shows up from the bushes, surrounding you.
+
+“Here we go again!” Harumi says after seeing them.
+
+
+
+Battle 2 Rescuing Kiyo 2
+The words attack, and you not only need to defend yourselves, but also Kiyo lying unconscious in the bushes, and your two worn-out guides.
+
+
+
+You manage to repel the words.
+
+
+
+Rescuing Kiyo 3
+“She’s unconscious but she seems to be mostly fine, just some minor scratches here and there.” Harumi says after checking Kiyo’s injuries.
+
+“Oh, no! We need to get her back to the village and show her to the doctor as soon as possible!” one of your guides says.
+
+
+
+“Y-Yeah, sure, but, I think she’s going to be fine-” Harumi says before being cut off.
+
+“These bushes are highly poisonous!” the man interrupts.
+
+“W-What! Oh, okay. Let’s hurry!” Harumi agrees after understanding the gravity of the situation.
+
+
+
+Jungle Village 2
+“She received a sizable dose of the poison. To be honest I don’t know if she will make it...” the village doctor says after examining Kiyo.
+
+“Oh, no... Isn’t there anything we could do?” the village chief says, distraught by the news.
+
+“There is an antidote, but we don’t have it in the village. And it can only be made from a flower that grows only in one specific place on the mainland.” the doctor responds.
+
+“There’s no time to go and get it though, the poison works too quickly.” he adds.
+
+The chief stays silent, almost breaking into tears.
+
+
+
+“Can this maybe help?” Harumi says while presenting the doctor with a blue flower you found a while back behind a cemetery.
+
+“That’s... That’s the flower! How did you get it?!” the doctor responds in awe.
+
+“Well, we had something similar happen a while back. Good thing I took some extra!” she responds with an elated smile.
+
+
+
+“Does it mean she’ll be okay?" the chief asks with a glimmer of hope.
+
+“Yes, she should be! I’ll start preparing the medicine right away!” the doctor responds before grabbing the flower and getting to work.
+
+
+
+Jungle Village 3
+The next day after taking the medicine, Kiyo wakes up.
+
+“Oh, thank you two. How could I ever repay you for saving my daughter? I’m so sorry about the way I treated you earlier.” the chief tells you.
+
+“It’s okay, I’m glad we could help!” Harumi responds.
+
+“Now, if you could help us find the Aku no Soshiki’s hideout that would be great, though. she continues.
+
+
+
+“Right, that’s what you’re here for after all...” he responds.
+
+“Why do you support them so much, anyway? Aren’t they the bad guys?” she continues asking.
+
+“They’re not bad! They’re the only reason we can live in peace, and still haven’t been conquered by the mainland.” he answers.
+
+“Wh-What? How so?” she reacts with confusion.
+
+
+
+“You see, Akuto is originally from this village.” the chief starts his answer.
+
+“A few years back we were invaded by a country from the mainland, and we only managed to survive because Akuto, and a few other villagers, snuck into their camp and stole their weapons.”
+
+“It was only when we were equally armed that we managed to repel their attacks.”
+
+“After that, Akuto created Aku no Soshiki to prevent any future invasions from happening.” he finishes.
+
+
+
+“Oh, I... I thought he was just a common outlaw.” Harumi reacts.
+
+“Well, he does operate on the... other side of legality sometimes. But that’s what you need to do sometimes when facing threats that big.” he responds.
+
+“Anyway, I owe my daughter’s life to you, so I’ll help you with your quest. Just promise that you won’t try to take down Akuto or the organization.” he adds.
+
+“Sure, we just want to go home! We wouldn't even go there if we knew of another portal somewhere else.” Harumi agrees.
+
+With that said, the chief agreed to have one of the villagers guide you to the hideout the next morning.
+
+
+
+Jungle 3
+The next morning, you and your guide depart from the village, heading towards Aku no Soshiki’s hideout.
+
+The guide is leading the way through the jungle, with the two of you following closely behind.
+
+“Okay, we’re getting close. It’s just past this place.” the guide says, as you reach an entrance to a cave.
+
+
+
+“C-Cave?” Harumi says with hesitation, flinching a little.
+
+“Eek, eek!” then, Batbat jumps from her shoulder, and sits on her head.
+
+“Oh, you’re... going to protect me, Batbat?” she says.
+
+“Eek!” Batbat responds, spreading his wings, as if trying to reassure her.
+
+“Okay, sure! I’m ready!” she responds with determination and a smile. This is the first time you see her be so positive about entering a cave.
+
+
+
+Cave 1
+You walk through the cave, there are some bats flying overhead from time to time, but Harumi doesn’t seem to be too bothered by them. Her new bodyguard seems to be doing a good job, which is a little paradoxical, given that her fear caused by a bat being stuck on her head is alleviated by a bat sitting on her head, but you’re not going to question that.
+
+“Eek, eek!” suddenly, Batbat cries out, spreading his wings.
+
+
+
+“What’s going on? Oh, I see!” Harumi looks around, alerted by Batbat’s cry.
+
+There’s a group of words trying to sneak up on you.
+
+
+
+Battle 3 Cave 2
+After failing to get a preemptive strike, some of the words run away, but the rest still attack you.
+
+
+
+You manage to repel the words.
+
+
+
+Jungle 4
+“Okay, we’re out. See, it’s right there!” your guide says after leaving the cave, pointing to a building towering over the jungle, not too far away.
+
+The building is black and blocky. It’s a few stories high, but it’s a lot wider than it’s tall.
+
+“This is as far as I can go.” he continues.
+
+
+
+“Also, the chief told me to give you this.” he says while handing you a piece of paper.
+
+“What’s that?” Harumi asks.
+
+“It’s a note from the chief to Akuto, explaining what you did in the village, and asking him to let you use the portal.” he answers.
+
+
+
+“Oh, that’s nice! Maybe we won’t have to fight our way through this time.” she reacts with a little laugh.
+
+“I’m going back to the village. Now, the rest is up to you, good luck!” he says.
+
+“Thank you!” Harumi responds, smiling from ear to ear.
+
+You say your goodbyes, and your guide leaves.
+
+
+
+“Okay, let’s go-” Harumi says before being interrupted.
+
+“Eek, eek!” by Batbat crying out again.
+
+“What’s wrong? Another attack?” Harumi reacts with concern, before starting to look around, as words emerge from the jungle.
+
+
+
+Battle 4 Jungle 5
+The number of words around is big, and, despite being noticed early, none of them run away. These must be words scattered by Aku no Soshiki for protection, not rogue ones.
+
+
+
+You somehow manage to defeat all the words.
+
+
+
+Jungle 6
+“Well, that was tough. I hope this is the last time we’ll have to fight.” Harumi says after the battle. You can’t help but agree with her.
+
+“Thank, Batbat! If it wasn’t for the early warning I don’t know what would’ve happened!” she continues while patting Batbat on the head.
+
+“Eek!” Batbat joyfully responds.
+
+“Okay, for real this time, let’s go!” she concludes before the two of you start to walk towards the hideout.
