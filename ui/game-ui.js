@@ -338,7 +338,7 @@ class KantoreGameUi {
     }
 
     get answer() {
-        return this._answerInput.value;
+        return this._answerInput.value.trim();
     }
 
     /**
