@@ -1946,11 +1946,11 @@ Soon after you arrive, an old man approaches [あなた達|(あなたたち) you
 
 
 
-“I see, I see. Does Akuto know about this?” [かれ|he] asks, surprisingly knowing the organization’s boss’ name.
+“I see, I see. Does Akuto know about this?” [彼|(かれ) he] asks, surprisingly knowing the organization’s boss’ name.
 
 “N-No? Why would he? We’re tracking them down, trying to foil their plans as much as possible. We’ll probably need to take over the portal by force, even if just temporarily.” Harumi [答える|(こたえる) answers], puzzled about the man’s reaction.
 
-“W-What?! Oh, you’re the ones! Get out of here! Go back on the goddamn ship that brought you here, and never come back!” [かれ|he] yells at [あなた達|(あなたたち) you (plural)] and leaves.
+“W-What?! Oh, you’re the ones! Get out of here! Go back on the goddamn ship that brought you here, and never come back!” [彼|(かれ) he] yells at [あなた達|(あなたたち) you (plural)] and leaves.
 
 “H-Huh?!” Harumi can’t hide her bewilderment.
 
@@ -1966,9 +1966,9 @@ You look at each other in astonishment, and after a moment, Harumi says “I don
 
 “Well, we were foraging when some words attacked us, fortunately we managed to-” one of the men responds, but stops mid-answer after looking back at his companions.
 
-“Where’s Kiyo? She was with us the entire time...” [かれ|he] continues.
+“Where’s Kiyo? She was with us the entire time...” [彼|(かれ) he] continues.
 
-“Oh, no! She must’ve fallen behind!” the woman says with a frown while putting her hand over [かのじょ の|her] mouth.
+“Oh, no! She must’ve fallen behind!” the woman says with a frown while putting her hand over [彼女の|(かのじょの) her] mouth.
 
 
 
@@ -1978,7 +1978,7 @@ You look at each other in astonishment, and after a moment, Harumi says “I don
 
 “She's my daughter! I will go myself- Ugh... ugh...” the chief shouts before falling into a coughing fit.
 
-[かれ|He] surely doesn’t seem ready to go into the [ジャングル|jungle], let alone take on feral [言葉|(ことば) words].
+[彼|(かれ) He] surely doesn’t seem ready to go into the [ジャングル|jungle], let alone take on feral [言葉|(ことば) words].
 
 
 
@@ -1986,9 +1986,9 @@ You look at each other in astonishment, and after a moment, Harumi says “I don
 
 “Y-You? W-Well... I wouldn't like to ask you that, but there doesn’t seem to be much of a choice right now...” the chief [答える|(こたえる) responds].
 
-“Would you do that for us?” [かれ|he] [聞く|(きく) asks].
+“Would you do that for us?” [彼|(かれ) he] [聞く|(きく) asks].
 
-“Sure! We can’t just leave someone out there like that!” [かのじょ|she] [答える|(こたえる) responds].
+“Sure! We can’t just leave someone out there like that!” [彼女|(かのじょ) she] [答える|(こたえる) responds].
 
 A few moments later [あなた達|(あなたたち) you (plural)] step back into the [ジャングル|jungle], following the lead of the two [男達|(おとこたち) men] of the group.
 
@@ -1997,9 +1997,9 @@ A few moments later [あなた達|(あなたたち) you (plural)] step back into
 Rescuing Kiyo 1
 “This is the place where we were foraging.” one of the men, who are guiding you, says.
 
-“I can’t see her anywhere, though. [かのじょ|She] was nowhere on the way here, either...” the other [男|(おとこ) man] adds.
+“I can’t see her anywhere, though. [彼女|(かのじょ) She] was nowhere on the way here, either...” the other [男|(おとこ) man] adds.
 
-“Let’s look around some more, maybe [かのじょ|she] is close.” the first [男|(おとこ) man] responds.
+“Let’s look around some more, maybe [彼女|(かのじょ) she] is close.” the first [男|(おとこ) man] responds.
 
 
 
@@ -2023,7 +2023,7 @@ You manage to repel the words.
 
 
 Rescuing Kiyo 3
-“She’s unconscious but [かのじょ|she] seems to be mostly fine, just some minor scratches here and there.” Harumi says after checking Kiyo’s injuries.
+“She’s unconscious but [彼女|(かのじょ) she] seems to be mostly fine, just some minor scratches here and there.” Harumi says after checking Kiyo’s injuries.
 
 “Oh, no! We need to get her back to the village and show her to the doctor as soon as possible!” one of your guides [言う|(いう) says].
 
@@ -2038,7 +2038,7 @@ Rescuing Kiyo 3
 
 
 Jungle Village 2
-“She received a sizable dose of the poison. To be honest I don’t know if [かのじょ|she] will make it...” the [村の|(むらの) village (village's)] doctor says after examining Kiyo.
+“She received a sizable dose of the poison. To be honest I don’t know if [彼女|(かのじょ) she] will make it...” the [村の|(むらの) village (village's)] doctor says after examining Kiyo.
 
 “Oh, no... Isn’t there anything we can do?” the [村の|(むらの) village (village's)] chief asks, distraught by the news.
 
@@ -2060,9 +2060,9 @@ You and Harumi look at each other, remembering a similar situation.
 
 
 
-“Does it mean [かのじょ|she] will be okay?" the chief [聞く|(きく) asks] with a glimmer of hope.
+“Does it mean [彼女|(かのじょ) she] will be okay?" the chief [聞く|(きく) asks] with a glimmer of hope.
 
-“Yes, [かのじょ|she] should be! I’ll start preparing the [薬|(くすり) medicine] right away!” the [医者|(いしゃ) doctor] [答える|(こたえる) responds] before grabbing the [花|(はな) flower] and getting to work.
+“Yes, [彼女|(かのじょ) she] should be! I’ll start preparing the [薬|(くすり) medicine] right away!” the [医者|(いしゃ) doctor] [答える|(こたえる) responds] before grabbing the [花|(はな) flower] and getting to work.
 
 
 
@@ -2079,11 +2079,11 @@ The next day after taking the medicine, Kiyo wakes up.
 
 “Right, that’s what you’re here for after all...” he [答える|(こたえる) responds].
 
-“Why do [あなた|you] support them so much, anyway? Aren’t they the bad guys?” [かのじょ|she] asks.
+“Why do [あなた|you] support them so much, anyway? Aren’t they the bad guys?” [彼女|(かのじょ) she] asks.
 
-“They’re not bad! They’re the only reason we can live in peace, and still haven’t been conquered by the mainland.” [かれ|he] answers.
+“They’re not bad! They’re the only reason we can live in peace, and still haven’t been conquered by the mainland.” [彼|(かれ) he] answers.
 
-“Wh-What? How so?” [かのじょ|she] reacts with confusion.
+“Wh-What? How so?” [彼女|(かのじょ) she] reacts with confusion.
 
 
 
@@ -2093,15 +2093,15 @@ The next day after taking the medicine, Kiyo wakes up.
 
 “It was only when [私達|(わたしたち) we] were equally armed that [私達|(わたしたち) we] managed to repel their attacks.”
 
-“After that, Akuto created Aku no Soshiki to prevent any future invasions from happening.” [かれ|he] finishes.
+“After that, Akuto created Aku no Soshiki to prevent any future invasions from happening.” [彼|(かれ) he] finishes.
 
 
 
-“Oh, [私|(わたし) I]... [私|(わたし) I] thought [かれ|he] was just a common outlaw.” Harumi reacts.
+“Oh, [私|(わたし) I]... [私|(わたし) I] thought [彼|(かれ) he] was just a common outlaw.” Harumi reacts.
 
-“Well, he does operate on the... other side of legality sometimes. But that’s what you need to do when facing threats that big.” [かれ|he] responds.
+“Well, he does operate on the... other side of legality sometimes. But that’s what you need to do when facing threats that big.” [彼|(かれ) he] responds.
 
-“Anyway, I owe my daughter’s life to you, so I’ll help [あなた達|(あなたたち) you (plural)] with your quest. Just promise that [あなた達の|(あなたたちの) your (plural)] won’t try to take down Akuto or the organization.” [かれ|he] adds.
+“Anyway, I owe my daughter’s life to you, so I’ll help [あなた達|(あなたたち) you (plural)] with your quest. Just promise that [あなた達の|(あなたたちの) your (plural)] won’t try to take down Akuto or the organization.” [彼|(かれ) he] adds.
 
 “Sure, [私達|(わたしたち) we] just want to go home! [私達|(わたしたち) We] wouldn't even go there if [私達|(わたしたち) we] knew of another portal somewhere else.” Harumi agrees.
 
@@ -2112,32 +2112,32 @@ With that said, the chief agrees to have one of the villagers guide you to the h
 Jungle 3
 The next morning, you and your guide depart from the village, heading towards Aku no Soshiki’s hideout.
 
-The guide is leading the way through the jungle, with the two of you following closely behind.
+The [案内人|(あんないにん) guide] is leading the way through the [ジャングル|jungle], with the two of you following closely behind.
 
-“Okay, we’re getting close. It’s just past this place.” the guide says, as you reach an entrance to a cave.
+“Okay, we’re getting close. It’s just past this place.” the [案内人|(あんないにん) guide] says, as you reach an entrance to a cave.
 
 
 
-“C-Cave?” Harumi says with hesitation, flinching a little.
+“C-[どうくつ|Cave]?” Harumi says with hesitation, flinching a little.
 
 “Eek, eek!” then, Batbat jumps from her shoulder, and sits on her head.
 
-“Oh, you’re... going to protect me, Batbat?” she says.
+“Oh, you’re... going to protect me, Batbat?” she asks.
 
 “Eek!” Batbat responds, spreading his wings, as if trying to reassure her.
 
-“Okay, sure! I’m ready!” she responds with determination and a smile. This is the first time you see her be so positive about entering a cave.
+“Okay, sure! I’m ready!” she concludes with determination and a smile. This is the first time you see her be so positive about entering a [どうくつ|cave].
 
 
 
 Cave 1
-You walk through the cave, there are some bats flying overhead from time to time, but Harumi doesn’t seem to be too bothered by them. Her new bodyguard seems to be doing a good job, which is a little paradoxical, given that her fear caused by a bat being stuck on her head is alleviated by a bat sitting on her head, but you’re not going to question that.
+You walk through the [どうくつ|cave], there are some bats flying overhead from time to time, but Harumi doesn’t seem to be too bothered by them. Her new bodyguard seems to be doing a good job, which seems a little paradoxical, given that [彼女の|(かのじょの) her] fear, caused by a bat being stuck on her head, is alleviated by a [コウモリ|bat] [座っている|(すわっている) sitting] on [彼女の|(かのじょの) her] [頭|(あたま) head], but you’re not going to question that.
 
 “Eek, eek!” suddenly, Batbat cries out, spreading his wings.
 
 
 
-“What’s going on? Oh, I see!” Harumi looks around, alerted by Batbat’s cry.
+“What’s going on? ... Oh, I see!” Harumi looks around, alerted by Batbat’s cry.
 
 There’s a group of words trying to sneak up on you.
 
@@ -2153,25 +2153,25 @@ You manage to repel the words.
 
 
 Jungle 4
-“Okay, we’re out. See, it’s right there!” your guide says after leaving the cave, pointing to a building towering over the jungle, not too far away.
+“Okay, we’re out. See, it’s right there!” your guide says after leaving the cave, pointing to a building not too far away, towering over the [ジャングル|jungle].
 
-The building is black and blocky. It’s a few stories high, but it’s a lot wider than it’s tall.
+The [建物|(たてもの) building] is black and blocky. It’s a few stories high, but it’s a lot wider than it’s tall.
 
 “This is as far as I can go.” he continues.
 
 
 
-“Also, the chief told me to give you this.” he says while handing you a piece of paper.
+“Also, the chief told me to give you this.” [彼|(かれ) he] [言う|(いう) says] while handing you a piece of paper.
 
 “What’s that?” Harumi asks.
 
-“It’s a note from the chief to Akuto, explaining what you did in the village, and asking him to let you use the portal.” he answers.
+“It’s a note from the chief to Akuto, explaining what you did in the village, and asking him to let you use the portal.” [彼|(かれ) he] answers.
 
 
 
 “Oh, that’s nice! Maybe we won’t have to fight our way through this time.” she reacts with a little laugh.
 
-“I’m going back to the village. Now, the rest is up to you, good luck!” he says.
+“Now, I’m going back to the village. The rest is up to you; good luck!” [彼|(かれ) he] says.
 
 “Thank you!” Harumi responds, smiling from ear to ear.
 
@@ -2179,11 +2179,11 @@ You say your goodbyes, and your guide leaves.
 
 
 
-“Okay, let’s go-” Harumi says before being interrupted.
+“Okay, let’s go-” Harumi [言う|(いう) says] before being interrupted.
 
 “Eek, eek!” by Batbat crying out again.
 
-“What’s wrong? Another attack?” Harumi reacts with concern, before starting to look around, as words emerge from the jungle.
+“What’s wrong? Another attack?” Harumi [反応する|(はんのうする) reacts] with concern before scanning the surroundings, as words emerge from the [ジャングル|jungle].
 
 
 
@@ -2203,20 +2203,20 @@ Jungle 6
 
 “Eek!” Batbat joyfully responds.
 
-“Okay, for real this time, let’s go!” she concludes before the two of you start walking towards the hideout.
+“Okay, for real this time, let’s go!” [彼女|(かのじょ) she] concludes before the two of you start walking towards the hideout.
 
 
 
 In front of the Hideout アジト前
-There are two guards in front of the entrance to the hideout.
+There are two guards in front of the entrance to the [アジト|hideout].
 
-“Who are you, and what are you doing here?” one of the asks.
+“Who are you, and what are you doing here?” one of them asks.
 
 “Hey, it’s those guys everyone is talking about!” the other interjects before you can answer.
 
 
 
-“Hi, umm... We just want to use the portal here, to go back to our world. Here, look at this note; it explains everything.” Harumi responds, but they don’t pay any attention to the note she shows.
+“Hi, umm... We just want to use the portal here, to go back to our world. Here, look at this note; it explains everything.” Harumi responds, but they don’t pay any attention to the note [彼女|(かのじょ) she] shows.
 
 “Scram!” they don’t listen, and they send out words to fight you.
 
@@ -2236,24 +2236,24 @@ You manage to beat all of the words.
 Hideout Entrance
 “Alarm, alarm, intruders at the gate!” one of the guards says through walkie-talkie.
 
-“Let’s go before they catch us!” Harumi says, trying to barge inside.
+“Let’s go before they catch us!” Harumi [言う|(いう) says] while trying to barge inside.
 
 “Where do you think you’re going-”
 “Eek!”
-“Aaah!” a guard is trying to catch her, but Batbat flies in his face and causes him to flinch for just long enough for you to make your way inside.
+“Aah!” a guard is trying to catch her, but Batbat flies in his face and causes him to flinch for just long enough for you to make your way [中へ|(なかへ) inside (literally “to inside”) (へ read as “e”)].
 
 
 
 Hideout 1
-“We’re inside, but where do we go?” Harumi says.
+“We’re inside, but where do we go from here?” Harumi says.
 
-You were hoping the Aku no Soshiki members would let you through, thanks to the note, so you didn’t prepare a plan for this situation.
+You were hoping the Aku no Soshiki members would let you through, thanks to the chief’s note, so you didn’t prepare a plan for this situation.
 
-You look around the long, white, sterile looking halls of the hideout as the alarm rings all around, and more and more organization members gather near you and try to capture you.
+You look around the long, white, sterile looking halls of the [アジト|hideout] as the alarm rings all around, and more and more organization members gather near you and try to capture [あなた達|(あなたたち) you (plural)].
 
 
 
-You try to run away, but you end up cornered in a dead end. There is a door next to you, but it’s tightly locked. The members, seeing you have no escape route, send out words at you.
+[あなた達|(あなたたち) You (plural)] try to run away, but [あなた達|(あなたたち) you (plural)] end up cornered in a dead end. There is a door next to [あなた達|(あなたたち) you (plural)], but it’s tightly locked. The members, seeing [あなた達|(あなたたち) you (plural)] have no escape route, send out words at [あなた達|(あなたたち) you (plural)].
 
 “Well, here we go again...” Harumi says, preparing for another battle.
 
@@ -2271,7 +2271,7 @@ Somehow, you manage to defeat all of them.
 Hideout 3
 “We beat their words, but what do we do now?” Harumi says, being at a loss.
 
-Even without their words, they keep creeping up closer and closer on you.
+Even without their [言葉|(ことば) words], they keep creeping up closer and closer on you.
 
 “Eek, eek!” Batbat tries to intimidate them, but there are way too many of them for it to have much of an effect.
 
@@ -2279,12 +2279,12 @@ Suddenly, you hear the sound of a lock opening, coming from the door that’s ri
 
 
 
-“W-Wah!” Harumi cries out, as the door opens, and both of you get dragged inside by someone. The door gets locked right after, sheltering you from all of the members who were chasing you until this moment.
+“W-Wah!” Harumi cries out, as the [ドア|door] opens, and both of you get dragged inside by someone. The [ドア|door] gets locked again right after, sheltering you from all of the members, who were chasing [あなた達|(あなたたち) you (plural)] until this moment.
 
 
 
 Hideout 4
-“Uhh... Th-Thanks? Oh, it’s you!” Harumi thanks the person, not being sure whether they were trying to help or capture you as well, before noticing a familiar face.
+“Uhh... Th-Thanks? Oh, it’s you!” Harumi thanks the person, not being sure whether they were trying to help or capture you as well, before noticing their familiar face.
 
 It was the man you helped at the swamp, who also gave you the copy of the map later.
 
@@ -2294,33 +2294,33 @@ It was the man you helped at the swamp, who also gave you the copy of the map la
 
 “We are, do you know where it is?” Harumi responds.
 
-“Sure, I’ll get you there. But first, change into this.” he says while handing you new clothes.
+“Sure, I’ll get you there. But first, change into this.” [彼|(かれ) he] says while handing you new clothes.
 
 
 
-“What’s this?” Harumi asks.
+“What’s this?” Harumi [聞く|(きく) asks].
 
-“It’s the organization’s uniforms. If you walk around looking the way you do right now, everyone will know you’re the intruders.” he answers.
+“It’s the organization’s uniforms. If you walk around looking the way you do right now, everyone will know you’re the intruders.” [彼|(かれ) he] [答える|(こたえる) answers].
 
-After you change, you leave the room through a different door, avoiding your pursuers, who are still banging at the door you were dragged inside through.
-
-
-
-“It’s this way.” the man says while leading you, and shortly after, you arrive at the door to the portal room, guarded by a single person. On the way you passed by a few other organization members, but no one noticed you so far.
+After you change, you leave the room through a different door, avoiding your pursuers, who are still banging at the [ドア|door] you were dragged inside through.
 
 
 
-“I need to use the portal, let me through.” your guide says to the guard.
-
-“I’m not letting anyone in right now, Akuto’s direct orders. There are intruders in the hideout and they’re after the portal.” the guard answers.
-
-“And who is it with you- Oh, damn, they’re here! Come, quick!” after looking at you, he notices who you are, and alerts other members through walkie-talkie.
+“It’s this way.” the man says while leading you, and shortly after, [あなた達|(あなたたち) you (plural)] arrive at the [ドア|door] to the portal room, guarded by a single person. On the way, you passed by a few other organization members, but no one noticed [あなた達|(あなたたち) you (plural)] so far.
 
 
 
-“Damn, move!” your guide tries to push him away, but he stands his ground.
+“I need to use the portal; let me through.” [あなた達の|(あなたたちの) your (plural)] guide [言う|(いう) says] to the guard.
 
-“Take this!” and he sends out words, defending the portal room.
+“I’m not letting anyone in right now, Akuto’s direct orders. There are intruders in the hideout and they’re after the [転移門|(てんいもん) portal].” the guard [答える|(こたえる) answers].
+
+“And who is it with [あなた|you]- Oh, damn, they’re here! Come, quick!” after looking at [あなた達|(あなたたち) you (plural)], [彼|(かれ) he] notices who [あなた達|(あなたたち) you (plural)] are, and alerts other members through walkie-talkie.
+
+
+
+“Damn, move!” [あなた達の|(あなたたちの) your (plural)] [案内人|(あんないにん) guide] tries to push the guard away, but [彼|(かれ) he] stands [彼の|(かれの) his] ground.
+
+“Take this!” and [彼|(かれ) he] sends out words, defending the [転移門の|(てんいもんの) portal (portal’s)] [部屋|(へや) room].
 
 
 
@@ -2333,22 +2333,22 @@ You manage to beat the words.
 
 
 
-Hideout 6
-“Hold him while I get the portal ready!” your guide tells you, and subdue the guards, so he can’t get in the way anymore.
+Hideout 6 Portal room 転移門の部屋
+“Hold him while I get the [転移門|(てんいもん) portal] ready!” your guide tells you, and you subdue the guard, so [彼|(かれ) he] can’t get in the way anymore.
 
-“Wait a second while I set this up...” after entering the room, your guide says while working at a dashboard next to the portal.
+“Wait a second while I set this up...” after entering the [部屋|(へや) room], your [案内人|(あんないにん) guide] [言う|(いう) says] while working at a computer next to the [転移門|(てんいもん) portal].
 
-You have a moment of free time, so you look around. The room is quite small, there’s just the portal and a computer next to it, seemingly used to operate it. The walls are just as white and sterile looking as the rest of the facility, and the door behind you is also white. The portal itself looks like an arch filled with faint, yellow light.
+[あなた|You] have a moment of free time, so [あなた|you] look around. The [部屋|(へや) room] is quite small, there’s just the [転移門|(てんいもん) portal] and a [パソコン|computer (personal computer)] next to it, seemingly used to operate it. The walls are just as white and sterile looking as the rest of the facility, and the door behind you is also [白い|(しろい) white]. The [転移門|(てんいもん) portal] itself looks like an arch, emitting faint, yellow light.
 
 
 
-“Well, well, well, what do we have here?” then, you hear Akuto’s voice from behind. He brought a lot of his underlings with him.
+“Well, well, well, what do we have here?” then, [あなた|you] hear Akuto’s voice from behind. He brought a lot of his underlings with him.
 
-“Please, we just want to use the portal to go back to our world!” Harumi says her plea.
+“Please, we just want to use the [転移門|(てんいもん) portal] to go back to our world!” Harumi pleads.
 
-“And why would I let you use my portal? And let you escape after having found and infiltrated my hideout?” he reacts.
+“And why would I let you use my [転移門|(てんいもん) portal]? And let you escape after having found and infiltrated my hideout?” [彼|(かれ) he] reacts.
 
-“Send it!” before you can respond, he, and all of his goons, send out words at you.
+“Send it!” before [あなた達|(あなたたち) you (plural)] can respond, [彼|(かれ) he], and all of his goons, send out words at [あなた達|(あなたたち) you (plural)].
 
 
 
@@ -2361,41 +2361,41 @@ Somehow, you manage to beat them.
 
 
 
-Hideout 8
+Hideout 8 転移門の部屋
 “W-We, we won!” Harumi exclaims.
 
 “Not so fast!” Akuto replies, as his underlings quickly capture the three of you.
 
-“You might have beaten our words, but we still outnumber you.” he continues.
+“You might have beaten our words, but we still outnumber [あなた達|(あなたたち) you (plural)].” [彼|(かれ) he] continues.
 
 
 
-“Ugh... Listen, there’s a note in my pocket from the chief of the village in the jungle. Could you just take a look at it?” she responds.
+“Ugh... Listen, there’s a note in my pocket from the chief of the village in the jungle. Could you just take a look at it, please?” she responds.
 
-“From the chief?” he hesitates for a moment, before walking up to Harumi and picking up the note.
+“From the chief?” [彼|(かれ) he] hesitates for a moment, before walking up to Harumi and picking up the note.
 
 
 
-“So, you really just want to use the portal?” he asks.
+“So, you really just want to use the [転移門|(てんいもん) portal]?” [彼|(かれ) he] asks after reading the note.
 
 “That’s what we’ve been saying the entire time!” Harumi answers.
 
-“... Let them go.” he says after reading the note.
+“... Let them go.” [彼|(かれ) he] says after a moment of deliberation.
 
-“A-Are you sure, boss?” one of the underlings says.
+“A-Are you sure, boss?” one of the underlings [聞く|(きく) asks].
 
 “I said ‘Let them go’!” Akuto repeats, and his underlings oblige, setting you free.
 
 
 
-He walks up to the dashboard and finishes the portal set up process himself.
+[彼|(かれ) He] walks up to the [パソコン|computer (personal computer)] and finishes the [転移門|(てんいもん) portal] set up process himself.
 
-“I’ll tell everyone on the other side to let you through.” he says.
+“I’ll tell everyone on the other side to let you through.” [彼|(かれ) he] [言う|(いう) says].
 
-“Really? Oh, thanks! That’s great!” Harumi responds with a bright smile.
+“Really? Oh, thanks! That’s great!” Harumi [答える|(こたえる) responds] with a bright smile.
 
-“It’s all set up, now, go before I change my mind!” Akuto rushes you, as the portal starts glowing.
+“It’s all set up, now, go before I change my mind!” Akuto rushes [あなた達|(あなたたち) you (plural)], as the [転移門|(てんいもん) portal] starts glowing.
 
-“Okay, sure!” Harumi says, and both of you quickly run up to the portal.
+“Okay, sure!” Harumi [言う|(いう) says], and both of [あなた達|(あなたたち) you (plural)] quickly run up to the [転移門|(てんいもん) portal].
 
-“I guess this is the end of our journey; let’s go!” she says before the two of you, with Batbat on Harumi’s shoulder, walk through the portal.
+“I guess this is the end of our journey; let’s go!” [彼女|(かのじょ) she] [言う|(いう) says] before the two of [あなた達|(あなたたち) you (plural)], along with Batbat sitting on Harumi’s shoulder, step through the [転移門|(てんいもん) portal].
