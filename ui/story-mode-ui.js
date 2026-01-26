@@ -98,6 +98,7 @@ class KantoreStoryModeUi {
         const grade4Range = new StageRange(KantoreLevels.getKanjiLevelsGrade4Range, 5);
         const grade5Range = new StageRange(KantoreLevels.getKanjiLevelsGrade5Range, 4);
         const grade6Range = new StageRange(KantoreLevels.getKanjiLevelsGrade6Range, 4);
+        const juniorHighRange = new StageRange(KantoreLevels.getKanjiLevelsJunioHighRange, 8);
 
         const hubMenu = [
             {
@@ -2319,6 +2320,422 @@ class KantoreStoryModeUi {
                             `
                         ]
                     }
+                ]
+            },
+            {
+                name: 'アジト島 - Ajitojima',
+                entries: [
+                    {
+                        name: '旅支度 - Travel preparations',
+                        text: [
+                            `
+                                After leaving Takarajima, and after your ankle injury had healed, <span class="popover" data-content="you">あなた</span> and Harumi went back to the village where <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> first got the map, explained the situation to the little girl, and returned the original <span class="popover" data-content="(ちず) map">地図</span> <span class="popover" data-content="to her (へ read as “e”)">かのじょ へ</span>.
+                                
+                                You expected her to be upset about the treasure, or lack thereof, but she just said “Oh, that’s exactly what grandpa would do!”. Apparently he was known among his family for practical jokes.
+                                
+                                After that, the only thing left for <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> to do, is to return to <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> own world. That will require <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> to find a portal in Aku no Soshiki’s hideout on <span class="popover" data-content="(アジトじま) Ajitojima">アジト島</span>.
+                                
+                                
+                                In order to get there <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> need to take a ship from the port in Minatomachi. For that reason <span class="popover" data-content="you">あなた</span> and Harumi are back at an inn in the city. It’s the last evening before <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> planned departure.
+                                
+                                The two of you sit at a table, and Harumi is playing with her new pet.
+                            `,
+                            `
+                                She’s smiling while looking at her pet bat chewing on a berry.
+                                
+                                You’re astounded, just a few days ago she was terrified of them, and now she has one as a <span class="popover" data-content="pet">ペット</span>? You decide to ask her about it.
+                            `,
+                            `
+                                “Well, I am still scared of <span class="popover" data-content="bats">コウモリ</span>, but I felt sorry for this one. He was laying on the ground with a broken wing, just outside one of the caves in Takaranoyama, so I decided to take care of him.” <span class="popover" data-content="she">かのじょ</span> answers while gently patting the <span class="popover" data-content="bat's">コウモリの</span> head.
+                                
+                                “And, this one isn’t so bad. He’s actually kinda cute!”
+                                
+                                “I wanted to release <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span> back where <span class="popover" data-content="he">かれ</span> came from after <span class="popover" data-content="he">かれ</span> recovered, but <span class="popover" data-content="he">かれ</span> didn’t seem to want to leave, so I guess <span class="popover" data-content="(わたし) I">私</span> am just going to keep <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span>.”
+                            `,
+                            `
+                                “<span class="popover" data-content="(わたし) I">私</span> called <span class="popover" data-content="him (as object of a verb) (を read as “o”)">かれ を</span> Batbat!” <span class="popover" data-content="she">かのじょ</span> exclaims proudly.
+                                
+                                Harumi has many qualities, naming sense apparently not being one of them.
+                            `,
+                            `
+                                After a short conversation <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> decide to call it a day and go to sleep. <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> do need to get up early tomorrow to board the <span class="popover" data-content="(ふね) ship">船</span>, after all.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'アジト島に着く - Arrived in Ajitojima',
+                        text: [
+                            `
+                                It took a few hours of travel by ship, but you have finally arrived in <span class="popover" data-content="(アジトじま) Ajitojima">アジト島</span>. After thanking the captain and leaving the ship, the <span class="popover" data-content="(ふね) ship">船</span> continues on its way, while <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> find yourselves in a jungle.
+                                
+                                <span class="popover" data-content="(あなたたちの) Your (plural)">あなた達の</span> surroundings are crowded with vegetation of all colors, the birds, and other animals can be heard all around, and the sun is barely visible through all the leaves, vines, and branches sprawling overhead.
+                                
+                                “We should have asked for a map of this place; I have no idea where to go...” Harumi says upon seeing the place.
+                            `,
+                            `
+                                Fortunately, there is an unpaved footpath leading through the <span class="popover" data-content="jungle">ジャングル</span>. <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> realize it must lead somewhere, so, having no better idea of where to go, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> decide to follow it.
+                                
+                                “Eek, eek, eek!” suddenly, Batbat, who is sitting on Harumi’s shoulder, starts crying while looking in a certain direction.
+                                
+                                “What’s wrong, Batbat? Is there something over- Oh, I see...” after seeing the bat’s behavior, Harumi notices a group of words creeping up on <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> from the bushes.
+                                
+                                As soon as they realize they were noticed, the <span class="popover" data-content="(ことば) words">言葉</span> jump out and attack <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>. Fortunately, though, thanks to Batbat’s warning, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> at least avoid getting caught off guard.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'ジャングル - Jungle 1',
+                            range: juniorHighRange,
+                            index: 0
+                        }),
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                The words attack you, but, having lost the element of surprise, some of them ran away before the battle even started.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You quickly repel the rest of the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ジャングル - Jungle 2',
+                        text: [
+                            `
+                                “Thanks, Batbat!” Harumi says to her small companion with a smile.
+                                “Eek!” Batbat responds happily.
+                                
+                                Thanks to Batbat, the battle went way more smoothly than it could have, and you continue on your way through the <span class="popover" data-content="jungle">ジャングル</span>.
+                                
+                                After some more walking, and a few more encounters, you find yourself in a village.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ジャングルの村 - Jungle village 1',
+                        text: [
+                            `
+                                “I did not expect there to be a <span class="popover" data-content="(むら) village">村</span> in a place like this.” Harumi says with a perplexed expression.
+                                
+                                The <span class="popover" data-content="(むら) village">村</span> is pretty small, there’s a few houses, but you can only see about five people walking outside. The houses, and the <span class="popover" data-content="(むらの) village (village's)">村の</span> wall, are all built of wood, and the roofs are made from big leaves.
+                                
+                                Soon after you arrive, an old man approaches <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                            `,
+                            `
+                                “Welcome to our humble <span class="popover" data-content="(むら) village">村</span>, travellers. What brings you here? We don’t get a lot of visitors here, you know.” he greets <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                                
+                                “We’re looking for Aku no Soshiki’s hideout. Do you know where it is?” Harumi asks.
+                                
+                                “The <span class="popover" data-content="hideout">アジト</span>? Well, yes, but it’s deep inside the <span class="popover" data-content="jungle">ジャングル</span>. You shouldn’t go there alone, you’d just get lost, but we’d be happy to provide a guide for you if need be. Why do you want to go there, anyway?” he helpfully replies.
+                                
+                                “We want to use the portal they have to go back to our world.” Harumi answers.
+                            `,
+                            `
+                                “I see, I see. Does Akuto know about this?” <span class="popover" data-content="(かれ) he">彼</span> asks, surprisingly knowing the organization’s boss’ name.
+                                
+                                “N-No? Why would he? We’re tracking them down, trying to foil their plans as much as possible. We’ll probably need to take over the portal by force, even if just temporarily.” Harumi <span class="popover" data-content="(こたえる) answers">答える</span>, puzzled about the man’s reaction.
+                                
+                                “W-What?! Oh, you’re the ones! Get out of here! Go back on the goddamn ship that brought you here, and never come back!” <span class="popover" data-content="(かれ) he">彼</span> yells at <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> and leaves.
+                                
+                                “H-Huh?!” Harumi can’t hide her bewilderment.
+                            `,
+                            `
+                                You look at each other in astonishment, and after a moment, Harumi says “I don’t understand. Don’t they want Aku no Soshiki gone from this island?”. The situation is just as confusing to you, as it is to her.
+                            `,
+                            `
+                                “Gah, uh, well, that was close.” suddenly, a group of three young people, two men and a woman, rush into the <span class="popover" data-content="(むら) village">村</span>, all out of breath and heavily bruised.
+                                
+                                “What’s the commotion?!” the man from earlier comes back and <span class="popover" data-content="(きく) asks">聞く</span> them.
+                                
+                                “Well, we were foraging when some words attacked us, fortunately we managed to-” one of the men responds, but stops mid-answer after looking back at his companions.
+                                
+                                “Where’s Kiyo? She was with us the entire time...” <span class="popover" data-content="(かれ) he">彼</span> continues.
+                                
+                                “Oh, no! She must’ve fallen behind!” the woman says with a frown while putting her hand over <span class="popover" data-content="(かのじょの) her">彼女の</span> mouth.
+                            `,
+                            `
+                                “You mean she’s all alone out there?! With words?! We have to go save her!” the old man says.
+                                
+                                “Right, chief, but who will go? We can lead the way, but <span class="popover" data-content="(わたしたち) we">私達</span> are all worn out. If <span class="popover" data-content="(わたしたち) we">私達</span> get attacked again, I don’t think <span class="popover" data-content="(わたしたち) we">私達</span> will be able to do much more than run away, if even that much.” the young man <span class="popover" data-content="(こたえる) responds">答える</span>.
+                                
+                                “She's my daughter! I will go myself- Ugh... ugh...” the chief shouts before falling into a coughing fit.
+                                
+                                <span class="popover" data-content="(かれ) He">彼</span> surely doesn’t seem ready to go into the <span class="popover" data-content="jungle">ジャングル</span>, let alone take on feral <span class="popover" data-content="(ことば) words">言葉</span>.
+                            `,
+                            `
+                                “<span class="popover" data-content="(わたしたち) We">私達</span> can go!” Harumi <span class="popover" data-content="(いう) says">言う</span>, after hearing the conversation.
+                                
+                                “Y-You? W-Well... I wouldn't like to ask you that, but there doesn’t seem to be much of a choice right now...” the chief <span class="popover" data-content="(こたえる) responds">答える</span>.
+                                
+                                “Would you do that for us?” <span class="popover" data-content="(かれ) he">彼</span> <span class="popover" data-content="(きく) asks">聞く</span>.
+                                
+                                “Sure! We can’t just leave someone out there like that!” <span class="popover" data-content="(かのじょ) she">彼女</span> <span class="popover" data-content="(こたえる) responds">答える</span>.
+                                
+                                A few moments later <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> step back into the <span class="popover" data-content="jungle">ジャングル</span>, following the lead of the two <span class="popover" data-content="(おとこたち) men">男達</span> of the group.
+                            `
+                        ]
+                    },
+                    {
+                        name: `キヨの救出 - Kiyo's rescue 1`,
+                        text: [
+                            `
+                                “This is the place where we were foraging.” one of the men, who are guiding you, says.
+                                
+                                “I can’t see her anywhere, though. <span class="popover" data-content="(かのじょ) She">彼女</span> was nowhere on the way here, either...” the other <span class="popover" data-content="(おとこ) man">男</span> adds.
+                                
+                                “Let’s look around some more, maybe <span class="popover" data-content="(かのじょ) she">彼女</span> is close.” the first <span class="popover" data-content="(おとこ) man">男</span> responds.
+                            `,
+                            `
+                                After a few moments of looking around, “Hey, there’s someone over there, in the bushes!” Harumi <span class="popover" data-content="(いう) says">言う</span> after finally noticing something.
+                                
+                                “Kiyo!” the two <span class="popover" data-content="(おとこたち) men">男達</span> <span class="popover" data-content="(いう) say">言う</span> simultaneously, confirming it is who you are looking for.
+                                
+                                You run up to her, but then a big group of words shows up from the bushes, surrounding <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                                
+                                “Here we go again!” Harumi <span class="popover" data-content="(いう) says">言う</span> after seeing them.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: `キヨの救出 - Kiyo's rescue 2`,
+                            range: juniorHighRange,
+                            index: 1
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                The words attack, and you not only need to defend yourselves, but also Kiyo lying unconscious in the bushes, and your two worn-out guides.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to repel the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: `キヨの救出 - Kiyo's rescue 3`,
+                        text: [
+                            `
+                                “She’s unconscious but <span class="popover" data-content="(かのじょ) she">彼女</span> seems to be mostly fine, just some minor scratches here and there.” Harumi says after checking Kiyo’s injuries.
+                                
+                                “Oh, no! We need to get her back to the village and show her to the doctor as soon as possible!” one of your guides <span class="popover" data-content="(いう) says">言う</span>.
+                            `,
+                            `
+                                “Y-Yeah, sure, but, I think she’s going to be fine-” Harumi <span class="popover" data-content="(いう) says">言う</span> before being cut off.
+                                
+                                “These bushes are highly poisonous!” the man interrupts.
+                                
+                                “W-What! Oh, okay. Let’s hurry!” Harumi agrees after understanding the gravity of the situation.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ジャングルの村 - Jungle village 2',
+                        text: [
+                            `
+                                “She received a sizable dose of the poison. To be honest I don’t know if <span class="popover" data-content="(かのじょ) she">彼女</span> will make it...” the <span class="popover" data-content="(むらの) village (village's)">村の</span> doctor says after examining Kiyo.
+                                
+                                “Oh, no... Isn’t there anything we can do?” the <span class="popover" data-content="(むらの) village (village's)">村の</span> chief asks, distraught by the news.
+                                
+                                “There is an antidote, but we don’t have it in the <span class="popover" data-content="(むら) village">村</span>. And it can only be made from a flower that grows only in one specific place on the mainland.” the <span class="popover" data-content="(いしゃ) doctor">医者</span> responds.
+                                
+                                “There’s no time to go and get it though, the <span class="popover" data-content="(どく) poison">毒</span> works too quickly.” he adds.
+                                
+                                The chief stays silent, almost breaking into tears.
+                            `,
+                            `
+                                You and Harumi look at each other, remembering a similar situation.
+                                
+                                “Can this maybe help?” Harumi <span class="popover" data-content="(いう) says">言う</span> while presenting the <span class="popover" data-content="(いしゃ) doctor">医者</span> with a blue flower you found back then, behind a cemetery.
+                                
+                                “That’s... That’s the <span class="popover" data-content="(はな) flower">花</span>! How did you get it?!” the <span class="popover" data-content="(いしゃ) doctor">医者</span> <span class="popover" data-content="(こたえる) responds">答える</span> in awe.
+                                
+                                “Well, we had something similar happen a while back. Good thing I took some extra!” she <span class="popover" data-content="(こたえる) responds">答える</span> with an elated smile.
+                            `,
+                            `
+                                “Does it mean <span class="popover" data-content="(かのじょ) she">彼女</span> will be okay?" the chief <span class="popover" data-content="(きく) asks">聞く</span> with a glimmer of hope.
+                                
+                                “Yes, <span class="popover" data-content="(かのじょ) she">彼女</span> should be! I’ll start preparing the <span class="popover" data-content="(くすり) medicine">薬</span> right away!” the <span class="popover" data-content="(いしゃ) doctor">医者</span> <span class="popover" data-content="(こたえる) responds">答える</span> before grabbing the <span class="popover" data-content="(はな) flower">花</span> and getting to work.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ジャングルの村 - Jungle village 3',
+                        text: [
+                            `
+                                The next day after taking the medicine, Kiyo wakes up.
+                                
+                                “Oh, thank you two. How could I ever repay you for saving my daughter? I’m so sorry about the way I treated you earlier.” the chief tells you.
+                                
+                                “It’s okay, I’m glad we could help!” Harumi responds.
+                                
+                                “Now, if you could help us find the Aku no Soshiki’s hideout that would be great, though.” she continues.
+                            `,
+                            `
+                                “Right, that’s what you’re here for after all...” he <span class="popover" data-content="(こたえる) responds">答える</span>.
+                                
+                                “Why do <span class="popover" data-content="you">あなた</span> support them so much, anyway? Aren’t they the bad guys?” <span class="popover" data-content="(かのじょ) she">彼女</span> asks.
+                                
+                                “They’re not bad! They’re the only reason we can live in peace, and still haven’t been conquered by the mainland.” <span class="popover" data-content="(かれ) he">彼</span> answers.
+                                
+                                “Wh-What? How so?” <span class="popover" data-content="(かのじょ) she">彼女</span> reacts with confusion.
+                            `,
+                            `
+                                “You see, Akuto is originally from this <span class="popover" data-content="(むら) village">村</span>.” the chief starts his answer.
+                                
+                                “A few years back we were invaded by a country from the mainland, and <span class="popover" data-content="(わたしたち) we">私達</span> only managed to survive because Akuto, and a few other villagers, snuck into their camp and stole their weapons.”
+                                
+                                “It was only when <span class="popover" data-content="(わたしたち) we">私達</span> were equally armed that <span class="popover" data-content="(わたしたち) we">私達</span> managed to repel their attacks.”
+                                
+                                “After that, Akuto created Aku no Soshiki to prevent any future invasions from happening.” <span class="popover" data-content="(かれ) he">彼</span> finishes.
+                            `,
+                            `
+                                “Oh, <span class="popover" data-content="(わたし) I">私</span>... <span class="popover" data-content="(わたし) I">私</span> thought <span class="popover" data-content="(かれ) he">彼</span> was just a common outlaw.” Harumi reacts.
+                                
+                                “Well, he does operate on the... other side of legality sometimes. But that’s what you need to do when facing threats that big.” <span class="popover" data-content="(かれ) he">彼</span> responds.
+                                
+                                “Anyway, I owe my daughter’s life to you, so I’ll help <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> with your quest. Just promise that <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> won’t try to take down Akuto or the organization.” <span class="popover" data-content="(かれ) he">彼</span> adds.
+                                
+                                “Sure, <span class="popover" data-content="(わたしたち) we">私達</span> just want to go home! <span class="popover" data-content="(わたしたち) We">私達</span> wouldn't even go there if <span class="popover" data-content="(わたしたち) we">私達</span> knew of another portal somewhere else.” Harumi agrees.
+                                
+                                With that said, the chief agrees to have one of the villagers guide you to the hideout the next morning.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ジャングル - Jungle 3',
+                        text: [
+                            `
+                                The next morning, you and your guide depart from the village, heading towards Aku no Soshiki’s hideout.
+                                
+                                The <span class="popover" data-content="(あんないにん) guide">案内人</span> is leading the way through the <span class="popover" data-content="jungle">ジャングル</span>, with the two of you following closely behind.
+                                
+                                “Okay, we’re getting close. It’s just past this place.” the <span class="popover" data-content="(あんないにん) guide">案内人</span> says, as you reach an entrance to a cave.
+                            `,
+                            `
+                                “C-<span class="popover" data-content="Cave">どうくつ</span>?” Harumi says with hesitation, flinching a little.
+                                
+                                “Eek, eek!” then, Batbat jumps from her shoulder, and sits on her head.
+                                
+                                “Oh, you’re... going to protect me, Batbat?” she asks.
+                                
+                                “Eek!” Batbat responds, spreading his wings, as if trying to reassure her.
+                                
+                                “Okay, sure! I’m ready!” she concludes with determination and a smile. This is the first time you see her be so positive about entering a <span class="popover" data-content="cave">どうくつ</span>.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'どうくつ - Cave 1',
+                        text: [
+                            `
+                                You walk through the <span class="popover" data-content="cave">どうくつ</span>, there are some bats flying overhead from time to time, but Harumi doesn’t seem to be too bothered by them. Her new bodyguard seems to be doing a good job, which seems a little paradoxical, given that <span class="popover" data-content="(かのじょの) her">彼女の</span> fear, caused by a bat being stuck on her head, is alleviated by a <span class="popover" data-content="bat">コウモリ</span> <span class="popover" data-content="(すわっている) sitting">座っている</span> on <span class="popover" data-content="(かのじょの) her">彼女の</span> <span class="popover" data-content="(あたま) head">頭</span>, but you’re not going to question that.
+                                
+                                “Eek, eek!” suddenly, Batbat cries out, spreading his wings.
+                            `,
+                            `
+                                “What’s going on? ... Oh, I see!” Harumi looks around, alerted by Batbat’s cry.
+                                
+                                There’s a group of words trying to sneak up on you.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'どうくつ - Cave 2',
+                            range: juniorHighRange,
+                            index: 2
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                After failing to get a preemptive strike, some of the words run away, but the rest still attack you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to repel the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ジャングル - Jungle 4',
+                        text: [
+                            `
+                                “Okay, we’re out. See, it’s right there!” your guide says after leaving the cave, pointing to a building not too far away, towering over the <span class="popover" data-content="jungle">ジャングル</span>.
+                                
+                                The <span class="popover" data-content="(たてもの) building">建物</span> is black and blocky. It’s a few stories high, but it’s a lot wider than it’s tall.
+                                
+                                “This is as far as I can go.” he continues.
+                            `,
+                            `
+                                “Also, the chief told me to give you this.” <span class="popover" data-content="(かれ) he">彼</span> <span class="popover" data-content="(いう) says">言う</span> while handing you a piece of paper.
+                                
+                                “What’s that?” Harumi asks.
+                                
+                                “It’s a note from the chief to Akuto, explaining what you did in the village, and asking him to let you use the portal.” <span class="popover" data-content="(かれ) he">彼</span> answers.
+                            `,
+                            `
+                                “Oh, that’s nice! Maybe we won’t have to fight our way through this time.” she reacts with a little laugh.
+                                
+                                “Now, I’m going back to the village. The rest is up to you; good luck!” <span class="popover" data-content="(かれ) he">彼</span> says.
+                                
+                                “Thank you!” Harumi responds, smiling from ear to ear.
+                                
+                                You say your goodbyes, and your guide leaves.
+                            `,
+                            `
+                                “Okay, let’s go-” Harumi <span class="popover" data-content="(いう) says">言う</span> before being interrupted.
+                                
+                                “Eek, eek!” by Batbat crying out again.
+                                
+                                “What’s wrong? Another attack?” Harumi <span class="popover" data-content="(はんのうする) reacts">反応する</span> with concern before scanning the surroundings, as words emerge from the <span class="popover" data-content="jungle">ジャングル</span>.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'ジャングル - Jungle 5',
+                            range: juniorHighRange,
+                            index: 3
+                        }),
+                        totalQuestions: 15,
+                        beforeText: [
+                            `
+                                The number of words around is big, and, despite being noticed early, none of them run away. These must be words scattered by Aku no Soshiki for protection, not rogue ones.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You somehow manage to defeat all the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'ジャングル - Jungle 6',
+                        text: [
+                            `
+                                “Well, that was tough. I hope this is the last time we’ll have to fight.” Harumi says after the battle. You can’t help but agree with her.
+                                
+                                “Thanks, Batbat! If it wasn’t for the early warning I don’t know what would’ve happened!” she continues while patting Batbat on the head.
+                                
+                                “Eek!” Batbat joyfully responds.
+                                
+                                “Okay, for real this time, let’s go!” <span class="popover" data-content="(かのじょ) she">彼女</span> concludes before the two of you start walking towards the hideout.
+                            `
+                        ]
+                    },
+                ]
+            },
+            {
+                name: `悪の組織のアジト - Aku no Soshiki's hideout`,
+                entries: [
+                    
                 ]
             }
         ];
