@@ -276,7 +276,7 @@ class KantoreStoryModeUi {
                                 
                                 She pauses for a moment, probably waiting for a response, but, after noticing your consternation, continues talking.
                                 
-                                “Anyway, we shouldn’t stay here for too long or feral words will come and-” before she finishes speaking a group of words jumps out of the pond.
+                                “Anyway, we shouldn’t stay here for too long or wild words will come and-” before she finishes speaking a group of words jumps out of the pond.
                                 
                                 “Watch out!” she shouts as the words leap at you.
                             `
@@ -2329,13 +2329,13 @@ class KantoreStoryModeUi {
                         name: '旅支度 - Travel preparations',
                         text: [
                             `
-                                After leaving Takarajima, and after your ankle injury had healed, <span class="popover" data-content="you">あなた</span> and Harumi went back to the village where <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> first got the map, explained the situation to the little girl, and returned the original <span class="popover" data-content="(ちず) map">地図</span> <span class="popover" data-content="to her (へ read as “e”)">かのじょ へ</span>.
+                                After leaving Takarajima, and after your ankle injury had healed, <span class="popover" data-content="you">あなた</span> and Harumi went back to the village, where <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> first got the map, to explain the situation to the little girl, and return the original <span class="popover" data-content="(ちず) map">地図</span> <span class="popover" data-content="to her (へ read as “e”)">かのじょ へ</span>.
                                 
                                 You expected her to be upset about the treasure, or lack thereof, but she just said “Oh, that’s exactly what grandpa would do!”. Apparently he was known among his family for practical jokes.
                                 
                                 After that, the only thing left for <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> to do, is to return to <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> own world. That will require <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> to find a portal in Aku no Soshiki’s hideout on <span class="popover" data-content="(アジトじま) Ajitojima">アジト島</span>.
-                                
-                                
+                            `,
+                            `
                                 In order to get there <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> need to take a ship from the port in Minatomachi. For that reason <span class="popover" data-content="you">あなた</span> and Harumi are back at an inn in the city. It’s the last evening before <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> planned departure.
                                 
                                 The two of you sit at a table, and Harumi is playing with her new pet.
@@ -2343,7 +2343,7 @@ class KantoreStoryModeUi {
                             `
                                 She’s smiling while looking at her pet bat chewing on a berry.
                                 
-                                You’re astounded, just a few days ago she was terrified of them, and now she has one as a <span class="popover" data-content="pet">ペット</span>? You decide to ask her about it.
+                                You’re astounded; just a few days ago she was terrified of them, and now she has one as a <span class="popover" data-content="pet">ペット</span>? You decide to ask her about it.
                             `,
                             `
                                 “Well, I am still scared of <span class="popover" data-content="bats">コウモリ</span>, but I felt sorry for this one. He was laying on the ground with a broken wing, just outside one of the caves in Takaranoyama, so I decided to take care of him.” <span class="popover" data-content="she">かのじょ</span> answers while gently patting the <span class="popover" data-content="bat's">コウモリの</span> head.
@@ -2363,14 +2363,14 @@ class KantoreStoryModeUi {
                         ]
                     },
                     {
-                        name: 'アジト島に着く - Arrived in Ajitojima',
+                        name: 'アジト島に着く - Arriving in Ajitojima',
                         text: [
                             `
                                 It took a few hours of travel by ship, but you have finally arrived in <span class="popover" data-content="(アジトじま) Ajitojima">アジト島</span>. After thanking the captain and leaving the ship, the <span class="popover" data-content="(ふね) ship">船</span> continues on its way, while <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> find yourselves in a jungle.
                                 
                                 <span class="popover" data-content="(あなたたちの) Your (plural)">あなた達の</span> surroundings are crowded with vegetation of all colors, the birds, and other animals can be heard all around, and the sun is barely visible through all the leaves, vines, and branches sprawling overhead.
                                 
-                                “We should have asked for a map of this place; I have no idea where to go...” Harumi says upon seeing the place.
+                                “We should have asked for a map of this place; I have no idea where to go...” Harumi says after taking a look around.
                             `,
                             `
                                 Fortunately, there is an unpaved footpath leading through the <span class="popover" data-content="jungle">ジャングル</span>. <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> realize it must lead somewhere, so, having no better idea of where to go, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> decide to follow it.
@@ -2405,7 +2405,7 @@ class KantoreStoryModeUi {
                         name: 'ジャングル - Jungle 2',
                         text: [
                             `
-                                “Thanks, Batbat!” Harumi says to her small companion with a smile.
+                                “Thanks, Batbat!” Harumi says with a smile to her small companion.
                                 “Eek!” Batbat responds happily.
                                 
                                 Thanks to Batbat, the battle went way more smoothly than it could have, and you continue on your way through the <span class="popover" data-content="jungle">ジャングル</span>.
@@ -2431,7 +2431,7 @@ class KantoreStoryModeUi {
                                 
                                 “The <span class="popover" data-content="hideout">アジト</span>? Well, yes, but it’s deep inside the <span class="popover" data-content="jungle">ジャングル</span>. You shouldn’t go there alone, you’d just get lost, but we’d be happy to provide a guide for you if need be. Why do you want to go there, anyway?” he helpfully replies.
                                 
-                                “We want to use the portal they have to go back to our world.” Harumi answers.
+                                “We want to use the portal they have, to go back to our world.” Harumi answers.
                             `,
                             `
                                 “I see, I see. Does Akuto know about this?” <span class="popover" data-content="(かれ) he">彼</span> asks, surprisingly knowing the organization’s boss’ name.
@@ -2463,7 +2463,7 @@ class KantoreStoryModeUi {
                                 
                                 “She's my daughter! I will go myself- Ugh... ugh...” the chief shouts before falling into a coughing fit.
                                 
-                                <span class="popover" data-content="(かれ) He">彼</span> surely doesn’t seem ready to go into the <span class="popover" data-content="jungle">ジャングル</span>, let alone take on feral <span class="popover" data-content="(ことば) words">言葉</span>.
+                                <span class="popover" data-content="(かれ) He">彼</span> surely doesn’t seem ready to go into the <span class="popover" data-content="jungle">ジャングル</span>, let alone take on wild <span class="popover" data-content="(ことば) words">言葉</span>.
                             `,
                             `
                                 “<span class="popover" data-content="(わたしたち) We">私達</span> can go!” Harumi <span class="popover" data-content="(いう) says">言う</span>, after hearing the conversation.
@@ -2474,7 +2474,7 @@ class KantoreStoryModeUi {
                                 
                                 “Sure! We can’t just leave someone out there like that!” <span class="popover" data-content="(かのじょ) she">彼女</span> <span class="popover" data-content="(こたえる) responds">答える</span>.
                                 
-                                A few moments later <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> step back into the <span class="popover" data-content="jungle">ジャングル</span>, following the lead of the two <span class="popover" data-content="(おとこたち) men">男達</span> of the group.
+                                A few moments later, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> step back into the <span class="popover" data-content="jungle">ジャングル</span>, following the lead of the two <span class="popover" data-content="(おとこたち) men">男達</span> of the group.
                             `
                         ]
                     },
@@ -2521,7 +2521,7 @@ class KantoreStoryModeUi {
                         name: `キヨの救出 - Kiyo's rescue 3`,
                         text: [
                             `
-                                “She’s unconscious but <span class="popover" data-content="(かのじょ) she">彼女</span> seems to be mostly fine, just some minor scratches here and there.” Harumi says after checking Kiyo’s injuries.
+                                “She’s unconscious, but <span class="popover" data-content="(かのじょ) she">彼女</span> seems to be mostly fine, just some minor scratches here and there.” Harumi says after checking Kiyo’s injuries.
                                 
                                 “Oh, no! We need to get her back to the village and show her to the doctor as soon as possible!” one of your guides <span class="popover" data-content="(いう) says">言う</span>.
                             `,
@@ -2538,7 +2538,7 @@ class KantoreStoryModeUi {
                         name: 'ジャングルの村 - Jungle village 2',
                         text: [
                             `
-                                “She received a sizable dose of the poison. To be honest I don’t know if <span class="popover" data-content="(かのじょ) she">彼女</span> will make it...” the <span class="popover" data-content="(むらの) village (village's)">村の</span> doctor says after examining Kiyo.
+                                “She received a sizable dose of the poison. To be honest, I don’t know if <span class="popover" data-content="(かのじょ) she">彼女</span> will make it...” the <span class="popover" data-content="(むらの) village (village's)">村の</span> doctor says after examining Kiyo.
                                 
                                 “Oh, no... Isn’t there anything we can do?” the <span class="popover" data-content="(むらの) village (village's)">村の</span> chief asks, distraught by the news.
                                 
@@ -2551,7 +2551,7 @@ class KantoreStoryModeUi {
                             `
                                 You and Harumi look at each other, remembering a similar situation.
                                 
-                                “Can this maybe help?” Harumi <span class="popover" data-content="(いう) says">言う</span> while presenting the <span class="popover" data-content="(いしゃ) doctor">医者</span> with a blue flower you found back then, behind a cemetery.
+                                “Can this maybe help?” Harumi <span class="popover" data-content="(いう) says">言う</span> while presenting the <span class="popover" data-content="(いしゃ) doctor">医者</span> with a blue flower you found back then, behind the cemetery.
                                 
                                 “That’s... That’s the <span class="popover" data-content="(はな) flower">花</span>! How did you get it?!” the <span class="popover" data-content="(いしゃ) doctor">医者</span> <span class="popover" data-content="(こたえる) responds">答える</span> in awe.
                                 
@@ -2570,11 +2570,11 @@ class KantoreStoryModeUi {
                             `
                                 The next day after taking the medicine, Kiyo wakes up.
                                 
-                                “Oh, thank you two. How could I ever repay you for saving my daughter? I’m so sorry about the way I treated you earlier.” the chief tells you.
+                                “Oh, thank you two. How could I ever repay <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> for saving my daughter? I’m so sorry about the way I treated <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> earlier.” the chief tells <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
                                 
                                 “It’s okay, I’m glad we could help!” Harumi responds.
                                 
-                                “Now, if you could help us find the Aku no Soshiki’s hideout that would be great, though.” she continues.
+                                “Now, if <span class="popover" data-content="you">あなた</span> could help us find the Aku no Soshiki’s hideout, that would be great, though.” she continues.
                             `,
                             `
                                 “Right, that’s what you’re here for after all...” he <span class="popover" data-content="(こたえる) responds">答える</span>.
@@ -2599,7 +2599,7 @@ class KantoreStoryModeUi {
                                 
                                 “Well, he does operate on the... other side of legality sometimes. But that’s what you need to do when facing threats that big.” <span class="popover" data-content="(かれ) he">彼</span> responds.
                                 
-                                “Anyway, I owe my daughter’s life to you, so I’ll help <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> with your quest. Just promise that <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> won’t try to take down Akuto or the organization.” <span class="popover" data-content="(かれ) he">彼</span> adds.
+                                “Anyway, I owe my daughter’s life to you, so I’ll help <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> with your quest. Just promise that <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> won’t try to take down Akuto or the organization.” <span class="popover" data-content="(かれ) he">彼</span> adds.
                                 
                                 “Sure, <span class="popover" data-content="(わたしたち) we">私達</span> just want to go home! <span class="popover" data-content="(わたしたち) We">私達</span> wouldn't even go there if <span class="popover" data-content="(わたしたち) we">私達</span> knew of another portal somewhere else.” Harumi agrees.
                                 
@@ -2676,12 +2676,12 @@ class KantoreStoryModeUi {
                             `
                                 “Also, the chief told me to give you this.” <span class="popover" data-content="(かれ) he">彼</span> <span class="popover" data-content="(いう) says">言う</span> while handing you a piece of paper.
                                 
-                                “What’s that?” Harumi asks.
+                                “What’s this?” Harumi asks.
                                 
                                 “It’s a note from the chief to Akuto, explaining what you did in the village, and asking him to let you use the portal.” <span class="popover" data-content="(かれ) he">彼</span> answers.
                             `,
                             `
-                                “Oh, that’s nice! Maybe we won’t have to fight our way through this time.” she reacts with a little laugh.
+                                “Oh, that’s nice! Maybe this time we won’t have to fight our way through.” she reacts with a little laugh.
                                 
                                 “Now, I’m going back to the village. The rest is up to you; good luck!” <span class="popover" data-content="(かれ) he">彼</span> says.
                                 
@@ -2735,7 +2735,246 @@ class KantoreStoryModeUi {
             {
                 name: `悪の組織のアジト - Aku no Soshiki's hideout`,
                 entries: [
-                    
+                    {
+                        name: 'アジト前 - Hideout front 1',
+                        text: [
+                            `
+                                There are two guards in front of the entrance to the <span class="popover" data-content="hideout">アジト</span>.
+                                
+                                “Who are you, and what are you doing here?” one of them asks.
+                                
+                                “Hey, it’s those guys everyone is talking about!” the other interjects before you can answer.
+                            `,
+                            `
+                                “Hi, umm... We just want to use the portal here, to go back to our world. Here, look at this note; it explains everything.” Harumi responds, but they don’t pay any attention to the note <span class="popover" data-content="(かのじょ) she">彼女</span> shows.
+                                
+                                “Scram!” they don’t listen, and they send out words to fight you.
+                                
+                                “I guess it’s not going to be that easy...” Harumi says resignedly, while preparing to battle.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'アジト前 - Hideout front 2',
+                            range: juniorHighRange,
+                            index: 4
+                        }),
+                        totalQuestions: 5,
+                        beforeText: [
+                            `
+                                The words, sent out by the guards, attack you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to beat all of the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'アジト前 - Hideout front 3',
+                        text: [
+                            `
+                                “Alarm, alarm, intruders at the gate!” one of the guards says through walkie-talkie.
+                                
+                                “Let’s go before they catch us!” Harumi <span class="popover" data-content="(いう) says">言う</span> while trying to barge inside.
+                                
+                                “Where do you think you’re going-”
+                                “Eek!”
+                                “Aah!” a guard is trying to catch her, but Batbat flies in his face and causes him to flinch for just long enough for you to make your way <span class="popover" data-content="(なかへ) inside (literally “to inside”) (へ read as “e”)">中へ</span>.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'アジト - Hideout 1',
+                        text: [
+                            `
+                                “We’re inside, but where do we go from here?” Harumi says.
+                                
+                                You were hoping the Aku no Soshiki members would let you through, thanks to the chief’s note, so you didn’t prepare a plan for this situation.
+                                
+                                You look around the long, white, sterile looking halls of the <span class="popover" data-content="hideout">アジト</span>, as the alarm rings all around, and more and more organization members gather near you, and try to capture <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                            `,
+                            `
+                                <span class="popover" data-content="(あなたたち) You (plural)">あなた達</span> try to run away, but <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> end up cornered in a dead end. There is a door next to <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, but it’s tightly locked. The members, seeing <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> have no escape route, send out words at <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                                
+                                “Well, here we go again...” Harumi says, preparing for another battle.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'アジト - Hideout 2',
+                            range: juniorHighRange,
+                            index: 5
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                With your back against the wall, you fight the words sent out by the Aku no Soshiki members.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Somehow, you manage to defeat all of them.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'アジト - Hideout 3',
+                        text: [
+                            `
+                                “We beat their words, but what do we do now?” Harumi says, being at a loss.
+                                
+                                Even without their <span class="popover" data-content="(ことば) words">言葉</span>, they keep creeping up closer and closer on you.
+                                
+                                “Eek, eek!” Batbat tries to intimidate them, but there are way too many of them for it to have much of an effect.
+                                
+                                Suddenly, you hear the sound of a lock opening, coming from the door that’s right next to you.
+                            `,
+                            `
+                                “W-Wah!” Harumi cries out, as the <span class="popover" data-content="door">ドア</span> opens, and both of you get dragged inside by someone. The <span class="popover" data-content="door">ドア</span> gets locked again right after, sheltering you from all of the members, who were chasing <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> until this moment.
+                            `
+                        ]
+                    },
+                    {
+                        name: 'アジト - Hideout 4',
+                        text: [
+                            `
+                                “Uhh... Th-Thanks? Oh, it’s you!” Harumi thanks the person, not being sure whether they were trying to help or capture you as well, before noticing their familiar face.
+                                
+                                It was the man you helped at the swamp, who also gave you the copy of the map later.
+                            `,
+                            `
+                                “So, you’re here for the portal, I assume?” he asks.
+                                
+                                “We are, do you know where it is?” Harumi responds.
+                                
+                                “Sure, I’ll get you there. But first, change into this.” <span class="popover" data-content="(かれ) he">彼</span> says while handing you new clothes.
+                            `,
+                            `
+                                “What’s this?” Harumi <span class="popover" data-content="(きく) asks">聞く</span>.
+                                
+                                “It’s the organization’s uniforms. If you walk around looking the way you do right now, everyone will know you’re the intruders.” <span class="popover" data-content="(かれ) he">彼</span> <span class="popover" data-content="(こたえる) answers">答える</span>.
+                                
+                                After you change, you leave the room through a different door, avoiding your pursuers, who are still banging at the <span class="popover" data-content="door">ドア</span> you were dragged inside through.
+                            `,
+                            `
+                                “It’s this way.” the man says while leading you, and shortly after, <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> arrive at the <span class="popover" data-content="door">ドア</span> to the portal room, guarded by a single person. On the way, you passed by a few other organization members, but no one noticed <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> so far.
+                            `,
+                            `
+                                “I need to use the portal; let me through.” <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> guide <span class="popover" data-content="(いう) says">言う</span> to the guard.
+                                
+                                “I’m not letting anyone in right now, boss’ direct orders. There are intruders in the hideout and they’re after the <span class="popover" data-content="(てんいもん) portal">転移門</span>.” the guard <span class="popover" data-content="(こたえる) answers">答える</span>.
+                                
+                                “And who is it with <span class="popover" data-content="you">あなた</span>- Oh, damn, they’re here! Come, quick!” after looking at <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, <span class="popover" data-content="(かれ) he">彼</span> notices who <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> are, and alerts other members through walkie-talkie.
+                            `,
+                            `
+                                “Damn, move!” <span class="popover" data-content="(あなたたちの) your (plural)">あなた達の</span> <span class="popover" data-content="(あんないにん) guide">案内人</span> tries to push the guard away, but <span class="popover" data-content="(かれ) he">彼</span> stands <span class="popover" data-content="(かれの) his">彼の</span> ground.
+                                
+                                “Take this!” and <span class="popover" data-content="(かれ) he">彼</span> sends out words, defending the <span class="popover" data-content="(てんいもんの) portal (portal’s)">転移門の</span> <span class="popover" data-content="(へや) room">部屋</span>.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: 'アジト - Hideout 5',
+                            range: juniorHighRange,
+                            index: 6
+                        }),
+                        totalQuestions: 10,
+                        beforeText: [
+                            `
+                                The words, sent out by the guard, attack you.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                You manage to beat the words.
+                            `
+                        ]
+                    },
+                    {
+                        name: '転移門の部屋 - Portal room 1',
+                        text: [
+                            `
+                                “Hold him while I get the <span class="popover" data-content="(てんいもん) portal">転移門</span> ready!” your guide tells you, and you subdue the guard, so <span class="popover" data-content="(かれ) he">彼</span> can’t get in the way anymore.
+                                
+                                “Wait a second while I set this up...” after entering the <span class="popover" data-content="(へや) room">部屋</span>, your <span class="popover" data-content="(あんないにん) guide">案内人</span> <span class="popover" data-content="(いう) says">言う</span> while working at a computer next to the <span class="popover" data-content="(てんいもん) portal">転移門</span>.
+                                
+                                <span class="popover" data-content="You">あなた</span> have a moment of free time, so <span class="popover" data-content="you">あなた</span> look around. The <span class="popover" data-content="(へや) room">部屋</span> is quite small, there’s just the <span class="popover" data-content="(てんいもん) portal">転移門</span> and a <span class="popover" data-content="computer (personal computer)">パソコン</span> next to it, seemingly used to operate it. The walls are just as white and sterile looking as the rest of the facility, and the door behind you is also <span class="popover" data-content="(しろい) white">白い</span>. The <span class="popover" data-content="(てんいもん) portal">転移門</span> itself looks like an arch, emitting faint, yellow light.
+                            `,
+                            `
+                                “Well, well, well, what do we have here?” then, <span class="popover" data-content="you">あなた</span> hear Akuto’s voice from behind. He brought a lot of his underlings with him.
+                                
+                                “Please, we just want to use the <span class="popover" data-content="(てんいもん) portal">転移門</span> to go back to our world!” Harumi pleads.
+                                
+                                “And why would I let you use my <span class="popover" data-content="(てんいもん) portal">転移門</span>? And let you escape after having found and infiltrated my hideout?” <span class="popover" data-content="(かれ) he">彼</span> reacts.
+                                
+                                “Send it!” before <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> can respond, <span class="popover" data-content="(かれ) he">彼</span>, and all of his goons, send out words at <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.
+                            `
+                        ]
+                    },
+                    {
+                        ...storyBattleFragment({
+                            name: '転移門の部屋 - Portal room 2',
+                            range: juniorHighRange,
+                            index: 7
+                        }),
+                        totalQuestions: 15,
+                        beforeText: [
+                            `
+                                You defend yourselves, and your guide working to set up the portal, from all of the words sent out by Akuto and his goons.
+                            `
+                        ],
+                        afterText: [
+                            `
+                                Somehow, you manage to beat them.
+                            `
+                        ]
+                    },
+                    {
+                        name: '転移門の部屋 - Portal room 3',
+                        text: [
+                            `
+                                “W-We, we won!” Harumi exclaims.
+                                
+                                “Not so fast!” Akuto replies, as his underlings quickly capture the three of you.
+                                
+                                “You might have beaten our words, but we still outnumber <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>.” <span class="popover" data-content="(かれ) he">彼</span> continues.
+                            `,
+                            `
+                                “Ugh... Listen, there’s a note in my pocket from the chief of the village in the jungle. Could you just take a look at it, please?” she responds.
+                                
+                                “From the chief?” <span class="popover" data-content="(かれ) he">彼</span> hesitates for a moment, before walking up to Harumi and picking up the note.
+                            `,
+                            `
+                                “So, you really just want to use the <span class="popover" data-content="(てんいもん) portal">転移門</span>?” <span class="popover" data-content="(かれ) he">彼</span> asks after reading the note.
+                                
+                                “That’s what we’ve been saying the entire time!” Harumi answers.
+                                
+                                “... Let them go.” <span class="popover" data-content="(かれ) he">彼</span> says after a moment of deliberation.
+                                
+                                “A-Are you sure, boss?” one of the underlings <span class="popover" data-content="(きく) asks">聞く</span>.
+                                
+                                “I said ‘Let them go’!” Akuto repeats, and his underlings oblige, setting you free.
+                            `,
+                            `
+                                <span class="popover" data-content="(かれ) He">彼</span> walks up to the <span class="popover" data-content="computer (personal computer)">パソコン</span> and finishes the <span class="popover" data-content="(てんいもん) portal">転移門</span> set up process himself.
+                                
+                                “I’ll tell everyone on the other side to let you through.” <span class="popover" data-content="(かれ) he">彼</span> <span class="popover" data-content="(いう) says">言う</span>.
+                                
+                                “Really? Oh, thanks! That’s great!” Harumi <span class="popover" data-content="(こたえる) responds">答える</span> with a bright smile.
+                                
+                                “It’s all set up, now, go before I change my mind!” Akuto rushes <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, as the <span class="popover" data-content="(てんいもん) portal">転移門</span> starts glowing.
+                                
+                                “Okay, sure!” Harumi <span class="popover" data-content="(いう) says">言う</span>, and both of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> quickly run up to the <span class="popover" data-content="(てんいもん) portal">転移門</span>.
+                                
+                                “I guess this is the end of our journey; let’s go!” <span class="popover" data-content="(かのじょ) she">彼女</span> <span class="popover" data-content="(いう) says">言う</span> before the two of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, along with Batbat sitting on Harumi’s shoulder, step through the <span class="popover" data-content="(てんいもん) portal">転移門</span>.
+                            `
+                        ]
+                    },
                 ]
             }
         ];

@@ -393,7 +393,7 @@ const FILTER_OUT_LEVEL_ENTRY_GLOSSES = [
     'friendly relations between Japan and Israel',
     
     'erotic', 'pornographic', 'sex position', 'masturbation', // Sensitive
-    'Judaism', 'Allah', 'Protestant', 'Catholic',       // Religion
+    'Judaism', 'Jewish', 'Allah', 'Protestant', 'Catholic',   // Religion
     'fotiaoqiang', 'Minerva (goddess)', 'Vulcan (god)'  // Contain characters we don't want to deal with
 ];
 
