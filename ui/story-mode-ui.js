@@ -2436,7 +2436,7 @@ class KantoreStoryModeUi {
                             `
                                 “I see, I see. Does Akuto know about this?” <span class="popover" data-content="(かれ) he">彼</span> asks, surprisingly knowing the organization’s boss’ name.
                                 
-                                “N-No? Why would he? We’re tracking them down, trying to foil their plans as much as possible. We’ll probably need to take over the portal by force, even if just temporarily.” Harumi <span class="popover" data-content="(こたえる) answers">答える</span>, puzzled about the man’s reaction.
+                                “N-No? Why would he? We’ll probably need to take over the portal by force, even if just temporarily.” Harumi <span class="popover" data-content="(こたえる) answers">答える</span>, puzzled about the man’s reaction.
                                 
                                 “W-What?! Oh, you’re the ones! Get out of here! Go back on the goddamn ship that brought you here, and never come back!” <span class="popover" data-content="(かれ) he">彼</span> yells at <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> and leaves.
                                 
@@ -2903,7 +2903,7 @@ class KantoreStoryModeUi {
                                 
                                 “Wait a second while I set this up...” after entering the <span class="popover" data-content="(へや) room">部屋</span>, your <span class="popover" data-content="(あんないにん) guide">案内人</span> <span class="popover" data-content="(いう) says">言う</span> while working at a computer next to the <span class="popover" data-content="(てんいもん) portal">転移門</span>.
                                 
-                                <span class="popover" data-content="You">あなた</span> have a moment of free time, so <span class="popover" data-content="you">あなた</span> look around. The <span class="popover" data-content="(へや) room">部屋</span> is quite small, there’s just the <span class="popover" data-content="(てんいもん) portal">転移門</span> and a <span class="popover" data-content="computer (personal computer)">パソコン</span> next to it, seemingly used to operate it. The walls are just as white and sterile looking as the rest of the facility, and the door behind you is also <span class="popover" data-content="(しろい) white">白い</span>. The <span class="popover" data-content="(てんいもん) portal">転移門</span> itself looks like an arch, emitting faint, yellow light.
+                                <span class="popover" data-content="You">あなた</span> have a moment of free time, so <span class="popover" data-content="you">あなた</span> look around. The <span class="popover" data-content="(へや) room">部屋</span> is quite small, there’s just the <span class="popover" data-content="(てんいもん) portal">転移門</span> and a <span class="popover" data-content="computer (personal computer)">パソコン</span>, used to operate it, next to it. The walls are just as white and sterile looking as the rest of the facility, and the door behind you is also <span class="popover" data-content="(しろい) white">白い</span>. The <span class="popover" data-content="(てんいもん) portal">転移門</span> itself looks like an arch, emitting faint, yellow light.
                             `,
                             `
                                 “Well, well, well, what do we have here?” then, <span class="popover" data-content="you">あなた</span> hear Akuto’s voice from behind. He brought a lot of his underlings with him.
@@ -2925,7 +2925,7 @@ class KantoreStoryModeUi {
                         totalQuestions: 15,
                         beforeText: [
                             `
-                                You defend yourselves, and your guide working to set up the portal, from all of the words sent out by Akuto and his goons.
+                                You defend yourselves, and your guide, working to set up the portal, from all of the words sent out by Akuto and his goons.
                             `
                         ],
                         afterText: [
@@ -2971,7 +2971,7 @@ class KantoreStoryModeUi {
                                 
                                 “Okay, sure!” Harumi <span class="popover" data-content="(いう) says">言う</span>, and both of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span> quickly run up to the <span class="popover" data-content="(てんいもん) portal">転移門</span>.
                                 
-                                “I guess this is the end of our journey; let’s go!” <span class="popover" data-content="(かのじょ) she">彼女</span> <span class="popover" data-content="(いう) says">言う</span> before the two of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, along with Batbat sitting on Harumi’s shoulder, step through the <span class="popover" data-content="(てんいもん) portal">転移門</span>.
+                                “I guess this is the end of our journey. Let’s go!” <span class="popover" data-content="(かのじょ) she">彼女</span> <span class="popover" data-content="(いう) says">言う</span> before the two of <span class="popover" data-content="(あなたたち) you (plural)">あなた達</span>, along with Batbat, sitting on Harumi’s shoulder, step through the <span class="popover" data-content="(てんいもん) portal">転移門</span>.
                             `
                         ]
                     },
