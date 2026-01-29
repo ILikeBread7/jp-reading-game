@@ -1618,6 +1618,320 @@ const KANA_HINTS = [
     </div>`,
 ];
 
+const KANJI_EXTRA_TEXT = new Map([
+            ['日', 
+                'Hiragana and katakana are done so we can move on to kanji.',
+                'The readings written in hiragana are called kun-yomi, they are related to native Japanese words.',
+                /*html*/`Ones written in katakana are called on-yomi, they are readings borrowed from Chinese.
+                Even though they're written in katakana, the words they're used in will still be written in hiragana.`,
+                /*html*/`Ones with a dot (.) in the middle indicate that the reading is split into two parts,
+                the first part corresponds to the kanji, and the second part is written in hiragana.
+                For example, kanji 大 and reading <span class="nowrap"><span class="hint-emphasis">おお</span>.きい</span> becomes <span class="hint-emphasis">大</span>きい.`,
+                /*html*/`Ones with a dash at the beginning or end are prefixes or suffixes respectively.
+                For example, kanji 出 and reading <span class="hint-emphasis">-で</span> in word 日の<span class="hint-emphasis">出</span> becomes ひの<span class="hint-emphasis">で</span>.`,
+                /*html*/`Sometimes when a kanji is used in the middle of a word it's first syllable will have a dakuten ゛ (or handakuten ゜) added.
+                For example: 人人 (ひと<span class="hint-emphasis">び</span>と) - the second character's reading has び instead of ひ.
+                This doesn't always happen, and there are no strict rules to it.
+                Some words even have two versions, one with dakuten and one without.`,
+                /*html*/`There's no need to memorize every possible reading.
+                Some of them are used way more often than others so
+                pay attention to what readings you see the most and only try to remember those.`,
+                /*html*/`A good (but not perfect) way to figure out which reading to use
+                is:
+                <ul id="kanji-readings-explanations-list">
+                    <li>
+                        word consists of only one kanji (<span class="hint-emphasis">人</span> - ひと),
+                        kanji with hiragana (<span class="hint-emphasis nowrap">大きい</span> - おおきい),
+                        multiple kanji with, or separated by, hiragana (<span class="hint-emphasis nowrap">日の出</span> - <span class="nowrap">ひので</span>),
+                        or a single kanji repeated (<span class="hint-emphasis nowrap">人人</span> - <span class="nowrap">ひとびと</span>) - <span class="nowrap">kun-yomi</span> (in general if there's any hiragana it's usually kun-yomi)
+                    </li>
+                    <li>word is a name (person or place) - kun-yomi</li>
+                    <li>word consists of multiple kanji with no hiragana between or after them (<span class="hint-emphasis nowrap">十人</span> - <span class="nowrap">じゅうにん</span>) - on-yomi</li>
+                </ul>
+                There are a lot of exceptions, some words can be read in multiple ways, some words mix kun-yomi with on-yomi, so keep that in mind.`
+            ],
+
+            ['月', 
+                `There are different types of kanji,
+                all kanji introduced so far are called "shoukei"
+                which means that they're supposed to visually represent
+                their meanings.`,
+                `For example the 人 kanji is supposed to look like a person,
+                手 is supposed to look like a hand, etc.`,
+                `Naturally, over the course of history the characters evolved
+                and might not necessarily resemble what they represent anymore.`,
+                'Other types of kanji will be explained as they appear in later levels.'
+            ],
+
+            ['一', 
+                `The 一 character is an example of a new type of kanji
+                called "shiji".`,
+                `These characters are still supposed to visually represent
+                their meanings, but because their meanings are usually more abstract
+                they don't necessarily represent any physical object.`,
+                `Like in this example the meaning of the kanji 一 is "one",
+                so it's represented as a single line.`
+            ],
+
+            ['見', 
+                `The 見 character is another type of kanji
+                called "kaii", which are compound characters.`,
+                `These characters are created by putting together
+                two or more other characters that all contribute
+                to the overall meaning (either by shape or their own actual meaning).`,
+                `In this case the kanji for eye 目 and radical for legs 儿
+                are put together to create 見 with the meaning of "see" or "look"
+                (as if giving legs to an eye and sending it at whatever you want to look at).`
+            ],
+
+            ['百', 
+                `The 百 character the first example of the most common
+                type of kanji called "keisei".`,
+                `These characters combine two parts "kei" (shape) and "sei" (sound).`,
+                `The "shape" part is usually on the left or at the top and hints at
+                the meaning of the kanji.`,
+                `The "sound" part, usually on the right or at the bottom, hints at the way the kanji is pronounced.`,
+                `In this example the "shape" is 一 (いち meaning "one") which indicates
+                "beginning", "measurement unit" or just "one"
+                (the meaning of 百 is one hundred, so including "one"),
+                and "sound" is 白 (はく) which relates to the pronunciation of 百 (ひゃく).`,
+                `For these types of kanji the sound relates to on-yomi only.
+                It's also not always a perfect match as the sounds have changed over time.`
+            ],
+
+            ['町', 
+                `Some characters combine "keisei" (shape and sound) and "kaii" (compound meaning).
+                One example of it is kanji 町 (town) which combines
+                田 (rice field) and 丁 (street / ward or tools).`,
+                `For kaii the 丁 part is supposed to resemble a nail, so putting nails into a rice field
+                signifies construction which indicates a town.`,
+                `For keisei 田 (rice field) indicates agriculture,
+                and 丁 is read as ちょう which matches the on-yomi reading of 町 (also ちょう).`
+            ],
+
+            ['匂', 
+                `The 匂 character is an example of the last type of kanji
+                called "kokuji" which are kanji created in Japan,
+                not borrowed from China.`,
+                `They have no special characteristics
+                and are only mentioned for the sake of completeness.`
+            ],
+
+            ['万', 'The 一 part of 万 kanji means "one ".'],
+            ['串', 'The 丨 part of 串 kanji means "line ".'],
+            ['丸', 'The 丶 part of 丸 kanji means "dot ".'],
+            ['乗', 'The 丿 (乀) part of 乗 kanji means "slash ".'],
+            ['乱', 'The 乙 (乚、乛) part of 乱 kanji means "second ".'],
+            ['事', 'The 亅 part of 事 kanji means "hook ".'],
+            ['井', 'The 二 part of 井 kanji means "two ".'],
+            ['京', 'The 亠 part of 京 kanji means "lid ".'],
+            ['会', 'The 人 (亻、𠆢) part of 会 kanji means "man ".'],
+            ['元', 'The 儿 part of 元 kanji means "son, legs ".'],
+            ['全', 'The 入 part of 全 kanji means "enter ".'],
+            ['公', 'The 八 (丷) part of 公 kanji means "eight ".'],
+            ['内', 'The 冂 part of 内 kanji means "wide ".'],
+            ['写', 'The 冖 part of 写 kanji means "cloth cover ".'],
+            ['冬', 'The 冫 part of 冬 kanji means "ice ".'],
+            ['処', 'The 几 part of 処 kanji means "table ".'],
+            ['凶', 'The 凵 part of 凶 kanji means "receptacle ".'],
+            ['分', 'The 刀 (刂、⺈) part of 分 kanji means "knife ".'],
+            ['動', 'The 力 part of 動 kanji means "power ".'],
+            ['包', 'The 勹 part of 包 kanji means "wrap ".'],
+            ['北', 'The 匕 part of 北 kanji means "spoon ".'],
+            ['匠', 'The 匚 part of 匠 kanji means "box ".'],
+            ['区', 'The 匸 part of 区 kanji means "hiding enclosure ".'],
+            ['午', 'The 十 part of 午 kanji means "ten ".'],
+            ['占', 'The 卜 part of 占 kanji means "divination ".'],
+            ['印', 'The 卩 (㔾) part of 印 kanji means "seal (device) ".'],
+            ['原', 'The 厂 part of 原 kanji means "cliff ".'],
+            ['去', 'The 厶 part of 去 kanji means "private ".'],
+            ['友', 'The 又 part of 友 kanji means "again ".'],
+            ['右', 'The 口 part of 右 kanji means "mouth ".'],
+            ['国', 'The 囗 part of 国 kanji means "enclosure ".'],
+            ['地', 'The 土 part of 地 kanji means "earth ".'],
+            ['売', 'The 士 part of 売 kanji means "scholar ".'],
+            ['変', 'The 夂 part of 変 kanji means "go ".'],
+            ['夏', 'The 夊 part of 夏 kanji means "go slowly ".'],
+            ['外', 'The 夕 part of 外 kanji means "evening ".'],
+            ['太', 'The 大 part of 太 kanji means "big ".'],
+            ['妹', 'The 女 part of 妹 kanji means "woman ".'],
+            ['字', 'The 子 part of 字 kanji means "child ".'],
+            ['家', 'The 宀 part of 家 kanji means "roof ".'],
+            ['寺', 'The 寸 part of 寺 kanji means "inch ".'],
+            ['少', 'The 小 (⺌、⺍) part of 少 kanji means "small ".'],
+            ['就', 'The 尢 (尣) part of 就 kanji means "lame ".'],
+            ['局', 'The 尸 part of 局 kanji means "corpse ".'],
+            ['屯', 'The 屮 part of 屯 kanji means "sprout ".'],
+            ['岩', 'The 山 part of 岩 kanji means "mountain ".'],
+            ['州', 'The 巛 (川) part of 州 kanji means "river ".'],
+            ['工', 'The 工 part of 工 kanji means "work ".'],
+            ['巻', 'The 己 part of 巻 kanji means "oneself ".'],
+            ['市', 'The 巾 part of 市 kanji means "turban ".'],
+            ['平', 'The 干 part of 平 kanji means "dry ".'],
+            ['幼', 'The 幺 (么) part of 幼 kanji means "short thread ".'],
+            ['広', 'The 广 part of 広 kanji means "dotted cliff ".'],
+            ['建', 'The 廴 part of 建 kanji means "long stride ".'],
+            ['弁', 'The 廾 part of 弁 kanji means "arch ".'],
+            ['式', 'The 弋 part of 式 kanji means "shoot ".'],
+            ['強', 'The 弓 part of 強 kanji means "bow ".'],
+            ['当', 'The 彐 (彑) part of 当 kanji means "snout ".'],
+            ['形', 'The 彡 part of 形 kanji means "bristle ".'],
+            ['後', 'The 彳 part of 後 kanji means "step ".'],
+            ['思', 'The 心 (忄、⺗) part of 思 kanji means "heart ".'],
+            ['戦', 'The 戈 part of 戦 kanji means "halberd ".'],
+            ['戸', 'The 戶 (户、戸) part of 戸 kanji means "door ".'],
+            ['才', 'The 手 (扌、龵) part of 才 kanji means "hand ".'],
+            ['支', 'The 支 part of 支 kanji means "branch ".'],
+            ['数', 'The 攴 (攵) part of 数 kanji means "rap, tap ".'],
+            ['斎', 'The 文 part of 斎 kanji means "script ".'],
+            ['料', 'The 斗 part of 料 kanji means "dipper ".'],
+            ['新', 'The 斤 part of 新 kanji means "axe ".'],
+            ['方', 'The 方 part of 方 kanji means "square ".'],
+            ['既', 'The 无 (旡) part of 既 kanji means "not ".'],
+            ['時', 'The 日 part of 時 kanji means "sun ".'],
+            ['書', 'The 曰 part of 書 kanji means "say ".'],
+            ['朝', 'The 月 part of 朝 kanji means "moon ".'],
+            ['校', 'The 木 part of 校 kanji means "tree ".'],
+            ['歌', 'The 欠 part of 歌 kanji means "lack ".'],
+            ['止', 'The 止 part of 止 kanji means "stop ".'],
+            ['死', 'The 歹 (歺) part of 死 kanji means "death ".'],
+            ['殺', 'The 殳 part of 殺 kanji means "weapon ".'],
+            ['毎', 'The 毋 (母) part of 毎 kanji means "do not ".'],
+            ['比', 'The 比 part of 比 kanji means "compare ".'],
+            ['毛', 'The 毛 part of 毛 kanji means "fur ".'],
+            ['民', 'The 氏 part of 民 kanji means "clan ".'],
+            ['氣', 'The 气 part of 氣 kanji means "steam ".'],
+            ['活', 'The 水 (氵、氺) part of 活 kanji means "water ".'],
+            ['点', 'The 火 (灬) part of 点 kanji means "fire ".'],
+            ['爪', 'The 爪 (爫) part of 爪 kanji means "claw ".'],
+            ['父', 'The 父 part of 父 kanji means "father ".'],
+            ['爽', 'The 爻 part of 爽 kanji means "trigrams ".'],
+            ['爿', 'The 爿 (丬) part of 爿 kanji means "split wood ".'],
+            ['版', 'The 片 part of 版 kanji means "slice ".'],
+            ['牙', 'The 牙 part of 牙 kanji means "fang ".'],
+            ['牛', 'The 牛 (牜、⺧) part of 牛 kanji means "cow ".'],
+            ['状', 'The 犬 (犭) part of 状 kanji means "dog ".'],
+            ['率', 'The 玄 part of 率 kanji means "profound ".'],
+            ['理', 'The 玉 (王、玊) part of 理 kanji means "jade ".'],
+            ['瓜', 'The 瓜 part of 瓜 kanji means "melon ".'],
+            ['瓶', 'The 瓦 part of 瓶 kanji means "tile ".'],
+            ['甘', 'The 甘 part of 甘 kanji means "sweet ".'],
+            ['産', 'The 生 part of 産 kanji means "life ".'],
+            ['用', 'The 用 part of 用 kanji means "use ".'],
+            ['画', 'The 田 part of 画 kanji means "field ".'],
+            ['疑', 'The 疋 (⺪) part of 疑 kanji means "bolt of cloth ".'],
+            ['病', 'The 疒 part of 病 kanji means "sickness ".'],
+            ['発', 'The 癶 part of 発 kanji means "footsteps ".'],
+            ['的', 'The 白 part of 的 kanji means "white ".'],
+            ['皮', 'The 皮 part of 皮 kanji means "skin ".'],
+            ['皿', 'The 皿 part of 皿 kanji means "dish ".'],
+            ['直', 'The 目 (⺫) part of 直 kanji means "eye ".'],
+            ['矛', 'The 矛 part of 矛 kanji means "spear ".'],
+            ['知', 'The 矢 part of 知 kanji means "arrow ".'],
+            ['研', 'The 石 part of 研 kanji means "stone ".'],
+            ['社', 'The 示 (礻) part of 社 kanji means "spirit ".'],
+            ['禽', 'The 禸 part of 禽 kanji means "track ".'],
+            ['科', 'The 禾 part of 科 kanji means "grain ".'],
+            ['空', 'The 穴 part of 空 kanji means "cave ".'],
+            ['章', 'The 立 part of 章 kanji means "stand ".'],
+            ['算', 'The 竹 (⺮) part of 算 kanji means "bamboo ".'],
+            ['米', 'The 米 part of 米 kanji means "rice ".'],
+            ['組', 'The 糸 (糹) part of 組 kanji means "silk ".'],
+            ['缶', 'The 缶 part of 缶 kanji means "jar ".'],
+            ['置', 'The 网 (⺲、罓、⺳) part of 置 kanji means "net ".'],
+            ['美', 'The 羊 (⺶、⺷) part of 美 kanji means "sheep ".'],
+            ['羽', 'The 羽 part of 羽 kanji means "feather ".'],
+            ['考', 'The 老 (耂) part of 考 kanji means "old ".'],
+            ['耐', 'The 而 part of 耐 kanji means "and ".'],
+            ['耕', 'The 耒 part of 耕 kanji means "plough ".'],
+            ['聞', 'The 耳 part of 聞 kanji means "ear ".'],
+            ['粛', 'The 聿 (⺺、⺻) part of 粛 kanji means "brush ".'],
+            ['肉', 'The 肉 (⺼) part of 肉 kanji means "meat ".'],
+            ['臣', 'The 臣 part of 臣 kanji means "minister ".'],
+            ['自', 'The 自 part of 自 kanji means "self ".'],
+            ['至', 'The 至 part of 至 kanji means "arrive ".'],
+            ['興', 'The 臼 part of 興 kanji means "mortar ".'],
+            ['舌', 'The 舌 part of 舌 kanji means "tongue ".'],
+            ['舞', 'The 舛 part of 舞 kanji means "oppose ".'],
+            ['船', 'The 舟 part of 船 kanji means "boat ".'],
+            ['良', 'The 艮 part of 良 kanji means "stopping ".'],
+            ['色', 'The 色 part of 色 kanji means "color ".'],
+            ['花', 'The 艸 (⺿) part of 花 kanji means "grass ".'],
+            ['虚', 'The 虍 part of 虚 kanji means "tiger ".'],
+            ['蚕', 'The 虫 part of 蚕 kanji means "insect ".'],
+            ['血', 'The 血 part of 血 kanji means "blood ".'],
+            ['行', 'The 行 part of 行 kanji means "walk enclosure ".'],
+            ['表', 'The 衣 (⻂) part of 表 kanji means "clothes ".'],
+            ['西', 'The 襾 (西、覀) part of 西 kanji means "cover ".'],
+            ['親', 'The 見 part of 親 kanji means "see ".'],
+            ['角', 'The 角 (⻇) part of 角 kanji means "horn ".'],
+            ['言', 'The 言 (訁) part of 言 kanji means "speech ".'],
+            ['谷', 'The 谷 part of 谷 kanji means "valley ".'],
+            ['豆', 'The 豆 part of 豆 kanji means "bean ".'],
+            ['象', 'The 豕 part of 象 kanji means "pig ".'],
+            ['貌', 'The 豸 part of 貌 kanji means "badger ".'],
+            ['買', 'The 貝 part of 買 kanji means "shell ".'],
+            ['赦', 'The 赤 part of 赦 kanji means "red ".'],
+            ['走', 'The 走 part of 走 kanji means "run ".'],
+            ['路', 'The 足 (⻊) part of 路 kanji means "foot ".'],
+            ['身', 'The 身 part of 身 kanji means "body ".'],
+            ['転', 'The 車 part of 転 kanji means "cart ".'],
+            ['辞', 'The 辛 part of 辞 kanji means "bitter ".'],
+            ['農', 'The 辰 part of 農 kanji means "morning ".'],
+            ['通', 'The 辵 (⻌、⻍) part of 通 kanji means "walk ".'],
+            ['部', 'The 邑 (⻏) part of 部 kanji means "city ".'],
+            ['配', 'The 酉 part of 配 kanji means "wine ".'],
+            ['釈', 'The 釆 part of 釈 kanji means "distinguish ".'],
+            ['野', 'The 里 part of 野 kanji means "village ".'],
+            ['銀', 'The 金 (釒) part of 銀 kanji means "gold ".'],
+            ['長', 'The 長 (镸) part of 長 kanji means "long ".'],
+            ['間', 'The 門 part of 間 kanji means "gate ".'],
+            ['院', 'The 阜 (⻖) part of 院 kanji means "mound ".'],
+            ['隷', 'The 隶 part of 隷 kanji means "slave ".'],
+            ['集', 'The 隹 part of 集 kanji means "short-tailed bird ".'],
+            ['電', 'The 雨 part of 電 kanji means "rain ".'],
+            ['青', 'The 靑 (青) part of 青 kanji means "blue ".'],
+            ['非', 'The 非 part of 非 kanji means "wrong ".'],
+            ['面', 'The 面 (靣) part of 面 kanji means "face ".'],
+            ['革', 'The 革 part of 革 kanji means "leather ".'],
+            ['韓', 'The 韋 part of 韓 kanji means "tanned leather ".'],
+            ['韮', 'The 韭 part of 韮 kanji means "leek ".'],
+            ['響', 'The 音 part of 響 kanji means "sound ".'],
+            ['頭', 'The 頁 part of 頭 kanji means "leaf ".'],
+            ['風', 'The 風 part of 風 kanji means "wind ".'],
+            ['飛', 'The 飛 part of 飛 kanji means "fly ".'],
+            ['食', 'The 食 (飠) part of 食 kanji means "eat ".'],
+            ['首', 'The 首 part of 首 kanji means "head ".'],
+            ['香', 'The 香 part of 香 kanji means "fragrant ".'],
+            ['馬', 'The 馬 part of 馬 kanji means "horse ".'],
+            ['骨', 'The 骨 part of 骨 kanji means "bone ".'],
+            ['高', 'The 高 (髙) part of 高 kanji means "tall ".'],
+            ['髪', 'The 髟 part of 髪 kanji means "hair ".'],
+            ['鬥', 'The 鬥 part of 鬥 kanji means "fight ".'],
+            ['鬱', 'The 鬯 part of 鬱 kanji means "sacrificial wine ".'],
+            ['鬻', 'The 鬲 part of 鬻 kanji means "cauldron ".'],
+            ['魅', 'The 鬼 part of 魅 kanji means "ghost ".'],
+            ['魚', 'The 魚 part of 魚 kanji means "fish ".'],
+            ['鳥', 'The 鳥 part of 鳥 kanji means "bird ".'],
+            ['鹸', 'The 鹵 part of 鹸 kanji means "salt ".'],
+            ['鹿', 'The 鹿 part of 鹿 kanji means "deer ".'],
+            ['麦', 'The 麥 part of 麦 kanji means "wheat ".'],
+            ['麻', 'The 麻 part of 麻 kanji means "hemp ".'],
+            ['黄', 'The 黃 part of 黄 kanji means "yellow ".'],
+            ['黎', 'The 黍 part of 黎 kanji means "millet ".'],
+            ['黒', 'The 黑 part of 黒 kanji means "black ".'],
+            ['黽', 'The 黽 part of 黽 kanji means "frog ".'],
+            ['鼎', 'The 鼎 part of 鼎 kanji means "tripod ".'],
+            ['鼓', 'The 鼓 part of 鼓 kanji means "drum ".'],
+            ['鼠', 'The 鼠 part of 鼠 kanji means "rat ".'],
+            ['鼻', 'The 鼻 part of 鼻 kanji means "nose ".'],
+            ['齊', 'The 齊 (斉) part of 齊 kanji means "even ".'],
+            ['齢', 'The 齒 part of 齢 kanji means "tooth ".'],
+            ['龍', 'The 龍 part of 龍 kanji means "dragon ".'],
+            ['龜', 'The 龜 part of 龜 kanji means "turtle ".']
+
+]);
+
 export class KantoreHints {
 
     static get length() {
@@ -1724,107 +2038,7 @@ export class KantoreHints {
     }
 
     static _getKanjiHintExplanationForSingleKanji(kanji) {
-        switch (kanji) {
-            case '日': return [
-                'Hiragana and katakana are done so we can move on to kanji.',
-                'The readings written in hiragana are called kun-yomi, they are related to native Japanese words.',
-                /*html*/`Ones written in katakana are called on-yomi, they are readings borrowed from Chinese.
-                Even though they're written in katakana, the words they're used in will still be written in hiragana.`,
-                /*html*/`Ones with a dot (.) in the middle indicate that the reading is split into two parts,
-                the first part corresponds to the kanji, and the second part is written in hiragana.
-                For example, kanji 大 and reading <span class="nowrap"><span class="hint-emphasis">おお</span>.きい</span> becomes <span class="hint-emphasis">大</span>きい.`,
-                /*html*/`Ones with a dash at the beginning or end are prefixes or suffixes respectively.
-                For example, kanji 出 and reading <span class="hint-emphasis">-で</span> in word 日の<span class="hint-emphasis">出</span> becomes ひの<span class="hint-emphasis">で</span>.`,
-                /*html*/`Sometimes when a kanji is used in the middle of a word it's first syllable will have a dakuten ゛ (or handakuten ゜) added.
-                For example: 人人 (ひと<span class="hint-emphasis">び</span>と) - the second character's reading has び instead of ひ.
-                This doesn't always happen, and there are no strict rules to it.
-                Some words even have two versions, one with dakuten and one without.`,
-                /*html*/`There's no need to memorize every possible reading.
-                Some of them are used way more often than others so
-                pay attention to what readings you see the most and only try to remember those.`,
-                /*html*/`A good (but not perfect) way to figure out which reading to use
-                is:
-                <ul id="kanji-readings-explanations-list">
-                    <li>
-                        word consists of only one kanji (<span class="hint-emphasis">人</span> - ひと),
-                        kanji with hiragana (<span class="hint-emphasis nowrap">大きい</span> - おおきい),
-                        multiple kanji with, or separated by, hiragana (<span class="hint-emphasis nowrap">日の出</span> - <span class="nowrap">ひので</span>),
-                        or a single kanji repeated (<span class="hint-emphasis nowrap">人人</span> - <span class="nowrap">ひとびと</span>) - <span class="nowrap">kun-yomi</span> (in general if there's any hiragana it's usually kun-yomi)
-                    </li>
-                    <li>word is a name (person or place) - kun-yomi</li>
-                    <li>word consists of multiple kanji with no hiragana between or after them (<span class="hint-emphasis nowrap">十人</span> - <span class="nowrap">じゅうにん</span>) - on-yomi</li>
-                </ul>
-                There are a lot of exceptions, some words can be read in multiple ways, some words mix kun-yomi with on-yomi, so keep that in mind.`
-            ];
-
-            case '月': return [
-                `There are different types of kanji,
-                all kanji introduced so far are called "shoukei"
-                which means that they're supposed to visually represent
-                their meanings.`,
-                `For example the 人 kanji is supposed to look like a person,
-                手 is supposed to look like a hand, etc.`,
-                `Naturally, over the course of history the characters evolved
-                and might not necessarily resemble what they represent anymore.`,
-                'Other types of kanji will be explained as they appear in later levels.'
-            ];
-
-            case '一': return [
-                `The 一 character is an example of a new type of kanji
-                called "shiji".`,
-                `These characters are still supposed to visually represent
-                their meanings, but because their meanings are usually more abstract
-                they don't necessarily represent any physical object.`,
-                `Like in this example the meaning of the kanji 一 is "one",
-                so it's represented as a single line.`
-            ];
-
-            case '見': return [
-                `The 見 character is another type of kanji
-                called "kaii", which are compound characters.`,
-                `These characters are created by putting together
-                two or more other characters that all contribute
-                to the overall meaning (either by shape or their own actual meaning).`,
-                `In this case the kanji for eye 目 and radical for legs 儿
-                are put together to create 見 with the meaning of "see" or "look"
-                (as if giving legs to an eye and sending it at whatever you want to look at).`
-            ];
-
-            case '百': return [
-                `The 百 character the first example of the most common
-                type of kanji called "keisei".`,
-                `These characters combine two parts "kei" (shape) and "sei" (sound).`,
-                `The "shape" part is usually on the left or at the top and hints at
-                the meaning of the kanji.`,
-                `The "sound" part, usually on the right or at the bottom, hints at the way the kanji is pronounced.`,
-                `In this example the "shape" is 一 (いち meaning "one") which indicates
-                "beginning", "measurement unit" or just "one"
-                (the meaning of 百 is one hundred, so including "one"),
-                and "sound" is 白 (はく) which relates to the pronunciation of 百 (ひゃく).`,
-                `For these types of kanji the sound relates to on-yomi only.
-                It's also not always a perfect match as the sounds have changed over time.`
-            ];
-
-            case '町': return [
-                `Some characters combine "keisei" (shape and sound) and "kaii" (compound meaning).
-                One example of it is kanji 町 (town) which combines
-                田 (rice field) and 丁 (street / ward or tools).`,
-                `For kaii the 丁 part is supposed to resemble a nail, so putting nails into a rice field
-                signifies construction which indicates a town.`,
-                `For keisei 田 (rice field) indicates agriculture,
-                and 丁 is read as ちょう which matches the on-yomi reading of 町 (also ちょう).`
-            ];
-
-            case '匂': return [
-                `The 匂 character is an example of the last type of kanji
-                called "kokuji" which are kanji created in Japan,
-                not borrowed from China.`,
-                `They have no special characteristics
-                and are only mentioned for the sake of completeness.`
-            ];
-
-            default: return '';
-        }
+        return KANJI_EXTRA_TEXT.get(kanji) || '';
     }
 
 }
