@@ -16,7 +16,7 @@ const chars = LEVEL_CHARS.flat(Number.MAX_SAFE_INTEGER);
 
 const firstRadicalMap = new Map();
 
-for (let i = chars.indexOf('町') + 1; i < chars.length; i++) {
+for (let i = chars.indexOf('月') + 1; i < chars.length; i++) {
     const char = chars[i];
 
     const radical = radicalsMap.get(char);
