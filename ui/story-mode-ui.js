@@ -337,7 +337,7 @@ class KantoreStoryModeUi {
                             `,
                             `
                                 “Sky is blue.
-                                <span class="popover" data-content="sky">そら</span> is <span class="popover" data-content="blue">あおい</span>.”
+                                <span class="popover" data-content="Sky">そら</span> is <span class="popover" data-content="blue">あおい</span>.”
                                 
                                 “You see, in this world when people talk sometimes the words they say turn into Japanese!” she <span class="popover" data-content="says">いう</span> proudly, as if she was the one who discovered it.
                                 
