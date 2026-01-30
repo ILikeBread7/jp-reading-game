@@ -959,6 +959,7 @@ function createLevelTagsFromPriorities(priorities, entries) {
             console.log(` - Total number of entries: ${charEntries.length}`);
             if (charEntries.length === 0) {
                 console.error(` - No entries for char: ${char}!`);
+                throw new Error(` - No entries for char: ${char}!`);
             }
 
             const level = CHAR_TO_LEVEL.get(char);

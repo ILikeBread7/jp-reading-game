@@ -2,16 +2,10 @@ import fs from 'node:fs';
 import { LEVEL_CHARS } from '../ui/level-chars.js';
 
 const kanjidic = JSON.parse(fs.readFileSync('kanjidic2.json', 'utf-8'));
-const kanjiTypes = JSON.parse(fs.readFileSync('kanji_types.json', 'utf-8'));
 
 const radicalsMap = new Map(
     kanjidic.kanjidic2.character.map(char => [ char.literal, getRadicalSafe(char.radical) ])
 );
-const kanjiTypeMap = Object.entries(kanjiTypes).reduce((acc, [ type, kanjiString ]) => {
-    [ ...kanjiString ]
-        .forEach(kanji => !acc.has(kanji) && acc.set(kanji, type));
-    return acc;
-}, new Map());
 const chars = LEVEL_CHARS.flat(Number.MAX_SAFE_INTEGER);
 
 const firstRadicalMap = new Map();
