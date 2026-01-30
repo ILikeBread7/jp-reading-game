@@ -1672,7 +1672,8 @@ const KANJI_EXTRA_TEXT = new Map([
                 their meanings, but because their meanings are usually more abstract
                 they don't necessarily represent any physical object.`,
                 `Like in this example the meaning of the kanji 一 is "one",
-                so it's represented as a single line.`
+                so it's represented as a single line.`,
+                 'The 一 radical of 一 kanji means "one".'
             ]],
 
             ['見', [
@@ -1683,7 +1684,8 @@ const KANJI_EXTRA_TEXT = new Map([
                 to the overall meaning (either by shape or their own actual meaning).`,
                 `In this case the kanji for eye 目 and radical for legs 儿
                 are put together to create 見 with the meaning of "see" or "look"
-                (as if giving legs to an eye and sending it at whatever you want to look at).`
+                (as if giving legs to an eye and sending it at whatever you want to look at).`,
+                'The 見 radical of 見 kanji means "see".'
             ]],
 
             ['百', [
@@ -1719,7 +1721,6 @@ const KANJI_EXTRA_TEXT = new Map([
                 and are only mentioned for the sake of completeness.`
             ]],
 
-            ['一', 'The 一 radical of 一 kanji means "one".'],
             ['中', 'The 丨 radical of 中 kanji means "line".'],
             ['丸', 'The 丶 radical of 丸 kanji means "dot".'],
             ['乗', 'The 丿 (乀) radical of 乗 kanji means "slash".'],
@@ -1864,7 +1865,6 @@ const KANJI_EXTRA_TEXT = new Map([
             ['行', 'The 行 radical of 行 kanji means "walk enclosure".'],
             ['表', 'The 衣 (⻂) radical of 表 kanji means "clothes".'],
             ['西', 'The 襾 (西、覀) radical of 西 kanji means "cover".'],
-            ['見', 'The 見 radical of 見 kanji means "see".'],
             ['角', 'The 角 (⻇) radical of 角 kanji means "horn".'],
             ['言', 'The 言 (訁) radical of 言 kanji means "speech".'],
             ['谷', 'The 谷 radical of 谷 kanji means "valley".'],
