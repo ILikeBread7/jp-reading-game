@@ -16,3 +16,5 @@ kanjidex.json
 
 ui/dicts
 parsers/levels.txt
+# Local Netlify folder
+.netlify

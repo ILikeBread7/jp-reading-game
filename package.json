@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@netlify/functions": "^5.1.2",
     "fast-xml-parser": "^5.2.0",
     "wanakana": "^5.3.1"
   },
