@@ -8,16 +8,16 @@ export default async (req) => {
   const buildHookUrl = process.env.BUILD_HOOK_URL;
 
   if (!buildHookUrl) {
-    console.error("Missing BUILD_HOOK_URL environment variable");
+    console.error('Missing BUILD_HOOK_URL environment variable');
     return {
       statusCode: 500,
-      body: "Build hook URL not configured",
+      body: 'Build hook URL not configured',
     };
   }
 
   try {
     const response = await fetch(buildHookUrl, {
-      method: "POST",
+      method: 'POST',
     });
 
     if (!response.ok) {
@@ -25,22 +25,22 @@ export default async (req) => {
       throw new Error(`Build hook failed: ${response.status} ${text}`);
     }
 
-    console.log("Build triggered successfully");
+    console.log('Build triggered successfully');
 
   return {
       statusCode: 200,
-      body: "Build triggered",
+      body: 'Build triggered',
     };
   } catch (error) {
-    console.error("Error triggering build:", error);
+    console.error('Error triggering build:', error);
 
     return {
       statusCode: 500,
-      body: "Failed to trigger build",
+      body: 'Failed to trigger build',
     };
   }
 }
 
 export const config = {
-  schedule: '@monthly',
+  schedule: '*/5 * * * *',
 }
