@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Add version to urls to disable browser caching
 VERSION=$(git rev-parse --short HEAD)

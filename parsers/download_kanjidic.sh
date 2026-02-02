@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [ -d "parsers" ]; then
     cd "parsers"
